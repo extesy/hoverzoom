@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="../css/gumby.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+    <style type="text/css">
+        body {
+            width: 300px;
+        }
+    </style>
+    <script src="../js/libs/modernizr-2.7.1.min.js"></script>
+</head>
+<body>
+<div class="pretty container">
+    <div class="row">
+        <form>
+            <fieldset><legend>Hover Zoom+</legend>
+                <ul>
+                    <li class="field"><label id="lblDisable" class="checkbox" for="chkExtensionDisabled"><input type="checkbox" id="chkExtensionDisabled"><span></span> Disable for all sites</label></li>
+                    <li class="field"><label class="checkbox" for="chkExcludeSite"><input type="checkbox" id="chkExcludeSite"><span></span> <div id="dis-enable" style="display:inline">Disable</div> <div id="lblFor" style="display:inline">for</div> <div id="siteDomain" style="display:inline"></div></label></li>
+                </ul>
+                <p><a href="#" id="aPreload" style="display: none">Preload zoomed images</a></p>
+                <p id="lblPreloading" style="display: none"><span id="spanPreloading">Preloading...</span> <progress id="prgPreloading" style="width: 6em;"></progress></p>
+            </fieldset>
+        </form>
+    </div>
+    <div id="footer" class="row">
+        <div class="twelve columns text-right">
+            <a id="aMoreOptions" href="options.html" target="_blank">More options</a>
+        </div>
+    </div>
+</div>
+<script src="../js/libs/jquery-2.0.3.min.js"></script>
+<script src="../js/libs/gumby.min.js"></script>
+<script src="../js/plugins.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/popup.js"></script>
+</body>
+</html>

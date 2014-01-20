@@ -1,0 +1,40 @@
+// Copyright (c) 2013 Romain Vallet <romain.vallet@gmail.com>
+// Licensed under the MIT license, read license.txt
+
+var hoverZoomPlugins = hoverZoomPlugins || [];
+hoverZoomPlugins.push({
+  name:'Pinterest',
+  prepareImgLinks:function (callback) {
+    var res = [];
+    $('div.pin').each(function(){
+      var _this = $(this),
+        img = _this.find('img.PinImageImg'),
+        url = this.dataset ? this.dataset.closeupUrl : false;
+      if (img.length) {
+        if (!url) {
+          url = img.attr('src').replace('/192/', '/550/')
+        }
+        img.data().hoverZoomSrc = [url];
+        res.push(img);
+      }
+    });
+    hoverZoom.urlReplace(res,
+      'img[src*="/avatars/"]',
+      /_\d+\.jpg/,
+      '_140.jpg',
+      ':eq(0)'
+    );
+    callback($(res));
+    $('img.pinImg').parents('a').one('mouseover', function() {
+      var link = $(this),
+        data = link.data();
+      if (data.hoverZoomSrc) { return; }
+      var img = link.find('img.pinImg');
+      if (img.length == 1) {
+        data.hoverZoomSrc = [img.attr('src').replace(/\/\d+x(\d+)?\//, '/736x/')];
+        data.hoverZoomCaption = link.parents('.pinWrapper').find('.pinDescription').text();
+        link.addClass('hoverZoomLink');
+      }
+    });
+  }
+});

@@ -1,0 +1,34 @@
+﻿{
+    "extDescription":{
+        "message":"Enlarge thumbnails on mouse over. Works on many sites (Facebook, Twitter, Flickr, Reddit, Amazon, Tumblr, etc).",
+        "description":"Extension description (max. 132 chars)"
+    },
+    "popDisableForAllSites":{
+        "message":"Disable for all sites",
+        "description":"[popup] Disables the extension"
+    },
+    "popDisableForSite1":{
+        "message":"Disable",
+        "description":"[popup] First part of 'Disable for www.example.com'"
+    },
+    "popDisableForSite2":{
+        "message":"for",
+        "description":"[popup] Second part of 'Disable for www.example.com'"
+    },
+    "popEnableForSite1":{
+        "message":"Enable",
+        "description":"[popup] First part of 'Enable for www.example.com'"
+    },
+    "popPreloadImages":{
+        "message":"Preload zoomed images",
+        "description":"[popup] Preload zoomed images"
+    },
+    "popPreloadingImages":{
+        "message":"Preloading...",
+        "description":"[popup] Preloading zoomed images"
+    },
+    "popMoreOptions":{
+        "message":"More options",
+        "description":"[popup] More options"
+    }
+}
