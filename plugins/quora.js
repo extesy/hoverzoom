@@ -3,10 +3,10 @@
 
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'Weasyl',
+    name:'Quora',
     prepareImgLinks:function (callback) {
         var res = [],
-            imgs = qsa('img[master_src]');
+            imgs = document.querySelectorAll('img[master_src]');
         for (var i=0; i<imgs.length; i++) {
             var img = imgs[i],
                 url = img.getAttribute('master_src'),

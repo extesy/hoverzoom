@@ -6,7 +6,7 @@ hoverZoomPlugins.push({
     name:'Weasyl',
     prepareImgLinks:function (callback) {
         var res = [],
-            imgs = qsa('img[src*=".thumb."]');
+            imgs = document.querySelectorAll('img[src*=".thumb."]');
         for (var i=0; i<imgs.length; i++) {
             var link = $(imgs[i].parentNode),
                 url = imgs[i].src.replace(/\.thumb\..*/, '.cover.');

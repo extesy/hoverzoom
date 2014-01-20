@@ -1,7 +1,7 @@
 ﻿// True if the current version of the extension has something to show in an update notification
 var hasReleaseNotes = false;
 
-var options, _gaq, viewWindow = null;
+var options, _gaq;
 
 // Performs an ajax request
 function ajaxRequest(request, callback) {

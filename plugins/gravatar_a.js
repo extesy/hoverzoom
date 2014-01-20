@@ -6,7 +6,7 @@ hoverZoomPlugins.push({
     name:'Gravatar',
     prepareImgLinks:function (callback) {
         var i, url, res = [],
-            img, imgs = qsa('img[src*="gravatar.com/avatar/"]');
+            img, imgs = document.querySelectorAll('img[src*="gravatar.com/avatar/"]');
         for (i = 0; i < imgs.length; i++) {
             img = imgs[i];
             if (img.src.indexOf('?') == -1) {

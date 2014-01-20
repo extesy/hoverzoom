@@ -107,31 +107,31 @@ function loadKeys(sel) {
 // Saves options to localStorage.
 function saveOptions() {
     options.extensionEnabled = $('#chkExtensionEnabled')[0].checked;
+    options.mouseUnderlap = $('#chkMouseUnderlap')[0].checked;
     options.pageActionEnabled = $('#chkPageActionEnabled')[0].checked;
     options.showCaptions = $('#chkShowCaptions')[0].checked;
+    options.showWhileLoading = $('#chkShowWhileLoading')[0].checked;
     options.showHighRes = $('#chkShowHighRes')[0].checked;
-    options.addToHistory = $('#chkAddToHistory')[0].checked;
-    options.alwaysPreload = $('#chkAlwaysPreload')[0].checked;
     options.displayDelay = getMilliseconds($('#txtDisplayDelay'));
     options.fadeDuration = getMilliseconds($('#txtFadeDuration'));
-    options.picturesOpacity = $('#txtPicturesOpacity')[0].value / 100;
-    options.showWhileLoading = $('#chkShowWhileLoading')[0].checked;
-    options.mouseUnderlap = $('#chkMouseUnderlap')[0].checked;
-    options.updateNotifications = $('#chkUpdateNotifications')[0].checked;
-    options.filterNSFW = $('#chkFilterNSFW')[0].checked;
-    options.enableGalleries = $('#chkEnableGalleries')[0].checked;
-    options.enableStats = $('#chkEnableStats')[0].checked;
+
+    options.whiteListMode = $('#chkWhiteListMode')[0].checked;
+    options.excludedSites = [];
+    $('#selExcludedSites').find('span').each(function () {
+        options.excludedSites.push($(this).text());
+    });
 
     for (var i = 0; i < actionKeys.length; i++) {
         options[actionKeys[i].id] = parseInt($('#sel' + actionKeys[i].id).val());
     }
 
-    // Excluded sites
-    options.excludedSites = [];
-    $('#selExcludedSites').find('span').each(function () {
-        options.excludedSites.push($(this).text());
-    });
-    options.whiteListMode = $('#chkWhiteListMode')[0].checked;
+    options.updateNotifications = $('#chkUpdateNotifications')[0].checked;
+    options.addToHistory = $('#chkAddToHistory')[0].checked;
+    options.filterNSFW = $('#chkFilterNSFW')[0].checked;
+    options.alwaysPreload = $('#chkAlwaysPreload')[0].checked;
+    options.enableGalleries = $('#chkEnableGalleries')[0].checked;
+    options.enableStats = $('#chkEnableStats')[0].checked;
+    options.picturesOpacity = $('#txtPicturesOpacity')[0].value / 100;
 
     localStorage.options = JSON.stringify(options);
     sendOptions(options);
@@ -176,9 +176,10 @@ function restoreOptions() {
 }
 
 function btnAddExcludedSiteOnClick() {
-    var site = $('#txtAddExcludedSite').val().trim().toLowerCase().replace(/.*:\/\//, '');
+    var field = $('#txtAddExcludedSite');
+    var site = field.val().trim().toLowerCase().replace(/.*:\/\//, '');
     if (site) appendExcludedSite(site);
-    $('#txtAddExcludedSite').val('').focus();
+    field.val('').focus();
     return false;
 }
 

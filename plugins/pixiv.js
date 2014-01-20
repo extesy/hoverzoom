@@ -15,8 +15,8 @@ hoverZoomPlugins.push({
         hoverZoom.urlReplace(res, 'a img[src*="pixiv.net/profile/"]', search, ['.', '/']);
         callback($(res));
         $('a[href*="/member_illust.php?"] img').one('mouseover', function() {
-            var link = parentNodeName(this, 'a');
-            hoverZoom.prepareFromDocument($(link), link.href, function(doc) {
+            var link = $(this).closest('a');
+            hoverZoom.prepareFromDocument(link, link.href, function(doc) {
                 var img = doc.querySelector('div.works_display img');
                 return img ? img.src : false;
             });
