@@ -21,7 +21,6 @@
         "default_title": "Hover Zoom+"
     },
     "permissions": [
-        "tabs",
         "*://*/*",
         "history",
         "notifications",

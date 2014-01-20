@@ -1,6 +1,6 @@
 ﻿{
     "extDescription":{
-        "message":"Enlarge thumbnails on mouse over. Works on many sites (Facebook, Twitter, Flickr, Reddit, Amazon, Tumblr, etc).",
+        "message":"Hover mouse over images to enlarge them. Most major sites are supported: Reddit, Amazon, Facebook, Twitter, Flickr, Tumblr, etc.",
         "description":"Extension description (max. 132 chars)"
     },
     "popDisableForAllSites":{
