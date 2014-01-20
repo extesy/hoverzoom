@@ -204,19 +204,27 @@ function selKeyOnChange(event) {
 
 function chkWhiteListModeOnChange() {
     if ($('#chkWhiteListMode')[0].checked) {
-        $('#Dis-enable').text('Enable');
-        $('#Dis-enabled').text('enabled');
+        $('#dis-enabled').text('enabled');
     } else {
-        $('#Dis-enable').text('Disable');
-        $('#Dis-enabled').text('disabled');
+        $('#dis-enabled').text('disabled');
+    }
+}
+
+function chkAddToHistoryModeOnChange() {
+    if ($('#chkAddToHistory')[0].checked) {
+        chrome.permissions.request({permissions: ['history']}, function (granted) {
+            if (!granted) {
+                $("#chkAddToHistory").trigger('gumby.uncheck');
+            }
+        });
     }
 }
 
 function txtPicturesOpacityOnChange() {
     var value = parseInt(this.value);
-    if (isNaN(value)) {
-        value = 100;
-    }
+    if (isNaN(value)) value = 100;
+    if (value < 0) value = 0;
+    if (value > 100) value = 100;
     this.value = value;
 }
 
@@ -232,7 +240,8 @@ $(function () {
     initActionKeys();
     $('#btnSave').click(saveOptions);
     $('#btnReset').click(restoreOptions);
-    $('#chkWhiteListMode').change(chkWhiteListModeOnChange);
+    $('#chkWhiteListMode').parent().on('gumby.onChange', chkWhiteListModeOnChange);
+    $('#chkAddToHistory').parent().on('gumby.onChange', chkAddToHistoryModeOnChange);
     $('#txtPicturesOpacity').change(txtPicturesOpacityOnChange);
     $('.actionKey').change(selKeyOnChange);
     $('#btnAddExcludedSite').click(btnAddExcludedSiteOnClick);

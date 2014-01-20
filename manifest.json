@@ -22,9 +22,11 @@
     },
     "permissions": [
         "*://*/*",
-        "history",
         "notifications",
         "unlimitedStorage"
+    ],
+    "optional_permissions": [
+        "history"
     ],
     "content_security_policy": "script-src 'self' https://apis.google.com https://ssl.google-analytics.com; object-src 'self'",
     "web_accessible_resources": [

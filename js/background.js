@@ -35,7 +35,11 @@ function onMessage(message, sender, callback) {
             callback();
             return true;
         case 'addUrlToHistory':
-            chrome.history.addUrl({url:message.url});
+            chrome.permissions.contains({permissions: ['history']}, function(granted) {
+                if (granted) {
+                    chrome.history.addUrl({url:message.url});
+                }
+            });
             break;
         case 'getOptions':
             callback(options);

@@ -11,7 +11,7 @@ function loadOptions() {
     options.pageActionEnabled = options.hasOwnProperty('pageActionEnabled') ? options.pageActionEnabled : true;
     options.showCaptions = options.hasOwnProperty('showCaptions') ? options.showCaptions : true;
     options.showHighRes = options.hasOwnProperty('showHighRes') ? options.showHighRes : false;
-    options.addToHistory = options.hasOwnProperty('addToHistory') ? options.addToHistory : true;
+    options.addToHistory = options.hasOwnProperty('addToHistory') ? options.addToHistory : false;
     options.alwaysPreload = options.hasOwnProperty('alwaysPreload') ? options.alwaysPreload : false;
     options.displayDelay = options.hasOwnProperty('displayDelay') ? options.displayDelay : 100;
     options.fadeDuration = options.hasOwnProperty('fadeDuration') ? options.fadeDuration : 200;
