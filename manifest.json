@@ -1,6 +1,6 @@
 {
     "name": "Hover Zoom+",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "__MSG_extDescription__",
     "manifest_version": 2,
     "icons": {
@@ -32,7 +32,7 @@
     "web_accessible_resources": [
         "images/loading.gif",
         "js/libs/gumby.min.js",
-        "js/libs/jquery-2.0.3.min.js",
+        "js/libs/jquery-2.1.0.min.js",
         "js/libs/jquery.mobile.custom.min.js",
         "js/libs/modernizr-2.7.1.min.js",
         "js/common.js",
@@ -40,7 +40,7 @@
     ],
     "content_scripts": [
         {
-            "js": ["js/libs/jquery-2.0.3.min.js", "js/plugins.js", "plugins/default.js"],
+            "js": ["js/libs/jquery-2.1.0.min.js", "js/plugins.js", "plugins/default.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
         },
