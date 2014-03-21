@@ -1,4 +1,4 @@
-﻿var options,
+var options,
     VK_CTRL = 1024,
     VK_SHIFT = 2048,
     actionKeys = [

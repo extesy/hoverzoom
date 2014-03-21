@@ -24,7 +24,7 @@ function loadOptions() {
     options.updateNotifications = options.hasOwnProperty('updateNotifications') ? options.updateNotifications : true;
     options.filterNSFW = options.hasOwnProperty('filterNSFW') ? options.filterNSFW : false;
     options.enableGalleries = options.hasOwnProperty('enableGalleries') ? options.enableGalleries : true;
-    options.enableStats = options.hasOwnProperty('enableStats') ? options.enableStats : true;
+    options.enableStats = options.hasOwnProperty('enableStats') ? options.enableStats : false;
 
     // Action keys
     options.actionKey = options.hasOwnProperty('actionKey') ? options.actionKey : 0;
@@ -102,8 +102,7 @@ function showUpdateNotification() {
             message: '',
             iconUrl: '/images/icon32.png',
             items: [
-                { title: '', message: 'Fancy options UI'},
-                { title: '', message: 'Many bugs fixed'}
+                { title: '', message: 'Disabled collecting statistics by default'}
             ]
         };
     chrome.notifications.create('Hover Zoom+', options, function(id) { });
