@@ -1,4 +1,4 @@
-// Copyright (c) 2012 Romain Vallet <romain.vallet@gmail.com>
+// Copyright (c) 2014 Romain Vallet <romain.vallet@gmail.com>
 // Licensed under the MIT license, read license.txt
 
 var hoverZoomPlugins = hoverZoomPlugins || [];
@@ -6,6 +6,28 @@ hoverZoomPlugins.push({
     name:'Facebook',
     prepareImgLinks:function (callback) {
 
+        // Profile pictures
+        $('a img[src*="fbcdn-profile"]').each(function() {
+            var img = $(this),
+                link = img.parents('a'),
+                data = link.data();
+            if (data.hoverZoomSrc) {
+                return;
+            }
+            var url = link.attr('href');
+            url = url.replace(/.*\?u=([^&]*)&.*/, '$1').replace('%2F', '/').replace(/.*facebook\.com\//, '').replace(/.*messages\//, '').replace(/profile\.php\?id=(\d+).*/, '$1').replace(/\?.*/, '');
+            url = 'https://graph.facebook.com/' + url + '/picture';
+            if (url != 'photo.php') {
+              if (options.showHighRes) {
+                  url += '?width=10000';
+              } else {
+                  url += '?width=800';
+              }
+              data.hoverZoomSrc = [url];
+              link.addClass('hoverZoomLink');
+            }
+        });
+    
         $('img[src*="fbcdn"]:not(.spotlight), img[src*="fbexternal"], [style*="fbcdn"]:not([data-reactid]), [style*="fbexternal"]').one('mousemove', function () {
             var img = $(this),
                 data = img.data();
