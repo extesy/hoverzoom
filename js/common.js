@@ -102,7 +102,7 @@ function showUpdateNotification() {
             message: '',
             iconUrl: '/images/icon32.png',
             items: [
-                { title: '', message: 'Disabled collecting statistics by default'}
+                { title: '', message: 'Fix "Add viewed pictures to history" option'}
             ]
         };
     chrome.notifications.create('Hover Zoom+', options, function(id) { });

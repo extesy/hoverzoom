@@ -166,6 +166,7 @@ function restoreOptions() {
     $('#chkUpdateNotifications')[0].checked = options.updateNotifications;
     $('#chkAddToHistory')[0].checked = options.addToHistory;
     $('#chkFilterNSFW')[0].checked = options.filterNSFW;
+
     $('#chkAlwaysPreload')[0].checked = options.alwaysPreload;
     $('#chkEnableGalleries')[0].checked = options.enableGalleries;
     $('#chkEnableStats')[0].checked = options.enableStats;
@@ -213,9 +214,13 @@ function chkWhiteListModeOnChange() {
 
 function chkAddToHistoryModeOnChange() {
     if ($('#chkAddToHistory')[0].checked) {
-        chrome.permissions.request({permissions: ['history']}, function (granted) {
+        chrome.permissions.contains({permissions: ['history']}, function (granted) {
             if (!granted) {
-                $("#chkAddToHistory").trigger('gumby.uncheck');
+                chrome.permissions.request({permissions: ['history']}, function (granted) {
+                    if (!granted) {
+                        $("#chkAddToHistory").trigger('gumby.uncheck');
+                    }
+                });
             }
         });
     }

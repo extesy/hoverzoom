@@ -36,7 +36,7 @@ hoverZoomPlugins.push({
                 if (excl.indexOf(hash) > -1) {
                     return;
                 }
-                
+
                 switch (view) {
                     case 'signin':
                         return;
@@ -48,36 +48,42 @@ hoverZoomPlugins.push({
                             data.hoverZoomGalleryCaption = [];
 
                             var albumUrl = 'http://api.imgur.com/2/album/' + hash + '.json';
-                            $.get(albumUrl, function (imgur) {
-                                if (imgur.error) {
+                            $.ajax({
+                                url: albumUrl,
+                                method: 'GET',
+                                headers: { Authorization: 'Client-ID 76453bd06803f87' },
+                                success: function (imgur) {
+                                    if (imgur.error) {
+                                        data.hoverZoomSrc = createUrls(hash);
+                                        res.push(link);
+                                    } else {
+                                        imgur.album.images.forEach(function (img) {
+                                            var urls = createUrls(img.image.hash),
+                                                caption = img.image.title,
+                                                alreadyAdded = false;
+                                            for (var i = 0, l = data.hoverZoomGallerySrc.length; i < l; i++) {
+                                                if (data.hoverZoomGallerySrc[i].indexOf(urls[0]) != -1) {
+                                                    alreadyAdded = true;
+                                                    break;
+                                                }
+                                            }
+                                            if (!alreadyAdded) {
+                                                if (caption != '' && img.image.caption != '') {
+                                                    caption += ';\n';
+                                                }
+                                                caption += img.image.caption;
+                                                data.hoverZoomGalleryCaption.push(htmlDecode(caption));
+                                                data.hoverZoomGallerySrc.push(urls);
+                                                data.hoverZoomSrc = undefined;
+                                            }
+                                        });
+                                        callback($([link]));
+                                    }
+                                },
+                                error: function() {
                                     data.hoverZoomSrc = createUrls(hash);
-                                    res.push(link);
-                                } else {
-                                    imgur.album.images.forEach(function (img) {
-                                        var urls = createUrls(img.image.hash),
-                                            caption = img.image.title,
-                                            alreadyAdded = false;
-                                        for (var i=0, l=data.hoverZoomGallerySrc.length; i<l; i++) {
-                                            if (data.hoverZoomGallerySrc[i].indexOf(urls[0]) != -1) {
-                                                alreadyAdded = true;
-                                                break;
-                                            }
-                                        }
-                                        if (!alreadyAdded) {
-                                            if (caption != '' && img.image.caption != '') {
-                                                caption += ';\n';
-                                            }
-                                            caption += img.image.caption;
-                                            data.hoverZoomGalleryCaption.push(htmlDecode(caption));
-                                            data.hoverZoomGallerySrc.push(urls);
-                                            data.hoverZoomSrc = undefined;
-                                        }
-                                    });
-                                    callback($([link]));
+                                    link.addClass('hoverZoomLink');
                                 }
-                            }).fail(function() {
-                                data.hoverZoomSrc = createUrls(hash);
-                                link.addClass('hoverZoomLink');
                             });
                             break;
                         } else { // image of an album (hash as anchor)

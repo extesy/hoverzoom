@@ -47,7 +47,7 @@ hoverZoomPlugins.push({
 
         $('a[href^="/photo"]').mouseenter(function () {
             var link = $(this), data = link.data();
-            if (data.hoverZoomSrc) {
+            if (data.hoverZoomSrc || link.parents('#pv_box').length > 0) {
                 return;
             }
             if (this.onclick) {

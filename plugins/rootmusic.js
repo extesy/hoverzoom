@@ -3,7 +3,7 @@
 
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'rootmusic',
+    name:'beautify.it',
     version:'0.1',
     prepareImgLinks:function (callback) {
         var res = [];

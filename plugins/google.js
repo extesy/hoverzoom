@@ -6,10 +6,15 @@ hoverZoomPlugins.push({
     name:'Google',
     prepareImgLinks:function (callback) {
 	
+        // Google+ full page viewer
+        if (location.search.indexOf('pid=') > -1) {
+            return;
+        }
+  
         var res = [];
         hoverZoom.urlReplace(res,
             'img[src*=".googleusercontent.com/"], img[src*=".ggpht.com/"]',
-            /(\/|=)(w\d{2,}-h\d{2,}|[hws]\d{2,})(-[npcko])*(\/|$)/,
+            /(\/|=)(w\d{2,}-h\d{2,}|[hws]\d{2,})(-[npcko]+)*(\/|$)/,
             options.showHighRes ? '$1s0$4' : '$1s800$4'
         );        
         /*hoverZoom.urlReplace(res,

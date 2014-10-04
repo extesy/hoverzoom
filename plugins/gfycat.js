@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Romain Vallet <romain.vallet@gmail.com>
+// Copyright (c) 2014 Romain Vallet <romain.vallet@gmail.com>
 // Licensed under the MIT license, read license.txt
 
 var hoverZoomPlugins = hoverZoomPlugins || [];
@@ -10,7 +10,7 @@ hoverZoomPlugins.push({
                 gfyId = this.href.replace(/.*gfycat.com\/(\w+).?/, '$1');
             $.get('http://gfycat.com/cajax/get/' + gfyId, function (data) {
                 if (data && data.gfyItem) {
-                    link.data().hoverZoomSrc = [data.gfyItem.webmUrl]
+                    link.data().hoverZoomSrc = [options.zoomVideos ? data.gfyItem.webmUrl : data.gfyItem.gifUrl]
                     link.addClass('hoverZoomLink');
                     hoverZoom.displayPicFromElement(link);
                 }            

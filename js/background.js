@@ -1,5 +1,5 @@
 ﻿// True if the current version of the extension has something to show in an update notification
-var hasReleaseNotes = true;
+var hasReleaseNotes = false;
 
 var options, _gaq;
 

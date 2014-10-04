@@ -6,7 +6,7 @@ hoverZoomPlugins.push({
     name:'Facebook',
     prepareImgLinks:function (callback) {
 
-        $('img[src*="fbcdn"], img[src*="fbexternal"], [style*="fbcdn"]:not([data-reactid]), [style*="fbexternal"]').one('mousemove', function () {
+        $('img[src*="fbcdn"]:not(.spotlight), img[src*="fbexternal"], [style*="fbcdn"]:not([data-reactid]), [style*="fbexternal"]').one('mousemove', function () {
             var img = $(this),
                 data = img.data();
             if (data.hoverZoomSrc) {

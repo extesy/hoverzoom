@@ -17,6 +17,12 @@ hoverZoomPlugins.push({
             '.116x65.',
             '.1920x1080.'
         );
+        hoverZoom.urlReplace(res,
+            'img[src*=".resizedimage"]',
+            /\d+x\d+\.resizedimage/,
+            '',
+            ':eq(0)'
+        );
         callback($(res));
     }
 });
