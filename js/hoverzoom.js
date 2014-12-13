@@ -373,7 +373,7 @@ var hoverZoom = {
         }
 
         function loadFullSizeImage() {
-            cLog('loadFullSizeImage');
+            cLog('loadFullSizeImage' + imgDetails.url);
             // If no image is currently displayed...
             if (!imgFullSize) {
                 hz.createHzImg(!hideKeyDown);
@@ -381,10 +381,14 @@ var hoverZoom = {
 
                 imgDetails.video = (imgDetails.url.substr(imgDetails.url.length - 4) == 'webm' || imgDetails.url.substr(imgDetails.url.length - 3) == 'mp4');
                 if (imgDetails.video) {
-                    //return;
+                    if (!options.zoomVideos) { return; }
                     var video = document.createElement('video');
-                    video.src = imgDetails.url;
+                    video.style.width = 0;
+                    video.style.height = 0;
                     video.loop = true;
+                    video.muted = options.muteVideos;
+                    video.poster = chrome.extension.getURL('images/white.png');
+                    video.src = imgDetails.url;
                     imgFullSize = $(video).appendTo(hz.hzImg);
                     video.addEventListener('loadedmetadata', function() {
                         posImg();
@@ -392,6 +396,7 @@ var hoverZoom = {
                     video.addEventListener('loadeddata', function() {
                         imgFullSizeOnLoad();
                         video.play();
+                        video.removeAttribute('poster');
                     });
                     video.load();
                 } else {
@@ -860,6 +865,23 @@ var hoverZoom = {
         function bindEvents() {
             wnd.bind('DOMNodeInserted', windowOnDOMNodeInserted).load(windowOnLoad).scroll(cancelImageLoading);
             $(document).mousemove(documentMouseMove).mouseleave(cancelImageLoading).mousedown(documentMouseDown).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
+            if (options.galleriesMouseWheel) {
+                $(document).on('mousewheel', documentOnMouseWheel);
+            }
+        }
+        
+        function documentOnMouseWheel(event) {
+          if (imgFullSize) {
+            var link = hz.currentLink, data = link.data();
+            if (data.hoverZoomGallerySrc) {
+              event.preventDefault();
+              if (event.originalEvent.wheelDeltaY > 0) {
+                rotateGalleryImg(-1);
+              } else {
+                rotateGalleryImg(1);
+              }
+            }
+          }
         }
 
         function documentOnKeyDown(event) {
@@ -1299,7 +1321,14 @@ var hoverZoom = {
             }
             var src = getSrc(doc);
             if (src) {
-                link.data().hoverZoomSrc = [src];
+                if (Array.isArray(src)) {
+                    console.log(src);
+                    link.data().hoverZoomGallerySrc = src;
+                    link.data().hoverZoomGalleryIndex = 0;
+                    link.data().hoverZoomSrc = src[0];
+                } else {
+                    link.data().hoverZoomSrc = [src];
+                }
                 link.addClass('hoverZoomLink');
                 hoverZoom.displayPicFromElement(link);
             }
