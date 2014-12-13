@@ -8,6 +8,7 @@ function cLog(msg) {
 }
 
 var hoverZoom = {
+
     options:{},
     currentLink:null,
     hzImg:null,
@@ -133,11 +134,11 @@ var hoverZoom = {
                 statusBarHeight = 15,
                 wndWidth = window.innerWidth,
                 wndHeight = window.innerHeight,
-                wndScrollLeft = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
-                wndScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0,
+                wndScrollLeft = (document.documentElement && document.documentElement.scrollLeft) || document.body.scrollLeft,
+                wndScrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop,
                 bodyWidth = document.body.clientWidth,
                 displayOnRight = (position.left - wndScrollLeft < wndWidth / 2);
-
+                
             function posCaption() {
                 if (hzCaption) {
                     hzCaption.css('max-width', imgFullSize.width());
@@ -226,6 +227,7 @@ var hoverZoom = {
                     position.top = wndScrollTop;
                 }
             }
+
 
             // This fixes positioning when the body's width is not 100%
             if (body100pct) {
@@ -332,9 +334,9 @@ var hoverZoom = {
 
             if (links && links.length > 0) {
                 var hoverZoomSrcIndex = links.data().hoverZoomSrcIndex || 0;
-                if (links.data().hoverZoomSrc && links.data().hoverZoomSrc != 'undefined' &&
+                if (links.data().hoverZoomSrc && typeof(links.data().hoverZoomSrc) != 'undefined' &&
                     links.data().hoverZoomSrc[hoverZoomSrcIndex] &&
-                    links.data().hoverZoomSrc[hoverZoomSrcIndex] != 'undefined') {
+                    typeof(links.data().hoverZoomSrc[hoverZoomSrcIndex]) != 'undefined') {
                     // Happens when the mouse goes from an image to another without hovering the page background
                     if (links.data().hoverZoomSrc[hoverZoomSrcIndex] != imgDetails.url) {
                         hideHoverZoomImg();
@@ -373,7 +375,7 @@ var hoverZoom = {
         }
 
         function loadFullSizeImage() {
-            cLog('loadFullSizeImage' + imgDetails.url);
+            cLog('loadFullSizeImage');
             // If no image is currently displayed...
             if (!imgFullSize) {
                 hz.createHzImg(!hideKeyDown);

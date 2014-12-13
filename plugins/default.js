@@ -11,8 +11,11 @@ hoverZoomPlugins.push({
     }).each(function () {
       var _this = $(this), data = _this.data();
       if (!data.hoverZoomSrc) {
-        data.hoverZoomSrc = [this.href];
-        res.push(_this);
+        var src = this.href;
+        if (!options.zoomVideos || (src.indexOf('imgur.com') == -1 && src.indexOf('gfycat.com') == -1)) {
+          data.hoverZoomSrc = [src];
+          res.push(_this);
+        }
       }
     });
     if (res.length) {

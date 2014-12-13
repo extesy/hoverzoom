@@ -1,6 +1,6 @@
 {
     "name": "Hover Zoom+",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "__MSG_extDescription__",
     "manifest_version": 2,
     "icons": {
@@ -47,7 +47,6 @@
         {
             "js": [
                 "plugins/imgur_a.js",
-                "plugins/gfycat.js",
                 "plugins/flickr_a.js",
                 "plugins/tumblr_a.js",
                 "plugins/picasa_a.js",
@@ -60,6 +59,7 @@
                 "plugins/deviantart_a.js",
                 "plugins/youtube_a.js",
                 "plugins/gravatar_a.js",
+                "plugins/gallery_a.js", 
                 "plugins/ipboard_a.js"
             ],
             "matches": ["<all_urls>"],
@@ -876,6 +876,7 @@
                 "plugins/memegenerator.js",
                 "plugins/slutcapades.js",
                 "plugins/memefive.js",
+                "plugins/gfycat.js",
                 "plugins/memedad.js"
             ]
         },

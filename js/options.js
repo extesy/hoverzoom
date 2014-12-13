@@ -107,6 +107,8 @@ function loadKeys(sel) {
 // Saves options to localStorage.
 function saveOptions() {
     options.extensionEnabled = $('#chkExtensionEnabled')[0].checked;
+    options.zoomVideos = $('#chkZoomVideos')[0].checked;
+    options.muteVideos = $('#chkMuteVideos')[0].checked;
     options.mouseUnderlap = $('#chkMouseUnderlap')[0].checked;
     options.pageActionEnabled = $('#chkPageActionEnabled')[0].checked;
     options.showCaptions = $('#chkShowCaptions')[0].checked;
@@ -145,6 +147,8 @@ function restoreOptions() {
     options = loadOptions();
 
     $('#chkExtensionEnabled')[0].checked = options.extensionEnabled;
+    $('#chkZoomVideos')[0].checked = options.zoomVideos;
+    $('#chkMuteVideos')[0].checked = options.muteVideos;
     $('#chkMouseUnderlap')[0].checked = options.mouseUnderlap;
     $('#chkPageActionEnabled')[0].checked = options.pageActionEnabled;
     $('#chkShowCaptions')[0].checked = options.showCaptions;

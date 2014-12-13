@@ -26,33 +26,33 @@ hoverZoomPlugins.push({
             if (href.indexOf('gallery') == -1 && data.hoverZoomSrc) {
                 return;
             }
+            
+            if (options.zoomVideos && (href.substr(-3) == 'gif' || href.substr(-4) == 'gifv')) {
+                data.hoverZoomSrc = [href.replace(/\.gif.?/, '.mp4'), href];
+                res.push(link);
+            } else {
+                var matches = href.match(/(?:\/(a|gallery|signin))?\/([^\W_]{5,7})(?:\/|\.[a-zA-Z]+|#([^\W_]{5,7}|\d+))?$/);
+                if (matches && matches[2]) {
 
-            var matches = href.match(/(?:\/(a|gallery|signin))?\/([^\W_]{5,7})(?:\/|\.[a-zA-Z]+|#([^\W_]{5,7}|\d+))?$/);
-            if (matches && matches[2]) {
-
-                var view = matches[1];
-                var hash = matches[2];
-                var excl = ['imgur', 'forum', 'stats', 'signin', 'upgrade'];
-                if (excl.indexOf(hash) > -1) {
-                    return;
-                }
-
-                switch (view) {
-                    case 'signin':
+                    var view = matches[1];
+                    var hash = matches[2];
+                    var excl = ['imgur', 'forum', 'stats', 'signin', 'upgrade'];
+                    if (excl.indexOf(hash) > -1) {
                         return;
-                    case 'a': // album view:
-                    case 'gallery':
-                        var anchor = matches[3];
-                        if (!anchor || anchor.match(/^\d+$/)) { // whole album or indexed image
-                            data.hoverZoomGallerySrc = [];
-                            data.hoverZoomGalleryCaption = [];
+                    }
+                    
+                    switch (view) {
+                        case 'signin':
+                            return;
+                        case 'a': // album view:
+                        case 'gallery':
+                            var anchor = matches[3];
+                            if (!anchor || anchor.match(/^\d+$/)) { // whole album or indexed image
+                                data.hoverZoomGallerySrc = [];
+                                data.hoverZoomGalleryCaption = [];
 
-                            var albumUrl = 'http://api.imgur.com/2/album/' + hash + '.json';
-                            $.ajax({
-                                url: albumUrl,
-                                method: 'GET',
-                                headers: { Authorization: 'Client-ID 76453bd06803f87' },
-                                success: function (imgur) {
+                                var albumUrl = 'https://api.imgur.com/2/album/' + hash + '.json';
+                                $.get(albumUrl, function (imgur) {
                                     if (imgur.error) {
                                         data.hoverZoomSrc = createUrls(hash);
                                         res.push(link);
@@ -61,7 +61,7 @@ hoverZoomPlugins.push({
                                             var urls = createUrls(img.image.hash),
                                                 caption = img.image.title,
                                                 alreadyAdded = false;
-                                            for (var i = 0, l = data.hoverZoomGallerySrc.length; i < l; i++) {
+                                            for (var i=0, l=data.hoverZoomGallerySrc.length; i<l; i++) {
                                                 if (data.hoverZoomGallerySrc[i].indexOf(urls[0]) != -1) {
                                                     alreadyAdded = true;
                                                     break;
@@ -79,20 +79,19 @@ hoverZoomPlugins.push({
                                         });
                                         callback($([link]));
                                     }
-                                },
-                                error: function() {
+                                }).fail(function() {
                                     data.hoverZoomSrc = createUrls(hash);
                                     link.addClass('hoverZoomLink');
-                                }
-                            });
-                            break;
-                        } else { // image of an album (hash as anchor)
-                            hash = anchor; // fall through
-                        }
-                    case undefined:
-                    default: // single pic view
-                        data.hoverZoomSrc = createUrls(hash);
-                        res.push(link);
+                                });
+                                break;
+                            } else { // image of an album (hash as anchor)
+                                hash = anchor; // fall through
+                            }
+                        case undefined:
+                        default: // single pic view
+                            data.hoverZoomSrc = createUrls(hash);
+                            res.push(link);
+                    }
                 }
             }
         }

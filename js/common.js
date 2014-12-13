@@ -8,6 +8,8 @@ function loadOptions() {
     options = JSON.parse(localStorage.options);
 
     options.extensionEnabled = options.hasOwnProperty('extensionEnabled') ? options.extensionEnabled : true;
+    options.zoomVideos = options.hasOwnProperty('zoomVideos') ? options.zoomVideos : true;
+    options.muteVideos = options.hasOwnProperty('muteVideos') ? options.muteVideos : true;
     options.pageActionEnabled = options.hasOwnProperty('pageActionEnabled') ? options.pageActionEnabled : true;
     options.showCaptions = options.hasOwnProperty('showCaptions') ? options.showCaptions : true;
     options.showHighRes = options.hasOwnProperty('showHighRes') ? options.showHighRes : false;
@@ -96,15 +98,17 @@ function keyCodeToKeyName(keyCode) {
 }
 
 function showUpdateNotification() {
-    var options = {
-            type: 'list',
-            title: 'Hover Zoom+ has been updated',
-            message: '',
-            iconUrl: '/images/icon32.png',
-            items: [
-                { title: '', message: 'Fix "Add viewed pictures to history" option'}
-            ]
-        };
-    chrome.notifications.create('Hover Zoom+', options, function(id) { });
-    return false;
+    if (chrome.notifications) {
+        var options = {
+                type: 'list',
+                title: 'Hover Zoom+ has been updated',
+                message: '',
+                iconUrl: '/images/icon32.png',
+                items: [
+                    { title: "Imgur gifv support", message: ""},
+                    { title: "Fix for HTTPS Imgur albums", message: ""}
+                ]
+            };
+        chrome.notifications.create('Hover Zoom+', options, function(id) { });
+    }
 }
