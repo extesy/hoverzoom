@@ -8,15 +8,9 @@ hoverZoomPlugins.push( {
     prepareImgLinks: function(callback) {
         var res = [];
         hoverZoom.urlReplace(res, 'a img[src*="flpics"]', /_\d+\.jpg/, '_958.jpg');
-        hoverZoom.urlReplace(res, 'a.main_pic span.fake_img', /_\d+\.jpg/, '_958.jpg');
-        // $('a.main_pic span.fake_img').each(function() {
-            // var fake_img = $(this), 
-                // link = fake_img.parents('a:eq(0)'), 
-                // src = fake_img.css('background-image');
-            // src = src.replace("url(", "").replace(")", "").replace("_720.jpg", "_958.jpg");
-            // link.data('hoverZoomSrc', [src]); 
-            // res.push(link);
-        // });
+        // The following line grabs the image from its frame on an individual picture's page;
+        // unused since you can already access the full image from the gallery view
+        //hoverZoom.urlReplace(res, 'a.main_pic span.fake_img', /_\d+\.jpg/, '_958.jpg');
         callback($(res));
     }
 });
