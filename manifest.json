@@ -1206,6 +1206,7 @@
             "matches": ["*://*.kinkondemand.com/*",
                         "*://*.behindkink.com/*",
                         "*://*.kink.com/*",
+                        "*://*.kinkclassic.com/*",
                         "*://*.kinkarchive.com/*",
                         "*://*.kinklive.com/*",
                         "*://*.animatedkink.com/*",
@@ -1242,6 +1243,11 @@
                         "*://*.menonedge.com/*",
                         "*://*.nakedkombat.com/*"],
             "js": ["plugins/kink.js"],
+            "run_at": "document_start"
+        },
+        {
+            "matches": ["*://*.kenmarcus.com/*"],
+            "js": ["plugins/kenmarcus.js"],
             "run_at": "document_start"
         },
         {
