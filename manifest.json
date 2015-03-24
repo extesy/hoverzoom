@@ -1251,8 +1251,14 @@
             "run_at": "document_start"
         },
         {
-            "matches": ["*://*.zenfolio.com/*"],
+            "matches": ["*://*.zenfolio.com/*",
+                        "*://*.goodgirlbadgirlboudoir.com/*"],
             "js": ["plugins/zenfolio.js"],
+            "run_at": "document_start"
+        },
+        {
+            "matches": ["*://*.escapistmagazine.com/*"],
+            "js": ["plugins/escapistmagazine.js"],
             "run_at": "document_start"
         },
         {
