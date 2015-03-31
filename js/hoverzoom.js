@@ -456,12 +456,18 @@ var hoverZoom = {
                 imgThumb = hz.currentLink;
                 var lowResSrc = imgThumb.attr('src');
                 if (!lowResSrc) {
-                    imgThumb = hz.currentLink.find('[src]').first();
-                    lowResSrc = imgThumb.attr('src');
+                    imgThumb = hz.currentLink.find('[src]');
+                    if (imgThumb.length > 0) {
+                        imgThumb = $(imgThumb[0]);
+                        lowResSrc = imgThumb.attr('src');
+                    }
                 }
                 if (!lowResSrc) {
-                    imgThumb = hz.currentLink.find('[style]').first();
-                    lowResSrc = hz.getThumbUrl(imgThumb);
+                    imgThumb = hz.currentLink.find('[style]');
+                    if (imgThumb.length > 0) {
+                        imgThumb = $(imgThumb[0]);
+                        lowResSrc = hz.getThumbUrl(imgThumb);
+                    }
                 }
                 lowResSrc = lowResSrc || 'noimage';
                 if (loading && lowResSrc.indexOf('noimage') == -1) {

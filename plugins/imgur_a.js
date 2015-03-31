@@ -26,12 +26,15 @@ hoverZoomPlugins.push({
             if (href.indexOf('gallery') == -1 && data.hoverZoomSrc) {
                 return;
             }
-            
+            if (href.indexOf('gallery') != -1 && data.hoverZoomGallerySrc) {
+                return;
+            }
+
             if (options.zoomVideos && (href.substr(-3) == 'gif' || href.substr(-4) == 'gifv')) {
                 data.hoverZoomSrc = [href.replace(/\.gif.?/, '.mp4'), href];
                 res.push(link);
             } else {
-                var matches = href.match(/(?:\/(a|gallery|signin))?\/([^\W_]{5,7})(?:\/|\.[a-zA-Z]+|#([^\W_]{5,7}|\d+))?$/);
+                var matches = href.match(/(?:\/(a|gallery|signin))?\/([^\W_]{5,7})(?:\/|\.[a-zA-Z]+|#([^\W_]{5,7}|\d+))?(\/new)?$/);
                 if (matches && matches[2]) {
 
                     var view = matches[1];
@@ -102,7 +105,6 @@ hoverZoomPlugins.push({
         // On imgur.com (galleries, etc)
         if (window.location.host.indexOf('imgur.com') > -1) {
             hoverZoom.urlReplace(res, 'a img[src*="b."]', 'b.', '.');
-            minSplitLength = 2;
             $('a[href*="/gallery/"]').each(prepareImgLink);
         }
 
