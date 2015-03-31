@@ -1,6 +1,6 @@
 {
     "name": "Hover Zoom+",
-    "version": "1.0.12",
+    "version": "1.0.13",
     "description": "__MSG_extDescription__",
     "manifest_version": 2,
     "icons": {
@@ -1260,6 +1260,10 @@
             "matches": ["*://*.escapistmagazine.com/*"],
             "js": ["plugins/escapistmagazine.js"],
             "run_at": "document_start"
+        },
+        {
+            "js": ["plugins/dirty.js"],
+            "matches": ["*://*.d3.ru/*"]
         },
         {
             "js": ["js/hoverzoom.js"],
