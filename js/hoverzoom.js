@@ -653,7 +653,8 @@ var hoverZoom = {
                      }
                      linkData.hoverZoomSrc = srcs;*/
                     if (linkData.hoverZoomGallerySrc) {
-                        linkData.hoverZoomGalleryIndex = 0;
+                        if (!linkData.hoverZoomGalleryIndex)
+                            linkData.hoverZoomGalleryIndex = 0;
                         linkData.hoverZoomGallerySrc = linkData.hoverZoomGallerySrc.map(function (srcs) {
                             return srcs.map(deepUnescape);
                         });

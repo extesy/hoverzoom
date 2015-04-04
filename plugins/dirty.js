@@ -7,7 +7,7 @@ hoverZoomPlugins.push({
   version:'0.1',
   prepareImgLinks:function (callback) {
     var res = [];
-    $('span[data-src]').filter(function () {
+    $('[data-src]').filter(function () {
       return $(this).data('src').match(/\/[^:]+\.(?:jpe?g|gif|png|webm|mp4|svg|webp|bmp|ico|xbm)(?:[\?#].*)?$/i);
     }).each(function () {
       var _this = $(this), data = _this.data();

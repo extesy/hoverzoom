@@ -9,7 +9,7 @@ hoverZoomPlugins.push({
         var res = [];
 
         function createUrls(hash) {
-            var srcs = ['http://i.imgur.com/' + hash + '.jpg'];
+            var srcs = ['//i.imgur.com/' + hash + '.jpg'];
             // Same array duplicated several times so that a retry is done if an image fails to load
             //return srcs.concat(srcs).concat(srcs).concat(srcs);
             return srcs;
@@ -50,46 +50,46 @@ hoverZoomPlugins.push({
                         case 'a': // album view:
                         case 'gallery':
                             var anchor = matches[3];
-                            if (!anchor || anchor.match(/^\d+$/)) { // whole album or indexed image
-                                data.hoverZoomGallerySrc = [];
-                                data.hoverZoomGalleryCaption = [];
+                            data.hoverZoomGallerySrc = [];
+                            data.hoverZoomGalleryCaption = [];
 
-                                var albumUrl = 'https://api.imgur.com/2/album/' + hash + '.json';
-                                $.get(albumUrl, function (imgur) {
-                                    if (imgur.error) {
-                                        data.hoverZoomSrc = createUrls(hash);
-                                        res.push(link);
-                                    } else {
-                                        imgur.album.images.forEach(function (img) {
-                                            var urls = createUrls(img.image.hash),
-                                                caption = img.image.title,
-                                                alreadyAdded = false;
-                                            for (var i=0, l=data.hoverZoomGallerySrc.length; i<l; i++) {
-                                                if (data.hoverZoomGallerySrc[i].indexOf(urls[0]) != -1) {
-                                                    alreadyAdded = true;
-                                                    break;
-                                                }
-                                            }
-                                            if (!alreadyAdded) {
-                                                if (caption != '' && img.image.caption != '') {
-                                                    caption += ';\n';
-                                                }
-                                                caption += img.image.caption;
-                                                data.hoverZoomGalleryCaption.push(htmlDecode(caption));
-                                                data.hoverZoomGallerySrc.push(urls);
-                                                data.hoverZoomSrc = undefined;
-                                            }
-                                        });
-                                        callback($([link]));
-                                    }
-                                }).fail(function() {
+                            var albumUrl = 'https://api.imgur.com/2/album/' + hash + '.json';
+                            $.get(albumUrl, function (imgur) {
+                                if (imgur.error) {
                                     data.hoverZoomSrc = createUrls(hash);
-                                    link.addClass('hoverZoomLink');
-                                });
-                                break;
-                            } else { // image of an album (hash as anchor)
-                                hash = anchor; // fall through
-                            }
+                                    res.push(link);
+                                } else {
+                                    imgur.album.images.forEach(function (img, index) {
+                                        var urls = createUrls(img.image.hash),
+                                            caption = img.image.title,
+                                            alreadyAdded = false;
+                                        for (var i=0, l=data.hoverZoomGallerySrc.length; i<l; i++) {
+                                            if (data.hoverZoomGallerySrc[i].indexOf(urls[0]) != -1) {
+                                                alreadyAdded = true;
+                                                break;
+                                            }
+                                        }
+                                        if (!alreadyAdded) {
+                                            if (caption != '' && img.image.caption != '') {
+                                                caption += ';\n';
+                                            }
+                                            caption += img.image.caption;
+                                            data.hoverZoomGalleryCaption.push(htmlDecode(caption));
+                                            data.hoverZoomGallerySrc.push(urls);
+                                            data.hoverZoomSrc = undefined;
+                                        }
+                                        if (anchor) {
+                                            if ((anchor.match(/^\d+$/) && index == parseInt(anchor)) || anchor == img.image.hash)
+                                                data.hoverZoomGalleryIndex = index;
+                                        }
+                                    });
+                                    callback($([link]));
+                                }
+                            }).fail(function() {
+                                data.hoverZoomSrc = createUrls(hash);
+                                link.addClass('hoverZoomLink');
+                            });
+                            break;
                         case undefined:
                         default: // single pic view
                             data.hoverZoomSrc = createUrls(hash);
