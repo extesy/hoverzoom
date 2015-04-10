@@ -1262,6 +1262,15 @@
             "run_at": "document_start"
         },
         {
+            "matches": ["*://*.sexuallybroken.com/*",
+                        "*://*.hardtied.com/*",
+                        "*://*.infernalrestraints.com/*",
+                        "*://*.topgrl.com/*",
+                        "*://*.realtimebondage.com/*"],
+            "js": ["plugins/intersecinteractive.js"],
+            "run_at": "document_start"
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
