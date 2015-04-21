@@ -1,6 +1,6 @@
 {
     "name": "Hover Zoom+",
-    "version": "1.0.14",
+    "version": "1.0.15",
     "description": "__MSG_extDescription__",
     "manifest_version": 2,
     "icons": {
@@ -1264,7 +1264,6 @@
         {
             "js": ["plugins/dirty.js"],
             "matches": ["*://*.d3.ru/*"]
-            "run_at": "document_start"
         },
         {
             "matches": ["*://*.sexuallybroken.com/*",
