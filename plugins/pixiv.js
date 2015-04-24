@@ -14,9 +14,12 @@ hoverZoomPlugins.push({
         }
         hoverZoom.urlReplace(res, 'a img[src*="pixiv.net/profile/"]', search, ['.', '/']);
         callback($(res));
-        $('a[href*="/member_illust.php?"] img').one('mouseover', function() {
-            var link = parentNodeName(this, 'a');
-            hoverZoom.prepareFromDocument($(link), link.href, function(doc) {
+
+        $('a[href*="member_illust.php"]').on('mouseover', function() {
+            var link = $(this);
+            if (link.data().hoverZoomSrc) return;
+            hoverZoom.prepareFromDocument($(link), link.attr('href'), function(doc) {
+                if (link.data().hoverZoomSrc) return false;
                 var img = doc.querySelector('div.works_display img');
                 return img ? img.src : false;
             });

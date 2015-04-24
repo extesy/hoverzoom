@@ -1222,7 +1222,7 @@ var hoverZoom = {
     // Extract a thumbnail url from an element, whether it be a link,
     // an image or a element with a background image.
     getThumbUrl:function (el) {
-        var compStyle = getComputedStyle(el),
+        var compStyle = (el && el.nodeType == 1) ? getComputedStyle(el) : false,
             backgroundImage = compStyle ? compStyle.backgroundImage : 'none';
         if (backgroundImage != 'none') {
             return backgroundImage.replace(/.*url\s*\(\s*(.*)\s*\).*/i, '$1');
