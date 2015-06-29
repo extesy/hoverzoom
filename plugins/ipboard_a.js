@@ -6,7 +6,7 @@ hoverZoomPlugins.push({
     name:'IP.Board',
     version:'0.1',
     prepareImgLinks:function (callback) {
-        if (document.body.id != 'ipboard_body') {
+        if (document.body && document.body.id != 'ipboard_body') {
             return;
         }
         var res = [];
