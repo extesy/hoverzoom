@@ -47,7 +47,7 @@ hoverZoomPlugins.push({
                 return;
             }
 
-            $.getJSON('http://api.tumblr.com/v2/blog/' + aHref[2] + '/posts?id=' + aHref[4] + '&api_key=GSgWCc96GxL3x2OlEtMUE56b8gjbFHSV5wf8Zm8Enr1kNcjt3U', function (data) {
+            $.getJSON('https://api.tumblr.com/v2/blog/' + aHref[2] + '/posts?id=' + aHref[4] + '&api_key=GSgWCc96GxL3x2OlEtMUE56b8gjbFHSV5wf8Zm8Enr1kNcjt3U', function (data) {
                 if (data && data.response && data.response.posts && data.response.posts[0]) {
                     var post = data.response.posts[0];
                     if (post.photos && post.photos[0]) {
