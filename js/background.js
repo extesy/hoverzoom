@@ -125,6 +125,7 @@ function optionsStats() {
     _gaq.push(['_trackEvent', 'Options', 'mouseUnderlap', options.mouseUnderlap.toString()]);
     _gaq.push(['_trackEvent', 'Options', 'showCaptions', options.showCaptions.toString()]);
     _gaq.push(['_trackEvent', 'Options', 'showHighRes', options.showHighRes.toString()]);
+    _gaq.push(['_trackEvent', 'Options', 'galleriesMouseWheel', options.galleriesMouseWheel.toString()]);
     _gaq.push(['_trackEvent', 'Options', 'addToHistory', options.addToHistory.toString()]);
     _gaq.push(['_trackEvent', 'Options', 'alwaysPreload', options.alwaysPreload.toString()]);
     _gaq.push(['_trackEvent', 'Options', 'showWhileLoading', options.showWhileLoading.toString()]);
