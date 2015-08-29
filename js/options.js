@@ -114,6 +114,7 @@ function saveOptions() {
     options.showCaptions = $('#chkShowCaptions')[0].checked;
     options.showWhileLoading = $('#chkShowWhileLoading')[0].checked;
     options.showHighRes = $('#chkShowHighRes')[0].checked;
+	options.galleriesMouseWheel = $('chkGalleriesMouseWheel')[0].checked;
     options.displayDelay = getMilliseconds($('#txtDisplayDelay'));
     options.fadeDuration = getMilliseconds($('#txtFadeDuration'));
 
@@ -154,6 +155,7 @@ function restoreOptions() {
     $('#chkShowCaptions')[0].checked = options.showCaptions;
     $('#chkShowWhileLoading')[0].checked = options.showWhileLoading;
     $('#chkShowHighRes')[0].checked = options.showHighRes;
+	$('#chkGalleriesMouseWheel')[0].checked = options.galleriesMouseWheel;
     $('#txtDisplayDelay').val((options.displayDelay || 0) / 1000);
     $('#txtFadeDuration').val((options.fadeDuration || 0) / 1000);
 
