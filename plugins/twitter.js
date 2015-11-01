@@ -31,9 +31,9 @@ hoverZoomPlugins.push({
             //console.log(this.src);
         });*/
         
-        $('[data-expanded-url], [data-full-url], [data-url]').each(function () {
+        $('[data-image-url], [data-expanded-url], [data-full-url], [data-url]').each(function () {
             var link = $(this),
-                url = this.getAttribute('data-expanded-url') || this.getAttribute('data-full-url') || this.getAttribute('data-url');
+                url = this.getAttribute('data-image-url') || this.getAttribute('data-expanded-url') || this.getAttribute('data-full-url') || this.getAttribute('data-url');
             if (url.match(/\/[^:]+\.(?:jpe?g|gif|png|svg|webp|bmp|ico|xbm)(?:[\?#:].*)?$/i) || url.match(/twimg\.com/)) {
                 link.data().hoverZoomSrc = [url.replace(':thumb', ':large')];
                 res.push(link);
