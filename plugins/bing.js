@@ -5,22 +5,25 @@ var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Bing',
     prepareImgLinks:function (callback) {
-    
         var currSrc;
-    
-        $('a.dv_i[m]').one('mousemove', function() {
+
+        $('a.iusc[m]').one('mousemove', function() {
             var link = $(this),
-                url = this.getAttribute('m');
-            url = url.substr(url.indexOf('imgurl:"') + 8);
-            url = url.substr(0, url.indexOf('"'));
+                m = JSON.parse(this.getAttribute('m'));
+            url = m.imgurl;
             link.data().hoverZoomSrc = [url];
             link.data().hoverZoomCaption = this.getAttribute('t1');
             link.addClass('hoverZoomLink');
             link.mousemove(function() {
                 currSrc = $(this).data().hoverZoomSrc;
             });
+            // Trying to suppress default zoom effect. Maybe later.
+            //var parent = link.parents('div.iuscp');
+            //parent.attr('data-hovstyle', parent.attr('style'));
+            //link.attr('data-hovstyle', link.attr('style'));
+            //link.attr('data-nmstyle', link.attr('style'));
         });
-        
+
         $('body').on('mouseenter', 'div.irhc span.center img', function() {
             var img = $(this),
                 irhc = img.parents('.irhc');
@@ -30,6 +33,5 @@ hoverZoomPlugins.push({
                 img.data().hoverZoomCaption = irhc.find('span.irhcs1').text();
             }
         });
-    
     }
 });

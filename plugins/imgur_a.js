@@ -9,7 +9,7 @@ hoverZoomPlugins.push({
         var res = [];
 
         function createUrls(hash) {
-            var srcs = ['//i.imgur.com/' + hash + '.jpg'];
+            var srcs = [window.location.protocol + '//i.imgur.com/' + hash + '.jpg'];
             // Same array duplicated several times so that a retry is done if an image fails to load
             //return srcs.concat(srcs).concat(srcs).concat(srcs);
             return srcs;
