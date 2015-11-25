@@ -114,7 +114,7 @@ function saveOptions() {
     options.showCaptions = $('#chkShowCaptions')[0].checked;
     options.showWhileLoading = $('#chkShowWhileLoading')[0].checked;
     options.showHighRes = $('#chkShowHighRes')[0].checked;
-    options.galleriesMouseWheel = $('chkGalleriesMouseWheel')[0].checked;
+    options.galleriesMouseWheel = $('#chkGalleriesMouseWheel')[0].checked;
     options.displayDelay = getMilliseconds($('#txtDisplayDelay'));
     options.fadeDuration = getMilliseconds($('#txtFadeDuration'));
 
