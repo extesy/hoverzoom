@@ -155,7 +155,7 @@ function restoreOptions() {
     $('#chkShowCaptions')[0].checked = options.showCaptions;
     $('#chkShowWhileLoading')[0].checked = options.showWhileLoading;
     $('#chkShowHighRes')[0].checked = options.showHighRes;
-	$('#chkGalleriesMouseWheel')[0].checked = options.galleriesMouseWheel;
+    $('#chkGalleriesMouseWheel')[0].checked = options.galleriesMouseWheel;
     $('#txtDisplayDelay').val((options.displayDelay || 0) / 1000);
     $('#txtFadeDuration').val((options.fadeDuration || 0) / 1000);
 
