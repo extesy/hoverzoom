@@ -113,3 +113,10 @@ function showUpdateNotification() {
         chrome.notifications.create('Hover Zoom+', options, function(id) { });
     }
 }
+
+function i18n() {
+    $('[data-i18n]').each(function(index, element) {
+        var elem = $(element);
+        elem.text(chrome.i18n.getMessage(elem.attr('data-i18n')));
+    });
+}

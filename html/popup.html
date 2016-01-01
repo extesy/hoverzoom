@@ -14,19 +14,25 @@
 <div class="pretty container">
     <div class="row">
         <form>
-            <fieldset><legend>Hover Zoom+</legend>
+            <fieldset><legend data-i18n="extName"></legend>
                 <ul>
-                    <li class="field"><label class="checkbox" for="chkExtensionDisabled"><input type="checkbox" id="chkExtensionDisabled"><span></span> <div id="lblDisable" style="display:inline">Disable for all sites</div></label></li>
-                    <li class="field"><label class="checkbox" for="chkExcludeSite"><input type="checkbox" id="chkExcludeSite"><span></span> <div id="dis-enable" style="display:inline">Disable</div> <div id="lblFor" style="display:inline">for</div> <div id="siteDomain" style="display:inline"></div></label></li>
+                    <li class="field"><label class="checkbox" for="chkExtensionDisabled">
+                        <input type="checkbox" id="chkExtensionDisabled"><span></span>
+                        <div id="lblDisable" style="display:inline" data-i18n="popDisableForAllSites"></div>
+                    </label></li>
+                    <li class="field"><label class="checkbox" for="chkExcludeSite">
+                        <input type="checkbox" id="chkExcludeSite"><span></span>
+                        <div id="lblToggle" style="display:inline" data-i18n="popAllowPerSiteToggle"></div>
+                    </label></li>
                 </ul>
-                <p><a href="#" id="aPreload" style="display: none">Preload zoomed images</a></p>
-                <p id="lblPreloading" style="display: none"><span id="spanPreloading">Preloading...</span> <progress id="prgPreloading"></progress></p>
+                <p><a href="#" id="aPreload" style="display: none" data-i18n="popPreloadImages"></a></p>
+                <p id="lblPreloading" style="display: none"><span id="spanPreloading" data-i18n="popPreloadingImages"></span> <progress id="prgPreloading"></progress></p>
             </fieldset>
         </form>
     </div>
     <div id="footer" class="row">
         <div class="twelve columns text-right">
-            <a id="aMoreOptions" href="options.html" target="_blank">More options</a>
+            <a id="aMoreOptions" href="options.html" target="_blank" data-i18n="popMoreOptions"></a>
         </div>
     </div>
 </div>

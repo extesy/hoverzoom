@@ -1,23 +1,27 @@
 ﻿{
+    "extName":{
+        "message":"Hover Zoom+",
+        "description":"Extension name"
+    },
     "extDescription":{
-        "message":"Spyware-free version of Hover Zoom. Hover mouse over images to enlarge them. Supports Reddit, Amazon, Facebook, Twitter, Flickr, etc",
-        "description":"Extension description (max. 132 chars)"
+        "message":"Hover mouse over images to enlarge them. Supports many sites such as Reddit, Amazon, Facebook, Twitter, Flickr, etc",
+        "description":"Extension description in Chrome webstore (max. 132 characters)"
     },
     "popDisableForAllSites":{
         "message":"Disable for all sites",
         "description":"[popup] Disables the extension"
     },
-    "popDisableForSite1":{
-        "message":"Disable",
-        "description":"[popup] First part of 'Disable for www.example.com'"
+    "popAllowPerSiteToggle":{
+        "message":"Allow per-site extension configuration",
+        "description":"[popup] Allow per-site extension configuration"
     },
-    "popDisableForSite2":{
-        "message":"for",
-        "description":"[popup] Second part of 'Disable for www.example.com'"
+    "popDisableForSite":{
+        "message":"Disable for $1",
+        "description":"[popup] Disables the extension for a specific site"
     },
-    "popEnableForSite1":{
-        "message":"Enable",
-        "description":"[popup] First part of 'Enable for www.example.com'"
+    "popEnableForSite":{
+        "message":"Enable for $1",
+        "description":"[popup] Enables the extension for a specific site"
     },
     "popPreloadImages":{
         "message":"Preload zoomed images",

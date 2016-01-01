@@ -1,5 +1,5 @@
 {
-    "name": "Hover Zoom+",
+    "name": "__MSG_extName__",
     "version": "1.0.21",
     "description": "__MSG_extDescription__",
     "manifest_version": 2,
@@ -10,7 +10,7 @@
         "128": "images/icon128.png"
     },
     "default_locale": "en",
-    "minimum_chrome_version": "18",
+    "minimum_chrome_version": "22",
     "background": {
         "scripts": ["js/common.js", "js/background.js"]
     },
@@ -26,7 +26,8 @@
         "unlimitedStorage"
     ],
     "optional_permissions": [
-        "history"
+        "history",
+        "tabs"
     ],
     "content_security_policy": "script-src 'self' https://apis.google.com https://ssl.google-analytics.com; object-src 'self'",
     "web_accessible_resources": [

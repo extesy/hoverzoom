@@ -249,6 +249,7 @@ function onMessage(message, sender, callback) {
 }
 
 $(function () {
+    i18n();
     initActionKeys();
     $('#btnSave').click(saveOptions);
     $('#btnReset').click(restoreOptions);
