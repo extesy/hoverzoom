@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Hover Zoom+ Options</title>
+    <title data-i18n="optTitle"></title>
     <link rel="stylesheet" href="../css/gumby.css"/>
     <link rel="stylesheet" href="../css/style.css"/>
     <script src="../js/libs/modernizr-2.8.3.min.js"></script>
@@ -10,92 +10,106 @@
 <div class="pretty container">
     <div class="row">
         <div class="two columns text-center"><img src="../images/icon128.png"></div>
-        <h1 class="ten columns text-center">Hover Zoom+ Options</h1>
+        <h1 class="ten columns text-center" data-i18n="optTitle"></h1>
     </div>
     <div class="row">
         <section class="tabs pill">
             <ul class="tab-nav">
-                <li class="active"><a href="#">General</a></li>
-                <li><a href="#">Sites</a></li>
-                <li><a href="#">Action keys</a></li>
-                <li><a href="#">Advanced</a></li>
+                <li class="active"><a href="#" data-i18n="optPageGeneral"></a></li>
+                <li><a href="#" data-i18n="optPageSites"></a></li>
+                <li><a href="#" data-i18n="optPageActionKeys"></a></li>
+                <li><a href="#" data-i18n="optPageAdvanced"></a></li>
             </ul>
             <div class="tab-content active">
                 <form>
-                    <div class="field"><label class="checkbox" for="chkExtensionEnabled"><input type="checkbox" id="chkExtensionEnabled"><span></span> Enable Hover Zoom</label></div>
+                    <div class="field"><label class="checkbox" for="chkExtensionEnabled">
+                        <input type="checkbox" id="chkExtensionEnabled"><span></span>
+                        <div style="display:inline" data-i18n="optExtensionEnabled"></div>
+                    </label></div>
                     <fieldset>
-                        <legend>View</legend>
+                        <legend data-i18n="optSectionView"></legend>
                         <ul>
-                            <div class="ttip" data-tooltip="If unchecked, zoomed images will be resized dynamically">
-                                <li class="field">
-                                    <label class="checkbox" for="chkMouseUnderlap"><input type="checkbox" id="chkMouseUnderlap"><span></span> Extend zoomed images below the mouse cursor</label>
-                                </li>
+                            <div class="ttip" data-i18n-tooltip="optMouseUnderlapTooltip">
+                                <li class="field"><label class="checkbox" for="chkMouseUnderlap">
+                                    <input type="checkbox" id="chkMouseUnderlap"><span></span>
+                                    <div style="display:inline" data-i18n="optMouseUnderlap"></div>
+                                </label></li>
                             </div>
-                            <div class="ttip" data-tooltip="Only when images can be zoomed">
-                                <li class="field">
-                                    <label class="checkbox" for="chkPageActionEnabled"><input class="input" type="checkbox" id="chkPageActionEnabled"><span></span> Show icon in address bar</label>
-                                </li>
+                            <div class="ttip" data-i18n-tooltip="optPageActionEnabledTooltip">
+                                <li class="field"><label class="checkbox" for="chkPageActionEnabled">
+                                    <input class="input" type="checkbox" id="chkPageActionEnabled"><span></span>
+                                    <div style="display:inline" data-i18n="optPageActionEnabled"></div>
+                                </label></li>
                             </div>
-                            <div class="ttip" data-tooltip="Captions will be shown only when available">
-                                <li class="field">
-                                    <label class="checkbox" for="chkShowCaptions"><input type="checkbox" id="chkShowCaptions"><span></span> Show pictures captions</label>
-                                </li>
+                            <div class="ttip" data-i18n-tooltip="optShowCaptionsTooltip">
+                                <li class="field"><label class="checkbox" for="chkShowCaptions">
+                                    <input type="checkbox" id="chkShowCaptions"><span></span>
+                                    <div style="display:inline" data-i18n="optShowCaptions"></div>
+                                </label></li>
                             </div>
-                            <div class="ttip" data-tooltip="Zoomed image will be displayed before it is fully loaded">
-                                <li class="field">
-                                    <label class="checkbox" for="chkShowWhileLoading"><input type="checkbox" id="chkShowWhileLoading"><span></span> Show zoomed pictures while loading</label>
-                                </li>
+                            <div class="ttip" data-i18n-tooltip="optShowWhileLoadingTooltip">
+                                <li class="field"><label class="checkbox" for="chkShowWhileLoading">
+                                    <input type="checkbox" id="chkShowWhileLoading"><span></span>
+                                    <div style="display:inline" data-i18n="optShowWhileLoading"></div>
+                                </label></li>
                             </div>
-                            <div class="ttip" data-tooltip="Pictures may take more time to load">
-                                <li class="field">
-                                    <label class="checkbox" for="chkShowHighRes"><input type="checkbox" id="chkShowHighRes"><span></span> Show high resolution pictures when available</label>
-                                </li>
+                            <div class="ttip" data-i18n-tooltip="optShowHighResTooltip">
+                                <li class="field"><label class="checkbox" for="chkShowHighRes">
+                                    <input type="checkbox" id="chkShowHighRes"><span></span>
+                                    <div style="display:inline" data-i18n="optShowHighRes"></div>
+                                </label></li>
                             </div>
-							<div class="ttip" data-tooltip="Navigate album with the mouse wheel">
-                                <li class="field">
-                                    <label class="checkbox" for="chkGalleriesMouseWheel"><input type="checkbox" id="chkGalleriesMouseWheel"><span></span> Use mousewheel to navigate albums</label>
-                                </li>
+							<div class="ttip" data-i18n-tooltip="optGalleriesMouseWheelTooltip">
+                                <li class="field"><label class="checkbox" for="chkGalleriesMouseWheel">
+                                    <input type="checkbox" id="chkGalleriesMouseWheel"><span></span>
+                                    <div style="display:inline" data-i18n="optGalleriesMouseWheel"></div>
+                                </label></li>
                             </div>
-                            <div class="ttip" data-tooltip="Zoom videos (WebM, MP4)">
-                                <li class="field">
-                                    <label class="checkbox" for="chkZoomVideos"><input type="checkbox" id="chkZoomVideos"><span></span> Zoom videos (WebM, MP4)</label>
-                                </li>
+                            <div class="ttip" data-i18n-tooltip="optZoomVideosTooltip">
+                                <li class="field"><label class="checkbox" for="chkZoomVideos">
+                                    <input type="checkbox" id="chkZoomVideos"><span></span>
+                                    <div style="display:inline" data-i18n="optZoomVideos"></div>
+                                </label></li>
                             </div>
-                            <div class="ttip" data-tooltip="Mute zoomed videos">
-                                <li class="field">
-                                    <label class="checkbox" for="chkMuteVideos"><input type="checkbox" id="chkMuteVideos"><span></span> Mute zoomed videos</label>
-                                </li>
+                            <div class="ttip" data-i18n-tooltip="optMuteVideosTooltip">
+                                <li class="field"><label class="checkbox" for="chkMuteVideos">
+                                    <input type="checkbox" id="chkMuteVideos"><span></span>
+                                    <div style="display:inline" data-i18n="optMuteVideos"></div>
+                                </label></li>
                             </div>
                         </ul>
                     </fieldset>
                     <fieldset>
-                        <legend>Delays</legend>
+                        <legend data-i18n="optSectionDelays"></legend>
                         <ul>
-                            <li class="append field">
-                                <label class="inline" for="txtDisplayDelay">Delay before displaying a picture:</label> <input class="xnarrow text input" type="text" id="txtDisplayDelay"><span class="adjoined">sec</span>
-                            </li>
-                            <li class="append field">
-                                <label class="inline" for="txtFadeDuration">Fading animation duration:</label> <input class="xnarrow text input" type="text" id="txtFadeDuration"><span class="adjoined">sec</span>
-                            </li>
+                            <li class="append field"><label class="inline" for="txtDisplayDelay">
+                                <div style="display:inline" data-i18n="optDisplayDelay"></div>
+                                <input class="xnarrow text input" type="text" id="txtDisplayDelay"><span class="adjoined" data-i18n="optDurationUnitName"></span>
+                            </label></li>
+                            <li class="append field"><label class="inline" for="txtFadeDuration">
+                                <div style="display:inline" data-i18n="optFadeDuration"></div>
+                                <input class="xnarrow text input" type="text" id="txtFadeDuration"><span class="adjoined" data-i18n="optDurationUnitName"></span>
+                            </label></li>
                         </ul>
                     </fieldset>
                 </form>
             </div>
             <div class="tab-content">
                 <form>
-                    <div class="ttip" data-tooltip="Only enable Hover Zoom+ for the sites listed below">
-                        <div class="field">
-                            <label class="checkbox" for="chkWhiteListMode"><input type="checkbox" id="chkWhiteListMode"><span></span> White list mode</label>
-                        </div>
+                    <div class="ttip" data-i18n-tooltip="optWhitelistModeTooltip">
+                        <div class="field"><label class="checkbox" for="chkWhiteListMode">
+                            <input type="checkbox" id="chkWhiteListMode"><span></span>
+                            <div style="display:inline" data-i18n="optWhitelistMode"></div>
+                        </label></div>
                     </div>
                     <fieldset>
-                        <legend>URLs for which Hover Zoom+ must be <span id="dis-enabled">disabled</span></legend>
-                        <div class="append field">
-                            <label for="txtAddExcludedSite"></label> <input class="wide text input" type="text" id="txtAddExcludedSite" placeholder="Examples: facebook.com, google.com/reader">
-                            <div class="medium primary btn"><a href="#" id="btnAddExcludedSite">Add</a></div>
-                        </div>
+                        <legend id="lblToggle"></legend>
+                        <div class="append field"><label for="txtAddExcludedSite">
+                            <input class="wide text input" type="text" id="txtAddExcludedSite" data-i18n-placeholder="optSitePlaceholder">
+                            <div class="medium primary btn"><a href="#" id="btnAddExcludedSite" data-i18n="optButtonAddSite"></a></div>
+                        </label></div>
                         <ul id="selExcludedSites"></ul>
-                        <p>Be aware that domain filters can overlap. Example: if you have filtered "picasaweb.google.com" and "google.com", removing "picasaweb.google.com" will not reactivate Picasa Web Albums, as it will still be excluded by the "google.com" filter.</p>
+                        <p data-i18n="optSiteDisclaimer"></p>
                     </fieldset>
                 </form>
             </div>
@@ -105,15 +119,36 @@
             <div class="tab-content">
                 <form>
                     <fieldset>
-                        <legend>Advanced options</legend>
+                        <legend data-i18n="optSectionAdvanced"></legend>
                         <ul>
-                            <li class="field"><label class="checkbox" for="chkUpdateNotifications"><input type="checkbox" id="chkUpdateNotifications"><span></span> Show update notifications (<a id="aShowUpdateNotification">show current</a>)</label></li>
-                            <li class="field"><label class="checkbox" for="chkAddToHistory"><input type="checkbox" id="chkAddToHistory"><span></span> Add viewed pictures to the browser's history</label></li>
-                            <li class="field"><label class="checkbox" for="chkFilterNSFW"><input type="checkbox" id="chkFilterNSFW"><span></span> Exclude NSFW images (Reddit only)</label></li>
-                            <li class="field"><label class="checkbox" for="chkAlwaysPreload"><input type="checkbox" id="chkAlwaysPreload"><span></span> Automatically preload zoomed images</label></li>
-                            <li class="field"><label class="checkbox" for="chkEnableGalleries"><input type="checkbox" id="chkEnableGalleries"><span></span> Enable albums support</label></li>
-                            <li class="field"><label class="checkbox" for="chkEnableStats"><input type="checkbox" id="chkEnableStats"><span></span> Enable anonymous usage statistics</label></li>
-                            <li class="append field"><label class="inline" for="txtPicturesOpacity">Zoomed pictures opacity:</label> <input class="xnarrow text input" type="text" id="txtPicturesOpacity"><span class="adjoined">%</span></li>
+                            <li class="field"><label class="checkbox" for="chkUpdateNotifications">
+                                <input type="checkbox" id="chkUpdateNotifications"><span></span>
+                                <div style="display:inline" data-i18n="optUpdateNotifications"></div> <a id="aShowUpdateNotification" data-i18n="optShowLastUpdateNotification"></a>
+                            </label></li>
+                            <li class="field"><label class="checkbox" for="chkAddToHistory">
+                                <input type="checkbox" id="chkAddToHistory"><span></span>
+                                <div style="display:inline" data-i18n="optAddToHistory"></div>
+                            </label></li>
+                            <li class="field"><label class="checkbox" for="chkFilterNSFW">
+                                <input type="checkbox" id="chkFilterNSFW"><span></span>
+                                <div style="display:inline" data-i18n="optFilterNSFW"></div>
+                            </label></li>
+                            <li class="field"><label class="checkbox" for="chkAlwaysPreload">
+                                <input type="checkbox" id="chkAlwaysPreload"><span></span>
+                                <div style="display:inline" data-i18n="optAlwaysPreload"></div>
+                            </label></li>
+                            <li class="field"><label class="checkbox" for="chkEnableGalleries">
+                                <input type="checkbox" id="chkEnableGalleries"><span></span>
+                                <div style="display:inline" data-i18n="optEnableGalleries"></div>
+                            </label></li>
+                            <li class="field"><label class="checkbox" for="chkEnableStats">
+                                <input type="checkbox" id="chkEnableStats"><span></span>
+                                <div style="display:inline" data-i18n="optEnableStats"></div>
+                            </label></li>
+                            <li class="append field"><label class="inline" for="txtPicturesOpacity">
+                                <div style="display:inline" data-i18n="optPicturesOpacity"></div>
+                                <input class="xnarrow text input" type="text" id="txtPicturesOpacity"><span class="adjoined" data-i18n="optOpacityUnitName"></span>
+                            </label></li>
                         </ul>
                     </fieldset>
                 </form>
@@ -122,21 +157,21 @@
     </div>
     <div class="row">
         <div class="push_three three columns text-center">
-            <div class="medium success btn icon-left entypo icon-floppy"><a href="#" id="btnSave">Save</a></div>
+            <div class="medium success btn icon-left entypo icon-floppy"><a href="#" id="btnSave" data-i18n="optButtonSave"></a></div>
         </div>
         <div class="three columns text-center">
-            <div class="medium info btn icon-left entypo icon-arrows-ccw"><a href="#" id="btnReset">Reset</a></div>
+            <div class="medium info btn icon-left entypo icon-arrows-ccw"><a href="#" id="btnReset" data-i18n="optButtonReset"></a></div>
         </div>
     </div>
     <div id="messages" class="row">
         <div class="four columns centered text-center">
-            <div class="success alert">Options saved.<br/>Some settings might need a page refresh.</div>
+            <div class="success alert" data-i18n="optSaved"></div>
         </div>
     </div>
     <div class="row">
         <div class="twelve columns centered text-center">
-            <p><a target="_blank" href="https://github.com/extesy/hoverzoom/">Source code</a> | <a target="_blank" href="https://github.com/extesy/hoverzoom/issues">Report a bug</a></p>
-            <p>Version <span id="versionNumber"></span> - &copy; 2014-2016 Oleg Anashkin</p>
+            <p><a target="_blank" href="https://github.com/extesy/hoverzoom/" data-i18n="optFooterSourceCode"></a> | <a target="_blank" href="https://github.com/extesy/hoverzoom/issues" data-i18n="optFooterReportIssue"></a></p>
+            <p id="version"></p>
         </div>
     </div>
 </div>

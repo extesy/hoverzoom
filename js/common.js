@@ -9,7 +9,7 @@ function loadOptions() {
 
     options.extensionEnabled = options.hasOwnProperty('extensionEnabled') ? options.extensionEnabled : true;
     options.zoomVideos = options.hasOwnProperty('zoomVideos') ? options.zoomVideos : true;
-    options.muteVideos = options.hasOwnProperty('muteVideos') ? options.muteVideos : true;
+    options.muteVideos = options.hasOwnProperty('muteVideos') ? options.muteVideos : false;
     options.pageActionEnabled = options.hasOwnProperty('pageActionEnabled') ? options.pageActionEnabled : true;
     options.showCaptions = options.hasOwnProperty('showCaptions') ? options.showCaptions : true;
     options.showHighRes = options.hasOwnProperty('showHighRes') ? options.showHighRes : false;
@@ -101,22 +101,30 @@ function keyCodeToKeyName(keyCode) {
 function showUpdateNotification() {
     if (chrome.notifications) {
         var options = {
-                type: 'list',
-                title: 'Hover Zoom+ has been updated',
-                message: '',
-                iconUrl: '/images/icon32.png',
-                items: [
-                    { title: "Imgur gifv support", message: ""},
-                    { title: "Fix for HTTPS Imgur albums", message: ""}
-                ]
-            };
-        chrome.notifications.create('Hover Zoom+', options, function(id) { });
+            type: 'list',
+            title: chrome.i18n.getMessage('extUpdated'),
+            message: '',
+            iconUrl: '/images/icon32.png',
+            items: [
+                { title: "Localization support", message: "" }
+            ]
+        };
+        chrome.notifications.create(chrome.i18n.getMessage('extName'), options, function(id) {});
     }
+    return false;
 }
 
 function i18n() {
     $('[data-i18n]').each(function(index, element) {
         var elem = $(element);
         elem.text(chrome.i18n.getMessage(elem.attr('data-i18n')));
+    });
+    $('[data-i18n-placeholder]').each(function(index, element) {
+        var elem = $(element);
+        elem.attr('placeholder', chrome.i18n.getMessage(elem.attr('data-i18n-placeholder')));
+    });
+    $('[data-i18n-tooltip]').each(function(index, element) {
+        var elem = $(element);
+        elem.attr('data-tooltip', chrome.i18n.getMessage(elem.attr('data-i18n-tooltip')));
     });
 }

@@ -31,7 +31,6 @@ function keyCodeToString(key) {
 function initActionKeys() {
     actionKeys.forEach(function(key) {
         var id = key[0].toUpperCase() + key.substr(1);
-        console.log(id);
         var title = chrome.i18n.getMessage("opt" + id + "Title");
         var description = chrome.i18n.getMessage("opt" + id + "Description");
         $('<tr><td>' + title + '<p>' + description + '</p></td>' +
@@ -67,6 +66,7 @@ function loadKeys(sel) {
 }
 
 // Saves options to localStorage.
+// TODO: Migrate to https://developer.chrome.com/extensions/storage
 function saveOptions() {
     options.extensionEnabled = $('#chkExtensionEnabled')[0].checked;
     options.zoomVideos = $('#chkZoomVideos')[0].checked;
@@ -99,7 +99,7 @@ function saveOptions() {
     options.enableStats = $('#chkEnableStats')[0].checked;
     options.picturesOpacity = $('#txtPicturesOpacity')[0].value / 100;
 
-    localStorage.options = JSON.stringify(options);  // TODO: Migrate to https://developer.chrome.com/extensions/storage
+    localStorage.options = JSON.stringify(options);
     sendOptions(options);
     restoreOptions();
     $('#messages').clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
@@ -175,11 +175,7 @@ function selKeyOnChange(event) {
 }
 
 function chkWhiteListModeOnChange() {
-    if ($('#chkWhiteListMode')[0].checked) {
-        $('#dis-enabled').text('enabled');
-    } else {
-        $('#dis-enabled').text('disabled');
-    }
+    $('#lblToggle').text(chrome.i18n.getMessage($('#chkWhiteListMode')[0].checked ? "optSectionSitesEnabled" : "optSectionSitesDisabled"));
 }
 
 function chkAddToHistoryModeOnChange() {
@@ -215,6 +211,9 @@ function onMessage(message, sender, callback) {
 $(function () {
     initActionKeys();
     i18n();
+    chkWhiteListModeOnChange();
+    $("#version").text(chrome.i18n.getMessage("optFooterVersionCopyright", chrome.app.getDetails().version));
+
     $('#btnSave').click(saveOptions);
     $('#btnReset').click(restoreOptions);
     $('#chkWhiteListMode').parent().on('gumby.onChange', chkWhiteListModeOnChange);
@@ -224,7 +223,8 @@ $(function () {
     $('#btnAddExcludedSite').click(btnAddExcludedSiteOnClick);
     $('#btnRemoveExcludedSite').click(btnRemoveExcludedSiteOnClick);
     $('#aShowUpdateNotification').click(showUpdateNotification);
+
     restoreOptions();
+
     chrome.runtime.onMessage.addListener(onMessage);
-    $('#versionNumber').text(chrome.app.getDetails().version);
 });
