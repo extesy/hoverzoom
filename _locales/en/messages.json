@@ -38,5 +38,69 @@
     "popMoreOptions":{
         "message":"More options",
         "description":"[popup] More options"
+    },
+    "optActionKeyTitle":{
+        "message":"Activate Hover Zoom+",
+        "description":"[options] Action key title"
+    },
+    "optActionKeyDescription":{
+        "message":"If a key is set, Hover Zoom+ will be active only when this key is held down.",
+        "description":"[options] Action key description"
+    },
+    "optHideKeyTitle":{
+        "message":"Disable Hover Zoom+",
+        "description":"[options] Action key title"
+    },
+    "optHideKeyDescription":{
+        "message":"Holding this key down hides the zoomed picture. Use it when the picture hides elements that are also displayed on mouseover.",
+        "description":"[options] Action key description"
+    },
+    "optOpenImageInWindowKeyTitle":{
+        "message":"Open image in a new window",
+        "description":"[options] Action key title"
+    },
+    "optOpenImageInWindowKeyDescription":{
+        "message":"Press this key to open the image you are currently viewing in a new window. Press this key again to close the window.",
+        "description":"[options] Action key description"
+    },
+    "optOpenImageInTabKeyTitle":{
+        "message":"Open image in a new tab",
+        "description":"[options] Action key title"
+    },
+    "optOpenImageInTabKeyDescription":{
+        "message":"Press this key to open the image you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
+        "description":"[options] Action key description"
+    },
+    "optSaveImageKeyTitle":{
+        "message":"Save image",
+        "description":"[options] Action key title"
+    },
+    "optSaveImageKeyDescription":{
+        "message":"Press this key to save the image you are currently viewing.",
+        "description":"[options] Action key description"
+    },
+    "optFullZoomKeyTitle":{
+        "message":"Activate full zoom",
+        "description":"[options] Action key title"
+    },
+    "optFullZoomKeyDescription":{
+        "message":"When this key is held down, the picture is displayed using all available space. Useful for high resolution pictures only.",
+        "description":"[options] Action key description"
+    },
+    "optPrevImgKeyTitle":{
+        "message":"View previous image in a gallery",
+        "description":"[options] Action key title"
+    },
+    "optPrevImgKeyDescription":{
+        "message":"Press this key to view the previous image in a gallery.",
+        "description":"[options] Action key description"
+    },
+    "optNextImgKeyTitle":{
+        "message":"View next image in a gallery",
+        "description":"[options] Action key title"
+    },
+    "optNextImgKeyDescription":{
+        "message":"Press this key to view the next image in a gallery.",
+        "description":"[options] Action key description"
     }
 }

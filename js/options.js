@@ -1,48 +1,7 @@
 var options,
     VK_CTRL = 1024,
     VK_SHIFT = 2048,
-    actionKeys = [
-        {
-            id:'actionKey',
-            title:'Activate Hover Zoom+',
-            description:'If a key is set, Hover Zoom+ will be active only when this key is held down.'
-        },
-        {
-            id:'hideKey',
-            title:'Disable Hover Zoom+',
-            description:'Holding this key down hides the zoomed picture. Use it when the picture hides elements that are also displayed on mouseover.'
-        },
-        {
-            id:'openImageInWindowKey',
-            title:'Open image in a new window',
-            description:'Press this key to open the image you are currently viewing in a new window. Press this key again to close the window.'
-        },
-        {
-            id:'openImageInTabKey',
-            title:'Open image in a new tab',
-            description:'Press this key to open the image you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.'
-        },
-        {
-            id:'saveImageKey',
-            title:'Save image',
-            description:'Press this key to save the image you are currently viewing.'
-        },
-        {
-            id:'fullZoomKey',
-            title:'Activate full zoom',
-            description:'When this key is held down, the picture is displayed using all available space. Useful for high resolution pictures only.'
-        },
-        {
-            id:'prevImgKey',
-            title:'View previous image in a gallery',
-            description:'Press this key to view the previous image in a gallery.'
-        },
-        {
-            id:'nextImgKey',
-            title:'View next image in a gallery',
-            description:'Press this key to view the next image in a gallery.'
-        }
-    ];
+    actionKeys = ['actionKey', 'hideKey', 'openImageInWindowKey', 'openImageInTabKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey'];
 
 function getMilliseconds(ctrl) {
     var value = parseFloat(ctrl.val());
@@ -70,17 +29,20 @@ function keyCodeToString(key) {
 }
 
 function initActionKeys() {
-    for (var i = 0; i < actionKeys.length; i++) {
-        var key = actionKeys[i];
-        $('<tr><td>' + key.title + '<p>' + key.description + '</p></td>' +
-            '<td><select id="sel' + key.id + '" class="actionKey"/></td></tr>').appendTo($('#tableActionKeys'));
-        loadKeys($('#sel' + key.id));
-    }
+    actionKeys.forEach(function(key) {
+        var id = key[0].toUpperCase() + key.substr(1);
+        console.log(id);
+        var title = chrome.i18n.getMessage("opt" + id + "Title");
+        var description = chrome.i18n.getMessage("opt" + id + "Description");
+        $('<tr><td>' + title + '<p>' + description + '</p></td>' +
+            '<td><select id="sel' + id + '" class="actionKey"/></td></tr>').appendTo($('#tableActionKeys'));
+        loadKeys($('#sel' + id));
+    });
 }
 
 function loadKeys(sel) {
     $('<option value="0">None</option>').appendTo(sel);
-    if (sel.attr('id') != 'selopenImageInTabKey')
+    if (sel.attr('id') != 'selOpenImageInTabKey')
         $('<option value="16">Shift</option>').appendTo(sel);
     $('<option value="17">Ctrl</option>').appendTo(sel);
     if (navigator.appVersion.indexOf('Macintosh') > -1) {
@@ -124,9 +86,10 @@ function saveOptions() {
         options.excludedSites.push($(this).text());
     });
 
-    for (var i = 0; i < actionKeys.length; i++) {
-        options[actionKeys[i].id] = parseInt($('#sel' + actionKeys[i].id).val());
-    }
+    actionKeys.forEach(function(key) {
+        var id = key[0].toUpperCase() + key.substr(1);
+        options[key] = parseInt($('#sel' + id).val());
+    });
 
     options.updateNotifications = $('#chkUpdateNotifications')[0].checked;
     options.addToHistory = $('#chkAddToHistory')[0].checked;
@@ -165,9 +128,10 @@ function restoreOptions() {
         appendExcludedSite(options.excludedSites[i]);
     }
 
-    for (var i = 0; i < actionKeys.length; i++) {
-        $('#sel' + actionKeys[i].id).val(options[actionKeys[i].id]);
-    }
+    actionKeys.forEach(function(key) {
+        var id = key[0].toUpperCase() + key.substr(1);
+        $('#sel' + id).val(options[key]);
+    });
 
     $('#chkUpdateNotifications')[0].checked = options.updateNotifications;
     $('#chkAddToHistory')[0].checked = options.addToHistory;
@@ -249,8 +213,8 @@ function onMessage(message, sender, callback) {
 }
 
 $(function () {
-    i18n();
     initActionKeys();
+    i18n();
     $('#btnSave').click(saveOptions);
     $('#btnReset').click(restoreOptions);
     $('#chkWhiteListMode').parent().on('gumby.onChange', chkWhiteListModeOnChange);
