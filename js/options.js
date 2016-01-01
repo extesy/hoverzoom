@@ -136,7 +136,7 @@ function saveOptions() {
     options.enableStats = $('#chkEnableStats')[0].checked;
     options.picturesOpacity = $('#txtPicturesOpacity')[0].value / 100;
 
-    localStorage.options = JSON.stringify(options);
+    localStorage.options = JSON.stringify(options);  // TODO: Migrate to https://developer.chrome.com/extensions/storage
     sendOptions(options);
     restoreOptions();
     $('#messages').clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);

@@ -5,7 +5,7 @@ function loadOptions() {
     if (localStorage.options == null) {
         localStorage.options = '{}';
     }
-    options = JSON.parse(localStorage.options);
+    options = JSON.parse(localStorage.options);  // TODO: Migrate to https://developer.chrome.com/extensions/storage
 
     options.extensionEnabled = options.hasOwnProperty('extensionEnabled') ? options.extensionEnabled : true;
     options.zoomVideos = options.hasOwnProperty('zoomVideos') ? options.zoomVideos : true;
