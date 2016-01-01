@@ -1,6 +1,7 @@
 {
     "name": "__MSG_extName__",
-    "version": "1.0.22",
+    "short_name": "__MSG_extShortName__",
+    "version": "1.0.23",
     "description": "__MSG_extDescription__",
     "homepage_url": "https://github.com/extesy/hoverzoom/",
     "manifest_version": 2,
@@ -16,7 +17,6 @@
         "scripts": ["js/common.js", "js/background.js"]
     },
     "options_page": "html/options.html",
-    // TODO: Migrate to https://developer.chrome.com/extensions/optionsV2
     "options_ui": {
         "page": "html/options.html",
         "chrome_style": false,
