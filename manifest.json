@@ -1,7 +1,7 @@
 {
     "name": "__MSG_extName__",
     "short_name": "__MSG_extShortName__",
-    "version": "1.0.27",
+    "version": "1.0.28",
     "description": "__MSG_extDescription__",
     "homepage_url": "https://github.com/extesy/hoverzoom/",
     "manifest_version": 2,
@@ -1176,6 +1176,10 @@
         {
             "js": ["plugins/wallbase_cc.js"],
             "matches": ["*://*.wallbase.cc/*"]
+        },
+        {
+            "js": ["plugins/wallhaven_cc.js"],
+            "matches": ["*://*.wallhaven.cc/*"]
         },
         {
             "js": ["plugins/bluray.js"],
