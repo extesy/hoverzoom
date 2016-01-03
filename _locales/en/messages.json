@@ -8,7 +8,7 @@
         "description": "Short extension name"
     },
     "extDescription": {
-        "message": "Hover mouse over images to enlarge them. Supports many sites such as Reddit, Amazon, Facebook, Twitter, Flickr, etc",
+        "message": "Zoom images/videos on all your favorite websites (Reddit, Amazon, etc). Simply hover your mouse over the image to enlarge it.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
     "extUpdated": {
@@ -17,7 +17,7 @@
     },
     "popDisableForAllSites": {
         "message": "Disable for all sites",
-        "description": "[popup] Disables the extension"
+        "description": "[popup] Disable the extension"
     },
     "popAllowPerSiteToggle": {
         "message": "Allow per-site extension configuration",

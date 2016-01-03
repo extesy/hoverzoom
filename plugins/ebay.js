@@ -6,20 +6,14 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'eBay',
-    version:'0.3',
+    version:'0.4',
     prepareImgLinks:function (callback) {
         var res = [];
         var appId = 'RomainVa-3007-4951-b943-aaedf0d9af84';
         var requestUrlBase = 'http://open.api.ebay.com/shopping?appid=' + appId + '&version=687&siteid=0&callname=GetMultipleItems&responseencoding=JSON&ItemID=';
         var itemIndex = 0;
         var hzItems = [], itemIds = [];
-        var cachePrefix = 'cache_eBayItem_' + (options.showHighRes ? 'hi' : 'lo') + '_';
-
-        hoverZoom.urlReplace(res,
-            'img[src*="~~"]',
-            /~~(\d+)?_\d+\./,
-            '~~$1_32.'
-        );
+        //var cachePrefix = 'cache_eBayItem_' + (options.showHighRes ? 'hi' : 'lo') + '_';
 
         function getIdFromURL(url) {
             if (!url) {
@@ -34,19 +28,20 @@ hoverZoomPlugins.push({
 
         // First we gather all the products on the page and we store their eBay ID and
         // the link that will receive the 'hoverZoomSrc' data.
-        $('a img[src*="ebaystatic.com"]').each(function () {
+        $('div[itemscope] img[src*="i.ebayimg.com"]').each(function () {
             var img = $(this);
-            if (img.hasClass('imgPrv') || img.parents('.hol').length) {
-                return;
+            var item = { thumb: this, id: '' },
+                link = img.parents('div[itemscope]');
+            item.id = getIdFromURL(link.data('href'));
+            if (item.id) {
+                itemIds.push(item.id);
+                hzItems.push(item);
             }
-            var item = { thumb:this, id:'' },
-                link = img.parents('a[href*=".ebay."]:eq(0)');
-            if (!link.length) {
-                link = $(this).parents('table:eq(0)').find('a[href*=".ebay."]');
-            }
-            if (!link.length) {
-                link = $(this).parents('div:eq(0)').find('a[href*=".ebay."]');
-            }
+        });
+        $('a img[src*="i.ebayimg.com"], a img[src*="thumbs.ebaystatic.com"]').each(function () {
+            var img = $(this);
+            var item = { thumb: this, id: '' },
+                link = img.parents('a');
             item.id = getIdFromURL(link.attr('href'));
             if (item.id) {
                 itemIds.push(item.id);
@@ -55,22 +50,22 @@ hoverZoomPlugins.push({
         });
 
         // Check if some urls were stored
-        for (var i = 0; i < hzItems.length; i++) {
-            var storedItem = localStorage[cachePrefix + hzItems[i].id];
-            if (storedItem) {
-                storedItem = JSON.parse(storedItem);
-                var thumb = $(hzItems[i].thumb), data = thumb.data();
-                data.hoverZoomSrc = [storedItem.pictureUrl];
-                data.hoverZoomCaption = storedItem.title;
-                res.push(thumb);
-                hzItems.splice(i, 1);
-                i--;
-            }
-        }
-        if (res.length > 0) {
-            callback($(res));
-            res = [];
-        }
+        //for (var i = 0; i < hzItems.length; i++) {
+        //    var storedItem = localStorage[cachePrefix + hzItems[i].id];
+        //    if (storedItem) {
+        //        storedItem = JSON.parse(storedItem);
+        //        var thumb = $(hzItems[i].thumb), data = thumb.data();
+        //        data.hoverZoomSrc = [storedItem.pictureUrl];
+        //        data.hoverZoomCaption = storedItem.title;
+        //        res.push(thumb);
+        //        hzItems.splice(i, 1);
+        //        i--;
+        //    }
+        //}
+        //if (res.length > 0) {
+        //    callback($(res));
+        //    res = [];
+        //}
 
         // Then we make calls to the eBay API to get details on the items
         // using the IDs we found
@@ -94,14 +89,25 @@ hoverZoomPlugins.push({
                     //console.log(item);
                     for (var j = 0; j < hzItems.length; j++) {
                         if (hzItems[j].id == item.ItemID && item.PictureURL && item.PictureURL.length > 0) {
-                            var thumb = $(hzItems[j].thumb), data = thumb.data(), url = item.PictureURL[0].replace(/~~(\d+)?_\d+\./, '~~$1_32.');
-                            data.hoverZoomSrc = [url];
-                            data.hoverZoomCaption = item.Title;
+                            var thumb = $(hzItems[j].thumb), data = thumb.data();//, url = item.PictureURL[0].replace(/~~(\d+)?_\d+\./, '~~$1_32.');
+                            if (item.PictureURL.length == 1) {
+                                var url = item.PictureURL[0];
+                                data.hoverZoomSrc = [url];
+                                data.hoverZoomCaption = item.Title;
+                            } else {
+                                data.hoverZoomGallerySrc = [];
+                                data.hoverZoomGalleryCaption = [];
+                                for (var k = 0; k < item.PictureURL.length; k++) {
+                                    var url = item.PictureURL[k];
+                                    data.hoverZoomGallerySrc.push([url]);
+                                    data.hoverZoomGalleryCaption.push(item.Title);
+                                }
+                            }
                             //console.log(thumb);
                             res.push(thumb);
 
                             // Items are stored to lessen API calls
-                            localStorage[cachePrefix + item.ItemID] = JSON.stringify({pictureUrl:url, title:item.Title});
+                            //localStorage[cachePrefix + item.ItemID] = JSON.stringify({pictureUrl:url, title:item.Title});
                         }
                     }
                 }
