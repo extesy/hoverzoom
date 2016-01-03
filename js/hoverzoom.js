@@ -238,7 +238,7 @@ var hoverZoom = {
 
         function updateAmbilight() {
             var canvas = hz.hzImg.find('canvas')[0];
-            if (!canvas) return;
+            if (!canvas || !imgFullSize) return;
 
             var width = imgFullSize.width(), height = imgFullSize.height(), min = Math.min(width, height);
             $(canvas).attr('width', width).attr('height', height)
