@@ -22,7 +22,7 @@ var hoverZoom = {
         'z-index':2147483647,
         'border-radius':'3px',
         'background':'linear-gradient(to right bottom, #ffffff, #ffffff 50%, #ededed)',
-        'box-shadow':'3px 3px 6px 6px rgba(0,0,0,0.46)'
+        'box-shadow':'3px 3px 9px 5px rgba(0,0,0,0.33)'
     },
     imgLoading:null,
     pageGenerator:'',
@@ -227,6 +227,18 @@ var hoverZoom = {
             // This fixes positioning when the body's width is not 100%
             if (body100pct) {
                 position.left -= (wndWidth - bodyWidth) / 2;
+            }
+
+            if (options.ambilightEnabled) {
+                var canvas = hz.hzImg.find('canvas')[0];
+                if (canvas) {
+                    var width = imgFullSize.width(), height = imgFullSize.height(), min = Math.min(width, height);
+                    $(canvas).attr('width', width).attr('height', height)
+                        .css('-webkit-filter', 'blur(' + Math.max(10, min/10) + 'px)')
+                        .css('transform', 'scale(' + Math.max(1.2, 2/Math.log10(min))  + ')');
+                    var ctx = canvas.getContext('2d');
+                    ctx.drawImage(imgFullSize.get(0), 0, 0, width, height);
+                }
             }
 
             hz.hzImg.css({top:Math.round(position.top), left:Math.round(position.left)});
@@ -442,6 +454,18 @@ var hoverZoom = {
 
             clearTimeout(cursorHideTimeout);
             hz.hzImg.css('cursor', 'none');
+
+            if (options.ambilightEnabled) {
+                var ext = imgDetails.url.substr(imgDetails.url.length - 4).toLowerCase();
+                if (ext != '.gif' && ext != 'gifv' && ext != 'webm' && ext != '.mp4') {
+                    hz.hzImg.css('overflow', 'visible');
+                    hz.hzImg.css('border', '0px');
+                    var background = $('<div style="position: fixed; z-index: -2; top: 0; left: 0; opacity: 0.8; background-color: black; pointer-events: none" />').width(screen.availWidth).height(screen.availHeight);
+                    background.appendTo(hz.hzImg);
+                    var canvas = $('<canvas style="position: absolute; z-index: -1; transform: scale(1.2); -webkit-filter: blur(50px); opacity: 0.75; pointer-events: none"></canvas>');
+                    canvas.appendTo(hz.hzImg);
+                }
+            }
 
             imgFullSize.css(imgFullSizeCss).appendTo(hz.hzImg).mousemove(imgFullSizeOnMouseMove);
 

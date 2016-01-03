@@ -28,6 +28,7 @@ function loadOptions() {
     options.filterNSFW = options.hasOwnProperty('filterNSFW') ? options.filterNSFW : false;
     options.enableGalleries = options.hasOwnProperty('enableGalleries') ? options.enableGalleries : true;
     options.enableStats = options.hasOwnProperty('enableStats') ? options.enableStats : false;
+    options.ambilightEnabled = options.hasOwnProperty('ambilightEnabled') ? options.ambilightEnabled : false;
 
     // Action keys
     options.actionKey = options.hasOwnProperty('actionKey') ? options.actionKey : 0;
@@ -106,7 +107,7 @@ function showUpdateNotification() {
             message: '',
             iconUrl: '/images/icon32.png',
             items: [
-                { title: "Localization support", message: "" }
+                { title: "Ambient light for images", message: "" }
             ]
         };
         chrome.notifications.create(chrome.i18n.getMessage('extName'), options, function(id) {});

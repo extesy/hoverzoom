@@ -132,8 +132,16 @@
         "description": "[options] Mute zoomed videos option"
     },
     "optMuteVideosTooltip": {
-        "message": "Mute zoomed videos",
+        "message": "Disable sound in zoomed videos",
         "description": "[options] Tooltip for mute zoomed videos option"
+    },
+    "optEnableAmbilight": {
+        "message": "Enable ambient light behind images (experimental, doesn't work for gifs or videos)",
+        "description": "[options] Enable ambient light behind images option"
+    },
+    "optEnableAmbilightTooltip": {
+        "message": "Create a subtle glow effect similar to Phillips Ambilight technology. Only static images are supported for now.",
+        "description": "[options] Tooltip for enable ambient light behind images option"
     },
     "optSectionDelays": {
         "message": "Delays",

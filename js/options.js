@@ -79,6 +79,7 @@ function saveOptions() {
     options.galleriesMouseWheel = $('#chkGalleriesMouseWheel')[0].checked;
     options.displayDelay = getMilliseconds($('#txtDisplayDelay'));
     options.fadeDuration = getMilliseconds($('#txtFadeDuration'));
+    options.ambilightEnabled = $('#chkAmbilightEnabled')[0].checked;
 
     options.whiteListMode = $('#chkWhiteListMode')[0].checked;
     options.excludedSites = [];
@@ -121,6 +122,7 @@ function restoreOptions() {
     $('#chkGalleriesMouseWheel')[0].checked = options.galleriesMouseWheel;
     $('#txtDisplayDelay').val((options.displayDelay || 0) / 1000);
     $('#txtFadeDuration').val((options.fadeDuration || 0) / 1000);
+    $('#chkAmbilightEnabled')[0].checked = options.ambilightEnabled;
 
     $('#chkWhiteListMode')[0].checked = options.whiteListMode;
     $('#selExcludedSites').empty();
