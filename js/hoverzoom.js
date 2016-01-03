@@ -21,8 +21,8 @@ var hoverZoom = {
         'position':'absolute',
         'z-index':2147483647,
         'border-radius':'3px',
-        'background':'-webkit-gradient(linear, left top, right bottom, from(#ffffff), to(#ededed), color-stop(0.5, #ffffff))',
-        '-webkit-box-shadow':'3px 3px 6px rgba(0,0,0,0.46)'
+        'background':'linear-gradient(to right bottom, #ffffff, #ffffff 50%, #ededed)',
+        'box-shadow':'3px 3px 6px 6px rgba(0,0,0,0.46)'
     },
     imgLoading:null,
     pageGenerator:'',
@@ -56,11 +56,6 @@ var hoverZoom = {
                 naturalHeight:0,
                 naturalWidth:0,
                 video:false
-            },
-            thumbDetails = {
-                url:'',
-                naturalHeight:0,
-                naturalWidth:0
             };
             
         var progressCss = {
