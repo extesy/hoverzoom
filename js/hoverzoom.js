@@ -161,9 +161,7 @@ var hoverZoom = {
                 if (!displayOnRight) {
                     position.left -= 25;
                 }
-
             } else {
-
                 var fullZoom = options.mouseUnderlap || fullZoomKeyDown;
 
                 imgFullSize.width('auto').height('auto');
@@ -221,24 +219,29 @@ var hoverZoom = {
                 if (position.top < wndScrollTop) {
                     position.top = wndScrollTop;
                 }
-            }
 
+                if (options.ambilightEnabled) {
+                    updateAmbilight();
+                }
+            }
 
             // This fixes positioning when the body's width is not 100%
             if (body100pct) {
                 position.left -= (wndWidth - bodyWidth) / 2;
             }
 
-            if (options.ambilightEnabled) {
-                updateAmbilight();
-            }
-
             hz.hzImg.css({top:Math.round(position.top), left:Math.round(position.left)});
         }
 
         function updateAmbilight() {
+            if (!hz.hzImg) return;
             var canvas = hz.hzImg.find('canvas')[0];
             if (!canvas || !imgFullSize) return;
+
+            if (!imgFullSize.get(0).complete || !imgFullSize.get(0).naturalWidth) {
+                window.setTimeout(updateAmbilight, 20);
+                return;
+            }
 
             var width = imgFullSize.width(), height = imgFullSize.height(), min = Math.min(width, height);
             $(canvas).attr('width', width).attr('height', height)
@@ -452,7 +455,6 @@ var hoverZoom = {
         }
 
         function displayFullSizeImage() {
-
             cLog('displayFullSizeImage');
 
             hz.imgLoading.remove();

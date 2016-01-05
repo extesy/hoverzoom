@@ -1277,7 +1277,8 @@
         },
         {
             "js": ["plugins/dirty.js"],
-            "matches": ["*://*.d3.ru/*"]
+            "matches": ["*://*.d3.ru/*",
+                        "*://*.dirty.ru/*"]
         },
         {
             "matches": ["*://*.sexuallybroken.com/*",
