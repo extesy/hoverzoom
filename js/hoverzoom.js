@@ -238,7 +238,11 @@ var hoverZoom = {
             var canvas = hz.hzImg.find('canvas')[0];
             if (!canvas || !imgFullSize) return;
 
-            if (!imgFullSize.get(0).complete || !imgFullSize.get(0).naturalWidth) {
+            var url = imgDetails.url;
+            var ext = url.substr(url.length - 4).toLowerCase();
+            var isVideo = (ext == '.gif' || ext == 'gifv' || ext == 'webm' || ext == '.mp4');
+
+            if (!(isVideo || (imgFullSize.get(0).complete && imgFullSize.get(0).naturalWidth))) {
                 window.setTimeout(updateAmbilight, 20);
                 return;
             }
@@ -250,9 +254,7 @@ var hoverZoom = {
             var ctx = canvas.getContext('2d');
             ctx.drawImage(imgFullSize.get(0), 0, 0, width, height);
 
-            var url = imgDetails.url;
-            var ext = url.substr(url.length - 4).toLowerCase();
-            if (ext == '.gif' || ext == 'gifv' || ext == 'webm' || ext == '.mp4')
+            if (isVideo)
                 window.setTimeout(updateAmbilight, 30);
         }
 
