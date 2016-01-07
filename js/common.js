@@ -12,7 +12,7 @@ function loadOptions() {
     options.muteVideos = options.hasOwnProperty('muteVideos') ? options.muteVideos : false;
     options.pageActionEnabled = options.hasOwnProperty('pageActionEnabled') ? options.pageActionEnabled : true;
     options.showCaptions = options.hasOwnProperty('showCaptions') ? options.showCaptions : true;
-    options.showHighRes = options.hasOwnProperty('showHighRes') ? options.showHighRes : false;
+    options.showHighRes = options.hasOwnProperty('showHighRes') ? options.showHighRes : true;
     options.galleriesMouseWheel = options.hasOwnProperty('galleriesMouseWheel') ? options.galleriesMouseWheel : true;
     options.addToHistory = options.hasOwnProperty('addToHistory') ? options.addToHistory : false;
     options.alwaysPreload = options.hasOwnProperty('alwaysPreload') ? options.alwaysPreload : false;

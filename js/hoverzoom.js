@@ -747,7 +747,6 @@ var hoverZoom = {
         }
 
         function prepareDownscaledImages() {
-
             // Excluded sites
             if (['www.facebook.com'].indexOf(location.host) > -1) {
                 return;
@@ -783,10 +782,11 @@ var hoverZoom = {
                         widthAttr = parseInt(this.getAttribute('width') || this.style.width || this.style.maxWidth || img.css('width') || img.css('max-width')),
                         heightAttr = parseInt(this.getAttribute('height') || this.style.height || this.style.maxHeight || img.css('height') || img.css('max-height')),
                         hzDownscaled = $('<img id="hzDownscaled" style="position: absolute; top: -10000px;">').appendTo(document.body);
-                    //console.log(widthAttr + 'x' + heightAttr + ' - ' + img.attr('src'));
+
                     if (widthAttr > 300 || heightAttr > 300) {
                         return;
                     }
+
                     hzDownscaled.load(function () {
                         setTimeout(function () {
                             if (hzDownscaled.height() > heightAttr * 1.8 || hzDownscaled.width() > widthAttr * 1.8) {
@@ -1360,7 +1360,6 @@ var hoverZoom = {
             var src = getSrc(doc);
             if (src) {
                 if (Array.isArray(src)) {
-                    console.log(src);
                     link.data().hoverZoomGallerySrc = src;
                     link.data().hoverZoomGalleryIndex = 0;
                     link.data().hoverZoomSrc = src[0];

@@ -28,7 +28,6 @@ hoverZoomPlugins.push({
         //    }
         //});
 
-        var res = [];
         $('img[src*="fbcdn"]:not(.spotlight), img[src*="fbexternal"], [style*="fbcdn"]:not([data-reactid]), [style*="fbexternal"]').each(function () {
             var img = $(this),
                 link = img.parents('a'),
@@ -58,24 +57,41 @@ hoverZoomPlugins.push({
             }
 
             data.hoverZoomSrc = [src];
-            // if (origSrc != src || (this.style.top && parseInt(this.style.top) < 0)) {
+            //if (origSrc != src || (this.style.top && parseInt(this.style.top) < 0)) {
             //     img.addClass('hoverZoomLink');
             //
             //     var caption = getTooltip(img.parents('a:eq(0)'));
             //     if (caption) {
             //         data.hoverZoomCaption = caption;
             //     }
-            // }
-            res.push(link);
+            //}
+            link.addClass('hoverZoomLink');
+            hoverZoom.displayPicFromElement(link);
         });
-        callback($(res));
+
+        //^(facebook\.com)(/)(?:photo(?:/download/|\.php)\?fbid=|[^/]+/photos/(?:[a-z]+\.[^/]+/)?)(\d+).*
+        //^((?:fbcdn|s?(?:content|(?:igcdn-)?photos|origincache))[^/]+\.(?:net|com)/h?(?:p(rofile|hotos))-[-\da-z]+/)(?:[^\d]+[^/]+/)*((?:\d+_+)+)[asqtno]([.\d](?!mp[34])[^?#]+).*
+        //if($[1].indexOf('instagram.')>-1||$[1].indexOf('igcdn-photos')>-1) return $[1]+$[3]+'n'+$[4];
+        //return window.location.hostname.slice(-13)=='.facebook.com' && (document.evaluate('./ancestor::div[contains(@class, "stageWrapper")]', this.node, null, 9, null).singleNodeValue || this.node.matches('.UFICommentContent>div[data-testid]')) ? '' : 'https://www.facebook.com/photo/download/?fbid=' + ($[3].indexOf('_')>0?$[3].match(/_(\d+)/)[1]:$[3])
+
+        //^(?:(?:(?:fbexternal-[a-z]\.akamaihd|(?:s-|fb)?external[-a-z\d]*\.[a-z]{2}\.fbcdn|platform\.ak\.fbcdn)\.net|(l)\.facebook\.com)/(?:safe_image|www/app_full_proxy|l)\.php|images\d-focus-opensocial\.googleusercontent\.com/gadgets/proxy|cdn\d+\.so\.cl/handlers/thumbnail)\?(?:[^&]+&)*?(?:u(?:rl)?|src)=(http[^&]+).*
+        //var u=decodeURIComponent($[2].replace(/\+/g,' ')), n=this.find({href: u})
+        //this.node.IMGS_fbp=u
+        //return n&&typeof n!='number'||n===null? (Array.isArray(n) ? n.join('\n') : n) : ($[1]?'':u)
+
+        $('a[href*="/photo.php"]').one('mouseover', function () {
+            var link = $(this);
+            var url = link.attr('href').replace('photo.php', 'photo/download/');
+            link.data().hoverZoomSrc = [url];
+            link.addClass('hoverZoomLink');
+            hoverZoom.displayPicFromElement(link);
+        });
 
         $('a[ajaxify*="src="]:not(.coverWrap)').one('mouseover', function () {
             var link = $(this),
                 data = link.data();
-            if (data.hoverZoomSrc) {
-                return;
-            }
+            if (data.hoverZoomSrc) return;
+
             var key, src = link.attr('ajaxify');
             if (!options.showHighRes && src.indexOf('smallsrc=') > -1)
                 key = 'smallsrc=';
