@@ -70,7 +70,6 @@ hoverZoomPlugins.push({
             //     }
             //}
             link.addClass('hoverZoomLink');
-            hoverZoom.displayPicFromElement(link);
         });
 
         //^(facebook\.com)(/)(?:photo(?:/download/|\.php)\?fbid=|[^/]+/photos/(?:[a-z]+\.[^/]+/)?)(\d+).*
@@ -88,7 +87,6 @@ hoverZoomPlugins.push({
             var url = link.attr('href').replace('photo.php', 'photo/download/');
             link.data().hoverZoomSrc = [url];
             link.addClass('hoverZoomLink');
-            hoverZoom.displayPicFromElement(link);
         });
 
         $('a[ajaxify*="src="]:not(.coverWrap)').one('mouseover', function () {
