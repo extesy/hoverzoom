@@ -53,7 +53,11 @@ hoverZoomPlugins.push({
                     src = src.replace(/\/(\d|(hq)?default)\.jpg/, '/0.jpg');
                 }
             } else {
-                src = src.replace(/[a-z]\d+\.(facebook\.com|sphotos\.ak\.fbcdn\.net)\//, 'fbcdn-sphotos-a.akamaihd.net/').replace(/\/[a-z]\d+(\.\d+)+\//, '/').replace(/\/[a-z]\d+x\d+\//, '/').replace(/_[sqta]\./, '_n.').replace(/\/[sqta](\d)/, '/n$1');
+                //src = src.replace(/[a-z]\d+\.(facebook\.com|sphotos\.ak\.fbcdn\.net)\//, 'fbcdn-sphotos-a.akamaihd.net/').replace(/\/[a-z]\d+(\.\d+)+\//, '/').replace(/\/[a-z]\d+x\d+\//, '/').replace(/_[sqta]\./, '_n.').replace(/\/[sqta](\d)/, '/n$1');
+                var reg = src.match(/\d+_(\d+)_\d+/);
+                if (reg) {
+                    src = 'https://www.facebook.com/photo/download/?fbid=' + reg[1];
+                }
             }
 
             data.hoverZoomSrc = [src];
