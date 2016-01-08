@@ -471,6 +471,7 @@ var hoverZoom = {
             if (options.ambilightEnabled) {
                 hz.hzImg.css('overflow', 'visible');
                 hz.hzImg.css('border', '0px');
+                hz.hzImg.css('padding', '0px');
                 var background = $('<div style="position: fixed; z-index: -2; top: 0; left: 0; opacity: 0.8; background-color: black; pointer-events: none" />').width(screen.availWidth).height(screen.availHeight);
                 background.appendTo(hz.hzImg);
                 var canvas = $('<canvas style="position: absolute; z-index: -1; transform: scale(1.2); -webkit-filter: blur(50px); opacity: 0.75; pointer-events: none"></canvas>');
