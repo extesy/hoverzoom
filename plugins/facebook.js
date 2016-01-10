@@ -32,7 +32,7 @@ hoverZoomPlugins.push({
             var img = $(this),
                 link = img.parents('a'),
                 data = link.data();
-            if (!data || data.hoverZoomSrc || link.hasClass('UFICommentLink')) return;
+            if (!data || data.hoverZoomSrc || link.hasClass('UFICommentLink') || link.hasClass('messagesContent') || link.attr('href').indexOf('notif') != -1) return;
 
             var src = hoverZoom.getThumbUrl(this),
                 origSrc = src;
