@@ -1,5 +1,5 @@
 var hoverZoomPlugins = hoverZoomPlugins || [],
-    debug = false;
+    debug = true;
 
 function cLog(msg) {
     if (debug) {
@@ -301,7 +301,7 @@ var hoverZoom = {
 
         function hideHoverZoomImg(now) {
             cLog('hideHoverZoomImg(' + now + ')');
-            if (!now && !imgFullSize || !hz.hzImg || fullZoomKeyDown) {
+            if ((!now && !imgFullSize) || !hz.hzImg || fullZoomKeyDown) {
                 return;
             }
             imgFullSize = null;
@@ -309,6 +309,10 @@ var hoverZoom = {
                 now = true;
             }
             hz.hzImg.stop(true, true).fadeOut(now ? 0 : options.fadeDuration, function () {
+                var video = hz.hzImg.find('video').get(0);
+                if (video) {
+                    video.src = "";
+                }
                 hzCaption = null;
                 hz.imgLoading = null;
                 hz.hzImg.empty();
