@@ -219,10 +219,6 @@
     "message":"Attiva il supporto degli album",
     "description":"[options] Enable albums support option"
   },
-  "optEnableStats":{
-    "message":"Attiva le statistiche di utilizzo anonime",
-    "description":"[options] Enable anonymous usage statistics option"
-  },
   "optPicturesOpacity":{
     "message":"Opacità immagini ingrandite:",
     "description":"[options] Zoomed pictures opacity option"

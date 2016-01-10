@@ -97,7 +97,6 @@ function saveOptions() {
     options.filterNSFW = $('#chkFilterNSFW')[0].checked;
     options.alwaysPreload = $('#chkAlwaysPreload')[0].checked;
     options.enableGalleries = $('#chkEnableGalleries')[0].checked;
-    options.enableStats = $('#chkEnableStats')[0].checked;
     options.picturesOpacity = $('#txtPicturesOpacity')[0].value / 100;
 
     localStorage.options = JSON.stringify(options);
@@ -141,7 +140,6 @@ function restoreOptions() {
 
     $('#chkAlwaysPreload')[0].checked = options.alwaysPreload;
     $('#chkEnableGalleries')[0].checked = options.enableGalleries;
-    $('#chkEnableStats')[0].checked = options.enableStats;
     $('#txtPicturesOpacity').val(options.picturesOpacity * 100);
 
     $('input:checked').trigger('gumby.check');

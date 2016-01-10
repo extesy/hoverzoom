@@ -88,7 +88,7 @@
         "description": "[options] Tooltip for show icon in address bar option"
     },
     "optShowCaptions": {
-        "message": "Show pictures captions",
+        "message": "Show picture captions",
         "description": "[options] Show pictures captions option"
     },
     "optShowCaptionsTooltip": {
@@ -136,7 +136,7 @@
         "description": "[options] Tooltip for mute zoomed videos option"
     },
     "optEnableAmbilight": {
-        "message": "Enable ambient light behind images (experimental, might not work for some sites or images)",
+        "message": "Enable ambient light behind images",
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
@@ -226,10 +226,6 @@
     "optEnableGalleries": {
         "message": "Enable albums support",
         "description": "[options] Enable albums support option"
-    },
-    "optEnableStats": {
-        "message": "Enable anonymous usage statistics",
-        "description": "[options] Enable anonymous usage statistics option"
     },
     "optPicturesOpacity": {
         "message": "Zoomed pictures opacity:",

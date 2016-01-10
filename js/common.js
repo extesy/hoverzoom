@@ -22,12 +22,10 @@ function loadOptions() {
     options.whiteListMode = options.hasOwnProperty('whiteListMode') ? options.whiteListMode : false;
     options.picturesOpacity = options.hasOwnProperty('picturesOpacity') ? options.picturesOpacity : 1;
     options.showWhileLoading = options.hasOwnProperty('showWhileLoading') ? options.showWhileLoading : true;
-    //options.expAlwaysFullZoom = options.hasOwnProperty('expAlwaysFullZoom') ? options.expAlwaysFullZoom : false;
     options.mouseUnderlap = options.hasOwnProperty('mouseUnderlap') ? options.mouseUnderlap : true;
     options.updateNotifications = options.hasOwnProperty('updateNotifications') ? options.updateNotifications : true;
     options.filterNSFW = options.hasOwnProperty('filterNSFW') ? options.filterNSFW : false;
     options.enableGalleries = options.hasOwnProperty('enableGalleries') ? options.enableGalleries : true;
-    options.enableStats = options.hasOwnProperty('enableStats') ? options.enableStats : false;
     options.ambilightEnabled = options.hasOwnProperty('ambilightEnabled') ? options.ambilightEnabled : false;
 
     // Action keys

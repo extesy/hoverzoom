@@ -1,7 +1,7 @@
 ﻿// True if the current version of the extension has something to show in an update notification
 var hasReleaseNotes = false;
 
-var options, _gaq;
+var options;
 
 // Performs an ajax request
 function ajaxRequest(request, callback) {
@@ -88,11 +88,6 @@ function onMessage(message, sender, callback) {
                 });
             });
             break;
-        case 'trackEvent':
-            if (options.enableStats && _gaq) {
-                _gaq.push(['_trackEvent', message.event.category, message.event.action, message.event.label]);
-            }
-            break;
     }
 }
 
@@ -106,48 +101,6 @@ function showPageAction(tab) {
         chrome.pageAction.setIcon({tabId:tab.id, path:'../images/icon19.png'});
     }
     chrome.pageAction.show(tab.id);
-}
-
-// Sets up anonymous stats
-function setUpStats() {
-    _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-30586301-5']);
-    _gaq.push(['_setSampleRate', '0.1']);
-    _gaq.push(['_trackPageview']);
-
-    (function () {
-        var ga = document.createElement('script');
-        ga.type = 'text/javascript';
-        ga.async = true;
-        ga.src = 'https://ssl.google-analytics.com/ga.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
-    })();
-}
-
-// Report options stats
-// No user data (browser history, etc) is reported
-function optionsStats() {
-    _gaq.push(['_trackEvent', 'Options', 'extensionEnabled', options.extensionEnabled.toString()]);
-    _gaq.push(['_trackEvent', 'Options', 'pageActionEnabled', options.pageActionEnabled.toString()]);
-    _gaq.push(['_trackEvent', 'Options', 'updateNotifications', options.updateNotifications.toString()]);
-    _gaq.push(['_trackEvent', 'Options', 'mouseUnderlap', options.mouseUnderlap.toString()]);
-    _gaq.push(['_trackEvent', 'Options', 'showCaptions', options.showCaptions.toString()]);
-    _gaq.push(['_trackEvent', 'Options', 'showHighRes', options.showHighRes.toString()]);
-    _gaq.push(['_trackEvent', 'Options', 'galleriesMouseWheel', options.galleriesMouseWheel.toString()]);
-    _gaq.push(['_trackEvent', 'Options', 'addToHistory', options.addToHistory.toString()]);
-    _gaq.push(['_trackEvent', 'Options', 'alwaysPreload', options.alwaysPreload.toString()]);
-    _gaq.push(['_trackEvent', 'Options', 'showWhileLoading', options.showWhileLoading.toString()]);
-    _gaq.push(['_trackEvent', 'Options', 'whiteListMode', options.whiteListMode.toString()]);
-    _gaq.push(['_trackEvent', 'Options', 'displayDelay', options.displayDelay.toString()]);
-    _gaq.push(['_trackEvent', 'Options', 'fadeDuration', options.fadeDuration.toString()]);
-    _gaq.push(['_trackEvent', 'Options', 'picturesOpacity', options.picturesOpacity.toString()]);
-}
-
-// Report miscellaneous stats
-// No user data (browser history, etc) is reported
-function miscStats() {
-    _gaq.push(['_trackEvent', 'Misc', 'extensionVersion', chrome.app.getDetails().version]);
-    _gaq.push(['_trackEvent', 'Misc', 'downloadedFrom', 'Chrome Web Store']);
 }
 
 // Checks if the extension has been updated.
@@ -167,13 +120,6 @@ function init() {
 
     // Bind events
     chrome.runtime.onMessage.addListener(onMessage);
-
-    // Anonymous stats
-    if (options.enableStats && navigator.appVersion.indexOf("RockMelt") == -1) {
-        setUpStats();
-        miscStats();
-        optionsStats();
-    }
 
     checkUpdate();
 }
