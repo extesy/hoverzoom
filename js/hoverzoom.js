@@ -1,5 +1,5 @@
 var hoverZoomPlugins = hoverZoomPlugins || [],
-    debug = true;
+    debug = false;
 
 function cLog(msg) {
     if (debug) {
