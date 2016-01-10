@@ -1,15 +1,11 @@
 // Copyright (c) 2015 Romain Vallet <romain.vallet@gmail.com>
+// Copyright (c) 2016 Oleg Anashkin <oleg.anashkin@gmail.com>
 // Licensed under the MIT license, read license.txt
 
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Twitter',
     prepareImgLinks:function (callback) {
-        
-		function thumbToLarge(url) {
-			return url.replace(/(\.\w+)(:\w+)?$/, '$1:large');
-		}
-		
 		var res = [];
         
         hoverZoom.urlReplace(res,
@@ -24,6 +20,12 @@ hoverZoomPlugins.push({
             ':large'
         );
         
+        hoverZoom.urlReplace(res,
+            'img[src*=":small"]',
+            ':small',
+            ':large'
+        );
+        
         /*$('video source[video-src*="twimg.com/tweet_video/"]').each(function() {
             var video = $(this).parents('video:eq(0)');
             video.data().hoverZoomSrc = [this.getAttribute('video-src')];
@@ -34,8 +36,8 @@ hoverZoomPlugins.push({
         $('[data-image-url], [data-expanded-url], [data-full-url], [data-url]').each(function () {
             var link = $(this),
                 url = this.getAttribute('data-image-url') || this.getAttribute('data-expanded-url') || this.getAttribute('data-full-url') || this.getAttribute('data-url');
-            if (url.match(/\/[^:]+\.(?:jpe?g|gif|png|svg|webp|bmp|ico|xbm)(?:[\?#:].*)?$/i) || url.match(/twimg\.com/)) {
-                link.data().hoverZoomSrc = [url.replace(':thumb', ':large')];
+            if (url.match(/\/[^:]+\.(?:jpe?g|gifv?|png|svg|webp|bmp|ico|xbm)(?:[\?#:].*)?$/i) || url.match(/twimg\.com/)) {
+                link.data().hoverZoomSrc = [url.replace(':thumb', ':large').replace(':small', ':large')];
                 res.push(link);
                 link.addClass('hoverZoomLink');
             }
@@ -69,8 +71,8 @@ hoverZoomPlugins.push({
 
 		$('a.media-item').each(function() {
 			var link = $(this),
-				url = this.style.backgroundImage.replace(/url\((.*)\)/, '$1');
-			link.data().hoverZoomSrc = [thumbToLarge(url)];
+				url = this.style.backgroundImage.replace(/url\("?(.*)"?\)/, '$1').replace(/(\.\w+)(:\w+)?"?$/, '$1:large');
+			link.data().hoverZoomSrc = [url];
 			res.push(link);
 		});
 

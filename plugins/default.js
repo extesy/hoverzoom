@@ -15,7 +15,7 @@ hoverZoomPlugins.push({
             var _this = $(this), data = _this.data();
             if (!data.hoverZoomSrc) {
                 var src = this.href;
-                if (!options.zoomVideos || (src.indexOf('imgur.com') == -1 && src.indexOf('gfycat.com') == -1 && src.indexOf('pornbot.net') == -1)) {
+                if (!options.zoomVideos || ((src.indexOf('imgur.com') == -1 || src.indexOf('slimgur.com') != -1) && src.indexOf('gfycat.com') == -1 && src.indexOf('pornbot.net') == -1)) {
                     data.hoverZoomSrc = [src];
                     res.push(_this);
                 }
