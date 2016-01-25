@@ -31,10 +31,10 @@ hoverZoomPlugins.push({
             }
 
             if (options.zoomVideos && (href.substr(-3) == 'gif' || href.substr(-4) == 'gifv')) {
-                data.hoverZoomSrc = [href.replace(/\.gif.?/, '.mp4'), href];
+                data.hoverZoomSrc = [href.replace(/\.gifv?/, '.mp4'), href];
                 res.push(link);
             } else {
-                var matches = href.match(/(?:\/(a|gallery|signin))?\/([^\W_]{5,7})(?:\/|\.[a-zA-Z]+|#([^\W_]{5,7}|\d+))?(\/new)?$/);
+                var matches = href.match(/(?:\/(a|gallery|signin))?\/([^\W_]{5,7})(?:\/|\.[a-zA-Z]+|#([^\W_]{5,7}|\d+))?(\/new|\?\d*)?$/);
                 if (matches && matches[2]) {
 
                     var view = matches[1];
