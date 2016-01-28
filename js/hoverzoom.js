@@ -375,6 +375,9 @@ var hoverZoom = {
                         //initLinkRect(hz.currentLink);
                         if (!options.actionKey || actionKeyDown) {
                             imgDetails.url = links.data().hoverZoomSrc[hoverZoomSrcIndex];
+                            if (imgDetails.url.indexOf('://') === -1) {
+                                imgDetails.url = 'http://' + window.location.host + imgDetails.url;
+                            }
                             clearTimeout(loadFullSizeImageTimeout);
 
                             // If the action key has been pressed over an image, no delay is applied
