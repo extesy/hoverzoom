@@ -57,7 +57,7 @@ var hoverZoom = {
                 naturalWidth:0,
                 video:false
             };
-            
+
         var progressCss = {
                 'opacity':'0.5',
                 'position':'absolute',
@@ -133,7 +133,7 @@ var hoverZoom = {
                 wndScrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop,
                 bodyWidth = document.body.clientWidth,
                 displayOnRight = (position.left - wndScrollLeft < wndWidth / 2);
-                
+
             function posCaption() {
                 if (hzCaption) {
                     hzCaption.css('max-width', imgFullSize.width());
@@ -331,7 +331,6 @@ var hoverZoom = {
             // Test if the action key was pressed without moving the mouse
                 explicitCall = event.pageY == undefined;
 
-
             // If so, the MouseMove event was triggered programmaticaly and we don't have details
             // about the mouse position and the event target, so we use the last saved ones.
             if (explicitCall) {
@@ -374,10 +373,17 @@ var hoverZoom = {
                         hz.currentLink = links;
                         //initLinkRect(hz.currentLink);
                         if (!options.actionKey || actionKeyDown) {
-                            imgDetails.url = links.data().hoverZoomSrc[hoverZoomSrcIndex];
-                            if (imgDetails.url.indexOf('://') === -1) {
-                                imgDetails.url = 'http://' + window.location.host + imgDetails.url;
+                            var src = links.data().hoverZoomSrc[hoverZoomSrcIndex];
+                            if (src.indexOf('http') !== 0) {
+                              if (src.indexOf('//') !== 0) {
+                                  if (src.indexOf('/') === 0) {
+                                    src = src.substr(1);
+                                  }
+                                  src = '//' + window.location.host + '//' + src;
+                              }
+                              src = window.location.protocol + src;
                             }
+                            imgDetails.url = src;
                             clearTimeout(loadFullSizeImageTimeout);
 
                             // If the action key has been pressed over an image, no delay is applied
@@ -551,7 +557,7 @@ var hoverZoom = {
 
             // The image size is not yet available in the onload so I have to delay the positioning
             setTimeout(posImg, options.showWhileLoading ? 0 : 10);
-            
+
             if (options.addToHistory && !chrome.extension.inIncognitoContext) {
                 var url = hz.currentLink.context.href || imgDetails.url;
                 chrome.runtime.sendMessage({action:'addUrlToHistory', url:url});
@@ -662,7 +668,7 @@ var hoverZoom = {
                     /*} catch(e) {
                      throw e;
                      }*/
-                     
+
                     // Avoid nested links
                     /*if (link.parents('.hoverZoomLink').length > 0) {
                         return;
@@ -679,7 +685,7 @@ var hoverZoom = {
 
                     link.addClass('hoverZoomLink');
 
-                    // Convert URL special characters                 
+                    // Convert URL special characters
                     /*var srcs = linkData.hoverZoomSrc;
                      for (var i=0; i<srcs.length; i++) {
                      srcs[i] = deepUnescape(srcs[i]);
@@ -885,9 +891,9 @@ var hoverZoom = {
         function windowOnDOMNodeInserted(event) {
             var insertedNode = event.target;
             if (insertedNode && insertedNode.nodeType === Node.ELEMENT_NODE) {
-                if (insertedNode.nodeName === 'A' || 
-                    insertedNode.nodeName === 'IMG' || 
-                    insertedNode.getElementsByTagName('A').length > 0 || 
+                if (insertedNode.nodeName === 'A' ||
+                    insertedNode.nodeName === 'IMG' ||
+                    insertedNode.getElementsByTagName('A').length > 0 ||
                     insertedNode.getElementsByTagName('IMG').length > 0) {
                     if (insertedNode.id !== 'hzImg' &&
                         insertedNode.parentNode.id !== 'hzImg' &&
@@ -911,7 +917,7 @@ var hoverZoom = {
                 $(document).on('mousewheel', documentOnMouseWheel);
             }
         }
-        
+
         function documentOnMouseWheel(event) {
           if (imgFullSize) {
             var link = hz.currentLink, data = link.data();
@@ -1347,7 +1353,7 @@ var hoverZoom = {
             }
         });
     },
-    
+
     prepareFromDocument:function (link, url, getSrc) {
         $.get(url, function(data) {
             var doc = document.implementation.createHTMLDocument();
