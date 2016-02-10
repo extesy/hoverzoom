@@ -8,7 +8,7 @@
         "description": "Short extension name"
     },
     "extDescription": {
-        "message": "Zoom images/videos on all your favorite websites (Reddit, Amazon, etc). Simply hover your mouse over the image to enlarge it.",
+        "message": "Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
     "extUpdated": {
