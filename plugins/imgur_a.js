@@ -34,7 +34,7 @@ hoverZoomPlugins.push({
                 data.hoverZoomSrc = [href.replace(/\.gifv?/, '.mp4'), href];
                 res.push(link);
             } else {
-                var matches = href.match(/(?:\/(a|gallery|signin))?\/([^\W_]{5,8})(?:\/|\.[a-zA-Z]+|#([^\W_]{5,8}|\d+))?(\/new|\?\d*)?$/);
+                var matches = href.match(/(?:\/(a|gallery|signin))?\/([^\W_]{5,8})(?:\/|\.[a-zA-Z]+|#([^\W_]{5,8}|\d+))?(\/new|\/all|\?\d*)?$/);
                 if (matches && matches[2]) {
 
                     var view = matches[1];
