@@ -8,219 +8,227 @@
     "description":"Short extension name"
   },
   "extDescription":{
-    "message":"Passe o mouse sobre imagens para aumenta-las. Suporta qualquer site como Reddit, Amazon, Facebook, Twitter, Flickr, etc",
+    "message":"Vergrößern Sie Bilder und Videos auf Ihren bevorzugten Websites (Facebook, Amazon, etc.) indem Sie die Maus darüber bewegen.",
     "description":"Extension description in Chrome webstore (max. 132 characters)"
   },
   "extUpdated":{
-    "message":"Hover Zoom+ foi atualizado",
+    "message":"Hover Zoom + wurde aktualisiert",
     "description":"Extension update notification"
   },
   "popDisableForAllSites":{
-    "message":"Desabilitar todos os sites",
+    "message":"Für alle Websites deaktivieren",
     "description":"[popup] Disable the extension"
   },
   "popAllowPerSiteToggle":{
-    "message":"Permite configurar extensão por site",
+    "message":"Konfiguration pro Seite zulassen",
     "description":"[popup] Allow per-site extension configuration"
   },
   "popDisableForSite":{
-    "message":"Desabilitar para $1",
+    "message":"Für $1 deaktivieren",
     "description":"[popup] Disables the extension for a specific site"
   },
   "popEnableForSite":{
-    "message":"Habilitar para $1",
+    "message":"Für $1 aktivieren",
     "description":"[popup] Enables the extension for a specific site"
   },
   "popPreloadImages":{
-    "message":"Pré-carregar imagens aumentadas",
+    "message":"Vergrößerte Bilder im Voraus laden",
     "description":"[popup] Preload zoomed images"
   },
   "popPreloadingImages":{
-    "message":"Pre-carregando...",
+    "message":"Laden...",
     "description":"[popup] Preloading zoomed images"
   },
   "popMoreOptions":{
-    "message":"Mais opções",
+    "message":"Weitere Optionen",
     "description":"[popup] More options"
   },
   "optTitle":{
-    "message":"Hover Zoom+ Opções",
+    "message":"Hover Zoom + Optionen",
     "description":"[options] Page title"
   },
   "optButtonSave":{
-    "message":"Salvar",
+    "message":"Speichern",
     "description":"[options] Save button label"
   },
   "optButtonReset":{
-    "message":"Resetar",
+    "message":"Zurücksetzen",
     "description":"[options] Reset button label"
   },
   "optSaved":{
-    "message":"Opções salvas. Algumas configurações precisam que a atualize a página.",
+    "message":"Optionen gespeichert. Eventuell müssen einige Seiten müssen neu geladen werden.",
     "description":"[options] Notification after saving options"
   },
   "optPageGeneral":{
-    "message":"Geral",
+    "message":"Allgemeines",
     "description":"[options] Page title for general options"
   },
   "optExtensionEnabled":{
-    "message":"Habilitar Hover Zoom",
+    "message":"Hover Zoom aktivieren",
     "description":"[options] Enable Hover Zoom+ option"
   },
   "optSectionView":{
-    "message":"Exibir",
+    "message":"Aussehen",
     "description":"[options] Page section for view options"
   },
   "optMouseUnderlap":{
-    "message":"Ampliar imagens aumentadas abaixo do cursor do mouse",
+    "message":"Bilder bei Mouse-Hover vergrößern",
     "description":"[options] Extend zoomed images below the mouse cursor option"
   },
   "optMouseUnderlapTooltip":{
-    "message":"Se não marcado, imagens aumentada vão ser redimensionada dinamicamente",
+    "message":"Wenn nicht gesetzt, werden die Bilder in dynamischer Größe gezeigt",
     "description":"[options] Tooltip for extend zoomed images below the mouse cursor option"
   },
   "optPageActionEnabled":{
-    "message":"Exibir ícone na barra de endereço",
+    "message":"Symbol in der Adressleiste anzeigen",
     "description":"[options] Show icon in address bar option"
   },
   "optPageActionEnabledTooltip":{
-    "message":"Só quando imagens puderem ser aumentada",
+    "message":"Nur wenn Bilder vergrößert werden können",
     "description":"[options] Tooltip for show icon in address bar option"
   },
   "optShowCaptions":{
-    "message":"Exibir legenda nas imagens",
+    "message":"Bild Untertitel anzeigen",
     "description":"[options] Show pictures captions option"
   },
   "optShowCaptionsTooltip":{
-    "message":"Legendas serão exibidas somente quando disponivei",
+    "message":"Beschriftungen werden nur wenn verfügbar angezeigt",
     "description":"[options] Tooltip for show pictures captions option"
   },
   "optShowWhileLoading":{
-    "message":"Exibir imagem aumentada enquanto está carregando",
+    "message":"Gezoomte Bilder während des Ladevorgangs anzeigen",
     "description":"[options] Show zoomed pictures while loading option"
   },
   "optShowWhileLoadingTooltip":{
-    "message":"Imagem aumentada será exibida antes de carregar completamente",
+    "message":"Gezoomtes Bilder anzeigen, bevor es vollständig geladen ist",
     "description":"[options] Tooltip for show zoomed pictures while loading option"
   },
   "optShowHighRes":{
-    "message":"Exibir imagens de alta resolução quando disponivel",
+    "message":"Bilder wenn verfügbar in hoher Auflösung zeigen",
     "description":"[options] Show high resolution pictures when available option"
   },
   "optShowHighResTooltip":{
-    "message":"Imagens pode demorar um pouco para carregar",
+    "message":"Das Laden der Bilder kann hierdurch länger dauern",
     "description":"[options] Tooltip for show high resolution pictures when available option"
   },
   "optGalleriesMouseWheel":{
-    "message":"Usar scroll do mouse para navegar no album",
+    "message":"Mausrad verwenden, um durch Alben zu navigieren",
     "description":"[options] Use mousewheel to navigate albums option"
   },
   "optGalleriesMouseWheelTooltip":{
-    "message":"Navega no album com a \"rodinha\" do mouse",
+    "message":"Navigieren Sie mit dem Mausrad in Alben",
     "description":"[options] Tooltip for use mousewheel to navigate albums option"
   },
   "optZoomVideos":{
-    "message":"Aumentar vídeos (WebM, MP4)",
+    "message":"Videos zoomen (WebM, MP4)",
     "description":"[options] Zoom videos (WebM, MP4) option"
   },
   "optZoomVideosTooltip":{
-    "message":"Aumentar vídeos (WebM, MP4)",
+    "message":"Videos zoomen (WebM, MP4)",
     "description":"[options] Tooltip for zoom videos (WebM, MP4) option"
   },
   "optMuteVideos":{
-    "message":"Silenciar videos aumentados",
+    "message":"Gezoomte Videos stummschalten",
     "description":"[options] Mute zoomed videos option"
   },
   "optMuteVideosTooltip":{
-    "message":"Silenciar videos aumentados",
+    "message":"Deaktiviert den Ton im gezoomten Videos",
     "description":"[options] Tooltip for mute zoomed videos option"
   },
+  "optEnableAmbilight":{
+    "message":"Umgebungslicht hinter Bildern aktivieren",
+    "description":"[options] Enable ambient light behind images option"
+  },
+  "optEnableAmbilightTooltip":{
+    "message":"Hintergrund abdunkeln und Leuchteffekt um vergrößertes Bild anzeigen, ähnlich Philips Ambilight.",
+    "description":"[options] Tooltip for enable ambient light behind images option"
+  },
   "optSectionDelays":{
-    "message":"Duração",
+    "message":"Verzögerungen",
     "description":"[options] Page section for delay options"
   },
   "optDisplayDelay":{
-    "message":"Antes de exibir uma imagem esperar:",
+    "message":"Verzögerung vor dem Anzeigen eines Bildes:",
     "description":"[options] Delay before displaying a picture option"
   },
   "optFadeDuration":{
-    "message":"Animação de exibição dura:",
+    "message":"Dauer der verblassen-Animation:",
     "description":"[options] Fading animation duration option"
   },
   "optDurationUnitName":{
-    "message":"seg",
+    "message":"sek",
     "description":"[options] Short form of \"second\" for delay duration"
   },
   "optPageSites":{
-    "message":"Sites",
+    "message":"Seiten",
     "description":"[options] Page title for site options"
   },
   "optSectionSitesEnabled":{
-    "message":"URLS no qual Hover Zoom+ precisa ser habilitado",
+    "message":"URLs für die Hover Zoom+ aktiviert sein soll",
     "description":"[options] Page section for enabling extension for specific sites"
   },
   "optSectionSitesDisabled":{
-    "message":"URLS no qual Hover Zoom+ precisa ser desabilitado",
+    "message":"URLs für die Hover Zoom+ deaktiviert sein soll",
     "description":"[options] Page section for enabling extension for specific sites"
   },
   "optWhitelistMode":{
-    "message":"Modo lista branca",
+    "message":"Whitelist-Modus",
     "description":"[options] Whitelist mode checkbox"
   },
   "optWhitelistModeTooltip":{
-    "message":"Habilitar Hover Zoom+ só para os sites listados a seguir",
+    "message":"Hover Zoom+ nur für die unten aufgeführten Websites aktivieren",
     "description":"[options] Tooltip for whitelist mode checkbox"
   },
   "optSitePlaceholder":{
-    "message":"Exemplos: facebook.com, google.com\/reader",
+    "message":"Beispiele: facebook.com, google.com\/reader",
     "description":"[options] Placeholder for a site url input box"
   },
   "optSiteDisclaimer":{
-    "message":"Tome cuidado filtros de domínio podem ser sobrepostos. Exemplo: Se você filtrou \"picasaweb.google.com\" e \"google.com\", removendo \"picasaweb.google.com\" não vai reativar Picasa Web Albums, pois isso vai ser excluído pelo filtro \"google.com\".",
+    "message":"Beachten Sie, dass sich Domänenfilter überschneiden können. Beispiel: Wenn Sie \"picasaweb.google.com\" und \"google.com\" Filter angewendet haben, wird das Entfernen von \"picasaweb.google.com\" nicht Picasa-Webalben reaktivieren, da diese noch durch den Filter \"google.com\" ausgeschlossen sind.",
     "description":"[options] Disclaimer on the sites option page"
   },
   "optButtonAddSite":{
-    "message":"Adicionar",
+    "message":"Hinzufügen",
     "description":"[options] Button for adding a site on sites option page"
   },
   "optPageActionKeys":{
-    "message":"Teclas de ação",
+    "message":"Aktionstasten",
     "description":"[options] Page title for action key options"
   },
   "optPageAdvanced":{
-    "message":"Avançado",
+    "message":"Erweitert",
     "description":"[options] Page title for advanced options"
   },
   "optSectionAdvanced":{
-    "message":"Opções avançadas",
+    "message":"Erweiterte Einstellungen",
     "description":"[options] Page section for advanced options"
   },
   "optUpdateNotifications":{
-    "message":"Exibir notificações de atualização",
+    "message":"Zeige Update-Benachrichtigungen",
     "description":"[options] Show update notifications option"
   },
   "optShowLastUpdateNotification":{
-    "message":"(exibir última notificação)",
+    "message":"(Zeige letzte Benachrichtigung)",
     "description":"[options] Show last update notification"
   },
   "optAddToHistory":{
-    "message":"Adicionar imagens exibidas para o histórico do navegador",
+    "message":"Betrachtete Bilder dem Verlauf des Browsers hinzufügen",
     "description":"[options] Add viewed pictures to the browser's history option"
   },
   "optFilterNSFW":{
-    "message":"Excluir imagens NSFW (Reddit somente)",
+    "message":"Anstößige Bilder ausschließen (nur Reddit)",
     "description":"[options] Exclude NSFW images (Reddit only) option"
   },
   "optAlwaysPreload":{
-    "message":"Automaticamente pre-carrega imagens aumentadas",
+    "message":"Gezoomte Bilder automatisch im Voraus laden",
     "description":"[options] Automatically preload zoomed images option"
   },
   "optEnableGalleries":{
-    "message":"Habilita suporte à albuns",
+    "message":"Alben-Unterstützung aktivieren",
     "description":"[options] Enable albums support option"
   },
   "optPicturesOpacity":{
-    "message":"Opacidade de imagem aumentada:",
+    "message":"Deckkraft gezoomter Bilder:",
     "description":"[options] Zoomed pictures opacity option"
   },
   "optOpacityUnitName":{
@@ -228,79 +236,79 @@
     "description":"[options] Unit name (percentage) for opacity option"
   },
   "optActionKeyTitle":{
-    "message":"Ativa Hover Zoom+",
+    "message":"Hover Zoom+ aktivieren",
     "description":"[options] Action key title"
   },
   "optActionKeyDescription":{
-    "message":"Se definida uma tecla, Hover Zoom+ ativará só quando a tecla for pressionada.",
+    "message":"Wenn hier ein Tastenkürzel angegeben ist, wird Hover Zoom+ nur aktiv, während diese Taste gedrückt gehalten wird.",
     "description":"[options] Action key description"
   },
   "optHideKeyTitle":{
-    "message":"Desabilitar Hover Zoom+",
+    "message":"Hover Zoom+ deaktivieren",
     "description":"[options] Action key title"
   },
   "optHideKeyDescription":{
-    "message":"Segurando essa tecla oculta a imagem aumentada. Use isso quando a imagem oculta elementos que também são exibidos no passar do mouse.",
+    "message":"Diese Taste gedrückt halten um das vergrößerte Bild auszublenden. Verwenden Sie es, wenn das Bild andere Elemente verdeckt, die auch auf Mouseover angezeigt werden.",
     "description":"[options] Action key description"
   },
   "optOpenImageInWindowKeyTitle":{
-    "message":"Abrir imagem em nova janela",
+    "message":"Bild in einem neuen Fenster öffnen",
     "description":"[options] Action key title"
   },
   "optOpenImageInWindowKeyDescription":{
-    "message":"Pressione essa tecla para abrir a imagem, sendo exibida, em nova janela. Pressione a tecla novamente para fechar a janela.",
+    "message":"Drücken Sie diese Taste, um das gerade angezeigte Bild in einem neuen Fenster zu öffnen. Drücken Sie diese Taste erneut, um das Fenster zu schließen.",
     "description":"[options] Action key description"
   },
   "optOpenImageInTabKeyTitle":{
-    "message":"Abrir imagem em nova aba",
+    "message":"Bild in einem neuen Tab öffnen",
     "description":"[options] Action key title"
   },
   "optOpenImageInTabKeyDescription":{
-    "message":"Pressione a tecla para abrir imagem, sendo exibida, em nova aba. Pressione a tecla novamente, para fechar a aba. Shift+tecla abre a imagem numa aba em plano de fundo.",
+    "message":"Drücken Sie diese Taste, um das gerade angezeigte Bild in einem neuen Tab zu öffnen. Drücken Sie diese Taste erneut, um das Tab zu schließen. Shift+Taste öffnet das Tab im Hintergrund.",
     "description":"[options] Action key description"
   },
   "optSaveImageKeyTitle":{
-    "message":"Salvar imagem",
+    "message":"Bild speichern",
     "description":"[options] Action key title"
   },
   "optSaveImageKeyDescription":{
-    "message":"Pressione esta tecla para salvar a imagem sendo exibida.",
+    "message":"Drücken Sie diese Taste, um das Bild zu speichern, die, das Sie gerade betrachten.",
     "description":"[options] Action key description"
   },
   "optFullZoomKeyTitle":{
-    "message":"Ativa aumento completo",
+    "message":"Vollen Zoom aktivieren",
     "description":"[options] Action key title"
   },
   "optFullZoomKeyDescription":{
-    "message":"Quando a tecla é pressionada, a imagem é exibida usando todo espaço disponível. Útil somente para imagens de alta resolução.",
+    "message":"Wenn diese Taste gedrückt gehalten wird, wird das Bild in der maximal verfügbare Größe angezeigt. Nur für Bilder in hoher Auflösung nützlich.",
     "description":"[options] Action key description"
   },
   "optPrevImgKeyTitle":{
-    "message":"Exibir imagem anterior na galeria",
+    "message":"Vorheriges Bild in einer Galerie anzeigen",
     "description":"[options] Action key title"
   },
   "optPrevImgKeyDescription":{
-    "message":"Pressione essa tecla para ver a imagem anterior na galeria.",
+    "message":"Drücken Sie diese Taste, um das vorherige Bild in einer Galerie anzusehen.",
     "description":"[options] Action key description"
   },
   "optNextImgKeyTitle":{
-    "message":"Exibir próxima imagem da galeria",
+    "message":"Nächstes Bild in einer Galerie anzeigen",
     "description":"[options] Action key title"
   },
   "optNextImgKeyDescription":{
-    "message":"Pressione essa tecla para ver a próxima imagem na galeria.",
+    "message":"Drücken Sie diese Taste, um das nächste Bild in einer Galerie anzusehen.",
     "description":"[options] Action key description"
   },
   "optFooterSourceCode":{
-    "message":"Código fonte",
+    "message":"Quelltext",
     "description":"[options] Source code link in page footer"
   },
   "optFooterReportIssue":{
-    "message":"Informar um erro",
+    "message":"Einen Bug melden",
     "description":"[options] Report a bug link in page footer"
   },
   "optFooterVersionCopyright":{
-    "message":"Versão $1 - © 2014-2016 Oleg Anashkin",
+    "message":"Version $1 - © 2014-2016 Oleg Anashkin, Deutsche Übersetzung Benjamin Bock",
     "description":"[options] Copyright and version number in page footer"
   }
 }
