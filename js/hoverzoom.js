@@ -239,6 +239,8 @@ var hoverZoom = {
             if (!canvas || !imgFullSize) return;
 
             var url = imgDetails.url;
+            if (url.lastIndexOf('?') > 0)
+                url = url.substr(0, url.lastIndexOf('?'));
             var ext = url.substr(url.length - 4).toLowerCase();
             var isVideo = (ext == '.gif' || ext == 'gifv' || ext == 'webm' || ext == '.mp4');
 
@@ -415,7 +417,12 @@ var hoverZoom = {
                 hz.createHzImg(!hideKeyDown);
                 hz.createImgLoading();
 
-                imgDetails.video = (imgDetails.url.substr(imgDetails.url.length - 4) == 'webm' || imgDetails.url.substr(imgDetails.url.length - 3) == 'mp4');
+                var url = imgDetails.url;
+                if (url.lastIndexOf('?') > 0)
+                    url = url.substr(0, url.lastIndexOf('?'));
+                var ext = url.substr(url.length - 4).toLowerCase();
+
+                imgDetails.video = (ext == 'webm' || ext == '.mp4');
                 if (imgDetails.video) {
                     if (!options.zoomVideos) { return; }
                     var video = document.createElement('video');
@@ -1364,6 +1371,7 @@ var hoverZoom = {
             if (httpRefresh) {
                 var redirUrl = httpRefresh.content.substr(httpRefresh.content.toLowerCase().indexOf('url=')+4);
                 if (redirUrl) {
+                    redirUrl = redirUrl.replace('http:', location.protocol);
                     hoverZoom.prepareFromDocument(link, redirUrl, getSrc);
                 }
             }

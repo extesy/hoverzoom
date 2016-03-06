@@ -1,7 +1,7 @@
 {
     "name": "__MSG_extName__",
     "short_name": "__MSG_extShortName__",
-    "version": "1.0.53",
+    "version": "1.0.54",
     "description": "__MSG_extDescription__",
     "homepage_url": "https://github.com/extesy/hoverzoom/",
     "manifest_version": 2,
@@ -68,7 +68,9 @@
                 "plugins/gravatar_a.js",
                 "plugins/gallery_a.js",
                 "plugins/ipboard_a.js",
-                "plugins/streamable_a.js"
+                "plugins/streamable_a.js",
+                "plugins/vine_a.js",
+                "plugins/twitter_a.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
