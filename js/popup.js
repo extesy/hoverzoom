@@ -47,15 +47,9 @@ function setTabHook(options) {
     chrome.tabs.getSelected(null, function (tab) {
         siteDomain = tab.url.split('/', 3)[2];
         $('#lblToggle').text(chrome.i18n.getMessage(options.whiteListMode ? 'popEnableForSite' : 'popDisableForSite', siteDomain));
-
         $('#chkExtensionDisabled')[0].checked = !options.extensionEnabled;
-
-        for (var i = 0; i < options.excludedSites.length; i++) {
-            if (options.excludedSites[i] == siteDomain) {
-                $('#chkExcludeSite')[0].checked = true;
-                break;
-            }
-        }
+        $('#chkExcludeSite')[0].checked = isExcludedSite(tab.url);
+        $('input:checked').trigger('gumby.check');
     });
 }
 
