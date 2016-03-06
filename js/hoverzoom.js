@@ -233,16 +233,19 @@ var hoverZoom = {
             hz.hzImg.css({top:Math.round(position.top), left:Math.round(position.left)});
         }
 
+        function isVideoLink(url, includeGifs) {
+            if (url.lastIndexOf('?') > 0)
+                url = url.substr(0, url.lastIndexOf('?'));
+            var ext = url.substr(url.length - 4).toLowerCase();
+            return (includeGifs && (ext == '.gif' || ext == 'gifv')) || ext == 'webm' || ext == '.mp4' || url.indexOf('googlevideo.com/videoplayback') > 0;
+        }
+
         function updateAmbilight() {
             if (!hz.hzImg) return;
             var canvas = hz.hzImg.find('canvas')[0];
             if (!canvas || !imgFullSize) return;
 
-            var url = imgDetails.url;
-            if (url.lastIndexOf('?') > 0)
-                url = url.substr(0, url.lastIndexOf('?'));
-            var ext = url.substr(url.length - 4).toLowerCase();
-            var isVideo = (ext == '.gif' || ext == 'gifv' || ext == 'webm' || ext == '.mp4');
+            var isVideo = isVideoLink(imgDetails.url, true);
 
             if (!(isVideo || (imgFullSize.get(0).complete && imgFullSize.get(0).naturalWidth))) {
                 window.setTimeout(updateAmbilight, 20);
@@ -417,12 +420,7 @@ var hoverZoom = {
                 hz.createHzImg(!hideKeyDown);
                 hz.createImgLoading();
 
-                var url = imgDetails.url;
-                if (url.lastIndexOf('?') > 0)
-                    url = url.substr(0, url.lastIndexOf('?'));
-                var ext = url.substr(url.length - 4).toLowerCase();
-
-                imgDetails.video = (ext == 'webm' || ext == '.mp4');
+                imgDetails.video = isVideoLink(imgDetails.url);
                 if (imgDetails.video) {
                     if (!options.zoomVideos) { return; }
                     var video = document.createElement('video');
