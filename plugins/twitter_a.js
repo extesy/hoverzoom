@@ -5,7 +5,7 @@ var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'pic.twitter.com',
     prepareImgLinks:function (callback) {
-        $('a[href*="//pic.twitter.com/"]').one('mouseover', function() {
+        $('a[href*="//pic.twitter.com/"]').one('mouseenter', function() {
             var link = this.href.replace('http:', location.protocol);
             hoverZoom.prepareFromDocument($(this), link, function(doc) {
                 var i, src, srcs = [], multiPhoto = doc.querySelectorAll('.multi-photo img[src*="twimg.com/media/"]');

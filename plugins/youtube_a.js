@@ -46,9 +46,15 @@ hoverZoomPlugins.push({
         }
 
         function prepareVideoPreview(link, id) {
+            if (link.hasClass('hoverZoomLoading') || link.hasClass('hoverZoomLink')) return;
+            link.addClass('hoverZoomLoading');
             chrome.runtime.sendMessage({action:'ajaxGet', url:location.protocol + "//www.youtube.com/get_video_info?video_id=" + id}, function (video_info) {
+                link.removeClass('hoverZoomLoading');
                 var video = decodeQueryString(video_info);
-                if (video.status === "fail") return;
+                if (video.status === "fail") {
+                    console.log(video.reason);
+                    return;
+                }
                 var sources = decodeStreamMap(video.url_encoded_fmt_stream_map);
                 var src = getSource(sources, "webm", "high") || getSource(sources, "mp4", "high");
                 if (src) {
@@ -59,15 +65,15 @@ hoverZoomPlugins.push({
             });
         }
 
-        $('a[href*="youtu.be/"]').one('mouseover', function () {
+        $('a[href*="youtu.be/"]').one('mouseenter', function () {
             var link = $(this), match = this.href.match(/^.*youtu.be\/([\w-]+).*$/);
-            if (match.length != 2) return;
+            if (!match || match.length < 2) return;
             prepareVideoPreview(link, match[1]);
         });
 
-        $('a[href*="youtube.com/watch"]').one('mouseover', function () {
+        $('a[href*="youtube.com/watch"]').one('mouseenter', function () {
             var link = $(this), match = this.href.match(/^.*v=([\w-]+).*$/);
-            if (match.length != 2) return;
+            if (!match || match.length < 2) return;
             prepareVideoPreview(link, match[1]);
         });
 
