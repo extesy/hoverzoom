@@ -5,6 +5,9 @@ var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'pic.twitter.com',
     prepareImgLinks:function (callback) {
+        if (location.host.indexOf('twitter.com') !== -1)
+            return;
+
         $('a[href*="//pic.twitter.com/"]').one('mouseenter', function() {
             var link = this.href.replace('http:', location.protocol);
             hoverZoom.prepareFromDocument($(this), link, function(doc) {
