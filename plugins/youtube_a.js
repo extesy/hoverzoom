@@ -48,7 +48,20 @@ hoverZoomPlugins.push({
         function prepareVideoPreview(link, id) {
             if (link.hasClass('hoverZoomLoading') || link.hasClass('hoverZoomLink')) return;
             link.addClass('hoverZoomLoading');
-            chrome.runtime.sendMessage({action:'ajaxGet', url:location.protocol + "//www.youtube.com/get_video_info?video_id=" + id}, function (video_info) {
+
+            var match = link.attr('href').match(/[\?&]t=([\dhm]+)/);
+            var start = match && match.length >= 2 ? match[1] : null;
+            if (start && start.indexOf('m') !== -1) {
+                var parts = start.split('m');
+                if (parts.length == 2) {
+                    var parts2 = start.split('h');
+                    if (parts2.length == 2)
+                        parts[0] = parseInt(parts2[0]) * 60 + parseInt(parts2[1]);
+                    start = parseInt(parts[0]) * 60 + parseInt(parts[1]);
+                }
+            }
+
+            chrome.runtime.sendMessage({action: 'ajaxGet', url: location.protocol + "//www.youtube.com/get_video_info?video_id=" + id}, function (video_info) {
                 link.removeClass('hoverZoomLoading');
                 var video = decodeQueryString(video_info);
                 if (video.status === "fail") {
@@ -58,7 +71,7 @@ hoverZoomPlugins.push({
                 var sources = decodeStreamMap(video.url_encoded_fmt_stream_map);
                 var src = getSource(sources, "webm", "high") || getSource(sources, "mp4", "high");
                 if (src) {
-                    link.data().hoverZoomSrc = [src.url];
+                    link.data().hoverZoomSrc = [start ? src.url + '#t=' + start : src.url];
                     link.addClass('hoverZoomLink');
                     hoverZoom.displayPicFromElement(link);
                 }
