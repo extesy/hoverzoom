@@ -237,7 +237,8 @@ var hoverZoom = {
             if (url.lastIndexOf('?') > 0)
                 url = url.substr(0, url.lastIndexOf('?'));
             var ext = url.substr(url.length - 4).toLowerCase();
-            return (includeGifs && (ext == '.gif' || ext == 'gifv')) || ext == 'webm' || ext == '.mp4' || url.indexOf('googlevideo.com/videoplayback') > 0;
+            includeGifs = includeGifs || false;
+            return (includeGifs && (ext == '.gif' || ext == 'gifv')) || ext == 'webm' || ext == '.mp4' || ext == '3gpp' || url.indexOf('googlevideo.com/videoplayback') > 0;
         }
 
         function updateAmbilight() {
@@ -380,19 +381,25 @@ var hoverZoom = {
                         if (!options.actionKey || actionKeyDown) {
                             var src = links.data().hoverZoomSrc[hoverZoomSrcIndex];
                             if (src.indexOf('http') !== 0) {
-                              if (src.indexOf('//') !== 0) {
-                                  if (src.indexOf('/') === 0) {
-                                    src = src.substr(1);
-                                  }
-                                  src = '//' + window.location.host + '//' + src;
-                              }
-                              src = window.location.protocol + src;
+                                if (src.indexOf('//') !== 0) {
+                                    if (src.indexOf('/') === 0) {
+                                        // Image has absolute path (starts with '/')
+                                        src = src.substr(1);
+                                    } else {
+                                        // Image has relative path (doesn't start with '/')
+                                        var path = window.location.pathname;
+                                        path = path.substr(0, path.lastIndexOf('/') + 1);
+                                        src = path + src;
+                                    }
+                                    src = '//' + window.location.host + '/' + src;
+                                }
+                                src = window.location.protocol + src;
                             }
                             imgDetails.url = src;
                             clearTimeout(loadFullSizeImageTimeout);
 
                             // If the action key has been pressed over an image, no delay is applied
-                            var delay = explicitCall ? 0 : options.displayDelay;
+                            var delay = explicitCall ? 0 : (isVideoLink(imgDetails.url) ? options.displayDelayVideo : options.displayDelay);
                             loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
 
                             loading = true;

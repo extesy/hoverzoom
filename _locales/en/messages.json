@@ -151,6 +151,10 @@
         "message": "Delay before displaying a picture:",
         "description": "[options] Delay before displaying a picture option"
     },
+    "optDisplayDelayVideo": {
+        "message": "Delay before displaying a video:",
+        "description": "[options] Delay before displaying a video option"
+    },
     "optFadeDuration": {
         "message": "Fading animation duration:",
         "description": "[options] Fading animation duration option"

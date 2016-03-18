@@ -57,7 +57,7 @@ hoverZoomPlugins.push({
                     var parts2 = start.split('h');
                     if (parts2.length == 2)
                         parts[0] = parseInt(parts2[0]) * 60 + parseInt(parts2[1]);
-                    start = parseInt(parts[0]) * 60 + parseInt(parts[1]);
+                    start = parseInt(parts[0]) * 60 + parseInt(parts[1] || 0);
                 }
             }
 

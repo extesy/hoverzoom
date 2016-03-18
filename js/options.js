@@ -78,6 +78,7 @@ function saveOptions() {
     options.showHighRes = $('#chkShowHighRes')[0].checked;
     options.galleriesMouseWheel = $('#chkGalleriesMouseWheel')[0].checked;
     options.displayDelay = getMilliseconds($('#txtDisplayDelay'));
+    options.displayDelayVideo = getMilliseconds($('#txtDisplayDelayVideo'));
     options.fadeDuration = getMilliseconds($('#txtFadeDuration'));
     options.ambilightEnabled = $('#chkAmbilightEnabled')[0].checked;
 
@@ -120,6 +121,7 @@ function restoreOptions() {
     $('#chkShowHighRes')[0].checked = options.showHighRes;
     $('#chkGalleriesMouseWheel')[0].checked = options.galleriesMouseWheel;
     $('#txtDisplayDelay').val((options.displayDelay || 0) / 1000);
+    $('#txtDisplayDelayVideo').val((options.displayDelayVideo || 0) / 1000);
     $('#txtFadeDuration').val((options.fadeDuration || 0) / 1000);
     $('#chkAmbilightEnabled')[0].checked = options.ambilightEnabled;
 
