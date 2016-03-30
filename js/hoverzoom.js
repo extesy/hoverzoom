@@ -394,6 +394,11 @@ var hoverZoom = {
                                     src = '//' + window.location.host + '/' + src;
                                 }
                                 src = window.location.protocol + src;
+                            } else {
+                                // switch to https if the main site is loaded using https protocol
+                                if (window.location.protocol === 'https:' && src.indexOf('http:') === 0) {
+                                    src = 'https' + src.substr(src.indexOf(':'));
+                                }
                             }
                             imgDetails.url = src;
                             clearTimeout(loadFullSizeImageTimeout);
