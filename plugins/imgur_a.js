@@ -53,15 +53,15 @@ hoverZoomPlugins.push({
                             data.hoverZoomGallerySrc = [];
                             data.hoverZoomGalleryCaption = [];
 
-                            var albumUrl = 'https://api.imgur.com/2/album/' + hash + '.json';
-                            $.get(albumUrl, function (imgur) {
+                            var albumUrl = 'https://api.imgur.com/3/album/' + hash + '.json';
+                            $.ajax(albumUrl, {headers: {"Authorization": "Client-ID 69fae01c19fb100"}}).done(function (imgur) {
                                 if (imgur.error) {
                                     data.hoverZoomSrc = createUrls(hash);
                                     res.push(link);
                                 } else {
-                                    imgur.album.images.forEach(function (img, index) {
-                                        var urls = createUrls(img.image.hash),
-                                            caption = img.image.title,
+                                    imgur.data.images.forEach(function (img, index) {
+                                        var urls = [img.link],
+                                            caption = img.title,
                                             alreadyAdded = false;
                                         for (var i=0, l=data.hoverZoomGallerySrc.length; i<l; i++) {
                                             if (data.hoverZoomGallerySrc[i].indexOf(urls[0]) != -1) {
@@ -70,16 +70,16 @@ hoverZoomPlugins.push({
                                             }
                                         }
                                         if (!alreadyAdded) {
-                                            if (caption != '' && img.image.caption != '') {
+                                            if (caption != '' && img.description != '') {
                                                 caption += ';\n';
                                             }
-                                            caption += img.image.caption;
+                                            caption += img.description;
                                             data.hoverZoomGalleryCaption.push(htmlDecode(caption));
                                             data.hoverZoomGallerySrc.push(urls);
                                             data.hoverZoomSrc = undefined;
                                         }
                                         if (anchor) {
-                                            if ((anchor.match(/^\d+$/) && index == parseInt(anchor)) || anchor == img.image.hash)
+                                            if ((anchor.match(/^\d+$/) && index == parseInt(anchor)) || anchor == img.id)
                                                 data.hoverZoomGalleryIndex = index;
                                         }
                                     });
