@@ -36,7 +36,6 @@ hoverZoomPlugins.push({
             } else {
                 var matches = href.match(/(?:\/(a|gallery|signin))?\/([^\W_]{5,8})(?:\/|\.[a-zA-Z]+|#([^\W_]{5,8}|\d+))?(\/new|\/all|\?\d*)?$/);
                 if (matches && matches[2]) {
-
                     var view = matches[1];
                     var hash = matches[2];
                     var excl = ['imgur', 'forum', 'stats', 'signin', 'upgrade'];
@@ -85,9 +84,12 @@ hoverZoomPlugins.push({
                                     });
                                     callback($([link]));
                                 }
-                            }).fail(function() {
-                                data.hoverZoomSrc = createUrls(hash);
-                                link.addClass('hoverZoomLink');
+                            }).fail(function(jqXHR) {
+                                if (jqXHR.status === 429) {
+                                    console.info("imgur.com is enforcing rate limiting on hoverzoom+ extension. Album preview won't work until this problem is resolved.");
+                                }
+                                // data.hoverZoomSrc = createUrls(hash);
+                                // link.addClass('hoverZoomLink');
                             });
                             break;
                         case undefined:
