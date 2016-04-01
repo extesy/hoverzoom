@@ -135,6 +135,18 @@
         "message": "Disable sound in zoomed videos",
         "description": "[options] Tooltip for mute zoomed videos option"
     },
+    "optVideoVolume": {
+        "message": "Audio volume for unmuted videos:",
+        "description": "[options] Audio volume for unmuted videos option"
+    },
+    "optVolumeUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for video volume option"
+    },
+    "optVideoVolumeTooltip": {
+        "message": "If the video is not completely muted, set the volume to this percentage (0-100)",
+        "description": "[options] Tooltip for audio volume for unmuted videos option"
+    },
     "optEnableAmbilight": {
         "message": "Enable ambient light behind images",
         "description": "[options] Enable ambient light behind images option"

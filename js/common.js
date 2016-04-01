@@ -10,6 +10,7 @@ function loadOptions() {
     options.extensionEnabled = options.hasOwnProperty('extensionEnabled') ? options.extensionEnabled : true;
     options.zoomVideos = options.hasOwnProperty('zoomVideos') ? options.zoomVideos : true;
     options.muteVideos = options.hasOwnProperty('muteVideos') ? options.muteVideos : false;
+    options.videoVolume = options.hasOwnProperty('videoVolume') ? options.videoVolume : 0.25;
     options.pageActionEnabled = options.hasOwnProperty('pageActionEnabled') ? options.pageActionEnabled : true;
     options.showCaptions = options.hasOwnProperty('showCaptions') ? options.showCaptions : true;
     options.showHighRes = options.hasOwnProperty('showHighRes') ? options.showHighRes : true;

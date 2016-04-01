@@ -71,6 +71,7 @@ function saveOptions() {
     options.extensionEnabled = $('#chkExtensionEnabled')[0].checked;
     options.zoomVideos = $('#chkZoomVideos')[0].checked;
     options.muteVideos = $('#chkMuteVideos')[0].checked;
+    options.videoVolume = $('#txtVideoVolume')[0].value / 100;
     options.mouseUnderlap = $('#chkMouseUnderlap')[0].checked;
     options.pageActionEnabled = $('#chkPageActionEnabled')[0].checked;
     options.showCaptions = $('#chkShowCaptions')[0].checked;
@@ -114,6 +115,7 @@ function restoreOptions() {
     $('#chkExtensionEnabled')[0].checked = options.extensionEnabled;
     $('#chkZoomVideos')[0].checked = options.zoomVideos;
     $('#chkMuteVideos')[0].checked = options.muteVideos;
+    $('#txtVideoVolume').val(options.videoVolume * 100);
     $('#chkMouseUnderlap')[0].checked = options.mouseUnderlap;
     $('#chkPageActionEnabled')[0].checked = options.pageActionEnabled;
     $('#chkShowCaptions')[0].checked = options.showCaptions;
@@ -194,7 +196,7 @@ function chkAddToHistoryModeOnChange() {
     }
 }
 
-function txtPicturesOpacityOnChange() {
+function percentageOnChange() {
     var value = parseInt(this.value);
     if (isNaN(value)) value = 100;
     if (value < 0) value = 0;
@@ -220,7 +222,8 @@ $(function () {
     $('#btnReset').click(restoreOptions);
     $('#chkWhiteListMode').parent().on('gumby.onChange', chkWhiteListModeOnChange);
     $('#chkAddToHistory').parent().on('gumby.onChange', chkAddToHistoryModeOnChange);
-    $('#txtPicturesOpacity').change(txtPicturesOpacityOnChange);
+    $('#txtPicturesOpacity').change(percentageOnChange);
+    $('#txtVideoVolume').change(percentageOnChange);
     $('.actionKey').change(selKeyOnChange);
     $('#btnAddExcludedSite').click(btnAddExcludedSiteOnClick);
     $('#btnRemoveExcludedSite').click(btnRemoveExcludedSiteOnClick);

@@ -440,6 +440,7 @@ var hoverZoom = {
                     video.style.height = 0;
                     video.loop = true;
                     video.muted = options.muteVideos;
+                    video.volume = options.videoVolume;
                     video.src = imgDetails.url;
                     imgFullSize = $(video).appendTo(hz.hzImg);
                     video.addEventListener('loadedmetadata', function() {
