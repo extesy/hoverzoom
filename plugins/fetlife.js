@@ -12,7 +12,7 @@ hoverZoomPlugins.push( {
         var res = [];
         hoverZoom.urlReplace(res,
         	'a img[src*="/pic0.fetlife.com"], a img[src*="pic1.fetlife.com"], a img[src*="pic2.fetlife.com"],a img[src*="pic3.fetlife.com"], a img[src*="/pic4.fetlife.com"], a img[src*="pic5.fetlife.com"], a img[src*="pic6.fetlife.com"]',
-        	/_\d+\.jpg\?.*/,
+        	/_\d+\.jpg\??.*/,
         	'_958.jpg');
         
         // The following line grabs the image from its frame on an individual picture's page;
