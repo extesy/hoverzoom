@@ -3,7 +3,7 @@
 
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'Picasa Web Albums (a)',
+    name:'Picasa Web Albums',
     version:'0.1',
     prepareImgLinks:function (callback) {
         var res = [],

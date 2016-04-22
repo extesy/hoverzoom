@@ -175,6 +175,14 @@
         "message": "sec",
         "description": "[options] Short form of \"second\" for delay duration"
     },
+    "optPagePlugins": {
+        "message": "Plugins",
+        "description": "[options] Page title for plugin options"
+    },
+    "optPlugins": {
+        "message": "Enable/disable specific plugins",
+        "description": "[options] Section which contains checkboxes for disabling plugins"
+    },
     "optPageSites": {
         "message": "Sites",
         "description": "[options] Page title for site options"

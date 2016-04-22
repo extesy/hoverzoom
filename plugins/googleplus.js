@@ -3,7 +3,7 @@
 
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'Google+',
+    name:'Google plus',
     prepareImgLinks:function (callback) {
         var res = [];
         hoverZoom.urlReplace(res,

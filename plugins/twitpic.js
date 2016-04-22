@@ -3,7 +3,7 @@
 
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'Twitpic (a)',
+    name:'Twitpic',
     version:'0.2',
     prepareImgLinks:function (callback) {
         var res = [];

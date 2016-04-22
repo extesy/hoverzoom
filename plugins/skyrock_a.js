@@ -3,7 +3,7 @@
 
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'Skyrock (a)',
+    name:'Skyrock',
     version:'0.1',
     prepareImgLinks:function (callback) {
         var res = [];

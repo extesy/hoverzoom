@@ -3,7 +3,7 @@
 
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'ImageShack (a)',
+    name:'ImageShack',
     prepareImgLinks:function (callback) {
         var res = [];
         hoverZoom.urlReplace(res,

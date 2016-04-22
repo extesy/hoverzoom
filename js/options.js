@@ -1,4 +1,5 @@
 var options,
+    hoverZoomPlugins = hoverZoomPlugins || [],
     VK_CTRL = 1024,
     VK_SHIFT = 2048,
     actionKeys = ['actionKey', 'hideKey', 'openImageInWindowKey', 'openImageInTabKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey'];
@@ -87,6 +88,12 @@ function saveOptions() {
     options.excludedSites = [];
     $('#selExcludedSites').find('span').each(function () {
         options.excludedSites.push($(this).text());
+    });
+
+    options.disabledPlugins = [];
+    $('.chkPlugin').each(function () {
+        var self = $(this);
+        if (!self.is(':checked')) options.disabledPlugins.push(self.attr('id').substr('chkPlugin'.length));
     });
 
     actionKeys.forEach(function(key) {
@@ -212,6 +219,48 @@ function onMessage(message, sender, callback) {
     }
 }
 
+function getPlugins(callback) {
+    chrome.runtime.getPackageDirectoryEntry(function(root) {
+        root.getDirectory("plugins", {create: false}, function(pluginsdir) {
+            var reader = pluginsdir.createReader();
+            var entries = [];
+            var readEntries = function() {
+                reader.readEntries(function(results) {
+                    if (results.length) {
+                        entries = entries.concat(results.map(function(de){return de.name;}));
+                        readEntries();
+                    } else {
+                        callback(entries);
+                    }
+                });
+            };
+            readEntries();
+        });
+    });
+}
+
+function loadPlugins() {
+    getPlugins(function(plugins) {
+        plugins.forEach(function(plugin) {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = '../plugins/' + plugin;
+            document.body.appendChild(script);
+        });
+        window.setTimeout(populatePluginsTable, 100);
+    });
+}
+
+function populatePluginsTable() {
+    var plugins = $.unique(hoverZoomPlugins.map(function(plugin) {return plugin.name}));
+    plugins.forEach(function(plugin) {
+        var chkName = 'chkPlugin' + plugin.replace(/[^\w]/g, '').toLowerCase();
+        $('<div class="field"><label class="checkbox" for="' + chkName + '"><input type="checkbox" id="' + chkName + '" class="chkPlugin"><span></span>&nbsp;<div style="display:inline">' + plugin + '</div></label></div>').appendTo('#tblPlugins');
+        $('#' + chkName)[0].checked = !options.disabledPlugins.includes(chkName.substr('chkPlugin'.length));
+    });
+    Gumby.initialize('checkbox');
+}
+
 $(function () {
     initActionKeys();
     i18n();
@@ -230,6 +279,7 @@ $(function () {
     $('#aShowUpdateNotification').click(showUpdateNotification);
 
     restoreOptions();
+    loadPlugins();
 
     chrome.runtime.onMessage.addListener(onMessage);
 });

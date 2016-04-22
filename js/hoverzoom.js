@@ -745,7 +745,8 @@ var hoverZoom = {
             //$('.hoverZoomLink').removeClass('hoverZoomLink').removeData('hoverZoomSrc');
 
             for (var i = 0; i < hoverZoomPlugins.length; i++) {
-                hoverZoomPlugins[i].prepareImgLinks(imgLinksPrepared);
+                if (!options.disabledPlugins.includes(hoverZoomPlugins[i].name.replace(/[^\w]/g, '').toLowerCase()))
+                    hoverZoomPlugins[i].prepareImgLinks(imgLinksPrepared);
             }
             prepareImgLinksTimeout = null;
 
