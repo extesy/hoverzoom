@@ -135,6 +135,18 @@
     "message":"Deaktiviert den Ton im gezoomten Videos",
     "description":"[options] Tooltip for mute zoomed videos option"
   },
+  "optVideoVolume":{
+    "message":"Die Audio-Lautstärke für nicht stumm geschaltete Videos:",
+    "description":"[options] Audio volume for unmuted videos option"
+  },
+  "optVolumeUnitName":{
+    "message":"%",
+    "description":"[options] Unit name (percentage) for video volume option"
+  },
+  "optVideoVolumeTooltip":{
+    "message":"Falls das Video nicht komplett stumm geschaltet ist, die Lautstärke auf diesen Prozentsatz (0-100) stellen",
+    "description":"[options] Tooltip for audio volume for unmuted videos option"
+  },
   "optEnableAmbilight":{
     "message":"Umgebungslicht hinter Bildern aktivieren",
     "description":"[options] Enable ambient light behind images option"
@@ -150,6 +162,10 @@
   "optDisplayDelay":{
     "message":"Verzögerung vor dem Anzeigen eines Bildes:",
     "description":"[options] Delay before displaying a picture option"
+  },
+  "optDisplayDelayVideo":{
+    "message":"Verzögerung vor dem Anzeigen eines Bildes:",
+    "description":"[options] Delay before displaying a video option"
   },
   "optFadeDuration":{
     "message":"Dauer der verblassen-Animation:",

@@ -135,6 +135,26 @@
     "message":"Silenciar videos aumentados",
     "description":"[options] Tooltip for mute zoomed videos option"
   },
+  "optVideoVolume":{
+    "message":"Volume de audio para videos ativados:",
+    "description":"[options] Audio volume for unmuted videos option"
+  },
+  "optVolumeUnitName":{
+    "message":"%",
+    "description":"[options] Unit name (percentage) for video volume option"
+  },
+  "optVideoVolumeTooltip":{
+    "message":"Se o vídeo não estiver completamente mudo, defina o volume para esta porcentagem (0-100)",
+    "description":"[options] Tooltip for audio volume for unmuted videos option"
+  },
+  "optEnableAmbilight":{
+    "message":"Opção ativar luz ambiente atrás de imagens",
+    "description":"[options] Enable ambient light behind images option"
+  },
+  "optEnableAmbilightTooltip":{
+    "message":"Crie um efeito de brilho sutil semelhante a tecnologia Phillips Ambilight.",
+    "description":"[options] Tooltip for enable ambient light behind images option"
+  },
   "optSectionDelays":{
     "message":"Duração",
     "description":"[options] Page section for delay options"
@@ -142,6 +162,10 @@
   "optDisplayDelay":{
     "message":"Antes de exibir uma imagem esperar:",
     "description":"[options] Delay before displaying a picture option"
+  },
+  "optDisplayDelayVideo":{
+    "message":"Atraso antes de exibir um video:",
+    "description":"[options] Delay before displaying a video option"
   },
   "optFadeDuration":{
     "message":"Animação de exibição dura:",

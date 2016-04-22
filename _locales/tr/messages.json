@@ -135,6 +135,18 @@
     "message":"Yakınlaştırılmış videoları sessize al",
     "description":"[options] Tooltip for mute zoomed videos option"
   },
+  "optVideoVolume":{
+    "message":"Sessize alınmamış videolar için ses seviyesi:",
+    "description":"[options] Audio volume for unmuted videos option"
+  },
+  "optVolumeUnitName":{
+    "message":"%",
+    "description":"[options] Unit name (percentage) for video volume option"
+  },
+  "optVideoVolumeTooltip":{
+    "message":"Eğer video tamamen sessize alınmamışsa, sesini bu yüzdeye ayarla (0-100)",
+    "description":"[options] Tooltip for audio volume for unmuted videos option"
+  },
   "optEnableAmbilight":{
     "message":"Resimlerin arkasında ortam ışığını etkinleştir",
     "description":"[options] Enable ambient light behind images option"
@@ -150,6 +162,10 @@
   "optDisplayDelay":{
     "message":"Bir resim görüntülemeden önceki gecikme:",
     "description":"[options] Delay before displaying a picture option"
+  },
+  "optDisplayDelayVideo":{
+    "message":"Video görüntülemeden önceki gecikme:",
+    "description":"[options] Delay before displaying a video option"
   },
   "optFadeDuration":{
     "message":"Solma animasyonu süresi:",

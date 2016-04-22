@@ -112,7 +112,7 @@
     "description":"[options] Tooltip for show high resolution pictures when available option"
   },
   "optGalleriesMouseWheel":{
-    "message":"Usa la rotellina del mouse per navigare negli album",
+    "message":"Usa la rotellina del mouse per scorrere gli album",
     "description":"[options] Use mousewheel to navigate albums option"
   },
   "optGalleriesMouseWheelTooltip":{
@@ -135,6 +135,18 @@
     "message":"Silenzia video ingranditi",
     "description":"[options] Tooltip for mute zoomed videos option"
   },
+  "optVideoVolume":{
+    "message":"Volume audio per video non-silenziati:",
+    "description":"[options] Audio volume for unmuted videos option"
+  },
+  "optVolumeUnitName":{
+    "message":"%",
+    "description":"[options] Unit name (percentage) for video volume option"
+  },
+  "optVideoVolumeTooltip":{
+    "message":"Se il video non è silenziato, impostare il volume in percentuale (0-100)",
+    "description":"[options] Tooltip for audio volume for unmuted videos option"
+  },
   "optEnableAmbilight":{
     "message":"Abilita una luce ambientale dietro le immagini",
     "description":"[options] Enable ambient light behind images option"
@@ -150,6 +162,10 @@
   "optDisplayDelay":{
     "message":"Ritardo prima di mostrare un immagine:",
     "description":"[options] Delay before displaying a picture option"
+  },
+  "optDisplayDelayVideo":{
+    "message":"Ritardo prima di mostrare un video:",
+    "description":"[options] Delay before displaying a video option"
   },
   "optFadeDuration":{
     "message":"Durata dell'animazione di dissolvenza:",

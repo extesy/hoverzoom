@@ -52,6 +52,7 @@ hoverZoomPlugins.push({
                             data.hoverZoomGallerySrc = [];
                             data.hoverZoomGalleryCaption = [];
 
+                            // Future alternative: https://imgur.com/ajaxalbums/getimages/{hash}/hit.json?all=true
                             var albumUrl = 'https://api.imgur.com/3/album/' + hash + '.json';
                             $.ajax(albumUrl, {headers: {"Authorization": "Client-ID 1d8d9b36339e0e2"}}).done(function (imgur) {
                                 if (imgur.error) {
