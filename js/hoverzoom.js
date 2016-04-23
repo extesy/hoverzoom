@@ -938,17 +938,27 @@ var hoverZoom = {
         }
 
         function documentOnMouseWheel(event) {
-          if (imgFullSize) {
-            var link = hz.currentLink, data = link.data();
-            if (data.hoverZoomGallerySrc) {
-              event.preventDefault();
-              if (event.originalEvent.wheelDeltaY > 0) {
-                rotateGalleryImg(-1);
-              } else {
-                rotateGalleryImg(1);
-              }
+            if (imgFullSize) {
+                var link = hz.currentLink, data = link.data();
+                if (data.hoverZoomGallerySrc) {
+                    event.preventDefault();
+                    if (event.originalEvent.wheelDeltaY > 0) {
+                        rotateGalleryImg(-1);
+                    } else {
+                        rotateGalleryImg(1);
+                    }
+                } else {
+                    var video = hz.hzImg.find('video').get(0);
+                    if (video) {
+                        event.preventDefault();
+                        if (event.originalEvent.wheelDeltaY > 0) {
+                            changeVideoPosition(-parseInt(options.videoPositionStep));
+                        } else {
+                            changeVideoPosition(parseInt(options.videoPositionStep));
+                        }
+                    }
+                }
             }
-          }
         }
 
         function documentOnKeyDown(event) {
