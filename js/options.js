@@ -71,6 +71,7 @@ function loadKeys(sel) {
 function saveOptions() {
     options.extensionEnabled = $('#chkExtensionEnabled')[0].checked;
     options.zoomVideos = $('#chkZoomVideos')[0].checked;
+    options.videoPositionStep = $('#txtVideoPositionStep')[0].value;
     options.muteVideos = $('#chkMuteVideos')[0].checked;
     options.videoVolume = $('#txtVideoVolume')[0].value / 100;
     options.mouseUnderlap = $('#chkMouseUnderlap')[0].checked;
@@ -121,6 +122,7 @@ function restoreOptions() {
 
     $('#chkExtensionEnabled')[0].checked = options.extensionEnabled;
     $('#chkZoomVideos')[0].checked = options.zoomVideos;
+    $('#txtVideoPositionStep')[0].value = options.videoPositionStep;
     $('#chkMuteVideos')[0].checked = options.muteVideos;
     $('#txtVideoVolume').val(options.videoVolume * 100);
     $('#chkMouseUnderlap')[0].checked = options.mouseUnderlap;
@@ -273,6 +275,7 @@ $(function () {
     $('#chkAddToHistory').parent().on('gumby.onChange', chkAddToHistoryModeOnChange);
     $('#txtPicturesOpacity').change(percentageOnChange);
     $('#txtVideoVolume').change(percentageOnChange);
+    $('#txtVideoPositionStep').change(percentageOnChange);
     $('.actionKey').change(selKeyOnChange);
     $('#btnAddExcludedSite').click(btnAddExcludedSiteOnClick);
     $('#btnRemoveExcludedSite').click(btnRemoveExcludedSiteOnClick);

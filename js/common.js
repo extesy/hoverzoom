@@ -9,6 +9,7 @@ function loadOptions() {
 
     options.extensionEnabled = options.hasOwnProperty('extensionEnabled') ? options.extensionEnabled : true;
     options.zoomVideos = options.hasOwnProperty('zoomVideos') ? options.zoomVideos : true;
+    options.videoPositionStep = options.hasOwnProperty('videoPositionStep') ? options.videoPositionStep : 10;
     options.muteVideos = options.hasOwnProperty('muteVideos') ? options.muteVideos : false;
     options.videoVolume = options.hasOwnProperty('videoVolume') ? options.videoVolume : 0.25;
     options.pageActionEnabled = options.hasOwnProperty('pageActionEnabled') ? options.pageActionEnabled : true;

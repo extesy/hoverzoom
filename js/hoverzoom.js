@@ -1008,13 +1008,22 @@ var hoverZoom = {
                 // "Previous image" key
                 if (event.which == options.prevImgKey) {
                     rotateGalleryImg(-1);
+                    changeVideoPosition(-parseInt(options.videoPositionStep));
                     return false;
                 }
                 // "Next image" key
                 if (event.which == options.nextImgKey) {
                     rotateGalleryImg(1);
+                    changeVideoPosition(parseInt(options.videoPositionStep));
                     return false;
                 }
+            }
+        }
+
+        function changeVideoPosition(amount) {
+            var video = hz.hzImg.find('video').get(0);
+            if (video && video.currentTime) {
+                video.currentTime = Math.max(video.currentTime + amount, 0);
             }
         }
 
