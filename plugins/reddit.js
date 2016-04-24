@@ -27,6 +27,14 @@ hoverZoomPlugins.push({
               });
             }
         });
-        
+
+        var res = [];
+        $('a[href*="//i.reddituploads.com/"]').each(function () {
+            var img = $(this);
+            img.data('hoverZoomSrc', [img.attr('href')]);
+            img.data('hoverZoomCaption', [img.text()]);
+            res.push(img);
+        });
+        callback($(res));
     }
 });

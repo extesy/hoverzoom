@@ -71,6 +71,10 @@
     "message":"Prikaži",
     "description":"[options] Page section for view options"
   },
+  "optSectionVideo":{
+    "message":"Videozapis",
+    "description":"[options] Page section for video options"
+  },
   "optMouseUnderlap":{
     "message":"Povećati zumirane slike ispod pokazivača miša",
     "description":"[options] Extend zoomed images below the mouse cursor option"
@@ -127,6 +131,18 @@
     "message":"Zumiranje videozapisa (WebM, MP4)",
     "description":"[options] Tooltip for zoom videos (WebM, MP4) option"
   },
+  "optVideoPositionStep":{
+    "message":"Koristi sljedeća\/prethodna tipka za promjenu pozicije videozapisa za",
+    "description":"[options] Changing video position amount option"
+  },
+  "optVideoPositionStepUnitName":{
+    "message":"sek",
+    "description":"[options] Unit name (seconds) for changing video position option"
+  },
+  "optVideoPositionStepTooltip":{
+    "message":"Preskočio videozapis unazad ili unaprijed za ovoliko sekundi",
+    "description":"[options] Tooltip for changing video position option"
+  },
   "optMuteVideos":{
     "message":"Isključiti zvuk za zumirani videozapis",
     "description":"[options] Mute zoomed videos option"
@@ -139,7 +155,7 @@
     "message":"Glasnoća zvuka za videozapise s uključenim zvukom:",
     "description":"[options] Audio volume for unmuted videos option"
   },
-  "optVolumeUnitName":{
+  "optVideoVolumeUnitName":{
     "message":"%",
     "description":"[options] Unit name (percentage) for video volume option"
   },
@@ -174,6 +190,14 @@
   "optDurationUnitName":{
     "message":"sek",
     "description":"[options] Short form of \"second\" for delay duration"
+  },
+  "optPagePlugins":{
+    "message":"Dodatci",
+    "description":"[options] Page title for plugin options"
+  },
+  "optPlugins":{
+    "message":"Omogući\/onemogući određene dodatke",
+    "description":"[options] Section which contains checkboxes for disabling plugins"
   },
   "optPageSites":{
     "message":"Stranice",
