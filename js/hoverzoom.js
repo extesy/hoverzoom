@@ -253,10 +253,11 @@ var hoverZoom = {
                 return;
             }
 
-            var width = imgFullSize.width(), height = imgFullSize.height(), min = Math.min(width, height);
+            var width = imgFullSize.width(), height = imgFullSize.height(), min = Math.min(width, height), blur = Math.max(10, min/10), scale = Math.max(1.2, 2/Math.log10(min));
             $(canvas).attr('width', width).attr('height', height)
-                .css('-webkit-filter', 'blur(' + Math.max(10, min/10) + 'px)')
-                .css('transform', 'scale(' + Math.max(1.2, 2/Math.log10(min))  + ')');
+                .css('padding', 3*scale*blur + 'px').css('margin-top', -3*scale*blur + 'px').css('margin-left', -3*scale*blur + 'px')
+                .css('-webkit-filter', 'blur(' + Math.blur + 'px)')
+                .css('transform', 'scale(' + scale + ')');
             var ctx = canvas.getContext('2d');
             ctx.drawImage(imgFullSize.get(0), 0, 0, width, height);
 
