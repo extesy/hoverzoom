@@ -255,7 +255,7 @@ var hoverZoom = {
 
             var width = imgFullSize.width(), height = imgFullSize.height(), min = Math.min(width, height), blur = Math.max(10, min/10), scale = Math.max(1.2, 2/Math.log10(min));
             $(canvas).attr('width', width).attr('height', height)
-                .css('padding', 3*scale*blur + 'px').css('margin-top', -3*scale*blur + 'px').css('margin-left', -3*scale*blur + 'px')
+                .css('padding', 4*scale*blur + 'px').css('margin-top', -4*scale*blur + 'px').css('margin-left', -4*scale*blur + 'px')
                 .css('-webkit-filter', 'blur(' + Math.blur + 'px)')
                 .css('transform', 'scale(' + scale + ')');
             var ctx = canvas.getContext('2d');
@@ -503,6 +503,7 @@ var hoverZoom = {
                 hz.hzImg.css('overflow', 'visible');
                 hz.hzImg.css('border', '0px');
                 hz.hzImg.css('padding', '0px');
+                hz.hzImg.css('box-shadow', 'none');
                 var background = $('<div style="position: fixed; z-index: -2; top: 0; left: 0; opacity: 0.8; background-color: black; pointer-events: none" />').width(screen.availWidth).height(screen.availHeight);
                 background.appendTo(hz.hzImg);
                 var canvas = $('<canvas style="position: absolute; z-index: -1; transform: scale(1.2); -webkit-filter: blur(50px); opacity: 0.75; pointer-events: none"></canvas>');
@@ -512,7 +513,6 @@ var hoverZoom = {
             imgFullSize.css(imgFullSizeCss).appendTo(hz.hzImg).mousemove(imgFullSizeOnMouseMove);
 
             if (hz.currentLink) {
-
                 // Sets up the thumbnail as a full-size background
                 imgThumb = hz.currentLink;
                 var lowResSrc = imgThumb.attr('src');
@@ -556,7 +556,7 @@ var hoverZoom = {
 
             if (hz.currentLink) {
                 var linkData = hz.currentLink.data();
-                if (options.showCaptions && linkData.hoverZoomCaption) {
+                if (options.showCaptions && !options.ambilightEnabled && linkData.hoverZoomCaption) {
                     hzCaption = $('<div/>', {id:'hzCaption', text:linkData.hoverZoomCaption}).css(hzCaptionCss).appendTo(hz.hzImg);
                 }
                 if (linkData.hoverZoomGallerySrc) {
@@ -724,7 +724,7 @@ var hoverZoom = {
                     linkData.hoverZoomSrcIndex = 0;
 
                     // Caption
-                    if (options.showCaptions && !linkData.hoverZoomCaption) {
+                    if (options.showCaptions && !options.ambilightEnabled && !linkData.hoverZoomCaption) {
                         prepareImgCaption(link);
                     }
                 }
@@ -1214,7 +1214,7 @@ var hoverZoom = {
                 if (data.hoverZoomGallerySrc.length > 0) {
                     hzGallery.text((data.hoverZoomGalleryIndex + 1) + '/' + data.hoverZoomGallerySrc.length);
                 }
-                if (options.showCaptions) {
+                if (options.showCaptions && !options.ambilightEnabled) {
                     $(hzCaption).text(data.hoverZoomCaption);
                 }
             }
