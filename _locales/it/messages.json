@@ -71,6 +71,10 @@
     "message":"Visualizzazione",
     "description":"[options] Page section for view options"
   },
+  "optSectionVideo":{
+    "message":"Video",
+    "description":"[options] Page section for video options"
+  },
   "optMouseUnderlap":{
     "message":"Estendi le immagini ingrandite sotto il cursore del mouse",
     "description":"[options] Extend zoomed images below the mouse cursor option"
@@ -127,6 +131,18 @@
     "message":"Zoom dei video (WebM, MP4)",
     "description":"[options] Tooltip for zoom videos (WebM, MP4) option"
   },
+  "optVideoPositionStep":{
+    "message":"Utilizza i tasti di azione prec\/pros per cambiare la posizione dei video di",
+    "description":"[options] Changing video position amount option"
+  },
+  "optVideoPositionStepUnitName":{
+    "message":"sec",
+    "description":"[options] Unit name (seconds) for changing video position option"
+  },
+  "optVideoPositionStepTooltip":{
+    "message":"Sposta il video indietro o avanti a questa quantità di secondi",
+    "description":"[options] Tooltip for changing video position option"
+  },
   "optMuteVideos":{
     "message":"Silenzia video ingranditi",
     "description":"[options] Mute zoomed videos option"
@@ -139,7 +155,7 @@
     "message":"Volume audio per video non-silenziati:",
     "description":"[options] Audio volume for unmuted videos option"
   },
-  "optVolumeUnitName":{
+  "optVideoVolumeUnitName":{
     "message":"%",
     "description":"[options] Unit name (percentage) for video volume option"
   },
@@ -174,6 +190,14 @@
   "optDurationUnitName":{
     "message":"sec",
     "description":"[options] Short form of \"second\" for delay duration"
+  },
+  "optPagePlugins":{
+    "message":"Plugins",
+    "description":"[options] Page title for plugin options"
+  },
+  "optPlugins":{
+    "message":"Abilita\/disabilita plugin specifici",
+    "description":"[options] Section which contains checkboxes for disabling plugins"
   },
   "optPageSites":{
     "message":"Siti",

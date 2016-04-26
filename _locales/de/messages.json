@@ -71,6 +71,10 @@
     "message":"Aussehen",
     "description":"[options] Page section for view options"
   },
+  "optSectionVideo":{
+    "message":"Video",
+    "description":"[options] Page section for video options"
+  },
   "optMouseUnderlap":{
     "message":"Bilder bei Mouse-Hover vergrößern",
     "description":"[options] Extend zoomed images below the mouse cursor option"
@@ -127,6 +131,18 @@
     "message":"Videos zoomen (WebM, MP4)",
     "description":"[options] Tooltip for zoom videos (WebM, MP4) option"
   },
+  "optVideoPositionStep":{
+    "message":"Verwenden Sie die vorheriges\/nächstes-Aktionstasten um die Video-Abspielposition durch",
+    "description":"[options] Changing video position amount option"
+  },
+  "optVideoPositionStepUnitName":{
+    "message":"sek",
+    "description":"[options] Unit name (seconds) for changing video position option"
+  },
+  "optVideoPositionStepTooltip":{
+    "message":"Im Video für diese Zahl von Sekunden vor- oder zurückspringen",
+    "description":"[options] Tooltip for changing video position option"
+  },
   "optMuteVideos":{
     "message":"Gezoomte Videos stummschalten",
     "description":"[options] Mute zoomed videos option"
@@ -139,7 +155,7 @@
     "message":"Die Audio-Lautstärke für nicht stumm geschaltete Videos:",
     "description":"[options] Audio volume for unmuted videos option"
   },
-  "optVolumeUnitName":{
+  "optVideoVolumeUnitName":{
     "message":"%",
     "description":"[options] Unit name (percentage) for video volume option"
   },
@@ -164,7 +180,7 @@
     "description":"[options] Delay before displaying a picture option"
   },
   "optDisplayDelayVideo":{
-    "message":"Verzögerung vor dem Anzeigen eines Bildes:",
+    "message":"Verzögerung vor Anzeige eines Bildes:",
     "description":"[options] Delay before displaying a video option"
   },
   "optFadeDuration":{
@@ -174,6 +190,14 @@
   "optDurationUnitName":{
     "message":"sek",
     "description":"[options] Short form of \"second\" for delay duration"
+  },
+  "optPagePlugins":{
+    "message":"Erweiterungen",
+    "description":"[options] Page title for plugin options"
+  },
+  "optPlugins":{
+    "message":"Aktivieren\/Deaktivieren von bestimmten Plugins",
+    "description":"[options] Section which contains checkboxes for disabling plugins"
   },
   "optPageSites":{
     "message":"Seiten",

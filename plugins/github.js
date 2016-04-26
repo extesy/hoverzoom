@@ -13,6 +13,11 @@ hoverZoomPlugins.push({
             img.data('hoverZoomCaption', [img.attr('alt')]);
             res.push(img);
         });
+        hoverZoom.urlReplace(res,
+            'a[href*="/blob/"]',
+            /\/github.com\/(.*)\/blob\/(.*\.(jpg|png|gif))/,
+            '/raw.githubusercontent.com/$1/$2'
+        );
         callback($(res));
     }
 });
