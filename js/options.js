@@ -249,7 +249,7 @@ function loadPlugins() {
             script.src = '../plugins/' + plugin;
             document.body.appendChild(script);
         });
-        window.setTimeout(populatePluginsTable, 100);
+        window.setTimeout(populatePluginsTable, 500);
     });
 }
 
