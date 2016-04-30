@@ -12,7 +12,7 @@
     "description":"Extension description in Chrome webstore (max. 132 characters)"
   },
   "extUpdated":{
-    "message":"Hover Zoom + wurde aktualisiert",
+    "message":"Hover Zoom+ wurde aktualisiert",
     "description":"Extension update notification"
   },
   "popDisableForAllSites":{
@@ -44,7 +44,7 @@
     "description":"[popup] More options"
   },
   "optTitle":{
-    "message":"Hover Zoom + Optionen",
+    "message":"Hover Zoom+ Optionen",
     "description":"[options] Page title"
   },
   "optButtonSave":{
@@ -92,7 +92,7 @@
     "description":"[options] Tooltip for show icon in address bar option"
   },
   "optShowCaptions":{
-    "message":"Bild Untertitel anzeigen",
+    "message":"Bilduntertitel anzeigen",
     "description":"[options] Show pictures captions option"
   },
   "optShowCaptionsTooltip":{
@@ -132,7 +132,7 @@
     "description":"[options] Tooltip for zoom videos (WebM, MP4) option"
   },
   "optVideoPositionStep":{
-    "message":"Verwenden Sie die vorheriges\/nächstes-Aktionstasten um die Video-Abspielposition durch",
+    "message":"Vorheriges\/nächstes-Aktionstasten verwenden um vor bzw. zurück zu springen um",
     "description":"[options] Changing video position amount option"
   },
   "optVideoPositionStepUnitName":{
@@ -152,7 +152,7 @@
     "description":"[options] Tooltip for mute zoomed videos option"
   },
   "optVideoVolume":{
-    "message":"Die Audio-Lautstärke für nicht stumm geschaltete Videos:",
+    "message":"Lautstärke für nicht stumm geschaltete Videos:",
     "description":"[options] Audio volume for unmuted videos option"
   },
   "optVideoVolumeUnitName":{
@@ -176,11 +176,11 @@
     "description":"[options] Page section for delay options"
   },
   "optDisplayDelay":{
-    "message":"Verzögerung vor dem Anzeigen eines Bildes:",
+    "message":"Verzögerung vor Anzeige eines Bildes:",
     "description":"[options] Delay before displaying a picture option"
   },
   "optDisplayDelayVideo":{
-    "message":"Verzögerung vor Anzeige eines Bildes:",
+    "message":"Verzögerung vor Anzeige eines Videos:",
     "description":"[options] Delay before displaying a video option"
   },
   "optFadeDuration":{
