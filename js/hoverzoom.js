@@ -950,7 +950,7 @@ var hoverZoom = {
                     }
                 } else {
                     var video = hz.hzImg.find('video').get(0);
-                    if (video) {
+                    if (video && !options.albumsOnlyMouseWheel) {
                         event.preventDefault();
                         if (event.originalEvent.wheelDeltaY > 0) {
                             changeVideoPosition(-parseInt(options.videoPositionStep));
