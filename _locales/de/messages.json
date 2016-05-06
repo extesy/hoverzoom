@@ -123,6 +123,14 @@
     "message":"Navigieren Sie mit dem Mausrad in Alben",
     "description":"[options] Tooltip for use mousewheel to navigate albums option"
   },
+  "optAlbumsOnlyMouseWheel": {
+        "message": "Scroll through albums but don't jump forward/backward in videos",
+        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
+    },
+    "optAlbumsOnlyMouseWheelTooltip": {
+        "message": "Scroll through albums but don't jump forward/backward in videos",
+        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
+    },
   "optZoomVideos":{
     "message":"Videos zoomen (WebM, MP4)",
     "description":"[options] Zoom videos (WebM, MP4) option"
