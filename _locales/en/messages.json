@@ -124,7 +124,7 @@
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
     "optAlbumsOnlyMouseWheel": {
-        "message": "Scroll through albums but don't jump forward/backward in videos",
+        "message": "Use mousewheel to navigate albums only (no video/webm skipping)",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optAlbumsOnlyMouseWheelTooltip": {
