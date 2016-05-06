@@ -435,7 +435,9 @@ var hoverZoom = {
 
                 imgDetails.video = isVideoLink(imgDetails.url);
                 if (imgDetails.video) {
-                    if (!options.zoomVideos) { return; }
+                    if (!options.zoomVideos) { 
+                        cancelImageLoading();
+                        return; }
                     var video = document.createElement('video');
                     video.style.width = 0;
                     video.style.height = 0;
