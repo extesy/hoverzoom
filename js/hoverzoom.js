@@ -375,7 +375,7 @@ var hoverZoom = {
 
                     removeTitles();
 
-                    // Is the image source has not been set yet
+                    // If the image source has not been set yet
                     if (!imgFullSize) {
                         hz.currentLink = links;
                         //initLinkRect(hz.currentLink);
