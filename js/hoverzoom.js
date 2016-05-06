@@ -318,6 +318,7 @@ var hoverZoom = {
             hz.hzImg.stop(true, true).fadeOut(now ? 0 : options.fadeDuration, function () {
                 var video = hz.hzImg.find('video').get(0);
                 if (video) {
+                    video.pause();
                     video.src = "";
                 }
                 hzCaption = null;
@@ -435,7 +436,8 @@ var hoverZoom = {
 
                 imgDetails.video = isVideoLink(imgDetails.url);
                 if (imgDetails.video) {
-                    if (!options.zoomVideos) { return; }
+                    if (!options.zoomVideos)
+                        return;
                     var video = document.createElement('video');
                     video.style.width = 0;
                     video.style.height = 0;
@@ -444,9 +446,8 @@ var hoverZoom = {
                     video.volume = options.videoVolume;
                     video.src = imgDetails.url;
                     imgFullSize = $(video).appendTo(hz.hzImg);
-                    video.addEventListener('loadedmetadata', function() {
-                        posImg();
-                    });
+                    video.addEventListener('error', imgFullSizeOnError);
+                    video.addEventListener('loadedmetadata', posImg);
                     video.addEventListener('loadeddata', function() {
                         imgFullSizeOnLoad();
                         video.play();
