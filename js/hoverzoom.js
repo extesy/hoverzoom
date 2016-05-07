@@ -436,8 +436,10 @@ var hoverZoom = {
 
                 imgDetails.video = isVideoLink(imgDetails.url);
                 if (imgDetails.video) {
-                    if (!options.zoomVideos)
+                    if (!options.zoomVideos) {
+                        cancelImageLoading();
                         return;
+                    }
                     var video = document.createElement('video');
                     video.style.width = 0;
                     video.style.height = 0;
@@ -951,7 +953,7 @@ var hoverZoom = {
                     }
                 } else {
                     var video = hz.hzImg.find('video').get(0);
-                    if (video) {
+                    if (video && !options.disableMouseWheelForVideo) {
                         event.preventDefault();
                         if (event.originalEvent.wheelDeltaY > 0) {
                             changeVideoPosition(-parseInt(options.videoPositionStep));

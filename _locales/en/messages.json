@@ -123,6 +123,14 @@
         "message": "Navigate album with the mouse wheel",
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
+    "optDisableMouseWheelForVideo": {
+        "message": "Don't use mousewheel to navigate within video (action keys will still work)",
+        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
+    },
+    "optDisableMouseWheelForVideoTooltip": {
+        "message": "Scroll through albums but don't jump forward/backward in videos",
+        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
+    },
     "optZoomVideos": {
         "message": "Zoom videos (WebM, MP4)",
         "description": "[options] Zoom videos (WebM, MP4) option"
@@ -132,7 +140,7 @@
         "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
     },
     "optVideoPositionStep": {
-        "message": "Use prev/next action keys to change video position by",
+        "message": "Use prev/next action keys (or mousewheel) to change video position by",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
