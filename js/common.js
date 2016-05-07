@@ -16,6 +16,7 @@ function loadOptions() {
     options.showCaptions = options.hasOwnProperty('showCaptions') ? options.showCaptions : true;
     options.showHighRes = options.hasOwnProperty('showHighRes') ? options.showHighRes : true;
     options.galleriesMouseWheel = options.hasOwnProperty('galleriesMouseWheel') ? options.galleriesMouseWheel : true;
+    options.disableMouseWheelForVideo = options.hasOwnProperty('disableMouseWheelForVideo') ? options.disableMouseWheelForVideo : false;
     options.addToHistory = options.hasOwnProperty('addToHistory') ? options.addToHistory : false;
     options.alwaysPreload = options.hasOwnProperty('alwaysPreload') ? options.alwaysPreload : false;
     options.displayDelay = options.hasOwnProperty('displayDelay') ? options.displayDelay : 100;
