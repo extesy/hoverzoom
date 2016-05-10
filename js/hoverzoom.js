@@ -167,8 +167,8 @@ var hoverZoom = {
                 imgFullSize.width('auto').height('auto');
 
                 // Image natural dimensions
-                imgDetails.naturalWidth = imgFullSize.width();
-                imgDetails.naturalHeight = imgFullSize.height();
+                imgDetails.naturalWidth = imgFullSize.width() * options.zoomFactor;
+                imgDetails.naturalHeight = imgFullSize.height() * options.zoomFactor;
                 if (!imgDetails.naturalWidth || !imgDetails.naturalHeight) {
                     return;
                 }
@@ -554,7 +554,6 @@ var hoverZoom = {
                 hz.hzImg.css('cursor', 'pointer');
 
                 initLinkRect(imgThumb || hz.currentLink);
-
             }
 
             if (hz.currentLink) {
@@ -573,6 +572,7 @@ var hoverZoom = {
                     }
                 }
             }
+
             if (!skipFadeIn && !hideKeyDown) {
                 hz.hzImg.hide().fadeTo(options.fadeDuration, options.picturesOpacity);
             }

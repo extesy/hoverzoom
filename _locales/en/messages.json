@@ -75,6 +75,18 @@
         "message": "Video",
         "description": "[options] Page section for video options"
     },
+    "optZoomFactor": {
+        "message": "Enlarge zoomed images by this factor:",
+        "description": "[options] Adjust the size of zoomed images option"
+    },
+    "optZoomFactorUnitName": {
+        "message": "times",
+        "description": "[options] Unit name (percentage) for zoomed images size option"
+    },
+    "optZoomFactorTooltip": {
+        "message": "Multiply the size of zoomed images by this amount",
+        "description": "[options] Tooltip for adjust the size of zoomed images option"
+    },
     "optMouseUnderlap": {
         "message": "Extend zoomed images below the mouse cursor",
         "description": "[options] Extend zoomed images below the mouse cursor option"

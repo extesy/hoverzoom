@@ -70,6 +70,7 @@ function loadKeys(sel) {
 // TODO: Migrate to https://developer.chrome.com/extensions/storage
 function saveOptions() {
     options.extensionEnabled = $('#chkExtensionEnabled')[0].checked;
+    options.zoomFactor = $('#txtZoomFactor')[0].value;
     options.zoomVideos = $('#chkZoomVideos')[0].checked;
     options.videoPositionStep = $('#txtVideoPositionStep')[0].value;
     options.muteVideos = $('#chkMuteVideos')[0].checked;
@@ -122,6 +123,7 @@ function restoreOptions() {
     options = loadOptions();
 
     $('#chkExtensionEnabled')[0].checked = options.extensionEnabled;
+    $('#txtZoomFactor')[0].value = options.zoomFactor;
     $('#chkZoomVideos')[0].checked = options.zoomVideos;
     $('#txtVideoPositionStep')[0].value = options.videoPositionStep;
     $('#chkMuteVideos')[0].checked = options.muteVideos;
@@ -210,7 +212,7 @@ function chkAddToHistoryModeOnChange() {
 function percentageOnChange() {
     var value = parseInt(this.value);
     if (isNaN(value)) value = 100;
-    if (value < 0) value = 0;
+    if (value < 1) value = 1;
     if (value > 100) value = 100;
     this.value = value;
 }
@@ -275,6 +277,7 @@ $(function () {
     $('#btnReset').click(restoreOptions);
     $('#chkWhiteListMode').parent().on('gumby.onChange', chkWhiteListModeOnChange);
     $('#chkAddToHistory').parent().on('gumby.onChange', chkAddToHistoryModeOnChange);
+    $('#txtZoomFactor').change(percentageOnChange);
     $('#txtPicturesOpacity').change(percentageOnChange);
     $('#txtVideoVolume').change(percentageOnChange);
     $('#txtVideoPositionStep').change(percentageOnChange);
