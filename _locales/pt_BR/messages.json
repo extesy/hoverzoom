@@ -127,6 +127,10 @@
     "message":"Aumentar vídeos (WebM, MP4)",
     "description":"[options] Tooltip for zoom videos (WebM, MP4) option"
   },
+  "optVideoPositionStepUnitName":{
+    "message":"seg",
+    "description":"[options] Unit name (seconds) for changing video position option"
+  },
   "optMuteVideos":{
     "message":"Silenciar videos aumentados",
     "description":"[options] Mute zoomed videos option"
@@ -139,7 +143,7 @@
     "message":"Volume de audio para videos ativados:",
     "description":"[options] Audio volume for unmuted videos option"
   },
-  "optVolumeUnitName":{
+  "optVideoVolumeUnitName":{
     "message":"%",
     "description":"[options] Unit name (percentage) for video volume option"
   },
