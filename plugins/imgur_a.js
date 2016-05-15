@@ -29,6 +29,10 @@ hoverZoomPlugins.push({
 
             if (options.zoomVideos && (href.substr(-3) == 'gif' || href.substr(-4) == 'gifv')) {
                 data.hoverZoomSrc = [href.replace(/\.gifv?/, '.webm'), href.replace(/\.gifv?/, '.mp4'), href];
+                //future code for when imgur vids can be served over https
+                /*if(window.location.protocol == "https:"){
+                    data.hoverZoomSrc = [href.replace(/http:/, 'https:'), href];
+                }*/
                 res.push(link);
             } else {
                 var matches = href.match(/(?:\/(a|gallery|signin))?\/([^\W_]{5,8})(?:\/|\.[a-zA-Z]+|#([^\W_]{5,8}|\d+))?(\/new|\/all|\?\d*)?$/);
@@ -54,11 +58,13 @@ hoverZoomPlugins.push({
                                     res.push(link);
                                 } 
                                 //todo: Possible faster implementation later on for single images - leave commented for now
-                                /*else if(imgur.data.images_count === 1){
+                                /*
+                                else if(imgur.data.images_count === 1){
                                     data.hoverZoomSrc = createUrls(imgur.data.images[0].id);
                                     link.addClass('hoverZoomLink');
                                     res.push(link);
-                                }*/
+                                }
+                                */
                                 else {
                                     var anchor = matches[3];
                                     data.hoverZoomGallerySrc = [];
