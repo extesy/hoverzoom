@@ -56,6 +56,11 @@ hoverZoomPlugins.push({
                                     data.hoverZoomSrc = createUrls(hash);
                                     res.push(link);
                                 } else {
+                                    if(imgur.data.images_count == 1){
+                                        data.hoverZoomSrc = createUrls(imgur.data.images[0].id);
+                                        res.push(link);
+                                        break;
+                                    }
                                     imgur.data.images.forEach(function (img, index) {
                                         var urls = [img.link],
                                             caption = img.title,
