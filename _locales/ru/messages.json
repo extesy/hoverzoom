@@ -75,6 +75,18 @@
     "message":"Видео",
     "description":"[options] Page section for video options"
   },
+  "optZoomFactor":{
+    "message":"Дополнительно увеличить изображения на этот коэффициент:",
+    "description":"[options] Adjust the size of zoomed images option"
+  },
+  "optZoomFactorUnitName":{
+    "message":"раз",
+    "description":"[options] Unit name (percentage) for zoomed images size option"
+  },
+  "optZoomFactorTooltip":{
+    "message":"Умножить естественный размер увеличенного изображения на это число",
+    "description":"[options] Tooltip for adjust the size of zoomed images option"
+  },
   "optMouseUnderlap":{
     "message":"Увеличивать размер изображения под курсором мыши",
     "description":"[options] Extend zoomed images below the mouse cursor option"
@@ -123,13 +135,13 @@
     "message":"Навигация альбома с помощью колеса мыши",
     "description":"[options] Tooltip for use mousewheel to navigate albums option"
   },
-  "optAlbumsOnlyMouseWheel": {
-        "message": "Scroll through albums but don't jump forward/backward in videos",
-        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
+  "optDisableMouseWheelForVideo":{
+    "message":"Не использовать колесо мыши для навигации в видео (клавиатура по-прежнему будет работать)",
+    "description":"[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
   },
-  "optAlbumsOnlyMouseWheelTooltip": {
-        "message": "Scroll through albums but don't jump forward/backward in videos",
-        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
+  "optDisableMouseWheelForVideoTooltip":{
+    "message":"Колесо мыши будет работать в альбомах, но не будет изменять позицию в видео файлах",
+    "description":"[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
   },
   "optZoomVideos":{
     "message":"Увеличить видео (WebM, MP4)",

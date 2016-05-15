@@ -123,14 +123,6 @@
     "message":"Navigare tra gli album con la rotellina del mouse",
     "description":"[options] Tooltip for use mousewheel to navigate albums option"
   },
-  "optAlbumsOnlyMouseWheel": {
-        "message": "Navigare solo tra gli album ma non i video",
-        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
-  },
-  "optAlbumsOnlyMouseWheelTooltip": {
-        "message": "Naviga solo tra gli album con la rotellina del mouse ma non video",
-        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
-  },
   "optZoomVideos":{
     "message":"Zoom dei video (WebM, MP4)",
     "description":"[options] Zoom videos (WebM, MP4) option"
@@ -140,7 +132,7 @@
     "description":"[options] Tooltip for zoom videos (WebM, MP4) option"
   },
   "optVideoPositionStep":{
-    "message":"Utilizza i tasti di azione prec\/pros per cambiare la posizione dei video di",
+    "message":"I tasti di azione prec\/pros cambieranno la posizione dei video di",
     "description":"[options] Changing video position amount option"
   },
   "optVideoPositionStepUnitName":{

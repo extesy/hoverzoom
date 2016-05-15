@@ -69,7 +69,7 @@ hoverZoomPlugins.push({
                     return;
                 }
                 var sources = decodeStreamMap(video.url_encoded_fmt_stream_map);
-                var src = getSource(sources, "webm", "high") || getSource(sources, "mp4", "high");
+                var src = getSource(sources, "webm", "hd720") || getSource(sources, "mp4", "hd720");
                 if (src) {
                     link.data().hoverZoomSrc = [start ? src.url + '#t=' + start : src.url];
                     link.addClass('hoverZoomLink');

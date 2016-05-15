@@ -75,6 +75,18 @@
         "message": "Video",
         "description": "[options] Page section for video options"
     },
+    "optZoomFactor": {
+        "message": "Enlarge zoomed images by this factor:",
+        "description": "[options] Adjust the size of zoomed images option"
+    },
+    "optZoomFactorUnitName": {
+        "message": "times",
+        "description": "[options] Unit name (percentage) for zoomed images size option"
+    },
+    "optZoomFactorTooltip": {
+        "message": "Multiply the size of zoomed images by this amount",
+        "description": "[options] Tooltip for adjust the size of zoomed images option"
+    },
     "optMouseUnderlap": {
         "message": "Extend zoomed images below the mouse cursor",
         "description": "[options] Extend zoomed images below the mouse cursor option"
@@ -123,11 +135,11 @@
         "message": "Navigate album with the mouse wheel",
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
-    "optAlbumsOnlyMouseWheel": {
-        "message": "Use mousewheel to navigate albums only (no video/webm skipping)",
+    "optDisableMouseWheelForVideo": {
+        "message": "Don't use mousewheel to navigate within video (action keys will still work)",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
-    "optAlbumsOnlyMouseWheelTooltip": {
+    "optDisableMouseWheelForVideoTooltip": {
         "message": "Scroll through albums but don't jump forward/backward in videos",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
@@ -140,7 +152,7 @@
         "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
     },
     "optVideoPositionStep": {
-        "message": "Use prev/next action keys to change video position by",
+        "message": "Use prev/next action keys (or mousewheel) to change video position by",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {

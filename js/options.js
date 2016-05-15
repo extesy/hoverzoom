@@ -70,6 +70,7 @@ function loadKeys(sel) {
 // TODO: Migrate to https://developer.chrome.com/extensions/storage
 function saveOptions() {
     options.extensionEnabled = $('#chkExtensionEnabled')[0].checked;
+    options.zoomFactor = $('#txtZoomFactor')[0].value;
     options.zoomVideos = $('#chkZoomVideos')[0].checked;
     options.videoPositionStep = $('#txtVideoPositionStep')[0].value;
     options.muteVideos = $('#chkMuteVideos')[0].checked;
@@ -80,8 +81,7 @@ function saveOptions() {
     options.showWhileLoading = $('#chkShowWhileLoading')[0].checked;
     options.showHighRes = $('#chkShowHighRes')[0].checked;
     options.galleriesMouseWheel = $('#chkGalleriesMouseWheel')[0].checked;
-    //JonLuca added option to scroll albums/galleries but not videos
-    options.albumsOnlyMouseWheel = $('#chkAlbumsOnlyMouseWheel')[0].checked;
+    options.disableMouseWheelForVideo = $('#chkDisableMouseWheelForVideo')[0].checked;
     options.displayDelay = getMilliseconds($('#txtDisplayDelay'));
     options.displayDelayVideo = getMilliseconds($('#txtDisplayDelayVideo'));
     options.fadeDuration = getMilliseconds($('#txtFadeDuration'));
@@ -123,6 +123,7 @@ function restoreOptions() {
     options = loadOptions();
 
     $('#chkExtensionEnabled')[0].checked = options.extensionEnabled;
+    $('#txtZoomFactor')[0].value = options.zoomFactor;
     $('#chkZoomVideos')[0].checked = options.zoomVideos;
     $('#txtVideoPositionStep')[0].value = options.videoPositionStep;
     $('#chkMuteVideos')[0].checked = options.muteVideos;
@@ -133,7 +134,7 @@ function restoreOptions() {
     $('#chkShowWhileLoading')[0].checked = options.showWhileLoading;
     $('#chkShowHighRes')[0].checked = options.showHighRes;
     $('#chkGalleriesMouseWheel')[0].checked = options.galleriesMouseWheel;
-    $('#chkAlbumsOnlyMouseWheel')[0].checked = options.albumsOnlyMouseWheel;
+    $('#chkDisableMouseWheelForVideo')[0].checked = options.disableMouseWheelForVideo;
     $('#txtDisplayDelay').val((options.displayDelay || 0) / 1000);
     $('#txtDisplayDelayVideo').val((options.displayDelayVideo || 0) / 1000);
     $('#txtFadeDuration').val((options.fadeDuration || 0) / 1000);
@@ -211,7 +212,7 @@ function chkAddToHistoryModeOnChange() {
 function percentageOnChange() {
     var value = parseInt(this.value);
     if (isNaN(value)) value = 100;
-    if (value < 0) value = 0;
+    if (value < 1) value = 1;
     if (value > 100) value = 100;
     this.value = value;
 }
@@ -276,6 +277,7 @@ $(function () {
     $('#btnReset').click(restoreOptions);
     $('#chkWhiteListMode').parent().on('gumby.onChange', chkWhiteListModeOnChange);
     $('#chkAddToHistory').parent().on('gumby.onChange', chkAddToHistoryModeOnChange);
+    $('#txtZoomFactor').change(percentageOnChange);
     $('#txtPicturesOpacity').change(percentageOnChange);
     $('#txtVideoVolume').change(percentageOnChange);
     $('#txtVideoPositionStep').change(percentageOnChange);

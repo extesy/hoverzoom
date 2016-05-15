@@ -123,17 +123,13 @@
     "message":"Aumentar vídeos (WebM, MP4)",
     "description":"[options] Zoom videos (WebM, MP4) option"
   },
-  "optAlbumsOnlyMouseWheel": {
-        "message": "Scroll through albums but don't jump forward/backward in videos",
-        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
-  },
-  "optAlbumsOnlyMouseWheelTooltip": {
-        "message": "Scroll through albums but don't jump forward/backward in videos",
-        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
-  },
   "optZoomVideosTooltip":{
     "message":"Aumentar vídeos (WebM, MP4)",
     "description":"[options] Tooltip for zoom videos (WebM, MP4) option"
+  },
+  "optVideoPositionStepUnitName":{
+    "message":"seg",
+    "description":"[options] Unit name (seconds) for changing video position option"
   },
   "optMuteVideos":{
     "message":"Silenciar videos aumentados",
@@ -147,7 +143,7 @@
     "message":"Volume de audio para videos ativados:",
     "description":"[options] Audio volume for unmuted videos option"
   },
-  "optVolumeUnitName":{
+  "optVideoVolumeUnitName":{
     "message":"%",
     "description":"[options] Unit name (percentage) for video volume option"
   },

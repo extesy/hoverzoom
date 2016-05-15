@@ -75,6 +75,18 @@
     "message":"Video",
     "description":"[options] Page section for video options"
   },
+  "optZoomFactor":{
+    "message":"Gezoomte Bilder um diesen Faktor vergrößern:",
+    "description":"[options] Adjust the size of zoomed images option"
+  },
+  "optZoomFactorUnitName":{
+    "message":"fach",
+    "description":"[options] Unit name (percentage) for zoomed images size option"
+  },
+  "optZoomFactorTooltip":{
+    "message":"Die Größe von gezoomten Bildern um diesen Faktor vergrößern",
+    "description":"[options] Tooltip for adjust the size of zoomed images option"
+  },
   "optMouseUnderlap":{
     "message":"Bilder bei Mouse-Hover vergrößern",
     "description":"[options] Extend zoomed images below the mouse cursor option"
@@ -123,14 +135,14 @@
     "message":"Navigieren Sie mit dem Mausrad in Alben",
     "description":"[options] Tooltip for use mousewheel to navigate albums option"
   },
-  "optAlbumsOnlyMouseWheel": {
-        "message": "Scroll through albums but don't jump forward/backward in videos",
-        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
-    },
-    "optAlbumsOnlyMouseWheelTooltip": {
-        "message": "Scroll through albums but don't jump forward/backward in videos",
-        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
-    },
+  "optDisableMouseWheelForVideo":{
+    "message":"Nicht mit dem Mausrad in Videos navigieren (Tastaturkürzel gehen weiterhin)",
+    "description":"[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
+  },
+  "optDisableMouseWheelForVideoTooltip":{
+    "message":"Durch Alben scrollen, aber nicht vorwärts\/rückwärts in videos springen",
+    "description":"[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
+  },
   "optZoomVideos":{
     "message":"Videos zoomen (WebM, MP4)",
     "description":"[options] Zoom videos (WebM, MP4) option"
