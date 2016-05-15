@@ -42,12 +42,9 @@ hoverZoomPlugins.push({
                     
                     switch (view) {
                         case 'signin':
-                            return;
+                        return;
                         case 'a': // album view:
                         case 'gallery':
-                            var anchor = matches[3];
-                            data.hoverZoomGallerySrc = [];
-                            data.hoverZoomGalleryCaption = [];
 
                             // Future alternative: https://imgur.com/ajaxalbums/getimages/{hash}/hit.json?all=true
                             var albumUrl = 'https://api.imgur.com/3/album/' + hash + '.json';
@@ -55,16 +52,21 @@ hoverZoomPlugins.push({
                                 if (imgur.error) {
                                     data.hoverZoomSrc = createUrls(hash);
                                     res.push(link);
-                                } else {
-                                    if(imgur.data.images_count == 1){
-                                        data.hoverZoomSrc = createUrls(imgur.data.images[0].id);
-                                        res.push(link);
-                                        break;
-                                    }
+                                } 
+                                //todo: Possible faster implementation later on for single images - leave commented for now
+                                /*else if(imgur.data.images_count === 1){
+                                    data.hoverZoomSrc = createUrls(imgur.data.images[0].id);
+                                    link.addClass('hoverZoomLink');
+                                    res.push(link);
+                                }*/
+                                else {
+                                    var anchor = matches[3];
+                                    data.hoverZoomGallerySrc = [];
+                                    data.hoverZoomGalleryCaption = [];
                                     imgur.data.images.forEach(function (img, index) {
                                         var urls = [img.link],
-                                            caption = img.title,
-                                            alreadyAdded = false;
+                                        caption = img.title,
+                                        alreadyAdded = false;
                                         for (var i=0, l=data.hoverZoomGallerySrc.length; i<l; i++) {
                                             if (data.hoverZoomGallerySrc[i].indexOf(urls[0]) != -1) {
                                                 alreadyAdded = true;
@@ -72,7 +74,7 @@ hoverZoomPlugins.push({
                                             }
                                         }
                                         if (!alreadyAdded) {
-                                            if (caption != '' && img.description != '') {
+                                            if (caption != '' && caption != 'null' && img.description != '') {
                                                 caption += ';\n';
                                             }
                                             caption += img.description;
@@ -99,10 +101,10 @@ hoverZoomPlugins.push({
                                 }
                             });
                             break;
-                        case undefined:
+                            case undefined:
                         default: // single pic view
-                            data.hoverZoomSrc = createUrls(hash);
-                            res.push(link);
+                        data.hoverZoomSrc = createUrls(hash);
+                        res.push(link);
                     }
                 }
             }
