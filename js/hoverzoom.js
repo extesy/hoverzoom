@@ -563,7 +563,7 @@ var hoverZoom = {
                 }
                 if (linkData.hoverZoomGallerySrc) {
                     var info = '';
-                    if (linkData.hoverZoomGallerySrc.length > 0) {
+                    if (linkData.hoverZoomGallerySrc.length > 1) {
                         info = (linkData.hoverZoomGalleryIndex + 1) + '/' + linkData.hoverZoomGallerySrc.length;
                     }
                     hzGallery = $('<div/>', {id:'hzGallery', text:info}).css(hzGalleryInfoCss).appendTo(hz.hzImg);
@@ -945,6 +945,9 @@ var hoverZoom = {
             if (imgFullSize) {
                 var link = hz.currentLink, data = link.data();
                 if (data.hoverZoomGallerySrc) {
+                    if(data.hoverZoomGallerySrc.length === 1){
+                        return;
+                    }
                     event.preventDefault();
                     if (event.originalEvent.wheelDeltaY > 0) {
                         rotateGalleryImg(-1);
@@ -1214,7 +1217,7 @@ var hoverZoom = {
                 posImg();
 
                 data = hz.currentLink.data();
-                if (data.hoverZoomGallerySrc.length > 0) {
+                if (data.hoverZoomGallerySrc.length > 1) {
                     hzGallery.text((data.hoverZoomGalleryIndex + 1) + '/' + data.hoverZoomGallerySrc.length);
                 }
                 if (options.showCaptions && !options.ambilightEnabled) {
