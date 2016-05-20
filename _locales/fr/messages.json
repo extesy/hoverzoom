@@ -1,0 +1,374 @@
+{
+  "extName":{
+    "message":"Hover Zoom+",
+    "description":"Extension name"
+  },
+  "extShortName":{
+    "message":"HoverZoom",
+    "description":"Short extension name"
+  },
+  "extDescription":{
+    "message":"Zoomez les images\/vidéos sur tous vos sites favoris (Facebook, Amazon..). Il suffit de passer la souris sur l'image pour l'agrandir.",
+    "description":"Extension description in Chrome webstore (max. 132 characters)"
+  },
+  "extUpdated":{
+    "message":"Hover Zoom+ a été mis à jour",
+    "description":"Extension update notification"
+  },
+  "popDisableForAllSites":{
+    "message":"Désactiver pour tous les sites",
+    "description":"[popup] Disable the extension"
+  },
+  "popAllowPerSiteToggle":{
+    "message":"Autoriser la configuration de l'extension par site",
+    "description":"[popup] Allow per-site extension configuration"
+  },
+  "popDisableForSite":{
+    "message":"Désactiver pour 1$",
+    "description":"[popup] Disables the extension for a specific site"
+  },
+  "popEnableForSite":{
+    "message":"Activer pour 1$",
+    "description":"[popup] Enables the extension for a specific site"
+  },
+  "popPreloadImages":{
+    "message":"Précharger les images zoomées",
+    "description":"[popup] Preload zoomed images"
+  },
+  "popPreloadingImages":{
+    "message":"Préchargement...",
+    "description":"[popup] Preloading zoomed images"
+  },
+  "popMoreOptions":{
+    "message":"Plus d'options",
+    "description":"[popup] More options"
+  },
+  "optTitle":{
+    "message":"Options d'Hover Zoom+",
+    "description":"[options] Page title"
+  },
+  "optButtonSave":{
+    "message":"Sauvegarder",
+    "description":"[options] Save button label"
+  },
+  "optButtonReset":{
+    "message":"Réinitialiser",
+    "description":"[options] Reset button label"
+  },
+  "optSaved":{
+    "message":"Options enregistrées. Certains paramètres peuvent nécessiter un rechargement de page.",
+    "description":"[options] Notification after saving options"
+  },
+  "optPageGeneral":{
+    "message":"Général",
+    "description":"[options] Page title for general options"
+  },
+  "optExtensionEnabled":{
+    "message":"Activer l'Hover Zoom",
+    "description":"[options] Enable Hover Zoom+ option"
+  },
+  "optSectionView":{
+    "message":"Voir",
+    "description":"[options] Page section for view options"
+  },
+  "optSectionVideo":{
+    "message":"Vidéos",
+    "description":"[options] Page section for video options"
+  },
+  "optZoomFactor":{
+    "message":"Agrandir les images zoomées :",
+    "description":"[options] Adjust the size of zoomed images option"
+  },
+  "optZoomFactorUnitName":{
+    "message":"fois",
+    "description":"[options] Unit name (percentage) for zoomed images size option"
+  },
+  "optZoomFactorTooltip":{
+    "message":"Multiplier la taille de images zoomées par ce montant",
+    "description":"[options] Tooltip for adjust the size of zoomed images option"
+  },
+  "optMouseUnderlap":{
+    "message":"Élargir les images zoomées en dessous du curseur de la souris",
+    "description":"[options] Extend zoomed images below the mouse cursor option"
+  },
+  "optMouseUnderlapTooltip":{
+    "message":"Si cette option est décochée, les images zoomées seront redimensionnées de manière dynamique",
+    "description":"[options] Tooltip for extend zoomed images below the mouse cursor option"
+  },
+  "optPageActionEnabled":{
+    "message":"Afficher une icône dans la barre d'adresse",
+    "description":"[options] Show icon in address bar option"
+  },
+  "optPageActionEnabledTooltip":{
+    "message":"Uniquement quand des images peuvent être zoomées",
+    "description":"[options] Tooltip for show icon in address bar option"
+  },
+  "optShowCaptions":{
+    "message":"Afficher les légendes des photos",
+    "description":"[options] Show pictures captions option"
+  },
+  "optShowCaptionsTooltip":{
+    "message":"Les légendes seront affichées uniquement lorsque disponible",
+    "description":"[options] Tooltip for show pictures captions option"
+  },
+  "optShowWhileLoading":{
+    "message":"Montrer les images zoomées pendant leur chargement",
+    "description":"[options] Show zoomed pictures while loading option"
+  },
+  "optShowWhileLoadingTooltip":{
+    "message":"L'image zoomée sera affichée avant d'être complètement chargée",
+    "description":"[options] Tooltip for show zoomed pictures while loading option"
+  },
+  "optShowHighRes":{
+    "message":"Montrer les images en haute résolution si disponible",
+    "description":"[options] Show high resolution pictures when available option"
+  },
+  "optShowHighResTooltip":{
+    "message":"Les images peuvent prendre plus longtemps à charger",
+    "description":"[options] Tooltip for show high resolution pictures when available option"
+  },
+  "optGalleriesMouseWheel":{
+    "message":"Utiliser la molette de la souris pour naviguer dans les albums",
+    "description":"[options] Use mousewheel to navigate albums option"
+  },
+  "optGalleriesMouseWheelTooltip":{
+    "message":"Naviguer dans l'album avec la molette de la souris",
+    "description":"[options] Tooltip for use mousewheel to navigate albums option"
+  },
+  "optDisableMouseWheelForVideo":{
+    "message":"Ne pas utiliser la molette de la souris pour naviguer dans la vidéo (les touches d'action fonctionnent toujours)",
+    "description":"[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
+  },
+  "optDisableMouseWheelForVideoTooltip":{
+    "message":"Faire défiler les albums, mais ne pas avancer\/reculer dans les vidéos",
+    "description":"[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
+  },
+  "optZoomVideos":{
+    "message":"Zoomer les vidéos (WebM, MP4)",
+    "description":"[options] Zoom videos (WebM, MP4) option"
+  },
+  "optZoomVideosTooltip":{
+    "message":"Zoomer les vidéos (WebM, MP4)",
+    "description":"[options] Tooltip for zoom videos (WebM, MP4) option"
+  },
+  "optVideoPositionStep":{
+    "message":"Utiliser les touches d'action précédent\/suivant (ou la molette) pour changer la position de",
+    "description":"[options] Changing video position amount option"
+  },
+  "optVideoPositionStepUnitName":{
+    "message":"secondes",
+    "description":"[options] Unit name (seconds) for changing video position option"
+  },
+  "optVideoPositionStepTooltip":{
+    "message":"Avancer et reculer dans la vidéo de ce nombre de secondes",
+    "description":"[options] Tooltip for changing video position option"
+  },
+  "optMuteVideos":{
+    "message":"Rendre les vidéos zoomées muettes",
+    "description":"[options] Mute zoomed videos option"
+  },
+  "optMuteVideosTooltip":{
+    "message":"Désactiver le son dans vidéos zoomées",
+    "description":"[options] Tooltip for mute zoomed videos option"
+  },
+  "optVideoVolume":{
+    "message":"Volume audio pour les vidéos non-muettes:",
+    "description":"[options] Audio volume for unmuted videos option"
+  },
+  "optVideoVolumeUnitName":{
+    "message":"%",
+    "description":"[options] Unit name (percentage) for video volume option"
+  },
+  "optVideoVolumeTooltip":{
+    "message":"Si la vidéo n'est pas complètement muette, régler le volume de ce pourcentage (0-100)",
+    "description":"[options] Tooltip for audio volume for unmuted videos option"
+  },
+  "optEnableAmbilight":{
+    "message":"Activer la lumière ambiante derrière les images",
+    "description":"[options] Enable ambient light behind images option"
+  },
+  "optEnableAmbilightTooltip":{
+    "message":"Créer un halo subtile similaire à la technologie Ambilight de Phillips.",
+    "description":"[options] Tooltip for enable ambient light behind images option"
+  },
+  "optSectionDelays":{
+    "message":"Délais",
+    "description":"[options] Page section for delay options"
+  },
+  "optDisplayDelay":{
+    "message":"Délai avant l’affichage d’une image :",
+    "description":"[options] Delay before displaying a picture option"
+  },
+  "optDisplayDelayVideo":{
+    "message":"Délai avant de lire une video :",
+    "description":"[options] Delay before displaying a video option"
+  },
+  "optFadeDuration":{
+    "message":"Durée de l'animation de disparition :",
+    "description":"[options] Fading animation duration option"
+  },
+  "optDurationUnitName":{
+    "message":"secondes",
+    "description":"[options] Short form of \"second\" for delay duration"
+  },
+  "optPagePlugins":{
+    "message":"Plug-ins",
+    "description":"[options] Page title for plugin options"
+  },
+  "optPlugins":{
+    "message":"Activer\/désactiver des plugins spécifiques",
+    "description":"[options] Section which contains checkboxes for disabling plugins"
+  },
+  "optPageSites":{
+    "message":"Sites",
+    "description":"[options] Page title for site options"
+  },
+  "optSectionSitesEnabled":{
+    "message":"Url pour lesquelles Hover Zoom+ doit être activé",
+    "description":"[options] Page section for enabling extension for specific sites"
+  },
+  "optSectionSitesDisabled":{
+    "message":"Url pour lesquelles Hover Zoom+ doit être désactivé",
+    "description":"[options] Page section for enabling extension for specific sites"
+  },
+  "optWhitelistMode":{
+    "message":"Mode liste blanche",
+    "description":"[options] Whitelist mode checkbox"
+  },
+  "optWhitelistModeTooltip":{
+    "message":"Activer Hover Zoom+ uniquement pour les sites ci-dessous",
+    "description":"[options] Tooltip for whitelist mode checkbox"
+  },
+  "optSitePlaceholder":{
+    "message":"Exemples : facebook.com, google.com\/reader",
+    "description":"[options] Placeholder for a site url input box"
+  },
+  "optSiteDisclaimer":{
+    "message":"Sachez que les filtres de domaine peuvent se chevaucher. Exemple : Si vous avez filtré « picasaweb.google.com » et « Google.fr », enlever « picasaweb.google.com » n'activera pas Picasa Albums Web, car il reste exclu par le filtre « Google.fr ».",
+    "description":"[options] Disclaimer on the sites option page"
+  },
+  "optButtonAddSite":{
+    "message":"Ajouter",
+    "description":"[options] Button for adding a site on sites option page"
+  },
+  "optPageActionKeys":{
+    "message":"Touches d'action",
+    "description":"[options] Page title for action key options"
+  },
+  "optPageAdvanced":{
+    "message":"Avancé",
+    "description":"[options] Page title for advanced options"
+  },
+  "optSectionAdvanced":{
+    "message":"Options avancées",
+    "description":"[options] Page section for advanced options"
+  },
+  "optUpdateNotifications":{
+    "message":"Afficher les notifications de mise à jour",
+    "description":"[options] Show update notifications option"
+  },
+  "optShowLastUpdateNotification":{
+    "message":"(afficher la dernière notification)",
+    "description":"[options] Show last update notification"
+  },
+  "optAddToHistory":{
+    "message":"Ajouter les images regardées à l'historique",
+    "description":"[options] Add viewed pictures to the browser's history option"
+  },
+  "optFilterNSFW":{
+    "message":"Exclure les images adultes ou choquantes (sur reddit uniquement)",
+    "description":"[options] Exclude NSFW images (Reddit only) option"
+  },
+  "optAlwaysPreload":{
+    "message":"Pré-charger automatiquement les images zoomées",
+    "description":"[options] Automatically preload zoomed images option"
+  },
+  "optEnableGalleries":{
+    "message":"Activer la prise en charge des albums",
+    "description":"[options] Enable albums support option"
+  },
+  "optPicturesOpacity":{
+    "message":"Opacité des images zoomées :",
+    "description":"[options] Zoomed pictures opacity option"
+  },
+  "optOpacityUnitName":{
+    "message":"%",
+    "description":"[options] Unit name (percentage) for opacity option"
+  },
+  "optActionKeyTitle":{
+    "message":"Activer Hover Zoom+",
+    "description":"[options] Action key title"
+  },
+  "optActionKeyDescription":{
+    "message":"Si une touche est définie, Hover Zoom+ ne sera actif que lorsque cette touche est maintenue enfoncée.",
+    "description":"[options] Action key description"
+  },
+  "optHideKeyTitle":{
+    "message":"Désactiver Hover Zoom+",
+    "description":"[options] Action key title"
+  },
+  "optHideKeyDescription":{
+    "message":"Maintenir cette touche enfoncée cache l'image zoomée. À utiliser lorsque l'image cache des éléments qui sont également affichés au passage de la souris.",
+    "description":"[options] Action key description"
+  },
+  "optOpenImageInWindowKeyTitle":{
+    "message":"Ouvrir l'image dans une nouvelle fenêtre",
+    "description":"[options] Action key title"
+  },
+  "optOpenImageInWindowKeyDescription":{
+    "message":"Appuyez sur cette touche pour ouvrir l'image que vous êtes en train de visualiser dans une nouvelle fenêtre. Appuyez sur cette touche pour fermer la fenêtre.",
+    "description":"[options] Action key description"
+  },
+  "optOpenImageInTabKeyTitle":{
+    "message":"Ouvrir l'image dans un nouvel onglet",
+    "description":"[options] Action key title"
+  },
+  "optOpenImageInTabKeyDescription":{
+    "message":"Appuyez sur cette touche pour ouvrir l'image en cours de visualisation dans un nouvel onglet. Appuyez sur cette touche pour fermer l'onglet. Maj+touche ouvre l'image dans un onglet en arrière-plan.",
+    "description":"[options] Action key description"
+  },
+  "optSaveImageKeyTitle":{
+    "message":"Enregistrer l'image",
+    "description":"[options] Action key title"
+  },
+  "optSaveImageKeyDescription":{
+    "message":"Appuyez sur cette touche pour enregistrer l'image en cours de visualisation.",
+    "description":"[options] Action key description"
+  },
+  "optFullZoomKeyTitle":{
+    "message":"Activer le zoom plein",
+    "description":"[options] Action key title"
+  },
+  "optFullZoomKeyDescription":{
+    "message":"Lorsque cette touche est maintenue enfoncée, l'image est affichée en utilisant tout l'espace disponible. Utile pour les images de haute résolution.",
+    "description":"[options] Action key description"
+  },
+  "optPrevImgKeyTitle":{
+    "message":"Afficher l'image précédente dans une galerie",
+    "description":"[options] Action key title"
+  },
+  "optPrevImgKeyDescription":{
+    "message":"Appuyez sur cette touche pour afficher l'image précédente dans une galerie.",
+    "description":"[options] Action key description"
+  },
+  "optNextImgKeyTitle":{
+    "message":"Afficher la prochaine image dans une galerie",
+    "description":"[options] Action key title"
+  },
+  "optNextImgKeyDescription":{
+    "message":"Appuyez sur cette touche pour afficher l'image suivante dans une galerie.",
+    "description":"[options] Action key description"
+  },
+  "optFooterSourceCode":{
+    "message":"Code source",
+    "description":"[options] Source code link in page footer"
+  },
+  "optFooterReportIssue":{
+    "message":"Signaler un bug",
+    "description":"[options] Report a bug link in page footer"
+  },
+  "optFooterVersionCopyright":{
+    "message":"Version $1 - © 2014-2016 Oleg Anashkin",
+    "description":"[options] Copyright and version number in page footer"
+  }
+}
