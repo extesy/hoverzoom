@@ -45,7 +45,7 @@ hoverZoomPlugins.push({
                             return;
                         case 'a': // album view:
                         case 'gallery':
-
+                            var anchor = matches[3];
                             // Future alternative: https://imgur.com/ajaxalbums/getimages/{hash}/hit.json?all=true
                             var albumUrl = 'https://api.imgur.com/3/album/' + hash + '.json';
                             $.ajax(albumUrl, {headers: {"Authorization": "Client-ID 1d8d9b36339e0e2"}}).done(function (imgur) {
@@ -54,7 +54,6 @@ hoverZoomPlugins.push({
                                     res.push(link);
                                 } 
                                 else {
-                                    var anchor = matches[3];
                                     data.hoverZoomGallerySrc = [];
                                     data.hoverZoomGalleryCaption = [];
                                     imgur.data.images.forEach(function (img, index) {
