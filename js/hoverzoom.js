@@ -1409,7 +1409,6 @@ var hoverZoom = {
                 }
             }
             var src = getSrc(doc);
-            
             if (src) {
                 if (Array.isArray(src)) {
                     link.data().hoverZoomGallerySrc = src;
