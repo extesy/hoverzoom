@@ -1,5 +1,5 @@
 var hoverZoomPlugins = hoverZoomPlugins || [],
-    debug = false;
+debug = false;
 
 function cLog(msg) {
     if (debug) {
@@ -29,89 +29,89 @@ var hoverZoom = {
 
     loadHoverZoom:function () {
         var hz = hoverZoom,
-            wnd = $(window),
-            body = $(document.body),
-            hzCaption = null,
-            hzGallery = null,
-            imgFullSize = null,
-            imgThumb = null,
-            mousePos = {},
-            loading = false,
-            loadFullSizeImageTimeout,
-            preloadTimeout,
-            actionKeyDown = false,
-            fullZoomKeyDown = false,
-            hideKeyDown = false,
-            pageActionShown = false,
-            skipFadeIn = false,
-            titledElements = null,
-            body100pct = true,
-            linkRect = null;
+        wnd = $(window),
+        body = $(document.body),
+        hzCaption = null,
+        hzGallery = null,
+        imgFullSize = null,
+        imgThumb = null,
+        mousePos = {},
+        loading = false,
+        loadFullSizeImageTimeout,
+        preloadTimeout,
+        actionKeyDown = false,
+        fullZoomKeyDown = false,
+        hideKeyDown = false,
+        pageActionShown = false,
+        skipFadeIn = false,
+        titledElements = null,
+        body100pct = true,
+        linkRect = null;
         /*panning = true,
-         panningThumb = null;*/
+        panningThumb = null;*/
 
         var imgDetails = {
-                url:'',
-                host:'',
-                naturalHeight:0,
-                naturalWidth:0,
-                video:false
-            };
+            url:'',
+            host:'',
+            naturalHeight:0,
+            naturalWidth:0,
+            video:false
+        };
 
         var progressCss = {
-                'opacity':'0.5',
-                'position':'absolute',
-                'max-height':'22px',
-                'max-width':'22px',
-                'left':'3px',
-                'top':'3px',
-                'margin':'0',
-                'padding':'0',
-                'border-radius':'2px'
-            },
-            imgFullSizeCss = {
-                'opacity':'1',
-                'position':'static',
-                'height':'auto',
-                'width':'auto',
-                'left':'auto',
-                'top':'auto',
-                'max-height':'none',
-                'max-width':'none',
-                'margin':'0',
-                'padding':'0',
-                'border-radius':'0',
-                'background-size':'100% 100%',
-                'background-position':'center',
-                'background-repeat':'no-repeat'
-            },
-            hzCaptionCss = {
-                'font':'menu',
-                'font-size':'11px',
-                'font-weight':'bold',
-                'color':'#333',
-                'text-align':'center',
-                'max-height':'27px',
-                'overflow':'hidden',
-                'vertical-align':'top'
-            },
-            hzGalleryInfoCss = {
-                'position':'absolute',
-                'top':'5px',
-                'right':'5px',
-                'font':'menu',
-                'font-size':'14px',
-                'font-weight':'bold',
-                'color':'white',
-                'text-shadow':'-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
-                'text-align':'center',
-                'overflow':'hidden',
-                'vertical-align':'top',
-                'horizontal-align':'right'
-            };
+            'opacity':'0.5',
+            'position':'absolute',
+            'max-height':'22px',
+            'max-width':'22px',
+            'left':'3px',
+            'top':'3px',
+            'margin':'0',
+            'padding':'0',
+            'border-radius':'2px'
+        },
+        imgFullSizeCss = {
+            'opacity':'1',
+            'position':'static',
+            'height':'auto',
+            'width':'auto',
+            'left':'auto',
+            'top':'auto',
+            'max-height':'none',
+            'max-width':'none',
+            'margin':'0',
+            'padding':'0',
+            'border-radius':'0',
+            'background-size':'100% 100%',
+            'background-position':'center',
+            'background-repeat':'no-repeat'
+        },
+        hzCaptionCss = {
+            'font':'menu',
+            'font-size':'11px',
+            'font-weight':'bold',
+            'color':'#333',
+            'text-align':'center',
+            'max-height':'27px',
+            'overflow':'hidden',
+            'vertical-align':'top'
+        },
+        hzGalleryInfoCss = {
+            'position':'absolute',
+            'top':'5px',
+            'right':'5px',
+            'font':'menu',
+            'font-size':'14px',
+            'font-weight':'bold',
+            'color':'white',
+            'text-shadow':'-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
+            'text-align':'center',
+            'overflow':'hidden',
+            'vertical-align':'top',
+            'horizontal-align':'right'
+        };
         var flashFixDomains = [
-            /*'www.youtube.com',*/
-            'www.redditmedia.com'
+        /*'www.youtube.com',*/
+        'www.redditmedia.com'
         ];
 
         // Calculate optimal image position and size
@@ -125,14 +125,14 @@ var hoverZoom = {
             }
 
             var offset = 20,
-                padding = 10,
-                statusBarHeight = 15,
-                wndWidth = window.innerWidth,
-                wndHeight = window.innerHeight,
-                wndScrollLeft = (document.documentElement && document.documentElement.scrollLeft) || document.body.scrollLeft,
-                wndScrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop,
-                bodyWidth = document.body.clientWidth,
-                displayOnRight = (position.left - wndScrollLeft < wndWidth / 2);
+            padding = 10,
+            statusBarHeight = 15,
+            wndWidth = window.innerWidth,
+            wndHeight = window.innerHeight,
+            wndScrollLeft = (document.documentElement && document.documentElement.scrollLeft) || document.body.scrollLeft,
+            wndScrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop,
+            bodyWidth = document.body.clientWidth,
+            displayOnRight = (position.left - wndScrollLeft < wndWidth / 2);
 
             function posCaption() {
                 if (hzCaption) {
@@ -255,9 +255,9 @@ var hoverZoom = {
 
             var width = imgFullSize.width(), height = imgFullSize.height(), min = Math.min(width, height), blur = Math.max(10, min/10), scale = Math.max(1.2, 2/Math.log10(min));
             $(canvas).attr('width', width).attr('height', height)
-                .css('padding', 4*scale*blur + 'px').css('margin-top', -4*scale*blur + 'px').css('margin-left', -4*scale*blur + 'px')
-                .css('-webkit-filter', 'blur(' + Math.blur + 'px)')
-                .css('transform', 'scale(' + scale + ')');
+            .css('padding', 4*scale*blur + 'px').css('margin-top', -4*scale*blur + 'px').css('margin-left', -4*scale*blur + 'px')
+            .css('-webkit-filter', 'blur(' + Math.blur + 'px)')
+            .css('transform', 'scale(' + scale + ')');
             var ctx = canvas.getContext('2d');
             ctx.drawImage(imgFullSize.get(0), 0, 0, width, height);
 
@@ -335,9 +335,9 @@ var hoverZoom = {
             }
 
             var links,
-                target = $(event.target),
+            target = $(event.target),
             // Test if the action key was pressed without moving the mouse
-                explicitCall = event.pageY == undefined;
+            explicitCall = event.pageY == undefined;
 
             // If so, the MouseMove event was triggered programmaticaly and we don't have details
             // about the mouse position and the event target, so we use the last saved ones.
@@ -370,11 +370,11 @@ var hoverZoom = {
                     links.data().hoverZoomSrc[hoverZoomSrcIndex] &&
                     typeof(links.data().hoverZoomSrc[hoverZoomSrcIndex]) != 'undefined') {
                     // Happens when the mouse goes from an image to another without hovering the page background
-                    if (links.data().hoverZoomSrc[hoverZoomSrcIndex] != imgDetails.url) {
-                        hideHoverZoomImg();
-                    }
+                if (links.data().hoverZoomSrc[hoverZoomSrcIndex] != imgDetails.url) {
+                    hideHoverZoomImg();
+                }
 
-                    removeTitles();
+                removeTitles();
 
                     // If the image source has not been set yet
                     if (!imgFullSize) {
@@ -538,7 +538,7 @@ var hoverZoom = {
                     var ext = imgDetails.url.substr(imgDetails.url.length - 3).toLowerCase();
                     if (ext != 'gif' && ext != 'svg' && ext != 'png') {
                         var imgRatio = imgFullSize.width() / imgFullSize.height(),
-                            thumbRatio = imgThumb.width() / imgThumb.height();
+                        thumbRatio = imgThumb.width() / imgThumb.height();
                         // The thumbnail is used as a background only if its width/height ratio is similar to the image
                         if (Math.abs(imgRatio - thumbRatio) < 0.1)
                             imgFullSize.css({'background-image':'url(' + lowResSrc + ')'});
@@ -549,33 +549,31 @@ var hoverZoom = {
 
                 /*if (thumb.length == 1) {
                  panningThumb = thumb.first();
-                 }*/
+             }*/
 
-                hz.hzImg.css('cursor', 'pointer');
+             hz.hzImg.css('cursor', 'pointer');
 
-                initLinkRect(imgThumb || hz.currentLink);
+             initLinkRect(imgThumb || hz.currentLink);
+         }
+
+         if (hz.currentLink) {
+            var linkData = hz.currentLink.data();
+            if (options.showCaptions && !options.ambilightEnabled && linkData.hoverZoomCaption) {
+                hzCaption = $('<div/>', {id:'hzCaption', text:linkData.hoverZoomCaption}).css(hzCaptionCss).appendTo(hz.hzImg);
             }
-
-            if (hz.currentLink) {
-                var linkData = hz.currentLink.data();
-                if (options.showCaptions && !options.ambilightEnabled && linkData.hoverZoomCaption) {
-                    hzCaption = $('<div/>', {id:'hzCaption', text:linkData.hoverZoomCaption}).css(hzCaptionCss).appendTo(hz.hzImg);
-                }
-                if (linkData.hoverZoomGallerySrc) {
-                    var info = '';
-                    if (linkData.hoverZoomGallerySrc.length > 1) {
-                        info = (linkData.hoverZoomGalleryIndex + 1) + '/' + linkData.hoverZoomGallerySrc.length;
-                    }
-                    hzGallery = $('<div/>', {id:'hzGallery', text:info}).css(hzGalleryInfoCss).appendTo(hz.hzImg);
-                    if (linkData.hoverZoomGalleryIndex == 0 && linkData.hoverZoomGallerySrc.length > 1) {
-                        preloadGalleryImage(1);
-                    }
+            if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) {
+                var info = '';
+                info = (linkData.hoverZoomGalleryIndex + 1) + '/' + linkData.hoverZoomGallerySrc.length;
+                hzGallery = $('<div/>', {id:'hzGallery', text:info}).css(hzGalleryInfoCss).appendTo(hz.hzImg);
+                if (linkData.hoverZoomGalleryIndex == 0 ) {
+                    preloadGalleryImage(1);
                 }
             }
+        }
 
-            if (!skipFadeIn && !hideKeyDown) {
-                hz.hzImg.hide().fadeTo(options.fadeDuration, options.picturesOpacity);
-            }
+        if (!skipFadeIn && !hideKeyDown) {
+            hz.hzImg.hide().fadeTo(options.fadeDuration, options.picturesOpacity);
+        }
 
             // The image size is not yet available in the onload so I have to delay the positioning
             setTimeout(posImg, options.showWhileLoading ? 0 : 10);
@@ -607,7 +605,7 @@ var hoverZoom = {
         }
 
         var firstMouseMoveAfterCursorHide = false,
-            cursorHideTimeout = 0;
+        cursorHideTimeout = 0;
 
         function hideCursor() {
             firstMouseMoveAfterCursorHide = true;
@@ -664,7 +662,7 @@ var hoverZoom = {
             var showPageAction = false;
             links.each(function () {
                 var link = $(this),
-                    linkData = link.data();
+                linkData = link.data();
                 if (!linkData.hoverZoomSrc && !linkData.hoverZoomGallerySrc) {
 
                     prepareImgLinksAsync(true);
@@ -673,23 +671,23 @@ var hoverZoom = {
 
                     // Skip if the image has the same URL as the thumbnail.
                     //try {
-                    if (linkData.hoverZoomSrc) {
-                        var url = linkData.hoverZoomSrc[0],
+                        if (linkData.hoverZoomSrc) {
+                            var url = linkData.hoverZoomSrc[0],
                             skip = (url == link.attr('src'));
-                        if (!skip) {
-                            link.find('img[src]').each(function () {
-                                if (this.src == url) {
-                                    skip = true;
-                                }
-                            });
+                            if (!skip) {
+                                link.find('img[src]').each(function () {
+                                    if (this.src == url) {
+                                        skip = true;
+                                    }
+                                });
+                            }
+                            if (skip) {
+                                return;
+                            }
                         }
-                        if (skip) {
-                            return;
-                        }
-                    }
                     /*} catch(e) {
                      throw e;
-                     }*/
+                 }*/
 
                     // Avoid nested links
                     /*if (link.parents('.hoverZoomLink').length > 0) {
@@ -713,7 +711,7 @@ var hoverZoom = {
                      srcs[i] = deepUnescape(srcs[i]);
                      }
                      linkData.hoverZoomSrc = srcs;*/
-                    if (linkData.hoverZoomGallerySrc) {
+                     if (linkData.hoverZoomGallerySrc) {
                         if (!linkData.hoverZoomGalleryIndex)
                             linkData.hoverZoomGalleryIndex = 0;
                         linkData.hoverZoomGallerySrc = linkData.hoverZoomGallerySrc.map(function (srcs) {
@@ -805,33 +803,33 @@ var hoverZoom = {
 
                 // Only images with a specified width, height, max-width or max-weight are processed.
                 var scaled = this.getAttribute('width') || this.getAttribute('height') ||
-                    this.style && (this.style.width || this.style.height || this.style.maxWidth || this.style.maxHeight);
+                this.style && (this.style.width || this.style.height || this.style.maxWidth || this.style.maxHeight);
                 if (!scaled) {
                     scaled = scaled || _this.css('width') != '0px' || _this.css('height') != '0px' || _this.css('max-width') != 'none' || _this.css('max-height') != 'none';
                 }
                 return scaled;
             }).one('mouseover.hoverZoom', function () {
-                    var img = $(this),
-                        widthAttr = parseInt(this.getAttribute('width') || this.style.width || this.style.maxWidth || img.css('width') || img.css('max-width')),
-                        heightAttr = parseInt(this.getAttribute('height') || this.style.height || this.style.maxHeight || img.css('height') || img.css('max-height')),
-                        hzDownscaled = $('<img id="hzDownscaled" style="position: absolute; top: -10000px;">').appendTo(document.body);
+                var img = $(this),
+                widthAttr = parseInt(this.getAttribute('width') || this.style.width || this.style.maxWidth || img.css('width') || img.css('max-width')),
+                heightAttr = parseInt(this.getAttribute('height') || this.style.height || this.style.maxHeight || img.css('height') || img.css('max-height')),
+                hzDownscaled = $('<img id="hzDownscaled" style="position: absolute; top: -10000px;">').appendTo(document.body);
 
-                    if (widthAttr > 300 || heightAttr > 300) {
-                        return;
-                    }
+                if (widthAttr > 300 || heightAttr > 300) {
+                    return;
+                }
 
-                    hzDownscaled.load(function () {
-                        setTimeout(function () {
-                            if (hzDownscaled.height() > heightAttr * 1.8 || hzDownscaled.width() > widthAttr * 1.8) {
-                                var srcs = img.data().hoverZoomSrc || [];
-                                srcs.unshift(img.attr('src'));
-                                img.data().hoverZoomSrc = srcs;
-                                img.addClass('hoverZoomLink');
-                            }
-                            hzDownscaled.remove();
-                        }, 10);
-                    }).attr('src', this.src);
-                });
+                hzDownscaled.load(function () {
+                    setTimeout(function () {
+                        if (hzDownscaled.height() > heightAttr * 1.8 || hzDownscaled.width() > widthAttr * 1.8) {
+                            var srcs = img.data().hoverZoomSrc || [];
+                            srcs.unshift(img.attr('src'));
+                            img.data().hoverZoomSrc = srcs;
+                            img.addClass('hoverZoomLink');
+                        }
+                        hzDownscaled.remove();
+                    }, 10);
+                }).attr('src', this.src);
+            });
         }
 
         var prepareImgLinksDelay = 500, prepareImgLinksTimeout;
@@ -899,7 +897,7 @@ var hoverZoom = {
             chrome.runtime.sendMessage({action:'getOptions'}, function (result) {
                 options = result;
                 if (options) {
-                applyOptions();
+                    applyOptions();
                 }
             });
         }
@@ -922,53 +920,50 @@ var hoverZoom = {
                         insertedNode.parentNode.id !== 'hzImg' &&
                         insertedNode.id !== 'hzDownscaled') {
                         prepareImgLinksAsync();
-                    }
-                } else if (insertedNode.nodeName === 'EMBED' || insertedNode.nodeName === 'OBJECT') {
-                    fixFlash();
                 }
+            } else if (insertedNode.nodeName === 'EMBED' || insertedNode.nodeName === 'OBJECT') {
+                fixFlash();
             }
         }
+    }
 
-        function windowOnLoad(event) {
-            prepareImgLinksAsync();
+    function windowOnLoad(event) {
+        prepareImgLinksAsync();
+    }
+
+    function bindEvents() {
+        wnd.bind('DOMNodeInserted', windowOnDOMNodeInserted).load(windowOnLoad).scroll(cancelImageLoading);
+        $(document).mousemove(documentMouseMove).mouseleave(cancelImageLoading).mousedown(documentMouseDown).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
+        if (options.galleriesMouseWheel) {
+            $(document).on('mousewheel', documentOnMouseWheel);
         }
+    }
 
-        function bindEvents() {
-            wnd.bind('DOMNodeInserted', windowOnDOMNodeInserted).load(windowOnLoad).scroll(cancelImageLoading);
-            $(document).mousemove(documentMouseMove).mouseleave(cancelImageLoading).mousedown(documentMouseDown).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
-            if (options.galleriesMouseWheel) {
-                $(document).on('mousewheel', documentOnMouseWheel);
-            }
-        }
-
-        function documentOnMouseWheel(event) {
-            if (imgFullSize) {
-                var link = hz.currentLink, data = link.data();
-                if (data.hoverZoomGallerySrc) {
-                    if(data.hoverZoomGallerySrc.length === 1){
-                        return;
-                    }
+    function documentOnMouseWheel(event) {
+        if (imgFullSize) {
+            var link = hz.currentLink, data = link.data();
+            if (data.hoverZoomGallerySrc && data.hoverZoomGallerySrc.length !== 1) {
+                event.preventDefault();
+                if (event.originalEvent.wheelDeltaY > 0) {
+                    rotateGalleryImg(-1);
+                } else {
+                    rotateGalleryImg(1);
+                }
+            } else {
+                var video = hz.hzImg.find('video').get(0);
+                if (video && !options.disableMouseWheelForVideo) {
                     event.preventDefault();
                     if (event.originalEvent.wheelDeltaY > 0) {
-                        rotateGalleryImg(-1);
+                        changeVideoPosition(-parseInt(options.videoPositionStep));
                     } else {
-                        rotateGalleryImg(1);
-                    }
-                } else {
-                    var video = hz.hzImg.find('video').get(0);
-                    if (video && !options.disableMouseWheelForVideo) {
-                        event.preventDefault();
-                        if (event.originalEvent.wheelDeltaY > 0) {
-                            changeVideoPosition(-parseInt(options.videoPositionStep));
-                        } else {
-                            changeVideoPosition(parseInt(options.videoPositionStep));
-                        }
+                        changeVideoPosition(parseInt(options.videoPositionStep));
                     }
                 }
             }
         }
+    }
 
-        function documentOnKeyDown(event) {
+    function documentOnKeyDown(event) {
             // Skips if an input controlled is focused
             if (event.target && ['INPUT','TEXTAREA','SELECT'].indexOf(event.target.tagName) > -1) {
                 return;
@@ -1021,7 +1016,7 @@ var hoverZoom = {
                     event.which == options.fullZoomKey ||
                     event.which == options.hideKey) {
                     return false;
-                }
+            }
                 // "Previous image" key
                 if (event.which == options.prevImgKey) {
                     rotateGalleryImg(-1);
@@ -1089,13 +1084,13 @@ var hoverZoom = {
                 var param = $(this).children('param').filter(wmodeFilter);
                 return param.length == 0 || param.attr('value').toLowerCase() == 'window';
             }).each(function () {
-                    var object = this.cloneNode(true);
-                    $(object).children('param').filter(wmodeFilter).remove();
-                    $('<param name="wmode" value="opaque">').appendTo(object);
-                    wnd.unbind('DOMNodeInserted', windowOnDOMNodeInserted);
-                    $(this).replaceWith(object);
-                    wnd.bind('DOMNodeInserted', windowOnDOMNodeInserted);
-                });
+                var object = this.cloneNode(true);
+                $(object).children('param').filter(wmodeFilter).remove();
+                $('<param name="wmode" value="opaque">').appendTo(object);
+                wnd.unbind('DOMNodeInserted', windowOnDOMNodeInserted);
+                $(this).replaceWith(object);
+                wnd.bind('DOMNodeInserted', windowOnDOMNodeInserted);
+            });
         }
 
         function getHostFromUrl(url) {
@@ -1106,7 +1101,7 @@ var hoverZoom = {
                 host = window.location.host;
             }
             var aHost = host.split('.'),
-                maxItems = 2;
+            maxItems = 2;
             if (aHost.length > 2) {
                 var preTld = aHost[aHost.length - 2];
                 if (preTld == 'co' || preTld == 'com' || preTld == 'net' || preTld == 'org') {
@@ -1122,7 +1117,7 @@ var hoverZoom = {
         function openImageInWindow() {
             chrome.runtime.sendMessage({action:'getItem', id:'popupBorder'}, function (data) {
                 var createData,
-                    popupBorder = {width:16, height:38};
+                popupBorder = {width:16, height:38};
 
                 if (data) {
                     try {
@@ -1251,7 +1246,7 @@ var hoverZoom = {
 
             webSiteExcluded = null;
             body100pct = (body.css('position') != 'static') ||
-                (body.css('padding-left') == '0px' && body.css('padding-right') == '0px' && body.css('margin-left') == '0px' && body.css('margin-right') == '0px');
+            (body.css('padding-left') == '0px' && body.css('padding-right') == '0px' && body.css('margin-left') == '0px' && body.css('margin-right') == '0px');
             hz.pageGenerator = $('meta[name="generator"]').attr('content');
             prepareImgLinks();
             bindEvents();
@@ -1307,7 +1302,7 @@ var hoverZoom = {
     // an image or a element with a background image.
     getThumbUrl:function (el) {
         var compStyle = (el && el.nodeType == 1) ? getComputedStyle(el) : false,
-            backgroundImage = compStyle ? compStyle.backgroundImage : 'none';
+        backgroundImage = compStyle ? compStyle.backgroundImage : 'none';
         if (backgroundImage != 'none') {
             return backgroundImage.replace(/.*url\s*\(\s*(.*)\s*\).*/i, '$1');
         } else {
@@ -1355,8 +1350,8 @@ var hoverZoom = {
     preloadImages:function () {
 
         var links = $('.hoverZoomLink'),
-            preloadIndex = 0,
-            preloadDelay = 200;
+        preloadIndex = 0,
+        preloadDelay = 200;
 
         function preloadNextImage() {
             if (preloadIndex >= links.length) {
@@ -1373,12 +1368,12 @@ var hoverZoom = {
                     setTimeout(preloadNextImage, preloadDelay);
                     chrome.runtime.sendMessage({action:'preloadProgress', value:preloadIndex, max:links.length});
                 }).error(function () {
-                        if (hoverZoomSrcIndex < link.data().hoverZoomSrc.length - 1) {
-                            link.data().hoverZoomSrcIndex++;
-                            preloadIndex--;
-                        }
-                        setTimeout(preloadNextImage, preloadDelay);
-                    });
+                    if (hoverZoomSrcIndex < link.data().hoverZoomSrc.length - 1) {
+                        link.data().hoverZoomSrcIndex++;
+                        preloadIndex--;
+                    }
+                    setTimeout(preloadNextImage, preloadDelay);
+                });
             }
         }
 

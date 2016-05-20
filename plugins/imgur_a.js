@@ -29,10 +29,6 @@ hoverZoomPlugins.push({
 
             if (options.zoomVideos && (href.substr(-3) == 'gif' || href.substr(-4) == 'gifv')) {
                 data.hoverZoomSrc = [href.replace(/\.gifv?/, '.webm'), href.replace(/\.gifv?/, '.mp4'), href];
-                //future code for when imgur vids can be served over https
-                /*if(window.location.protocol == "https:"){
-                    data.hoverZoomSrc = [href.replace(/http:/, 'https:'), href];
-                }*/
                 res.push(link);
             } else {
                 var matches = href.match(/(?:\/(a|gallery|signin))?\/([^\W_]{5,8})(?:\/|\.[a-zA-Z]+|#([^\W_]{5,8}|\d+))?(\/new|\/all|\?\d*)?$/);
@@ -46,7 +42,7 @@ hoverZoomPlugins.push({
                     
                     switch (view) {
                         case 'signin':
-                        return;
+                            return;
                         case 'a': // album view:
                         case 'gallery':
 
@@ -57,22 +53,14 @@ hoverZoomPlugins.push({
                                     data.hoverZoomSrc = createUrls(hash);
                                     res.push(link);
                                 } 
-                                //todo: Possible faster implementation later on for single images - leave commented for now
-                                /*
-                                else if(imgur.data.images_count === 1){
-                                    data.hoverZoomSrc = createUrls(imgur.data.images[0].id);
-                                    link.addClass('hoverZoomLink');
-                                    res.push(link);
-                                }
-                                */
                                 else {
                                     var anchor = matches[3];
                                     data.hoverZoomGallerySrc = [];
                                     data.hoverZoomGalleryCaption = [];
                                     imgur.data.images.forEach(function (img, index) {
                                         var urls = [img.link],
-                                        caption = img.title,
-                                        alreadyAdded = false;
+                                            caption = img.title,
+                                            alreadyAdded = false;
                                         for (var i=0, l=data.hoverZoomGallerySrc.length; i<l; i++) {
                                             if (data.hoverZoomGallerySrc[i].indexOf(urls[0]) != -1) {
                                                 alreadyAdded = true;
@@ -80,7 +68,7 @@ hoverZoomPlugins.push({
                                             }
                                         }
                                         if (!alreadyAdded) {
-                                            if (caption != '' && caption != 'null' && img.description != '') {
+                                            if (caption != '' && img.description != '') {
                                                 caption += ';\n';
                                             }
                                             caption += img.description;
@@ -106,11 +94,13 @@ hoverZoomPlugins.push({
                                     link.addClass('hoverZoomLink');
                                 }
                             });
-                            break;
-                            case undefined:
+                        break;
+
+                        case undefined:
+        
                         default: // single pic view
-                        data.hoverZoomSrc = createUrls(hash);
-                        res.push(link);
+                            data.hoverZoomSrc = createUrls(hash);
+                            res.push(link);
                     }
                 }
             }
