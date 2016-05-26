@@ -67,32 +67,47 @@ hoverZoomPlugins.push({
             }
             prepareFromPhotoId(link, photoId, listId);
         }).mouseleave(function () {
-                $(this).data().hoverZoomMouseLeft = true;
-            });
+            $(this).data().hoverZoomMouseLeft = true;
+        });
+
+        $('a[onclick*="showPhoto"]').filter(function () {
+            return !this.hasAttribute("href");
+        }).mouseenter(function () {
+            var link = $(this), data = link.data();
+            if (data.hoverZoomSrc || data.hoverZoomRequested || link.parents('#pv_box').length > 0) {
+                return;
+            }
+            var matches = link.attr('onclick').match(/'(-?\d+_\d+)',\s*'(.+)'/);
+            var photoId = matches[1], listId = matches[2];
+            data.hoverZoomRequested = true;
+            prepareFromPhotoId(link, photoId, listId);
+        }).mouseleave(function () {
+            $(this).data().hoverZoomMouseLeft = true;
+        });
 
         $('img[src*="/u"]').filter(function () {
             return this.src.match(/\/u\d+\/[ed]_/);
         }).mouseenter(function () {
-                var img = $(this), data = img.data();
-                if (data.hoverZoomRequested || data.hoverZoomSrc) {
+            var img = $(this), data = img.data();
+            if (data.hoverZoomRequested || data.hoverZoomSrc) {
+                return;
+            }
+            data.hoverZoomRequested = true;
+            var userId = this.src.match(/\/u(\d+)\//)[1];
+            chrome.runtime.sendMessage({action:'ajaxGet', url:'http://vk.com/al_profile.php?al=1&act=get_profile_photos&offset=0&skip_one=0&id=' + userId}, function (response) {
+                var photos;
+                try {
+                    photos = JSON.parse(response.match(/<!json>(.*)$/)[1]);
+                } catch (e) {
                     return;
                 }
-                data.hoverZoomRequested = true;
-                var userId = this.src.match(/\/u(\d+)\//)[1];
-                chrome.runtime.sendMessage({action:'ajaxGet', url:'http://vk.com/al_profile.php?al=1&act=get_profile_photos&offset=0&skip_one=0&id=' + userId}, function (response) {
-                    var photos;
-                    try {
-                        photos = JSON.parse(response.match(/<!json>(.*)$/)[1]);
-                    } catch (e) {
-                        return;
-                    }
-                    if (photos.length) {
-                        prepareFromPhotoId(img, photos[0][1].match(/\/photo(\d+_\d+)/)[1], '');
-                    }
-                });
-            }).mouseleave(function () {
-                $(this).data().hoverZoomMouseLeft = true;
+                if (photos.length) {
+                    prepareFromPhotoId(img, photos[0][1].match(/\/photo(\d+_\d+)/)[1], '');
+                }
             });
+        }).mouseleave(function () {
+            $(this).data().hoverZoomMouseLeft = true;
+        });
 
     }
 });
