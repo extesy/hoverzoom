@@ -22,7 +22,7 @@ hoverZoomPlugins.push({
                 function (response) {
                     var photos;
                     try {
-                        photos = JSON.parse(response.match(/<!json>(.*)<!>/)[1]);
+                        photos = JSON.parse(response.match(/<!json>(.*?)<!>/)[1]);
                     } catch (e) {
                         return;
                     }
