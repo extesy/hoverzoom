@@ -1,0 +1,37 @@
+{
+  "name": "hoverzoom+",
+  "version": "1.0.0",
+  "description": "Hover Zoom+",
+  "main": "js/hoverzoom.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/extesy/hoverzoom.git"
+  },
+  "author": "Oleg Anashkin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/extesy/hoverzoom/issues"
+  },
+  "homepage": "https://github.com/extesy/hoverzoom#readme",
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true,
+      "jquery": true
+    },
+    "globals": {
+      "chrome": true,
+      "hoverZoom": true,
+      "hoverZoomPlugins": true,
+      "options": true
+    },
+    "extends": "airbnb"
+  },
+  "devDependencies": {
+    "eslint": "^2.11.0",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.8.1",
+    "eslint-plugin-jsx-a11y": "^1.2.2",
+    "eslint-plugin-react": "^5.1.1"
+  }
+}
