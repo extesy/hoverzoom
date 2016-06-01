@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2016 Oleg Anashkin
-// Licensed under the MIT license, read license.txt
-
-var hoverZoomPlugins = hoverZoomPlugins || [];
+﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'sli.mg',
     version:'0.1',

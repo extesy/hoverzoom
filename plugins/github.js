@@ -1,8 +1,4 @@
-﻿// Copyright (c) 2012 Romain Vallet <romain.vallet@gmail.com>
-// Copyright (c) 2016 Oleg Anashkin <oleg.anashkin@gmail.com>
-// Licensed under the MIT license, read license.txt
-
-var hoverZoomPlugins = hoverZoomPlugins || [];
+﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'GitHub',
     prepareImgLinks:function (callback) {

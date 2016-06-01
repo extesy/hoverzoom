@@ -1,6 +1,3 @@
-// Copyright (c) 2011 Romain Vallet <romain.vallet@gmail.com>
-// Licensed under the MIT license, read license.txt
-
 // The dynamic loading of images in Picasa Web Albums makes it difficult to handle with this extension.
 // The function that "prepares" a link has been isolated (prepareImgLink) and is called whenever the
 // user move the mouse over a link.

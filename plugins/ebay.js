@@ -1,9 +1,3 @@
-// Copyright (c) 2012 Romain Vallet <romain.vallet@gmail.com>
-// Copyright (c) 2016 Oleg Anashkin <oleg.anashkin@gmail.com>
-// Licensed under the MIT license, read license.txt
-
-// This plugin makes use of the eBay API
-
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'eBay',
