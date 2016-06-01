@@ -38,9 +38,9 @@ hoverZoomPlugins.push({
     });
 
     $('div[data-cachedhtml*="//i.redd.it/"]').each(function () {
-      const div = $(this);
-      const html = $(div.attr('data-cachedhtml'));
-      const anchor = html.find('a[href*="//i.redd.it/"]');
+      var div = $(this);
+      var html = $(div.attr('data-cachedhtml'));
+      var anchor = html.find('a[href*="//i.redd.it/"]');
       if (anchor.length > 0) {
         var link = anchor.attr('href');
         var post = div.parent().parent();
