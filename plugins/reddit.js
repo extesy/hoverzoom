@@ -11,8 +11,8 @@ hoverZoomPlugins.push({
       _this.data().hoverZoomCaption = _this.parent().find('a.title').text();
     });
 
-    $('.link a.thumbnail img').one('mouseover', function () {
-      var link = this.parentNode;
+    $('.link a.thumbnail, .link a.title').one('mouseover', function () {
+      var link = this;
       if (!link.classList.contains('hoverZoomLink')) {
         hoverZoom.prepareFromDocument($(link), link.href, function (doc) {
           var meta = doc.querySelector('meta[property="og:image"][content]');
@@ -42,7 +42,7 @@ hoverZoomPlugins.push({
         var link = anchor.attr('href');
         var post = div.parent().parent();
         var title = post.find('a.title').text();
-        post.select('a').each(function () {
+        post.find('a').each(function () {
           var img = $(this);
           img.data('hoverZoomSrc', [link]);
           img.data('hoverZoomCaption', [title]);
