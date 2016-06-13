@@ -101,7 +101,7 @@ hoverZoomPlugins.push({
         }
 
         // Every sites
-        $('a[href*="//imgur.com/"], a[href*="//www.imgur.com/"], a[href*="//i.imgur.com/"], a[href*="//m.imgur.com/"]').each(prepareImgLink);
+        $('a[href*="//imgur.com/"], a[href*="//www.imgur.com/"], a[href*="//i.imgur.com/"], a[href*="//m.imgur.com/"], a[href*="//i.stack.imgur.com/"]').each(prepareImgLink);
 
         // On imgur.com (galleries, etc)
         if (window.location.host.indexOf('imgur.com') !== -1) {
