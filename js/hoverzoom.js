@@ -936,6 +936,9 @@ var hoverZoom = {
             if (options.galleriesMouseWheel) {
                 $(document).on('mousewheel', documentOnMouseWheel);
             }
+            if (options.zoomVideos) {
+                $(document).on('visibilitychange', hideHoverZoomImg);
+            }
         }
 
         function documentOnMouseWheel(event) {
