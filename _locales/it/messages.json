@@ -75,6 +75,18 @@
     "message":"Video",
     "description":"[options] Page section for video options"
   },
+  "optZoomFactor":{
+    "message":"Ingrandisci le immagini di questo fattore:",
+    "description":"[options] Adjust the size of zoomed images option"
+  },
+  "optZoomFactorUnitName":{
+    "message":"volte",
+    "description":"[options] Unit name (percentage) for zoomed images size option"
+  },
+  "optZoomFactorTooltip":{
+    "message":"Moltiplica la dimensione delle immagini ingrandite di questa cifra",
+    "description":"[options] Tooltip for adjust the size of zoomed images option"
+  },
   "optMouseUnderlap":{
     "message":"Estendi le immagini ingrandite sotto il cursore del mouse",
     "description":"[options] Extend zoomed images below the mouse cursor option"
@@ -122,6 +134,14 @@
   "optGalleriesMouseWheelTooltip":{
     "message":"Navigare tra gli album con la rotellina del mouse",
     "description":"[options] Tooltip for use mousewheel to navigate albums option"
+  },
+  "optDisableMouseWheelForVideo":{
+    "message":"Non utilizzare la rotellina del mouse per navigare all'interno dei video (I tasti azione continueranno a funzionare)",
+    "description":"[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
+  },
+  "optDisableMouseWheelForVideoTooltip":{
+    "message":"Per scorrere tra gli album senza saltare avanti\/indietro in un video",
+    "description":"[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
   },
   "optZoomVideos":{
     "message":"Zoom dei video (WebM, MP4)",
