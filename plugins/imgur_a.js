@@ -11,7 +11,7 @@ hoverZoomPlugins.push({
             //return srcs.concat(srcs).concat(srcs).concat(srcs);
             return srcs;
         }
-        
+
         function htmlDecode(input){
             var e = document.createElement('div');
             e.innerHTML = input;
@@ -21,6 +21,14 @@ hoverZoomPlugins.push({
         function prepareImgLink() {
             var link = $(this), data = link.data(), href = link.attr('href');
             if (data.hoverZoomSrc || data.hoverZoomGallerySrc) {
+                return;
+            }
+
+            // special case for StackOverflow custom subdomain
+            if (-1 !== href.indexOf('i.stack.imgur.com')) {
+                data.hoverZoomSrc = [href.replace('http:', window.location.protocol)];
+                res.push(link);
+
                 return;
             }
 
@@ -36,7 +44,7 @@ hoverZoomPlugins.push({
                     if (excl.indexOf(hash) > -1) {
                         return;
                     }
-                    
+
                     switch (view) {
                         case 'signin':
                             return;
