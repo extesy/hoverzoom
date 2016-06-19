@@ -13,7 +13,7 @@ var hoverZoom = {
     currentLink:null,
     hzImg:null,
     hzImgCss:{
-        'border':'1px solid #e3e3e3',
+        'border':'1px solid #808080',
         'line-height':0,
         'overflow':'hidden',
         'padding':'2px',
@@ -21,7 +21,7 @@ var hoverZoom = {
         'position':'absolute',
         'z-index':2147483647,
         'border-radius':'3px',
-        'background':'linear-gradient(to right bottom, #ffffff, #ffffff 50%, #ededed)',
+        'background':'#ffffff',
         'box-shadow':'3px 3px 9px 5px rgba(0,0,0,0.33)'
     },
     imgLoading:null,
@@ -89,7 +89,7 @@ var hoverZoom = {
                 'font':'menu',
                 'font-size':'11px',
                 'font-weight':'bold',
-                'color':'#333',
+                'color':'#ffffff',
                 'text-align':'center',
                 'max-height':'27px',
                 'overflow':'hidden',
@@ -139,6 +139,9 @@ var hoverZoom = {
                     hzCaption.css('max-width', imgFullSize.width());
                     if (hzCaption.height() > 20) {
                         hzCaption.css('font-weight', 'normal');
+                    }
+                    if(options.enableDarkMode) {
+                        hzCaption.css('color','#ffffff');
                     }
                     // This is looped 10x max just in case something
                     // goes wrong, to avoid freezing the process.
@@ -512,6 +515,10 @@ var hoverZoom = {
                 var canvas = $('<canvas style="position: absolute; z-index: -1; transform: scale(1.2); -webkit-filter: blur(50px); opacity: 1; pointer-events: none"></canvas>');
                 canvas.appendTo(hz.hzImg);
             }
+
+            if (options.enableDarkMode){
+                hz.hzImg.css("background","#000000");
+            }         
 
             imgFullSize.css(imgFullSizeCss).appendTo(hz.hzImg).mousemove(imgFullSizeOnMouseMove);
 
@@ -1336,6 +1343,7 @@ var hoverZoom = {
 
         }
         hoverZoom.hzImg.css(hoverZoom.hzImgCss);
+
         hoverZoom.hzImg.empty();
         if (displayNow) {
             hoverZoom.hzImg.stop(true, true).fadeTo(options.fadeDuration, options.picturesOpacity);

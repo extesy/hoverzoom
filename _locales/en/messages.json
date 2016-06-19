@@ -287,6 +287,10 @@
         "message": "Enable albums support",
         "description": "[options] Enable albums support option"
     },
+    "optEnableDarkMode": {
+        "message" : "Dark Mode",
+        "description": "[options] Enable Dark Mode theme"
+    },
     "optPicturesOpacity": {
         "message": "Zoomed pictures opacity:",
         "description": "[options] Zoomed pictures opacity option"
