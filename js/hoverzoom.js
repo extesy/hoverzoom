@@ -443,7 +443,7 @@ var hoverZoom = {
                         cancelImageLoading();
                         return;
                     }
-                    var video = document.createElement('video');
+                    var video = document.createElement('video'), track;
                     video.style.width = 0;
                     video.style.height = 0;
                     video.loop = true;
@@ -452,13 +452,41 @@ var hoverZoom = {
                     video.src = imgDetails.url;
                     imgFullSize = $(video).appendTo(hz.hzImg);
                     video.addEventListener('error', imgFullSizeOnError);
-                    video.addEventListener('loadedmetadata', posImg);
+                    video.addEventListener('loadedmetadata', function(){
+                        posImg();
+                        track = this.addTextTrack("captions", "English", "en");
+                        track.mode = "showing";
+                        var videoDur = Math.floor(video.duration);
+                        for (time=0; time <= videoDur; time++){
+                            var minutes = ~~(time / 60);
+                            var seconds = time % 60;
+                            var finalTime = "";
+                            finalTime += "" + minutes + ":" + (seconds < 10 ? "0" : "");
+                            finalTime += "" + seconds;
+                            if (time== videoDur){
+                                track.addCue(new VTTCue(time,video.duration,finalTime));
+                                track.cues[time].align ="end";
+                                track.cues[time].position = 100;
+                                track.cues[time].line = 0;
+
+                            }
+                            else{
+                                track.addCue(new VTTCue(time, time+1, finalTime)); 
+                                track.cues[time].align ="end";
+                                track.cues[time].position = 100;
+                                track.cues[time].line = 0;
+                            }
+                        }
+                    });
                     video.addEventListener('loadeddata', function() {
-                        imgFullSizeOnLoad();
+                        ();
+                        // this works. see if you can get an area where you can put a layer on this to.
                         video.play();
                         video.removeAttribute('poster');
+
                     });
                     video.load();
+
                 } else {
                     imgFullSize = $('<img style="border: none" />').appendTo(hz.hzImg).load(imgFullSizeOnLoad).error(imgFullSizeOnError).attr('src', imgDetails.url);
                 }
