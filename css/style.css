@@ -6,7 +6,6 @@
 
 .append input[type=range] + input[type=text] {
     border-radius: 0px;
-    -webkit-border-radius: 0px;
     margin-left: -6px;
 }
 

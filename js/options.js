@@ -218,8 +218,7 @@ function percentageOnChange() {
     this.value = value;
 }
 
-function updateTxtVideoVolume()
-{
+function updateTxtVideoVolume() {
     $('#txtVideoVolume')[0].value = this.value;
 }
 
