@@ -89,7 +89,7 @@ var hoverZoom = {
                 'font':'menu',
                 'font-size':'11px',
                 'font-weight':'bold',
-                'color':'#000000',
+                'color':'#333',
                 'text-align':'center',
                 'max-height':'27px',
                 'overflow':'hidden',
@@ -140,7 +140,7 @@ var hoverZoom = {
                     if (hzCaption.height() > 20) {
                         hzCaption.css('font-weight', 'normal');
                     }
-                    if(options.enableDarkMode) {
+                    if (options.enableDarkMode) {
                         hzCaption.css('color','#ffffff');
                     }
                     // This is looped 10x max just in case something
@@ -454,33 +454,12 @@ var hoverZoom = {
                     video.addEventListener('error', imgFullSizeOnError);
                     video.addEventListener('loadedmetadata', function(){
                         posImg();
-                        track = this.addTextTrack("captions", "English", "en");
-                        track.mode = "showing";
-                        var videoDur = Math.floor(video.duration);
-                        for (time=0; time <= videoDur; time++){
-                            var minutes = ~~(time / 60);
-                            var seconds = time % 60;
-                            var finalTime = "";
-                            finalTime += "" + minutes + ":" + (seconds < 10 ? "0" : "");
-                            finalTime += "" + seconds;
-                            if (time== videoDur){
-                                track.addCue(new VTTCue(time,video.duration,finalTime));
-                                track.cues[time].align ="end";
-                                track.cues[time].position = 100;
-                                track.cues[time].line = 0;
-
-                            }
-                            else{
-                                track.addCue(new VTTCue(time, time+1, finalTime)); 
-                                track.cues[time].align ="end";
-                                track.cues[time].position = 100;
-                                track.cues[time].line = 0;
-                            }
+                        if (options.videoTimestamp) {
+                            addTimestampTrack(video);
                         }
                     });
                     video.addEventListener('loadeddata', function() {
-                        ();
-                        // this works. see if you can get an area where you can put a layer on this to.
+                        imgFullSizeOnLoad();
                         video.play();
                         video.removeAttribute('poster');
 
@@ -501,6 +480,39 @@ var hoverZoom = {
                 posImg();
             }
             posImg();
+        }
+
+
+        function addTimestampTrack(video){
+            track = video.addTextTrack("captions", "English", "en");
+            track.mode = "showing";
+            var videoDur = Math.ceil(video.duration);
+            // create an array that hosts the times from decending order
+            //TODO: see if there is a way to optimize this as it causes a small lag
+            var timer = [];
+            for (time=videoDur; time >= 0; time--){
+                var minutes = ~~(time / 60);
+                var seconds = time % 60;
+                var finalTime = "";
+                finalTime += "-" + minutes + ":" + (seconds < 10 ? "0" : "");
+                finalTime += "" + seconds;
+                timer.push(finalTime);
+            }
+            for (var i=0; i<=videoDur;i++){
+                if(i==videoDur){              
+                    track.addCue(new VTTCue(i,video.duration,timer[i]));
+                    track.cues[i].align ="end";
+                    track.cues[i].position = 100;
+                    track.cues[i].line = 0;  
+                }
+                else{
+                    track.addCue(new VTTCue(i,i+1,timer[i]));
+                    track.cues[i].align ="end";
+                    track.cues[i].position = 100;
+                    track.cues[i].line = 0;     
+                }
+
+            }
         }
 
         function imgFullSizeOnLoad() {

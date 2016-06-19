@@ -12,6 +12,7 @@ function loadOptions() {
     options.zoomVideos = options.hasOwnProperty('zoomVideos') ? options.zoomVideos : true;
     options.videoPositionStep = options.hasOwnProperty('videoPositionStep') ? options.videoPositionStep : 10;
     options.muteVideos = options.hasOwnProperty('muteVideos') ? options.muteVideos : false;
+    options.videoTimestamp = options.hasOwnProperty('videoTimestamp') ? options.videoTimestamp : false;
     options.videoVolume = options.hasOwnProperty('videoVolume') ? options.videoVolume : 0.25;
     options.pageActionEnabled = options.hasOwnProperty('pageActionEnabled') ? options.pageActionEnabled : true;
     options.showCaptions = options.hasOwnProperty('showCaptions') ? options.showCaptions : true;
@@ -31,6 +32,7 @@ function loadOptions() {
     options.updateNotifications = options.hasOwnProperty('updateNotifications') ? options.updateNotifications : true;
     options.filterNSFW = options.hasOwnProperty('filterNSFW') ? options.filterNSFW : false;
     options.enableGalleries = options.hasOwnProperty('enableGalleries') ? options.enableGalleries : true;
+    options.enableDarkMode = options.hasOwnProperty('enableDarkMode') ? options.enableDarkMode : false;
     options.ambilightEnabled = options.hasOwnProperty('ambilightEnabled') ? options.ambilightEnabled : false;
     options.disabledPlugins = options.hasOwnProperty('disabledPlugins') ? options.disabledPlugins : [];
 
