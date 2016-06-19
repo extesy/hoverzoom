@@ -13,7 +13,7 @@ var hoverZoom = {
     currentLink:null,
     hzImg:null,
     hzImgCss:{
-        'border':'1px solid #808080',
+        'border':'1px solid #e3e3e3',
         'line-height':0,
         'overflow':'hidden',
         'padding':'2px',
@@ -21,7 +21,7 @@ var hoverZoom = {
         'position':'absolute',
         'z-index':2147483647,
         'border-radius':'3px',
-        'background':'#ffffff',
+        'background':'linear-gradient(to right bottom, #ffffff, #ffffff 50%, #ededed)',
         'box-shadow':'3px 3px 9px 5px rgba(0,0,0,0.33)'
     },
     imgLoading:null,
@@ -89,7 +89,7 @@ var hoverZoom = {
                 'font':'menu',
                 'font-size':'11px',
                 'font-weight':'bold',
-                'color':'#ffffff',
+                'color':'#000000',
                 'text-align':'center',
                 'max-height':'27px',
                 'overflow':'hidden',
