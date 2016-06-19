@@ -18,6 +18,14 @@ hoverZoomPlugins.push({
             return e.textContent;
         }
 
+        function cleanCaption(input){
+            // clean the null and null; characters that appear on photos with no captions
+            var e = input;
+            e = e.replace("null;","");
+            e = e.replace("null","");
+            return e;
+        }
+
         function prepareImgLink() {
             var link = $(this), data = link.data(), href = link.attr('href');
             if (data.hoverZoomSrc || data.hoverZoomGallerySrc) {
@@ -76,7 +84,7 @@ hoverZoomPlugins.push({
                                                 caption += ';\n';
                                             }
                                             caption += img.description;
-                                            data.hoverZoomGalleryCaption.push(htmlDecode(caption));
+                                            data.hoverZoomGalleryCaption.push(cleanCaption(htmlDecode(caption)));
                                             data.hoverZoomGallerySrc.push(urls);
                                             data.hoverZoomSrc = undefined;
                                         }
