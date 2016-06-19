@@ -89,7 +89,7 @@ var hoverZoom = {
                 'font':'menu',
                 'font-size':'11px',
                 'font-weight':'bold',
-                'color':'#333',
+                'color':'#000000',
                 'text-align':'center',
                 'max-height':'27px',
                 'overflow':'hidden',
@@ -139,6 +139,9 @@ var hoverZoom = {
                     hzCaption.css('max-width', imgFullSize.width());
                     if (hzCaption.height() > 20) {
                         hzCaption.css('font-weight', 'normal');
+                    }
+                    if(options.enableDarkMode) {
+                        hzCaption.css('color','#ffffff');
                     }
                     // This is looped 10x max just in case something
                     // goes wrong, to avoid freezing the process.
@@ -440,7 +443,7 @@ var hoverZoom = {
                         cancelImageLoading();
                         return;
                     }
-                    var video = document.createElement('video');
+                    var video = document.createElement('video'), track;
                     video.style.width = 0;
                     video.style.height = 0;
                     video.loop = true;
@@ -449,13 +452,41 @@ var hoverZoom = {
                     video.src = imgDetails.url;
                     imgFullSize = $(video).appendTo(hz.hzImg);
                     video.addEventListener('error', imgFullSizeOnError);
-                    video.addEventListener('loadedmetadata', posImg);
+                    video.addEventListener('loadedmetadata', function(){
+                        posImg();
+                        track = this.addTextTrack("captions", "English", "en");
+                        track.mode = "showing";
+                        var videoDur = Math.floor(video.duration);
+                        for (time=0; time <= videoDur; time++){
+                            var minutes = ~~(time / 60);
+                            var seconds = time % 60;
+                            var finalTime = "";
+                            finalTime += "" + minutes + ":" + (seconds < 10 ? "0" : "");
+                            finalTime += "" + seconds;
+                            if (time== videoDur){
+                                track.addCue(new VTTCue(time,video.duration,finalTime));
+                                track.cues[time].align ="end";
+                                track.cues[time].position = 100;
+                                track.cues[time].line = 0;
+
+                            }
+                            else{
+                                track.addCue(new VTTCue(time, time+1, finalTime)); 
+                                track.cues[time].align ="end";
+                                track.cues[time].position = 100;
+                                track.cues[time].line = 0;
+                            }
+                        }
+                    });
                     video.addEventListener('loadeddata', function() {
-                        imgFullSizeOnLoad();
+                        ();
+                        // this works. see if you can get an area where you can put a layer on this to.
                         video.play();
                         video.removeAttribute('poster');
+
                     });
                     video.load();
+
                 } else {
                     imgFullSize = $('<img style="border: none" />').appendTo(hz.hzImg).load(imgFullSizeOnLoad).error(imgFullSizeOnError).attr('src', imgDetails.url);
                 }
@@ -512,6 +543,10 @@ var hoverZoom = {
                 var canvas = $('<canvas style="position: absolute; z-index: -1; transform: scale(1.2); -webkit-filter: blur(50px); opacity: 1; pointer-events: none"></canvas>');
                 canvas.appendTo(hz.hzImg);
             }
+
+            if (options.enableDarkMode){
+                hz.hzImg.css("background","#000000");
+            }         
 
             imgFullSize.css(imgFullSizeCss).appendTo(hz.hzImg).mousemove(imgFullSizeOnMouseMove);
 
@@ -1336,6 +1371,7 @@ var hoverZoom = {
 
         }
         hoverZoom.hzImg.css(hoverZoom.hzImgCss);
+
         hoverZoom.hzImg.empty();
         if (displayNow) {
             hoverZoom.hzImg.stop(true, true).fadeTo(options.fadeDuration, options.picturesOpacity);

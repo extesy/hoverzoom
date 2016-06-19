@@ -86,6 +86,7 @@ function saveOptions() {
     options.displayDelayVideo = getMilliseconds($('#txtDisplayDelayVideo'));
     options.fadeDuration = getMilliseconds($('#txtFadeDuration'));
     options.ambilightEnabled = $('#chkAmbilightEnabled')[0].checked;
+    options.enableDarkMode =$('#chkDarkMode')[0].checked;
 
     options.whiteListMode = $('#chkWhiteListMode')[0].checked;
     options.excludedSites = [];
@@ -140,6 +141,7 @@ function restoreOptions() {
     $('#txtDisplayDelayVideo').val((options.displayDelayVideo || 0) / 1000);
     $('#txtFadeDuration').val((options.fadeDuration || 0) / 1000);
     $('#chkAmbilightEnabled')[0].checked = options.ambilightEnabled;
+    $('#chkDarkMode')[0].checked = options.enableDarkMode;
 
     $('#chkWhiteListMode')[0].checked = options.whiteListMode;
     $('#selExcludedSites').empty();
