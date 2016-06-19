@@ -1,6 +1,3 @@
-// Copyright (c) 2013 Manuel Bissinger <manuel.bissinger@gmail.com>
-// Licensed under the MIT license, read license.txt
-
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Kununu.com',

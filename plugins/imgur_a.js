@@ -1,7 +1,4 @@
-﻿// Copyright (c) 2013 Romain Vallet <romain.vallet@gmail.com>
-// Licensed under the MIT license, read license.txt
-
-var hoverZoomPlugins = hoverZoomPlugins || [];
+﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Imgur',
     prepareImgLinks:function (callback) {
@@ -14,7 +11,7 @@ hoverZoomPlugins.push({
             //return srcs.concat(srcs).concat(srcs).concat(srcs);
             return srcs;
         }
-        
+
         function htmlDecode(input){
             var e = document.createElement('div');
             e.innerHTML = input;
@@ -24,6 +21,14 @@ hoverZoomPlugins.push({
         function prepareImgLink() {
             var link = $(this), data = link.data(), href = link.attr('href');
             if (data.hoverZoomSrc || data.hoverZoomGallerySrc) {
+                return;
+            }
+
+            // special case for StackOverflow custom subdomain
+            if (-1 !== href.indexOf('i.stack.imgur.com')) {
+                data.hoverZoomSrc = [href.replace('http:', window.location.protocol)];
+                res.push(link);
+
                 return;
             }
 
@@ -39,7 +44,7 @@ hoverZoomPlugins.push({
                     if (excl.indexOf(hash) > -1) {
                         return;
                     }
-                    
+
                     switch (view) {
                         case 'signin':
                             return;
@@ -104,7 +109,7 @@ hoverZoomPlugins.push({
         }
 
         // Every sites
-        $('a[href*="//imgur.com/"], a[href*="//www.imgur.com/"], a[href*="//i.imgur.com/"], a[href*="//m.imgur.com/"]').each(prepareImgLink);
+        $('a[href*="//imgur.com/"], a[href*="//www.imgur.com/"], a[href*="//i.imgur.com/"], a[href*="//m.imgur.com/"], a[href*="//i.stack.imgur.com/"]').each(prepareImgLink);
 
         // On imgur.com (galleries, etc)
         if (window.location.host.indexOf('imgur.com') !== -1) {

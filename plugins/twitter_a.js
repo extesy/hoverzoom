@@ -1,6 +1,3 @@
-// Copyright (c) 2016 Oleg Anashkin <oleg.anashkin@gmail.com>
-// Licensed under the MIT license, read license.txt
-
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'pic.twitter.com',

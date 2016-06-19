@@ -1,8 +1,3 @@
-// Copyright (c) 2012 Romain Vallet <romain.vallet@gmail.com>
-// Licensed under the MIT license, read license.txt
-
-// Very similar to google plugin
-
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Yahoo',

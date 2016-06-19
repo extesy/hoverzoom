@@ -1,6 +1,3 @@
-// Copyright (c) 2010 Romain Vallet
-// Licensed under the MIT license, read license.txt
-
 // This was a tricky one.
 // Since the URLs of full size photos couldn't be guessed from the page source,
 // I had to go fetch them from the linked RSS file.

@@ -509,7 +509,7 @@ var hoverZoom = {
                 hz.hzImg.css('box-shadow', 'none');
                 var background = $('<div style="position: fixed; z-index: -2; top: 0; left: 0; opacity: 0.8; background-color: black; pointer-events: none" />').width(screen.availWidth).height(screen.availHeight);
                 background.appendTo(hz.hzImg);
-                var canvas = $('<canvas style="position: absolute; z-index: -1; transform: scale(1.2); -webkit-filter: blur(50px); opacity: 0.75; pointer-events: none"></canvas>');
+                var canvas = $('<canvas style="position: absolute; z-index: -1; transform: scale(1.2); -webkit-filter: blur(50px); opacity: 1; pointer-events: none"></canvas>');
                 canvas.appendTo(hz.hzImg);
             }
 
@@ -561,11 +561,8 @@ var hoverZoom = {
                 if (options.showCaptions && !options.ambilightEnabled && linkData.hoverZoomCaption) {
                     hzCaption = $('<div/>', {id:'hzCaption', text:linkData.hoverZoomCaption}).css(hzCaptionCss).appendTo(hz.hzImg);
                 }
-                if (linkData.hoverZoomGallerySrc) {
-                    var info = '';
-                    if (linkData.hoverZoomGallerySrc.length > 0) {
-                        info = (linkData.hoverZoomGalleryIndex + 1) + '/' + linkData.hoverZoomGallerySrc.length;
-                    }
+                if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) {
+                    var info = (linkData.hoverZoomGalleryIndex + 1) + '/' + linkData.hoverZoomGallerySrc.length;
                     hzGallery = $('<div/>', {id:'hzGallery', text:info}).css(hzGalleryInfoCss).appendTo(hz.hzImg);
                     if (linkData.hoverZoomGalleryIndex == 0 && linkData.hoverZoomGallerySrc.length > 1) {
                         preloadGalleryImage(1);
@@ -939,12 +936,15 @@ var hoverZoom = {
             if (options.galleriesMouseWheel) {
                 $(document).on('mousewheel', documentOnMouseWheel);
             }
+            if (options.zoomVideos) {
+                $(document).on('visibilitychange', hideHoverZoomImg);
+            }
         }
 
         function documentOnMouseWheel(event) {
             if (imgFullSize) {
                 var link = hz.currentLink, data = link.data();
-                if (data.hoverZoomGallerySrc) {
+                if (data.hoverZoomGallerySrc && data.hoverZoomGallerySrc.length !== 1) {
                     event.preventDefault();
                     if (event.originalEvent.wheelDeltaY > 0) {
                         rotateGalleryImg(-1);

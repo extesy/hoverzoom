@@ -1,7 +1,3 @@
-// Copyright (c) 2013 Romain Vallet
-// Licensed under the MIT license, read license.txt
-// Contributed by Thomas Efer and Manuel Bissinger <manuel.bissinger@gmail.com>
-
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Xing.com',

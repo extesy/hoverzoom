@@ -1,7 +1,3 @@
-// Copyright (c) 2010 Romain Vallet
-// Licensed under the MIT license, read license.txt
-// Contributed by Alex de Moure
-
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Badoo',

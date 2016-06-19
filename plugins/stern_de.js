@@ -1,7 +1,3 @@
-// Copyright (c) 2010 Romain Vallet
-// Licensed under the MIT license, read license.txt
-// Contributed by Thomas Efer
-
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Stern.de',

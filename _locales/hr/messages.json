@@ -75,6 +75,18 @@
     "message":"Videozapis",
     "description":"[options] Page section for video options"
   },
+  "optZoomFactor":{
+    "message":"Povećaj zumirane slike za ovaj faktor:",
+    "description":"[options] Adjust the size of zoomed images option"
+  },
+  "optZoomFactorUnitName":{
+    "message":"puta",
+    "description":"[options] Unit name (percentage) for zoomed images size option"
+  },
+  "optZoomFactorTooltip":{
+    "message":"Množi veličinu zumirane slike za ovaj faktor",
+    "description":"[options] Tooltip for adjust the size of zoomed images option"
+  },
   "optMouseUnderlap":{
     "message":"Povećati zumirane slike ispod pokazivača miša",
     "description":"[options] Extend zoomed images below the mouse cursor option"
@@ -122,6 +134,14 @@
   "optGalleriesMouseWheelTooltip":{
     "message":"Navigirajte kotačićem na mišu kroz album",
     "description":"[options] Tooltip for use mousewheel to navigate albums option"
+  },
+  "optDisableMouseWheelForVideo":{
+    "message":"Ne koristi kotačić na mišu za navigaciju u videozapisu (akcijske tipke dalje rade)",
+    "description":"[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
+  },
+  "optDisableMouseWheelForVideoTooltip":{
+    "message":"Listaj kroz album, ali nemoj ići naprijed\/nazad u videozapisu",
+    "description":"[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
   },
   "optZoomVideos":{
     "message":"Zumiranje videozapisa (WebM, MP4)",

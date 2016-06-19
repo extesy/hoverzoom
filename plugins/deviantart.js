@@ -1,12 +1,9 @@
-// Copyright (c) 2013 Romain Vallet <romain.vallet@gmail.com>
-// Licensed under the MIT license, read license.txt
-
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'deviantART',
     prepareImgLinks:function (callback) {
         var res = [];
-        $('a[data-super-img]').each(function () {
+        $('a[data-super-img], span[data-super-img]').each(function () {
             var _this = $(this),
                 url = this.dataset.superImg;
             if (options.showHighRes && this.dataset.superFullImg)

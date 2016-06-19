@@ -1,6 +1,3 @@
-// Copyright (c) 2011 Maciej Nowakowski <macnow@gmail.com>, Romain Vallet
-// Licensed under the MIT license, read license.txt
-
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Maxmodels',
