@@ -63,7 +63,7 @@ hoverZoomPlugins.push({
                                 } else {
                                     imgur.data.images.forEach(function (img, index) {
                                         var urls = [img.link],
-                                            caption = img.title,
+                                            caption = img.title != null ? img.title : '',
                                             alreadyAdded = false;
                                         for (var i=0, l=data.hoverZoomGallerySrc.length; i<l; i++) {
                                             if (data.hoverZoomGallerySrc[i].indexOf(urls[0]) != -1) {
@@ -72,10 +72,12 @@ hoverZoomPlugins.push({
                                             }
                                         }
                                         if (!alreadyAdded) {
-                                            if (caption != '' && img.description != '') {
-                                                caption += ';\n';
+                                            if (img.description != null) {
+                                                if (caption != '' && img.description != '') {
+                                                    caption += ';\n';
+                                                }
+                                                caption += img.description;
                                             }
-                                            caption += img.description;
                                             data.hoverZoomGalleryCaption.push(htmlDecode(caption));
                                             data.hoverZoomGallerySrc.push(urls);
                                             data.hoverZoomSrc = undefined;

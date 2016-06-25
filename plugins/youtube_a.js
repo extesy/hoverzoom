@@ -103,13 +103,13 @@ hoverZoomPlugins.push({
 
         hoverZoom.urlReplace(res,
             'img[src*="ytimg.com/vi/"], img[src*="ytimg.com/vi_webp/"]',
-            /\/([1-9]|default|mqdefault)\.(jpg|webp)/,
+            /\/([1-9]|default|hqdefault|mqdefault)\.(jpg|webp)/,
             '/0.$2'
         );
 
         $('a img[data-thumb*="ytimg.com/vi/"]').each(function () {
             var img = $(this); 
-            img.data().hoverZoomSrc = [this.getAttribute('data-thumb').replace(/\/([1-9]|default|mqdefault)\.jpg/, '/0.jpg')];
+            img.data().hoverZoomSrc = [this.getAttribute('data-thumb').replace(/\/([1-9]|default|hqdefault|mqdefault)\.jpg/, '/0.jpg')];
             res.push(img);
         });
 
