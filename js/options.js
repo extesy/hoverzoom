@@ -286,7 +286,7 @@ $(function () {
     $('#chkAddToHistory').parent().on('gumby.onChange', chkAddToHistoryModeOnChange);
     $('#txtZoomFactor').change(percentageOnChange);
     $('#txtPicturesOpacity').change(percentageOnChange);
-    $('#rngVideoVolume').change(updateTxtVideoVolume);
+    $('#rngVideoVolume').on('input change', updateTxtVideoVolume);
     $('#txtVideoVolume').change(percentageOnChange);
     $('#txtVideoPositionStep').change(percentageOnChange);
     $('.actionKey').change(selKeyOnChange);
