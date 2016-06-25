@@ -74,6 +74,7 @@ function saveOptions() {
     options.zoomVideos = $('#chkZoomVideos')[0].checked;
     options.videoPositionStep = $('#txtVideoPositionStep')[0].value;
     options.muteVideos = $('#chkMuteVideos')[0].checked;
+    options.videoTimestamp = $('#chkVideoTimestamp')[0].checked;
     options.videoVolume = $('#txtVideoVolume')[0].value / 100;
     options.mouseUnderlap = $('#chkMouseUnderlap')[0].checked;
     options.pageActionEnabled = $('#chkPageActionEnabled')[0].checked;
@@ -127,6 +128,7 @@ function restoreOptions() {
     $('#chkZoomVideos')[0].checked = options.zoomVideos;
     $('#txtVideoPositionStep')[0].value = options.videoPositionStep;
     $('#chkMuteVideos')[0].checked = options.muteVideos;
+    $('#chkVideoTimestamp')[0].checked = options.videoTimestamp;
     $('#rngVideoVolume').val(options.videoVolume * 100);
     $('#txtVideoVolume').val(options.videoVolume * 100);
     $('#chkMouseUnderlap')[0].checked = options.mouseUnderlap;

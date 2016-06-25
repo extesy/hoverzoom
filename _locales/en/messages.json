@@ -171,6 +171,14 @@
         "message": "Disable sound in zoomed videos",
         "description": "[options] Tooltip for mute zoomed videos option"
     },
+    "optVideoTimestamp": {
+        "message": "Show timestamp on videos",
+        "description": "[options] Enable timestamp / video length on videos"
+    },
+    "optVideoTimestampTooltip": {
+        "message": "Enable timestamp / video length on videos",
+        "description": "[options] Tooltip for video length countdown on videos"
+    },
     "optVideoVolume": {
         "message": "Audio volume for unmuted videos:",
         "description": "[options] Audio volume for unmuted videos option"
