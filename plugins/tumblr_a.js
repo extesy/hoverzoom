@@ -12,9 +12,10 @@ hoverZoomPlugins.push({
             }
 
             var url = img.attr('src'),
+                width = img.width(),
                 urls = [];
 
-            if (url.indexOf('_1280.') > -1) {
+            if ((url.indexOf('_1280.') > -1 && width >= 1280) || url.indexOf('.gif') > -1) {
                 return;
             }
             
@@ -26,10 +27,10 @@ hoverZoomPlugins.push({
                 .always(function() {
                     if (width < 500) {
                         urls.push(url.replace('maxwidth', '500'));
-                        link.data().hoverZoomSrc = urls;
-                        link.addClass('hoverZoomLink');
-                        hoverZoom.displayPicFromElement(link);
                     }            
+                    link.data().hoverZoomSrc = urls;
+                    link.addClass('hoverZoomLink');
+                    hoverZoom.displayPicFromElement(link);
                 });
         });
         hoverZoom.urlReplace(res,
