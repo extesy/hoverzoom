@@ -171,6 +171,14 @@
     "message":"Onemogućiti zvuk u zumiranom videozapisu",
     "description":"[options] Tooltip for mute zoomed videos option"
   },
+  "optVideoTimestamp":{
+    "message":"Prikaži vremensku oznaku na videozapisima",
+    "description":"[options] Enable timestamp \/ video length on videos"
+  },
+  "optVideoTimestampTooltip":{
+    "message":"Omogući vremensku oznaku \/ trajanje videozapisa na videozapisima",
+    "description":"[options] Tooltip for video length countdown on videos"
+  },
   "optVideoVolume":{
     "message":"Glasnoća zvuka za videozapise s uključenim zvukom:",
     "description":"[options] Audio volume for unmuted videos option"

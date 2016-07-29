@@ -33,10 +33,10 @@ hoverZoomPlugins.push({
             }
 
             if (options.zoomVideos && (href.substr(-3) == 'gif' || href.substr(-4) == 'gifv')) {
-                data.hoverZoomSrc = [href.replace(/\.gifv?/, '.webm'), href.replace(/\.gifv?/, '.mp4'), href];
+                data.hoverZoomSrc = [href.replace(/\.gifv?/, '.mp4'), href.replace(/\.gifv?/, '.webm'), href];
                 res.push(link);
             } else {
-                var matches = href.match(/(?:\/(a|gallery|signin))?\/([^\W_]{5,8})(?:\/|\.[a-zA-Z]+|#([^\W_]{5,8}|\d+))?(\/new|\/all|\?\d*)?$/);
+                var matches = href.match(/(?:\/(a|gallery|signin))?\/([^\W_]{5,8})(?:\/|\.[a-zA-Z]+|#([^\W_]{5,8}|\d+))?(\/new|\/all|\?.*)?$/);
                 if (matches && matches[2]) {
                     var view = matches[1];
                     var hash = matches[2];
