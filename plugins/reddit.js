@@ -43,7 +43,7 @@ hoverZoomPlugins.push({
         var link = anchor.attr('href');
         var post = div.parent().parent();
         var title = post.find('a.title').text();
-        post.find('a').each(function () {
+        post.find('a.thumbnail,a.title').each(function () {
           var img = $(this);
           img.data('hoverZoomSrc', [link]);
           img.data('hoverZoomCaption', [title]);
