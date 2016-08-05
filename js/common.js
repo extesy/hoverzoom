@@ -1,3 +1,10 @@
+if (typeof msBrowser !== 'undefined') {
+ chrome = msBrowser;
+}
+else if (typeof browser != 'undefined')
+{
+ chrome = browser;
+}
 // Load options from local storage
 // Return default values if none exist
 function loadOptions() {

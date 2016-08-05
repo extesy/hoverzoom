@@ -11,9 +11,13 @@
         "48": "images/icon48.png",
         "128": "images/icon128.png"
     },
+    "minimum_edge_version": "33.14281.1000.0",
+    "locale": "en",
+    "author": "Oleg Anashkin",
     "default_locale": "en",
     "minimum_chrome_version": "22",
     "background": {
+        "persistent": true,
         "scripts": ["js/common.js", "js/background.js"]
     },
     "options_page": "html/options.html",
@@ -22,8 +26,10 @@
         "chrome_style": false,
         "open_in_tab": true
     },
-    "page_action": {
-        "default_icon": "images/icon19.png",
+    "browser_action": {
+        "default_icon": {
+            "19": "images/icon19.png"
+        },
         "default_popup": "html/popup.html",
         "default_title": "Hover Zoom+"
     },
