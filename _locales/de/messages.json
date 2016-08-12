@@ -171,6 +171,14 @@
     "message":"Deaktiviert den Ton im gezoomten Videos",
     "description":"[options] Tooltip for mute zoomed videos option"
   },
+  "optVideoTimestamp":{
+    "message":"Zeitstempel auf Videos anzeigen",
+    "description":"[options] Enable timestamp \/ video length on videos"
+  },
+  "optVideoTimestampTooltip":{
+    "message":"Zeitstempel und Länge auf Videos aktivieren",
+    "description":"[options] Tooltip for video length countdown on videos"
+  },
   "optVideoVolume":{
     "message":"Lautstärke für nicht stumm geschaltete Videos:",
     "description":"[options] Audio volume for unmuted videos option"

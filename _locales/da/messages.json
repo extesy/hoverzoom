@@ -71,6 +71,22 @@
     "message":"Vis",
     "description":"[options] Page section for view options"
   },
+  "optSectionVideo":{
+    "message":"Video",
+    "description":"[options] Page section for video options"
+  },
+  "optZoomFactor":{
+    "message":"Forstør zoomede billeder med denne faktor:",
+    "description":"[options] Adjust the size of zoomed images option"
+  },
+  "optZoomFactorUnitName":{
+    "message":"gange",
+    "description":"[options] Unit name (percentage) for zoomed images size option"
+  },
+  "optZoomFactorTooltip":{
+    "message":"Forøg størrelsen af forstørrede billeder med denne mændge",
+    "description":"[options] Tooltip for adjust the size of zoomed images option"
+  },
   "optMouseUnderlap":{
     "message":"Stræk forstørrede billeder ned under musemarkøren",
     "description":"[options] Extend zoomed images below the mouse cursor option"
@@ -119,6 +135,14 @@
     "message":"Bladr igennem albummer ved hjælp af musehjulet",
     "description":"[options] Tooltip for use mousewheel to navigate albums option"
   },
+  "optDisableMouseWheelForVideo":{
+    "message":"Brug ikke musehjulet til at navigere i video (actions keys vil stadig fungere)",
+    "description":"[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
+  },
+  "optDisableMouseWheelForVideoTooltip":{
+    "message":"Rul gennem albummer, men hop ikke frem\/tilbage i videoer",
+    "description":"[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
+  },
   "optZoomVideos":{
     "message":"Forstør videoer (WebM, MP4)",
     "description":"[options] Zoom videos (WebM, MP4) option"
@@ -127,9 +151,17 @@
     "message":"Forstør videoer (WebM, MP4)",
     "description":"[options] Tooltip for zoom videos (WebM, MP4) option"
   },
+  "optVideoPositionStep":{
+    "message":"Brug forrige\/næste action key (eller musehjul) til at ændre video position med",
+    "description":"[options] Changing video position amount option"
+  },
   "optVideoPositionStepUnitName":{
     "message":"sek",
     "description":"[options] Unit name (seconds) for changing video position option"
+  },
+  "optVideoPositionStepTooltip":{
+    "message":"Spring frem eller tilbage i video med dette antal sekunder",
+    "description":"[options] Tooltip for changing video position option"
   },
   "optMuteVideos":{
     "message":"Gør forstørrede videoer lydløse",
@@ -139,9 +171,33 @@
     "message":"Gør forstørrede videoer lydløse",
     "description":"[options] Tooltip for mute zoomed videos option"
   },
+  "optVideoTimestamp":{
+    "message":"Vis varighed på videoer",
+    "description":"[options] Enable timestamp \/ video length on videos"
+  },
+  "optVideoTimestampTooltip":{
+    "message":"Aktiver varighed \/ videolængde på videoer",
+    "description":"[options] Tooltip for video length countdown on videos"
+  },
+  "optVideoVolume":{
+    "message":"Lyd niveau på videoer med lyd:",
+    "description":"[options] Audio volume for unmuted videos option"
+  },
   "optVideoVolumeUnitName":{
     "message":"%",
     "description":"[options] Unit name (percentage) for video volume option"
+  },
+  "optVideoVolumeTooltip":{
+    "message":"Hvis videoen ikke er helt muted, sæt volumen til denne procent (0-100)",
+    "description":"[options] Tooltip for audio volume for unmuted videos option"
+  },
+  "optEnableAmbilight":{
+    "message":"Aktiver baggrundslys bag billeder",
+    "description":"[options] Enable ambient light behind images option"
+  },
+  "optEnableAmbilightTooltip":{
+    "message":"Skab en let glød effekt lignende Phillips Ambiligt teknologi.",
+    "description":"[options] Tooltip for enable ambient light behind images option"
   },
   "optSectionDelays":{
     "message":"Forsinkelser",
@@ -151,6 +207,10 @@
     "message":"Forsinkelse før visning af et billede:",
     "description":"[options] Delay before displaying a picture option"
   },
+  "optDisplayDelayVideo":{
+    "message":"Forsinkelse før visning af en video:",
+    "description":"[options] Delay before displaying a video option"
+  },
   "optFadeDuration":{
     "message":"Varighed af falmende animation:",
     "description":"[options] Fading animation duration option"
@@ -158,6 +218,14 @@
   "optDurationUnitName":{
     "message":"sek",
     "description":"[options] Short form of \"second\" for delay duration"
+  },
+  "optPagePlugins":{
+    "message":"Udvidelser",
+    "description":"[options] Page title for plugin options"
+  },
+  "optPlugins":{
+    "message":"Aktiver\/Deaktiver specifikke udvidelser",
+    "description":"[options] Section which contains checkboxes for disabling plugins"
   },
   "optPageSites":{
     "message":"Sider",
@@ -278,5 +346,37 @@
   "optFullZoomKeyTitle":{
     "message":"Aktiver fuld forstørrelse",
     "description":"[options] Action key title"
+  },
+  "optFullZoomKeyDescription":{
+    "message":"Når denne knap holdes nede, vises billedet med al tilgængelig plads. Kun brugbar til billeder i høj opløsning.",
+    "description":"[options] Action key description"
+  },
+  "optPrevImgKeyTitle":{
+    "message":"Vis forrige billede i et galleri",
+    "description":"[options] Action key title"
+  },
+  "optPrevImgKeyDescription":{
+    "message":"Tryk på denne tast for at få vist det forrige billede i galleri.",
+    "description":"[options] Action key description"
+  },
+  "optNextImgKeyTitle":{
+    "message":"Vis det næste billede i et galleri",
+    "description":"[options] Action key title"
+  },
+  "optNextImgKeyDescription":{
+    "message":"Tryk på denne tast for at få vist det næste billede i et galleri.",
+    "description":"[options] Action key description"
+  },
+  "optFooterSourceCode":{
+    "message":"Kildekode",
+    "description":"[options] Source code link in page footer"
+  },
+  "optFooterReportIssue":{
+    "message":"Rapporter en fejl",
+    "description":"[options] Report a bug link in page footer"
+  },
+  "optFooterVersionCopyright":{
+    "message":"Version $1 - © 2014-2016 Oleg Anashkin",
+    "description":"[options] Copyright and version number in page footer"
   }
 }

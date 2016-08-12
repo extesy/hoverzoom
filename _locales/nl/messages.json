@@ -134,5 +134,85 @@
   "optGalleriesMouseWheelTooltip":{
     "message":"Album met het muiswiel navigeren",
     "description":"[options] Tooltip for use mousewheel to navigate albums option"
+  },
+  "optVideoPositionStepUnitName":{
+    "message":"sec",
+    "description":"[options] Unit name (seconds) for changing video position option"
+  },
+  "optVideoVolumeUnitName":{
+    "message":"%",
+    "description":"[options] Unit name (percentage) for video volume option"
+  },
+  "optSectionDelays":{
+    "message":"Vertragingen",
+    "description":"[options] Page section for delay options"
+  },
+  "optDisplayDelay":{
+    "message":"Vertraging voor het weergeven van een afbeelding:",
+    "description":"[options] Delay before displaying a picture option"
+  },
+  "optDisplayDelayVideo":{
+    "message":"Vertraging voor het weergeven van een video:",
+    "description":"[options] Delay before displaying a video option"
+  },
+  "optFadeDuration":{
+    "message":"Duur van vervaag-animatie:",
+    "description":"[options] Fading animation duration option"
+  },
+  "optDurationUnitName":{
+    "message":"sec",
+    "description":"[options] Short form of \"second\" for delay duration"
+  },
+  "optSitePlaceholder":{
+    "message":"Voorbeelden: facebook.com, google.com\/reader",
+    "description":"[options] Placeholder for a site url input box"
+  },
+  "optButtonAddSite":{
+    "message":"Toevoegen",
+    "description":"[options] Button for adding a site on sites option page"
+  },
+  "optPageAdvanced":{
+    "message":"Geavanceerd",
+    "description":"[options] Page title for advanced options"
+  },
+  "optSectionAdvanced":{
+    "message":"Geavanceerde opties",
+    "description":"[options] Page section for advanced options"
+  },
+  "optUpdateNotifications":{
+    "message":"Toon updatemeldingen",
+    "description":"[options] Show update notifications option"
+  },
+  "optShowLastUpdateNotification":{
+    "message":"(toon laatste melding)",
+    "description":"[options] Show last update notification"
+  },
+  "optEnableGalleries":{
+    "message":"Schakel albumondersteuning in",
+    "description":"[options] Enable albums support option"
+  },
+  "optOpacityUnitName":{
+    "message":"%",
+    "description":"[options] Unit name (percentage) for opacity option"
+  },
+  "optActionKeyTitle":{
+    "message":"Hover Zoom+ inschakelen",
+    "description":"[options] Action key title"
+  },
+  "optHideKeyTitle":{
+    "message":"Hover Zoom+ uitschakelen",
+    "description":"[options] Action key title"
+  },
+  "optOpenImageInWindowKeyTitle":{
+    "message":"Open afbeelding in een nieuw venster",
+    "description":"[options] Action key title"
+  },
+  "optOpenImageInTabKeyTitle":{
+    "message":"Open afbeelding in een nieuw tabblad",
+    "description":"[options] Action key title"
+  },
+  "optFooterSourceCode":{
+    "message":"Broncode",
+    "description":"[options] Source code link in page footer"
   }
 }

@@ -171,6 +171,14 @@
     "message":"Stänga av ljudet i zoomade videor",
     "description":"[options] Tooltip for mute zoomed videos option"
   },
+  "optVideoTimestamp":{
+    "message":"Visa tidsstämpel på videor",
+    "description":"[options] Enable timestamp \/ video length on videos"
+  },
+  "optVideoTimestampTooltip":{
+    "message":"Aktivera tidsstämpel \/ videolängd på videor",
+    "description":"[options] Tooltip for video length countdown on videos"
+  },
   "optVideoVolume":{
     "message":"Ljudvolym för videoklipp:",
     "description":"[options] Audio volume for unmuted videos option"
