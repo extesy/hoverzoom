@@ -11,7 +11,7 @@ hoverZoomPlugins.push({
             if (!data.hoverZoomSrc) {
                 var href = data.src;
                 if (href.indexOf('//i.imgur.com/') !== -1) {
-                    data.hoverZoomSrc = [href.replace(/\.gifv?/, '.webm'), href.replace(/\.gifv?/, '.mp4'), href];
+                    data.hoverZoomSrc = [href.replace(/\.gifv?/, '.mp4'), href.replace(/\.gifv?/, '.webm'), href];
                 } else {
                     data.hoverZoomSrc = [href];
                 }
