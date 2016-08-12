@@ -79,11 +79,29 @@ hoverZoomPlugins.push({
         //this.node.IMGS_fbp=u
         //return n&&typeof n!='number'||n===null? (Array.isArray(n) ? n.join('\n') : n) : ($[1]?'':u)
 
+        function fetchPhoto(link, attr) {
+            var regex = /fbid=(\d+).*/, matches = regex.exec(link.attr(attr)), fbid = matches.length > 1 ? matches[1] : '';
+            if (fbid) {
+                hoverZoom.prepareFromDocument(link, 'https://mbasic.facebook.com/photo.php?fbid=' + fbid, function(doc) {
+                    var links = doc.querySelectorAll('a[href*="fbcdn"]');
+                    console.log(links[links.length-1].href);
+                    return links.length > 0 ? links[links.length-1].href : false;
+                });
+            } else {
+                var url = link.attr(attr).replace('photo.php', 'photo/download/');
+                link.data().hoverZoomSrc = [url];
+                link.addClass('hoverZoomLink');
+            }
+        }
+
         $('a[href*="/photo.php"]').one('mouseover', function () {
             var link = $(this);
-            var url = link.attr('href').replace('photo.php', 'photo/download/');
-            link.data().hoverZoomSrc = [url];
-            link.addClass('hoverZoomLink');
+            fetchPhoto(link, 'href');
+        });
+
+        $('a[ajaxify*="&fbid="]').one('mouseover', function () {
+            var link = $(this);
+            fetchPhoto(link, 'ajaxify');
         });
 
         $('a[ajaxify*="src="]:not(.coverWrap)').one('mouseover', function () {
