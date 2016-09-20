@@ -300,7 +300,7 @@
     "description":"[options] Action key title"
   },
   "optActionKeyDescription":{
-    "message":"Если влючено, то Hover Zoom+ будет активным только тогда, когда эта клавиша удерживается нажатой.",
+    "message":"Если включено, то Hover Zoom+ будет активным только тогда, когда эта клавиша удерживается нажатой.",
     "description":"[options] Action key description"
   },
   "optHideKeyTitle":{
