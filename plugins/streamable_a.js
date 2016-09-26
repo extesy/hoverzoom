@@ -9,7 +9,7 @@ hoverZoomPlugins.push({
                 regex = url.match(/\/([\d\w]+)$/);
             if (regex) {
                 var id = regex[1];
-                link.data().hoverZoomSrc = ['//cdn.streamable.com/video/mp4/' + id + '.mp4'];
+                link.data().hoverZoomSrc = ['//cdn.streamable.com/video/mp4/' + id + '.mp4', '//cdn-e2.streamable.com/video/mp4/' + id + '.mp4'];
                 res.push(link);
             }
         });
