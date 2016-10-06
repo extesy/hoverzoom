@@ -35,21 +35,16 @@ hoverZoomPlugins.push({
       res.push(img);
     });
 
-    $('div[data-cachedhtml*="//i.redd.it/"]').each(function () {
-      var div = $(this);
-      var html = $(div.attr('data-cachedhtml'));
-      var anchor = html.find('a[href*="//i.redd.it/"]');
-      if (anchor.length > 0) {
-        var link = anchor.attr('href');
-        var post = div.parent().parent();
-        var title = post.find('a.title').text();
-        post.find('a.thumbnail,a.title').each(function () {
-          var img = $(this);
-          img.data('hoverZoomSrc', [link]);
-          img.data('hoverZoomCaption', [title]);
-          res.push(img);
-        });
-      }
+    $('div[data-url*="//i.redd.it/"]').each(function () {
+      var post = $(this);
+      var link = post.attr('data-url');
+      var title = post.find('a.title').text();
+      post.find('a.thumbnail,a.title').each(function () {
+        var img = $(this);
+        img.data('hoverZoomSrc', [link]);
+        img.data('hoverZoomCaption', [title]);
+        res.push(img);
+      });
     });
 
     callback($(res));
