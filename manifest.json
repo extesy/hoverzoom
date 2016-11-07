@@ -1297,6 +1297,10 @@
             "matches": ["*://*.slickdeals.net/*"]
         },
         {
+            "js": ["plugins/flipkart.js"],
+            "matches": ["*://*.flipkart.com/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
