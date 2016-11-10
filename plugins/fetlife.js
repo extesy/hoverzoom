@@ -1,19 +1,40 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'fetlife',
-    prepareImgLinks: function(callback) {
-        
-        // fixes fet's url image server changes circa mid april 2016
-        // (not sure if there's a regualr expression way to catch the picX.fetlife.com format here?)
-        var res = [];
-        hoverZoom.urlReplace(res,
-        	'a img[src*="/pic0.fetlife.com"], a img[src*="pic1.fetlife.com"], a img[src*="pic2.fetlife.com"],a img[src*="pic3.fetlife.com"], a img[src*="/pic4.fetlife.com"], a img[src*="pic5.fetlife.com"], a img[src*="pic6.fetlife.com"]',
-        	/_\d+\.jpg\??.*/,
-        	'_958.jpg');
-        
-        // The following line grabs the image from its frame on an individual picture's page;
-        // unused since you can already access the full image from the gallery view
-        //hoverZoom.urlReplace(res, 'a.main_pic span.fake_img', /_\d+\.jpg/, '_958.jpg');
-        callback($(res));
+
+    // fetlife updated their image serving to require CSRF-style tokens to view anything
+    // so now we need to load the actual picture page to get the full image URL with token to view anything
+    // here's the work on it (iambic9 on fetlife if you have any questions or suggestions!)
+    prepareImgLinks:function (callback) {
+        $('a[href*="/users/"]').filter(function() {
+
+            // this class is the full-size image preview (but still has a link to the next image)
+            if($(this).hasClass('fl-transparent-facade'))
+                return false;
+
+            return this.href.match(/fetlife.com\/users\/\d+\/pictures\/\d+$/);
+        }).each(function(){
+            var link= this.href;
+            var img = ($(this).find('img').length > 0 ? $(this) : $(this).parent());
+
+            // push the caption from the image into the link data
+            $(this).data().hoverZoomCaption = img.find('img:first').attr('title');
+
+            // actually pull the picture page when we move the mouse over this object (so we don't spam requests)
+            img.one('mousemove', function() {
+                hoverZoom.prepareFromDocument($(this), link, function(doc) {
+
+                    var img = doc.getElementsByClassName('fl-picture__img')[0];
+
+                    if (img) {
+                        img.title = img.alt;
+                        return img.src;
+                    } else {
+                        return false;
+                    }
+                });
+            });
+        })
+
     }
 });
