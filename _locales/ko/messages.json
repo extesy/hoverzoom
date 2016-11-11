@@ -1,0 +1,246 @@
+{
+  "extName":{
+    "message":"호버 줌+",
+    "description":"Extension name"
+  },
+  "extShortName":{
+    "message":"호버 줌",
+    "description":"Short extension name"
+  },
+  "extDescription":{
+    "message":"모든 즐겨찾기 사이트(페이스북, 아마존 등) 의 이미지\/비디오를 확대해서 보여줍니다. 확대하려는 이미지 위에 마우스를 올려 놓으세요.",
+    "description":"Extension description in Chrome webstore (max. 132 characters)"
+  },
+  "extUpdated":{
+    "message":"호버 줌+ 가 업데이트 되었습니다.",
+    "description":"Extension update notification"
+  },
+  "popDisableForAllSites":{
+    "message":"모든 사이트에서 사용안함",
+    "description":"[popup] Disable the extension"
+  },
+  "popPreloadImages":{
+    "message":"읽어들인 확대 이미지",
+    "description":"[popup] Preload zoomed images"
+  },
+  "popPreloadingImages":{
+    "message":"미리 읽는 중...",
+    "description":"[popup] Preloading zoomed images"
+  },
+  "popMoreOptions":{
+    "message":"옵션 더 보기",
+    "description":"[popup] More options"
+  },
+  "optTitle":{
+    "message":"호버 줌+ 옵션",
+    "description":"[options] Page title"
+  },
+  "optButtonSave":{
+    "message":"저장",
+    "description":"[options] Save button label"
+  },
+  "optButtonReset":{
+    "message":"초기화",
+    "description":"[options] Reset button label"
+  },
+  "optSaved":{
+    "message":"저장 완료. 일부 설정은 재시작이 필요합니다.",
+    "description":"[options] Notification after saving options"
+  },
+  "optPageGeneral":{
+    "message":"기본",
+    "description":"[options] Page title for general options"
+  },
+  "optExtensionEnabled":{
+    "message":"호버 줌 활성화",
+    "description":"[options] Enable Hover Zoom+ option"
+  },
+  "optSectionView":{
+    "message":"보기",
+    "description":"[options] Page section for view options"
+  },
+  "optSectionVideo":{
+    "message":"비디오",
+    "description":"[options] Page section for video options"
+  },
+  "optZoomFactor":{
+    "message":"이 조건으로 이미지 확대:",
+    "description":"[options] Adjust the size of zoomed images option"
+  },
+  "optPageActionEnabled":{
+    "message":"주소창의 아이콘 보기",
+    "description":"[options] Show icon in address bar option"
+  },
+  "optShowWhileLoading":{
+    "message":"로딩 중 확대 된 사진 보기",
+    "description":"[options] Show zoomed pictures while loading option"
+  },
+  "optShowWhileLoadingTooltip":{
+    "message":"이미지 로드가 완료되기 전에 확대 된 이미지가 보여집니다.",
+    "description":"[options] Tooltip for show zoomed pictures while loading option"
+  },
+  "optShowHighRes":{
+    "message":"가능할 경우 고해상도 이미지 보기",
+    "description":"[options] Show high resolution pictures when available option"
+  },
+  "optShowHighResTooltip":{
+    "message":"사진을 불러오는데 더 많은 시간이 걸릴 수 있습니다.",
+    "description":"[options] Tooltip for show high resolution pictures when available option"
+  },
+  "optGalleriesMouseWheel":{
+    "message":"앨범에 마우스 휠 사용",
+    "description":"[options] Use mousewheel to navigate albums option"
+  },
+  "optVideoPositionStep":{
+    "message":"비디오 탐색에 뒤로\/앞으로 단축키(또는 마우스 휠) 사용",
+    "description":"[options] Changing video position amount option"
+  },
+  "optVideoPositionStepUnitName":{
+    "message":"초",
+    "description":"[options] Unit name (seconds) for changing video position option"
+  },
+  "optMuteVideos":{
+    "message":"확대 된 동영상 음소거",
+    "description":"[options] Mute zoomed videos option"
+  },
+  "optMuteVideosTooltip":{
+    "message":"확대 된 동영상의 소리 끄기",
+    "description":"[options] Tooltip for mute zoomed videos option"
+  },
+  "optVideoTimestamp":{
+    "message":"비디오의 타임 스탬프 보기",
+    "description":"[options] Enable timestamp \/ video length on videos"
+  },
+  "optVideoVolume":{
+    "message":"동영상의 소리 크기",
+    "description":"[options] Audio volume for unmuted videos option"
+  },
+  "optVideoVolumeUnitName":{
+    "message":"퍼센트",
+    "description":"[options] Unit name (percentage) for video volume option"
+  },
+  "optVideoVolumeTooltip":{
+    "message":"동영상이 음소거 되지 않았을 때, 소리 크기 설정(0-100%)",
+    "description":"[options] Tooltip for audio volume for unmuted videos option"
+  },
+  "optEnableAmbilight":{
+    "message":"이미지 주변광 활성화",
+    "description":"[options] Enable ambient light behind images option"
+  },
+  "optEnableAmbilightTooltip":{
+    "message":"필립스 주변광 기술(Phillips Ambilight technology) 과 유사한 효과를 생성합니다.",
+    "description":"[options] Tooltip for enable ambient light behind images option"
+  },
+  "optSectionDelays":{
+    "message":"딜레이",
+    "description":"[options] Page section for delay options"
+  },
+  "optDisplayDelay":{
+    "message":"사진 표시 딜레이:",
+    "description":"[options] Delay before displaying a picture option"
+  },
+  "optDisplayDelayVideo":{
+    "message":"동영상 표시 딜레이:",
+    "description":"[options] Delay before displaying a video option"
+  },
+  "optDurationUnitName":{
+    "message":"초",
+    "description":"[options] Short form of \"second\" for delay duration"
+  },
+  "optPagePlugins":{
+    "message":"플러그인",
+    "description":"[options] Page title for plugin options"
+  },
+  "optPageSites":{
+    "message":"웹페이지",
+    "description":"[options] Page title for site options"
+  },
+  "optButtonAddSite":{
+    "message":"추가",
+    "description":"[options] Button for adding a site on sites option page"
+  },
+  "optPageActionKeys":{
+    "message":"활성화 키",
+    "description":"[options] Page title for action key options"
+  },
+  "optPageAdvanced":{
+    "message":"고급",
+    "description":"[options] Page title for advanced options"
+  },
+  "optSectionAdvanced":{
+    "message":"고급 옵션",
+    "description":"[options] Page section for advanced options"
+  },
+  "optUpdateNotifications":{
+    "message":"업데이트 알림 표시",
+    "description":"[options] Show update notifications option"
+  },
+  "optShowLastUpdateNotification":{
+    "message":"(마지막 알림 표시)",
+    "description":"[options] Show last update notification"
+  },
+  "optAddToHistory":{
+    "message":"확인한 사진을 브라우저 히스토리에 추가",
+    "description":"[options] Add viewed pictures to the browser's history option"
+  },
+  "optFilterNSFW":{
+    "message":"안전하지 않은 이미지 차단(Reddit 전용)",
+    "description":"[options] Exclude NSFW images (Reddit only) option"
+  },
+  "optAlwaysPreload":{
+    "message":"확대 된 이미지 자동으로 미리 읽기",
+    "description":"[options] Automatically preload zoomed images option"
+  },
+  "optEnableGalleries":{
+    "message":"앨범 지원 활성화",
+    "description":"[options] Enable albums support option"
+  },
+  "optPicturesOpacity":{
+    "message":"확대 된 이미지의 투명도:",
+    "description":"[options] Zoomed pictures opacity option"
+  },
+  "optOpacityUnitName":{
+    "message":"퍼센트",
+    "description":"[options] Unit name (percentage) for opacity option"
+  },
+  "optActionKeyTitle":{
+    "message":"호버 줌+ 활성화",
+    "description":"[options] Action key title"
+  },
+  "optHideKeyTitle":{
+    "message":"호버 줌+ 비활성화",
+    "description":"[options] Action key title"
+  },
+  "optOpenImageInWindowKeyTitle":{
+    "message":"새 창에서 이미지 열기",
+    "description":"[options] Action key title"
+  },
+  "optOpenImageInTabKeyTitle":{
+    "message":"새 탭에서 이미지 열기",
+    "description":"[options] Action key title"
+  },
+  "optSaveImageKeyTitle":{
+    "message":"이미지 저장",
+    "description":"[options] Action key title"
+  },
+  "optFullZoomKeyTitle":{
+    "message":"전체 확대 활성화",
+    "description":"[options] Action key title"
+  },
+  "optPrevImgKeyTitle":{
+    "message":"갤러리에서 이전 이미지 보기",
+    "description":"[options] Action key title"
+  },
+  "optNextImgKeyTitle":{
+    "message":"갤러리에서 다음 이미지 보기",
+    "description":"[options] Action key title"
+  },
+  "optFooterSourceCode":{
+    "message":"소스 코드",
+    "description":"[options] Source code link in page footer"
+  },
+  "optFooterReportIssue":{
+    "message":"오류 보고",
+    "description":"[options] Report a bug link in page footer"
+  }
+}

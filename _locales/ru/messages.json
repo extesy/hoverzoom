@@ -171,6 +171,14 @@
     "message":"Отключить звук в увеличенном видео",
     "description":"[options] Tooltip for mute zoomed videos option"
   },
+  "optVideoTimestamp":{
+    "message":"Показать отметку времени на видео",
+    "description":"[options] Enable timestamp \/ video length on videos"
+  },
+  "optVideoTimestampTooltip":{
+    "message":"Показать отметку времени и общую продолжительность видео",
+    "description":"[options] Tooltip for video length countdown on videos"
+  },
   "optVideoVolume":{
     "message":"Громкость звука для увеличенных видео:",
     "description":"[options] Audio volume for unmuted videos option"

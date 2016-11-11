@@ -75,6 +75,18 @@
     "message":"Video",
     "description":"[options] Page section for video options"
   },
+  "optZoomFactor":{
+    "message":"Bu faktör kadar yakınlaştırılmış resimleri büyüt:",
+    "description":"[options] Adjust the size of zoomed images option"
+  },
+  "optZoomFactorUnitName":{
+    "message":"kez",
+    "description":"[options] Unit name (percentage) for zoomed images size option"
+  },
+  "optZoomFactorTooltip":{
+    "message":"Bu miktar kadar yakınlaştırılmış resimlerin boyutunu çarpın",
+    "description":"[options] Tooltip for adjust the size of zoomed images option"
+  },
   "optMouseUnderlap":{
     "message":"Yakınlaştırılmış resimleri fare tekerleğiyle genişlet",
     "description":"[options] Extend zoomed images below the mouse cursor option"
@@ -123,6 +135,14 @@
     "message":"Fare tekerleğiyle albümleri gezin",
     "description":"[options] Tooltip for use mousewheel to navigate albums option"
   },
+  "optDisableMouseWheelForVideo":{
+    "message":"Video içinde gezinmek için fare tekerleğini kullanmayın (eylem tuşları hala çalışır)",
+    "description":"[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
+  },
+  "optDisableMouseWheelForVideoTooltip":{
+    "message":"Albümler arasında gezinin ama ileri\/geri atlamayın",
+    "description":"[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
+  },
   "optZoomVideos":{
     "message":"Videoları yakınlaştır (WebM, MP4)",
     "description":"[options] Zoom videos (WebM, MP4) option"
@@ -150,6 +170,14 @@
   "optMuteVideosTooltip":{
     "message":"Yakınlaştırılmış videoları sessize al",
     "description":"[options] Tooltip for mute zoomed videos option"
+  },
+  "optVideoTimestamp":{
+    "message":"Videolarda zaman damgasını göster",
+    "description":"[options] Enable timestamp \/ video length on videos"
+  },
+  "optVideoTimestampTooltip":{
+    "message":"Videolarda zaman damgası \/ video uzunluğunu etkinleştir",
+    "description":"[options] Tooltip for video length countdown on videos"
   },
   "optVideoVolume":{
     "message":"Sessize alınmamış videolar için ses seviyesi:",

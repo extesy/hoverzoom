@@ -171,6 +171,14 @@
     "message":"Silenzia video ingranditi",
     "description":"[options] Tooltip for mute zoomed videos option"
   },
+  "optVideoTimestamp":{
+    "message":"Mostra il tempo rimanente sui video",
+    "description":"[options] Enable timestamp \/ video length on videos"
+  },
+  "optVideoTimestampTooltip":{
+    "message":"Visualizza il tempo rimanente sui video",
+    "description":"[options] Tooltip for video length countdown on videos"
+  },
   "optVideoVolume":{
     "message":"Volume audio per video non-silenziati:",
     "description":"[options] Audio volume for unmuted videos option"

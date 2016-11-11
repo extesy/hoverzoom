@@ -1,0 +1,250 @@
+{
+  "extName":{
+    "message":"Hover Zoom+",
+    "description":"Extension name"
+  },
+  "extShortName":{
+    "message":"HoverZoom",
+    "description":"Short extension name"
+  },
+  "extDescription":{
+    "message":"Suurenna kuvia ja videoita suosikki sivuillasi (Facebook, Amazon, Youtube, jne.). Siirrä hiiri kuvan päälle suurentaaksesi sen.",
+    "description":"Extension description in Chrome webstore (max. 132 characters)"
+  },
+  "extUpdated":{
+    "message":"Hover Zoom+ on päivitetty",
+    "description":"Extension update notification"
+  },
+  "popDisableForAllSites":{
+    "message":"Poista käytöstä kaikilta sivuilta",
+    "description":"[popup] Disable the extension"
+  },
+  "popAllowPerSiteToggle":{
+    "message":"Salli sivukohtainen asetus",
+    "description":"[popup] Allow per-site extension configuration"
+  },
+  "popDisableForSite":{
+    "message":"Poista käytöstä $1",
+    "description":"[popup] Disables the extension for a specific site"
+  },
+  "popEnableForSite":{
+    "message":"Ota käyttöön $1",
+    "description":"[popup] Enables the extension for a specific site"
+  },
+  "popPreloadImages":{
+    "message":"Esilataa suurennetut kuvat",
+    "description":"[popup] Preload zoomed images"
+  },
+  "popPreloadingImages":{
+    "message":"Esiladataan...",
+    "description":"[popup] Preloading zoomed images"
+  },
+  "popMoreOptions":{
+    "message":"Lisäasetukset",
+    "description":"[popup] More options"
+  },
+  "optTitle":{
+    "message":"Hover Zoom+ Asetukset",
+    "description":"[options] Page title"
+  },
+  "optButtonSave":{
+    "message":"Tallenna",
+    "description":"[options] Save button label"
+  },
+  "optButtonReset":{
+    "message":"Palauta",
+    "description":"[options] Reset button label"
+  },
+  "optSaved":{
+    "message":"Asetukset tallennettu. Jotkin asetukset voivat vaatia sivun päivityksen.",
+    "description":"[options] Notification after saving options"
+  },
+  "optPageGeneral":{
+    "message":"Yleinen",
+    "description":"[options] Page title for general options"
+  },
+  "optExtensionEnabled":{
+    "message":"Hover Zoom+ päälle",
+    "description":"[options] Enable Hover Zoom+ option"
+  },
+  "optSectionView":{
+    "message":"Ruutu",
+    "description":"[options] Page section for view options"
+  },
+  "optSectionVideo":{
+    "message":"Video",
+    "description":"[options] Page section for video options"
+  },
+  "optZoomFactor":{
+    "message":"Suurennettavien kuvien koko:",
+    "description":"[options] Adjust the size of zoomed images option"
+  },
+  "optZoomFactorUnitName":{
+    "message":"kertaa",
+    "description":"[options] Unit name (percentage) for zoomed images size option"
+  },
+  "optZoomFactorTooltip":{
+    "message":"Suurenna kuvien koko",
+    "description":"[options] Tooltip for adjust the size of zoomed images option"
+  },
+  "optMouseUnderlap":{
+    "message":"Laajenna suurennetut kuvat hiiren alapuolelle",
+    "description":"[options] Extend zoomed images below the mouse cursor option"
+  },
+  "optPageActionEnabled":{
+    "message":"Näytä kuvake osoitepalkissa",
+    "description":"[options] Show icon in address bar option"
+  },
+  "optPageActionEnabledTooltip":{
+    "message":"Vain silloin kuin kuvia voi zoomata",
+    "description":"[options] Tooltip for show icon in address bar option"
+  },
+  "optShowCaptions":{
+    "message":"Näytä kuvatekstit",
+    "description":"[options] Show pictures captions option"
+  },
+  "optShowCaptionsTooltip":{
+    "message":"Kuvatekstit näytetään vain kuin ne ovat saatavilla",
+    "description":"[options] Tooltip for show pictures captions option"
+  },
+  "optShowWhileLoading":{
+    "message":"Näytä zoomattu kuva ladattaessa",
+    "description":"[options] Show zoomed pictures while loading option"
+  },
+  "optShowWhileLoadingTooltip":{
+    "message":"Zoomattu kuva näytetään ennenkuin se on ladattu kokonaan",
+    "description":"[options] Tooltip for show zoomed pictures while loading option"
+  },
+  "optShowHighRes":{
+    "message":"Näytä korkean resoluution kuvat silloin kuin mahdollista",
+    "description":"[options] Show high resolution pictures when available option"
+  },
+  "optShowHighResTooltip":{
+    "message":"Kuvien lataaminen saattaa kestää kauemman aikaa",
+    "description":"[options] Tooltip for show high resolution pictures when available option"
+  },
+  "optGalleriesMouseWheel":{
+    "message":"Käytä hiiren rullaa albumeiden navigointiin",
+    "description":"[options] Use mousewheel to navigate albums option"
+  },
+  "optGalleriesMouseWheelTooltip":{
+    "message":"Navigoi albumissa hiiren rullalla",
+    "description":"[options] Tooltip for use mousewheel to navigate albums option"
+  },
+  "optDisableMouseWheelForVideo":{
+    "message":"Älä käytä hiiren rullaa navigointiin videossa (pikanappäimet toimivat silti)",
+    "description":"[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
+  },
+  "optVideoPositionStepUnitName":{
+    "message":"sek",
+    "description":"[options] Unit name (seconds) for changing video position option"
+  },
+  "optSectionDelays":{
+    "message":"Viiveet",
+    "description":"[options] Page section for delay options"
+  },
+  "optDisplayDelay":{
+    "message":"Viiveet ennen kuvan näyttämistä:",
+    "description":"[options] Delay before displaying a picture option"
+  },
+  "optDisplayDelayVideo":{
+    "message":"Viiveet ennen videon näyttämistä:",
+    "description":"[options] Delay before displaying a video option"
+  },
+  "optFadeDuration":{
+    "message":"Häivytys animaation kesto:",
+    "description":"[options] Fading animation duration option"
+  },
+  "optDurationUnitName":{
+    "message":"sek",
+    "description":"[options] Short form of \"second\" for delay duration"
+  },
+  "optPagePlugins":{
+    "message":"Lisäosat",
+    "description":"[options] Page title for plugin options"
+  },
+  "optPlugins":{
+    "message":"Aseta päälle\/pois lisäosia",
+    "description":"[options] Section which contains checkboxes for disabling plugins"
+  },
+  "optPageSites":{
+    "message":"Sivut",
+    "description":"[options] Page title for site options"
+  },
+  "optSectionSitesEnabled":{
+    "message":"URL osoitteet missä Hover Zoom+ on aina päällä",
+    "description":"[options] Page section for enabling extension for specific sites"
+  },
+  "optSectionSitesDisabled":{
+    "message":"URL osoitteet missä Hover Zoom+ on aina pois päältä",
+    "description":"[options] Page section for enabling extension for specific sites"
+  },
+  "optButtonAddSite":{
+    "message":"Lisää",
+    "description":"[options] Button for adding a site on sites option page"
+  },
+  "optPageActionKeys":{
+    "message":"Pikanäppäimet",
+    "description":"[options] Page title for action key options"
+  },
+  "optPageAdvanced":{
+    "message":"Kehittyneet",
+    "description":"[options] Page title for advanced options"
+  },
+  "optSectionAdvanced":{
+    "message":"Kehittyneet asetukset",
+    "description":"[options] Page section for advanced options"
+  },
+  "optUpdateNotifications":{
+    "message":"Näytä ilmoitukset päivityksistä",
+    "description":"[options] Show update notifications option"
+  },
+  "optShowLastUpdateNotification":{
+    "message":"(näytä viimeisin ilmoitus)",
+    "description":"[options] Show last update notification"
+  },
+  "optAddToHistory":{
+    "message":"Lisää katseltu kuva selaimen historiaan",
+    "description":"[options] Add viewed pictures to the browser's history option"
+  },
+  "optFilterNSFW":{
+    "message":"Älä näytä NSFW kuvia (Vain Redditissä)",
+    "description":"[options] Exclude NSFW images (Reddit only) option"
+  },
+  "optAlwaysPreload":{
+    "message":"Lataa automaattisesti zoomatut kuvat valmiiksi",
+    "description":"[options] Automatically preload zoomed images option"
+  },
+  "optActionKeyTitle":{
+    "message":"Aktivoi Hover Zoom+",
+    "description":"[options] Action key title"
+  },
+  "optActionKeyDescription":{
+    "message":"Jos näppäin on valittu, Hover Zoom+ toimii vain kun tämä näppäin on painettuna pohjaan.",
+    "description":"[options] Action key description"
+  },
+  "optHideKeyTitle":{
+    "message":"Poista Hover Zoom+ käytöstä",
+    "description":"[options] Action key title"
+  },
+  "optPrevImgKeyTitle":{
+    "message":"Katso edellinen kuva galleriassa",
+    "description":"[options] Action key title"
+  },
+  "optPrevImgKeyDescription":{
+    "message":"Paina tätä näppäintä nähdäksesi edellisen kuvan galleriassa.",
+    "description":"[options] Action key description"
+  },
+  "optNextImgKeyTitle":{
+    "message":"Katso seuraava kuva galleriassa",
+    "description":"[options] Action key title"
+  },
+  "optFooterSourceCode":{
+    "message":"Lähdekoodi",
+    "description":"[options] Source code link in page footer"
+  },
+  "optFooterReportIssue":{
+    "message":"Raportoi bugi",
+    "description":"[options] Report a bug link in page footer"
+  }
+}
