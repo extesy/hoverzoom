@@ -1304,6 +1304,10 @@
             "js": ["plugins/artuk.js"],
             "matches": ["*://*.artuk.org/*"]
         },
+		{
+            "js": ["plugins/n11.js"],
+            "matches": ["*://*.n11.com/*"]
+        },
         {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
