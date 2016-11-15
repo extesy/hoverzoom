@@ -43,7 +43,7 @@ hoverZoomPlugins.push({
         }
 
         function prepareVideoPreview(link, id) {
-            if (link.hasClass('hoverZoomLoading') || link.hasClass('hoverZoomLink') || link.hasClass('ytp-title-link')) return;
+            f (link.hasClass('hoverZoomLoading') || link.hasClass('hoverZoomLink') || link.hasClass('ytp-title-link')) return;
             link.addClass('hoverZoomLoading');
 
             var match = link.attr('href').match(/[\?&]t=([\dhm]+)/);
