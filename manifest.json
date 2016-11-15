@@ -890,7 +890,8 @@
                 "plugins/memefive.js",
                 "plugins/gfycat.js",
                 "plugins/pornbot.js",
-                "plugins/memedad.js"
+                "plugins/memedad.js",
+                "plugins/clips.twitch.js"
             ]
         },
         {
