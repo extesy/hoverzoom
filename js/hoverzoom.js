@@ -1291,6 +1291,20 @@ var hoverZoom = {
 
         chrome.runtime.onMessage.addListener(onMessage);
         loadOptions();
+
+        // In case we are being used on a website that removes us from the DOM, update the internal data structure to reflect this
+        var target = document.getElementsByTagName('html')[0];
+        var obs = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) { 
+                if (mutation.removedNodes.length > 0) {
+                    if (mutation.removedNodes[0].querySelector('#hzImg')) {
+                        hoverZoom.hzImg = false;
+                    }
+                }
+            });
+        });
+        config = {attributes: true, childList: true, characterData: true};
+        obs.observe(target, config);
     },
 
     // __________________________________________________________________

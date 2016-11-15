@@ -1305,13 +1305,17 @@
             "js": ["plugins/artuk.js"],
             "matches": ["*://*.artuk.org/*"]
         },
-		{
+        {
             "js": ["plugins/n11.js"],
             "matches": ["*://*.n11.com/*"]
         },
-		{
+        {
             "js": ["plugins/carrefoursa.js"],
             "matches": ["*://*.carrefoursa.com/*"]
+        },
+        {
+            "js": ["plugins/ask.js"],
+            "matches": ["*://ask.fm/*"]
         },
         {
             "js": ["js/hoverzoom.js"],
