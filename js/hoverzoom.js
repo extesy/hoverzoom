@@ -174,8 +174,8 @@ var hoverZoom = {
                 }
 
                 // Width adjustment
-                if (fullZoom) {
-                    imgFullSize.width(Math.min(imgDetails.naturalWidth, wndWidth - padding + wndScrollLeft));
+                if (fullZoomKeyDown) {
+                    imgFullSize.width(Math.max(imgDetails.naturalWidth, wndWidth - padding + wndScrollLeft));
                 } else {
                     if (displayOnRight) {
                         if (imgDetails.naturalWidth + padding > wndWidth - position.left) {
