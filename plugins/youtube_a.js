@@ -34,9 +34,7 @@ hoverZoomPlugins.push({
                 if (source.type.match(type)) {
                     if (source.quality.match(quality)) {
                         exact = source;
-                    } else if (source.quality_label.match(quality)){
-                        exact = source;
-                    }    else {
+                    } else {
                         lowest = source;
                     }
                 }
