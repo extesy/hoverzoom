@@ -173,7 +173,7 @@ var hoverZoom = {
                     return;
                 }
 
-                // Width adjustment
+                // Width adjustment when full zoom key is pressed
                 if (fullZoomKeyDown) {
                     imgFullSize.width(Math.max(imgDetails.naturalWidth, wndWidth - padding + wndScrollLeft));
                 } else {
