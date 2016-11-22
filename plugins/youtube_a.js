@@ -67,7 +67,6 @@ hoverZoomPlugins.push({
                 }
                 var sources = decodeStreamMap(video.url_encoded_fmt_stream_map);
                 var keys = Object.getOwnPropertyNames(sources);
-                console.log(keys);
                 var src = sources[keys[0]];
                 if (src) {
                     link.data().hoverZoomSrc = [start ? src.url + '#t=' + start : src.url];
