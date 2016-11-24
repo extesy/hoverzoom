@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'1x.com',
-    version:'0.1',
+    version:'0.2',
     prepareImgLinks:function (callback) {
         var res = [];
         hoverZoom.urlReplace(res,
@@ -24,27 +24,27 @@ hoverZoomPlugins.push({
             '-thumb.',
             '-fullsize.'
         );
-		hoverZoom.urlReplace(res,
+        hoverZoom.urlReplace(res,
             'img[src]',
             '-ld.',
             '-hd2.'
         );
-		hoverZoom.urlReplace(res,
+        hoverZoom.urlReplace(res,
             'img[src]',
             '-ld.',
             '-sd.'
         );
-		hoverZoom.urlReplace(res,
+        hoverZoom.urlReplace(res,
             'img[src]',
             '-sq.',
             '-hd2.'
         );
-		hoverZoom.urlReplace(res,
+        hoverZoom.urlReplace(res,
             'img[src]',
             '-sq.',
             '-sd.'
         );
-		hoverZoom.urlReplace(res,
+        hoverZoom.urlReplace(res,
             'img[src]',
             '-square.',
             '.'
