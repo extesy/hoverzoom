@@ -1322,6 +1322,10 @@
             "matches": ["*://*.instagram.com/*"]
         },
         {
+            "js": ["plugins/kephost.js"],
+            "matches": ["*://kephost.com/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
