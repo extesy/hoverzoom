@@ -1,9 +1,10 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'deviantART',
+    version:'0.2',
     prepareImgLinks:function (callback) {
         var res = [];
-        $('a[data-super-img], span[data-super-img]').each(function () {
+        $('a[data-super-img], span[data-super-img], div[data-super-img]').each(function () {
             var _this = $(this),
                 url = this.dataset.superImg;
             if (options.showHighRes && this.dataset.superFullImg)
