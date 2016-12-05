@@ -87,6 +87,26 @@
     "message":"Kalikan ukuran gambar yang diperbesar dengan jumlah ini",
     "description":"[options] Tooltip for adjust the size of zoomed images option"
   },
+  "optCaptionLocation": {
+    "message": "Caption position",
+    "description": "[options] Adjust the position of the caption"
+  },
+  "optCaptionLocationTooltip": {
+    "message": "View the caption above/below the image, or not at all",
+    "description": "[options] Tooltip for adjust the position of the caption"
+  },
+  "optCaptionLocationAbove": {
+    "message": "Above",
+    "description": "[options] Caption location option to put captions above the image"
+  },
+  "optCaptionLocationBelow": {
+    "message": "Below",
+    "description": "[options] Caption location option to put captions below the image"
+  },
+  "optCaptionLocationNone": {
+    "message": "None",
+    "description": "[options] Caption location option to disable captions"
+  },
   "optMouseUnderlap":{
     "message":"Memperpanjang gambar yang diperbesar di bawah kursor mouse",
     "description":"[options] Extend zoomed images below the mouse cursor option"
@@ -102,14 +122,6 @@
   "optPageActionEnabledTooltip":{
     "message":"Hanya ketika gambar dapat diperbesar",
     "description":"[options] Tooltip for show icon in address bar option"
-  },
-  "optShowCaptions":{
-    "message":"Tampilkan gambar keterangan",
-    "description":"[options] Show pictures captions option"
-  },
-  "optShowCaptionsTooltip":{
-    "message":"Keterangan hanya akan ditampilkan bila tersedia",
-    "description":"[options] Tooltip for show pictures captions option"
   },
   "optShowWhileLoading":{
     "message":"Tampilkan gambar yang diperbesar saat loading",

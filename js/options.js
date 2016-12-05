@@ -78,7 +78,6 @@ function saveOptions() {
     options.videoVolume = $('#txtVideoVolume')[0].value / 100;
     options.mouseUnderlap = $('#chkMouseUnderlap')[0].checked;
     options.pageActionEnabled = $('#chkPageActionEnabled')[0].checked;
-    options.showCaptions = $('#chkShowCaptions')[0].checked;
     options.showWhileLoading = $('#chkShowWhileLoading')[0].checked;
     options.showHighRes = $('#chkShowHighRes')[0].checked;
     options.galleriesMouseWheel = $('#chkGalleriesMouseWheel')[0].checked;
@@ -111,6 +110,7 @@ function saveOptions() {
     options.alwaysPreload = $('#chkAlwaysPreload')[0].checked;
     options.enableGalleries = $('#chkEnableGalleries')[0].checked;
     options.picturesOpacity = $('#txtPicturesOpacity')[0].value / 100;
+    options.captionLocation = $('#selectCaptionLocation').val();
 
     localStorage.options = JSON.stringify(options);
     sendOptions(options);
@@ -133,7 +133,6 @@ function restoreOptions() {
     $('#txtVideoVolume').val(options.videoVolume * 100);
     $('#chkMouseUnderlap')[0].checked = options.mouseUnderlap;
     $('#chkPageActionEnabled')[0].checked = options.pageActionEnabled;
-    $('#chkShowCaptions')[0].checked = options.showCaptions;
     $('#chkShowWhileLoading')[0].checked = options.showWhileLoading;
     $('#chkShowHighRes')[0].checked = options.showHighRes;
     $('#chkGalleriesMouseWheel')[0].checked = options.galleriesMouseWheel;
@@ -142,6 +141,7 @@ function restoreOptions() {
     $('#txtDisplayDelayVideo').val((options.displayDelayVideo || 0) / 1000);
     $('#txtFadeDuration').val((options.fadeDuration || 0) / 1000);
     $('#chkAmbilightEnabled')[0].checked = options.ambilightEnabled;
+    $('#selectCaptionLocation').val(options.captionLocation);
 
     $('#chkWhiteListMode')[0].checked = options.whiteListMode;
     $('#selExcludedSites').empty();

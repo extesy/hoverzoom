@@ -593,8 +593,12 @@ var hoverZoom = {
 
             if (hz.currentLink) {
                 var linkData = hz.currentLink.data();
-                if (options.showCaptions && !options.ambilightEnabled && linkData.hoverZoomCaption) {
-                    hzCaption = $('<div/>', {id:'hzCaption', text:linkData.hoverZoomCaption}).css(hzCaptionCss).appendTo(hz.hzImg);
+                if (!options.ambilightEnabled && linkData.hoverZoomCaption) {
+                    if(options.captionLocation === "below") {
+                        hzCaption = $('<div/>', {id:'hzCaption', text:linkData.hoverZoomCaption}).css(hzCaptionCss).appendTo(hz.hzImg);
+                    } else if(options.captionLocation === "above") {
+                        hzCaption = $('<div/>', {id:'hzCaption', text:linkData.hoverZoomCaption}).css(hzCaptionCss).prependTo(hz.hzImg);
+                    }
                 }
                 if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) {
                     var info = (linkData.hoverZoomGalleryIndex + 1) + '/' + linkData.hoverZoomGallerySrc.length;
@@ -759,7 +763,7 @@ var hoverZoom = {
                     linkData.hoverZoomSrcIndex = 0;
 
                     // Caption
-                    if (options.showCaptions && !options.ambilightEnabled && !linkData.hoverZoomCaption) {
+                    if (options.captionLocation != "none" && !options.ambilightEnabled && !linkData.hoverZoomCaption) {
                         prepareImgCaption(link);
                     }
                 }
@@ -1252,7 +1256,7 @@ var hoverZoom = {
                 if (data.hoverZoomGallerySrc.length > 0) {
                     hzGallery.text((data.hoverZoomGalleryIndex + 1) + '/' + data.hoverZoomGallerySrc.length);
                 }
-                if (options.showCaptions && !options.ambilightEnabled) {
+                if (options.captionLocation != "none" && !options.ambilightEnabled) {
                     $(hzCaption).text(data.hoverZoomCaption);
                 }
             }
