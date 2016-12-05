@@ -123,14 +123,6 @@
     "message":"Samo onda kada slike mogu biti zumirane",
     "description":"[options] Tooltip for show icon in address bar option"
   },
-  "optShowCaptions":{
-    "message":"Prikaži opis slike",
-    "description":"[options] Show pictures captions option"
-  },
-  "optShowCaptionsTooltip":{
-    "message":"Opis će biti prikazan samo kada je dostupan",
-    "description":"[options] Tooltip for show pictures captions option"
-  },
   "optShowWhileLoading":{
     "message":"Prikaži zumirane slike tijekom učitavanja",
     "description":"[options] Show zoomed pictures while loading option"

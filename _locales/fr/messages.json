@@ -123,14 +123,6 @@
     "message":"Uniquement quand des images peuvent être zoomées",
     "description":"[options] Tooltip for show icon in address bar option"
   },
-  "optShowCaptions":{
-    "message":"Afficher les légendes des photos",
-    "description":"[options] Show pictures captions option"
-  },
-  "optShowCaptionsTooltip":{
-    "message":"Les légendes seront affichées uniquement lorsque disponible",
-    "description":"[options] Tooltip for show pictures captions option"
-  },
   "optShowWhileLoading":{
     "message":"Montrer les images zoomées pendant leur chargement",
     "description":"[options] Show zoomed pictures while loading option"

@@ -123,14 +123,6 @@
     "message":"فقط زمانی که تصاویر زوم میشود",
     "description":"[options] Tooltip for show icon in address bar option"
   },
-  "optShowCaptions":{
-    "message":"نمایش شرح عکس",
-    "description":"[options] Show pictures captions option"
-  },
-  "optShowCaptionsTooltip":{
-    "message":"شرح تنها در صورت دسترسی نشان داده خواهد شد",
-    "description":"[options] Tooltip for show pictures captions option"
-  },
   "optShowWhileLoading":{
     "message":"نمایش تصاویر در حال بارگذاری",
     "description":"[options] Show zoomed pictures while loading option"
