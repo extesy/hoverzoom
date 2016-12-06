@@ -87,10 +87,6 @@
     "message":"Množi veličinu zumirane slike za ovaj faktor",
     "description":"[options] Tooltip for adjust the size of zoomed images option"
   },
-  "optCaptionLocationNone": {
-    "message": "None",
-    "description": "[options] Caption location option to disable captions"
-  },
   "optMouseUnderlap":{
     "message":"Povećati zumirane slike ispod pokazivača miša",
     "description":"[options] Extend zoomed images below the mouse cursor option"
