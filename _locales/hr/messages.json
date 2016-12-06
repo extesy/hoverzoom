@@ -87,22 +87,6 @@
     "message":"Množi veličinu zumirane slike za ovaj faktor",
     "description":"[options] Tooltip for adjust the size of zoomed images option"
   },
-  "optCaptionLocation": {
-    "message": "Caption position",
-    "description": "[options] Adjust the position of the caption"
-  },
-  "optCaptionLocationTooltip": {
-    "message": "View the caption above/below the image, or not at all",
-    "description": "[options] Tooltip for adjust the position of the caption"
-  },
-  "optCaptionLocationAbove": {
-    "message": "Above",
-    "description": "[options] Caption location option to put captions above the image"
-  },
-  "optCaptionLocationBelow": {
-    "message": "Below",
-    "description": "[options] Caption location option to put captions below the image"
-  },
   "optCaptionLocationNone": {
     "message": "None",
     "description": "[options] Caption location option to disable captions"

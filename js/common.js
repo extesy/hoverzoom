@@ -33,7 +33,10 @@ function loadOptions() {
     options.enableGalleries = options.hasOwnProperty('enableGalleries') ? options.enableGalleries : true;
     options.ambilightEnabled = options.hasOwnProperty('ambilightEnabled') ? options.ambilightEnabled : false;
     options.disabledPlugins = options.hasOwnProperty('disabledPlugins') ? options.disabledPlugins : [];
-    options.captionLocation = options.hasOwnProperty('captionLocation') ? options.captionLocation : 'below';
+
+    // Used old showCaptions option for backwards compatibility
+    var showCaptions = options.hasOwnProperty('showCaptions') ? options.showCaptions : true;
+    options.captionLocation = options.hasOwnProperty('captionLocation') ? options.captionLocation : (showCaptions ? 'below' : 'none');
 
     // Action keys
     options.actionKey = options.hasOwnProperty('actionKey') ? options.actionKey : 0;

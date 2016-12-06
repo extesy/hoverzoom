@@ -594,9 +594,9 @@ var hoverZoom = {
             if (hz.currentLink) {
                 var linkData = hz.currentLink.data();
                 if (!options.ambilightEnabled && linkData.hoverZoomCaption) {
-                    if(options.captionLocation === "below") {
+                    if (options.captionLocation === "below") {
                         hzCaption = $('<div/>', {id:'hzCaption', text:linkData.hoverZoomCaption}).css(hzCaptionCss).appendTo(hz.hzImg);
-                    } else if(options.captionLocation === "above") {
+                    } else if (options.captionLocation === "above") {
                         hzCaption = $('<div/>', {id:'hzCaption', text:linkData.hoverZoomCaption}).css(hzCaptionCss).prependTo(hz.hzImg);
                     }
                 }

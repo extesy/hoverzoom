@@ -67,26 +67,6 @@
     "message":"이 조건으로 이미지 확대:",
     "description":"[options] Adjust the size of zoomed images option"
   },
-  "optCaptionLocation": {
-    "message": "Caption position",
-    "description": "[options] Adjust the position of the caption"
-  },
-  "optCaptionLocationTooltip": {
-    "message": "View the caption above/below the image, or not at all",
-    "description": "[options] Tooltip for adjust the position of the caption"
-  },
-  "optCaptionLocationAbove": {
-    "message": "Above",
-    "description": "[options] Caption location option to put captions above the image"
-  },
-  "optCaptionLocationBelow": {
-    "message": "Below",
-    "description": "[options] Caption location option to put captions below the image"
-  },
-  "optCaptionLocationNone": {
-    "message": "None",
-    "description": "[options] Caption location option to disable captions"
-  },
   "optPageActionEnabled":{
     "message":"주소창의 아이콘 보기",
     "description":"[options] Show icon in address bar option"
