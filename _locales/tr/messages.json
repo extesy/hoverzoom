@@ -103,14 +103,6 @@
     "message":"Sadece yakınlaştırılabildiği zaman",
     "description":"[options] Tooltip for show icon in address bar option"
   },
-  "optShowCaptions":{
-    "message":"Resim başlıklarını göster",
-    "description":"[options] Show pictures captions option"
-  },
-  "optShowCaptionsTooltip":{
-    "message":"Başlıklar sadece uygun olduğunda gösterilecekler",
-    "description":"[options] Tooltip for show pictures captions option"
-  },
   "optShowWhileLoading":{
     "message":"Yüklenirken yakınlaştırılmış resimleri göster",
     "description":"[options] Show zoomed pictures while loading option"

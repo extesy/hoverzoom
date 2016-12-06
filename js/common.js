@@ -15,7 +15,6 @@ function loadOptions() {
     options.videoTimestamp = options.hasOwnProperty('videoTimestamp') ? options.videoTimestamp : false;
     options.videoVolume = options.hasOwnProperty('videoVolume') ? options.videoVolume : 0.25;
     options.pageActionEnabled = options.hasOwnProperty('pageActionEnabled') ? options.pageActionEnabled : true;
-    options.showCaptions = options.hasOwnProperty('showCaptions') ? options.showCaptions : true;
     options.showHighRes = options.hasOwnProperty('showHighRes') ? options.showHighRes : true;
     options.galleriesMouseWheel = options.hasOwnProperty('galleriesMouseWheel') ? options.galleriesMouseWheel : true;
     options.disableMouseWheelForVideo = options.hasOwnProperty('disableMouseWheelForVideo') ? options.disableMouseWheelForVideo : false;
@@ -34,6 +33,10 @@ function loadOptions() {
     options.enableGalleries = options.hasOwnProperty('enableGalleries') ? options.enableGalleries : true;
     options.ambilightEnabled = options.hasOwnProperty('ambilightEnabled') ? options.ambilightEnabled : false;
     options.disabledPlugins = options.hasOwnProperty('disabledPlugins') ? options.disabledPlugins : [];
+
+    // Used old showCaptions option for backwards compatibility
+    var showCaptions = options.hasOwnProperty('showCaptions') ? options.showCaptions : true;
+    options.captionLocation = options.hasOwnProperty('captionLocation') ? options.captionLocation : (showCaptions ? 'below' : 'none');
 
     // Action keys
     options.actionKey = options.hasOwnProperty('actionKey') ? options.actionKey : 0;

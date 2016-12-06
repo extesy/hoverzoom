@@ -103,14 +103,6 @@
     "message":"Só quando imagens puderem ser aumentada",
     "description":"[options] Tooltip for show icon in address bar option"
   },
-  "optShowCaptions":{
-    "message":"Exibir legenda nas imagens",
-    "description":"[options] Show pictures captions option"
-  },
-  "optShowCaptionsTooltip":{
-    "message":"Legendas serão exibidas somente quando disponivei",
-    "description":"[options] Tooltip for show pictures captions option"
-  },
   "optShowWhileLoading":{
     "message":"Exibir imagem aumentada enquanto está carregando",
     "description":"[options] Show zoomed pictures while loading option"

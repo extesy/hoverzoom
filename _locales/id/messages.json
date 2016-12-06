@@ -103,14 +103,6 @@
     "message":"Hanya ketika gambar dapat diperbesar",
     "description":"[options] Tooltip for show icon in address bar option"
   },
-  "optShowCaptions":{
-    "message":"Tampilkan gambar keterangan",
-    "description":"[options] Show pictures captions option"
-  },
-  "optShowCaptionsTooltip":{
-    "message":"Keterangan hanya akan ditampilkan bila tersedia",
-    "description":"[options] Tooltip for show pictures captions option"
-  },
   "optShowWhileLoading":{
     "message":"Tampilkan gambar yang diperbesar saat loading",
     "description":"[options] Show zoomed pictures while loading option"

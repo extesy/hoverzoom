@@ -103,14 +103,6 @@
     "message":"Kun når der er billeder der kan forstørres",
     "description":"[options] Tooltip for show icon in address bar option"
   },
-  "optShowCaptions":{
-    "message":"Vis billedtekst",
-    "description":"[options] Show pictures captions option"
-  },
-  "optShowCaptionsTooltip":{
-    "message":"Billedtekster vil kun blive vist hvis de er tilgængelige",
-    "description":"[options] Tooltip for show pictures captions option"
-  },
   "optShowWhileLoading":{
     "message":"Vis forstørrede billeder under indlæsning",
     "description":"[options] Show zoomed pictures while loading option"
