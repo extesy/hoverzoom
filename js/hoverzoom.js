@@ -231,7 +231,14 @@ var hoverZoom = {
                 position.left -= (wndWidth - bodyWidth) / 2;
             }
 
-            hz.hzImg.css({top:Math.round(position.top), left:Math.round(position.left)});
+            if (options.centerImages) {
+                hz.hzImg.css('top', '50%');
+                hz.hzImg.css('left', '50%');
+                hz.hzImg.css('transform', 'translate(-50%, -50%)');
+                hz.hzImg.css('position', 'fixed');
+            } else {
+                hz.hzImg.css({top:Math.round(position.top), left:Math.round(position.left)});
+            }
         }
 
         function isVideoLink(url, includeGifs) {

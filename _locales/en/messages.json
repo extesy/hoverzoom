@@ -208,8 +208,16 @@
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Create a subtle glow effect similar to Phillips Ambilight technology.",
+        "message": "Create a subtle glow effect similar to Phillips Ambilight technology",
         "description": "[options] Tooltip for enable ambient light behind images option"
+    },
+    "optCenterImages": {
+        "message": "Center images",
+        "description": "[options] Center images in the middle of the page option"
+    },
+    "optCenterImagesTooltip": {
+        "message": "Center images as opposed to having them follow the cursor",
+        "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optSectionDelays": {
         "message": "Delays",
