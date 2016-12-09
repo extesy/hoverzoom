@@ -232,9 +232,8 @@ var hoverZoom = {
             }
 
             if (options.centerImages) {
-                hz.hzImg.css('top', '50%');
-                hz.hzImg.css('left', '50%');
-                hz.hzImg.css('transform', 'translate(-50%, -50%)');
+                hz.hzImg.css('top', (wndHeight / 2 - hz.hzImg.height() / 2) + 'px');
+                hz.hzImg.css('left', (wndWidth / 2 - hz.hzImg.width() / 2) + 'px');
                 hz.hzImg.css('position', 'fixed');
             } else {
                 hz.hzImg.css({top:Math.round(position.top), left:Math.round(position.left)});
