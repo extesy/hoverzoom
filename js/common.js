@@ -33,6 +33,7 @@ function loadOptions() {
     options.enableGalleries = options.hasOwnProperty('enableGalleries') ? options.enableGalleries : true;
     options.ambilightEnabled = options.hasOwnProperty('ambilightEnabled') ? options.ambilightEnabled : false;
     options.disabledPlugins = options.hasOwnProperty('disabledPlugins') ? options.disabledPlugins : [];
+    options.centerImages = options.hasOwnProperty('centerImages') ? options.centerImages : false;
 
     // Used old showCaptions option for backwards compatibility
     var showCaptions = options.hasOwnProperty('showCaptions') ? options.showCaptions : true;

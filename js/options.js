@@ -86,6 +86,7 @@ function saveOptions() {
     options.displayDelayVideo = getMilliseconds($('#txtDisplayDelayVideo'));
     options.fadeDuration = getMilliseconds($('#txtFadeDuration'));
     options.ambilightEnabled = $('#chkAmbilightEnabled')[0].checked;
+    options.centerImages = $('#chkCenterImages')[0].checked;
 
     options.whiteListMode = $('#chkWhiteListMode')[0].checked;
     options.excludedSites = [];
@@ -141,6 +142,7 @@ function restoreOptions() {
     $('#txtDisplayDelayVideo').val((options.displayDelayVideo || 0) / 1000);
     $('#txtFadeDuration').val((options.fadeDuration || 0) / 1000);
     $('#chkAmbilightEnabled')[0].checked = options.ambilightEnabled;
+    $('#chkCenterImages')[0].checked = options.centerImages;
     $('#selectCaptionLocation').val(options.captionLocation);
 
     $('#chkWhiteListMode')[0].checked = options.whiteListMode;
