@@ -88,7 +88,7 @@
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optCaptionLocation": {
-        "message": "Caption position",
+        "message": "Caption position:",
         "description": "[options] Adjust the position of the caption"
     },
     "optCaptionLocationTooltip": {
