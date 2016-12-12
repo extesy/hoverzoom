@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Funny Junk',
-    version:'0.1',
+    version:'0.2',
     prepareImgLinks:function (callback) {
         var res = [];
         $('img[src*="/thumbnails/pictures/"]').each(function () {
@@ -16,6 +16,21 @@ hoverZoomPlugins.push({
             'img[src*="/thumbnails/gifs/"]',
             ['/thumbnails/', /_thum.*\.jpg/],
             ['/', '.gif']
+        );
+        hoverZoom.urlReplace(res,
+            'img[src*="/thumbnails_160x160/pictures/"]',
+            '/thumbnails_160x160/',
+            '/'
+        );
+        hoverZoom.urlReplace(res,
+            'img[src*="/thumbnails/movies/"], img[src*="/thumbnails_160x160/movies/"]',
+            ['/thumbnails/', '/thumbnails_160x160/'],
+            ['/large/', '/large/']
+        );
+        hoverZoom.urlReplace(res,
+            'img[src*="/thumbnails/hdgifs/"], img[src*="/thumbnails_160x160/hdgifs/"]',
+            ['/thumbnails/', '/thumbnails_160x160/'],
+            ['/large/', '/large/']
         );
         callback($(res));
     }
