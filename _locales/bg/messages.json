@@ -1,0 +1,98 @@
+{
+  "popPreloadingImages":{
+    "message":"Предварително зареждане...",
+    "description":"[popup] Preloading zoomed images"
+  },
+  "popMoreOptions":{
+    "message":"Още опции",
+    "description":"[popup] More options"
+  },
+  "optButtonSave":{
+    "message":"Запис",
+    "description":"[options] Save button label"
+  },
+  "optPageGeneral":{
+    "message":"Общи",
+    "description":"[options] Page title for general options"
+  },
+  "optSectionView":{
+    "message":"Преглед",
+    "description":"[options] Page section for view options"
+  },
+  "optSectionVideo":{
+    "message":"Видео",
+    "description":"[options] Page section for video options"
+  },
+  "optCaptionLocationAbove":{
+    "message":"Отгоре",
+    "description":"[options] Caption location option to put captions above the image"
+  },
+  "optCaptionLocationBelow":{
+    "message":"Отдолу",
+    "description":"[options] Caption location option to put captions below the image"
+  },
+  "optVideoPositionStepUnitName":{
+    "message":"сек",
+    "description":"[options] Unit name (seconds) for changing video position option"
+  },
+  "optVideoVolumeUnitName":{
+    "message":"%",
+    "description":"[options] Unit name (percentage) for video volume option"
+  },
+  "optCenterImages":{
+    "message":"Центриране на изображения",
+    "description":"[options] Center images in the middle of the page option"
+  },
+  "optDurationUnitName":{
+    "message":"сек.",
+    "description":"[options] Short form of \"second\" for delay duration"
+  },
+  "optPagePlugins":{
+    "message":"Приставки",
+    "description":"[options] Page title for plugin options"
+  },
+  "optPlugins":{
+    "message":"Включване\/изключване на отделни приставки",
+    "description":"[options] Section which contains checkboxes for disabling plugins"
+  },
+  "optPageSites":{
+    "message":"Сайтове",
+    "description":"[options] Page title for site options"
+  },
+  "optButtonAddSite":{
+    "message":"Добавяне",
+    "description":"[options] Button for adding a site on sites option page"
+  },
+  "optPageAdvanced":{
+    "message":"Разширени",
+    "description":"[options] Page title for advanced options"
+  },
+  "optSectionAdvanced":{
+    "message":"Допълнителни опции",
+    "description":"[options] Page section for advanced options"
+  },
+  "optAlwaysPreload":{
+    "message":"Автоматично презареждане на увеличените изображения",
+    "description":"[options] Automatically preload zoomed images option"
+  },
+  "optOpacityUnitName":{
+    "message":"%",
+    "description":"[options] Unit name (percentage) for opacity option"
+  },
+  "optOpenImageInTabKeyTitle":{
+    "message":"Отваряне на изображение в ново табло",
+    "description":"[options] Action key title"
+  },
+  "optSaveImageKeyTitle":{
+    "message":"Запазване на изображението",
+    "description":"[options] Action key title"
+  },
+  "optFooterSourceCode":{
+    "message":"Изходен код",
+    "description":"[options] Source code link in page footer"
+  },
+  "optFooterVersionCopyright":{
+    "message":"Версия $1 - © 2014-2016 Олег Анашкин",
+    "description":"[options] Copyright and version number in page footer"
+  }
+}

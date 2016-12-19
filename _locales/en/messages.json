@@ -93,7 +93,7 @@
     },
     "optCaptionLocationTooltip": {
         "message": "View the caption above/below the image, or not at all",
-        "description": "[options] Tooltip for adjust the position of the caption"
+        "description": "[options] Tooltip for adjusting the position of the caption"
     },
     "optCaptionLocationAbove": {
         "message": "Above",

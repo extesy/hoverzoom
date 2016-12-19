@@ -87,6 +87,26 @@
     "message":"Die Größe von gezoomten Bildern um diesen Faktor vergrößern",
     "description":"[options] Tooltip for adjust the size of zoomed images option"
   },
+  "optCaptionLocation":{
+    "message":"Position der Beschriftung:",
+    "description":"[options] Adjust the position of the caption"
+  },
+  "optCaptionLocationTooltip":{
+    "message":"Anzeigen der Beschriftung, über\/unter dem Bild, oder gar nicht",
+    "description":"[options] Tooltip for adjusting the position of the caption"
+  },
+  "optCaptionLocationAbove":{
+    "message":"Oberhalb",
+    "description":"[options] Caption location option to put captions above the image"
+  },
+  "optCaptionLocationBelow":{
+    "message":"Unterhalb",
+    "description":"[options] Caption location option to put captions below the image"
+  },
+  "optCaptionLocationNone":{
+    "message":"Nicht anzeigen",
+    "description":"[options] Caption location option to disable captions"
+  },
   "optMouseUnderlap":{
     "message":"Bilder bei Mouse-Hover vergrößern",
     "description":"[options] Extend zoomed images below the mouse cursor option"
@@ -190,6 +210,14 @@
   "optEnableAmbilightTooltip":{
     "message":"Hintergrund abdunkeln und Leuchteffekt um vergrößertes Bild anzeigen, ähnlich Philips Ambilight.",
     "description":"[options] Tooltip for enable ambient light behind images option"
+  },
+  "optCenterImages":{
+    "message":"Bilder zentrieren",
+    "description":"[options] Center images in the middle of the page option"
+  },
+  "optCenterImagesTooltip":{
+    "message":"Bilder zentrieren statt am Mauszeiger zu zeigen",
+    "description":"[options] Tooltip for center images in the middle of the page option"
   },
   "optSectionDelays":{
     "message":"Verzögerungen",
