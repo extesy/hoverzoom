@@ -1318,6 +1318,10 @@
             "matches": ["*://ask.fm/*"]
         },
         {
+            "js": ["plugins/artlimited.js"],
+            "matches": ["*://*.artlimited.net/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
