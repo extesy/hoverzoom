@@ -87,6 +87,26 @@
         "message": "Multiply the size of zoomed images by this amount",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
+    "optCaptionLocation": {
+        "message": "Caption position:",
+        "description": "[options] Adjust the position of the caption"
+    },
+    "optCaptionLocationTooltip": {
+        "message": "View the caption above/below the image, or not at all",
+        "description": "[options] Tooltip for adjusting the position of the caption"
+    },
+    "optCaptionLocationAbove": {
+        "message": "Above",
+        "description": "[options] Caption location option to put captions above the image"
+    },
+    "optCaptionLocationBelow": {
+        "message": "Below",
+        "description": "[options] Caption location option to put captions below the image"
+    },
+    "optCaptionLocationNone": {
+        "message": "None",
+        "description": "[options] Caption location option to disable captions"
+    },
     "optMouseUnderlap": {
         "message": "Extend zoomed images below the mouse cursor",
         "description": "[options] Extend zoomed images below the mouse cursor option"
@@ -102,14 +122,6 @@
     "optPageActionEnabledTooltip": {
         "message": "Only when images can be zoomed",
         "description": "[options] Tooltip for show icon in address bar option"
-    },
-    "optShowCaptions": {
-        "message": "Show picture captions",
-        "description": "[options] Show pictures captions option"
-    },
-    "optShowCaptionsTooltip": {
-        "message": "Captions will be shown only when available",
-        "description": "[options] Tooltip for show pictures captions option"
     },
     "optShowWhileLoading": {
         "message": "Show zoomed pictures while loading",
@@ -196,8 +208,16 @@
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Create a subtle glow effect similar to Phillips Ambilight technology.",
+        "message": "Create a subtle glow effect similar to Phillips Ambilight technology",
         "description": "[options] Tooltip for enable ambient light behind images option"
+    },
+    "optCenterImages": {
+        "message": "Center images",
+        "description": "[options] Center images in the middle of the page option"
+    },
+    "optCenterImagesTooltip": {
+        "message": "Center images as opposed to having them follow the cursor",
+        "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optSectionDelays": {
         "message": "Delays",

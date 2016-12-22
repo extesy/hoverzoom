@@ -103,14 +103,6 @@
     "message":"Enkel als er afbeeldingen gezoomd kunnen worden",
     "description":"[options] Tooltip for show icon in address bar option"
   },
-  "optShowCaptions":{
-    "message":"Toon foto bijschriften",
-    "description":"[options] Show pictures captions option"
-  },
-  "optShowCaptionsTooltip":{
-    "message":"Bijschriften worden getoond slechts wanneer beschikbaar",
-    "description":"[options] Tooltip for show pictures captions option"
-  },
   "optShowWhileLoading":{
     "message":"Toon ingezoomde afbeeldingen tijdens het laden",
     "description":"[options] Show zoomed pictures while loading option"

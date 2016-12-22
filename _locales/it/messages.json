@@ -103,14 +103,6 @@
     "message":"Solo quando le immagini possono essere ingrandite",
     "description":"[options] Tooltip for show icon in address bar option"
   },
-  "optShowCaptions":{
-    "message":"Mostra didascalie delle immagini",
-    "description":"[options] Show pictures captions option"
-  },
-  "optShowCaptionsTooltip":{
-    "message":"Le didascalie saranno mostrate solo quando disponibili",
-    "description":"[options] Tooltip for show pictures captions option"
-  },
   "optShowWhileLoading":{
     "message":"Mostra foto ingrandite durante il caricamento",
     "description":"[options] Show zoomed pictures while loading option"

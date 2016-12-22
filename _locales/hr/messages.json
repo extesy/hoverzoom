@@ -87,6 +87,26 @@
     "message":"Množi veličinu zumirane slike za ovaj faktor",
     "description":"[options] Tooltip for adjust the size of zoomed images option"
   },
+  "optCaptionLocation":{
+    "message":"Pozicija opisa:",
+    "description":"[options] Adjust the position of the caption"
+  },
+  "optCaptionLocationTooltip":{
+    "message":"Prikaži opis iznad\/ispod slike, ili nikako",
+    "description":"[options] Tooltip for adjusting the position of the caption"
+  },
+  "optCaptionLocationAbove":{
+    "message":"Iznad",
+    "description":"[options] Caption location option to put captions above the image"
+  },
+  "optCaptionLocationBelow":{
+    "message":"Ispod",
+    "description":"[options] Caption location option to put captions below the image"
+  },
+  "optCaptionLocationNone":{
+    "message":"Nigdje",
+    "description":"[options] Caption location option to disable captions"
+  },
   "optMouseUnderlap":{
     "message":"Povećati zumirane slike ispod pokazivača miša",
     "description":"[options] Extend zoomed images below the mouse cursor option"
@@ -102,14 +122,6 @@
   "optPageActionEnabledTooltip":{
     "message":"Samo onda kada slike mogu biti zumirane",
     "description":"[options] Tooltip for show icon in address bar option"
-  },
-  "optShowCaptions":{
-    "message":"Prikaži opis slike",
-    "description":"[options] Show pictures captions option"
-  },
-  "optShowCaptionsTooltip":{
-    "message":"Opis će biti prikazan samo kada je dostupan",
-    "description":"[options] Tooltip for show pictures captions option"
   },
   "optShowWhileLoading":{
     "message":"Prikaži zumirane slike tijekom učitavanja",
@@ -198,6 +210,10 @@
   "optEnableAmbilightTooltip":{
     "message":"Stvori lagani sjajni efekt sličan Phillips Ambilight tehnologiji.",
     "description":"[options] Tooltip for enable ambient light behind images option"
+  },
+  "optCenterImages":{
+    "message":"Centriraj sliku",
+    "description":"[options] Center images in the middle of the page option"
   },
   "optSectionDelays":{
     "message":"Odgoda",

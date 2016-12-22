@@ -103,14 +103,6 @@
     "message":"Только когда имеются изображения, которые могут быть увеличены",
     "description":"[options] Tooltip for show icon in address bar option"
   },
-  "optShowCaptions":{
-    "message":"Показывать подпись для картинок",
-    "description":"[options] Show pictures captions option"
-  },
-  "optShowCaptionsTooltip":{
-    "message":"Подпись будет показана только при её наличии",
-    "description":"[options] Tooltip for show pictures captions option"
-  },
   "optShowWhileLoading":{
     "message":"Показывать увеличенные изображения во время их загрузки",
     "description":"[options] Show zoomed pictures while loading option"

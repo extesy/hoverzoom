@@ -87,6 +87,26 @@
     "message":"Multiplicar o tamanho de zoom das imagens para este valor",
     "description":"[options] Tooltip for adjust the size of zoomed images option"
   },
+  "optCaptionLocation":{
+    "message":"Posição de legenda:",
+    "description":"[options] Adjust the position of the caption"
+  },
+  "optCaptionLocationTooltip":{
+    "message":"Ver a legenda acima\/abaixo da imagem, ou não",
+    "description":"[options] Tooltip for adjusting the position of the caption"
+  },
+  "optCaptionLocationAbove":{
+    "message":"Acima",
+    "description":"[options] Caption location option to put captions above the image"
+  },
+  "optCaptionLocationBelow":{
+    "message":"Abaixo",
+    "description":"[options] Caption location option to put captions below the image"
+  },
+  "optCaptionLocationNone":{
+    "message":"Nenhum",
+    "description":"[options] Caption location option to disable captions"
+  },
   "optMouseUnderlap":{
     "message":"Ampliar imagens aumentadas abaixo do cursor do mouse",
     "description":"[options] Extend zoomed images below the mouse cursor option"
@@ -102,14 +122,6 @@
   "optPageActionEnabledTooltip":{
     "message":"Só quando imagens puderem ser aumentada",
     "description":"[options] Tooltip for show icon in address bar option"
-  },
-  "optShowCaptions":{
-    "message":"Exibir legenda nas imagens",
-    "description":"[options] Show pictures captions option"
-  },
-  "optShowCaptionsTooltip":{
-    "message":"Legendas serão exibidas somente quando disponivei",
-    "description":"[options] Tooltip for show pictures captions option"
   },
   "optShowWhileLoading":{
     "message":"Exibir imagem aumentada enquanto está carregando",
@@ -171,6 +183,14 @@
     "message":"Silenciar videos aumentados",
     "description":"[options] Tooltip for mute zoomed videos option"
   },
+  "optVideoTimestamp":{
+    "message":"Exibir data e hora nos videos",
+    "description":"[options] Enable timestamp \/ video length on videos"
+  },
+  "optVideoTimestampTooltip":{
+    "message":"Habilitar data e hora \/ duração nos videos",
+    "description":"[options] Tooltip for video length countdown on videos"
+  },
   "optVideoVolume":{
     "message":"Volume de audio para videos ativados:",
     "description":"[options] Audio volume for unmuted videos option"
@@ -190,6 +210,14 @@
   "optEnableAmbilightTooltip":{
     "message":"Crie um efeito de brilho sutil semelhante a tecnologia Phillips Ambilight.",
     "description":"[options] Tooltip for enable ambient light behind images option"
+  },
+  "optCenterImages":{
+    "message":"Centralizar imagens",
+    "description":"[options] Center images in the middle of the page option"
+  },
+  "optCenterImagesTooltip":{
+    "message":"Centralizar imagens ao invés delas seguirem o cursor",
+    "description":"[options] Tooltip for center images in the middle of the page option"
   },
   "optSectionDelays":{
     "message":"Duração",

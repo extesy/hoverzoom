@@ -103,14 +103,6 @@
     "message":"Solo cuando las imágenes se pueden ampliar",
     "description":"[options] Tooltip for show icon in address bar option"
   },
-  "optShowCaptions":{
-    "message":"Ver descripción de la imagen",
-    "description":"[options] Show pictures captions option"
-  },
-  "optShowCaptionsTooltip":{
-    "message":"Los subtítulos solo se mostrarán cuando esten disponibles",
-    "description":"[options] Tooltip for show pictures captions option"
-  },
   "optShowWhileLoading":{
     "message":"Mostrar imágenes con zoom mientras se carga",
     "description":"[options] Show zoomed pictures while loading option"

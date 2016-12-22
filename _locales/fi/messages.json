@@ -99,14 +99,6 @@
     "message":"Vain silloin kuin kuvia voi zoomata",
     "description":"[options] Tooltip for show icon in address bar option"
   },
-  "optShowCaptions":{
-    "message":"Näytä kuvatekstit",
-    "description":"[options] Show pictures captions option"
-  },
-  "optShowCaptionsTooltip":{
-    "message":"Kuvatekstit näytetään vain kuin ne ovat saatavilla",
-    "description":"[options] Tooltip for show pictures captions option"
-  },
   "optShowWhileLoading":{
     "message":"Näytä zoomattu kuva ladattaessa",
     "description":"[options] Show zoomed pictures while loading option"
