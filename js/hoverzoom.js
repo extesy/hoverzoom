@@ -715,20 +715,20 @@ var hoverZoom = {
 
                     // Skip if the image has the same URL as the thumbnail.
                     //try {
-                    // if (linkData.hoverZoomSrc) {
-                    //     var url = linkData.hoverZoomSrc[0],
-                    //         skip = (url == link.attr('src'));
-                    //     if (!skip) {
-                    //         link.find('img[src]').each(function () {
-                    //             if (this.src == url) {
-                    //                 skip = true;
-                    //             }
-                    //         });
-                    //     }
-                    //     if (skip) {
-                    //         return;
-                    //     }
-                    // }
+                    if (linkData.hoverZoomSrc) {
+                        var url = linkData.hoverZoomSrc[0],
+                            skip = (url == link.attr('src'));
+                        if (!skip) {
+                            link.find('img[src]').each(function () {
+                                if (this.src == url) {
+                                    skip = true;
+                                }
+                            });
+                        }
+                        if (skip) {
+                            return;
+                        }
+                    }
                     /*} catch(e) {
                      throw e;
                      }*/

@@ -13,6 +13,8 @@ hoverZoomPlugins.push({
             /png_.*/,
             'png'
         );
+        // Add space to url so that the thumbURL isn't seen as equal,
+        // which would cause the image to be skipped
         hoverZoom.urlReplace(res,
             'img[src*=".jpg"]',
             /jpg/,
