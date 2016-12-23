@@ -15,8 +15,8 @@ hoverZoomPlugins.push({
         // <img src="/api/resize?id=906699&dim=224&v=0"     <--- small size:  224x224
         // <img src="/api/resize?id=906699&dim=1000&v=0"    <--- large size: 1000x1000
         hoverZoom.urlReplace(res,
-            'img[src*="/api/resize?id="]',
-            /(.*&dim=)(\d+)(.*)/,
+            'img[src*="/api/resize?"]',
+            /(.*dim=)(\d+)(.*)/,
             '$1'+1000+'$3'
         );
         
