@@ -1139,8 +1139,11 @@
             "matches": ["*://*.furaffinity.net/*"]
         },
         {
-            "js": ["plugins/taobao.js"],
-            "matches": ["*://*.taobao.com/*"]
+            "js": ["plugins/alicdn.js"],
+            "matches": [
+                "*://*.taobao.com/*",
+                "*://*.tmall.com/*"
+            ]
         },
         {
             "js": ["plugins/lazygirls_info.js"],
