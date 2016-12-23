@@ -1330,6 +1330,10 @@
             "matches": ["*://kephost.com/*"]
         },
         {
+            "js": ["plugins/fotoblur.js"],
+            "matches": ["*://*.fotoblur.com/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
