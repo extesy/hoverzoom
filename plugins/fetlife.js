@@ -12,6 +12,10 @@ hoverZoomPlugins.push({
             if($(this).hasClass('fl-transparent-facade'))
                 return false;
 
+            // limit ourselves to actual image thumbnails, too many text links around
+            if ($(this).find("img").length == 0)
+            	return false;
+
             return this.href.match(/fetlife.com\/users\/\d+\/pictures\/\d+$/);
         }).each(function(){
             var link= this.href;
@@ -21,7 +25,7 @@ hoverZoomPlugins.push({
             $(this).data().hoverZoomCaption = img.find('img:first').attr('title');
 
             // actually pull the picture page when we move the mouse over this object (so we don't spam requests)
-            img.one('mousemove', function() {
+            img.one('mouseover', function() {
                 hoverZoom.prepareFromDocument($(this), link, function(doc) {
 
                     var img = doc.getElementsByClassName('fl-picture__img')[0];
