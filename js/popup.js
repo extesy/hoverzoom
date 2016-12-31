@@ -18,7 +18,7 @@ $(function () {
         aPreload.css('display', 'inline');
     }
 
-    chrome.permissions.contains({permissions: ['tabs']}, function (granted) {
+    browser.permissions.contains({permissions: ['tabs']}, function (granted) {
         if (granted) {
             $('#chkExcludeSite').parent().on('gumby.onChange', chkExcludeSiteOnClick);
             setTabHook(options);
@@ -27,13 +27,13 @@ $(function () {
         }
     });
 
-    chrome.runtime.onMessage.addListener(onMessage);
+    browser.runtime.onMessage.addListener(onMessage);
 });
 
 function askTabsPermissions() {
-    chrome.permissions.contains({permissions: ['tabs']}, function (granted) {
+    browser.permissions.contains({permissions: ['tabs']}, function (granted) {
         if (!granted) {
-            chrome.permissions.request({permissions: ['tabs']}, function (granted) {
+            browser.permissions.request({permissions: ['tabs']}, function (granted) {
                 if (granted) {
                     setTabHook(options);
                     window.close();
@@ -44,9 +44,9 @@ function askTabsPermissions() {
 }
 
 function setTabHook(options) {
-    chrome.tabs.getSelected(null, function (tab) {
+    browser.tabs.getSelected(null, function (tab) {
         siteDomain = tab.url.split('/', 3)[2];
-        $('#lblToggle').text(chrome.i18n.getMessage(options.whiteListMode ? 'popEnableForSite' : 'popDisableForSite', siteDomain));
+        $('#lblToggle').text(browser.i18n.getMessage(options.whiteListMode ? 'popEnableForSite' : 'popDisableForSite', siteDomain));
         $('#chkExtensionDisabled')[0].checked = !options.extensionEnabled;
         $('#chkExcludeSite')[0].checked = isExcludedSite(tab.url);
         $('input:checked').trigger('gumby.check');
@@ -97,7 +97,7 @@ function onMessage(message, sender, callback) {
             }
             break;
         case 'askTabsPermissions':
-            chrome.permissions.request({permissions: ['tabs']}, function (granted) {
+            browser.permissions.request({permissions: ['tabs']}, function (granted) {
                 callback(granted);
             });
             break;
@@ -105,7 +105,7 @@ function onMessage(message, sender, callback) {
 }
 
 function aPreloadOnClick() {
-    chrome.tabs.executeScript(null, {code:'if (hoverZoom) { hoverZoom.preloadImages(); }'});
+    browser.tabs.executeScript(null, {code:'if (hoverZoom) { hoverZoom.preloadImages(); }'});
     aPreload.css('display', 'none');
     prgPreloading.attr('value', 0).attr('max', 1);
     lblPreloading.css('display', 'inline');

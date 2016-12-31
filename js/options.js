@@ -32,8 +32,8 @@ function keyCodeToString(key) {
 function initActionKeys() {
     actionKeys.forEach(function(key) {
         var id = key[0].toUpperCase() + key.substr(1);
-        var title = chrome.i18n.getMessage("opt" + id + "Title");
-        var description = chrome.i18n.getMessage("opt" + id + "Description");
+        var title = browser.i18n.getMessage("opt" + id + "Title");
+        var description = browser.i18n.getMessage("opt" + id + "Description");
         $('<tr><td>' + title + '<p>' + description + '</p></td>' +
             '<td><select id="sel' + id + '" class="actionKey"/></td></tr>').appendTo($('#tableActionKeys'));
         loadKeys($('#sel' + id));
@@ -67,7 +67,7 @@ function loadKeys(sel) {
 }
 
 // Saves options to localStorage.
-// TODO: Migrate to https://developer.chrome.com/extensions/storage
+// TODO: Migrate to https://developer.browser.com/extensions/storage
 function saveOptions() {
     options.extensionEnabled = $('#chkExtensionEnabled')[0].checked;
     options.zoomFactor = $('#txtZoomFactor')[0].value;
@@ -197,14 +197,14 @@ function selKeyOnChange(event) {
 }
 
 function chkWhiteListModeOnChange() {
-    $('#lblToggle').text(chrome.i18n.getMessage($('#chkWhiteListMode')[0].checked ? "optSectionSitesEnabled" : "optSectionSitesDisabled"));
+    $('#lblToggle').text(browser.i18n.getMessage($('#chkWhiteListMode')[0].checked ? "optSectionSitesEnabled" : "optSectionSitesDisabled"));
 }
 
 function chkAddToHistoryModeOnChange() {
     if ($('#chkAddToHistory')[0].checked) {
-        chrome.permissions.contains({permissions: ['history']}, function (granted) {
+        browser.permissions.contains({permissions: ['history']}, function (granted) {
             if (!granted) {
-                chrome.permissions.request({permissions: ['history']}, function (granted) {
+                browser.permissions.request({permissions: ['history']}, function (granted) {
                     if (!granted) {
                         $("#chkAddToHistory").trigger('gumby.uncheck');
                     }
@@ -235,7 +235,7 @@ function onMessage(message, sender, callback) {
 }
 
 function getPlugins(callback) {
-    chrome.runtime.getPackageDirectoryEntry(function(root) {
+    browser.runtime.getPackageDirectoryEntry(function(root) {
         root.getDirectory("plugins", {create: false}, function(pluginsdir) {
             var reader = pluginsdir.createReader();
             var entries = [];
@@ -280,7 +280,7 @@ $(function () {
     initActionKeys();
     i18n();
     chkWhiteListModeOnChange();
-    $("#version").text(chrome.i18n.getMessage("optFooterVersionCopyright", chrome.app.getDetails().version));
+    $("#version").text(browser.i18n.getMessage("optFooterVersionCopyright", browser.app.getDetails().version));
 
     $('#btnSave').click(saveOptions);
     $('#btnReset').click(restoreOptions);
@@ -299,5 +299,5 @@ $(function () {
     restoreOptions();
     loadPlugins();
 
-    chrome.runtime.onMessage.addListener(onMessage);
+    browser.runtime.onMessage.addListener(onMessage);
 });

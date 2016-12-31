@@ -87,26 +87,6 @@
     "message":"Умножить естественный размер увеличенного изображения на это число",
     "description":"[options] Tooltip for adjust the size of zoomed images option"
   },
-  "optCaptionLocation":{
-    "message":"Расположение подписей к изображениям:",
-    "description":"[options] Adjust the position of the caption"
-  },
-  "optCaptionLocationTooltip":{
-    "message":"Показывать подпись сверху или снизу от картинки, или не показывать вообще",
-    "description":"[options] Tooltip for adjusting the position of the caption"
-  },
-  "optCaptionLocationAbove":{
-    "message":"Сверху",
-    "description":"[options] Caption location option to put captions above the image"
-  },
-  "optCaptionLocationBelow":{
-    "message":"Снизу",
-    "description":"[options] Caption location option to put captions below the image"
-  },
-  "optCaptionLocationNone":{
-    "message":"Не показывать",
-    "description":"[options] Caption location option to disable captions"
-  },
   "optMouseUnderlap":{
     "message":"Увеличивать размер изображения под курсором мыши",
     "description":"[options] Extend zoomed images below the mouse cursor option"
@@ -210,14 +190,6 @@
   "optEnableAmbilightTooltip":{
     "message":"Создать легкий эффект свечения, похожий на технологию фоновой подсветкой Ambilight компании Phillips.",
     "description":"[options] Tooltip for enable ambient light behind images option"
-  },
-  "optCenterImages":{
-    "message":"Фиксировать положение в центре экрана",
-    "description":"[options] Center images in the middle of the page option"
-  },
-  "optCenterImagesTooltip":{
-    "message":"Всегда показывать изображения в центре экрана вместо того, чтобы они следовали за курсором",
-    "description":"[options] Tooltip for center images in the middle of the page option"
   },
   "optSectionDelays":{
     "message":"Задержки",

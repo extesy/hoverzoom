@@ -215,10 +215,6 @@
     "message":"Centriraj sliku",
     "description":"[options] Center images in the middle of the page option"
   },
-  "optCenterImagesTooltip":{
-    "message":"Centrirati slike umjesto da prate pokazivač",
-    "description":"[options] Tooltip for center images in the middle of the page option"
-  },
   "optSectionDelays":{
     "message":"Odgoda",
     "description":"[options] Page section for delay options"

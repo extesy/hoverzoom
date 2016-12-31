@@ -333,7 +333,7 @@ var hoverZoom = {
                 hz.hzImg.empty();
                 restoreTitles();
             });
-            //chrome.runtime.sendMessage({action: 'viewWindow', visible: false});
+            //browser.runtime.sendMessage({action: 'viewWindow', visible: false});
         }
 
         function documentMouseMove(event) {
@@ -413,7 +413,7 @@ var hoverZoom = {
                             clearTimeout(loadFullSizeImageTimeout);
 
                             // If the action key has been pressed over an image, no delay is applied
-                            var delay = actionKeyDown ? 0 : (isVideoLink(imgDetails.url) ? options.displayDelayVideo : options.displayDelay);
+                            var delay = actionKeyDown || explicitCall ? 0 : (isVideoLink(imgDetails.url) ? options.displayDelayVideo : options.displayDelay);
                             loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
 
                             loading = true;
@@ -622,9 +622,9 @@ var hoverZoom = {
             // The image size is not yet available in the onload so I have to delay the positioning
             setTimeout(posImg, options.showWhileLoading ? 0 : 10);
 
-            if (options.addToHistory && !chrome.extension.inIncognitoContext) {
+            if (options.addToHistory && !browser.extension.inIncognitoContext) {
                 var url = hz.currentLink.context.href || imgDetails.url;
-                chrome.runtime.sendMessage({action:'addUrlToHistory', url:url});
+                browser.runtime.sendMessage({action:'addUrlToHistory', url:url});
             }
         }
 
@@ -776,7 +776,7 @@ var hoverZoom = {
             });
 
             if (options.pageActionEnabled && !pageActionShown && showPageAction) {
-                chrome.runtime.sendMessage({action:'showPageAction'});
+                browser.runtime.sendMessage({action:'showPageAction'});
                 pageActionShown = true;
             }
         }
@@ -800,7 +800,7 @@ var hoverZoom = {
                 clearTimeout(preloadTimeout);
                 preloadTimeout = setTimeout(hz.preloadImages, 800);
             } else {
-                chrome.runtime.sendMessage({action:'preloadAvailable'});
+                browser.runtime.sendMessage({action:'preloadAvailable'});
             }
 
             prepareDownscaledImagesAsync();
@@ -938,7 +938,7 @@ var hoverZoom = {
         }
 
         function loadOptions() {
-            chrome.runtime.sendMessage({action:'getOptions'}, function (result) {
+            browser.runtime.sendMessage({action:'getOptions'}, function (result) {
                 options = result;
                 if (options) {
                 applyOptions();
@@ -1162,7 +1162,7 @@ var hoverZoom = {
         }
 
         function openImageInWindow() {
-            chrome.runtime.sendMessage({action:'getItem', id:'popupBorder'}, function (data) {
+            browser.runtime.sendMessage({action:'getItem', id:'popupBorder'}, function (data) {
                 var createData,
                     popupBorder = {width:16, height:38};
 
@@ -1179,7 +1179,7 @@ var hoverZoom = {
                     width:imgDetails.naturalWidth + popupBorder.width,
                     height:imgDetails.naturalHeight + popupBorder.height,
                     type:'popup',
-                    incognito:chrome.extension.inIncognitoContext
+                    incognito:browser.extension.inIncognitoContext
                 };
 
                 // If image bigger than screen, adjust window dimensions to match image's aspect ratio
@@ -1196,7 +1196,7 @@ var hoverZoom = {
                 createData.top = Math.round(screen.availHeight / 2 - createData.height / 2);
                 createData.left = Math.round(screen.availWidth / 2 - createData.width / 2);
 
-                chrome.runtime.sendMessage({
+                browser.runtime.sendMessage({
                     action:'openViewWindow',
                     createData:createData
                 });
@@ -1204,7 +1204,7 @@ var hoverZoom = {
         }
 
         function openImageInTab(background) {
-            chrome.runtime.sendMessage({
+            browser.runtime.sendMessage({
                 action:'openViewTab',
                 createData:{
                     url:imgDetails.url,
@@ -1300,7 +1300,7 @@ var hoverZoom = {
             fixFlash();
         }
 
-        chrome.runtime.onMessage.addListener(onMessage);
+        browser.runtime.onMessage.addListener(onMessage);
         loadOptions();
 
         // In case we are being used on a website that removes us from the DOM, update the internal data structure to reflect this
@@ -1403,7 +1403,7 @@ var hoverZoom = {
 
     // Create and displays the loading image container
     createImgLoading:function () {
-        hoverZoom.imgLoading = hoverZoom.imgLoading || $('<img src="' + chrome.extension.getURL('images/loading.gif') + '" style="opacity: 0.8; padding: 0; margin: 0" />');
+        hoverZoom.imgLoading = hoverZoom.imgLoading || $('<img src="' + browser.extension.getURL('images/loading.gif') + '" style="opacity: 0.8; padding: 0; margin: 0" />');
         hoverZoom.imgLoading.appendTo(hoverZoom.hzImg);
     },
 
@@ -1421,13 +1421,13 @@ var hoverZoom = {
             var link = links.eq(preloadIndex++);
             if (link.data().hoverZoomPreloaded) {
                 preloadNextImage();
-                chrome.runtime.sendMessage({action:'preloadProgress', value:preloadIndex, max:links.length});
+                browser.runtime.sendMessage({action:'preloadProgress', value:preloadIndex, max:links.length});
             } else {
                 var hoverZoomSrcIndex = link.data().hoverZoomSrcIndex || 0;
                 $('<img src="' + link.data().hoverZoomSrc[hoverZoomSrcIndex] + '">').load(function () {
                     link.data().hoverZoomPreloaded = true;
                     setTimeout(preloadNextImage, preloadDelay);
-                    chrome.runtime.sendMessage({action:'preloadProgress', value:preloadIndex, max:links.length});
+                    browser.runtime.sendMessage({action:'preloadProgress', value:preloadIndex, max:links.length});
                 }).error(function () {
                         if (hoverZoomSrcIndex < link.data().hoverZoomSrc.length - 1) {
                             link.data().hoverZoomSrcIndex++;
