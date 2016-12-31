@@ -1,4 +1,11 @@
-﻿var options,
+﻿if (typeof msBrowser !== 'undefined') {
+ chrome = msBrowser;
+}
+else if (typeof browser != 'undefined')
+{
+ chrome = browser;
+}
+var options,
     siteDomain,
     prgPreloading, lblPreloading, aPreload;
 

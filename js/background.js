@@ -1,4 +1,11 @@
-﻿// True if the current version of the extension has something to show in an update notification
+﻿if (typeof msBrowser !== 'undefined') {
+ chrome = msBrowser;
+}
+else if (typeof browser != 'undefined')
+{
+ chrome = browser;
+}
+// True if the current version of the extension has something to show in an update notification
 var hasReleaseNotes = false;
 
 var options;

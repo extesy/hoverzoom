@@ -1,3 +1,10 @@
+if (typeof msBrowser !== 'undefined') {
+ chrome = msBrowser;
+}
+else if (typeof browser != 'undefined')
+{
+ chrome = browser;
+}
 var options,
     hoverZoomPlugins = hoverZoomPlugins || [],
     VK_CTRL = 1024,
