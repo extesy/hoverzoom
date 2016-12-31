@@ -1337,6 +1337,11 @@
             "matches": ["*://*.fotoblur.com/*"]
         },
         {
+            "js": ["plugins/visualart.js"],
+            "matches": ["*://*.visualart.me/*",
+                        "*://*.visualart.ro/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
