@@ -1,4 +1,12 @@
 {
+  "extName":{
+    "message":"Hover Zoom+",
+    "description":"Extension name"
+  },
+  "extShortName":{
+    "message":"HoverZoom",
+    "description":"Short extension name"
+  },
   "popPreloadingImages":{
     "message":"Предварително зареждане...",
     "description":"[popup] Preloading zoomed images"

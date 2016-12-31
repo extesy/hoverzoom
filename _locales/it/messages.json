@@ -87,6 +87,26 @@
     "message":"Moltiplica la dimensione delle immagini ingrandite di questa cifra",
     "description":"[options] Tooltip for adjust the size of zoomed images option"
   },
+  "optCaptionLocation":{
+    "message":"Posizione della didascalia:",
+    "description":"[options] Adjust the position of the caption"
+  },
+  "optCaptionLocationTooltip":{
+    "message":"Mostra la didascalia sopra\/sotto l'immagine o non mostrarla affatto",
+    "description":"[options] Tooltip for adjusting the position of the caption"
+  },
+  "optCaptionLocationAbove":{
+    "message":"Sopra",
+    "description":"[options] Caption location option to put captions above the image"
+  },
+  "optCaptionLocationBelow":{
+    "message":"Sotto",
+    "description":"[options] Caption location option to put captions below the image"
+  },
+  "optCaptionLocationNone":{
+    "message":"Nessuna",
+    "description":"[options] Caption location option to disable captions"
+  },
   "optMouseUnderlap":{
     "message":"Estendi le immagini ingrandite sotto il cursore del mouse",
     "description":"[options] Extend zoomed images below the mouse cursor option"
@@ -190,6 +210,14 @@
   "optEnableAmbilightTooltip":{
     "message":"Crea un effetto bagliore simile alla tecnologia Philips Ambilight.",
     "description":"[options] Tooltip for enable ambient light behind images option"
+  },
+  "optCenterImages":{
+    "message":"Centra le immagini",
+    "description":"[options] Center images in the middle of the page option"
+  },
+  "optCenterImagesTooltip":{
+    "message":"Centrare le immagini anziché di farle seguire il cursore",
+    "description":"[options] Tooltip for center images in the middle of the page option"
   },
   "optSectionDelays":{
     "message":"Ritardi",

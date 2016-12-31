@@ -1,7 +1,7 @@
 {
     "name": "__MSG_extName__",
     "short_name": "__MSG_extShortName__",
-    "version": "1.0.96",
+    "version": "1.0.99",
     "description": "__MSG_extDescription__",
     "homepage_url": "https://github.com/extesy/hoverzoom/",
     "manifest_version": 2,
@@ -1139,8 +1139,11 @@
             "matches": ["*://*.furaffinity.net/*"]
         },
         {
-            "js": ["plugins/taobao.js"],
-            "matches": ["*://*.taobao.com/*"]
+            "js": ["plugins/alicdn.js"],
+            "matches": [
+                "*://*.taobao.com/*",
+                "*://*.tmall.com/*"
+            ]
         },
         {
             "js": ["plugins/lazygirls_info.js"],
