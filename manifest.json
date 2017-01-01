@@ -4,6 +4,13 @@
         "page": "background.html",
         "persistent": true
     },
+    "browser_action": {
+        "default_icon": {
+            "19": "images/icon19.png"
+        },
+        "default_popup": "html/popup.html",
+        "default_title": "Hover Zoom+"
+    },
     "content_scripts": [
         {
             "js": [
@@ -1879,13 +1886,6 @@
         "tabs"
     ],
     "options_page": "html/options.html",
-    "page_action": {
-        "default_icon": {
-            "19": "images/icon19.png"
-        },
-        "default_popup": "html/popup.html",
-        "default_title": "Hover Zoom+"
-    },
     "permissions": [
         "*://*/*",
         "notifications",
