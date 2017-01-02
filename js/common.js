@@ -59,18 +59,18 @@ function sendOptions(options) {
     var request = {action:'optionsChanged', 'options':options};
 
     // Send options to all tabs
-    chrome.windows.getAll(null, function (windows) {
+    browser.windows.getAll(null, function (windows) {
         for (var i = 0; i < windows.length; i++) {
-            chrome.tabs.getAllInWindow(windows[i].id, function (tabs) {
+            browser.tabs.getAllInWindow(windows[i].id, function (tabs) {
                 for (var j = 0; j < tabs.length; j++) {
-                    chrome.tabs.sendMessage(tabs[j].id, request);
+                    browser.tabs.sendMessage(tabs[j].id, request);
                 }
             });
         }
     });
 
     // Send options to other extension pages
-    chrome.runtime.sendMessage(request);
+    browser.runtime.sendMessage(request);
 }
 
 // Return true is the url is part of an excluded site
@@ -109,17 +109,17 @@ function keyCodeToKeyName(keyCode) {
 }
 
 function showUpdateNotification() {
-    if (chrome.notifications) {
+    if (browser.notifications) {
         var options = {
             type: 'list',
-            title: chrome.i18n.getMessage('extUpdated'),
+            title: browser.i18n.getMessage('extUpdated'),
             message: '',
             iconUrl: '/images/icon32.png',
             items: [
                 { title: "Ambient light for images", message: "" }
             ]
         };
-        chrome.notifications.create(chrome.i18n.getMessage('extName'), options, function(id) {});
+        browser.notifications.create(browser.i18n.getMessage('extName'), options, function(id) {});
     }
     return false;
 }
@@ -127,14 +127,14 @@ function showUpdateNotification() {
 function i18n() {
     $('[data-i18n]').each(function(index, element) {
         var elem = $(element);
-        elem.text(chrome.i18n.getMessage(elem.attr('data-i18n')));
+        elem.text(browser.i18n.getMessage(elem.attr('data-i18n')));
     });
     $('[data-i18n-placeholder]').each(function(index, element) {
         var elem = $(element);
-        elem.attr('placeholder', chrome.i18n.getMessage(elem.attr('data-i18n-placeholder')));
+        elem.attr('placeholder', browser.i18n.getMessage(elem.attr('data-i18n-placeholder')));
     });
     $('[data-i18n-tooltip]').each(function(index, element) {
         var elem = $(element);
-        elem.attr('data-tooltip', chrome.i18n.getMessage(elem.attr('data-i18n-tooltip')));
+        elem.attr('data-tooltip', browser.i18n.getMessage(elem.attr('data-i18n-tooltip')));
     });
 }

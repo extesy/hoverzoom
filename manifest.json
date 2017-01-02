@@ -1,54 +1,27 @@
 {
-    "name": "__MSG_extName__",
-    "short_name": "__MSG_extShortName__",
-    "version": "1.0.99",
-    "description": "__MSG_extDescription__",
-    "homepage_url": "https://github.com/extesy/hoverzoom/",
-    "manifest_version": 2,
-    "icons": {
-        "16": "images/icon16.png",
-        "32": "images/icon32.png",
-        "48": "images/icon48.png",
-        "128": "images/icon128.png"
-    },
-    "default_locale": "en",
-    "minimum_chrome_version": "22",
+    "author": "Oleg Anashkin",
     "background": {
-        "scripts": ["js/common.js", "js/background.js"]
+        "page": "background.html",
+        "persistent": true
     },
-    "options_page": "html/options.html",
-    "options_ui": {
-        "page": "html/options.html",
-        "chrome_style": false,
-        "open_in_tab": true
-    },
-    "page_action": {
-        "default_icon": "images/icon19.png",
+    "browser_action": {
+        "default_icon": {
+            "19": "images/icon19.png"
+        },
         "default_popup": "html/popup.html",
         "default_title": "Hover Zoom+"
     },
-    "permissions": [
-        "*://*/*",
-        "notifications",
-        "unlimitedStorage"
-    ],
-    "optional_permissions": [
-        "history",
-        "tabs"
-    ],
-    "web_accessible_resources": [
-        "images/loading.gif",
-        "js/libs/gumby.min.js",
-        "js/libs/jquery-2.1.1.min.js",
-        "js/libs/jquery.mobile.custom.min.js",
-        "js/libs/modernizr-2.7.1.min.js",
-        "js/common.js",
-        "js/options.js"
-    ],
     "content_scripts": [
         {
-            "js": ["js/libs/jquery-2.1.1.min.js", "js/tools.js", "js/plugins.js", "plugins/default.js"],
-            "matches": ["<all_urls>"],
+            "js": [
+                "js/libs/jquery-2.1.1.min.js",
+                "js/tools.js",
+                "js/plugins.js",
+                "plugins/default.js"
+            ],
+            "matches": [
+                "<all_urls>"
+            ],
             "all_frames": true
         },
         {
@@ -73,26 +46,43 @@
                 "plugins/vine_a.js",
                 "plugins/twitter_a.js"
             ],
-            "matches": ["<all_urls>"],
+            "matches": [
+                "<all_urls>"
+            ],
             "all_frames": true
         },
         {
-            "js": ["plugins/facebook.js"],
-            "matches": ["*://*.facebook.com/*"],
+            "js": [
+                "plugins/facebook.js"
+            ],
+            "matches": [
+                "*://*.facebook.com/*"
+            ],
             "all_frames": true
         },
         {
-            "js": ["plugins/flickr.js"],
-            "matches": ["*://*.flickr.com/*"]
+            "js": [
+                "plugins/flickr.js"
+            ],
+            "matches": [
+                "*://*.flickr.com/*"
+            ]
         },
         {
-            "js": ["plugins/yahoo.js"],
-            "matches": ["*://*.search.yahoo.com/*",
-                "*://*.search.yahoo.co.jp/*"]
+            "js": [
+                "plugins/yahoo.js"
+            ],
+            "matches": [
+                "*://*.search.yahoo.com/*",
+                "*://*.search.yahoo.co.jp/*"
+            ]
         },
         {
-            "js": ["plugins/picasa.js"],
-            "matches": ["*://picasaweb.google.com/*",
+            "js": [
+                "plugins/picasa.js"
+            ],
+            "matches": [
+                "*://picasaweb.google.com/*",
                 "*://picasaweb.google.ad/*",
                 "*://picasaweb.google.ae/*",
                 "*://picasaweb.google.com.af/*",
@@ -270,14 +260,21 @@
                 "*://picasaweb.google.co.za/*",
                 "*://picasaweb.google.co.zm/*",
                 "*://picasaweb.google.co.zw/*",
-                "*://picasaweb.google.cat/*"]
+                "*://picasaweb.google.cat/*"
+            ]
         },
         {
-            "js": ["plugins/deviantart.js"],
-            "matches": ["*://*.deviantart.com/*"]
+            "js": [
+                "plugins/deviantart.js"
+            ],
+            "matches": [
+                "*://*.deviantart.com/*"
+            ]
         },
         {
-            "js": ["plugins/google.js"],
+            "js": [
+                "plugins/google.js"
+            ],
             "matches": [
                 "*://*.google.com/*",
                 "*://*.google.ad/*",
@@ -465,7 +462,9 @@
             ]
         },
         {
-            "js": ["plugins/opendesktop.js"],
+            "js": [
+                "plugins/opendesktop.js"
+            ],
             "matches": [
                 "*://opendesktop.org/*",
                 "*://kde-apps.org/*",
@@ -506,11 +505,17 @@
             ]
         },
         {
-            "js": ["plugins/gamekult.js"],
-            "matches": ["*://*.gamekult.com/*"]
+            "js": [
+                "plugins/gamekult.js"
+            ],
+            "matches": [
+                "*://*.gamekult.com/*"
+            ]
         },
         {
-            "js": ["plugins/imdb.js"],
+            "js": [
+                "plugins/imdb.js"
+            ],
             "matches": [
                 "*://*.imdb.com/*",
                 "*://*.imdb.de/*",
@@ -521,19 +526,33 @@
             ]
         },
         {
-            "js": ["plugins/image_aspx.js"],
-            "matches": ["*://manager.co.th/*"]
+            "js": [
+                "plugins/image_aspx.js"
+            ],
+            "matches": [
+                "*://manager.co.th/*"
+            ]
         },
         {
-            "js": ["plugins/myspace.js"],
-            "matches": ["*://*.myspace.com/*"]
+            "js": [
+                "plugins/myspace.js"
+            ],
+            "matches": [
+                "*://*.myspace.com/*"
+            ]
         },
         {
-            "js": ["plugins/baidu.js"],
-            "matches": ["*://*.baidu.com/*"]
+            "js": [
+                "plugins/baidu.js"
+            ],
+            "matches": [
+                "*://*.baidu.com/*"
+            ]
         },
         {
-            "js": ["plugins/amazon.js"],
+            "js": [
+                "plugins/amazon.js"
+            ],
             "matches": [
                 "*://*.amazon.com/*",
                 "*://*.amazon.ca/*",
@@ -547,19 +566,33 @@
             ]
         },
         {
-            "js": ["plugins/windowslive.js"],
-            "matches": ["*://*.photos.live.com/*"]
+            "js": [
+                "plugins/windowslive.js"
+            ],
+            "matches": [
+                "*://*.photos.live.com/*"
+            ]
         },
         {
-            "js": ["plugins/hi5.js"],
-            "matches": ["*://*.hi5.com/*"]
+            "js": [
+                "plugins/hi5.js"
+            ],
+            "matches": [
+                "*://*.hi5.com/*"
+            ]
         },
         {
-            "js": ["plugins/play.js"],
-            "matches": ["*://*.play.com/*"]
+            "js": [
+                "plugins/play.js"
+            ],
+            "matches": [
+                "*://*.play.com/*"
+            ]
         },
         {
-            "js": ["plugins/ebay.js"],
+            "js": [
+                "plugins/ebay.js"
+            ],
             "matches": [
                 "*://*.ebay.com/*",
                 "*://*.ebay.de/*",
@@ -583,7 +616,9 @@
             ]
         },
         {
-            "js": ["plugins/allocine.js"],
+            "js": [
+                "plugins/allocine.js"
+            ],
             "matches": [
                 "*://*.allocine.fr/*",
                 "*://*.filmstarts.de/*",
@@ -591,45 +626,75 @@
             ]
         },
         {
-            "js": ["plugins/flixster.js"],
+            "js": [
+                "plugins/flixster.js"
+            ],
             "matches": [
                 "*://*.flixster.com/*",
                 "*://*.rottentomatoes.com/*"
             ]
         },
         {
-            "js": ["plugins/gamespot.js"],
-            "matches": ["*://*.gamespot.com/*"]
+            "js": [
+                "plugins/gamespot.js"
+            ],
+            "matches": [
+                "*://*.gamespot.com/*"
+            ]
         },
         {
-            "js": ["plugins/twitter.js"],
+            "js": [
+                "plugins/twitter.js"
+            ],
             "matches": [
                 "*://*.twitter.com/*",
                 "*://*.tweetdeck.com/*"
             ]
         },
         {
-            "js": ["plugins/twitpic.js"],
-            "matches": ["*://*.twitter.com/*"]
+            "js": [
+                "plugins/twitpic.js"
+            ],
+            "matches": [
+                "*://*.twitter.com/*"
+            ]
         },
         {
-            "js": ["plugins/ravelry.js"],
-            "matches": ["*://*.ravelry.com/*"]
+            "js": [
+                "plugins/ravelry.js"
+            ],
+            "matches": [
+                "*://*.ravelry.com/*"
+            ]
         },
         {
-            "js": ["plugins/jeuxvideo_com.js"],
-            "matches": ["*://*.jeuxvideo.com/*"]
+            "js": [
+                "plugins/jeuxvideo_com.js"
+            ],
+            "matches": [
+                "*://*.jeuxvideo.com/*"
+            ]
         },
         {
-            "js": ["plugins/beautify_it.js"],
-            "matches": ["*://*.beautify.it/*"]
+            "js": [
+                "plugins/beautify_it.js"
+            ],
+            "matches": [
+                "*://*.beautify.it/*"
+            ]
         },
         {
-            "js": ["plugins/cnet.js"],
-            "matches": ["*://*.cnet.com/*"]
+            "js": [
+                "plugins/cnet.js"
+            ],
+            "matches": [
+                "*://*.cnet.com/*"
+            ]
         },
         {
-            "js": ["plugins/lastfm.js"],
+            "js": [
+                "plugins/lastfm.js"
+            ],
             "matches": [
                 "*://*.last.fm/*",
                 "*://*.lastfm.fr/*",
@@ -645,44 +710,82 @@
             ]
         },
         {
-            "js": ["plugins/musicme.js"],
-            "matches": ["*://*.musicme.com/*"],
+            "js": [
+                "plugins/musicme.js"
+            ],
+            "matches": [
+                "*://*.musicme.com/*"
+            ],
             "all_frames": true
         },
         {
-            "js": ["plugins/tinypic.js"],
-            "matches": ["*://*.tinypic.com/*"]
+            "js": [
+                "plugins/tinypic.js"
+            ],
+            "matches": [
+                "*://*.tinypic.com/*"
+            ]
         },
         {
-            "js": ["plugins/photobucket.js"],
-            "matches": ["*://*.photobucket.com/*"]
+            "js": [
+                "plugins/photobucket.js"
+            ],
+            "matches": [
+                "*://*.photobucket.com/*"
+            ]
         },
         {
-            "js": ["plugins/backpage.js"],
-            "matches": ["*://*.backpage.com/*"]
+            "js": [
+                "plugins/backpage.js"
+            ],
+            "matches": [
+                "*://*.backpage.com/*"
+            ]
         },
         {
-            "js": ["plugins/wretch_cc.js"],
-            "matches": ["*://*.wretch.cc/*"]
+            "js": [
+                "plugins/wretch_cc.js"
+            ],
+            "matches": [
+                "*://*.wretch.cc/*"
+            ]
         },
         {
-            "js": ["plugins/events-gallery_ch.js"],
-            "matches": ["*://*.events-gallery.ch/*"]
+            "js": [
+                "plugins/events-gallery_ch.js"
+            ],
+            "matches": [
+                "*://*.events-gallery.ch/*"
+            ]
         },
         {
-            "js": ["plugins/knowyourmeme.js"],
-            "matches": ["*://*.knowyourmeme.com/*"]
+            "js": [
+                "plugins/knowyourmeme.js"
+            ],
+            "matches": [
+                "*://*.knowyourmeme.com/*"
+            ]
         },
         {
-            "js": ["plugins/tshirthell.js"],
-            "matches": ["*://*.tshirthell.com/*"]
+            "js": [
+                "plugins/tshirthell.js"
+            ],
+            "matches": [
+                "*://*.tshirthell.com/*"
+            ]
         },
         {
-            "js": ["plugins/threadless.js"],
-            "matches": ["*://*.threadless.com/*"]
+            "js": [
+                "plugins/threadless.js"
+            ],
+            "matches": [
+                "*://*.threadless.com/*"
+            ]
         },
         {
-            "js": ["plugins/viedemerde.js"],
+            "js": [
+                "plugins/viedemerde.js"
+            ],
             "matches": [
                 "*://*.viedemerde.fr/*",
                 "*://*.fmylife.com/*",
@@ -692,15 +795,25 @@
             ]
         },
         {
-            "js": ["plugins/xing.js"],
-            "matches": ["*://*.xing.com/*"]
+            "js": [
+                "plugins/xing.js"
+            ],
+            "matches": [
+                "*://*.xing.com/*"
+            ]
         },
         {
-            "js": ["plugins/stern_de.js"],
-            "matches": ["*://*.stern.de/*"]
+            "js": [
+                "plugins/stern_de.js"
+            ],
+            "matches": [
+                "*://*.stern.de/*"
+            ]
         },
         {
-            "js": ["plugins/gawker.js"],
+            "js": [
+                "plugins/gawker.js"
+            ],
             "matches": [
                 "*://*.gawker.com/*",
                 "*://*.kotaku.com/*",
@@ -717,63 +830,101 @@
             ]
         },
         {
-            "js": ["plugins/nintendolife.js"],
-            "matches": ["*://*.nintendolife.com/*"]
+            "js": [
+                "plugins/nintendolife.js"
+            ],
+            "matches": [
+                "*://*.nintendolife.com/*"
+            ]
         },
         {
-            "js": ["plugins/skyrock.js"],
-            "matches": ["*://*.skyrock.com/*"]
+            "js": [
+                "plugins/skyrock.js"
+            ],
+            "matches": [
+                "*://*.skyrock.com/*"
+            ]
         },
         {
-            "js": ["plugins/leboncoin_fr.js"],
-            "matches": ["*://*.leboncoin.fr/*"]
+            "js": [
+                "plugins/leboncoin_fr.js"
+            ],
+            "matches": [
+                "*://*.leboncoin.fr/*"
+            ]
         },
         {
-            "js": ["plugins/linkedin.js"],
-            "matches": ["*://*.linkedin.com/*"]
+            "js": [
+                "plugins/linkedin.js"
+            ],
+            "matches": [
+                "*://*.linkedin.com/*"
+            ]
         },
         {
-            "js": ["plugins/subimg_net.js"],
+            "js": [
+                "plugins/subimg_net.js"
+            ],
             "matches": [
                 "*://*.subimg.net/*",
                 "*://*.reddit.com/*"
             ]
         },
         {
-            "js": ["plugins/phapit.js"],
+            "js": [
+                "plugins/phapit.js"
+            ],
             "matches": [
                 "*://*.phapit.com/*",
                 "*://*.reddit.com/*"
             ]
         },
         {
-            "js": ["plugins/fukung.js"],
+            "js": [
+                "plugins/fukung.js"
+            ],
             "matches": [
                 "*://*.fukung.net/*",
                 "*://*.reddit.com/*"
             ]
         },
         {
-            "js": ["plugins/picsarus.js"],
-            "matches": ["*://*.reddit.com/*"]
+            "js": [
+                "plugins/picsarus.js"
+            ],
+            "matches": [
+                "*://*.reddit.com/*"
+            ]
         },
         {
-            "js": ["plugins/pixiv.js"],
-            "matches": ["*://*.pixiv.net/*"]
+            "js": [
+                "plugins/pixiv.js"
+            ],
+            "matches": [
+                "*://*.pixiv.net/*"
+            ]
         },
         {
-            "js": ["plugins/rakuten.js"],
+            "js": [
+                "plugins/rakuten.js"
+            ],
             "matches": [
                 "*://*.rakuten.co.jp/*",
                 "*://*.rakuten.com/*"
             ]
         },
         {
-            "js": ["plugins/copainsdavant.js"],
-            "matches": ["*://copainsdavant.linternaute.com/*"]
+            "js": [
+                "plugins/copainsdavant.js"
+            ],
+            "matches": [
+                "*://copainsdavant.linternaute.com/*"
+            ]
         },
         {
-            "js": ["plugins/blogcdn.js"],
+            "js": [
+                "plugins/blogcdn.js"
+            ],
             "matches": [
                 "*://*.joystiq.com/*",
                 "*://*.engadget.com/*",
@@ -782,52 +933,84 @@
             ]
         },
         {
-            "js": ["plugins/badoo.js"],
+            "js": [
+                "plugins/badoo.js"
+            ],
             "matches": [
                 "*://*.badoo.com/*",
                 "*://*.hotornot.com/*"
             ]
         },
         {
-            "js": ["plugins/steam.js"],
+            "js": [
+                "plugins/steam.js"
+            ],
             "matches": [
                 "*://*.steamcommunity.com/*",
                 "*://*.steampowered.com/*"
             ]
         },
         {
-            "js": ["plugins/1x.js"],
-            "matches": ["*://*.1x.com/*"]
+            "js": [
+                "plugins/1x.js"
+            ],
+            "matches": [
+                "*://*.1x.com/*"
+            ]
         },
         {
-            "js": ["plugins/wired.js"],
-            "matches": ["*://*.wired.com/*"]
+            "js": [
+                "plugins/wired.js"
+            ],
+            "matches": [
+                "*://*.wired.com/*"
+            ]
         },
         {
-            "js": ["plugins/maxmodels.js"],
-            "matches": ["*://*.maxmodels.pl/*"]
+            "js": [
+                "plugins/maxmodels.js"
+            ],
+            "matches": [
+                "*://*.maxmodels.pl/*"
+            ]
         },
         {
-            "js": ["plugins/blip.js"],
-            "matches": ["*://*.blip.pl/*"]
+            "js": [
+                "plugins/blip.js"
+            ],
+            "matches": [
+                "*://*.blip.pl/*"
+            ]
         },
         {
-            "js": ["plugins/digart.js"],
-            "matches": ["*://*.digart.pl/*"]
+            "js": [
+                "plugins/digart.js"
+            ],
+            "matches": [
+                "*://*.digart.pl/*"
+            ]
         },
         {
-            "js": ["plugins/picplz.js"],
-            "matches": ["*://*.picplz.com/*"]
+            "js": [
+                "plugins/picplz.js"
+            ],
+            "matches": [
+                "*://*.picplz.com/*"
+            ]
         },
         {
-            "js": ["plugins/twimg.js"],
+            "js": [
+                "plugins/twimg.js"
+            ],
             "matches": [
                 "*://*.favstar.fm/*",
                 "*://*.tweetmeme.com/*"
             ]
         },
         {
-            "js": ["plugins/cyworld.js"],
+            "js": [
+                "plugins/cyworld.js"
+            ],
             "matches": [
                 "*://*.cyworld.com/*",
                 "*://*.cyworld.co.kr/*",
@@ -835,53 +1018,91 @@
             ]
         },
         {
-            "js": ["plugins/fotolog.js"],
-            "matches": ["*://*.fotolog.com/*"]
+            "js": [
+                "plugins/fotolog.js"
+            ],
+            "matches": [
+                "*://*.fotolog.com/*"
+            ]
         },
         {
-            "js": ["plugins/panoramio.js"],
-            "matches": ["*://*.panoramio.com/*"]
+            "js": [
+                "plugins/panoramio.js"
+            ],
+            "matches": [
+                "*://*.panoramio.com/*"
+            ]
         },
         {
-            "js": ["plugins/imagefap.js"],
-            "matches": ["*://*.imagefap.com/*"]
+            "js": [
+                "plugins/imagefap.js"
+            ],
+            "matches": [
+                "*://*.imagefap.com/*"
+            ]
         },
         {
-            "js": ["plugins/oxd_in.js"],
+            "js": [
+                "plugins/oxd_in.js"
+            ],
             "matches": [
                 "*://*.oxd.in/*",
                 "*://*.reddit.com/*"
             ]
         },
         {
-            "js": ["plugins/vk.js"],
+            "js": [
+                "plugins/vk.js"
+            ],
             "matches": [
                 "*://*.vk.com/*",
                 "*://*.vkontakte.ru/*"
             ]
         },
         {
-            "js": ["plugins/plurk.js"],
-            "matches": ["*://*.plurk.com/*"]
+            "js": [
+                "plugins/plurk.js"
+            ],
+            "matches": [
+                "*://*.plurk.com/*"
+            ]
         },
         {
-            "js": ["plugins/vimeo.js"],
-            "matches": ["*://*.vimeo.com/*"]
+            "js": [
+                "plugins/vimeo.js"
+            ],
+            "matches": [
+                "*://*.vimeo.com/*"
+            ]
         },
         {
-            "js": ["plugins/bebo.js"],
-            "matches": ["*://*.bebo.com/*"]
+            "js": [
+                "plugins/bebo.js"
+            ],
+            "matches": [
+                "*://*.bebo.com/*"
+            ]
         },
         {
-            "js": ["plugins/okcupid.js"],
-            "matches": ["*://*.okcupid.com/*"]
+            "js": [
+                "plugins/okcupid.js"
+            ],
+            "matches": [
+                "*://*.okcupid.com/*"
+            ]
         },
         {
-            "js": ["plugins/paheal.js"],
-            "matches": ["*://*.paheal.net/*"]
+            "js": [
+                "plugins/paheal.js"
+            ],
+            "matches": [
+                "*://*.paheal.net/*"
+            ]
         },
         {
-            "matches": ["*://*.reddit.com/*"],
+            "matches": [
+                "*://*.reddit.com/*"
+            ],
             "js": [
                 "plugins/reddit.js",
                 "plugins/livememe.js",
@@ -895,52 +1116,92 @@
             ]
         },
         {
-            "js": ["plugins/quickmeme.js"],
+            "js": [
+                "plugins/quickmeme.js"
+            ],
             "matches": [
                 "*://*.reddit.com/*",
                 "*://*.feedly.com/*"
             ]
         },
         {
-            "js": ["plugins/instructables.js"],
-            "matches": ["*://*.instructables.com/*"]
+            "js": [
+                "plugins/instructables.js"
+            ],
+            "matches": [
+                "*://*.instructables.com/*"
+            ]
         },
         {
-            "js": ["plugins/nofrag.js"],
-            "matches": ["*://*.nofrag.com/*"]
+            "js": [
+                "plugins/nofrag.js"
+            ],
+            "matches": [
+                "*://*.nofrag.com/*"
+            ]
         },
         {
-            "js": ["plugins/pictmobi.js"],
-            "matches": ["*://*.pict.mobi/*"]
+            "js": [
+                "plugins/pictmobi.js"
+            ],
+            "matches": [
+                "*://*.pict.mobi/*"
+            ]
         },
         {
-            "js": ["plugins/zing_vn.js"],
-            "matches": ["*://*.zing.vn/*"],
+            "js": [
+                "plugins/zing_vn.js"
+            ],
+            "matches": [
+                "*://*.zing.vn/*"
+            ],
             "all_frames": true
         },
         {
-            "js": ["plugins/rootmusic.js"],
-            "matches": ["*://*.rootmusic.com/fb/*"],
+            "js": [
+                "plugins/rootmusic.js"
+            ],
+            "matches": [
+                "*://*.rootmusic.com/fb/*"
+            ],
             "all_frames": true
         },
         {
-            "js": ["plugins/liveshare.js"],
-            "matches": ["*://*.liveshare.com/*"]
+            "js": [
+                "plugins/liveshare.js"
+            ],
+            "matches": [
+                "*://*.liveshare.com/*"
+            ]
         },
         {
-            "js": ["plugins/weheartit.js"],
-            "matches": ["*://*.weheartit.com/*"]
+            "js": [
+                "plugins/weheartit.js"
+            ],
+            "matches": [
+                "*://*.weheartit.com/*"
+            ]
         },
         {
-            "js": ["plugins/funnyjunk.js"],
-            "matches": ["*://*.funnyjunk.com/*"]
+            "js": [
+                "plugins/funnyjunk.js"
+            ],
+            "matches": [
+                "*://*.funnyjunk.com/*"
+            ]
         },
         {
-            "js": ["plugins/sky_it.js"],
-            "matches": ["*://*.sky.it/*"]
+            "js": [
+                "plugins/sky_it.js"
+            ],
+            "matches": [
+                "*://*.sky.it/*"
+            ]
         },
         {
-            "js": ["plugins/blogo_it.js"],
+            "js": [
+                "plugins/blogo_it.js"
+            ],
             "matches": [
                 "*://*.02blog.it/*",
                 "*://*.06blog.it/*",
@@ -984,23 +1245,41 @@
             ]
         },
         {
-            "js": ["plugins/yelp.js"],
-            "matches": ["*://*.yelp.com/*"]
+            "js": [
+                "plugins/yelp.js"
+            ],
+            "matches": [
+                "*://*.yelp.com/*"
+            ]
         },
         {
-            "js": ["plugins/hwzone_il.js"],
-            "matches": ["*://*.hwzone.co.il/*"]
+            "js": [
+                "plugins/hwzone_il.js"
+            ],
+            "matches": [
+                "*://*.hwzone.co.il/*"
+            ]
         },
         {
-            "js": ["plugins/googlecode.js"],
-            "matches": ["*://code.google.com/*"]
+            "js": [
+                "plugins/googlecode.js"
+            ],
+            "matches": [
+                "*://code.google.com/*"
+            ]
         },
         {
-            "js": ["plugins/googleplus.js"],
-            "matches": ["*://plus.google.com/*"]
+            "js": [
+                "plugins/googleplus.js"
+            ],
+            "matches": [
+                "*://plus.google.com/*"
+            ]
         },
         {
-            "js": ["plugins/spinchat.js"],
+            "js": [
+                "plugins/spinchat.js"
+            ],
             "matches": [
                 "*://*.spinchat.com/*",
                 "*://*.spin.de/*"
@@ -1008,11 +1287,17 @@
             "all_frames": true
         },
         {
-            "js": ["plugins/etsy.js"],
-            "matches": ["*://*.etsy.com/*"]
+            "js": [
+                "plugins/etsy.js"
+            ],
+            "matches": [
+                "*://*.etsy.com/*"
+            ]
         },
         {
-            "js": ["plugins/asos.js"],
+            "js": [
+                "plugins/asos.js"
+            ],
             "matches": [
                 "*://*.asos.com/*",
                 "*://*.asos.fr/*",
@@ -1020,40 +1305,74 @@
             ]
         },
         {
-            "js": ["plugins/pinterest.js"],
-            "matches": ["*://*.pinterest.com/*"]
+            "js": [
+                "plugins/pinterest.js"
+            ],
+            "matches": [
+                "*://*.pinterest.com/*"
+            ]
         },
         {
-            "js": ["plugins/500px.js"],
-            "matches": ["*://*.500px.com/*"]
+            "js": [
+                "plugins/500px.js"
+            ],
+            "matches": [
+                "*://*.500px.com/*"
+            ]
         },
         {
-            "js": ["plugins/modelmayhem.js"],
-            "matches": ["*://*.modelmayhem.com/*"]
+            "js": [
+                "plugins/modelmayhem.js"
+            ],
+            "matches": [
+                "*://*.modelmayhem.com/*"
+            ]
         },
         {
-            "js": ["plugins/yam.js"],
-            "matches": ["*://*.yam.com/*"]
+            "js": [
+                "plugins/yam.js"
+            ],
+            "matches": [
+                "*://*.yam.com/*"
+            ]
         },
         {
-            "js": ["plugins/gmail.js"],
-            "matches": ["*://mail.google.com/*"],
+            "js": [
+                "plugins/gmail.js"
+            ],
+            "matches": [
+                "*://mail.google.com/*"
+            ],
             "all_frames": true
         },
         {
-            "js": ["plugins/8tracks.js"],
-            "matches": ["*://*.8tracks.com/*"]
+            "js": [
+                "plugins/8tracks.js"
+            ],
+            "matches": [
+                "*://*.8tracks.com/*"
+            ]
         },
         {
-            "js": ["plugins/yfrog.js"],
-            "matches": ["*://*.twitter.com/*"]
+            "js": [
+                "plugins/yfrog.js"
+            ],
+            "matches": [
+                "*://*.twitter.com/*"
+            ]
         },
         {
-            "js": ["plugins/gameblog.js"],
-            "matches": ["*://*.gameblog.fr/*"]
+            "js": [
+                "plugins/gameblog.js"
+            ],
+            "matches": [
+                "*://*.gameblog.fr/*"
+            ]
         },
         {
-            "js": ["plugins/diaspora.js"],
+            "js": [
+                "plugins/diaspora.js"
+            ],
             "matches": [
                 "*://*.diasp.org/*",
                 "*://*.joindiaspora.com/*",
@@ -1061,73 +1380,131 @@
             ]
         },
         {
-            "js": ["plugins/memecrunch.js"],
+            "js": [
+                "plugins/memecrunch.js"
+            ],
             "matches": [
                 "*://*.memecrunch.com/*",
                 "*://*.reddit.com/*"
             ]
         },
         {
-            "js": ["plugins/myyearbook.js"],
-            "matches": ["*://*.myyearbook.com/*"]
+            "js": [
+                "plugins/myyearbook.js"
+            ],
+            "matches": [
+                "*://*.myyearbook.com/*"
+            ]
         },
         {
-            "js": ["plugins/jeuxvideo_fr.js"],
-            "matches": ["*://*.jeuxvideo.fr/*"]
+            "js": [
+                "plugins/jeuxvideo_fr.js"
+            ],
+            "matches": [
+                "*://*.jeuxvideo.fr/*"
+            ]
         },
         {
-            "js": ["plugins/boardgamegeek.js"],
-            "matches": ["*://*.boardgamegeek.com/*"]
+            "js": [
+                "plugins/boardgamegeek.js"
+            ],
+            "matches": [
+                "*://*.boardgamegeek.com/*"
+            ]
         },
         {
-            "js": ["plugins/e621.js"],
+            "js": [
+                "plugins/e621.js"
+            ],
             "matches": [
                 "*://*.e621.net/*",
                 "*://*.e926.net/*"
             ]
         },
         {
-            "js": ["plugins/jootix.js"],
-            "matches": ["*://*.jootix.com/*"]
+            "js": [
+                "plugins/jootix.js"
+            ],
+            "matches": [
+                "*://*.jootix.com/*"
+            ]
         },
         {
-            "js": ["plugins/bing.js"],
-            "matches": ["*://*.bing.com/*"]
+            "js": [
+                "plugins/bing.js"
+            ],
+            "matches": [
+                "*://*.bing.com/*"
+            ]
         },
         {
-            "js": ["plugins/so_cl.js"],
-            "matches": ["*://*.so.cl/*"]
+            "js": [
+                "plugins/so_cl.js"
+            ],
+            "matches": [
+                "*://*.so.cl/*"
+            ]
         },
         {
-            "js": ["plugins/xuite.js"],
-            "matches": ["*://*.xuite.net/*"]
+            "js": [
+                "plugins/xuite.js"
+            ],
+            "matches": [
+                "*://*.xuite.net/*"
+            ]
         },
         {
-            "js": ["plugins/craigslist.js"],
-            "matches": ["*://*.craigslist.org/*"]
+            "js": [
+                "plugins/craigslist.js"
+            ],
+            "matches": [
+                "*://*.craigslist.org/*"
+            ]
         },
         {
-            "js": ["plugins/zinio.js"],
-            "matches": ["*://*.zinio.com/*"]
+            "js": [
+                "plugins/zinio.js"
+            ],
+            "matches": [
+                "*://*.zinio.com/*"
+            ]
         },
         {
-            "js": ["plugins/posterrevolution.js"],
-            "matches": ["*://*.posterrevolution.com/*"]
+            "js": [
+                "plugins/posterrevolution.js"
+            ],
+            "matches": [
+                "*://*.posterrevolution.com/*"
+            ]
         },
         {
-            "js": ["plugins/dribbble.js"],
-            "matches": ["*://*.dribbble.com/*"]
+            "js": [
+                "plugins/dribbble.js"
+            ],
+            "matches": [
+                "*://*.dribbble.com/*"
+            ]
         },
         {
-            "js": ["plugins/pixnet.js"],
-            "matches": ["*://*.pixnet.net/*"]
+            "js": [
+                "plugins/pixnet.js"
+            ],
+            "matches": [
+                "*://*.pixnet.net/*"
+            ]
         },
         {
-            "js": ["plugins/dropbox.js"],
-            "matches": ["*://*.dropbox.com/*"]
+            "js": [
+                "plugins/dropbox.js"
+            ],
+            "matches": [
+                "*://*.dropbox.com/*"
+            ]
         },
         {
-            "js": ["plugins/newegg.js"],
+            "js": [
+                "plugins/newegg.js"
+            ],
             "matches": [
                 "*://*.newegg.com/*",
                 "*://*.newegg.ca/*",
@@ -1135,208 +1512,362 @@
             ]
         },
         {
-            "js": ["plugins/furaffinity.js"],
-            "matches": ["*://*.furaffinity.net/*"]
+            "js": [
+                "plugins/furaffinity.js"
+            ],
+            "matches": [
+                "*://*.furaffinity.net/*"
+            ]
         },
         {
-            "js": ["plugins/alicdn.js"],
+            "js": [
+                "plugins/alicdn.js"
+            ],
             "matches": [
                 "*://*.taobao.com/*",
                 "*://*.tmall.com/*"
             ]
         },
         {
-            "js": ["plugins/lazygirls_info.js"],
-            "matches": ["*://*.lazygirls.info/*"]
+            "js": [
+                "plugins/lazygirls_info.js"
+            ],
+            "matches": [
+                "*://*.lazygirls.info/*"
+            ]
         },
         {
-            "js": ["plugins/zhihu.js"],
-            "matches": ["*://*.zhihu.com/*"]
+            "js": [
+                "plugins/zhihu.js"
+            ],
+            "matches": [
+                "*://*.zhihu.com/*"
+            ]
         },
         {
-            "js": ["plugins/hupu.js"],
-            "matches": ["*://*.hupu.com/*"]
+            "js": [
+                "plugins/hupu.js"
+            ],
+            "matches": [
+                "*://*.hupu.com/*"
+            ]
         },
         {
-            "js": ["plugins/weibo.js"],
-            "matches": ["*://*.weibo.com/*"]
+            "js": [
+                "plugins/weibo.js"
+            ],
+            "matches": [
+                "*://*.weibo.com/*"
+            ]
         },
         {
-            "js": ["plugins/douban.js"],
-            "matches": ["*://*.douban.com/*"]
+            "js": [
+                "plugins/douban.js"
+            ],
+            "matches": [
+                "*://*.douban.com/*"
+            ]
         },
         {
-            "js": ["plugins/github.js"],
-            "matches": ["*://*.github.com/*"]
+            "js": [
+                "plugins/github.js"
+            ],
+            "matches": [
+                "*://*.github.com/*"
+            ]
         },
         {
-            "js": ["plugins/freepik.js"],
-            "matches": ["*://*.freepik.com/*"]
+            "js": [
+                "plugins/freepik.js"
+            ],
+            "matches": [
+                "*://*.freepik.com/*"
+            ]
         },
         {
-            "js": ["plugins/weasyl.js"],
-            "matches": ["*://*.weasyl.com/*"]
+            "js": [
+                "plugins/weasyl.js"
+            ],
+            "matches": [
+                "*://*.weasyl.com/*"
+            ]
         },
         {
-            "js": ["plugins/quora.js"],
-            "matches": ["*://*.quora.com/*"]
+            "js": [
+                "plugins/quora.js"
+            ],
+            "matches": [
+                "*://*.quora.com/*"
+            ]
         },
         {
-            "js": ["plugins/wallbase_cc.js"],
-            "matches": ["*://*.wallbase.cc/*"]
+            "js": [
+                "plugins/wallbase_cc.js"
+            ],
+            "matches": [
+                "*://*.wallbase.cc/*"
+            ]
         },
         {
-            "js": ["plugins/wallhaven_cc.js"],
-            "matches": ["*://*.wallhaven.cc/*"]
+            "js": [
+                "plugins/wallhaven_cc.js"
+            ],
+            "matches": [
+                "*://*.wallhaven.cc/*"
+            ]
         },
         {
-            "js": ["plugins/bluray.js"],
-            "matches": ["*://*.blu-ray.com/*"]
+            "js": [
+                "plugins/bluray.js"
+            ],
+            "matches": [
+                "*://*.blu-ray.com/*"
+            ]
         },
         {
-            "js": ["plugins/minitokyo.js"],
-            "matches": ["*://*.minitokyo.net/*"]
+            "js": [
+                "plugins/minitokyo.js"
+            ],
+            "matches": [
+                "*://*.minitokyo.net/*"
+            ]
         },
         {
-            "js": ["plugins/animepaper.js"],
-            "matches": ["*://*.animepaper.net/*"]
+            "js": [
+                "plugins/animepaper.js"
+            ],
+            "matches": [
+                "*://*.animepaper.net/*"
+            ]
         },
         {
-            "js": ["plugins/choualbox.js"],
-            "matches": ["*://*.choualbox.com/*"]
+            "js": [
+                "plugins/choualbox.js"
+            ],
+            "matches": [
+                "*://*.choualbox.com/*"
+            ]
         },
         {
-            "js": ["plugins/yandex.js"],
-            "matches": ["*://*.yandex.com/*",
-                          "*://*.yandex.ru/*"]
+            "js": [
+                "plugins/yandex.js"
+            ],
+            "matches": [
+                "*://*.yandex.com/*",
+                "*://*.yandex.ru/*"
+            ]
         },
         {
-            "js": ["plugins/kununu.js"],
-            "matches": ["*://*.kununu.com/*"]
+            "js": [
+                "plugins/kununu.js"
+            ],
+            "matches": [
+                "*://*.kununu.com/*"
+            ]
         },
         {
-            "js": ["plugins/miiverse.js"],
-            "matches": ["*://miiverse.nintendo.net/*"]
+            "js": [
+                "plugins/miiverse.js"
+            ],
+            "matches": [
+                "*://miiverse.nintendo.net/*"
+            ]
         },
         {
-            "matches": ["*://*.fetlife.com/*"],
-            "js": ["plugins/fetlife.js"],
+            "matches": [
+                "*://*.fetlife.com/*"
+            ],
+            "js": [
+                "plugins/fetlife.js"
+            ],
             "run_at": "document_start"
         },
         {
-            "matches": ["*://*.kinkondemand.com/*",
-                        "*://*.behindkink.com/*",
-                        "*://*.kink.com/*",
-                        "*://*.kinkclassic.com/*",
-                        "*://*.kinkarchive.com/*",
-                        "*://*.kinklive.com/*",
-                        "*://*.animatedkink.com/*",
-                        "*://*.boundgangbangs.com/*",
-                        "*://*.devicebondage.com/*",
-                        "*://*.divinebitches.com/*",
-                        "*://*.dungeonsex.com/*",
-                        "*://*.electrosluts.com/*",
-                        "*://*.everythingbutt.com/*",
-                        "*://*.footworship.com/*",
-                        "*://*.fuckingmachines.com/*",
-                        "*://*.hardcoregangbang.com/*",
-                        "*://*.hogtied.com/*",
-                        "*://*.3dkink.com/*",
-                        "*://*.kinkuniversity.com/*",
-                        "*://*.meninpain.com/*",
-                        "*://*.publicdisgrace.com/*",
-                        "*://*.sadisticrope.com/*",
-                        "*://*.sexandsubmission.com/*",
-                        "*://*.thetrainingofo.com/*",
-                        "*://*.theupperfloor.com/*",
-                        "*://*.tspussyhunters.com/*",
-                        "*://*.tsseduction.com/*",
-                        "*://*.ultimatesurrender.com/*",
-                        "*://*.waterbondage.com/*",
-                        "*://*.whippedass.com/*",
-                        "*://*.wiredpussy.com/*",
-                        "*://*.kinkmen.com/*",
-                        "*://*.30minutesoftorment.com/*",
-                        "*://*.boundgods.com/*",
-                        "*://*.boundinpublic.com/*",
-                        "*://*.buttmachineboys.com/*",
-                        "*://*.kinkmenarchive.com/*",
-                        "*://*.menonedge.com/*",
-                        "*://*.nakedkombat.com/*"],
-            "js": ["plugins/kink.js"],
+            "matches": [
+                "*://*.kinkondemand.com/*",
+                "*://*.behindkink.com/*",
+                "*://*.kink.com/*",
+                "*://*.kinkclassic.com/*",
+                "*://*.kinkarchive.com/*",
+                "*://*.kinklive.com/*",
+                "*://*.animatedkink.com/*",
+                "*://*.boundgangbangs.com/*",
+                "*://*.devicebondage.com/*",
+                "*://*.divinebitches.com/*",
+                "*://*.dungeonsex.com/*",
+                "*://*.electrosluts.com/*",
+                "*://*.everythingbutt.com/*",
+                "*://*.footworship.com/*",
+                "*://*.fuckingmachines.com/*",
+                "*://*.hardcoregangbang.com/*",
+                "*://*.hogtied.com/*",
+                "*://*.3dkink.com/*",
+                "*://*.kinkuniversity.com/*",
+                "*://*.meninpain.com/*",
+                "*://*.publicdisgrace.com/*",
+                "*://*.sadisticrope.com/*",
+                "*://*.sexandsubmission.com/*",
+                "*://*.thetrainingofo.com/*",
+                "*://*.theupperfloor.com/*",
+                "*://*.tspussyhunters.com/*",
+                "*://*.tsseduction.com/*",
+                "*://*.ultimatesurrender.com/*",
+                "*://*.waterbondage.com/*",
+                "*://*.whippedass.com/*",
+                "*://*.wiredpussy.com/*",
+                "*://*.kinkmen.com/*",
+                "*://*.30minutesoftorment.com/*",
+                "*://*.boundgods.com/*",
+                "*://*.boundinpublic.com/*",
+                "*://*.buttmachineboys.com/*",
+                "*://*.kinkmenarchive.com/*",
+                "*://*.menonedge.com/*",
+                "*://*.nakedkombat.com/*"
+            ],
+            "js": [
+                "plugins/kink.js"
+            ],
             "run_at": "document_start"
         },
         {
-            "matches": ["*://*.kenmarcus.com/*"],
-            "js": ["plugins/kenmarcus.js"],
+            "matches": [
+                "*://*.kenmarcus.com/*"
+            ],
+            "js": [
+                "plugins/kenmarcus.js"
+            ],
             "run_at": "document_start"
         },
         {
-            "matches": ["*://*.zenfolio.com/*",
-                        "*://*.goodgirlbadgirlboudoir.com/*"],
-            "js": ["plugins/zenfolio.js"],
+            "matches": [
+                "*://*.zenfolio.com/*",
+                "*://*.goodgirlbadgirlboudoir.com/*"
+            ],
+            "js": [
+                "plugins/zenfolio.js"
+            ],
             "run_at": "document_start"
         },
         {
-            "matches": ["*://*.escapistmagazine.com/*"],
-            "js": ["plugins/escapistmagazine.js"],
+            "matches": [
+                "*://*.escapistmagazine.com/*"
+            ],
+            "js": [
+                "plugins/escapistmagazine.js"
+            ],
             "run_at": "document_start"
         },
         {
-            "js": ["plugins/dirty.js"],
-            "matches": ["*://*.d3.ru/*",
-                        "*://*.dirty.ru/*"]
+            "js": [
+                "plugins/dirty.js"
+            ],
+            "matches": [
+                "*://*.d3.ru/*",
+                "*://*.dirty.ru/*"
+            ]
         },
         {
-            "matches": ["*://*.sexuallybroken.com/*",
-                        "*://*.hardtied.com/*",
-                        "*://*.infernalrestraints.com/*",
-                        "*://*.topgrl.com/*",
-                        "*://*.realtimebondage.com/*"],
-            "js": ["plugins/intersecinteractive.js"],
+            "matches": [
+                "*://*.sexuallybroken.com/*",
+                "*://*.hardtied.com/*",
+                "*://*.infernalrestraints.com/*",
+                "*://*.topgrl.com/*",
+                "*://*.realtimebondage.com/*"
+            ],
+            "js": [
+                "plugins/intersecinteractive.js"
+            ],
             "run_at": "document_start"
         },
         {
-            "js": ["plugins/slickdeals.js"],
-            "matches": ["*://*.slickdeals.net/*"]
+            "js": [
+                "plugins/slickdeals.js"
+            ],
+            "matches": [
+                "*://*.slickdeals.net/*"
+            ]
         },
         {
-            "js": ["plugins/flipkart.js"],
-            "matches": ["*://*.flipkart.com/*"]
+            "js": [
+                "plugins/flipkart.js"
+            ],
+            "matches": [
+                "*://*.flipkart.com/*"
+            ]
         },
         {
-            "js": ["plugins/artuk.js"],
-            "matches": ["*://*.artuk.org/*"]
+            "js": [
+                "plugins/artuk.js"
+            ],
+            "matches": [
+                "*://*.artuk.org/*"
+            ]
         },
         {
-            "js": ["plugins/n11.js"],
-            "matches": ["*://*.n11.com/*"]
+            "js": [
+                "plugins/n11.js"
+            ],
+            "matches": [
+                "*://*.n11.com/*"
+            ]
         },
         {
-            "js": ["plugins/carrefoursa.js"],
-            "matches": ["*://*.carrefoursa.com/*"]
+            "js": [
+                "plugins/carrefoursa.js"
+            ],
+            "matches": [
+                "*://*.carrefoursa.com/*"
+            ]
         },
         {
-            "js": ["plugins/ask.js"],
-            "matches": ["*://ask.fm/*"]
+            "js": [
+                "plugins/ask.js"
+            ],
+            "matches": [
+                "*://ask.fm/*"
+            ]
         },
         {
-            "js": ["plugins/artlimited.js"],
-            "matches": ["*://*.artlimited.net/*"]
+            "js": [
+                "plugins/artlimited.js"
+            ],
+            "matches": [
+                "*://*.artlimited.net/*"
+            ]
         },
         {
-            "js": ["plugins/instagram.js"],
-            "matches": ["*://*.instagram.com/*"]
+            "js": [
+                "plugins/instagram.js"
+            ],
+            "matches": [
+                "*://*.instagram.com/*"
+            ]
         },
         {
-            "js": ["plugins/kephost.js"],
-            "matches": ["*://kephost.com/*"]
+            "js": [
+                "plugins/kephost.js"
+            ],
+            "matches": [
+                "*://kephost.com/*"
+            ]
         },
         {
-            "js": ["plugins/fotoblur.js"],
-            "matches": ["*://*.fotoblur.com/*"]
+            "js": [
+                "plugins/fotoblur.js"
+            ],
+            "matches": [
+                "*://*.fotoblur.com/*"
+            ]
         },
         {
+<<<<<<< HEAD
+            "js": [
+                "js/hoverzoom.js"
+            ],
+            "matches": [
+                "<all_urls>"
+            ],
+=======
             "js": ["plugins/visualart.js"],
             "matches": ["*://*.visualart.me/*",
                         "*://*.visualart.ro/*"]
@@ -1344,7 +1875,45 @@
         {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
+>>>>>>> refs/remotes/extesy/master
             "all_frames": true
         }
-   ]
+    ],
+    "default_locale": "en",
+    "description": "__MSG_extDescription__",
+    "homepage_url": "https://github.com/extesy/hoverzoom/",
+    "icons": {
+        "16": "images/icon16.png",
+        "32": "images/icon32.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+    },
+    "manifest_version": 2,
+    "minimum_edge_version": "33.14281.1000.0",
+    "name": "__MSG_extName__",
+    "optional_permissions": [
+        "history",
+        "tabs"
+    ],
+    "options_page": "html/options.html",
+    "permissions": [
+        "*://*/*",
+        "notifications",
+        "unlimitedStorage"
+    ],
+    "short_name": "__MSG_extShortName__",
+    "version": "1.0.97",
+    "web_accessible_resources": [
+        "images/loading.gif",
+        "js/libs/gumby.min.js",
+        "js/libs/jquery-2.1.1.min.js",
+        "js/libs/jquery.mobile.custom.min.js",
+        "js/libs/modernizr-2.7.1.min.js",
+        "js/common.js",
+        "js/options.js"
+    ],
+    "-ms-preload": {
+        "backgroundScript": "backgroundScriptsAPIBridge.js",
+        "contentScript": "contentScriptsAPIBridge.js"
+    }
 }
