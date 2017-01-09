@@ -1348,6 +1348,10 @@
                         "*://*.visualart.ro/*"]
         },
         {
+            "js": ["plugins/photo_net.js"],
+            "matches": ["*://*.photo.net/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
