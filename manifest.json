@@ -1380,6 +1380,10 @@
                         "*://*.gettyimages.co.jp/*"]
         },
         {
+            "js": ["plugins/pixabay.js"],
+            "matches": ["*://*.pixabay.com/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
