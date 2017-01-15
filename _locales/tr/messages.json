@@ -87,6 +87,26 @@
     "message":"Bu miktar kadar yakınlaştırılmış resimlerin boyutunu çarpın",
     "description":"[options] Tooltip for adjust the size of zoomed images option"
   },
+  "optCaptionLocation":{
+    "message":"Resim yazısı konumu:",
+    "description":"[options] Adjust the position of the caption"
+  },
+  "optCaptionLocationTooltip":{
+    "message":"Resim yazısını görüntünün altında\/yukarıda görüntüle ya da hiç görüntüleme",
+    "description":"[options] Tooltip for adjusting the position of the caption"
+  },
+  "optCaptionLocationAbove":{
+    "message":"Yukarıda",
+    "description":"[options] Caption location option to put captions above the image"
+  },
+  "optCaptionLocationBelow":{
+    "message":"Altında",
+    "description":"[options] Caption location option to put captions below the image"
+  },
+  "optCaptionLocationNone":{
+    "message":"Hiç biri",
+    "description":"[options] Caption location option to disable captions"
+  },
   "optMouseUnderlap":{
     "message":"Yakınlaştırılmış resimleri fare tekerleğiyle genişlet",
     "description":"[options] Extend zoomed images below the mouse cursor option"
@@ -190,6 +210,14 @@
   "optEnableAmbilightTooltip":{
     "message":"Phillips Ambilight teknolojisine benzer bir ince parlama efekti oluşturun.",
     "description":"[options] Tooltip for enable ambient light behind images option"
+  },
+  "optCenterImages":{
+    "message":"Resimleri ortala",
+    "description":"[options] Center images in the middle of the page option"
+  },
+  "optCenterImagesTooltip":{
+    "message":"İmleç takibi yapmak yerine resimleri ortala",
+    "description":"[options] Tooltip for center images in the middle of the page option"
   },
   "optSectionDelays":{
     "message":"Gecikmeler",
