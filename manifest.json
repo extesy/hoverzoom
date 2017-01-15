@@ -1348,6 +1348,38 @@
                         "*://*.visualart.ro/*"]
         },
         {
+            "js": ["plugins/photo_net.js"],
+            "matches": ["*://*.photo.net/*"]
+        },
+        {
+            "js": ["plugins/gettyimages.js"],
+            "matches": ["*://*.gettyimages.com/*",
+                        "*://*.gettyimages.com.au/*",
+                        "*://*.gettyimages.be/*",
+                        "*://*.gettyimages.ca/*",
+                        "*://*.gettyimages.co.cz/*",
+                        "*://*.gettyimages.dk/*",
+                        "*://*.gettyimages.es/*",
+                        "*://*.gettyimages.fr/*",
+                        "*://*.gettyimages.in/*",
+                        "*://*.gettyimages.ie/*",
+                        "*://*.gettyimages.it/*",
+                        "*://*.gettyimages.nl/*",
+                        "*://*.gettyimages.co.nz/*",
+                        "*://*.gettyimages.no/*",
+                        "*://*.gettyimages.at/*",
+                        "*://*.gettyimages.ru/*",
+                        "*://*.gettyimages.com.pl/*",
+                        "*://*.gettyimages.pt/*",
+                        "*://*.gettyimages.ch/*",
+                        "*://*.gettyimages.fi/*",
+                        "*://*.gettyimages.se/*",
+                        "*://*.gettyimages.ae/*",
+                        "*://*.gettyimages.co.uk/*",
+                        "*://*.gettyimages.cn/*",
+                        "*://*.gettyimages.co.jp/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
