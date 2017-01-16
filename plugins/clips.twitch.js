@@ -5,7 +5,7 @@ hoverZoomPlugins.push({
         $('a[href*="clips.twitch.tv/"]').one('mouseenter', function() {
           var link = this;
           if (link.href.indexOf('reddit.com') !== -1) return;
-          if (!link.classList.contains('hoverZoomLink')) {
+          if (!link.classList.contains('hoverZoomLink') && options.zoomVideos) {
               hoverZoom.prepareFromDocument($(link), link.href, function (doc) {
                   var meta = doc.querySelector('meta[property="og:image"][content]');
                   link.classList.remove('hoverZoomLink');
