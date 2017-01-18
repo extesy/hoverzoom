@@ -7,7 +7,7 @@ if (!Range.prototype["intersectsNode"]) {
     };
 }
 var getExtensionProtocol = function () {
-    if (typeof browser == "undefined") {
+    if (typeof browser === "undefined") {
         if (typeof chrome !== "undefined")
             return "chrome-extension://";
     }
@@ -29,10 +29,10 @@ class EdgeBridgeHelper {
         this.fakeEvent = new FakeEvent();
     }
     toAbsolutePath(relativePath) {
-        if (relativePath.indexOf("ms-browser-extension://") == 0) {
+        if (relativePath.indexOf("ms-browser-extension://") === 0) {
             return relativePath.replace(myBrowser.runtime.getURL(""), "");
         }
-        else if (relativePath.indexOf("/") != 0) {
+        else if (relativePath.indexOf("/") !== 0) {
             var absolutePath = "";
             var documentPath = document.location.pathname;
             absolutePath = documentPath.substring(0, documentPath.lastIndexOf("/") + 1);
@@ -319,5 +319,5 @@ class EdgeContentBridge {
         this.storage = typeof browser.storage !== "undefined" ? new EdgeChromeStorageBridge() : undefined;
     }
 }
-var myBrowser = browser;
+var myBrowser = (typeof browser === "undefined") ? null : browser;
 var chrome = (typeof chrome === "undefined" || typeof chrome.i18n === "undefined") ? new EdgeContentBridge() : chrome;

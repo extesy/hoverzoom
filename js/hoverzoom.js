@@ -373,11 +373,11 @@ var hoverZoom = {
 
             if (links && links.length > 0) {
                 var hoverZoomSrcIndex = links.data().hoverZoomSrcIndex || 0;
-                if (links.data().hoverZoomSrc && typeof(links.data().hoverZoomSrc) != 'undefined' &&
+                if (links.data().hoverZoomSrc && typeof(links.data().hoverZoomSrc) !== 'undefined' &&
                     links.data().hoverZoomSrc[hoverZoomSrcIndex] &&
-                    typeof(links.data().hoverZoomSrc[hoverZoomSrcIndex]) != 'undefined') {
+                    typeof(links.data().hoverZoomSrc[hoverZoomSrcIndex]) !== 'undefined') {
                     // Happens when the mouse goes from an image to another without hovering the page background
-                    if (links.data().hoverZoomSrc[hoverZoomSrcIndex] != imgDetails.url) {
+                    if (links.data().hoverZoomSrc[hoverZoomSrcIndex] !== imgDetails.url) {
                         hideHoverZoomImg();
                     }
 
@@ -409,6 +409,11 @@ var hoverZoom = {
                                 //    src = 'https' + src.substr(src.indexOf(':'));
                                 //}
                             }
+
+                            if (isVideoLink(src) && !options.zoomVideos) { // if we have a video link and don't want to zoom videos, don't do any of the loading
+                              return;
+                            }
+
                             imgDetails.url = src;
                             clearTimeout(loadFullSizeImageTimeout);
 
