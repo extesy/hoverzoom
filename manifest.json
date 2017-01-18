@@ -1384,6 +1384,10 @@
             "matches": ["*://*.pixabay.com/*"]
         },
         {
+            "js": ["plugins/freeimages.js"],
+            "matches": ["*://*.freeimages.com/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
