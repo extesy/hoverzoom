@@ -1396,6 +1396,10 @@
             "matches": ["*://*.artsper.com/*"]
         },
         {
+            "js": ["plugins/istockphoto.js"],
+            "matches": ["*://*.istockphoto.com/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
