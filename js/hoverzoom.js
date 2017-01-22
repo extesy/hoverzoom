@@ -410,6 +410,10 @@ var hoverZoom = {
                                 //}
                             }
 
+                            if (isExcludedLink(src)) {
+                                return;
+                            }
+
                             if (isVideoLink(src) && !options.zoomVideos) { // if we have a video link and don't want to zoom videos, don't do any of the loading
                               return;
                             }
@@ -897,7 +901,7 @@ var hoverZoom = {
 
         function deepUnescape(url) {
             var ueUrl = unescape(encodeURIComponent(url));
-            while (url != ueUrl) {
+            while (url !== ueUrl) {
                 url = ueUrl;
                 ueUrl = unescape(url);
             }
@@ -915,30 +919,25 @@ var hoverZoom = {
         var webSiteExcluded = null;
 
         function isExcludedSite() {
-
             // If site exclusion has already been tested
-            if (webSiteExcluded != null) {
+            if (webSiteExcluded !== null) {
                 return webSiteExcluded;
             }
+            webSiteExcluded = isExcludedLink(location.href);
+            return webSiteExcluded;
+        }
 
-            var excluded = !options.whiteListMode;
-            var siteAddress = location.href.substr(location.protocol.length + 2);
-            if (siteAddress.substr(0, 4) == 'www.') {
-                siteAddress = siteAddress.substr(4);
-            }
-            for (var i = 0; i < options.excludedSites.length; i++) {
-                var es = options.excludedSites[i];
-                if (es.substr(0, 4) == 'www.') {
-                    es = es.substr(4);
-                }
-                if (es && es.length <= siteAddress.length) {
-                    if (siteAddress.substr(0, es.length) == es) {
-                        webSiteExcluded = excluded;
+        function isExcludedLink(link) {
+            let url = new URL(link)['hostname'];
+            let excluded = !options.whiteListMode;
+            for (let i = 0; i < options.excludedSites.length; i++) {
+                let es = options.excludedSites[i];
+                if (es && es.length <= url.length) {
+                    if (url.substr(url.length - es.length, es.length) === es) {
                         return excluded;
                     }
                 }
             }
-            webSiteExcluded = !excluded;
             return !excluded;
         }
 
@@ -952,7 +951,7 @@ var hoverZoom = {
         }
 
         function onMessage(message, sender, sendResponse) {
-            if (message.action == 'optionsChanged') {
+            if (message.action === 'optionsChanged') {
                 options = message.options;
                 applyOptions();
             }
