@@ -1404,6 +1404,10 @@
             "matches": ["*://*.everystockphoto.com/*"]
         },
         {
+            "js": ["plugins/smugmug.js"],
+            "matches": ["*://*.smugmug.com/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
