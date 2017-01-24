@@ -1408,6 +1408,10 @@
             "matches": ["*://*.smugmug.com/*"]
         },
         {
+            "js": ["plugins/cgcookie.js"],
+            "matches": ["*://*.cgcookie.com/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
