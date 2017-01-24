@@ -169,10 +169,20 @@ function restoreOptions() {
 }
 
 function btnAddExcludedSiteOnClick() {
-    var field = $('#txtAddExcludedSite');
-    var site = field.val().trim().toLowerCase().replace(/.*:\/\//, '');
-    if (site) appendExcludedSite(site);
-    field.val('').focus();
+    let field = $('#txtAddExcludedSite');
+    try {
+        let val = field.val().trim();
+        if (val.indexOf('://') === -1)
+            val = 'http://' + val;
+        let site = new URL(val)['hostname'];
+        if (site.substr(0, 4) === 'www.')
+            site = site.substr(4);
+        if (site)
+            appendExcludedSite(site);
+        field.val('').focus();
+    } catch (e) {
+        // ignore the exception
+    }
     return false;
 }
 
