@@ -6,39 +6,58 @@ hoverZoomPlugins.push({
     // so now we need to load the actual picture page to get the full image URL with token to view anything
     // here's the work on it (iambic9 on fetlife if you have any questions or suggestions!)
     prepareImgLinks:function (callback) {
+        var res = [];
         $('a[href*="/users/"]').filter(function() {
 
             // this class is the full-size image preview (but still has a link to the next image)
             if($(this).hasClass('fl-transparent-facade'))
                 return false;
 
+            // already processed
+            if($(this).hasClass('hoverZoomLink'))
+                return false;
+
             // limit ourselves to actual image thumbnails, too many text links around
             if ($(this).find("img").length == 0)
-            	return false;
+                return false;
 
             return this.href.match(/fetlife.com\/users\/\d+\/pictures\/\d+$/);
         }).each(function(){
             var link= this.href;
-            var img = ($(this).find('img').length > 0 ? $(this) : $(this).parent());
+            var img = ($(this).find('img').length > 0 ? $(this) : null);
 
             // push the caption from the image into the link data
-            $(this).data().hoverZoomCaption = img.find('img:first').attr('title');
+            img.find('img:first').data().hoverZoomCaption = img.find('img:first').attr('alt');
+            img.find('img:first').attr('title', '');
 
-            // actually pull the picture page when we move the mouse over this object (so we don't spam requests)
-            img.one('mouseover', function() {
-                hoverZoom.prepareFromDocument($(this), link, function(doc) {
+            // news feed can have sometimes have 30-100 thumbnails right next to each
+            // previously, sweeping the mouse over them would trigger one request per image
+            // had some UI flicker issues, but also a bit of hammering to fetlife
+            var delay=80, timeout;
+            img.find('img:first').hover(
+                  function() {
+                    timeout = setTimeout(() => {
 
-                    var img = doc.getElementsByClassName('fl-picture__img')[0];
+                        // try to flag as processed ourselves to prevent multiple loads
+                        // there were sometimes multiple loads after fetlife's feed would load more content
+                        if ($(this).data().prepared) return false;
+                        $(this).data('prepared', true);
 
-                    if (img) {
-                        img.title = img.alt;
-                        return img.src;
-                    } else {
-                        return false;
-                    }
-                });
-            });
+                        hoverZoom.prepareFromDocument($(this), link, function(doc) {
+                            var img = doc.getElementsByClassName('fl-picture__img')[0];
+                            if (img) {
+                                return img.src;
+                            } else {
+                                return false;
+                            }
+                        });
+                     }, delay);
+                    
+                  }, function() {
+                    clearTimeout(timeout );
+                  }
+                );
         })
-
+        callback($(res));
     }
 });
