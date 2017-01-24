@@ -842,5 +842,5 @@ class EdgeBackgroundBridge {
         this.windows = typeof browser.windows !== "undefined" ? new EdgeChromeWindowsBridge() : undefined;
     }
 }
-var myBrowser = browser;
+var myBrowser = (typeof browser === "undefined") ? null : browser;
 var chrome = (typeof chrome === "undefined" || typeof chrome.i18n === "undefined") ? new EdgeBackgroundBridge() : chrome;
