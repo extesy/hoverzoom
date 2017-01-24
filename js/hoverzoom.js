@@ -410,7 +410,7 @@ var hoverZoom = {
                                 //}
                             }
 
-                            if (isExcludedLink(src)) {
+                            if (!options.whiteListMode && isExcludedLink(src)) {
                                 return;
                             }
 
@@ -931,7 +931,7 @@ var hoverZoom = {
             let url = new URL(link)['hostname'];
             let excluded = !options.whiteListMode;
             for (let i = 0; i < options.excludedSites.length; i++) {
-                let es = options.excludedSites[i];
+                let es = new URL('http://' + options.excludedSites[i])['hostname'];
                 if (es && es.length <= url.length) {
                     if (url.substr(url.length - es.length, es.length) === es) {
                         return excluded;
@@ -945,7 +945,7 @@ var hoverZoom = {
             chrome.runtime.sendMessage({action:'getOptions'}, function (result) {
                 options = result;
                 if (options) {
-                applyOptions();
+                    applyOptions();
                 }
             });
         }
