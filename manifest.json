@@ -1416,6 +1416,10 @@
             "matches": ["*://*.dreamstime.com/*"]
         },
         {
+            "js": ["plugins/cgsociety.js"],
+            "matches": ["*://*.cgsociety.org/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
