@@ -653,7 +653,8 @@ var hoverZoom = {
                     imgFullSize = null;
                     console.info('[HoverZoom] Failed to load image: ' + imgDetails.url + '\nTrying next one: ' + src);
                     imgDetails.url = src;
-                    setTimeout(loadFullSizeImage, 10);
+                    clearTimeout(loadFullSizeImageTimeout);
+                    loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, 10);
                 } else {
                     hideHoverZoomImg();
                     //hz.currentLink.removeClass('hoverZoomLink').removeData();
@@ -985,8 +986,8 @@ var hoverZoom = {
         }
 
         function bindEvents() {
-            wnd.bind('DOMNodeInserted', windowOnDOMNodeInserted).load(windowOnLoad).scroll(cancelImageLoading);
-            $(document).mousemove(documentMouseMove).mouseleave(cancelImageLoading).mousedown(documentMouseDown).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
+            wnd.bind('DOMNodeInserted', windowOnDOMNodeInserted).load(windowOnLoad).scroll(cancelImageLoading).blur(cancelImageLoading).mouseleave(cancelImageLoading);
+            $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
             if (options.galleriesMouseWheel) {
                 $(document).on('mousewheel', documentOnMouseWheel);
             }
@@ -1256,9 +1257,7 @@ var hoverZoom = {
         function loadNextGalleryImage() {
             clearTimeout(loadFullSizeImageTimeout);
             imgDetails.url = hz.currentLink.data().hoverZoomSrc[hz.currentLink.data().hoverZoomSrcIndex];
-            imgFullSize.load(nextGalleryImageOnLoad).error(function () {
-                imgOnError(this, false, loadNextGalleryImage);
-            }).attr('src', imgDetails.url);
+            imgFullSize.load(nextGalleryImageOnLoad).error(loadNextGalleryImage).attr('src', imgDetails.url);
         }
 
         function nextGalleryImageOnLoad() {
