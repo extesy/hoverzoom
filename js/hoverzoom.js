@@ -403,11 +403,6 @@ var hoverZoom = {
                                     src = '//' + window.location.host + '/' + src;
                                 }
                                 src = window.location.protocol + src;
-                            } else {
-                                // switch to https if the main site is loaded using https protocol
-                                //if (window.location.protocol === 'https:' && src.indexOf('http:') === 0) {
-                                //    src = 'https' + src.substr(src.indexOf(':'));
-                                //}
                             }
 
                             if (!options.whiteListMode && isExcludedLink(src)) {
@@ -638,21 +633,32 @@ var hoverZoom = {
         }
 
         function imgFullSizeOnError() {
-            if (imgDetails.url == $(this).attr('src')) {
-                var hoverZoomSrcIndex = hz.currentLink ? hz.currentLink.data().hoverZoomSrcIndex : 0;
-                if (hz.currentLink && hoverZoomSrcIndex < hz.currentLink.data().hoverZoomSrc.length - 1) {
+            let src = imgDetails.url;
+            if (src === $(this).attr('src')) {
+                let hoverZoomSrcIndex = hz.currentLink ? hz.currentLink.data().hoverZoomSrcIndex : 0;
+                if (window.location.protocol === 'https:' && src.indexOf('http:') === 0) {
+                    // try switching to https if the main site is loaded using https protocol and image is using http
+                    src = 'https' + src.substr(src.indexOf(':'));
+                } else if (hz.currentLink && hoverZoomSrcIndex < hz.currentLink.data().hoverZoomSrc.length - 1) {
                     // If the link has several possible sources, we try to load the next one
-                    imgFullSize.remove();
-                    imgFullSize = null;
                     hoverZoomSrcIndex++;
                     hz.currentLink.data().hoverZoomSrcIndex = hoverZoomSrcIndex;
-                    console.info('[HoverZoom] Failed to load image: ' + imgDetails.url + '\nTrying next one...');
-                    imgDetails.url = hz.currentLink.data().hoverZoomSrc[hoverZoomSrcIndex];
-                    setTimeout(loadFullSizeImage, 100);
+                    src = hz.currentLink.data().hoverZoomSrc[hoverZoomSrcIndex];
+                } else {
+                    src = null;
+                }
+
+                if (src) {
+                    imgFullSize.remove();
+                    imgFullSize = null;
+                    console.info('[HoverZoom] Failed to load image: ' + imgDetails.url + '\nTrying next one: ' + src);
+                    imgDetails.url = src;
+                    clearTimeout(loadFullSizeImageTimeout);
+                    loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, 10);
                 } else {
                     hideHoverZoomImg();
                     //hz.currentLink.removeClass('hoverZoomLink').removeData();
-                    console.warn('[HoverZoom] Failed to load image: ' + imgDetails.url);
+                    console.warn('[HoverZoom] Failed to load image: ' + src);
                 }
             }
         }
@@ -980,8 +986,8 @@ var hoverZoom = {
         }
 
         function bindEvents() {
-            wnd.bind('DOMNodeInserted', windowOnDOMNodeInserted).load(windowOnLoad).scroll(cancelImageLoading);
-            $(document).mousemove(documentMouseMove).mouseleave(cancelImageLoading).mousedown(documentMouseDown).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
+            wnd.bind('DOMNodeInserted', windowOnDOMNodeInserted).load(windowOnLoad).scroll(cancelImageLoading).blur(cancelImageLoading).mouseleave(cancelImageLoading);
+            $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
             if (options.galleriesMouseWheel) {
                 $(document).on('mousewheel', documentOnMouseWheel);
             }
@@ -1251,9 +1257,7 @@ var hoverZoom = {
         function loadNextGalleryImage() {
             clearTimeout(loadFullSizeImageTimeout);
             imgDetails.url = hz.currentLink.data().hoverZoomSrc[hz.currentLink.data().hoverZoomSrcIndex];
-            imgFullSize.load(nextGalleryImageOnLoad).error(function () {
-                imgOnError(this, false, loadNextGalleryImage);
-            }).attr('src', imgDetails.url);
+            imgFullSize.load(nextGalleryImageOnLoad).error(loadNextGalleryImage).attr('src', imgDetails.url);
         }
 
         function nextGalleryImageOnLoad() {
@@ -1460,6 +1464,7 @@ var hoverZoom = {
     },
 
     prepareFromDocument:function (link, url, getSrc) {
+        url = url.replace('http:', location.protocol);
         $.get(url, function(data) {
             var doc = document.implementation.createHTMLDocument();
             doc.open();
