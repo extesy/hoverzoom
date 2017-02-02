@@ -1420,6 +1420,10 @@
             "matches": ["*://*.cgsociety.org/*"]
         },
         {
+            "js": ["plugins/mobypicture.js"],
+            "matches": ["*://*.mobypicture.com/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
