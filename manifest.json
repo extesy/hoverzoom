@@ -1424,6 +1424,10 @@
             "matches": ["*://*.mobypicture.com/*"]
         },
         {
+            "js": ["plugins/foursquare.js"],
+            "matches": ["*://*.foursquare.com/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
