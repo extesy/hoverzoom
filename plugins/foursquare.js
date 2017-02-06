@@ -1,6 +1,6 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'cgcookie.com',
+    name:'foursquare.com',
     version:'0.1',
     prepareImgLinks:function (callback) {
         var res = [];   
