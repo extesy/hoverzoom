@@ -11,7 +11,7 @@ hoverZoomPlugins.push({
       _this.data().hoverZoomCaption = _this.parent().find('a.title').text();
     });
 
-    $('.link a.thumbnail, .link a.title').one('mouseover', function () {
+    $('a.outbound.thumbnail, a.outbound.title').one('mouseover', function () {
       var link = this;
       if (link.href.indexOf('reddit.com') !== -1) return;
       if (!link.classList.contains('hoverZoomLink')) {
