@@ -1428,6 +1428,10 @@
             "matches": ["*://*.foursquare.com/*"]
         },
         {
+            "js": ["plugins/metmuseum.js"],
+            "matches": ["*://*.metmuseum.org/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
