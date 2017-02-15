@@ -986,8 +986,8 @@ var hoverZoom = {
         }
 
         function bindEvents() {
-            wnd.bind('DOMNodeInserted', windowOnDOMNodeInserted).load(windowOnLoad).scroll(cancelImageLoading).blur(cancelImageLoading).mouseleave(cancelImageLoading);
-            $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
+            wnd.bind('DOMNodeInserted', windowOnDOMNodeInserted).load(windowOnLoad).scroll(cancelImageLoading).blur(cancelImageLoading);
+            $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).keydown(documentOnKeyDown).keyup(documentOnKeyUp).mouseleave(cancelImageLoading);
             if (options.galleriesMouseWheel) {
                 $(document).on('mousewheel', documentOnMouseWheel);
             }
