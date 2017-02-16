@@ -28,14 +28,7 @@ hoverZoomPlugins.push({
 
     var res = [];
 
-    $('a[href*="//i.reddituploads.com/"]').each(function () {
-      var img = $(this);
-      img.data('hoverZoomSrc', [img.attr('href')]);
-      img.data('hoverZoomCaption', [img.text()]);
-      res.push(img);
-    });
-
-    $('div[data-url*="//i.redd.it/"]').each(function () {
+    $('div[data-url*="//i.redd.it/"], div[data-url*="//i.reddituploads.com/"]').each(function () {
       var post = $(this);
       var link = post.attr('data-url');
       var title = post.find('a.title').text();
