@@ -8,7 +8,7 @@
     "description":"Short extension name"
   },
   "extDescription":{
-    "message":"Увеличение изображений на всех ваших любимых сайтах (Facebook, Reddit и т.д.) Просто наведите мышку на картинку, чтобы увеличить её.",
+    "message":"Увеличение изображений\/видео на всех любимых сайтах (Facebook и т.д.) Просто наведите мышку на картинку, чтобы увеличить её.",
     "description":"Extension description in Chrome webstore (max. 132 characters)"
   },
   "extUpdated":{
@@ -20,7 +20,7 @@
     "description":"[popup] Disable the extension"
   },
   "popAllowPerSiteToggle":{
-    "message":"Разрешить конфигурацию каждого сайта по-отдельности",
+    "message":"Разрешить конфигурацию каждого сайта по отдельности",
     "description":"[popup] Allow per-site extension configuration"
   },
   "popDisableForSite":{
@@ -32,7 +32,7 @@
     "description":"[popup] Enables the extension for a specific site"
   },
   "popPreloadImages":{
-    "message":"Предзагрузить увеличенные изображения",
+    "message":"Предзагрузка увеличенных изображений",
     "description":"[popup] Preload zoomed images"
   },
   "popPreloadingImages":{
@@ -84,7 +84,7 @@
     "description":"[options] Unit name (percentage) for zoomed images size option"
   },
   "optZoomFactorTooltip":{
-    "message":"Умножить естественный размер увеличенного изображения на это число",
+    "message":"Умножить размер увеличенного изображения на это число",
     "description":"[options] Tooltip for adjust the size of zoomed images option"
   },
   "optCaptionLocation":{
@@ -132,7 +132,7 @@
     "description":"[options] Tooltip for show zoomed pictures while loading option"
   },
   "optShowHighRes":{
-    "message":"По-возможности показывать фотографии высокого разрешения",
+    "message":"По возможности показывать фотографии высокого разрешения",
     "description":"[options] Show high resolution pictures when available option"
   },
   "optShowHighResTooltip":{
@@ -144,7 +144,7 @@
     "description":"[options] Use mousewheel to navigate albums option"
   },
   "optGalleriesMouseWheelTooltip":{
-    "message":"Навигация альбома с помощью колеса мыши",
+    "message":"Навигация по альбому с помощью колеса мыши",
     "description":"[options] Tooltip for use mousewheel to navigate albums option"
   },
   "optDisableMouseWheelForVideo":{
@@ -152,7 +152,7 @@
     "description":"[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
   },
   "optDisableMouseWheelForVideoTooltip":{
-    "message":"Колесо мыши будет работать в альбомах, но не будет изменять позицию в видео файлах",
+    "message":"Колесо мыши будет работать в альбомах, но не будет изменять позицию в видео",
     "description":"[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
   },
   "optZoomVideos":{
@@ -176,23 +176,23 @@
     "description":"[options] Tooltip for changing video position option"
   },
   "optMuteVideos":{
-    "message":"Отключить звук у видео",
+    "message":"Отключить звук видео",
     "description":"[options] Mute zoomed videos option"
   },
   "optMuteVideosTooltip":{
-    "message":"Отключить звук в увеличенном видео",
+    "message":"Отключить звук увеличенного видео",
     "description":"[options] Tooltip for mute zoomed videos option"
   },
   "optVideoTimestamp":{
-    "message":"Показать отметку времени на видео",
+    "message":"Показать метку времени на видео",
     "description":"[options] Enable timestamp \/ video length on videos"
   },
   "optVideoTimestampTooltip":{
-    "message":"Показать отметку времени и общую продолжительность видео",
+    "message":"Показать метку времени \/ общую продолжительность видео",
     "description":"[options] Tooltip for video length countdown on videos"
   },
   "optVideoVolume":{
-    "message":"Громкость звука для увеличенных видео:",
+    "message":"Громкость звука для видео с отключенным звуком:",
     "description":"[options] Audio volume for unmuted videos option"
   },
   "optVideoVolumeUnitName":{
@@ -200,7 +200,7 @@
     "description":"[options] Unit name (percentage) for video volume option"
   },
   "optVideoVolumeTooltip":{
-    "message":"Если звук видео не отключен, то громкость установится на это значение (0-100)",
+    "message":"Если звук видео полностью не отключен, то громкость установится на это значение (0-100)",
     "description":"[options] Tooltip for audio volume for unmuted videos option"
   },
   "optEnableAmbilight":{
@@ -212,7 +212,7 @@
     "description":"[options] Tooltip for enable ambient light behind images option"
   },
   "optCenterImages":{
-    "message":"Фиксировать положение в центре экрана",
+    "message":"Фиксировать положение изображения в центре экрана",
     "description":"[options] Center images in the middle of the page option"
   },
   "optCenterImagesTooltip":{
@@ -272,7 +272,7 @@
     "description":"[options] Placeholder for a site url input box"
   },
   "optSiteDisclaimer":{
-    "message":"Имейте в виду, что домен фильтры могут перекрываться. Например: если есть фильтр \"picasaweb.google.com\" и \"google.com\", удаление \"picasaweb.google.com\" не включит поддержку Picasa, так как он будет по-прежнему исключен фильтром \"google.com\".",
+    "message":"Имейте в виду, что фильтры доменов могут перекрываться. Например: если есть фильтр \"picasaweb.google.com\" и \"google.com\", то удаление \"picasaweb.google.com\" не включит поддержку Picasa, так как он будет по-прежнему исключен фильтром \"google.com\".",
     "description":"[options] Disclaimer on the sites option page"
   },
   "optButtonAddSite":{
@@ -288,7 +288,7 @@
     "description":"[options] Page title for advanced options"
   },
   "optSectionAdvanced":{
-    "message":"Продвинутые настройки",
+    "message":"Дополнительные настройки",
     "description":"[options] Page section for advanced options"
   },
   "optUpdateNotifications":{
@@ -296,7 +296,7 @@
     "description":"[options] Show update notifications option"
   },
   "optShowLastUpdateNotification":{
-    "message":"(показать последние уведомления)",
+    "message":"(показать последнее уведомление)",
     "description":"[options] Show last update notification"
   },
   "optAddToHistory":{
@@ -336,7 +336,7 @@
     "description":"[options] Action key title"
   },
   "optHideKeyDescription":{
-    "message":"Нажатие этой клавишы скрывает увеличенное изображение. Используйте это, когда картинка прячет нужные элементы страницы.",
+    "message":"Нажатие этой клавиши скрывает увеличенное изображение. Используйте это, когда картинка прячет нужные элементы страницы.",
     "description":"[options] Action key description"
   },
   "optOpenImageInWindowKeyTitle":{
@@ -344,7 +344,7 @@
     "description":"[options] Action key title"
   },
   "optOpenImageInWindowKeyDescription":{
-    "message":"Нажмите эту кнопку, чтобы открыть картинку в новом окне. Нажмите эту кнопку еще раз, чтобы закрыть окно.",
+    "message":"Нажмите эту клавишу, чтобы открыть картинку в новом окне. Нажмите ее еще раз, чтобы закрыть окно.",
     "description":"[options] Action key description"
   },
   "optOpenImageInTabKeyTitle":{
@@ -352,7 +352,7 @@
     "description":"[options] Action key title"
   },
   "optOpenImageInTabKeyDescription":{
-    "message":"Нажмите эту кнопку, чтобы открыть картинку в новой вкладке. Нажмите эту кнопку еще раз, чтобы закрыть вкладку. Нажатие Shift+клавиша откроет картинку в фоновой вкладке.",
+    "message":"Нажмите эту клавишу, чтобы открыть картинку в новой вкладке. Нажмите ее еще раз, чтобы закрыть вкладку. Нажатие Shift+клавиша откроет картинку в фоновой вкладке.",
     "description":"[options] Action key description"
   },
   "optSaveImageKeyTitle":{
@@ -376,7 +376,7 @@
     "description":"[options] Action key title"
   },
   "optPrevImgKeyDescription":{
-    "message":"Нажмите эту кнопку для просмотра предыдущего изображения в альбоме.",
+    "message":"Нажмите эту клавишу для просмотра предыдущего изображения в альбоме.",
     "description":"[options] Action key description"
   },
   "optNextImgKeyTitle":{
@@ -384,7 +384,7 @@
     "description":"[options] Action key title"
   },
   "optNextImgKeyDescription":{
-    "message":"Нажмите эту кнопку для просмотра следующего изображения в альбоме.",
+    "message":"Нажмите эту клавишу для просмотра следующего изображения в альбоме.",
     "description":"[options] Action key description"
   },
   "optFooterSourceCode":{
@@ -396,7 +396,7 @@
     "description":"[options] Report a bug link in page footer"
   },
   "optFooterVersionCopyright":{
-    "message":"Версия $1 - © 2014-2016 Олег Анашкин",
+    "message":"Версия $1 - © 2014-2017 Олег Анашкин",
     "description":"[options] Copyright and version number in page footer"
   }
 }
