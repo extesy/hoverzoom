@@ -1436,6 +1436,10 @@
             "matches": ["*://*.wookmark.com/*"]
         },
         {
+            "js": ["plugins/stocksnap.js"],
+            "matches": ["*://*.stocksnap.io/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
