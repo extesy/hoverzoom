@@ -344,7 +344,7 @@ var hoverZoom = {
             var links,
                 target = $(event.target),
             // Test if the action key was pressed without moving the mouse
-                explicitCall = event.pageY == undefined;
+                explicitCall = typeof(event.pageY) === 'undefined';
 
             // If so, the MouseMove event was triggered programmaticaly and we don't have details
             // about the mouse position and the event target, so we use the last saved ones.
@@ -359,8 +359,8 @@ var hoverZoom = {
             }
 
             if (options.mouseUnderlap && target.length && mousePos && linkRect &&
-                (imgFullSize && imgFullSize.length && target[0] == imgFullSize[0] ||
-                    hz.hzImg && hz.hzImg.length && target[0] == hz.hzImg[0])) {
+                (imgFullSize && imgFullSize.length && target[0] === imgFullSize[0] ||
+                    hz.hzImg && hz.hzImg.length && target[0] === hz.hzImg[0])) {
                 /*cLog('Over image. linkRect:');
                 cLog(linkRect);
                 cLog('Over image. mousePos:');
@@ -377,7 +377,8 @@ var hoverZoom = {
                     links.data().hoverZoomSrc[hoverZoomSrcIndex] &&
                     typeof(links.data().hoverZoomSrc[hoverZoomSrcIndex]) !== 'undefined') {
                     // Happens when the mouse goes from an image to another without hovering the page background
-                    if (links.data().hoverZoomSrc[hoverZoomSrcIndex] !== imgDetails.url) {
+                    if (imgDetails.url && links.data().hoverZoomSrc[hoverZoomSrcIndex] !== imgDetails.url) {
+                        cLog("hiding because " + links.data().hoverZoomSrc[hoverZoomSrcIndex] + " !== " + imgDetails.url);
                         hideHoverZoomImg();
                     }
 
@@ -403,6 +404,7 @@ var hoverZoom = {
                                     src = '//' + window.location.host + '/' + src;
                                 }
                                 src = window.location.protocol + src;
+                                links.data().hoverZoomSrc[hoverZoomSrcIndex] = src;
                             }
 
                             if (!options.whiteListMode && isExcludedLink(src)) {
@@ -546,6 +548,7 @@ var hoverZoom = {
 
             clearTimeout(cursorHideTimeout);
             hz.hzImg.css('cursor', 'none');
+            hz.hzImg.css('pointer-events', 'none');
 
             if (options.ambilightEnabled) {
                 hz.hzImg.css('overflow', 'visible');
@@ -1372,7 +1375,7 @@ var hoverZoom = {
     getThumbUrl:function (el) {
         var compStyle = (el && el.nodeType == 1) ? getComputedStyle(el) : false,
             backgroundImage = compStyle ? compStyle.backgroundImage : 'none';
-        if (backgroundImage != 'none') {
+        if (backgroundImage !== 'none') {
             return backgroundImage.replace(/.*url\s*\(\s*(.*)\s*\).*/i, '$1');
         } else {
             return el.src || el.href;
@@ -1455,7 +1458,7 @@ var hoverZoom = {
         }
         link = $(link);
         $.getJSON(apiEndpoint + linkUrl, function (data) {
-            if (data && data.type == 'photo' && data.url) {
+            if (data && data.type === 'photo' && data.url) {
                 link.data().hoverZoomSrc = [data.url];
                 link.addClass('hoverZoomLink');
                 hoverZoom.displayPicFromElement(link);

@@ -45,11 +45,7 @@ hoverZoomPlugins.push({
 
                         hoverZoom.prepareFromDocument($(this), link, function(doc) {
                             var img = doc.getElementsByClassName('fl-picture__img')[0];
-                            if (img) {
-                                return img.src;
-                            } else {
-                                return false;
-                            }
+                            return img ? img.src : false;
                         });
                      }, delay);
                     

@@ -11,7 +11,7 @@ hoverZoomPlugins.push({
       _this.data().hoverZoomCaption = _this.parent().find('a.title').text();
     });
 
-    $('.link a.thumbnail, .link a.title').one('mouseover', function () {
+    $('a.outbound.thumbnail, a.outbound.title').one('mouseover', function () {
       var link = this;
       if (link.href.indexOf('reddit.com') !== -1) return;
       if (!link.classList.contains('hoverZoomLink')) {
@@ -28,14 +28,7 @@ hoverZoomPlugins.push({
 
     var res = [];
 
-    $('a[href*="//i.reddituploads.com/"]').each(function () {
-      var img = $(this);
-      img.data('hoverZoomSrc', [img.attr('href')]);
-      img.data('hoverZoomCaption', [img.text()]);
-      res.push(img);
-    });
-
-    $('div[data-url*="//i.redd.it/"]').each(function () {
+    $('div[data-url*="//i.redd.it/"], div[data-url*="//i.reddituploads.com/"]').each(function () {
       var post = $(this);
       var link = post.attr('data-url');
       var title = post.find('a.title').text();
