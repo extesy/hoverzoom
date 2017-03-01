@@ -1440,6 +1440,10 @@
             "matches": ["*://*.stocksnap.io/*"]
         },
         {
+            "js": ["plugins/pexels.js"],
+            "matches": ["*://*.pexels.com/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
