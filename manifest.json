@@ -1444,6 +1444,10 @@
             "matches": ["*://*.pexels.com/*"]
         },
         {
+            "js": ["plugins/adobestock.js"],
+            "matches": ["*://stock.adobe.com/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
