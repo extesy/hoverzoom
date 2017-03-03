@@ -1448,6 +1448,10 @@
             "matches": ["*://stock.adobe.com/*"]
         },
         {
+            "js": ["plugins/3dtotal.js"],
+            "matches": ["*://*.3dtotal.com/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
