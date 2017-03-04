@@ -1344,7 +1344,7 @@ var hoverZoom = {
                 link = _this;
             }
             url = hoverZoom.getThumbUrl(this);
-            if (!url) {
+            if (!url || typeof link.data() === 'undefined') {
                 return;
             }
             thumbUrl = url;
