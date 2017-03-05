@@ -1452,6 +1452,10 @@
             "matches": ["*://*.3dtotal.com/*"]
         },
         {
+            "js": ["plugins/fubiz.js"],
+            "matches": ["*://*.fubiz.net/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
