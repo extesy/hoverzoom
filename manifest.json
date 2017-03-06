@@ -1456,6 +1456,10 @@
             "matches": ["*://*.fubiz.net/*"]
         },
         {
+            "js": ["plugins/drawcrowd.js"],
+            "matches": ["*://*.drawcrowd.com/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
