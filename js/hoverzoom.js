@@ -138,6 +138,7 @@ var hoverZoom = {
             function posCaption() {
                 if (hzCaption) {
                     hzCaption.css('max-width', imgFullSize.width());
+                    hzCaption.show();
                     if (hzCaption.height() > 20) {
                         hzCaption.css('font-weight', 'normal');
                     }
@@ -165,6 +166,7 @@ var hoverZoom = {
             } else {
                 var fullZoom = options.mouseUnderlap || fullZoomKeyDown;
 
+                if (hzCaption) hzCaption.hide();
                 imgFullSize.width('auto').height('auto');
 
                 // Image natural dimensions
@@ -725,20 +727,17 @@ var hoverZoom = {
             links.each(function () {
                 var link = $(this),
                     linkData = link.data();
+
                 if (!linkData.hoverZoomSrc && !linkData.hoverZoomGallerySrc) {
-
                     prepareImgLinksAsync(true);
-
                 } else {
-
                     // Skip if the image has the same URL as the thumbnail.
-                    //try {
                     if (linkData.hoverZoomSrc) {
                         var url = linkData.hoverZoomSrc[0],
-                            skip = (url == link.attr('src'));
+                            skip = url === link.attr('src');
                         if (!skip) {
                             link.find('img[src]').each(function () {
-                                if (this.src == url) {
+                                if (this.src === url) {
                                     skip = true;
                                 }
                             });
@@ -747,9 +746,6 @@ var hoverZoom = {
                             return;
                         }
                     }
-                    /*} catch(e) {
-                     throw e;
-                     }*/
 
                     // Avoid nested links
                     /*if (link.parents('.hoverZoomLink').length > 0) {
@@ -787,7 +783,7 @@ var hoverZoom = {
                     linkData.hoverZoomSrcIndex = 0;
 
                     // Caption
-                    if (options.captionLocation != "none" && !options.ambilightEnabled && !linkData.hoverZoomCaption) {
+                    if (options.captionLocation !== "none" && !options.ambilightEnabled && !linkData.hoverZoomCaption) {
                         prepareImgCaption(link);
                     }
                 }
@@ -1344,7 +1340,7 @@ var hoverZoom = {
                 link = _this;
             }
             url = hoverZoom.getThumbUrl(this);
-            if (!url) {
+            if (!url || typeof link.data() === 'undefined') {
                 return;
             }
             thumbUrl = url;

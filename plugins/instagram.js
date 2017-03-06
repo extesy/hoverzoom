@@ -2,27 +2,14 @@ var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Instagram',
     prepareImgLinks:function (callback) {
-        var res = []
-        $('a').each(function () {
-            var _this = $(this), link, url, thumbUrl;
-            link = _this;
-            thumbUrl = $(this).find('img')[0];
-            if (!thumbUrl) {
-                return;
-            }
-            thumbUrl = thumbUrl.src;
-            url = thumbUrl;
-            url = url.replace(/\?ig_cache_key=.*$/, '')
-            url = unescape(url);
-            var data = link.data().hoverZoomSrc;
-            if (Object.prototype.toString.call(data) === '[object Array]') {
-                data.unshift(url);
-            } else {
-                data = [url];
-            }
-            link.data().hoverZoomSrc = data;
+        var res = [];
+        $('img[src*="/e35/"]').each(function () {
+            var img = $(this), link = img.parent().parent().parent();
+            var url = img.attr('src').replace('/sh0.08/', '/').replace(/\/[sp]\d\d\dx\d\d\d\//, '/');
+            link.data().hoverZoomSrc = [url];
             res.push(link);
         });
+        // hoverZoom.urlReplace(res, 'img[src*="/e35/"]', '/s640x640/sh0.08/', '/', 'a');
         callback($(res));
     }
 });
