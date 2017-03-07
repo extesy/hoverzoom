@@ -1380,8 +1380,10 @@ var hoverZoom = {
 
     // Simulates a mousemove event to force a zoom call
     displayPicFromElement:function (el) {
-        hoverZoom.currentLink = el;
-        $(document).mousemove();
+        if (el.is(':hover')) {
+            hoverZoom.currentLink = el;
+            $(document).mousemove();
+        }
     },
 
     // Create and displays the zoomed image container
