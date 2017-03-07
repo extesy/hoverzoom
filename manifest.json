@@ -1452,6 +1452,14 @@
             "matches": ["*://*.3dtotal.com/*"]
         },
         {
+            "js": ["plugins/fubiz.js"],
+            "matches": ["*://*.fubiz.net/*"]
+        },
+        {
+            "js": ["plugins/drawcrowd.js"],
+            "matches": ["*://*.drawcrowd.com/*"]
+        },
+        {
             "js": ["js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
