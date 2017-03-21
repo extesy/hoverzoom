@@ -298,7 +298,7 @@ var hoverZoom = {
             titledElements = $('[title]').not('iframe, .lightbox, [rel^="lightbox"]');
             titledElements.each(function () {
                 $(this).data().hoverZoomTitle = this.getAttribute('title');
-                this.title = '';
+                $(this).title = '';
             });
         }
 
