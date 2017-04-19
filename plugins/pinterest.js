@@ -22,11 +22,11 @@ hoverZoomPlugins.push({
       ':eq(0)'
     );
     callback($(res));
-    $('img.pinImg').parents('a').one('mouseover', function() {
+    $('img.pinImg,div.pinImageDim').parents('a').one('mouseover', function() {
       var link = $(this),
         data = link.data();
       if (data.hoverZoomSrc) { return; }
-      var img = link.find('img.pinImg');
+      var img = link.find('img');
       if (img.length == 1) {
         data.hoverZoomSrc = [img.attr('src').replace(/\/\d+x(\d+)?\//, '/736x/')];
         data.hoverZoomCaption = link.parents('.pinWrapper').find('.pinDescription').text();
