@@ -26,22 +26,7 @@ hoverZoomPlugins.push({
             }
             return sources;
         }
-
-        function getSource(sources, type, quality) {
-            var lowest = null, exact = null;
-            for (var key in sources) {
-                var source = sources[key];
-                if (source.type.match(type)) {
-                    if (source.quality.match(quality)) {
-                        exact = source;
-                    } else {
-                        lowest = source;
-                    }
-                }
-            }
-            return exact || lowest;
-        }
-
+       
         function prepareVideoPreview(link, id) {
             if (link.hasClass('hoverZoomLoading') || link.hasClass('hoverZoomLink') || link.hasClass('ytp-title-link')) return;
             link.addClass('hoverZoomLoading');
@@ -66,7 +51,9 @@ hoverZoomPlugins.push({
                     return;
                 }
                 var sources = decodeStreamMap(video.url_encoded_fmt_stream_map);
-                var src = getSource(sources, "webm", "hd720") || getSource(sources, "mp4", "hd720");
+                var keys = Object.getOwnPropertyNames(sources);
+                var src = sources[keys[0]];
+                console.log(src);
                 if (src) {
                     link.data().hoverZoomSrc = [start ? src.url + '#t=' + start : src.url];
                     link.addClass('hoverZoomLink');
