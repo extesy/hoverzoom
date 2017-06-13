@@ -6,7 +6,7 @@ hoverZoomPlugins.push({
         $('a[href*="clips.twitch.tv/"]').one('mouseenter', function() {
             hoverZoom.prepareFromDocument($(this), this.href, function (doc) {
                 let meta = doc.querySelector('meta[property="og:image"][content]');
-                return meta ? meta.content.replace('-social-preview.jpg', '-1280x720.mp4') : false;
+                return meta ? meta.content.replace('-social-preview.jpg', '.mp4') : false;
             });
         });
     }
