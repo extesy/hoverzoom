@@ -44,7 +44,7 @@ hoverZoomPlugins.push({
             img.addClass('hoverZoomLink');
         }
         $('a[href*="imgurl="] > img').each(prepareImgLink);
-        $('#rg_hi').on('load',prepareImgLink);
+        $('.rg_ic').on('load',prepareImgLink);
 
     }
 });
