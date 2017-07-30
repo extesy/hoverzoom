@@ -83,9 +83,8 @@ hoverZoomPlugins.push({
             var regex = /fbid=(\d+).*/, matches = regex.exec(link.attr(attr)), fbid = matches.length > 1 ? matches[1] : '';
             if (fbid) {
                 hoverZoom.prepareFromDocument(link, 'https://mbasic.facebook.com/photo.php?fbid=' + fbid, function(doc) {
-                    var links = doc.querySelectorAll('a[href*="fbcdn"]');
-                    console.log(links[links.length-1].href);
-                    return links.length > 0 ? links[links.length-1].href : false;
+                    var links = document.querySelectorAll('a.hoverZoomLink[href*="'+fbid+'"]');
+                    return links.length > 0 ? links[links.length-1].getAttribute('data-ploi') : false;
                 });
             } else {
                 var url = link.attr(attr).replace('photo.php', 'photo/download/');
