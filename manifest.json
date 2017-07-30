@@ -1,5 +1,5 @@
 {
-    "name": "HoverZoom+",
+    "name": "__MSG_extName__",
     "short_name": "__MSG_extShortName__",
     "version": "1.0.117",
     "description": "__MSG_extDescription__",
@@ -45,7 +45,7 @@
     "web_accessible_resources": [
         "images/loading.gif",
         "js/libs/gumby.min.js",
-        "js/libs/jquery-2.2.4.min.js",
+        "js/libs/jquery-3.2.1.min.js",
         "js/libs/jquery.mobile.custom.min.js",
         "js/libs/modernizr-2.7.1.min.js",
         "js/common.js",
@@ -53,7 +53,7 @@
     ],
     "content_scripts": [
         {
-            "js": [ "js/libs/jquery-2.2.4.min.js", "js/libs/contentScriptsAPIBridge.js", "js/tools.js", "js/plugins.js", "plugins/default.js", "js/hoverzoom.js"],
+            "js": [ "js/libs/jquery-3.2.1.min.js", "js/libs/contentScriptsAPIBridge.js", "js/tools.js", "js/plugins.js", "plugins/default.js", "js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
         },

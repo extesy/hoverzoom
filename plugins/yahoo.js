@@ -16,7 +16,7 @@ hoverZoomPlugins.push({
         }
 
         $('a[href*="imgurl="] > img').each(prepareImgLink);
-        $('#ihover-img').load(prepareImgLink);
+        $('#ihover-img').on('load',prepareImgLink);
 
         var res = [];
         hoverZoom.urlReplace(res, 'img[src*="/http"]', /.*\/(http.*)/, '$1');
