@@ -477,7 +477,7 @@ var hoverZoom = {
                     });
                     video.load();
                 } else {
-                    imgFullSize = $('<img style="border: none" />').appendTo(hz.hzImg).on('load',imgFullSizeOnLoad).error(imgFullSizeOnError).attr('src', imgDetails.url);
+                    imgFullSize = $('<img style="border: none" />').appendTo(hz.hzImg).on('load',imgFullSizeOnLoad).on('error',imgFullSizeOnError).attr('src', imgDetails.url);
                 }
 
                 imgDetails.host = getHostFromUrl(imgDetails.url);
