@@ -106,10 +106,13 @@ function showPageAction(tab) {
 // Checks if the extension has been updated.
 // Displays a notification if necessary.
 function checkUpdate() {
-    var currVersion = chrome.app.getDetails().version,
-        prevVersion = localStorage.hzVersion;
-    if (hasReleaseNotes && options.updateNotifications && currVersion != prevVersion && typeof prevVersion != 'undefined') {
-        showUpdateNotification();
+    currVersion = 1;
+    if("app" in chrome) {
+        var currVersion = chrome.app.getDetails().version,
+            prevVersion = localStorage.hzVersion;
+        if (hasReleaseNotes && options.updateNotifications && currVersion != prevVersion && typeof prevVersion != 'undefined') {
+            showUpdateNotification();
+        }
     }
     localStorage.hzVersion = currVersion;
 }
