@@ -1256,7 +1256,7 @@ var hoverZoom = {
         function loadNextGalleryImage() {
             clearTimeout(loadFullSizeImageTimeout);
             imgDetails.url = hz.currentLink.data().hoverZoomSrc[hz.currentLink.data().hoverZoomSrcIndex];
-            imgFullSize.on('load',nextGalleryImageOnLoad).error(loadNextGalleryImage).attr('src', imgDetails.url);
+            imgFullSize.on('load', nextGalleryImageOnLoad).on('error', loadNextGalleryImage).attr('src', imgDetails.url);
         }
 
         function nextGalleryImageOnLoad() {
@@ -1437,7 +1437,7 @@ var hoverZoom = {
                     link.data().hoverZoomPreloaded = true;
                     setTimeout(preloadNextImage, preloadDelay);
                     chrome.runtime.sendMessage({action:'preloadProgress', value:preloadIndex, max:links.length});
-                }).error(function () {
+                }).on('error', function () {
                         if (hoverZoomSrcIndex < link.data().hoverZoomSrc.length - 1) {
                             link.data().hoverZoomSrcIndex++;
                             preloadIndex--;
