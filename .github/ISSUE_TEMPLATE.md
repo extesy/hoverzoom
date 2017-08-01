@@ -1,6 +1,3 @@
-## Firefox?
-Is your question about Firefox addon? Please don't create an issue here and contact https://twitter.com/wallacesilva09 instead. This repository has nothing to do with Firefox addon.
-
 ## Description of the problem
 
 
