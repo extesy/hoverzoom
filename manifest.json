@@ -1,7 +1,7 @@
 {
     "name": "__MSG_extName__",
     "short_name": "__MSG_extShortName__",
-    "version": "1.0.119",
+    "version": "1.0.120",
     "description": "__MSG_extDescription__",
     "homepage_url": "https://github.com/extesy/hoverzoom/",
     "author": "Oleg Anashkin",
@@ -26,7 +26,7 @@
         "chrome_style": false,
         "open_in_tab": true
     },
-    "browser_action": {
+    "page_action": {
         "default_icon": {
             "19": "images/icon19.png"
         },

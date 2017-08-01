@@ -107,7 +107,7 @@ function showPageAction(tab) {
 // Displays a notification if necessary.
 function checkUpdate() {
     currVersion = 1;
-    if("app" in chrome) {
+    if ("app" in chrome) {
         var currVersion = chrome.app.getDetails().version,
             prevVersion = localStorage.hzVersion;
         if (hasReleaseNotes && options.updateNotifications && currVersion != prevVersion && typeof prevVersion != 'undefined') {
