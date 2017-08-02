@@ -632,7 +632,8 @@ var hoverZoom = {
             setTimeout(posImg, options.showWhileLoading ? 0 : 10);
 
             if (options.addToHistory && !chrome.extension.inIncognitoContext) {
-                chrome.runtime.sendMessage({action:'addUrlToHistory', url:imgDetails.url});
+                var url = hz.currentLink.attr('href') || imgDetails.url;
+                chrome.runtime.sendMessage({action:'addUrlToHistory', url:url});
             }
         }
 
