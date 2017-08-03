@@ -1,3 +1,5 @@
+**ATTENTION!** If you don't follow this template then your issue will be immediately closed.
+
 ## Description of the problem
 
 
