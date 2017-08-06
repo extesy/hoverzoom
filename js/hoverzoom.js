@@ -633,6 +633,8 @@ var hoverZoom = {
 
             if (options.addToHistory && !chrome.extension.inIncognitoContext) {
                 var url = hz.currentLink.attr('href') || imgDetails.url;
+                if (url.startsWith('/') && url.indexOf('http') < 0)
+                    url = window.location.protocol + '//' + window.location.hostname + url;
                 chrome.runtime.sendMessage({action:'addUrlToHistory', url:url});
             }
         }
