@@ -247,7 +247,7 @@ var hoverZoom = {
                 url = url.substr(0, url.lastIndexOf('?'));
             var ext = url.substr(url.length - 4).toLowerCase();
             includeGifs = includeGifs || false;
-            return (includeGifs && (ext == '.gif' || ext == 'gifv')) || ext == 'webm' || ext == '.mp4' || ext == '3gpp' || url.indexOf('googlevideo.com/videoplayback') > 0;
+            return (includeGifs && (ext == '.gif' || ext == 'gifv')) || ext == 'webm' || ext == '.mp4' || ext == '3gpp' || url.indexOf('googlevideo.com/videoplayback') > 0 || url.indexOf('v.redd.it') > 0;
         }
 
         function updateAmbilight() {
