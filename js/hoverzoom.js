@@ -394,16 +394,13 @@ var hoverZoom = {
                             var src = links.data().hoverZoomSrc[hoverZoomSrcIndex];
                             if (src.indexOf('http') !== 0) {
                                 if (src.indexOf('//') !== 0) {
-                                    if (src.indexOf('/') === 0) {
-                                        // Image has absolute path (starts with '/')
-                                        src = src.substr(1);
-                                    } else {
+                                    if (src.indexOf('/') !== 0) {
                                         // Image has relative path (doesn't start with '/')
                                         var path = window.location.pathname;
                                         path = path.substr(0, path.lastIndexOf('/') + 1);
                                         src = path + src;
                                     }
-                                    src = '//' + window.location.host + '/' + src;
+                                    src = '//' + window.location.host + src;
                                 }
                                 src = window.location.protocol + src;
                                 links.data().hoverZoomSrc[hoverZoomSrcIndex] = src;
