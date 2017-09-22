@@ -1,0 +1,16 @@
+extends: airbnb-base
+env:
+  browser: true
+  es6: true
+  jquery: true
+
+globals:
+  chrome: true
+  hoverZoom: true
+  hoverZoomPlugins: true
+  options: true
+
+rules:
+  indent: ["error", 4]
+  linebreak-style: "off"
+  prefer-template: "off"
