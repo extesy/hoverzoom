@@ -75,7 +75,7 @@ function onMessage(message, sender, callback) {
             });
             break;
         case 'openViewTab':
-            chrome.tabs.getSelected(null, function (currentTab) {
+            chrome.tabs.query({active: true}, function (currentTab) {
                 message.createData.index = currentTab.index;
                 if (!message.createData.active)
                     message.createData.index++;
