@@ -1,7 +1,0 @@
-{
-  "strict": true,
-  "undef": true,
-  "unused": true,
-  "jquery": true,
-  "globals": { "chrome": false, "localStorage": false }
-}
