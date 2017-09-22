@@ -290,7 +290,7 @@ $(function () {
     initActionKeys();
     i18n();
     chkWhiteListModeOnChange();
-    $("#version").text(chrome.i18n.getMessage("optFooterVersionCopyright", chrome.app.getDetails().version));
+    $("#version").text(chrome.i18n.getMessage("optFooterVersionCopyright", chrome.runtime.getManifest().version));
 
     $('#btnSave').click(saveOptions);
     $('#btnReset').click(restoreOptions);
