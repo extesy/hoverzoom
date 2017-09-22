@@ -75,7 +75,7 @@ function onMessage(message, sender, callback) {
             });
             break;
         case 'openViewTab':
-            chrome.tabs.getSelected(null, function (currentTab) {
+            chrome.tabs.query({active: true}, function (currentTab) {
                 message.createData.index = currentTab.index;
                 if (!message.createData.active)
                     message.createData.index++;
@@ -108,7 +108,7 @@ function showPageAction(tab) {
 function checkUpdate() {
     currVersion = 1;
     if ("app" in chrome) {
-        var currVersion = chrome.app.getDetails().version,
+        var currVersion = chrome.runtime.getManifest().version,
             prevVersion = localStorage.hzVersion;
         if (hasReleaseNotes && options.updateNotifications && currVersion != prevVersion && typeof prevVersion != 'undefined') {
             showUpdateNotification();

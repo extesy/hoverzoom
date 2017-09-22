@@ -61,7 +61,7 @@ function sendOptions(options) {
     // Send options to all tabs
     chrome.windows.getAll(null, function (windows) {
         for (var i = 0; i < windows.length; i++) {
-            chrome.tabs.getAllInWindow(windows[i].id, function (tabs) {
+            chrome.tabs.query({windowId: windows[i].id}, function (tabs) {
                 for (var j = 0; j < tabs.length; j++) {
                     chrome.tabs.sendMessage(tabs[j].id, request);
                 }
