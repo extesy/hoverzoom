@@ -245,23 +245,24 @@ function onMessage(message, sender, callback) {
 }
 
 function getPlugins(callback) {
-    chrome.runtime.getPackageDirectoryEntry(function(root) {
-        root.getDirectory("plugins", {create: false}, function(pluginsdir) {
-            var reader = pluginsdir.createReader();
-            var entries = [];
-            var readEntries = function() {
-                reader.readEntries(function(results) {
-                    if (results.length) {
-                        entries = entries.concat(results.map(function(de){return de.name;}));
-                        readEntries();
-                    } else {
-                        callback(entries);
-                    }
-                });
-            };
-            readEntries();
-        });
-    });
+    const plugins = [];
+    const manifest = chrome.runtime.getManifest();
+
+    manifest.content_scripts.forEach(script => script.js.forEach((path) => {
+        // Path can look like this on Firefox
+        // 'moz-extension://d5438889-adf3-4ed5-89b3-caacec62961b/plugins/skyrock.js'
+        // or like this on Chrome
+        // 'plugins/skyrock.js'
+
+        const split = path.split('/');
+
+        if (split.includes('plugins')) {
+            plugins.push(split[split.length - 1]);
+        }
+    }));
+
+    plugins.sort();
+    callback(plugins);
 }
 
 function loadPlugins() {
