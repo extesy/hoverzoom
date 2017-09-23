@@ -1457,6 +1457,10 @@
         {
             "js": ["plugins/drawcrowd.js"],
             "matches": ["*://*.drawcrowd.com/*"]
+        },
+        {
+            "js": ["plugins/wykop.js"],
+            "matches": ["*://*.wykop.pl/*"]
         }
    ]
 }
