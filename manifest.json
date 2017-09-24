@@ -811,10 +811,6 @@
             "matches": ["*://*.hwzone.co.il/*"]
         },
         {
-            "js": ["plugins/googlecode.js"],
-            "matches": ["*://code.google.com/*"]
-        },
-        {
             "js": ["plugins/googleplus.js"],
             "matches": ["*://plus.google.com/*"]
         },
