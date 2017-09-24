@@ -555,13 +555,6 @@
             "matches": ["*://*.linkedin.com/*"]
         },
         {
-            "js": ["plugins/subimg_net.js"],
-            "matches": [
-                "*://*.subimg.net/*",
-                "*://*.reddit.com/*"
-            ]
-        },
-        {
             "js": ["plugins/phapit.js"],
             "matches": [
                 "*://*.phapit.com/*",
