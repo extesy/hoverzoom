@@ -631,10 +631,6 @@
             "matches": ["*://*.maxmodels.pl/*"]
         },
         {
-            "js": ["plugins/blip.js"],
-            "matches": ["*://*.blip.pl/*"]
-        },
-        {
             "js": ["plugins/digart.js"],
             "matches": ["*://*.digart.pl/*"]
         },
