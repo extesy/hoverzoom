@@ -883,10 +883,6 @@
             ]
         },
         {
-            "js": ["plugins/myyearbook.js"],
-            "matches": ["*://*.myyearbook.com/*"]
-        },
-        {
             "js": ["plugins/jeuxvideo_fr.js"],
             "matches": ["*://*.jeuxvideo.fr/*"]
         },
