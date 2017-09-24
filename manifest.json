@@ -1128,10 +1128,6 @@
             "matches": ["*://kephost.com/*"]
         },
         {
-            "js": ["plugins/fotoblur.js"],
-            "matches": ["*://*.fotoblur.com/*"]
-        },
-        {
             "js": ["plugins/visualart.js"],
             "matches": ["*://*.visualart.me/*",
                         "*://*.visualart.ro/*"]
