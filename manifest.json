@@ -894,10 +894,6 @@
             "matches": ["*://*.bing.com/*"]
         },
         {
-            "js": ["plugins/so_cl.js"],
-            "matches": ["*://*.so.cl/*"]
-        },
-        {
             "js": ["plugins/xuite.js"],
             "matches": ["*://*.xuite.net/*"]
         },
