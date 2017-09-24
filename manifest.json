@@ -292,11 +292,8 @@
                 "*://opendesktop.org/*",
                 "*://kde-apps.org/*",
                 "*://gtk-apps.org/*",
-                "*://meego-central.org/*",
                 "*://cli-apps.org/*",
                 "*://qt-apps.org/*",
-                "*://qt-prop.org/*",
-                "*://maemo-apps.org/*",
                 "*://java-apps.org/*",
                 "*://eyeos-apps.org/*",
                 "*://wine-apps.org/*",
@@ -315,12 +312,8 @@
                 "*://ubuntu-art.org/*",
                 "*://kubuntu-art.org/*",
                 "*://linuxmint-art.org/*",
-                "*://frugalware-art.org/*",
-                "*://arch-stuff.org/*",
-                "*://fedora-art.org/*",
                 "*://mandriva-art.org/*",
                 "*://kde-files.org/*",
-                "*://opentemplate.org/*",
                 "*://gimpstuff.org/*",
                 "*://inkscapestuff.org/*",
                 "*://scribusstuff.org/*",
@@ -592,7 +585,6 @@
             "matches": [
                 "*://*.joystiq.com/*",
                 "*://*.engadget.com/*",
-                "*://*.switched.com/*",
                 "*://*.tuaw.com/*"
             ]
         },
