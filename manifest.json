@@ -627,10 +627,6 @@
             "matches": ["*://*.digart.pl/*"]
         },
         {
-            "js": ["plugins/picplz.js"],
-            "matches": ["*://*.picplz.com/*"]
-        },
-        {
             "js": ["plugins/twimg.js"],
             "matches": [
                 "*://*.favstar.fm/*",
