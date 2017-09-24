@@ -59,7 +59,6 @@
         {
             "js": [
                 "plugins/imgur_a.js",
-                "plugins/slimg_a.js",
                 "plugins/flickr_a.js",
                 "plugins/tumblr_a.js",
                 "plugins/blogspot_a.js",
