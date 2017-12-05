@@ -16,7 +16,7 @@ input[type="range"] {
 
 input[type=range]::-webkit-slider-thumb {
   cursor: pointer;
-  margin-top: -10px;
+  margin-top: -7px;
 }
 
 input[type=range]::-webkit-slider-runnable-track {
