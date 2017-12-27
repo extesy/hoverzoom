@@ -9,6 +9,11 @@ hoverZoomPlugins.push({
             /^(.*)_100_(\d+)\.([a-z]+)$/,
             '$1_800_$2.$3'
         );
+        hoverZoom.urlReplace(res,
+            'img[src^="https://img-9gag-fun.9cache.com/"]',
+            /^(.*)_460s\.([a-z]+)$/,
+            '$1_700b.$2'
+        );
         callback($(res));
     }
 });
