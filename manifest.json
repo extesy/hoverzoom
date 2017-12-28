@@ -1240,6 +1240,10 @@
         {
             "js": ["plugins/wykop.js"],
             "matches": ["*://*.wykop.pl/*"]
+        },
+        {
+            "js": ["plugins/9gag.js"],
+            "matches": ["*://9gag.com/*"]
         }
    ]
 }
