@@ -219,6 +219,14 @@
         "message": "Center images as opposed to having them follow the cursor",
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
+    "optFrameBackgroundColour": {
+        "message": "Frame background colour:",
+        "description": "[options] Frame background colour option"
+    },
+    "optFrameBackgroundColourTooltip": {
+        "message": "Background colour for the frame the image appears in",
+        "description": "[options] Tooltip for frame background colour option"
+    },
     "optSectionDelays": {
         "message": "Delays",
         "description": "[options] Page section for delay options"
