@@ -87,6 +87,7 @@ function saveOptions() {
     options.fadeDuration = getMilliseconds($('#txtFadeDuration'));
     options.ambilightEnabled = $('#chkAmbilightEnabled')[0].checked;
     options.centerImages = $('#chkCenterImages')[0].checked;
+    options.frameBackgroundColor = $('#pickerFrameBackgroundColor')[0].value;
 
     options.whiteListMode = $('#chkWhiteListMode')[0].checked;
     options.excludedSites = [];
@@ -143,7 +144,14 @@ function restoreOptions() {
     $('#txtFadeDuration').val((options.fadeDuration || 0) / 1000);
     $('#chkAmbilightEnabled')[0].checked = options.ambilightEnabled;
     $('#chkCenterImages')[0].checked = options.centerImages;
+    $('#pickerFrameBackgroundColor').val(options.frameBackgroundColor);
     $('#selectCaptionLocation').val(options.captionLocation);
+
+    if (options.frameBackgroundColor == "") {
+        initColorPicker('#ffffff');
+    } else {
+        initColorPicker(options.frameBackgroundColor);
+    }
 
     $('#chkWhiteListMode')[0].checked = options.whiteListMode;
     $('#selExcludedSites').empty();
@@ -285,6 +293,18 @@ function populatePluginsTable() {
         $('#' + chkName)[0].checked = !options.disabledPlugins.includes(chkName.substr('chkPlugin'.length));
     });
     Gumby.initialize('checkbox');
+}
+
+function initColorPicker(color){
+    var colorPicker = $('#pickerFrameBackgroundColor').spectrum({
+        color: color,
+        preferredFormat: "hex",
+        chooseText: chrome.i18n.getMessage("optFrameBackgroundColorChooseText"),
+        cancelText: chrome.i18n.getMessage("optFrameBackgroundColorCancelText"),
+        change: function(color) {
+            $('#pickerFrameBackgroundColor').attr('value', color.toHexString());
+        }
+    })
 }
 
 $(function () {
