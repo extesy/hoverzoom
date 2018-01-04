@@ -147,7 +147,7 @@ function restoreOptions() {
     $('#pickerFrameBackgroundColor').val(options.frameBackgroundColor);
     $('#selectCaptionLocation').val(options.captionLocation);
 
-    if( options.frameBackgroundColor == "" ){
+    if (options.frameBackgroundColor == "") {
         initColorPicker('#ffffff');
     } else {
         initColorPicker(options.frameBackgroundColor);
