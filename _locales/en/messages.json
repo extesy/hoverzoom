@@ -228,10 +228,12 @@
         "description": "[options] Tooltip for frame background color option"
     },
     "optFrameBackgroundColorChooseText": {
-        "message": "Select"
+        "message": "Select",
+        "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
-        "message": "Cancel"
+        "message": "Cancel",
+        "description": "[options] Frame background color button - Cancel"
     },
     "optSectionDelays": {
         "message": "Delays",
