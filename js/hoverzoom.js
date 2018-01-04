@@ -123,7 +123,7 @@ var hoverZoom = {
             if (position === undefined || position.top === undefined || position.left === undefined) {
                 position = {top:mousePos.top, left:mousePos.left};
             }
-                
+            
             var offset = 20,
                 padding = 10,
                 statusBarHeight = 15,
@@ -240,9 +240,7 @@ var hoverZoom = {
                 hz.hzImg.css({top:Math.round(position.top), left:Math.round(position.left)});
             }
 
-            //Set frame background colour and border to match chosen option
-            hz.hzImg.css('background-color', options.frameBackgroundColour);
-            hz.hzImg.css('border-color', options.frameBackgroundColour);
+            frameBackgroundColor(options.frameBackgroundColor);
         }
 
         function isVideoLink(url, includeGifs) {
@@ -316,6 +314,18 @@ var hoverZoom = {
                 }
             });
             titledElements = null;
+        }
+    
+        //Set frame background color and border to match chosen option
+        function frameBackgroundColor(color) {
+            hz.hzImg.css('background-color', color);
+            hz.hzImg.css('border-color', color);
+
+            color = color.toString().substr(1);
+            var textColor = parseInt(color, 16) > 0xffffff/2 ? '#333':'#f0f0f0';        
+            
+            //change text color based on frame background color
+            hzCaptionCss.color = textColor;
         }
 
         function hideHoverZoomImg(now) {
