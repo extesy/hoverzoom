@@ -43,7 +43,7 @@
     ],
     "web_accessible_resources": [
         "images/loading.gif",
-        "js/libs/gumby.min.js",
+        "js/libs/gumby.js",
         "js/libs/jquery-3.2.1.js",
         "js/libs/jquery.mobile.custom.js",
         "js/libs/modernizr-2.7.1.js",
