@@ -1657,7 +1657,7 @@
 		yepnope.errorTimeout = 2000;
 		Modernizr.load({
 			test: Modernizr.touch,
-			yep: Gumby.touchEvents+'/jquery.mobile.custom.min.js',
+			yep: Gumby.touchEvents+'/jquery.mobile.custom.js',
 			complete: function() {
 				// error loading jQuery mobile
 				if(!$.mobile) {
