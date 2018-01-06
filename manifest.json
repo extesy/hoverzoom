@@ -45,7 +45,7 @@
         "images/loading.gif",
         "js/libs/gumby.min.js",
         "js/libs/jquery-3.2.1.min.js",
-        "js/libs/jquery.mobile.custom.min.js",
+        "js/libs/jquery.mobile.custom.js",
         "js/libs/modernizr-2.7.1.min.js",
         "js/common.js",
         "js/options.js"
