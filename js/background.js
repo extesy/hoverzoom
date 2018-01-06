@@ -67,7 +67,7 @@ function onMessage(message, sender, callback) {
             break;
         case 'openViewWindow':
             var url = message.createData.url;
-            if (url.indexOf('facebook.com/photo/download') != -1) {
+            if (url.indexOf('facebook.com/photo/download') !== -1) {
                 message.createData.url = 'data:text/html,<img src="' + url + '">';
             }
             chrome.windows.create(message.createData, function (window) {
@@ -75,12 +75,12 @@ function onMessage(message, sender, callback) {
             });
             break;
         case 'openViewTab':
-            chrome.tabs.query({active: true}, function (currentTab) {
-                message.createData.index = currentTab.index;
+            chrome.tabs.query({active: true}, function (tabs) {
+                message.createData.index = tabs[0].index;
                 if (!message.createData.active)
                     message.createData.index++;
                 var url = message.createData.url;
-                if (url.indexOf('facebook.com/photo/download') != -1) {
+                if (url.indexOf('facebook.com/photo/download') !== -1) {
                     message.createData.url = 'data:text/html,<img src="' + url + '">';
                 }
                 chrome.tabs.create(message.createData, function (tab) {
