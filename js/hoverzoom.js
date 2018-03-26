@@ -1235,7 +1235,10 @@ var hoverZoom = {
         }
 
         function saveImage() {
-            var a = document.createElement('a');
+			chrome.runtime.sendMessage({action: "downloadFile", 
+										url: imgDetails.url, 
+										filename: imgDetails.url.split('/').pop().split('?')[0]});
+			/*var a = document.createElement('a');
             a.href = imgDetails.url;
             a.download = imgDetails.url.split('/').pop().split('?')[0];
             if (!a.download) {
@@ -1243,7 +1246,7 @@ var hoverZoom = {
             }
             var clickEvent = document.createEvent('MouseEvent');
             clickEvent.initEvent('click', true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
-            a.dispatchEvent(clickEvent);
+            a.dispatchEvent(clickEvent);*/
         }
 
         function rotateGalleryImg(rot) {
