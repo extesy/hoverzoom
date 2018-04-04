@@ -31,9 +31,9 @@ function downloadFile(url,filename) {
 
 function onMessage(message, sender, callback) {
     switch (message.action) {
-		case 'downloadFile':
-			downloadFile(message.url, message.filename);
-			return true;
+        case 'downloadFile':
+            downloadFile(message.url, message.filename);
+            return true;
         case 'ajaxGet':
             ajaxRequest({url:message.url, method:'GET'}, callback);
             return true;
