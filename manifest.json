@@ -35,7 +35,7 @@
     "permissions": [
         "*://*/*",
         "notifications",
-		"downloads",
+        "downloads",
         "unlimitedStorage"
     ],
     "optional_permissions": [
