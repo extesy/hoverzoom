@@ -24,8 +24,11 @@ function ajaxRequest(request, callback) {
 
 function onMessage(message, sender, callback) {
     switch (message.action) {
+        case 'downloadFile':
+            chrome.downloads.download({url: message.url, filename: message.filename});
+            return true;
         case 'ajaxGet':
-            ajaxRequest({url:message.url, method:'GET'}, callback);
+            ajaxRequest({url: message.url, method: 'GET'}, callback);
             return true;
         case 'ajaxRequest':
             ajaxRequest(message, callback);
