@@ -27,7 +27,8 @@
 		this.onReady = this.onOldie = this.onTouch = false;
 		this.autoInit = $('script[gumby-init]').attr('gumby-init') === 'false' ? false : true;
 		this.debugMode = Boolean($('script[gumby-debug]').length);
-		this.touchDevice = !!(Modernizr.touch || window.navigator.userAgent.indexOf("Windows Phone") > 0);
+		// Fix for missing Modernizr.load() -> disable touchDevice
+		this.touchDevice = false; // !!(Modernizr.touch || window.navigator.userAgent.indexOf("Windows Phone") > 0);
 		this.gumbyTouch = false;
 		this.touchEvents = 'js/libs';
 		this.breakpoint = Number($('script[gumby-breakpoint]').attr('gumby-breakpoint')) || 768;
