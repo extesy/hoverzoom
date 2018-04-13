@@ -25,8 +25,16 @@ function ajaxRequest(request, callback) {
 function onMessage(message, sender, callback) {
     switch (message.action) {
         case 'downloadFile':
-            chrome.downloads.download({url: message.url, filename: message.filename});
-            return true;
+            chrome.permissions.request({
+                permissions: ['downloads']
+            }, function (granted) {
+                if (granted) {
+                    chrome.downloads.download({url: message.url, filename: message.filename});
+                    return true;
+                } else {
+                    return false;
+                }
+            });
         case 'ajaxGet':
             ajaxRequest({url: message.url, method: 'GET'}, callback);
             return true;
