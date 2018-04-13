@@ -27,8 +27,8 @@ function onMessage(message, sender, callback) {
         case 'downloadFile':
             chrome.permissions.request({
                 permissions: ['downloads']
-            }, function(granted) {
-                if(granted) {
+            }, function (granted) {
+                if (granted) {
                     chrome.downloads.download({url: message.url, filename: message.filename});
                     return true;
                 } else {
