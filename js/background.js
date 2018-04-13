@@ -25,7 +25,7 @@ function ajaxRequest(request, callback) {
 function onMessage(message, sender, callback) {
     switch (message.action) {
         case 'downloadFile':
-		    chrome.permissions.request({
+            chrome.permissions.request({
                 permissions: ['downloads']
             }, function(granted) {
                 if(granted) {
