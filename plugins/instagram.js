@@ -7,7 +7,7 @@ hoverZoomPlugins.push({
             if (link.hasClass('hoverZoomLink'))
                 return;
             if (link.find('span.coreSpriteSidecarIconLarge').length === 0) {
-                link.data().hoverZoomSrc = [link.find('img').attr('src')];
+                link.data().hoverZoomSrc = [link.prop('href').replace(/[?]taken-by=.*$/, 'media?size=l')];
                 link.addClass('hoverZoomLink');
                 hoverZoom.displayPicFromElement(link);
             } else {
