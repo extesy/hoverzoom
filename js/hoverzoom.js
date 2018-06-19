@@ -1234,16 +1234,37 @@ var hoverZoom = {
             });
         }
 
+        //stackoverflow.com/questions/49474775/chrome-65-blocks-cross-origin-a-download-client-side-workaround-to-force-down
+        function forceDownload(blob, filename) {
+          var a = document.createElement('a');
+          a.download = filename;
+          a.href = blob;
+          a.click();
+        }
+
+        // Current blob size limit is around 500MB for browsers
+        function downloadResource(url, filename) {
+          if (!filename) filename = url.split('\\').pop().split('/').pop();
+          fetch(url, {
+              headers: new Headers({
+                'Origin': location.origin
+              }),
+              mode: 'cors'
+            })
+            .then(response => response.blob())
+            .then(blob => {
+              let blobUrl = window.URL.createObjectURL(blob);
+              forceDownload(blobUrl, filename);
+            })
+            .catch(e => console.error(e));
+        }
+
         function saveImage() {
             var filename = imgDetails.url.split('/').pop().split('?')[0];
             if (!filename) {
                 filename = 'image.jpg';
             }
-            chrome.runtime.sendMessage({
-                action: "downloadFile",
-                url: imgDetails.url,
-                filename: filename
-            });
+            downloadResource('https://giant.gfycat.com/RemoteBlandBlackrussianterrier.webm', filename);
         }
 
         function rotateGalleryImg(rot) {
