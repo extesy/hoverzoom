@@ -2,11 +2,16 @@ var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'clips.twitch.tv',
     prepareImgLinks:function (callback) {
-        if (!options.zoomVideos) return;
         $('a[href*="clips.twitch.tv/"]').one('mouseenter', function() {
-            hoverZoom.prepareFromDocument($(this), this.href, function (doc) {
-                let meta = doc.querySelector('meta[property="og:image"][content]');
-                return meta ? meta.content.replace('-social-preview.jpg', '.mp4') : false;
+            if(!options.zoomVideos) return;
+            var link = $(this),
+                slug = this.href.replace(/.*clips.twitch.tv\/(\w+).*/, '$1');
+            $.get('https://clips.twitch.tv/api/v2/clips/' + slug + '/status', function (data) {
+                if (data && data.quality_options) {
+                    link.data().hoverZoomSrc = [data.quality_options[0].source]
+                    link.addClass('hoverZoomLink');
+                    hoverZoom.displayPicFromElement(link);
+                }            
             });
         });
     }
