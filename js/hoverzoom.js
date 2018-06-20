@@ -1261,10 +1261,7 @@ var hoverZoom = {
 
         function saveImage() {
             var filename = imgDetails.url.split('/').pop().split('?')[0];
-            if (!filename) {
-                filename = 'image.jpg';
-            }
-            downloadResource('https://giant.gfycat.com/RemoteBlandBlackrussianterrier.webm', filename);
+            downloadResource(imgDetails.url, filename);
         }
 
         function rotateGalleryImg(rot) {
