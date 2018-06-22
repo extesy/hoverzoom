@@ -1494,6 +1494,18 @@ var hoverZoom = {
         });
     },
 
+    prepareLink:function (link, src) {
+        if (Array.isArray(src)) {
+            link.data().hoverZoomGallerySrc = src;
+            link.data().hoverZoomGalleryIndex = 0;
+            link.data().hoverZoomSrc = src[0];
+        } else {
+            link.data().hoverZoomSrc = [src];
+        }
+        link.addClass('hoverZoomLink');
+        hoverZoom.displayPicFromElement(link);
+    },
+
     prepareFromDocument:function (link, url, getSrc) {
         url = url.replace('http:', location.protocol);
         $.get(url, function(data) {
@@ -1510,17 +1522,8 @@ var hoverZoom = {
                 }
             }
             var src = getSrc(doc);
-            if (src) {
-                if (Array.isArray(src)) {
-                    link.data().hoverZoomGallerySrc = src;
-                    link.data().hoverZoomGalleryIndex = 0;
-                    link.data().hoverZoomSrc = src[0];
-                } else {
-                    link.data().hoverZoomSrc = [src];
-                }
-                link.addClass('hoverZoomLink');
-                hoverZoom.displayPicFromElement(link);
-            }
+            if (src)
+                hoverZoom.prepareLink(link, src);
         });
     }
 };
