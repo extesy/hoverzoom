@@ -3,7 +3,7 @@ var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
   name:'Pinterest',
   prepareImgLinks: function (callback) {
-    $('a.pinImageWrapper').one('mouseover', function() {
+    $('.pinWrapper').one('mouseover', function() {
       var link = $(this),
         data = link.data();
       if (data.hoverZoomSrc) return;
