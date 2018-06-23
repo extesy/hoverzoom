@@ -7,9 +7,12 @@ hoverZoomPlugins.push({
             if (link.hasClass('hoverZoomLink'))
                 return;
             if (link.find('span.coreSpriteSidecarIconLarge').length === 0) {
-                link.data().hoverZoomSrc = [link.prop('href').replace(/[?]taken-by=.*$/, 'media?size=l')];
-                link.addClass('hoverZoomLink');
-                hoverZoom.displayPicFromElement(link);
+                let src;
+                if (options.showHighRes)
+                    src = link.prop('href').replace(/[?]taken-by=.*$/, 'media?size=l');
+                else
+                    src = link.find('img').attr('src');
+                hoverZoom.prepareLink(link, src);
             } else {
                 hoverZoom.prepareFromDocument(link, link.attr('href'), function(doc) {
                     var img = [];

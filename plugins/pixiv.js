@@ -15,10 +15,24 @@ hoverZoomPlugins.push({
         $('a[href*="member_illust.php"]').on('mouseover', function() {
             var link = $(this);
             if (link.data().hoverZoomSrc) return;
-            hoverZoom.prepareFromDocument($(link), link.attr('href'), function(doc) {
-                if (link.data().hoverZoomSrc) return false;
-                var img = doc.querySelector('div.works_display img');
-                return img ? img.src : false;
+            $.get(link.attr('href'), function (data) {
+                if (link.data().hoverZoomSrc) return;
+                try {
+                    // extract JSON data from embedded script
+                    let idx = data.indexOf('{"illustId"');
+                    if (idx < 0) return;
+                    let idx2 = data.indexOf('},user:', idx);
+                    if (idx2 < 0) return;
+                    let json = JSON.parse(data.slice(idx, idx2));
+                    let src;
+                    if (options.showHighRes)
+                        src = json.urls.original;
+                    else
+                        src = json.urls.regular;
+                    hoverZoom.prepareLink(link, src);
+                } catch (e) {
+                    cLog('Pixiv has probably changed JSON format.');
+                }
             });
         });
     }
