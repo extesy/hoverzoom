@@ -701,6 +701,10 @@
             ]
         },
         {
+            "js": ["plugins/inkbunny.js"],
+            "matches": ["*://*.inkbunny.net/*"]
+        },
+        {
             "js": ["plugins/instructables.js"],
             "matches": ["*://*.instructables.com/*"]
         },
