@@ -1286,7 +1286,7 @@ var hoverZoom = {
         function loadNextGalleryImage() {
             clearTimeout(loadFullSizeImageTimeout);
             imgDetails.url = hz.currentLink.data().hoverZoomSrc[hz.currentLink.data().hoverZoomSrcIndex];
-            imgFullSize.on('load', nextGalleryImageOnLoad).on('error', loadNextGalleryImage).attr('src', imgDetails.url);
+            imgFullSize.on('load', nextGalleryImageOnLoad).on('error', imgFullSizeOnError).attr('src', imgDetails.url);
         }
 
         function nextGalleryImageOnLoad() {
