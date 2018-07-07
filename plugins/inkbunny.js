@@ -5,95 +5,75 @@ hoverZoomPlugins.push({
     prepareImgLinks:function (callback) {
         var res = [];
 
-        $('img[src*="thumbnails/"], img[src*="preview/"]').each(function() {
-            var img = $(this),
-                multipage = img.next(),
-                src = img.attr('src'),
-                thumbSrc = src;
+        //sometimes a multipage submission gallery won't work until after you re-hover?
+        //hoverzoom canvas doesn't appear until after you move the mouse after it's done preparing
 
-            src = prepareThumbnailSrc(src);
-            img.data().hoverZoomSrc = getPossibleImgSrcs(src, thumbSrc);
-
-            // console.log("1:");
-            // console.log(img.data());
-
-            if (multipage.length && multipage.attr('style').includes('multipage')) {
-                img.data().hoverZoomGallerySrc = [];
-                img.data().hoverZoomGallerySrc.push(img.data().hoverZoomSrc);
-                //img.data().hoverZoomGalleryCaption = [];
-
-                //var url = img.parent().attr('href');
-                /* $.when().done(function() {
-
-                }); */
-                pushMultipageImgDataAsync(img);
-
-                res.push(img);
-                /* $(document).ajaxStop(function() {
-                    console.log('ajaxStop');
-                    res.push(img);
-                    $(document).unbind('ajaxStop');
-                }); */
-            } else {
-                res.push(img);
-            }
-        });
-
-        function prepareThumbnailSrc(src) {
-            if (/\/thumbnails\/\w*/.test(src))
-                src = src.replace(/\/thumbnails\/\w*/, '/files/screen');
-            if (/\/preview/.test(src))
-                src = src.replace(/\/preview/, '/screen');
-            if (/\/private_thumbnails\/\w*/.test(src))
-                src = src.replace(/\/private_thumbnails\/\w*/, '/private_files/screen');
-            src = src.replace(/(_noncustom)?\.\w*$/, '.');
-            return src;
-        }
-
-        function pushMultipageImgDataAsync(img) {
-            var url = img.parent().attr('href');
-            $.ajax(url).done(function(response) {
-                var i = 0;
-                $('img[alt*="page "][src*="thumbnails/"]', response).each(function() {
-                    if (i > 0) {
-                        var page = $(this),
-                            pageSrc = page.attr('src'),
-                            pageThumbSrc = pageSrc;
-                        pageSrc = prepareThumbnailSrc(pageSrc);
-                        // console.log("pageSrc: " + pageSrc);
-                        img.data().hoverZoomGallerySrc.push(getPossibleImgSrcs(pageSrc, pageThumbSrc));
-                    }
-                    i++;
-                });
-                // console.log("2:");
-                // console.log(img.data());
-
-                callback($([img]));
-            });
-        }
-
-        function getPossibleImgSrcs(src, thumbSrc) {
-            return [//src + 'png'];
-                src + 'jpg', src + 'png', src + 'gif',
-                thumbSrc.replace(/thumbnails\/\w*/, 'thumbnails/huge'),
-                thumbSrc.replace(/thumbnails\/\w*/, 'thumbnails/large')
-            ];
-        }
-
-        $('a[href*="inkbunny.net/s/"]').each(function() {
+        //find all submission links
+        $('a[href*="s/"]').filter(function() {
+            return /s\/\d+(-p\d+-)?(#pictop)?\/?$/.test($(this).attr('href'));
+        }).one('mouseover', function() {
             var link = $(this),
                 url = link.attr('href');
-            $.ajax({
-                url: url,
-                success: function(response) {
-                    var img = $('img[src*="files/screen/"]:not(a > img)', response);
-                    hoverZoom.urlReplace(res,
-                        'a[href*="inkbunny.net/s/"]',
-                        /^.+$/,
-                        img.attr('src')
-                    );
-                    link.addClass('hoverZoomLink');
+
+            //follow a submission link
+            $.ajax(url).done(function(response) {
+                //console.log("url: " + url);
+
+                //get the submission's src
+                var img = $('img[src*="files/screen/"]', response);
+                link.data().hoverZoomSrc = [img.attr('src')];
+                link.data().hoverZoomCaption = $(response).text().replace(/^\s*(.*) <[\s\S]*/, '$1');
+
+                //console.log("mainSrc: " + img.attr('src'));
+
+                //check if the submission has other pages. these are found in links
+                //that contain the base url and have an img child
+                var multipageContainer = $('#files_area + div', response),
+                    firstPage = url.replace(/^(.*s\/\d+).*$/, '$1'),
+                    multipageLinks = $('a[href*="' + firstPage + '"]:has(img)', multipageContainer);
+
+                /* console.log("firstPage: " + firstPage);
+                console.log("multipageLinks:");
+                console.log(multipageLinks); */
+
+                //submission has multiple pages
+                if (multipageLinks.length) {
+                    //console.log("multipageLinks URLs:");
+
+                    link.data().hoverZoomGallerySrc = [];
+                    link.data().hoverZoomGalleryCaption = [];
+
+                    var galleryIndex = url.replace(/^(.*s\/\d+)-p(\d+)?.*$/, '$2');
+                    galleryIndex = (galleryIndex === url) ? 0 : parseInt(galleryIndex) - 1;
+                    link.data().hoverZoomGalleryIndex = galleryIndex;
+
+                    var i = 0;
+                    multipageLinks.each(function() {
+                        var multipageURL = $(this).attr('href');
+                        //console.log(multipageURL);
+
+                        link.data().hoverZoomGallerySrc.push([]);
+                        link.data().hoverZoomGalleryCaption.push(link.data().hoverZoomCaption);
+                        (function(index) {
+                            $.ajax(multipageURL).done(function(nestedResponse) {
+                                var multipageImg = $('img[src*="files/screen/"]', nestedResponse).attr('src');
+                                link.data().hoverZoomGallerySrc[index] = [multipageImg];
+
+                                /* console.log("multipage ajax");
+                                console.log("i = " + index);
+                                console.log("original link: " + link.attr('href'));
+                                console.log("multipageURL: " + multipageURL);
+                                console.log("multipageImg: " + multipageImg);
+                                console.log(link.data()); */
+                                //callback($([link]));
+                            });
+                        }(i));
+                        i++;
+                    });
                 }
+                //callback($([link]));
+                link.addClass('hoverZoomLink');
+                res.push(link);
             });
         });
 
