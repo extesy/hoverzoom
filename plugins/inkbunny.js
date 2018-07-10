@@ -6,7 +6,6 @@ hoverZoomPlugins.push({
         var res = [];
 
         //  TODO
-        //  hoverzoom canvas doesn't appear until after you move the mouse after it's done preparing
         //  scrolling to an image that hasn't been loaded yet will freeze until you scroll back to
         //      a loaded image and then back to the previously unloaded image
         //  change to full size image, not screen
@@ -114,6 +113,7 @@ hoverZoomPlugins.push({
                 link.addClass('hoverZoomLink');
                 //callback($([link]));
                 res.push(link);
+                hoverZoom.displayPicFromElement(link);
             });
         });
 
