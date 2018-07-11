@@ -8,7 +8,6 @@ hoverZoomPlugins.push({
         //  TODO
         //  change to full size image, not screen
         //  hoverzooming updated submissions in user's new submissions notifications will screw up indexing
-        //  add same multipage handling for keypress
 
         //find all submission links
         $('a[href*="s/"]').filter(function() {
@@ -64,6 +63,12 @@ hoverZoomPlugins.push({
                         start: mod(startIndex - 2, multipageLinks.length),
                         end: mod(startIndex + 2, multipageLinks.length) };
                     link.on('wheel', {arg1: loopData, arg2: multipageLinks}, onMouseWheel);
+                    link.hover(function() {
+                        link.focus();
+                    }, function() {
+                        link.blur();
+                    }).on('keydown', {arg1: loopData, arg2: multipageLinks}, onKeyDown);
+                    link.focus();
                     multipageLinks.each(function() {
                         var multipageLink = $(this).attr('href');
                         //console.log(multipageLink);
@@ -74,35 +79,7 @@ hoverZoomPlugins.push({
                         if (multipageLinks.length > 4) {
                             if (inCircularRange(loopData.start, loopData.end, i)) {
                                 prepareMultipageSrcAsync(link, multipageLink, i);
-                            } else {
-                                /* multipageLink.on('updateRange', function() {
-                                    if (!inCircularRange(start, end, i) &&
-                                            galleryIndexNearEdge(start, end,
-                                                link.data().hoverZoomGalleryIndex,
-                                                multipageLinks.length)) {
-                                        prepareMultipageSrcAsync(link, multipageLink, start, end, i);
-                                        multipageLink.off('updateRange');
-                                    }
-                                }); */
-
                             }
-
-                            /* var promise = new Promise(function(resolve, reject) {
-                                if (Math.abs(i - start) < 3) {
-                                    resolve(i, -1);
-                                } else if (Math.abs(end - i) < 3) {
-                                    resolve(i, 1);
-                                }
-                            });
-
-                            promise.then(function(index, dir) {
-                                if (dir === -1)
-                                    console.log("Load more images from start");
-                                else if (dir === 1)
-                                    console.log("Load more images from end");
-
-
-                            }); */
                         } else {
                             prepareMultipageSrcAsync(link, multipageLink, i);
                         }
@@ -111,7 +88,6 @@ hoverZoomPlugins.push({
                     });
                 }
                 link.addClass('hoverZoomLink');
-                //callback($([link]));
                 res.push(link);
                 hoverZoom.displayPicFromElement(link);
             });
@@ -129,18 +105,6 @@ hoverZoomPlugins.push({
                     else if (!(/_noncustom\.\w+$/.test(thumbSrc)))
                         origLink.data().hoverZoomGallerySrc[i] = [thumbSrc.replace(/thumbnails\/\w+/, 'thumbnails/huge')];
                 }
-
-                /* console.log("multipage ajax");
-                console.log("i = " + i);
-                console.log("original link: " + link.attr('href'));
-                console.log("multipageLink: " + multipageLink);
-                console.log("multipageImg: " + multipageImg);
-                console.log(link.data()); */
-                //callback($([link]));
-
-                /* var wheelEvent = $.Event("wheel");
-                wheelEvent.deltaY = 0;
-                $(document).trigger(wheelEvent); */
             });
         }
 
@@ -162,11 +126,28 @@ hoverZoomPlugins.push({
 
         function onMouseWheel(event) {
             var loopData = event.data.arg1,
-                multipageLinks = event.data.arg2,
-                totalLinks = multipageLinks.length,
+                multipageLinks = event.data.arg2;
+
+            if (event.originalEvent.wheelDeltaY > 0)
+                multipageSrcHelper(loopData, multipageLinks, -1);
+            else if (event.originalEvent.wheelDeltaY < 0)
+                multipageSrcHelper(loopData, multipageLinks, 1);
+        }
+
+        function onKeyDown(event) {
+            var loopData = event.data.arg1,
+                multipageLinks = event.data.arg2;
+
+            if (event.which == options.prevImgKey)
+                multipageSrcHelper(loopData, multipageLinks, -1);
+            else if (event.which == options.nextImgKey)
+                multipageSrcHelper(loopData, multipageLinks, 1);
+        }
+
+        function multipageSrcHelper(loopData, multipageLinks, rot) {
+            var totalLinks = multipageLinks.length,
                 link = hoverZoom.currentLink,
                 data = link.data(),
-                rot = (event.originalEvent.wheelDeltaY > 0) ? -1 : 1,
                 nextIndex = mod(data.hoverZoomGalleryIndex + rot, totalLinks),
                 loadIndex = mod(data.hoverZoomGalleryIndex + 3 * rot, totalLinks);
             console.log("start: " + loopData.start);
@@ -188,15 +169,14 @@ hoverZoomPlugins.push({
                     prepareMultipageSrcAsync(link, multipageLinks[loadIndex].href, loadIndex);
                     if (rot === -1)
                         loopData.start = mod(loopData.start - 1, totalLinks);
-                    else
+                    else if (rot === 1)
                         loopData.end = mod(loopData.end + 1, totalLinks);
                 } else if (Math.abs(loopData.end - loopData.start) === 1) {
-                    link.off('wheel');
+                    link.off();
                 }
             }
         }
 
-        //console.log(res);
         callback($(res));
     }
 });
