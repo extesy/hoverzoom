@@ -6,9 +6,9 @@ hoverZoomPlugins.push({
         var res = [];
 
         //  TODO
-        //  scrolling to an image that hasn't been loaded yet will freeze until you scroll back to
-        //      a loaded image and then back to the previously unloaded image
         //  change to full size image, not screen
+        //  hoverzooming updated submissions in user's new submissions notifications will screw up indexing
+        //  add same multipage handling for keypress
 
         //find all submission links
         $('a[href*="s/"]').filter(function() {
@@ -63,7 +63,7 @@ hoverZoomPlugins.push({
                     var i = 0, loopData = {
                         start: mod(startIndex - 2, multipageLinks.length),
                         end: mod(startIndex + 2, multipageLinks.length) };
-                    link.on('mousewheel', {arg1: loopData, arg2: multipageLinks}, onMouseWheel);
+                    link.on('wheel', {arg1: loopData, arg2: multipageLinks}, onMouseWheel);
                     multipageLinks.each(function() {
                         var multipageLink = $(this).attr('href');
                         //console.log(multipageLink);
@@ -137,6 +137,10 @@ hoverZoomPlugins.push({
                 console.log("multipageImg: " + multipageImg);
                 console.log(link.data()); */
                 //callback($([link]));
+
+                /* var wheelEvent = $.Event("wheel");
+                wheelEvent.deltaY = 0;
+                $(document).trigger(wheelEvent); */
             });
         }
 
@@ -152,62 +156,42 @@ hoverZoomPlugins.push({
         }
 
         function galleryIndexNearEdge(start, end, galleryIndex, galleryLength) {
-            return inCircularRange(start, mod(start + 2, galleryLength), galleryIndex) ||
-                inCircularRange(mod(end - 2, galleryLength), end, galleryIndex);
+            return inCircularRange(end, mod(start + 2, galleryLength), galleryIndex) ||
+                inCircularRange(mod(end - 2, galleryLength), start, galleryIndex);
         }
 
         function onMouseWheel(event) {
             var loopData = event.data.arg1,
                 multipageLinks = event.data.arg2,
+                totalLinks = multipageLinks.length,
                 link = hoverZoom.currentLink,
-                data = link.data();
+                data = link.data(),
+                rot = (event.originalEvent.wheelDeltaY > 0) ? -1 : 1,
+                nextIndex = mod(data.hoverZoomGalleryIndex + rot, totalLinks),
+                loadIndex = mod(data.hoverZoomGalleryIndex + 3 * rot, totalLinks);
             console.log("start: " + loopData.start);
             console.log("end: " + loopData.end);
 
+            if (!data.hoverZoomGallerySrc[nextIndex].length) {
+                data.hoverZoomGalleryIndex = mod(data.hoverZoomGalleryIndex - rot, totalLinks);
+                return;
+            }
+
             if (data.hoverZoomGallerySrc && data.hoverZoomGallerySrc.length > 1) {
-                var rot;
-                if (event.originalEvent.wheelDeltaY > 0) {
-                    rot = -1;
-                    console.log("scrolling up to " + (data.hoverZoomGalleryIndex + rot));
-
-                    /* if (!inCircularRange(loopData.start, loopData.end, nextIndex) &&
-                            galleryIndexNearEdge(loopData.start, loopData.end, nextIndex, data.hoverZoomGallerySrc.length)) {
-                        prepareMultipageSrcAsync(link, multipageLink, nextIndex);
-                        loopData.start--;
-                    } */
-
-                    /* if (galleryIndexNearEdge(start, end, galleryIndex - 1, multipageLinks.length)) {
-                        prepareMultipageSrcAsync(link, multipageLink, start, end, i);
-                        multipageLink.off('updateRange');
-                    } */
-                } else {
-                    rot = 1;
-                    console.log("scrolling down to " + (data.hoverZoomGalleryIndex + rot));
-
-                    /* if (!inCircularRange(loopData.start, loopData.end, nextIndex) &&
-                            galleryIndexNearEdge(loopData.start, loopData.end, nextIndex, data.hoverZoomGallerySrc.length)) {
-                        prepareMultipageSrcAsync(link, multipageLink, nextIndex);
-                        loopData.start++;
-                    } */
-
-                    /* if (galleryIndexNearEdge(start, end, galleryIndex + 1, multipageLinks.length)) {
-                        prepareMultipageSrcAsync(link, multipageLink, start, end, i);
-                        multipageLink.off('updateRange');
-                    } */
-                }
-                var nextIndex = mod(data.hoverZoomGalleryIndex + rot, multipageLinks.length),
-                    loadIndex = mod(data.hoverZoomGalleryIndex + 3 * rot, multipageLinks.length);
+                console.log("scrolling to " + nextIndex + " from " + data.hoverZoomGalleryIndex);
                 console.log("load " + loadIndex + "?");
+
                 if (!inCircularRange(loopData.start, loopData.end, loadIndex) &&
-                        galleryIndexNearEdge(loopData.start, loopData.end, nextIndex, multipageLinks.length)) {
+                        galleryIndexNearEdge(loopData.start, loopData.end, nextIndex, totalLinks)) {
                     console.log("doing ajax");
+
                     prepareMultipageSrcAsync(link, multipageLinks[loadIndex].href, loadIndex);
                     if (rot === -1)
-                        loopData.start = mod(loopData.start - 1, multipageLinks.length);
+                        loopData.start = mod(loopData.start - 1, totalLinks);
                     else
-                        loopData.end = mod(loopData.end + 1, multipageLinks.length);
+                        loopData.end = mod(loopData.end + 1, totalLinks);
                 } else if (Math.abs(loopData.end - loopData.start) === 1) {
-                    link.off('mousewheel');
+                    link.off('wheel');
                 }
             }
         }
