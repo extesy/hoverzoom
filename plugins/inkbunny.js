@@ -7,7 +7,6 @@ hoverZoomPlugins.push({
 
         //  TODO
         //  change to full size image, not screen
-        //  hoverzooming updated submissions in user's new submissions notifications will screw up indexing
 
         //find all submission links
         $('a[href*="s/"]').filter(function() {
@@ -21,19 +20,7 @@ hoverZoomPlugins.push({
                 //console.log("url: " + url);
 
                 //get the submission's src
-                var img = $('img[src*="files/screen/"]', response).first();
-                //console.log(img);
-
-                if (img.length) {
-                    link.data().hoverZoomSrc = [img.attr('src')];
-                } else {
-                    var thumbSrc = link.find('img').attr('src');
-                    if (!(/_noncustom\.\w+$/.test(thumbSrc)))
-                        link.data().hoverZoomSrc = [thumbSrc.replace(/thumbnails\/\w+/, 'thumbnails/huge')];
-                    else
-                        link.data().hoverZoomSrc = [thumbSrc];
-                }
-                link.data().hoverZoomCaption = $(response).text().replace(/^\s*(.*) <[\s\S]*/, '$1');
+                prepareImgSrc(link, response);
 
                 //console.log(link.data());
                 //console.log("mainSrc: " + img.attr('src'));
@@ -56,7 +43,18 @@ hoverZoomPlugins.push({
                     link.data().hoverZoomGalleryCaption = [];
 
                     var startIndex = url.replace(/^(.*s\/\d+)-p(\d+)?.*$/, '$2');
-                    startIndex = (startIndex === url) ? 0 : parseInt(startIndex) - 1;
+                    if (startIndex === url) {
+                        var updated = $('[style*="/overlays/updated.png"]', link);
+                        if (updated.length) {
+                            var highlightedImg = $('div ~ a[href*="' + firstPage + '"]:has(img)', multipageContainer);
+                            startIndex = highlightedImg.attr('href').replace(/^(.*s\/\d+)-p(\d+)?.*$/, '$2');
+                            startIndex = parseInt(startIndex) - 1;
+                        } else {
+                            startIndex = 0;
+                        }
+                    } else {
+                        startIndex = parseInt(startIndex) - 1;
+                    }
                     link.data().hoverZoomGalleryIndex = startIndex;
 
                     var i = 0, loopData = {
@@ -70,7 +68,7 @@ hoverZoomPlugins.push({
                     }).on('keydown', {arg1: loopData, arg2: multipageLinks}, onKeyDown);
                     link.focus();
                     multipageLinks.each(function() {
-                        var multipageLink = $(this).attr('href');
+                        var multipageLink = $(this);
                         //console.log(multipageLink);
 
                         link.data().hoverZoomGallerySrc.push([]);
@@ -93,17 +91,31 @@ hoverZoomPlugins.push({
             });
         });
 
-        function prepareMultipageSrcAsync(origLink, multipageLink, i) {
-            $.ajax(multipageLink).done(function(nestedResponse) {
-                var multipageImg = $('img[src*="files/screen/"]', nestedResponse).first();
+        function prepareImgSrc(link, response) {
+            var img = $('img[src*="files/screen/"]', response).first();
+            if (img.length) {
+                link.data().hoverZoomSrc = [img.attr('src')];
+            } else {
+                var thumbSrc = link.find('img').attr('src');
+                if (!(/_noncustom\.\w+$/.test(thumbSrc)))
+                    link.data().hoverZoomSrc = [thumbSrc.replace(/thumbnails\/\w+/, 'thumbnails/huge')];
+                else
+                    link.data().hoverZoomSrc = [thumbSrc];
+            }
+            link.data().hoverZoomCaption = $(response).text().replace(/^\s*(.*) <[\s\S]*/, '$1');
+        }
+
+        function prepareMultipageSrcAsync(link, multipageLink, i) {
+            $.ajax(multipageLink.attr('href')).done(function(response) {
+                var multipageImg = $('img[src*="files/screen/"]', response).first();
                 if (multipageImg.length) {
-                    origLink.data().hoverZoomGallerySrc[i] = [multipageImg.attr('src')];
+                    link.data().hoverZoomGallerySrc[i] = [multipageImg.attr('src')];
                 } else {
-                    var thumbSrc = origLink.find('img').attr('src');
-                    if (/\/images78\/overlays/.test(thumbSrc))
-                        origLink.data().hoverZoomGallerySrc[i] = [thumbSrc];
-                    else if (!(/_noncustom\.\w+$/.test(thumbSrc)))
-                        origLink.data().hoverZoomGallerySrc[i] = [thumbSrc.replace(/thumbnails\/\w+/, 'thumbnails/huge')];
+                    var thumbSrc = multipageLink.find('img').attr('src');
+                    if (!(/_noncustom\.\w+$/.test(thumbSrc)))
+                        link.data().hoverZoomGallerySrc[i] = [thumbSrc.replace(/thumbnails\/\w+/, 'thumbnails/huge')];
+                    else
+                        link.data().hoverZoomGallerySrc[i] = [thumbSrc];
                 }
             });
         }
@@ -166,7 +178,7 @@ hoverZoomPlugins.push({
                         galleryIndexNearEdge(loopData.start, loopData.end, nextIndex, totalLinks)) {
                     console.log("doing ajax");
 
-                    prepareMultipageSrcAsync(link, multipageLinks[loadIndex].href, loadIndex);
+                    prepareMultipageSrcAsync(link, multipageLinks.eq(loadIndex), loadIndex);
                     if (rot === -1)
                         loopData.start = mod(loopData.start - 1, totalLinks);
                     else if (rot === 1)
