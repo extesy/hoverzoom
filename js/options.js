@@ -220,13 +220,9 @@ function chkWhiteListModeOnChange() {
 
 function chkAddToHistoryModeOnChange() {
     if ($('#chkAddToHistory')[0].checked) {
-        chrome.permissions.contains({permissions: ['history']}, function (granted) {
+        chrome.permissions.request({permissions: ['history']}, function(granted) {
             if (!granted) {
-                chrome.permissions.request({permissions: ['history']}, function (granted) {
-                    if (!granted) {
-                        $("#chkAddToHistory").trigger('gumby.uncheck');
-                    }
-                });
+                $('#chkAddToHistory').trigger('gumby.uncheck');
             }
         });
     }
