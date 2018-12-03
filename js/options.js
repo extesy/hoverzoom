@@ -220,16 +220,20 @@ function chkWhiteListModeOnChange() {
 
 function chkAddToHistoryModeOnChange() {
     if ($('#chkAddToHistory')[0].checked) {
-        chrome.permissions.contains({permissions: ['history']}, function (granted) {
+        chrome.permissions.request({permissions: ['history']}, function (granted) {
             if (!granted) {
-                chrome.permissions.request({permissions: ['history']}, function (granted) {
-                    if (!granted) {
-                        $("#chkAddToHistory").trigger('gumby.uncheck');
-                    }
-                });
+                $('#chkAddToHistory').trigger('gumby.uncheck');
             }
         });
     }
+}
+
+function initAddToHistory() {
+    chrome.permissions.contains({permissions: ['history']}, function (granted) {
+        if (!granted) {
+            $('#chkAddToHistory').parent().on('gumby.onChange', chkAddToHistoryModeOnChange);
+        }
+    });
 }
 
 function percentageOnChange() {
@@ -311,12 +315,12 @@ $(function () {
     initActionKeys();
     i18n();
     chkWhiteListModeOnChange();
+    initAddToHistory();
     $("#version").text(chrome.i18n.getMessage("optFooterVersionCopyright", chrome.runtime.getManifest().version));
 
     $('#btnSave').click(saveOptions);
     $('#btnReset').click(restoreOptions);
     $('#chkWhiteListMode').parent().on('gumby.onChange', chkWhiteListModeOnChange);
-    $('#chkAddToHistory').parent().on('gumby.onChange', chkAddToHistoryModeOnChange);
     $('#txtZoomFactor').change(percentageOnChange);
     $('#txtPicturesOpacity').change(percentageOnChange);
     $('#rngVideoVolume').on('input change', updateTxtVideoVolume);
