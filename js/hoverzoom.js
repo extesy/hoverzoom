@@ -51,6 +51,7 @@ var hoverZoom = {
 
         var imgDetails = {
                 url:'',
+                audioUrl:'',
                 host:'',
                 naturalHeight:0,
                 naturalWidth:0,
@@ -123,7 +124,7 @@ var hoverZoom = {
             if (position === undefined || position.top === undefined || position.left === undefined) {
                 position = {top:mousePos.top, left:mousePos.left};
             }
-            
+
             var offset = 20,
                 padding = 10,
                 statusBarHeight = 15,
@@ -315,17 +316,25 @@ var hoverZoom = {
             });
             titledElements = null;
         }
-    
+
         //Set frame background color and border to match chosen option
         function frameBackgroundColor(color) {
             hz.hzImg.css('background-color', color);
             hz.hzImg.css('border-color', color);
 
             color = color.toString().substr(1);
-            var textColor = parseInt(color, 16) > 0xffffff/2 ? '#333':'#f0f0f0';        
-            
+            var textColor = parseInt(color, 16) > 0xffffff/2 ? '#333':'#f0f0f0';
+
             //change text color based on frame background color
             hzCaptionCss.color = textColor;
+        }
+
+        function stopMedia(selector) {
+            var el = hz.hzImg.find(selector).get(0);
+            if (el) {
+                el.pause();
+                el.src = '';
+            }
         }
 
         function hideHoverZoomImg(now) {
@@ -338,17 +347,37 @@ var hoverZoom = {
                 now = true;
             }
             hz.hzImg.stop(true, true).fadeOut(now ? 0 : options.fadeDuration, function () {
-                var video = hz.hzImg.find('video').get(0);
-                if (video) {
-                    video.pause();
-                    video.src = "";
-                }
+                stopMedia('video');
+                stopMedia('audio');
                 hzCaption = null;
                 hz.imgLoading = null;
                 hz.hzImg.empty();
                 restoreTitles();
             });
             //chrome.runtime.sendMessage({action: 'viewWindow', visible: false});
+        }
+
+        function normalizeSrc(hoverZoomSrcIndex, links, dataKey) {
+            var data = links.data()[dataKey];
+            if (!data) {
+                return undefined;
+            }
+
+            var src = data[hoverZoomSrcIndex];
+            if (src && src.indexOf('http') !== 0) {
+                if (src.indexOf('//') !== 0) {
+                    if (src.indexOf('/') !== 0) {
+                        // Image has relative path (doesn't start with '/')
+                        var path = window.location.pathname;
+                        path = path.substr(0, path.lastIndexOf('/') + 1);
+                        src = path + src;
+                    }
+                    src = '//' + window.location.host + src;
+                }
+                src = window.location.protocol + src;
+                links.data()[dataKey][hoverZoomSrcIndex] = src;
+            }
+            return src;
         }
 
         function documentMouseMove(event) {
@@ -404,20 +433,8 @@ var hoverZoom = {
                         hz.currentLink = links;
                         //initLinkRect(hz.currentLink);
                         if (!options.actionKey || actionKeyDown) {
-                            var src = links.data().hoverZoomSrc[hoverZoomSrcIndex];
-                            if (src.indexOf('http') !== 0) {
-                                if (src.indexOf('//') !== 0) {
-                                    if (src.indexOf('/') !== 0) {
-                                        // Image has relative path (doesn't start with '/')
-                                        var path = window.location.pathname;
-                                        path = path.substr(0, path.lastIndexOf('/') + 1);
-                                        src = path + src;
-                                    }
-                                    src = '//' + window.location.host + src;
-                                }
-                                src = window.location.protocol + src;
-                                links.data().hoverZoomSrc[hoverZoomSrcIndex] = src;
-                            }
+                            var src = normalizeSrc(hoverZoomSrcIndex, links, 'hoverZoomSrc');
+                            var audioSrc = normalizeSrc(hoverZoomSrcIndex, links, 'hoverZoomAudioSrc');
 
                             if (!options.whiteListMode && isExcludedLink(src)) {
                                 return;
@@ -428,6 +445,7 @@ var hoverZoom = {
                             }
 
                             imgDetails.url = src;
+                            imgDetails.audioUrl = audioSrc;
                             clearTimeout(loadFullSizeImageTimeout);
 
                             // If the action key has been pressed over an image, no delay is applied
@@ -485,6 +503,30 @@ var hoverZoom = {
                         video.play();
                         video.removeAttribute('poster');
                     });
+
+                    if (imgDetails.audioUrl) {
+                        var audio = document.createElement('audio');
+                        audio.autoplay = false;
+                        audio.muted = options.muteVideos;
+                        audio.volume = options.videoVolume;
+                        audio.src = imgDetails.audioUrl;
+                        $(audio).appendTo(imgFullSize);
+
+                        video.addEventListener('play', function() {
+                            audio.play();
+                        });
+
+                        video.addEventListener('seeked', function() {
+                            audio.currentTime = video.currentTime;
+                        });
+
+                        video.addEventListener('volumechange', function() {
+                            audio.volume = video.volume;
+                        });
+
+                        audio.load();
+                    }
+
                     video.load();
                 } else {
                     imgFullSize = $('<img style="border: none" />').appendTo(hz.hzImg).on('load',imgFullSizeOnLoad).on('error',imgFullSizeOnError).attr('src', imgDetails.url);
