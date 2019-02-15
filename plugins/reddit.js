@@ -26,14 +26,7 @@ hoverZoomPlugins.push({
       }
     });
 
-    var imagesDone = false, videosDone = false;
-    var res = [];
-
-    function done () {
-      if (imagesDone && videosDone) {
-        callback($(res));
-      }
-    }
+    var promises = [];
 
     $('div[data-url*="//i.redd.it/"], div[data-url*="//i.reddituploads.com/"]').each(function () {
       var post = $(this);
@@ -43,58 +36,51 @@ hoverZoomPlugins.push({
         var img = $(this);
         img.data('hoverZoomSrc', [link]);
         img.data('hoverZoomCaption', [title]);
-        res.push(img);
+        promises.push(Promise.resolve(img));
       });
-
-      imagesDone = true;
-      done();
     });
 
     $('div[data-url*="//v.redd.it/"]').each(function () {
       var post = $(this);
       var link = post.attr('data-url');
       var title = post.find('a.title').text();
-      var links = [].slice.call(post.find('a.thumbnail,a.title'));
-      var linksDone = links.map(function () { return false; });
 
-      function linkDone (i) {
-        linksDone[i] = true;
-        if (linksDone.every(function (b) { return b; })) {
-          videosDone = true;
-          done();
-        }
-      }
-
-      links.forEach(function (a, i) {
-        var img = $(a);
+      post.find('a.thumbnail,a.title').each(function() {
+        var img = $(this);
 
         // Use /DASH_600_K as a default if for any reason the ajax request below doesn't find a valid link
         img.data('hoverZoomSrc', [link + '/DASH_600_K']);
         img.data('hoverZoomCaption', [title]);
 
-        $.get(link + '/DASHPlaylist.mpd', function (xmlDoc) {
-          var highestRes = [].slice.call(xmlDoc.querySelectorAll('Representation[mimeType^="video"]'))
-            .sort(function (r1, r2) {
-              var w1 = parseInt(r1.getAttribute('width')), w2 = parseInt(r2.getAttribute('width'));
-              return w1 > w2 ? -1 : (w1 < w2 ? 1 : 0);
+        promises.push(new Promise(function (resolve, reject) {
+          $.get(link + '/DASHPlaylist.mpd')
+            .done(function (xmlDoc) {
+              var highestRes = [].slice.call(xmlDoc.querySelectorAll('Representation[mimeType^="video"]'))
+                .sort(function (r1, r2) {
+                  var w1 = parseInt(r1.getAttribute('width')), w2 = parseInt(r2.getAttribute('width'));
+                  return w1 > w2 ? -1 : (w1 < w2 ? 1 : 0);
+                })
+                .find(function (repr) { return !!repr.querySelector('BaseURL'); });
+
+              if (highestRes) {
+                img.data('hoverZoomSrc', [link + '/' + highestRes.querySelector('BaseURL').textContent.trim()]);
+              }
+
+              var audio = xmlDoc.querySelector('Representation[mimeType^="audio"'),
+                audioUrl = audio ? audio.querySelector('BaseURL') : undefined;
+              if (audioUrl) {
+                img.data('hoverZoomAudioSrc', [link + '/' + audioUrl.textContent.trim()]);
+              }
+
+              resolve(img);
             })
-            .find(function (repr) { return !!repr.querySelector('BaseURL'); });
-
-          if (highestRes) {
-            img.data('hoverZoomSrc', [link + '/' + highestRes.querySelector('BaseURL').textContent.trim()]);
-          }
-
-          var audio = xmlDoc.querySelector('Representation[mimeType^="audio"'),
-              audioUrl = audio ? audio.querySelector('BaseURL') : undefined;
-          if (audioUrl) {
-            img.data('hoverZoomAudioSrc', [link + '/' + audioUrl.textContent.trim()]);
-          }
-
-          linkDone(i);
-        });
-
-        res.push(img);
+            .fail(function (err) { reject(err); });
+        }));
       });
     });
+
+    Promise.all(promises.map(function (p) {
+      return p.catch(function(err) { console.error('Error initializing reddit image', err); });
+    })).then(function (res) { callback($(res)); })
   }
 });
