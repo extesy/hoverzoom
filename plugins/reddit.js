@@ -46,8 +46,24 @@ hoverZoomPlugins.push({
       var title = post.find('a.title').text();
       post.find('a.thumbnail,a.title').each(function () {
         var img = $(this);
-        img.data('hoverZoomSrc', [link + '/DASH_600_K']); // link + '/DASH_4_8_M', link + '/DASH_2_4_M', link + '/DASH_1_2_M',
+
+        // Use /DASH_600_K as a default if for any reason the ajax request below doesn't find a valid link
+        img.data('hoverZoomSrc', [link + '/DASH_600_K']);
         img.data('hoverZoomCaption', [title]);
+
+        $.get(link + '/DASHPlaylist.mpd', function (xmlDoc) {
+          var highestRes = [].slice.call(xmlDoc.querySelectorAll('Representation'))
+            .sort(function (r1, r2) {
+              var w1 = parseInt(r1.getAttribute('width')), w2 = parseInt(r2.getAttribute('width'));
+              return w1 > w2 ? -1 : (w1 < w2 ? 1 : 0);
+            })
+            .find(function (repr) { return !!repr.querySelector('BaseURL'); });
+
+          if (highestRes) {
+            img.data('hoverZoomSrc', [link + '/' + highestRes.querySelector('BaseURL').textContent.trim()]);
+          }
+        });
+
         res.push(img);
       });
     });
