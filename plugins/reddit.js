@@ -26,7 +26,7 @@ hoverZoomPlugins.push({
       }
     });
 
-    var res = [];
+    var promises = [];
 
     $('div[data-url*="//i.redd.it/"], div[data-url*="//i.reddituploads.com/"]').each(function () {
       var post = $(this);
@@ -36,7 +36,7 @@ hoverZoomPlugins.push({
         var img = $(this);
         img.data('hoverZoomSrc', [link]);
         img.data('hoverZoomCaption', [title]);
-        res.push(img);
+        promises.push(Promise.resolve(img));
       });
     });
 
@@ -44,14 +44,43 @@ hoverZoomPlugins.push({
       var post = $(this);
       var link = post.attr('data-url');
       var title = post.find('a.title').text();
-      post.find('a.thumbnail,a.title').each(function () {
+
+      post.find('a.thumbnail,a.title').each(function() {
         var img = $(this);
-        img.data('hoverZoomSrc', [link + '/DASH_600_K']); // link + '/DASH_4_8_M', link + '/DASH_2_4_M', link + '/DASH_1_2_M',
+
+        // Use /DASH_600_K as a default if for any reason the ajax request below doesn't find a valid link
+        img.data('hoverZoomSrc', [link + '/DASH_600_K']);
         img.data('hoverZoomCaption', [title]);
-        res.push(img);
+
+        promises.push(new Promise(function (resolve, reject) {
+          $.get(link + '/DASHPlaylist.mpd')
+            .done(function (xmlDoc) {
+              var highestRes = [].slice.call(xmlDoc.querySelectorAll('Representation[mimeType^="video"]'))
+                .sort(function (r1, r2) {
+                  var w1 = parseInt(r1.getAttribute('width')), w2 = parseInt(r2.getAttribute('width'));
+                  return w1 > w2 ? -1 : (w1 < w2 ? 1 : 0);
+                })
+                .find(function (repr) { return !!repr.querySelector('BaseURL'); });
+
+              if (highestRes) {
+                img.data('hoverZoomSrc', [link + '/' + highestRes.querySelector('BaseURL').textContent.trim()]);
+              }
+
+              var audio = xmlDoc.querySelector('Representation[mimeType^="audio"'),
+                audioUrl = audio ? audio.querySelector('BaseURL') : undefined;
+              if (audioUrl) {
+                img.data('hoverZoomAudioSrc', [link + '/' + audioUrl.textContent.trim()]);
+              }
+
+              resolve(img);
+            })
+            .fail(function (err) { reject(err); });
+        }));
       });
     });
 
-    callback($(res));
+    Promise.all(promises.map(function (p) {
+      return p.catch(function(err) { console.error('Error initializing reddit image', err); });
+    })).then(function (res) { callback($(res)); })
   }
 });
