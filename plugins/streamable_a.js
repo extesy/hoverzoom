@@ -5,7 +5,7 @@ hoverZoomPlugins.push({
         if (!options.zoomVideos) return;
         $('a[href*="//streamable.com/"]').one('mouseenter', function () {
             hoverZoom.prepareFromDocument($(this), this.href, function(doc) {
-                return doc.querySelector('source').getAttribute('src');
+                return doc.querySelector('video').getAttribute('src');
             });
         });
     }
