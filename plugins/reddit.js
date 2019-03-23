@@ -53,28 +53,33 @@ hoverZoomPlugins.push({
         img.data('hoverZoomCaption', [title]);
 
         promises.push(new Promise(function (resolve, reject) {
-          $.get(link + '/DASHPlaylist.mpd')
-            .done(function (xmlDoc) {
-              var highestRes = [].slice.call(xmlDoc.querySelectorAll('Representation[mimeType^="video"]'))
-                .sort(function (r1, r2) {
-                  var w1 = parseInt(r1.getAttribute('width')), w2 = parseInt(r2.getAttribute('width'));
-                  return w1 > w2 ? -1 : (w1 < w2 ? 1 : 0);
-                })
-                .find(function (repr) { return !!repr.querySelector('BaseURL'); });
+          chrome.runtime.sendMessage(
+            { action:'ajaxRequest', url: link + '/DASHPlaylist.mpd', method: 'GET' },
+            function (xml) {
+              try {
+                var xmlDoc = (new DOMParser()).parseFromString(xml, 'application/xml');
+                var highestRes = [].slice.call(xmlDoc.querySelectorAll('Representation[mimeType^="video"]'))
+                  .sort(function (r1, r2) {
+                    var w1 = parseInt(r1.getAttribute('width')), w2 = parseInt(r2.getAttribute('width'));
+                    return w1 > w2 ? -1 : (w1 < w2 ? 1 : 0);
+                  })
+                  .find(function (repr) { return !!repr.querySelector('BaseURL'); });
 
-              if (highestRes) {
-                img.data('hoverZoomSrc', [link + '/' + highestRes.querySelector('BaseURL').textContent.trim()]);
+                if (highestRes) {
+                  img.data('hoverZoomSrc', [link + '/' + highestRes.querySelector('BaseURL').textContent.trim()]);
+                }
+
+                var audio = xmlDoc.querySelector('Representation[mimeType^="audio"'),
+                  audioUrl = audio ? audio.querySelector('BaseURL') : undefined;
+                if (audioUrl) {
+                  img.data('hoverZoomAudioSrc', [link + '/' + audioUrl.textContent.trim()]);
+                }
+
+                resolve(img);
+              } catch (err) {
+                reject(err);
               }
-
-              var audio = xmlDoc.querySelector('Representation[mimeType^="audio"'),
-                audioUrl = audio ? audio.querySelector('BaseURL') : undefined;
-              if (audioUrl) {
-                img.data('hoverZoomAudioSrc', [link + '/' + audioUrl.textContent.trim()]);
-              }
-
-              resolve(img);
-            })
-            .fail(function (err) { reject(err); });
+          });
         }));
       });
     });
