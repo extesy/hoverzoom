@@ -58,7 +58,7 @@ hoverZoomPlugins.push({
                 }
             }
 
-            chrome.runtime.sendMessage({action: 'ajaxGet', url: location.protocol + "//www.youtube.com/get_video_info?video_id=" + id}, function (video_info) {
+            chrome.runtime.sendMessage({action: 'ajaxGet', url: location.protocol + "//www.youtube.com/get_video_info?video_id=" + id, method: 'GET'}, function (video_info) {
                 link.removeClass('hoverZoomLoading');
                 var video = decodeQueryString(video_info);
                 if (video.status === "fail") {
@@ -108,7 +108,7 @@ hoverZoomPlugins.push({
         );
 
         $('a img[data-thumb*="ytimg.com/vi/"]').each(function () {
-            var img = $(this); 
+            var img = $(this);
             img.data().hoverZoomSrc = [this.getAttribute('data-thumb').replace(/\/([1-9]|default|hqdefault|mqdefault)\.jpg/, '/0.jpg')];
             res.push(img);
         });

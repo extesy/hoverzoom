@@ -1042,7 +1042,7 @@ var hoverZoom = {
             wnd.bind('DOMNodeInserted', windowOnDOMNodeInserted).on('load',windowOnLoad).scroll(cancelImageLoading).blur(cancelImageLoading);
             $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).keydown(documentOnKeyDown).keyup(documentOnKeyUp).mouseleave(cancelImageLoading);
             if (options.galleriesMouseWheel) {
-                $(document).on('mousewheel', documentOnMouseWheel);
+                window.addEventListener('wheel', documentOnMouseWheel, {passive: false});
             }
             if (options.zoomVideos) {
                 $(document).on('visibilitychange', hideHoverZoomImg);
@@ -1054,7 +1054,7 @@ var hoverZoom = {
                 var link = hz.currentLink, data = link.data();
                 if (data.hoverZoomGallerySrc && data.hoverZoomGallerySrc.length !== 1) {
                     event.preventDefault();
-                    if (event.originalEvent.wheelDeltaY > 0) {
+                    if (event.wheelDeltaY > 0) {
                         rotateGalleryImg(-1);
                     } else {
                         rotateGalleryImg(1);
@@ -1063,7 +1063,7 @@ var hoverZoom = {
                     var video = hz.hzImg.find('video').get(0);
                     if (video && !options.disableMouseWheelForVideo) {
                         event.preventDefault();
-                        if (event.originalEvent.wheelDeltaY > 0) {
+                        if (event.wheelDeltaY > 0) {
                             changeVideoPosition(-parseInt(options.videoPositionStep));
                         } else {
                             changeVideoPosition(parseInt(options.videoPositionStep));
@@ -1550,7 +1550,7 @@ var hoverZoom = {
 
     prepareFromDocument:function (link, url, getSrc) {
         url = url.replace('http:', location.protocol);
-        $.get(url, function(data) {
+        chrome.runtime.sendMessage({action:'ajaxRequest', url: url, method: 'GET'}, function(data) {
             var doc = document.implementation.createHTMLDocument();
             doc.open();
             doc.write(data);
