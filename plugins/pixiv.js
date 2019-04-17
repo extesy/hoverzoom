@@ -25,8 +25,23 @@ hoverZoomPlugins.push({
                     if (idx2 < 0) return;
                     let json = JSON.parse(data.slice(idx, idx2));
                     let imgCount = json.pageCount;
-                    if (imgCount != 1)
-                        galleryView(link, link.attr('href').replace("=medium", "=manga"), imgCount);
+                    if (imgCount != 1) {
+                        link.data().hoverZoomGallerySrc = [];
+                        link.data().hoverZoomGalleryCaption = [];
+                        for (let i = 0; i < imgCount; i++) {
+                            if (options.showHighRes)
+                                src = json.urls.original;
+                            else
+                                src = json.urls.regular;
+                            let url = src.replace("_p0", "_p" + i);
+                            let urls = [url], caption = '';
+                            link.data().hoverZoomGalleryCaption.push(i);
+                            link.data().hoverZoomGallerySrc.push(urls);
+                            link.data().hoverZoomSrc = undefined;
+                        }
+                        callback($([link]));
+                        // galleryView(json);
+                    }
                     else {
                         if (options.showHighRes)
                             src = json.urls.original;
@@ -39,29 +54,5 @@ hoverZoomPlugins.push({
                 }
             });
         });
-
-        function galleryView(link, href, imgCount) {
-            let linkData = link.data();
-            linkData.hoverZoomGallerySrc = [];
-            linkData.hoverZoomGalleryCaption = [];
-            $.get(href, function (data) {
-                if (link.data().hoverZoomSrc) return;
-                try {
-                    for (let i = 0; i < imgCount; i++) {
-                        let idxStartStrign = 'pixiv.context.images[' + i + '] = "';
-                        let idx = data.indexOf(idxStartStrign) + idxStartStrign.length;
-                        let idx2 = data.indexOf('";pixiv.context.thumbnailImages[' + i + ']');
-                        let url = data.slice(idx, idx2).replace(/\\/g, '');
-                        let urls = [url], caption = '';
-                        linkData.hoverZoomGalleryCaption.push(i);
-                        linkData.hoverZoomGallerySrc.push(urls);
-                        linkData.hoverZoomSrc = undefined;
-                    }
-                } catch (e) {
-                    cLog('Pixiv has probably changed HTML code for where galleries are');
-                }
-                callback($([link]));
-            });
-        }
     }
 });
