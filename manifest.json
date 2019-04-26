@@ -1247,6 +1247,10 @@
         {
             "js": ["plugins/9gag.js"],
             "matches": ["*://9gag.com/*"]
+        },
+        {
+            "js": ["plugins/hiptest.js"],
+            "matches": ["*://app.hiptest.com/*"]
         }
    ]
 }
