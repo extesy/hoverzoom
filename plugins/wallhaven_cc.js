@@ -7,13 +7,13 @@ hoverZoomPlugins.push({
         var res = [];
         hoverZoom.urlReplace(res,
             'img[src*="/th.wallhaven.cc/"]',
-            /\/th.wallhaven.cc\/small\/(.*)\/(.*)\.(.*)$/,
-            '/w.wallhaven.cc/full/$1/wallhaven-$2.jpg'
+            /\/th.wallhaven.cc\/(.*)\/(.*)\/(.*)\.(.*)$/,
+            '/w.wallhaven.cc/full/$2/wallhaven-$3.jpg'
         );
         hoverZoom.urlReplace(res,
             'img[src*="/th.wallhaven.cc/"]',
-            /\/th.wallhaven.cc\/small\/(.*)\/(.*)\.(.*)$/,
-            '/w.wallhaven.cc/full/$1/wallhaven-$2.png'
+            /\/th.wallhaven.cc\/(.*)\/(.*)\/(.*)\.(.*)$/,
+            '/w.wallhaven.cc/full/$2/wallhaven-$3.png'
         );
         callback($(res));
     }
