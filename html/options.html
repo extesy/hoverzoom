@@ -4,8 +4,9 @@
     <meta charset="utf-8" />
     <title data-i18n="optTitle"></title>
     <link rel="stylesheet" href="../css/gumby.css"/>
+    <link rel="stylesheet" href="../css/spectrum.css"/>
     <link rel="stylesheet" href="../css/style.css"/>
-    <script src="../js/libs/modernizr-2.7.1.min.js"></script>
+    <script src="../js/libs/modernizr-2.7.1.js"></script>
 </head>
 <body>
 <div class="pretty container">
@@ -87,6 +88,12 @@
                                 <li class="field"><label class="checkbox" for="chkCenterImages">
                                     <input type="checkbox" id="chkCenterImages"><span></span>
                                     <div style="display:inline" data-i18n="optCenterImages"></div>
+                                </label></li>
+                            </div>
+                            <div class="ttip" data-i18n-tooltip="optFrameBackgroundColorTooltip">
+                                <li class="field"><label class="inline" for="pickerFrameBackgroundColor">
+                                    <div style="display:inline" data-i18n="optFrameBackgroundColor"></div>
+                                    <input type="text" id="pickerFrameBackgroundColor" value="">
                                 </label></li>
                             </div>
                         </ul>
@@ -238,8 +245,9 @@
     </div>
 </div>
 <script src="../js/libs/backgroundScriptsAPIBridge.js"></script>
-<script src="../js/libs/jquery-2.1.1.min.js"></script>
-<script src="../js/libs/gumby.min.js"></script>
+<script src="../js/libs/jquery-3.2.1.js"></script>
+<script src="../js/libs/gumby.js"></script>
+<script src="../js/libs/spectrum.js"></script>
 <script src="../js/tools.js"></script>
 <script src="../js/plugins.js"></script>
 <script src="../js/common.js"></script>

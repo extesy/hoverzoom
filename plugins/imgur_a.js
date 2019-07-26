@@ -32,7 +32,8 @@ hoverZoomPlugins.push({
                 return;
             }
 
-            if (options.zoomVideos && (href.substr(-3) == 'gif' || href.substr(-4) == 'gifv')) {
+            var hrefNoAnchor = href.indexOf('#') > 0 ? href.substr(0, href.indexOf('#')) : href;
+            if (options.zoomVideos && (hrefNoAnchor.substr(-3) === 'gif' || hrefNoAnchor.substr(-4) === 'gifv')) {
                 data.hoverZoomSrc = [href.replace(/\.gifv?/, '.mp4'), href.replace(/\.gifv?/, '.webm'), href];
                 res.push(link);
             } else {

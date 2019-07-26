@@ -1,14 +1,13 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'LinkedIn',
-    version:'0.1',
+    version:'0.2',
     prepareImgLinks:function (callback) {
-        var res = [];
-        hoverZoom.urlReplace(res,
-            'img[src*="/shrink_"]',
-            /\/shrink_.*?\//,
-            '/'
-        );
-        callback($(res));
+        $('body').on('mouseenter', 'div.avatar, div.ivm-view-attr__img--centered', function () {
+            var img = $(this);
+            img.data().hoverZoomSrc = [img.css('background-image').slice(4, -1).replace(/"/g, "")];
+            img.addClass('hoverZoomLink');
+            hoverZoom.displayPicFromElement(img);
+        });
     }
 });

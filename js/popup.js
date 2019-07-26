@@ -44,7 +44,8 @@ function askTabsPermissions() {
 }
 
 function setTabHook(options) {
-    chrome.tabs.getSelected(null, function (tab) {
+    chrome.tabs.query({active: true, currentWindow: true}, function (tabArr) {
+        var tab = tabArr[0];
         siteDomain = tab.url.split('/', 3)[2];
         $('#lblToggle').text(chrome.i18n.getMessage(options.whiteListMode ? 'popEnableForSite' : 'popDisableForSite', siteDomain));
         $('#chkExtensionDisabled')[0].checked = !options.extensionEnabled;

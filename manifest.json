@@ -1,19 +1,17 @@
 {
     "name": "__MSG_extName__",
     "short_name": "__MSG_extShortName__",
-    "version": "1.0.111",
+    "version": "1.0.136",
     "description": "__MSG_extDescription__",
     "homepage_url": "https://github.com/extesy/hoverzoom/",
     "author": "Oleg Anashkin",
     "manifest_version": 2,
-    "minimum_edge_version": "33.14281.1000.0",
     "icons": {
         "16": "images/icon16.png",
         "32": "images/icon32.png",
         "48": "images/icon48.png",
         "128": "images/icon128.png"
     },
-    "locale": "en",
     "default_locale": "en",
     "minimum_chrome_version": "22",
     "background": {
@@ -26,7 +24,7 @@
         "chrome_style": false,
         "open_in_tab": true
     },
-    "browser_action": {
+    "page_action": {
         "default_icon": {
             "19": "images/icon19.png"
         },
@@ -44,26 +42,25 @@
     ],
     "web_accessible_resources": [
         "images/loading.gif",
-        "js/libs/gumby.min.js",
-        "js/libs/jquery-2.1.1.min.js",
-        "js/libs/jquery.mobile.custom.min.js",
-        "js/libs/modernizr-2.7.1.min.js",
+        "js/libs/gumby.js",
+        "js/libs/jquery-3.2.1.js",
+        "js/libs/jquery.mobile.custom.js",
+        "js/libs/modernizr-2.7.1.js",
         "js/common.js",
         "js/options.js"
     ],
     "content_scripts": [
         {
-            "js": ["js/libs/contentScriptsAPIBridge.js", "js/libs/jquery-2.1.1.min.js", "js/tools.js", "js/plugins.js", "plugins/default.js"],
+            "js": [ "js/libs/jquery-3.2.1.js", "js/libs/contentScriptsAPIBridge.js", "js/tools.js", "js/plugins.js", "plugins/default.js", "js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
         },
         {
             "js": [
                 "plugins/imgur_a.js",
-                "plugins/slimg_a.js",
                 "plugins/flickr_a.js",
                 "plugins/tumblr_a.js",
-                "plugins/picasa_a.js",
+                "plugins/blogspot_a.js",
                 "plugins/imageshack_a.js",
                 "plugins/mediawiki_a.js",
                 "plugins/wordpress_a.js",
@@ -77,7 +74,8 @@
                 "plugins/ipboard_a.js",
                 "plugins/streamable_a.js",
                 "plugins/vine_a.js",
-                "plugins/twitter_a.js"
+                "plugins/twitter_a.js",
+                "plugins/clippituser_a.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
@@ -95,188 +93,6 @@
             "js": ["plugins/yahoo.js"],
             "matches": ["*://*.search.yahoo.com/*",
                 "*://*.search.yahoo.co.jp/*"]
-        },
-        {
-            "js": ["plugins/picasa.js"],
-            "matches": ["*://picasaweb.google.com/*",
-                "*://picasaweb.google.ad/*",
-                "*://picasaweb.google.ae/*",
-                "*://picasaweb.google.com.af/*",
-                "*://picasaweb.google.com.ag/*",
-                "*://picasaweb.google.com.ai/*",
-                "*://picasaweb.google.am/*",
-                "*://picasaweb.google.it.ao/*",
-                "*://picasaweb.google.com.ar/*",
-                "*://picasaweb.google.as/*",
-                "*://picasaweb.google.at/*",
-                "*://picasaweb.google.com.au/*",
-                "*://picasaweb.google.az/*",
-                "*://picasaweb.google.ba/*",
-                "*://picasaweb.google.com.bd/*",
-                "*://picasaweb.google.be/*",
-                "*://picasaweb.google.bg/*",
-                "*://picasaweb.google.com.bh/*",
-                "*://picasaweb.google.bi/*",
-                "*://picasaweb.google.bj/*",
-                "*://picasaweb.google.com.bn/*",
-                "*://picasaweb.google.com.bo/*",
-                "*://picasaweb.google.com.br/*",
-                "*://picasaweb.google.bs/*",
-                "*://picasaweb.google.co.bw/*",
-                "*://picasaweb.google.com.by/*",
-                "*://picasaweb.google.com.bz/*",
-                "*://picasaweb.google.ca/*",
-                "*://picasaweb.google.cd/*",
-                "*://picasaweb.google.cf/*",
-                "*://picasaweb.google.cg/*",
-                "*://picasaweb.google.ch/*",
-                "*://picasaweb.google.ci/*",
-                "*://picasaweb.google.co.ck/*",
-                "*://picasaweb.google.cl/*",
-                "*://picasaweb.google.cn/*",
-                "*://picasaweb.google.com.co/*",
-                "*://picasaweb.google.co.cr/*",
-                "*://picasaweb.google.com.cu/*",
-                "*://picasaweb.google.cz/*",
-                "*://picasaweb.google.de/*",
-                "*://picasaweb.google.dj/*",
-                "*://picasaweb.google.dk/*",
-                "*://picasaweb.google.dm/*",
-                "*://picasaweb.google.com.do/*",
-                "*://picasaweb.google.dz/*",
-                "*://picasaweb.google.com.ec/*",
-                "*://picasaweb.google.ee/*",
-                "*://picasaweb.google.com.eg/*",
-                "*://picasaweb.google.es/*",
-                "*://picasaweb.google.com.et/*",
-                "*://picasaweb.google.fi/*",
-                "*://picasaweb.google.com.fj/*",
-                "*://picasaweb.google.fm/*",
-                "*://picasaweb.google.fr/*",
-                "*://picasaweb.google.ga/*",
-                "*://picasaweb.google.ge/*",
-                "*://picasaweb.google.gg/*",
-                "*://picasaweb.google.com.gh/*",
-                "*://picasaweb.google.com.gi/*",
-                "*://picasaweb.google.gl/*",
-                "*://picasaweb.google.gm/*",
-                "*://picasaweb.google.gp/*",
-                "*://picasaweb.google.gr/*",
-                "*://picasaweb.google.com.gt/*",
-                "*://picasaweb.google.gy/*",
-                "*://picasaweb.google.com.hk/*",
-                "*://picasaweb.google.hn/*",
-                "*://picasaweb.google.hr/*",
-                "*://picasaweb.google.ht/*",
-                "*://picasaweb.google.hu/*",
-                "*://picasaweb.google.co.id/*",
-                "*://picasaweb.google.ie/*",
-                "*://picasaweb.google.co.il/*",
-                "*://picasaweb.google.im/*",
-                "*://picasaweb.google.co.in/*",
-                "*://picasaweb.google.is/*",
-                "*://picasaweb.google.it/*",
-                "*://picasaweb.google.je/*",
-                "*://picasaweb.google.com.jm/*",
-                "*://picasaweb.google.jo/*",
-                "*://picasaweb.google.co.jp/*",
-                "*://picasaweb.google.co.ke/*",
-                "*://picasaweb.google.com.kh/*",
-                "*://picasaweb.google.ki/*",
-                "*://picasaweb.google.kg/*",
-                "*://picasaweb.google.co.kr/*",
-                "*://picasaweb.google.com.kw/*",
-                "*://picasaweb.google.kz/*",
-                "*://picasaweb.google.la/*",
-                "*://picasaweb.google.com.lb/*",
-                "*://picasaweb.google.li/*",
-                "*://picasaweb.google.lk/*",
-                "*://picasaweb.google.co.ls/*",
-                "*://picasaweb.google.lt/*",
-                "*://picasaweb.google.lu/*",
-                "*://picasaweb.google.lv/*",
-                "*://picasaweb.google.com.ly/*",
-                "*://picasaweb.google.co.ma/*",
-                "*://picasaweb.google.md/*",
-                "*://picasaweb.google.me/*",
-                "*://picasaweb.google.mg/*",
-                "*://picasaweb.google.mk/*",
-                "*://picasaweb.google.mn/*",
-                "*://picasaweb.google.ms/*",
-                "*://picasaweb.google.com.mt/*",
-                "*://picasaweb.google.mu/*",
-                "*://picasaweb.google.mv/*",
-                "*://picasaweb.google.mw/*",
-                "*://picasaweb.google.com.mx/*",
-                "*://picasaweb.google.com.my/*",
-                "*://picasaweb.google.co.mz/*",
-                "*://picasaweb.google.com.na/*",
-                "*://picasaweb.google.com.nf/*",
-                "*://picasaweb.google.com.ng/*",
-                "*://picasaweb.google.com.ni/*",
-                "*://picasaweb.google.nl/*",
-                "*://picasaweb.google.no/*",
-                "*://picasaweb.google.com.np/*",
-                "*://picasaweb.google.nr/*",
-                "*://picasaweb.google.nu/*",
-                "*://picasaweb.google.co.nz/*",
-                "*://picasaweb.google.com.om/*",
-                "*://picasaweb.google.com.pa/*",
-                "*://picasaweb.google.com.pe/*",
-                "*://picasaweb.google.com.ph/*",
-                "*://picasaweb.google.com.pk/*",
-                "*://picasaweb.google.pl/*",
-                "*://picasaweb.google.pn/*",
-                "*://picasaweb.google.com.pr/*",
-                "*://picasaweb.google.ps/*",
-                "*://picasaweb.google.pt/*",
-                "*://picasaweb.google.com.py/*",
-                "*://picasaweb.google.com.qa/*",
-                "*://picasaweb.google.ro/*",
-                "*://picasaweb.google.ru/*",
-                "*://picasaweb.google.rw/*",
-                "*://picasaweb.google.com.sa/*",
-                "*://picasaweb.google.com.sb/*",
-                "*://picasaweb.google.sc/*",
-                "*://picasaweb.google.se/*",
-                "*://picasaweb.google.com.sg/*",
-                "*://picasaweb.google.sh/*",
-                "*://picasaweb.google.si/*",
-                "*://picasaweb.google.sk/*",
-                "*://picasaweb.google.com.sl/*",
-                "*://picasaweb.google.sn/*",
-                "*://picasaweb.google.sm/*",
-                "*://picasaweb.google.st/*",
-                "*://picasaweb.google.com.sv/*",
-                "*://picasaweb.google.td/*",
-                "*://picasaweb.google.tg/*",
-                "*://picasaweb.google.co.th/*",
-                "*://picasaweb.google.com.tj/*",
-                "*://picasaweb.google.tk/*",
-                "*://picasaweb.google.tl/*",
-                "*://picasaweb.google.tm/*",
-                "*://picasaweb.google.to/*",
-                "*://picasaweb.google.com.tr/*",
-                "*://picasaweb.google.tt/*",
-                "*://picasaweb.google.com.tw/*",
-                "*://picasaweb.google.co.tz/*",
-                "*://picasaweb.google.com.ua/*",
-                "*://picasaweb.google.co.ug/*",
-                "*://picasaweb.google.co.uk/*",
-                "*://picasaweb.google.com.uy/*",
-                "*://picasaweb.google.co.uz/*",
-                "*://picasaweb.google.com.vc/*",
-                "*://picasaweb.google.co.ve/*",
-                "*://picasaweb.google.vg/*",
-                "*://picasaweb.google.co.vi/*",
-                "*://picasaweb.google.com.vn/*",
-                "*://picasaweb.google.vu/*",
-                "*://picasaweb.google.ws/*",
-                "*://picasaweb.google.rs/*",
-                "*://picasaweb.google.co.za/*",
-                "*://picasaweb.google.co.zm/*",
-                "*://picasaweb.google.co.zw/*",
-                "*://picasaweb.google.cat/*"]
         },
         {
             "js": ["plugins/deviantart.js"],
@@ -476,11 +292,8 @@
                 "*://opendesktop.org/*",
                 "*://kde-apps.org/*",
                 "*://gtk-apps.org/*",
-                "*://meego-central.org/*",
                 "*://cli-apps.org/*",
                 "*://qt-apps.org/*",
-                "*://qt-prop.org/*",
-                "*://maemo-apps.org/*",
                 "*://java-apps.org/*",
                 "*://eyeos-apps.org/*",
                 "*://wine-apps.org/*",
@@ -499,12 +312,8 @@
                 "*://ubuntu-art.org/*",
                 "*://kubuntu-art.org/*",
                 "*://linuxmint-art.org/*",
-                "*://frugalware-art.org/*",
-                "*://arch-stuff.org/*",
-                "*://fedora-art.org/*",
                 "*://mandriva-art.org/*",
                 "*://kde-files.org/*",
-                "*://opentemplate.org/*",
                 "*://gimpstuff.org/*",
                 "*://inkscapestuff.org/*",
                 "*://scribusstuff.org/*",
@@ -739,13 +548,6 @@
             "matches": ["*://*.linkedin.com/*"]
         },
         {
-            "js": ["plugins/subimg_net.js"],
-            "matches": [
-                "*://*.subimg.net/*",
-                "*://*.reddit.com/*"
-            ]
-        },
-        {
             "js": ["plugins/phapit.js"],
             "matches": [
                 "*://*.phapit.com/*",
@@ -783,7 +585,6 @@
             "matches": [
                 "*://*.joystiq.com/*",
                 "*://*.engadget.com/*",
-                "*://*.switched.com/*",
                 "*://*.tuaw.com/*"
             ]
         },
@@ -814,16 +615,8 @@
             "matches": ["*://*.maxmodels.pl/*"]
         },
         {
-            "js": ["plugins/blip.js"],
-            "matches": ["*://*.blip.pl/*"]
-        },
-        {
             "js": ["plugins/digart.js"],
             "matches": ["*://*.digart.pl/*"]
-        },
-        {
-            "js": ["plugins/picplz.js"],
-            "matches": ["*://*.picplz.com/*"]
         },
         {
             "js": ["plugins/twimg.js"],
@@ -906,6 +699,10 @@
                 "*://*.reddit.com/*",
                 "*://*.feedly.com/*"
             ]
+        },
+        {
+            "js": ["plugins/inkbunny.js"],
+            "matches": ["*://*.inkbunny.net/*"]
         },
         {
             "js": ["plugins/instructables.js"],
@@ -998,10 +795,6 @@
             "matches": ["*://*.hwzone.co.il/*"]
         },
         {
-            "js": ["plugins/googlecode.js"],
-            "matches": ["*://code.google.com/*"]
-        },
-        {
             "js": ["plugins/googleplus.js"],
             "matches": ["*://plus.google.com/*"]
         },
@@ -1074,10 +867,6 @@
             ]
         },
         {
-            "js": ["plugins/myyearbook.js"],
-            "matches": ["*://*.myyearbook.com/*"]
-        },
-        {
             "js": ["plugins/jeuxvideo_fr.js"],
             "matches": ["*://*.jeuxvideo.fr/*"]
         },
@@ -1099,10 +888,6 @@
         {
             "js": ["plugins/bing.js"],
             "matches": ["*://*.bing.com/*"]
-        },
-        {
-            "js": ["plugins/so_cl.js"],
-            "matches": ["*://*.so.cl/*"]
         },
         {
             "js": ["plugins/xuite.js"],
@@ -1339,10 +1124,6 @@
             "matches": ["*://kephost.com/*"]
         },
         {
-            "js": ["plugins/fotoblur.js"],
-            "matches": ["*://*.fotoblur.com/*"]
-        },
-        {
             "js": ["plugins/visualart.js"],
             "matches": ["*://*.visualart.me/*",
                         "*://*.visualart.ro/*"]
@@ -1460,9 +1241,16 @@
             "matches": ["*://*.drawcrowd.com/*"]
         },
         {
-            "js": ["js/hoverzoom.js"],
-            "matches": ["<all_urls>"],
-            "all_frames": true
+            "js": ["plugins/wykop.js"],
+            "matches": ["*://*.wykop.pl/*"]
+        },
+        {
+            "js": ["plugins/9gag.js"],
+            "matches": ["*://9gag.com/*"]
+        },
+        {
+            "js": ["plugins/hiptest.js"],
+            "matches": ["*://app.hiptest.com/*"]
         }
    ]
 }

@@ -1,210 +1,254 @@
 {
-  "extName":{
-    "message":"Hover Zoom+",
-    "description":"Extension name"
-  },
-  "extShortName":{
-    "message":"HoverZoom",
-    "description":"Short extension name"
-  },
-  "extDescription":{
-    "message":"Zoom in op afbeeldingen\/videos op al je favoriete websites (Facebook etc). Plaats je muis op een afbeelding om het te vergroten.",
-    "description":"Extension description in Chrome webstore (max. 132 characters)"
-  },
-  "extUpdated":{
-    "message":"Hover Zoom+ is bijgewerkt",
-    "description":"Extension update notification"
-  },
-  "popDisableForAllSites":{
-    "message":"Uitschakelen voor alle websites",
-    "description":"[popup] Disable the extension"
-  },
-  "popAllowPerSiteToggle":{
-    "message":"Schakel per-site opties in",
-    "description":"[popup] Allow per-site extension configuration"
-  },
-  "popDisableForSite":{
-    "message":"Schakel de extensie uit voor bepaalde tijd",
-    "description":"[popup] Disables the extension for a specific site"
-  },
-  "popEnableForSite":{
-    "message":"Schakel de extensie in voor een bepaalde site",
-    "description":"[popup] Enables the extension for a specific site"
-  },
-  "popPreloadImages":{
-    "message":"Voor laden van gezoomde afbeeldingen",
-    "description":"[popup] Preload zoomed images"
-  },
-  "popPreloadingImages":{
-    "message":"Laden...",
-    "description":"[popup] Preloading zoomed images"
-  },
-  "popMoreOptions":{
-    "message":"Meer opties",
-    "description":"[popup] More options"
-  },
-  "optTitle":{
-    "message":"Hover Zoom+ opties",
-    "description":"[options] Page title"
-  },
-  "optButtonSave":{
-    "message":"Opslaan",
-    "description":"[options] Save button label"
-  },
-  "optButtonReset":{
-    "message":"Terug naar beginwaarden",
-    "description":"[options] Reset button label"
-  },
-  "optSaved":{
-    "message":"Opties opgeslagen. Sommige instellingen zijn van kracht na vernieuwing van pagina.",
-    "description":"[options] Notification after saving options"
-  },
-  "optPageGeneral":{
-    "message":"Algemeen",
-    "description":"[options] Page title for general options"
-  },
-  "optExtensionEnabled":{
-    "message":"Schakel Hover Zoom in",
-    "description":"[options] Enable Hover Zoom+ option"
-  },
-  "optSectionView":{
-    "message":"Toon",
-    "description":"[options] Page section for view options"
-  },
-  "optSectionVideo":{
-    "message":"Video",
-    "description":"[options] Page section for video options"
-  },
-  "optZoomFactor":{
-    "message":"Vergroot de gezoomde afbeeldingen met deze factor:",
-    "description":"[options] Adjust the size of zoomed images option"
-  },
-  "optZoomFactorUnitName":{
-    "message":"keer",
-    "description":"[options] Unit name (percentage) for zoomed images size option"
-  },
-  "optZoomFactorTooltip":{
-    "message":"Vermenigvuldig de grote van gezoomde afbeeldingen met dit aantal",
-    "description":"[options] Tooltip for adjust the size of zoomed images option"
-  },
-  "optMouseUnderlap":{
-    "message":"Zoom in op afbeeldingen onder de muisaanwijzer",
-    "description":"[options] Extend zoomed images below the mouse cursor option"
-  },
-  "optMouseUnderlapTooltip":{
-    "message":"Indien niet geselecteerd, vergrote afbeeldingen zullen dynamisch worden aangepast",
-    "description":"[options] Tooltip for extend zoomed images below the mouse cursor option"
-  },
-  "optPageActionEnabled":{
-    "message":"Toon icoon in de adresbalk",
-    "description":"[options] Show icon in address bar option"
-  },
-  "optPageActionEnabledTooltip":{
-    "message":"Enkel als er afbeeldingen gezoomd kunnen worden",
-    "description":"[options] Tooltip for show icon in address bar option"
-  },
-  "optShowWhileLoading":{
-    "message":"Toon ingezoomde afbeeldingen tijdens het laden",
-    "description":"[options] Show zoomed pictures while loading option"
-  },
-  "optShowWhileLoadingTooltip":{
-    "message":"Ingezoomde afbeelding zal worden weergegeven voordat het volledig geladen is",
-    "description":"[options] Tooltip for show zoomed pictures while loading option"
-  },
-  "optShowHighRes":{
-    "message":"Hoge resolutie afbeeldingen indien beschikbaar",
-    "description":"[options] Show high resolution pictures when available option"
-  },
-  "optShowHighResTooltip":{
-    "message":"Afbeeldingen kunnen langer duren om te laden",
-    "description":"[options] Tooltip for show high resolution pictures when available option"
-  },
-  "optGalleriesMouseWheel":{
-    "message":"Gebruik muiswiel om te navigeren door albums",
-    "description":"[options] Use mousewheel to navigate albums option"
-  },
-  "optGalleriesMouseWheelTooltip":{
-    "message":"Album met het muiswiel navigeren",
-    "description":"[options] Tooltip for use mousewheel to navigate albums option"
-  },
-  "optVideoPositionStepUnitName":{
-    "message":"sec",
-    "description":"[options] Unit name (seconds) for changing video position option"
-  },
-  "optVideoVolumeUnitName":{
-    "message":"%",
-    "description":"[options] Unit name (percentage) for video volume option"
-  },
-  "optSectionDelays":{
-    "message":"Vertragingen",
-    "description":"[options] Page section for delay options"
-  },
-  "optDisplayDelay":{
-    "message":"Vertraging voor het weergeven van een afbeelding:",
-    "description":"[options] Delay before displaying a picture option"
-  },
-  "optDisplayDelayVideo":{
-    "message":"Vertraging voor het weergeven van een video:",
-    "description":"[options] Delay before displaying a video option"
-  },
-  "optFadeDuration":{
-    "message":"Duur van vervaag-animatie:",
-    "description":"[options] Fading animation duration option"
-  },
-  "optDurationUnitName":{
-    "message":"sec",
-    "description":"[options] Short form of \"second\" for delay duration"
-  },
-  "optSitePlaceholder":{
-    "message":"Voorbeelden: facebook.com, google.com\/reader",
-    "description":"[options] Placeholder for a site url input box"
-  },
-  "optButtonAddSite":{
-    "message":"Toevoegen",
-    "description":"[options] Button for adding a site on sites option page"
-  },
-  "optPageAdvanced":{
-    "message":"Geavanceerd",
-    "description":"[options] Page title for advanced options"
-  },
-  "optSectionAdvanced":{
-    "message":"Geavanceerde opties",
-    "description":"[options] Page section for advanced options"
-  },
-  "optUpdateNotifications":{
-    "message":"Toon updatemeldingen",
-    "description":"[options] Show update notifications option"
-  },
-  "optShowLastUpdateNotification":{
-    "message":"(toon laatste melding)",
-    "description":"[options] Show last update notification"
-  },
-  "optEnableGalleries":{
-    "message":"Schakel albumondersteuning in",
-    "description":"[options] Enable albums support option"
-  },
-  "optOpacityUnitName":{
-    "message":"%",
-    "description":"[options] Unit name (percentage) for opacity option"
-  },
-  "optActionKeyTitle":{
-    "message":"Hover Zoom+ inschakelen",
-    "description":"[options] Action key title"
-  },
-  "optHideKeyTitle":{
-    "message":"Hover Zoom+ uitschakelen",
-    "description":"[options] Action key title"
-  },
-  "optOpenImageInWindowKeyTitle":{
-    "message":"Open afbeelding in een nieuw venster",
-    "description":"[options] Action key title"
-  },
-  "optOpenImageInTabKeyTitle":{
-    "message":"Open afbeelding in een nieuw tabblad",
-    "description":"[options] Action key title"
-  },
-  "optFooterSourceCode":{
-    "message":"Broncode",
-    "description":"[options] Source code link in page footer"
-  }
+    "extName": {
+        "message": "Hover Zoom+",
+        "description": "Extension name"
+    },
+    "extShortName": {
+        "message": "HoverZoom",
+        "description": "Short extension name"
+    },
+    "extDescription": {
+        "message": "Zoom in op afbeeldingen\/videos op al je favoriete websites (Facebook etc). Plaats je muis op een afbeelding om het te vergroten.",
+        "description": "Extension description in Chrome webstore (max. 132 characters)"
+    },
+    "extUpdated": {
+        "message": "Hover Zoom+ is bijgewerkt",
+        "description": "Extension update notification"
+    },
+    "popDisableForAllSites": {
+        "message": "Uitschakelen voor alle websites",
+        "description": "[popup] Disable the extension"
+    },
+    "popAllowPerSiteToggle": {
+        "message": "Schakel per-site opties in",
+        "description": "[popup] Allow per-site extension configuration"
+    },
+    "popDisableForSite": {
+        "message": "Schakel de extensie uit voor bepaalde tijd",
+        "description": "[popup] Disables the extension for a specific site"
+    },
+    "popEnableForSite": {
+        "message": "Schakel de extensie in voor een bepaalde site",
+        "description": "[popup] Enables the extension for a specific site"
+    },
+    "popPreloadImages": {
+        "message": "Voor laden van gezoomde afbeeldingen",
+        "description": "[popup] Preload zoomed images"
+    },
+    "popPreloadingImages": {
+        "message": "Laden...",
+        "description": "[popup] Preloading zoomed images"
+    },
+    "popMoreOptions": {
+        "message": "Meer opties",
+        "description": "[popup] More options"
+    },
+    "optTitle": {
+        "message": "Hover Zoom+ opties",
+        "description": "[options] Page title"
+    },
+    "optButtonSave": {
+        "message": "Opslaan",
+        "description": "[options] Save button label"
+    },
+    "optButtonReset": {
+        "message": "Terug naar beginwaarden",
+        "description": "[options] Reset button label"
+    },
+    "optSaved": {
+        "message": "Opties opgeslagen. Sommige instellingen zijn van kracht na vernieuwing van pagina.",
+        "description": "[options] Notification after saving options"
+    },
+    "optPageGeneral": {
+        "message": "Algemeen",
+        "description": "[options] Page title for general options"
+    },
+    "optExtensionEnabled": {
+        "message": "Schakel Hover Zoom in",
+        "description": "[options] Enable Hover Zoom+ option"
+    },
+    "optSectionView": {
+        "message": "Toon",
+        "description": "[options] Page section for view options"
+    },
+    "optSectionVideo": {
+        "message": "Video",
+        "description": "[options] Page section for video options"
+    },
+    "optZoomFactor": {
+        "message": "Vergroot de gezoomde afbeeldingen met deze factor:",
+        "description": "[options] Adjust the size of zoomed images option"
+    },
+    "optZoomFactorUnitName": {
+        "message": "keer",
+        "description": "[options] Unit name (percentage) for zoomed images size option"
+    },
+    "optZoomFactorTooltip": {
+        "message": "Vermenigvuldig de grote van gezoomde afbeeldingen met dit aantal",
+        "description": "[options] Tooltip for adjust the size of zoomed images option"
+    },
+    "optCaptionLocationAbove": {
+        "message": "Boven",
+        "description": "[options] Caption location option to put captions above the image"
+    },
+    "optCaptionLocationNone": {
+        "message": "Geen",
+        "description": "[options] Caption location option to disable captions"
+    },
+    "optMouseUnderlap": {
+        "message": "Zoom in op afbeeldingen onder de muisaanwijzer",
+        "description": "[options] Extend zoomed images below the mouse cursor option"
+    },
+    "optMouseUnderlapTooltip": {
+        "message": "Indien niet geselecteerd, vergrote afbeeldingen zullen dynamisch worden aangepast",
+        "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
+    },
+    "optPageActionEnabled": {
+        "message": "Toon icoon in de adresbalk",
+        "description": "[options] Show icon in address bar option"
+    },
+    "optPageActionEnabledTooltip": {
+        "message": "Enkel als er afbeeldingen gezoomd kunnen worden",
+        "description": "[options] Tooltip for show icon in address bar option"
+    },
+    "optShowWhileLoading": {
+        "message": "Toon ingezoomde afbeeldingen tijdens het laden",
+        "description": "[options] Show zoomed pictures while loading option"
+    },
+    "optShowWhileLoadingTooltip": {
+        "message": "Ingezoomde afbeelding zal worden weergegeven voordat het volledig geladen is",
+        "description": "[options] Tooltip for show zoomed pictures while loading option"
+    },
+    "optShowHighRes": {
+        "message": "Hoge resolutie afbeeldingen indien beschikbaar",
+        "description": "[options] Show high resolution pictures when available option"
+    },
+    "optShowHighResTooltip": {
+        "message": "Afbeeldingen kunnen langer duren om te laden",
+        "description": "[options] Tooltip for show high resolution pictures when available option"
+    },
+    "optGalleriesMouseWheel": {
+        "message": "Gebruik muiswiel om te navigeren door albums",
+        "description": "[options] Use mousewheel to navigate albums option"
+    },
+    "optGalleriesMouseWheelTooltip": {
+        "message": "Album met het muiswiel navigeren",
+        "description": "[options] Tooltip for use mousewheel to navigate albums option"
+    },
+    "optVideoPositionStepUnitName": {
+        "message": "sec",
+        "description": "[options] Unit name (seconds) for changing video position option"
+    },
+    "optVideoVolumeUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for video volume option"
+    },
+    "optSectionDelays": {
+        "message": "Vertragingen",
+        "description": "[options] Page section for delay options"
+    },
+    "optDisplayDelay": {
+        "message": "Vertraging voor het weergeven van een afbeelding:",
+        "description": "[options] Delay before displaying a picture option"
+    },
+    "optDisplayDelayVideo": {
+        "message": "Vertraging voor het weergeven van een video:",
+        "description": "[options] Delay before displaying a video option"
+    },
+    "optFadeDuration": {
+        "message": "Duur van vervaag-animatie:",
+        "description": "[options] Fading animation duration option"
+    },
+    "optDurationUnitName": {
+        "message": "sec",
+        "description": "[options] Short form of \"second\" for delay duration"
+    },
+    "optPagePlugins": {
+        "message": "Plugins",
+        "description": "[options] Page title for plugin options"
+    },
+    "optPageSites": {
+        "message": "Sites",
+        "description": "[options] Page title for site options"
+    },
+    "optSitePlaceholder": {
+        "message": "Voorbeelden: facebook.com, google.com\/reader",
+        "description": "[options] Placeholder for a site url input box"
+    },
+    "optButtonAddSite": {
+        "message": "Toevoegen",
+        "description": "[options] Button for adding a site on sites option page"
+    },
+    "optPageAdvanced": {
+        "message": "Geavanceerd",
+        "description": "[options] Page title for advanced options"
+    },
+    "optSectionAdvanced": {
+        "message": "Geavanceerde opties",
+        "description": "[options] Page section for advanced options"
+    },
+    "optUpdateNotifications": {
+        "message": "Toon updatemeldingen",
+        "description": "[options] Show update notifications option"
+    },
+    "optShowLastUpdateNotification": {
+        "message": "(toon laatste melding)",
+        "description": "[options] Show last update notification"
+    },
+    "optFilterNSFW": {
+        "message": "NSFW afbeeldingen uitsluiten (alleen Reddit)",
+        "description": "[options] Exclude NSFW images (Reddit only) option"
+    },
+    "optEnableGalleries": {
+        "message": "Schakel albumondersteuning in",
+        "description": "[options] Enable albums support option"
+    },
+    "optPicturesOpacity": {
+        "message": "Ingezoomde afbeeldingen doorzichtigheid:",
+        "description": "[options] Zoomed pictures opacity option"
+    },
+    "optOpacityUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for opacity option"
+    },
+    "optActionKeyTitle": {
+        "message": "Hover Zoom+ inschakelen",
+        "description": "[options] Action key title"
+    },
+    "optHideKeyTitle": {
+        "message": "Hover Zoom+ uitschakelen",
+        "description": "[options] Action key title"
+    },
+    "optOpenImageInWindowKeyTitle": {
+        "message": "Open afbeelding in een nieuw venster",
+        "description": "[options] Action key title"
+    },
+    "optOpenImageInTabKeyTitle": {
+        "message": "Open afbeelding in een nieuw tabblad",
+        "description": "[options] Action key title"
+    },
+    "optSaveImageKeyTitle": {
+        "message": "Afbeelding opslaan",
+        "description": "[options] Action key title"
+    },
+    "optFullZoomKeyTitle": {
+        "message": "Activeer volledige zoom",
+        "description": "[options] Action key title"
+    },
+    "optFullZoomKeyDescription": {
+        "message": "Wanneer u deze toets ingedrukt houdt, wordt de afbeelding weergegeven in alle beschikbare ruimte. Alleen nuttig voor hoge resolutie foto's.",
+        "description": "[options] Action key description"
+    },
+    "optFooterSourceCode": {
+        "message": "Broncode",
+        "description": "[options] Source code link in page footer"
+    },
+    "optFooterReportIssue": {
+        "message": "Rapporteer een bug",
+        "description": "[options] Report a bug link in page footer"
+    },
+    "optFooterVersionCopyright": {
+        "message": "Versie $1 - © 2014-2018 Oleg Anashkin",
+        "description": "[options] Copyright and version number in page footer"
+    }
 }

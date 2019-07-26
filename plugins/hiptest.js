@@ -1,13 +1,12 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'Blip',
-    version:'0.4',
+    name:'hiptest',
+    version:'0.1',
     prepareImgLinks:function (callback) {
         var res = [];
         hoverZoom.urlReplace(res,
-            'img[src*="_nano"], img[src*="_pico"], img[src*="_standard"], img[src*="_inmsg"]',
-            /(nano|pico|standard|inmsg)/,
-            'full'
+            'a[href*="attachments"]',
+            /(.*)/, '$1/'
         );
         callback($(res));
     }

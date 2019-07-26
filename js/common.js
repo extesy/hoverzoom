@@ -34,6 +34,7 @@ function loadOptions() {
     options.ambilightEnabled = options.hasOwnProperty('ambilightEnabled') ? options.ambilightEnabled : false;
     options.disabledPlugins = options.hasOwnProperty('disabledPlugins') ? options.disabledPlugins : [];
     options.centerImages = options.hasOwnProperty('centerImages') ? options.centerImages : false;
+    options.frameBackgroundColor = options.hasOwnProperty('frameBackgroundColor') ? options.frameBackgroundColor : "#ffffff"; 
 
     // Used old showCaptions option for backwards compatibility
     var showCaptions = options.hasOwnProperty('showCaptions') ? options.showCaptions : true;
@@ -61,7 +62,7 @@ function sendOptions(options) {
     // Send options to all tabs
     chrome.windows.getAll(null, function (windows) {
         for (var i = 0; i < windows.length; i++) {
-            chrome.tabs.getAllInWindow(windows[i].id, function (tabs) {
+            chrome.tabs.query({windowId: windows[i].id}, function (tabs) {
                 for (var j = 0; j < tabs.length; j++) {
                     chrome.tabs.sendMessage(tabs[j].id, request);
                 }

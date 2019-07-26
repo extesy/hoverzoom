@@ -37,3 +37,5 @@ com_crashlytics_export_strings.xml
 
 # npm modules
 node_modules/
+
+web-ext-artifacts
