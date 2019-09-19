@@ -1,7 +1,7 @@
 {
     "name": "__MSG_extName__",
     "short_name": "__MSG_extShortName__",
-    "version": "1.0.136",
+    "version": "1.0.137",
     "description": "__MSG_extDescription__",
     "homepage_url": "https://github.com/extesy/hoverzoom/",
     "author": "Oleg Anashkin",
@@ -622,7 +622,8 @@
             "js": ["plugins/twimg.js"],
             "matches": [
                 "*://*.favstar.fm/*",
-                "*://*.tweetmeme.com/*"
+                "*://*.tweetmeme.com/*",
+                "*://*.twitter.com/*"
             ]
         },
         {
