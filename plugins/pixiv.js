@@ -2,9 +2,6 @@
 hoverZoomPlugins.push({
     name: 'Pixiv',
     prepareImgLinks: function (callback) {
-        // Assign possible resolutions for url in /c/{resolution}/img-masters
-
-
         // the element selector
         const selector = {
             thumbnail: 'a[href*="/artworks/"], a[href*="member_illust.php?mode="]',

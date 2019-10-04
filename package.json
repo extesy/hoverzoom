@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Hover Zoom+",
   "main": "js/hoverzoom.js",
+  "scripts": {
+    "build:nix" : "zip -r hoverzoom.zip _locales/* css/* fonts/* html/* images/* js/* plugins/* LICENSE manifest.json"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/extesy/hoverzoom.git"

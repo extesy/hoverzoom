@@ -39,3 +39,5 @@ com_crashlytics_export_strings.xml
 node_modules/
 
 web-ext-artifacts
+hoverzoom.zip
+.vscode
