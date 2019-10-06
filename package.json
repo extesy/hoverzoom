@@ -4,7 +4,7 @@
   "description": "Hover Zoom+",
   "main": "js/hoverzoom.js",
   "scripts": {
-    "build:nix":"zip -r hoverzoom.zip _locales/* css/* fonts/* html/* images/* js/* plugins/* manifest.json LICENSE"
+    "build":"zip -r hoverzoom.zip _locales/* css/* fonts/* html/* images/* js/* plugins/* manifest.json LICENSE"
   },
   "repository": {
     "type": "git",
