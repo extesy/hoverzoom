@@ -21,7 +21,7 @@
     "options_ui": {
         "page": "html/options.html",
         "chrome_style": false,
-        "open_in_tab": false
+        "open_in_tab": true
     },
     "page_action": {
         "default_icon": {
