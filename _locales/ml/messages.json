@@ -1,0 +1,54 @@
+{
+    "popMoreOptions": {
+        "message": "കൂടുതൽ ഓപ്ഷനുകൾ",
+        "description": "[popup] More options"
+    },
+    "optButtonSave": {
+        "message": "സൂക്ഷിക്കുക",
+        "description": "[options] Save button label"
+    },
+    "optButtonReset": {
+        "message": "പുനഃക്രമീകരിക്കുക",
+        "description": "[options] Reset button label"
+    },
+    "optPageGeneral": {
+        "message": "പൊതുവായ",
+        "description": "[options] Page title for general options"
+    },
+    "optSectionView": {
+        "message": "ദൃശ്യം",
+        "description": "[options] Page section for view options"
+    },
+    "optSectionVideo": {
+        "message": "വീഡിയോ",
+        "description": "[options] Page section for video options"
+    },
+    "optShowWhileLoading": {
+        "message": "ലോഡു ചെയ്യുന്നു സമയത്ത് വ്യക്തമായ ചിത്രങ്ങൾ കാണിക്കുക",
+        "description": "[options] Show zoomed pictures while loading option"
+    },
+    "optShowHighResTooltip": {
+        "message": "ചിത്രങ്ങൾ നിലവിൽ വരാൻ കൂടുതൽ സമയം എടുത്തേക്കാം",
+        "description": "[options] Tooltip for show high resolution pictures when available option"
+    },
+    "optGalleriesMouseWheel": {
+        "message": "ആൽബങ്ങൾ നാവിഗേറ്റ് ചെയ്യാന്‍ മൗസ് വീൽ ഉപയോഗിക്കുക",
+        "description": "[options] Use mousewheel to navigate albums option"
+    },
+    "optVideoPositionStepUnitName": {
+        "message": "സെക്കന്‍റ്",
+        "description": "[options] Unit name (seconds) for changing video position option"
+    },
+    "optVideoVolumeUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for video volume option"
+    },
+    "optSectionDelays": {
+        "message": "വൈകുക",
+        "description": "[options] Page section for delay options"
+    },
+    "optDurationUnitName": {
+        "message": "സെക്കന്‍റ്",
+        "description": "[options] Short form of \"second\" for delay duration"
+    }
+}

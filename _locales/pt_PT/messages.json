@@ -1,0 +1,202 @@
+{
+    "extName": {
+        "message": "Houver Zoom+",
+        "description": "Extension name"
+    },
+    "extShortName": {
+        "message": "HoverZoom",
+        "description": "Short extension name"
+    },
+    "extDescription": {
+        "message": "Ampie imagens/vídeos em todos os seus websites favoritos. Simplesmente passe o rato sobre a imagem para a aumentar.",
+        "description": "Extension description in Chrome webstore (max. 132 characters)"
+    },
+    "extUpdated": {
+        "message": "Hover Zoom+ foi actualizado",
+        "description": "Extension update notification"
+    },
+    "popDisableForAllSites": {
+        "message": "Desactivar para todos os websites",
+        "description": "[popup] Disable the extension"
+    },
+    "popAllowPerSiteToggle": {
+        "message": "Permitir configuração da extensão por site",
+        "description": "[popup] Allow per-site extension configuration"
+    },
+    "popDisableForSite": {
+        "message": "Desactivar por $1",
+        "description": "[popup] Disables the extension for a specific site"
+    },
+    "popEnableForSite": {
+        "message": "Activar por $1",
+        "description": "[popup] Enables the extension for a specific site"
+    },
+    "popPreloadImages": {
+        "message": "Pré-carregar imagens ampliadas",
+        "description": "[popup] Preload zoomed images"
+    },
+    "popPreloadingImages": {
+        "message": "Pré-carregando...",
+        "description": "[popup] Preloading zoomed images"
+    },
+    "popMoreOptions": {
+        "message": "Mais opções",
+        "description": "[popup] More options"
+    },
+    "optTitle": {
+        "message": "Hover Zoom+ Opções",
+        "description": "[options] Page title"
+    },
+    "optButtonSave": {
+        "message": "Guardar",
+        "description": "[options] Save button label"
+    },
+    "optButtonReset": {
+        "message": "Reverter",
+        "description": "[options] Reset button label"
+    },
+    "optSaved": {
+        "message": "Opções gravadas. Algumas definições podem precisar que a página seja actualizada.",
+        "description": "[options] Notification after saving options"
+    },
+    "optPageGeneral": {
+        "message": "Geral",
+        "description": "[options] Page title for general options"
+    },
+    "optExtensionEnabled": {
+        "message": "Permitir Hover Zoom",
+        "description": "[options] Enable Hover Zoom+ option"
+    },
+    "optSectionView": {
+        "message": "Ver",
+        "description": "[options] Page section for view options"
+    },
+    "optSectionVideo": {
+        "message": "Vídeo",
+        "description": "[options] Page section for video options"
+    },
+    "optZoomFactor": {
+        "message": "Aumentar imagens ampliadas por este factor:",
+        "description": "[options] Adjust the size of zoomed images option"
+    },
+    "optZoomFactorUnitName": {
+        "message": "vezes",
+        "description": "[options] Unit name (percentage) for zoomed images size option"
+    },
+    "optZoomFactorTooltip": {
+        "message": "Multiplicar a dimensão de imagens ampliadas por esta valor",
+        "description": "[options] Tooltip for adjust the size of zoomed images option"
+    },
+    "optCaptionLocation": {
+        "message": "Posição de legenda:",
+        "description": "[options] Adjust the position of the caption"
+    },
+    "optCaptionLocationTooltip": {
+        "message": "Ver a legenda por cima/baixo da imagem, ou não de todo",
+        "description": "[options] Tooltip for adjusting the position of the caption"
+    },
+    "optCaptionLocationAbove": {
+        "message": "Por cima",
+        "description": "[options] Caption location option to put captions above the image"
+    },
+    "optCaptionLocationBelow": {
+        "message": "Por baixo",
+        "description": "[options] Caption location option to put captions below the image"
+    },
+    "optCaptionLocationNone": {
+        "message": "Nenhuma",
+        "description": "[options] Caption location option to disable captions"
+    },
+    "optMouseUnderlapTooltip": {
+        "message": "Se não seleccionado, imagens amplíadas vão ser redimensionadas dinâmicamente",
+        "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
+    },
+    "optPageActionEnabled": {
+        "message": "Mostrar ícone na barra de adereço",
+        "description": "[options] Show icon in address bar option"
+    },
+    "optPageActionEnabledTooltip": {
+        "message": "Só quando imagens podem ser ampliadas",
+        "description": "[options] Tooltip for show icon in address bar option"
+    },
+    "optShowWhileLoading": {
+        "message": "Mostrar imagens ampliadas enquanto carregam",
+        "description": "[options] Show zoomed pictures while loading option"
+    },
+    "optShowWhileLoadingTooltip": {
+        "message": "Imagens ampliadas vão ser mostradas antes de carregarem totalmente",
+        "description": "[options] Tooltip for show zoomed pictures while loading option"
+    },
+    "optShowHighRes": {
+        "message": "Mostrar imagens de alta qualidade quando possivel",
+        "description": "[options] Show high resolution pictures when available option"
+    },
+    "optShowHighResTooltip": {
+        "message": "Imagens podem demorar mais tempo a carregar",
+        "description": "[options] Tooltip for show high resolution pictures when available option"
+    },
+    "optGalleriesMouseWheel": {
+        "message": "Use a roda do rato para navegar álbuns",
+        "description": "[options] Use mousewheel to navigate albums option"
+    },
+    "optGalleriesMouseWheelTooltip": {
+        "message": "Navegar álbuns com a roda do rato",
+        "description": "[options] Tooltip for use mousewheel to navigate albums option"
+    },
+    "optDisableMouseWheelForVideo": {
+        "message": "Não usar a roda do rato para navegar dentro do vídeo (teclas de acção continuarão a funcionar)",
+        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
+    },
+    "optDisableMouseWheelForVideoTooltip": {
+        "message": "Deslize entre os álbuns mas não salte para a frente/trás em vídeos",
+        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
+    },
+    "optZoomVideos": {
+        "message": "Amplie vídeos (WebM, MP4)",
+        "description": "[options] Zoom videos (WebM, MP4) option"
+    },
+    "optZoomVideosTooltip": {
+        "message": "Amplie vídeos (WebM, MP4)",
+        "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
+    },
+    "optVideoPositionStepUnitName": {
+        "message": "seg",
+        "description": "[options] Unit name (seconds) for changing video position option"
+    },
+    "optMuteVideos": {
+        "message": "Mute vídeos ampliados",
+        "description": "[options] Mute zoomed videos option"
+    },
+    "optMuteVideosTooltip": {
+        "message": "Desactivar som em vídeos ampliados",
+        "description": "[options] Tooltip for mute zoomed videos option"
+    },
+    "optVideoVolumeUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for video volume option"
+    },
+    "optEnableAmbilight": {
+        "message": "Permitir luz de ambiente por trás de imagens",
+        "description": "[options] Enable ambient light behind images option"
+    },
+    "optNextImgKeyTitle": {
+        "message": "Ver próxima imagem numa galeria",
+        "description": "[options] Action key title"
+    },
+    "optNextImgKeyDescription": {
+        "message": "Carregue esta tecla para ver a próxima imagem numa galeria.",
+        "description": "[options] Action key description"
+    },
+    "optFooterSourceCode": {
+        "message": "Código fonte",
+        "description": "[options] Source code link in page footer"
+    },
+    "optFooterReportIssue": {
+        "message": "Reportar um erro",
+        "description": "[options] Report a bug link in page footer"
+    },
+    "optFooterVersionCopyright": {
+        "message": "Versão $1 - © 2014-2020 Oleg Anashkin",
+        "description": "[options] Copyright and version number in page footer"
+    }
+}

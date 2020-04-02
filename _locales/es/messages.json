@@ -92,7 +92,7 @@
         "description": "[options] Adjust the position of the caption"
     },
     "optCaptionLocationTooltip": {
-        "message": "Mostrar el título arriba\/abajo de la imagen, o no mostrarlo",
+        "message": "Mostrar el título arriba/abajo de la imagen, o no mostrarlo",
         "description": "[options] Tooltip for adjusting the position of the caption"
     },
     "optCaptionLocationAbove": {
@@ -149,11 +149,11 @@
     },
     "optDisableMouseWheelForVideo": {
         "message": "No usar la rueda del ratón para navegar en los videos (las teclas de acceso rápido seguirán funcionando)",
-        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
+        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optDisableMouseWheelForVideoTooltip": {
-        "message": "Desplazarse por los álbumes pero no saltar hacia delante\/hacia atrás en videos",
-        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
+        "message": "Desplazarse por los álbumes pero no saltar hacia delante/hacia atrás en videos",
+        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
         "message": "Ampliar videos (WebM, MP4)",
@@ -164,7 +164,7 @@
         "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
     },
     "optVideoPositionStep": {
-        "message": "Usar las teclas de acción prev\/next (o la rueda del ratón) para cambiar la posición del video por",
+        "message": "Usar las teclas de acción prev/next (o la rueda del ratón) para cambiar la posición del video por",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
@@ -185,10 +185,10 @@
     },
     "optVideoTimestamp": {
         "message": "Mostrar fecha y hora en los videos",
-        "description": "[options] Enable timestamp \/ video length on videos"
+        "description": "[options] Enable timestamp / video length on videos"
     },
     "optVideoTimestampTooltip": {
-        "message": "Habilitar fecha y hora\/duración en los videos",
+        "message": "Habilitar fecha y hora/duración en los videos",
         "description": "[options] Tooltip for video length countdown on videos"
     },
     "optVideoVolume": {
@@ -244,7 +244,7 @@
         "description": "[options] Page title for plugin options"
     },
     "optPlugins": {
-        "message": "Habilitar\/deshabilitar plugins específicos",
+        "message": "Habilitar/deshabilitar plugins específicos",
         "description": "[options] Section which contains checkboxes for disabling plugins"
     },
     "optPageSites": {
@@ -268,7 +268,7 @@
         "description": "[options] Tooltip for whitelist mode checkbox"
     },
     "optSitePlaceholder": {
-        "message": "Ejemplos: facebook.com, google.com\/reader",
+        "message": "Ejemplos: facebook.com, google.com/reader",
         "description": "[options] Placeholder for a site url input box"
     },
     "optSiteDisclaimer": {
@@ -396,7 +396,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Versión de $1 - © 2014-2018 Oleg Anashkin",
+        "message": "Versión de $1 - © 2014-2020 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     }
 }

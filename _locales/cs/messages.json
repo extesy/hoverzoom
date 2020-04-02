@@ -1,0 +1,22 @@
+{
+    "extName": {
+        "message": "Hover Zoom+",
+        "description": "Extension name"
+    },
+    "extShortName": {
+        "message": "HoverZoom",
+        "description": "Short extension name"
+    },
+    "optExtensionEnabled": {
+        "message": "Povolit Hover Zoom",
+        "description": "[options] Enable Hover Zoom+ option"
+    },
+    "optZoomFactorUnitName": {
+        "message": "krát",
+        "description": "[options] Unit name (percentage) for zoomed images size option"
+    },
+    "optGalleriesMouseWheel": {
+        "message": "Použijte kolečko myši k navigaci mezi alby",
+        "description": "[options] Use mousewheel to navigate albums option"
+    }
+}

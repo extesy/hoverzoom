@@ -1,0 +1,38 @@
+{
+    "extName": {
+        "message": "ஹோவர் ஜூம் +",
+        "description": "Extension name"
+    },
+    "extShortName": {
+        "message": "பெரிதாக்கு",
+        "description": "Short extension name"
+    },
+    "extDescription": {
+        "message": "zoom in",
+        "description": "Extension description in Chrome webstore (max. 132 characters)"
+    },
+    "extUpdated": {
+        "message": "ஹோவர் ஜூம் + புதுப்பிக்கப்பட்டுள்ளது",
+        "description": "Extension update notification"
+    },
+    "popDisableForAllSites": {
+        "message": "மென்பொருளை நிறுத்து",
+        "description": "[popup] Disable the extension"
+    },
+    "popAllowPerSiteToggle": {
+        "message": "ஒரு தளத்தை விரிவாக்க உள்ளமைவு அனுமதிக்கும்",
+        "description": "[popup] Allow per-site extension configuration"
+    },
+    "popDisableForSite": {
+        "message": "குறிப்பிட்ட தளத்திற்கு மென்பொருளை முடக்கவும்",
+        "description": "[popup] Disables the extension for a specific site"
+    },
+    "popEnableForSite": {
+        "message": "குறிப்பிட்ட தளத்திற்கு மென்பொருளை செயல்படுத்து",
+        "description": "[popup] Enables the extension for a specific site"
+    },
+    "popPreloadImages": {
+        "message": "முன் ஏற்றப் பெரிதாக்கப்பட்ட பிம்பங்கள்",
+        "description": "[popup] Preload zoomed images"
+    }
+}
