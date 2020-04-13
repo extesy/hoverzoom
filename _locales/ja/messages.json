@@ -1,0 +1,118 @@
+{
+    "extName": {
+        "message": "Hover Zoom+",
+        "description": "Extension name"
+    },
+    "extShortName": {
+        "message": "HoverZoom",
+        "description": "Short extension name"
+    },
+    "extDescription": {
+        "message": "あなたのお気に入りのウェブサイト (Facebook，Amazonなど) 上の画像・ビデオをズームします。画像上にマウスカーソルを置くだけで画像を拡大できます。",
+        "description": "Extension description in Chrome webstore (max. 132 characters)"
+    },
+    "extUpdated": {
+        "message": "Hover Zoom+ が更新されました",
+        "description": "Extension update notification"
+    },
+    "popDisableForAllSites": {
+        "message": "全てのWebサイトを無効化",
+        "description": "[popup] Disable the extension"
+    },
+    "popAllowPerSiteToggle": {
+        "message": "Webサイト毎に拡張機能を許可するか設定する",
+        "description": "[popup] Allow per-site extension configuration"
+    },
+    "popDisableForSite": {
+        "message": "$1 を無効化",
+        "description": "[popup] Disables the extension for a specific site"
+    },
+    "popEnableForSite": {
+        "message": "$1 を有効化",
+        "description": "[popup] Enables the extension for a specific site"
+    },
+    "popPreloadImages": {
+        "message": "ズームした画像をプリロードする",
+        "description": "[popup] Preload zoomed images"
+    },
+    "popPreloadingImages": {
+        "message": "プリローディング中…",
+        "description": "[popup] Preloading zoomed images"
+    },
+    "popMoreOptions": {
+        "message": "他のオプション",
+        "description": "[popup] More options"
+    },
+    "optTitle": {
+        "message": "Hover Zoom+ オプション",
+        "description": "[options] Page title"
+    },
+    "optButtonSave": {
+        "message": "保存",
+        "description": "[options] Save button label"
+    },
+    "optButtonReset": {
+        "message": "リセット",
+        "description": "[options] Reset button label"
+    },
+    "optSaved": {
+        "message": "オプションが保存されました。一部設定はページ更新が必要な場合があります。",
+        "description": "[options] Notification after saving options"
+    },
+    "optPageGeneral": {
+        "message": "基本設定",
+        "description": "[options] Page title for general options"
+    },
+    "optExtensionEnabled": {
+        "message": "Hover Zoomを有効にする",
+        "description": "[options] Enable Hover Zoom+ option"
+    },
+    "optSectionView": {
+        "message": "表示",
+        "description": "[options] Page section for view options"
+    },
+    "optSectionVideo": {
+        "message": "ビデオ",
+        "description": "[options] Page section for video options"
+    },
+    "optZoomFactor": {
+        "message": "入力値に合わせて画像を拡大する",
+        "description": "[options] Adjust the size of zoomed images option"
+    },
+    "optCaptionLocation": {
+        "message": "キャプション位置",
+        "description": "[options] Adjust the position of the caption"
+    },
+    "optPageActionEnabled": {
+        "message": "アドレスバーにアイコンを表示",
+        "description": "[options] Show icon in address bar option"
+    },
+    "optPageActionEnabledTooltip": {
+        "message": "画像が拡大可能な場合に限る",
+        "description": "[options] Tooltip for show icon in address bar option"
+    },
+    "optShowHighRes": {
+        "message": "高解像度画像があれば表示する",
+        "description": "[options] Show high resolution pictures when available option"
+    },
+    "optGalleriesMouseWheel": {
+        "message": "アルバム表示にマウスホイールを利用する",
+        "description": "[options] Use mousewheel to navigate albums option"
+    },
+    "optGalleriesMouseWheelTooltip": {
+        "message": "アルバム表示にマウスホイールを利用できます",
+        "description": "[options] Tooltip for use mousewheel to navigate albums option"
+    },
+    "optMuteVideos": {
+        "message": "拡大ビデオを消音する",
+        "description": "[options] Mute zoomed videos option"
+    },
+    "optVideoTimestamp": {
+        "message": "ビデオのタイムスタンプを表示する",
+        "description": "[options] Enable timestamp / video length on videos"
+    },
+    "optPagePlugins": {
+        "message": "プラグイン",
+        "description": "[options] Page title for plugin options"
+    }
+}

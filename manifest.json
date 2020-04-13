@@ -1,7 +1,7 @@
 {
     "name": "__MSG_extName__",
     "short_name": "__MSG_extShortName__",
-    "version": "1.0.136",
+    "version": "1.0.140",
     "description": "__MSG_extDescription__",
     "homepage_url": "https://github.com/extesy/hoverzoom/",
     "author": "Oleg Anashkin",
@@ -18,7 +18,6 @@
         "persistent": true,
         "scripts": ["js/libs/backgroundScriptsAPIBridge.js", "js/common.js", "js/background.js"]
     },
-    "options_page": "html/options.html",
     "options_ui": {
         "page": "html/options.html",
         "chrome_style": false,
@@ -75,7 +74,8 @@
                 "plugins/streamable_a.js",
                 "plugins/vine_a.js",
                 "plugins/twitter_a.js",
-                "plugins/clippituser_a.js"
+                "plugins/clippituser_a.js",
+                "plugins/cloudapp_a.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
@@ -622,7 +622,8 @@
             "js": ["plugins/twimg.js"],
             "matches": [
                 "*://*.favstar.fm/*",
-                "*://*.tweetmeme.com/*"
+                "*://*.tweetmeme.com/*",
+                "*://*.twitter.com/*"
             ]
         },
         {

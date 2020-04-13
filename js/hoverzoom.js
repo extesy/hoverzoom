@@ -1054,7 +1054,7 @@ var hoverZoom = {
                 var link = hz.currentLink, data = link.data();
                 if (data.hoverZoomGallerySrc && data.hoverZoomGallerySrc.length !== 1) {
                     event.preventDefault();
-                    if (event.wheelDeltaY > 0) {
+                    if (event.deltaY < 0) {
                         rotateGalleryImg(-1);
                     } else {
                         rotateGalleryImg(1);
@@ -1063,7 +1063,7 @@ var hoverZoom = {
                     var video = hz.hzImg.find('video').get(0);
                     if (video && !options.disableMouseWheelForVideo) {
                         event.preventDefault();
-                        if (event.wheelDeltaY > 0) {
+                        if (event.deltaY < 0) {
                             changeVideoPosition(-parseInt(options.videoPositionStep));
                         } else {
                             changeVideoPosition(parseInt(options.videoPositionStep));

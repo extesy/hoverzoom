@@ -8,7 +8,7 @@
         "description": "Short extension name"
     },
     "extDescription": {
-        "message": "Zoom in op afbeeldingen\/videos op al je favoriete websites (Facebook etc). Plaats je muis op een afbeelding om het te vergroten.",
+        "message": "Zoom in op afbeeldingen/videos op al je favoriete websites (Facebook etc). Plaats je muis op een afbeelding om het te vergroten.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
     "extUpdated": {
@@ -87,9 +87,21 @@
         "message": "Vermenigvuldig de grote van gezoomde afbeeldingen met dit aantal",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
+    "optCaptionLocation": {
+        "message": "Onderschrift positie:",
+        "description": "[options] Adjust the position of the caption"
+    },
+    "optCaptionLocationTooltip": {
+        "message": "Bekijk het onderschrift boven/onder de afbeelding, of helermaal niet",
+        "description": "[options] Tooltip for adjusting the position of the caption"
+    },
     "optCaptionLocationAbove": {
         "message": "Boven",
         "description": "[options] Caption location option to put captions above the image"
+    },
+    "optCaptionLocationBelow": {
+        "message": "Beneden",
+        "description": "[options] Caption location option to put captions below the image"
     },
     "optCaptionLocationNone": {
         "message": "Geen",
@@ -135,13 +147,77 @@
         "message": "Album met het muiswiel navigeren",
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
+    "optDisableMouseWheelForVideo": {
+        "message": "Gebruik het muiswiel niet om te navigeren in een video (actietoetsen zullen blijven werken)",
+        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
+    },
+    "optDisableMouseWheelForVideoTooltip": {
+        "message": "Scroll door een album's heen maar spring niet vooruit/achteruit in video's",
+        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
+    },
+    "optZoomVideos": {
+        "message": "Zoom video's (WebM, MP4)",
+        "description": "[options] Zoom videos (WebM, MP4) option"
+    },
+    "optZoomVideosTooltip": {
+        "message": "Zoom video's (WebM, MP4)",
+        "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
+    },
+    "optVideoPositionStep": {
+        "message": "Gebruikt \"prev\" / \"next\" actietoetsen (of muiswiel) om de video positie te veranderen",
+        "description": "[options] Changing video position amount option"
+    },
     "optVideoPositionStepUnitName": {
         "message": "sec",
         "description": "[options] Unit name (seconds) for changing video position option"
     },
+    "optVideoPositionStepTooltip": {
+        "message": "Skip een video terug of verder for deze hoeveelheid aan seconden",
+        "description": "[options] Tooltip for changing video position option"
+    },
+    "optMuteVideos": {
+        "message": "Demp ingezoomde video",
+        "description": "[options] Mute zoomed videos option"
+    },
+    "optMuteVideosTooltip": {
+        "message": "Schakel geluid uit in ingezoomde video's",
+        "description": "[options] Tooltip for mute zoomed videos option"
+    },
+    "optVideoTimestamp": {
+        "message": "Laat tijdstempel zien op video's",
+        "description": "[options] Enable timestamp / video length on videos"
+    },
+    "optVideoTimestampTooltip": {
+        "message": "Schakel in tijdstempel / video lengte op video's",
+        "description": "[options] Tooltip for video length countdown on videos"
+    },
+    "optVideoVolume": {
+        "message": "Audio Volume voor ongedempte video's:",
+        "description": "[options] Audio volume for unmuted videos option"
+    },
     "optVideoVolumeUnitName": {
         "message": "%",
         "description": "[options] Unit name (percentage) for video volume option"
+    },
+    "optVideoVolumeTooltip": {
+        "message": "Als een video nog volledig is gedempt, stel het volume in tussen (0-100)",
+        "description": "[options] Tooltip for audio volume for unmuted videos option"
+    },
+    "optEnableAmbilight": {
+        "message": "Schakel ambient light in achter afbeeldingen",
+        "description": "[options] Enable ambient light behind images option"
+    },
+    "optEnableAmbilightTooltip": {
+        "message": "Maak een subtiele glans effect vergelijkbaar met Phillips Ambilight-technologie",
+        "description": "[options] Tooltip for enable ambient light behind images option"
+    },
+    "optCenterImages": {
+        "message": "Centreer afbeelding",
+        "description": "[options] Center images in the middle of the page option"
+    },
+    "optCenterImagesTooltip": {
+        "message": "Centreer een afbeelding in plaats van dat ze de muis volgen",
+        "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optSectionDelays": {
         "message": "Vertragingen",
@@ -167,17 +243,45 @@
         "message": "Plugins",
         "description": "[options] Page title for plugin options"
     },
+    "optPlugins": {
+        "message": "Schakel specifieke plugins in / uit",
+        "description": "[options] Section which contains checkboxes for disabling plugins"
+    },
     "optPageSites": {
         "message": "Sites",
         "description": "[options] Page title for site options"
     },
+    "optSectionSitesEnabled": {
+        "message": "URL's waarvoor Hover Zoom+ moet zijn ingeschakeld",
+        "description": "[options] Page section for enabling extension for specific sites"
+    },
+    "optSectionSitesDisabled": {
+        "message": "URL's waarvoor Hover Zoom+ moet zijn uitgeschakeld",
+        "description": "[options] Page section for enabling extension for specific sites"
+    },
+    "optWhitelistMode": {
+        "message": "Op witte lijst gezet",
+        "description": "[options] Whitelist mode checkbox"
+    },
+    "optWhitelistModeTooltip": {
+        "message": "Schakel alleen Hover Zoom+ in voor de websites hieronder",
+        "description": "[options] Tooltip for whitelist mode checkbox"
+    },
     "optSitePlaceholder": {
-        "message": "Voorbeelden: facebook.com, google.com\/reader",
+        "message": "Voorbeelden: facebook.com, google.com/reader",
         "description": "[options] Placeholder for a site url input box"
+    },
+    "optSiteDisclaimer": {
+        "message": "Wees er bewust van dat domain filters elkaar kunnen overlappen: Als je \"picasaweb.google.com\" en \"google.com\" hebt gefiltert, Als U \"picasaweb.google.com\" verwijdert, wordt Picasa Web Albums niet opnieuw geactiveerd, omdat het nogsteeds wordt uitgesloten door het filter \"google.com\".",
+        "description": "[options] Disclaimer on the sites option page"
     },
     "optButtonAddSite": {
         "message": "Toevoegen",
         "description": "[options] Button for adding a site on sites option page"
+    },
+    "optPageActionKeys": {
+        "message": "Actietoetsen",
+        "description": "[options] Page title for action key options"
     },
     "optPageAdvanced": {
         "message": "Geavanceerd",
@@ -195,9 +299,17 @@
         "message": "(toon laatste melding)",
         "description": "[options] Show last update notification"
     },
+    "optAddToHistory": {
+        "message": "Voeg bekeken afbeeldingen toe aan de browsergeschiedenis",
+        "description": "[options] Add viewed pictures to the browser's history option"
+    },
     "optFilterNSFW": {
         "message": "NSFW afbeeldingen uitsluiten (alleen Reddit)",
         "description": "[options] Exclude NSFW images (Reddit only) option"
+    },
+    "optAlwaysPreload": {
+        "message": "Laat ingezoomde afbeeldingen vooraf",
+        "description": "[options] Automatically preload zoomed images option"
     },
     "optEnableGalleries": {
         "message": "Schakel albumondersteuning in",
@@ -215,21 +327,41 @@
         "message": "Hover Zoom+ inschakelen",
         "description": "[options] Action key title"
     },
+    "optActionKeyDescription": {
+        "message": "Als een toets is ingesteld, Hover Zoom+ zal alleen werken wanneer die toets ingedrukt is.",
+        "description": "[options] Action key description"
+    },
     "optHideKeyTitle": {
         "message": "Hover Zoom+ uitschakelen",
         "description": "[options] Action key title"
+    },
+    "optHideKeyDescription": {
+        "message": "Houd deze toets in om de ingezoomde afbeelding te verbergen. Gebruik het wanneer de afbeelding elementen verbergt die ook worden laten zien wanneer er met een muis overheen gaat.",
+        "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
         "message": "Open afbeelding in een nieuw venster",
         "description": "[options] Action key title"
     },
+    "optOpenImageInWindowKeyDescription": {
+        "message": "Druk op deze toets om de afbeelding in een nieuwe window te opnenen. Druk op deze toets opnieuw om het window te sluiten.",
+        "description": "[options] Action key description"
+    },
     "optOpenImageInTabKeyTitle": {
         "message": "Open afbeelding in een nieuw tabblad",
         "description": "[options] Action key title"
     },
+    "optOpenImageInTabKeyDescription": {
+        "message": "Druk op deze toets om een afbeelding te bekijken in een nieuwe tab. Druk op dezelfde toets opnieuw om de tab te sluiten. Shift+key zal de afbeelding openen in een achtergrondtab.",
+        "description": "[options] Action key description"
+    },
     "optSaveImageKeyTitle": {
         "message": "Afbeelding opslaan",
         "description": "[options] Action key title"
+    },
+    "optSaveImageKeyDescription": {
+        "message": "Druk op deze toets om de afbeelding op te slaan die je aan het bekijken bend.",
+        "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
         "message": "Activeer volledige zoom",
@@ -237,6 +369,22 @@
     },
     "optFullZoomKeyDescription": {
         "message": "Wanneer u deze toets ingedrukt houdt, wordt de afbeelding weergegeven in alle beschikbare ruimte. Alleen nuttig voor hoge resolutie foto's.",
+        "description": "[options] Action key description"
+    },
+    "optPrevImgKeyTitle": {
+        "message": "Laat vorige afbeelding zien in een galerij",
+        "description": "[options] Action key title"
+    },
+    "optPrevImgKeyDescription": {
+        "message": "Druk op deze toets om de vorige afbeelding te bekijken in een galerij.",
+        "description": "[options] Action key description"
+    },
+    "optNextImgKeyTitle": {
+        "message": "Laat volgende afbeelding zien in galerij",
+        "description": "[options] Action key title"
+    },
+    "optNextImgKeyDescription": {
+        "message": "Druk op deze toets om de volgende afbeelding te zien in een galerij.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
@@ -248,7 +396,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Versie $1 - © 2014-2018 Oleg Anashkin",
+        "message": "Versie $1 - © 2014-2020 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     }
 }

@@ -1,0 +1,190 @@
+{
+    "extName": {
+        "message": "Hover Zoom+",
+        "description": "Extension name"
+    },
+    "extShortName": {
+        "message": "HoverZoom",
+        "description": "Short extension name"
+    },
+    "extDescription": {
+        "message": "在你喜愛的網站上縮放圖片/影片 (Facebook, Amazon...等等)。只要把你的滑鼠停在圖片上就可以放大圖片。",
+        "description": "Extension description in Chrome webstore (max. 132 characters)"
+    },
+    "extUpdated": {
+        "message": "Hover Zoom+ 已更新",
+        "description": "Extension update notification"
+    },
+    "popDisableForAllSites": {
+        "message": "於所有網站停用",
+        "description": "[popup] Disable the extension"
+    },
+    "popDisableForSite": {
+        "message": "在 $1 停用",
+        "description": "[popup] Disables the extension for a specific site"
+    },
+    "popEnableForSite": {
+        "message": "在 $1 啟用",
+        "description": "[popup] Enables the extension for a specific site"
+    },
+    "popPreloadImages": {
+        "message": "預先載入放大的圖片",
+        "description": "[popup] Preload zoomed images"
+    },
+    "popPreloadingImages": {
+        "message": "預載中...",
+        "description": "[popup] Preloading zoomed images"
+    },
+    "popMoreOptions": {
+        "message": "更多選項",
+        "description": "[popup] More options"
+    },
+    "optTitle": {
+        "message": "Hover Zoom+ 選項",
+        "description": "[options] Page title"
+    },
+    "optButtonSave": {
+        "message": "儲存",
+        "description": "[options] Save button label"
+    },
+    "optButtonReset": {
+        "message": "重設",
+        "description": "[options] Reset button label"
+    },
+    "optPageGeneral": {
+        "message": "一般",
+        "description": "[options] Page title for general options"
+    },
+    "optExtensionEnabled": {
+        "message": "啟用 Hover Zoom",
+        "description": "[options] Enable Hover Zoom+ option"
+    },
+    "optSectionView": {
+        "message": "檢視",
+        "description": "[options] Page section for view options"
+    },
+    "optSectionVideo": {
+        "message": "影片",
+        "description": "[options] Page section for video options"
+    },
+    "optPageActionEnabled": {
+        "message": "在網址列中顯示圖示",
+        "description": "[options] Show icon in address bar option"
+    },
+    "optPageActionEnabledTooltip": {
+        "message": "只有當圖片可以被放大時",
+        "description": "[options] Tooltip for show icon in address bar option"
+    },
+    "optShowWhileLoading": {
+        "message": "當載入時顯示放大的圖片",
+        "description": "[options] Show zoomed pictures while loading option"
+    },
+    "optZoomVideos": {
+        "message": "顯示影片 (WebM，MP4)",
+        "description": "[options] Zoom videos (WebM, MP4) option"
+    },
+    "optZoomVideosTooltip": {
+        "message": "顯示影片 (WebM，MP4)",
+        "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
+    },
+    "optVideoPositionStepUnitName": {
+        "message": "秒",
+        "description": "[options] Unit name (seconds) for changing video position option"
+    },
+    "optMuteVideos": {
+        "message": "靜音被放大的影片",
+        "description": "[options] Mute zoomed videos option"
+    },
+    "optMuteVideosTooltip": {
+        "message": "不播放影片的聲音",
+        "description": "[options] Tooltip for mute zoomed videos option"
+    },
+    "optVideoVolumeUnitName": {
+        "message": "％",
+        "description": "[options] Unit name (percentage) for video volume option"
+    },
+    "optSectionDelays": {
+        "message": "延遲",
+        "description": "[options] Page section for delay options"
+    },
+    "optDurationUnitName": {
+        "message": "秒",
+        "description": "[options] Short form of \"second\" for delay duration"
+    },
+    "optPagePlugins": {
+        "message": "外掛",
+        "description": "[options] Page title for plugin options"
+    },
+    "optPlugins": {
+        "message": "啟用/停用特定外掛",
+        "description": "[options] Section which contains checkboxes for disabling plugins"
+    },
+    "optPageSites": {
+        "message": "網站",
+        "description": "[options] Page title for site options"
+    },
+    "optWhitelistMode": {
+        "message": "白名單模式",
+        "description": "[options] Whitelist mode checkbox"
+    },
+    "optButtonAddSite": {
+        "message": "新增",
+        "description": "[options] Button for adding a site on sites option page"
+    },
+    "optPageActionKeys": {
+        "message": "快速鍵",
+        "description": "[options] Page title for action key options"
+    },
+    "optPageAdvanced": {
+        "message": "進階",
+        "description": "[options] Page title for advanced options"
+    },
+    "optSectionAdvanced": {
+        "message": "進階選項",
+        "description": "[options] Page section for advanced options"
+    },
+    "optUpdateNotifications": {
+        "message": "顯示更新通知",
+        "description": "[options] Show update notifications option"
+    },
+    "optAlwaysPreload": {
+        "message": "自動預先載入放大的圖片",
+        "description": "[options] Automatically preload zoomed images option"
+    },
+    "optPicturesOpacity": {
+        "message": "放大圖片的透明度:",
+        "description": "[options] Zoomed pictures opacity option"
+    },
+    "optOpacityUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for opacity option"
+    },
+    "optActionKeyTitle": {
+        "message": "啟動 Hover Zoom+",
+        "description": "[options] Action key title"
+    },
+    "optHideKeyTitle": {
+        "message": "停用 Hover Zoom+",
+        "description": "[options] Action key title"
+    },
+    "optOpenImageInTabKeyTitle": {
+        "message": "在新分頁中開啟圖片",
+        "description": "[options] Action key title"
+    },
+    "optSaveImageKeyTitle": {
+        "message": "儲存圖片",
+        "description": "[options] Action key title"
+    },
+    "optFooterSourceCode": {
+        "message": "原始碼",
+        "description": "[options] Source code link in page footer"
+    },
+    "optFooterReportIssue": {
+        "message": "回報問題",
+        "description": "[options] Report a bug link in page footer"
+    },
+    "optFooterVersionCopyright": {
+        "message": "Version $1 - © 2014-2020 Oleg Anashkin",
+        "description": "[options] Copyright and version number in page footer"
+    }
+}

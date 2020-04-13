@@ -1,0 +1,54 @@
+{
+    "optButtonSave": {
+        "message": "Salvesta",
+        "description": "[options] Save button label"
+    },
+    "optButtonReset": {
+        "message": "Lähtesta",
+        "description": "[options] Reset button label"
+    },
+    "optPageGeneral": {
+        "message": "Üldine",
+        "description": "[options] Page title for general options"
+    },
+    "optSectionView": {
+        "message": "Vaata",
+        "description": "[options] Page section for view options"
+    },
+    "optSectionVideo": {
+        "message": "Video",
+        "description": "[options] Page section for video options"
+    },
+    "optZoomFactorUnitName": {
+        "message": "korda",
+        "description": "[options] Unit name (percentage) for zoomed images size option"
+    },
+    "optVideoPositionStepUnitName": {
+        "message": "sek",
+        "description": "[options] Unit name (seconds) for changing video position option"
+    },
+    "optVideoVolumeUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for video volume option"
+    },
+    "optDurationUnitName": {
+        "message": "sek",
+        "description": "[options] Short form of \"second\" for delay duration"
+    },
+    "optButtonAddSite": {
+        "message": "Lisa",
+        "description": "[options] Button for adding a site on sites option page"
+    },
+    "optPageActionKeys": {
+        "message": "Tegevusnupud",
+        "description": "[options] Page title for action key options"
+    },
+    "optEnableGalleries": {
+        "message": "Luba albumite tugi",
+        "description": "[options] Enable albums support option"
+    },
+    "optOpacityUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for opacity option"
+    }
+}

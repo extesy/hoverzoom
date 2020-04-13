@@ -8,7 +8,7 @@
         "description": "Short extension name"
     },
     "extDescription": {
-        "message": "Zoom gambar\/video pada semua situs web favorit (Facebook, Amazon, dll). Cukup Arahkan mouse ke gambar untuk memperbesar.",
+        "message": "Zoom gambar/video pada semua situs web favorit (Facebook, Amazon, dll). Cukup Arahkan mouse ke gambar untuk memperbesar.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
     "extUpdated": {
@@ -149,11 +149,11 @@
     },
     "optDisableMouseWheelForVideo": {
         "message": "Jangan menggunakan roda mouse untuk menavigasi dalam video (tombol aksi akan masih bekerja)",
-        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
+        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optDisableMouseWheelForVideoTooltip": {
-        "message": "Gulir melalui album tapi jangan melompat maju\/mundur dalam video",
-        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
+        "message": "Gulir melalui album tapi jangan melompat maju/mundur dalam video",
+        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
         "message": "Zoom video (WebM, MP4)",
@@ -164,7 +164,7 @@
         "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
     },
     "optVideoPositionStep": {
-        "message": "Gunakan sebelumnya\/berikutnya tombol aksi (atau roda mouse) untuk mengubah posisi video dengan",
+        "message": "Gunakan sebelumnya/berikutnya tombol aksi (atau roda mouse) untuk mengubah posisi video dengan",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
@@ -185,10 +185,10 @@
     },
     "optVideoTimestamp": {
         "message": "Menampilkan timestamp pada video",
-        "description": "[options] Enable timestamp \/ video length on videos"
+        "description": "[options] Enable timestamp / video length on videos"
     },
     "optVideoTimestampTooltip": {
-        "message": "Mengaktifkan timestamp \/ panjang video pada video",
+        "message": "Mengaktifkan timestamp / panjang video pada video",
         "description": "[options] Tooltip for video length countdown on videos"
     },
     "optVideoVolume": {
@@ -244,7 +244,7 @@
         "description": "[options] Page title for plugin options"
     },
     "optPlugins": {
-        "message": "Mengaktifkan\/menonaktifkan plugin tertentu",
+        "message": "Mengaktifkan/menonaktifkan plugin tertentu",
         "description": "[options] Section which contains checkboxes for disabling plugins"
     },
     "optPageSites": {
@@ -268,7 +268,7 @@
         "description": "[options] Tooltip for whitelist mode checkbox"
     },
     "optSitePlaceholder": {
-        "message": "Contoh: facebook.com, google.com\/reader",
+        "message": "Contoh: facebook.com, google.com/reader",
         "description": "[options] Placeholder for a site url input box"
     },
     "optSiteDisclaimer": {
@@ -396,7 +396,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Versi $1 - © 2014-2018 Oleg Anashkin",
+        "message": "Versi $1 - © 2014-2020 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     }
 }

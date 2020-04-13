@@ -92,7 +92,7 @@
         "description": "[options] Adjust the position of the caption"
     },
     "optCaptionLocationTooltip": {
-        "message": "Anzeigen der Beschriftung, über\/unter dem Bild, oder gar nicht",
+        "message": "Anzeigen der Beschriftung, über/unter dem Bild, oder gar nicht",
         "description": "[options] Tooltip for adjusting the position of the caption"
     },
     "optCaptionLocationAbove": {
@@ -149,11 +149,11 @@
     },
     "optDisableMouseWheelForVideo": {
         "message": "Nicht mit dem Mausrad in Videos navigieren (Tastaturkürzel gehen weiterhin)",
-        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
+        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optDisableMouseWheelForVideoTooltip": {
-        "message": "Durch Alben scrollen, aber nicht vorwärts\/rückwärts in videos springen",
-        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY\/Videos"
+        "message": "Durch Alben scrollen, aber nicht vorwärts/rückwärts in videos springen",
+        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
         "message": "Videos zoomen (WebM, MP4)",
@@ -164,7 +164,7 @@
         "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
     },
     "optVideoPositionStep": {
-        "message": "Vorheriges\/nächstes-Aktionstasten verwenden um vor bzw. zurück zu springen um",
+        "message": "Vorheriges/nächstes-Aktionstasten verwenden um vor bzw. zurück zu springen um",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
@@ -185,7 +185,7 @@
     },
     "optVideoTimestamp": {
         "message": "Zeitstempel auf Videos anzeigen",
-        "description": "[options] Enable timestamp \/ video length on videos"
+        "description": "[options] Enable timestamp / video length on videos"
     },
     "optVideoTimestampTooltip": {
         "message": "Zeitstempel und Länge auf Videos aktivieren",
@@ -244,7 +244,7 @@
         "description": "[options] Page title for plugin options"
     },
     "optPlugins": {
-        "message": "Aktivieren\/Deaktivieren von bestimmten Plugins",
+        "message": "Aktivieren/Deaktivieren von bestimmten Plugins",
         "description": "[options] Section which contains checkboxes for disabling plugins"
     },
     "optPageSites": {
@@ -268,7 +268,7 @@
         "description": "[options] Tooltip for whitelist mode checkbox"
     },
     "optSitePlaceholder": {
-        "message": "Beispiele: facebook.com, google.com\/reader",
+        "message": "Beispiele: facebook.com, google.com/reader",
         "description": "[options] Placeholder for a site url input box"
     },
     "optSiteDisclaimer": {
@@ -396,7 +396,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 - © 2014-2018 Oleg Anashkin",
+        "message": "Version $1 - © 2014-2020 Oleg Anashkin, Deutsche Übersetzung Benjamin Bock",
         "description": "[options] Copyright and version number in page footer"
     }
 }

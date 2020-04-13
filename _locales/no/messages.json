@@ -1,0 +1,22 @@
+{
+    "extName": {
+        "message": "Hover Zoom+",
+        "description": "Extension name"
+    },
+    "extShortName": {
+        "message": "HoverZoom",
+        "description": "Short extension name"
+    },
+    "optButtonSave": {
+        "message": "Lagre",
+        "description": "[options] Save button label"
+    },
+    "optSectionVideo": {
+        "message": "Video",
+        "description": "[options] Page section for video options"
+    },
+    "optCaptionLocationNone": {
+        "message": "Ingen",
+        "description": "[options] Caption location option to disable captions"
+    }
+}

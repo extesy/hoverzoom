@@ -1,3 +1,12 @@
+---
+name: Problem with a Website
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
+
+---
+
 **ATTENTION!** If you don't follow this template then your issue will be immediately closed.
 
 ## Description of the problem
@@ -12,4 +21,3 @@
 3.
 
 ## OS version, extension version (Chrome only, Firefox is not supported)
-

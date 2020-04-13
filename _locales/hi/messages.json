@@ -1,0 +1,46 @@
+{
+    "extName": {
+        "message": "हॉवर ज़ूम +",
+        "description": "Extension name"
+    },
+    "extShortName": {
+        "message": "HoverZoom",
+        "description": "Short extension name"
+    },
+    "extDescription": {
+        "message": "ज़ूम छवियों/वीडियो पर सभी अपने पसंदीदा वेबसाइटों के साथ (Facebook, अमेज़न, आदि). बस अपने माउस मंडराना पर छवि विस्तार करने के लिए ।",
+        "description": "Extension description in Chrome webstore (max. 132 characters)"
+    },
+    "extUpdated": {
+        "message": "मंडराना ज़ूम+ में अद्यतन किया गया है",
+        "description": "Extension update notification"
+    },
+    "popDisableForAllSites": {
+        "message": "सभी साइट्स के लिए अक्षम करें",
+        "description": "[popup] Disable the extension"
+    },
+    "popAllowPerSiteToggle": {
+        "message": "की अनुमति प्रति-साइट एक्सटेंशन कॉन्फ़िगरेशन",
+        "description": "[popup] Allow per-site extension configuration"
+    },
+    "popDisableForSite": {
+        "message": "के लिए अक्षम $1",
+        "description": "[popup] Disables the extension for a specific site"
+    },
+    "popEnableForSite": {
+        "message": "सक्षम के लिए $1",
+        "description": "[popup] Enables the extension for a specific site"
+    },
+    "popPreloadImages": {
+        "message": "प्रीलोड ज़ूम छवियों",
+        "description": "[popup] Preload zoomed images"
+    },
+    "popPreloadingImages": {
+        "message": "एिं...",
+        "description": "[popup] Preloading zoomed images"
+    },
+    "popMoreOptions": {
+        "message": "और अधिक विकल्प",
+        "description": "[popup] More options"
+    }
+}
