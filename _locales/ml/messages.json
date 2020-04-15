@@ -1,12 +1,4 @@
 {
-    "extName": {
-        "message": "Hover Zoom+",
-        "description": "Extension name"
-    },
-    "extShortName": {
-        "message": "HoverZoom",
-        "description": "Short extension name"
-    },
     "popMoreOptions": {
         "message": "കൂടുതൽ ഓപ്ഷനുകൾ",
         "description": "[popup] More options"
@@ -46,10 +38,6 @@
     "optVideoPositionStepUnitName": {
         "message": "സെക്കന്‍റ്",
         "description": "[options] Unit name (seconds) for changing video position option"
-    },
-    "optVideoVolumeUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for video volume option"
     },
     "optSectionDelays": {
         "message": "വൈകുക",
