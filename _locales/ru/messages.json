@@ -412,7 +412,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Версия $1 - © 2014-2020 Олег Анашкин",
+        "message": "Версия $1 - © 2014-2017 Олег Анашкин",
         "description": "[options] Copyright and version number in page footer"
     }
 }
