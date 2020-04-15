@@ -1,4 +1,12 @@
 {
+    "extName": {
+        "message": "Hover Zoom+",
+        "description": "Extension name"
+    },
+    "extShortName": {
+        "message": "HoverZoom",
+        "description": "Short extension name"
+    },
     "extDescription": {
         "message": "كبر الصور والفيديوهات في مواقعك المفضلة (فيسبوك , امازون ,..الخ) فقط بالتاشير بالفارة علي الصورة لتكبيرها.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
@@ -187,6 +195,10 @@
         "message": "حجم الصوت لمقاطع الفيديو غير المهممة:",
         "description": "[options] Audio volume for unmuted videos option"
     },
+    "optVideoVolumeUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for video volume option"
+    },
     "optVideoVolumeTooltip": {
         "message": "إذا لم يتم كتم الصوت تمامًا ، فاضبط مستوى الصوت على هذه النسبة (0-100)",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
@@ -206,6 +218,22 @@
     "optCenterImagesTooltip": {
         "message": "توسيط الصور بدلاً من جعلها تتبع المؤشر",
         "description": "[options] Tooltip for center images in the middle of the page option"
+    },
+    "optFrameBackgroundColor": {
+        "message": "Frame background color:",
+        "description": "[options] Frame background color option"
+    },
+    "optFrameBackgroundColorTooltip": {
+        "message": "Background color for the frame the image appears in",
+        "description": "[options] Tooltip for frame background color option"
+    },
+    "optFrameBackgroundColorChooseText": {
+        "message": "Select",
+        "description": "[options] Frame background color button - Select"
+    },
+    "optFrameBackgroundColorCancelText": {
+        "message": "Cancel",
+        "description": "[options] Frame background color button - Cancel"
     },
     "optSectionDelays": {
         "message": "التأخير",
@@ -307,6 +335,10 @@
         "message": "تكبير عتامة الصور:",
         "description": "[options] Zoomed pictures opacity option"
     },
+    "optOpacityUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for opacity option"
+    },
     "optActionKeyTitle": {
         "message": "تنشيط Hover Zoom+",
         "description": "[options] Action key title"
@@ -366,5 +398,21 @@
     "optNextImgKeyTitle": {
         "message": "عرض الصورة التالية في معرض",
         "description": "[options] Action key title"
+    },
+    "optNextImgKeyDescription": {
+        "message": "Press this key to view the next image in a gallery.",
+        "description": "[options] Action key description"
+    },
+    "optFooterSourceCode": {
+        "message": "Source code",
+        "description": "[options] Source code link in page footer"
+    },
+    "optFooterReportIssue": {
+        "message": "Report a bug",
+        "description": "[options] Report a bug link in page footer"
+    },
+    "optFooterVersionCopyright": {
+        "message": "Version $1 - © 2014-2020 Oleg Anashkin",
+        "description": "[options] Copyright and version number in page footer"
     }
 }
