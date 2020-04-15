@@ -160,7 +160,7 @@
         "description": "[options] Zoom videos (WebM, MP4) option"
     },
     "optZoomVideosTooltip": {
-        "message": "Amplie vídeos (WebM, MP4)",
+        "message": "Zoom videos (WebM, MP4)",
         "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
     },
     "optVideoPositionStep": {
@@ -412,7 +412,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Versão $1 - © 2014-2020 Oleg Anashkin",
+        "message": "Versão $1 - © 2014-2016 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     }
 }
