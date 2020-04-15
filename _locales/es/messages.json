@@ -1,12 +1,4 @@
 {
-    "extName": {
-        "message": "Hover Zoom+",
-        "description": "Extension name"
-    },
-    "extShortName": {
-        "message": "HoverZoom",
-        "description": "Short extension name"
-    },
     "extDescription": {
         "message": "Amplia imágenes y vídeos en tus sitios preferidos (Facebook, Amazon, etc.). Solo coloca el cursor sobre la imagen para ampliarla.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
@@ -59,10 +51,6 @@
         "message": "Opciones guardadas. Algunos ajustes pueden necesitar volver a cargar la página.",
         "description": "[options] Notification after saving options"
     },
-    "optPageGeneral": {
-        "message": "General",
-        "description": "[options] Page title for general options"
-    },
     "optExtensionEnabled": {
         "message": "Habilitar Hover Zoom",
         "description": "[options] Enable Hover Zoom+ option"
@@ -70,10 +58,6 @@
     "optSectionView": {
         "message": "Mostrar",
         "description": "[options] Page section for view options"
-    },
-    "optSectionVideo": {
-        "message": "Video",
-        "description": "[options] Page section for video options"
     },
     "optZoomFactor": {
         "message": "Ampliar imágenes ampliadas por este factor:",
@@ -195,10 +179,6 @@
         "message": "Volumen del audio para los videos no silenciados:",
         "description": "[options] Audio volume for unmuted videos option"
     },
-    "optVideoVolumeUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for video volume option"
-    },
     "optVideoVolumeTooltip": {
         "message": "Si el vídeo no está completamente silenciado, ajustar el volumen a este porcentaje (0-100)",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
@@ -318,10 +298,6 @@
     "optPicturesOpacity": {
         "message": "Opacidad de imágenes ampliada:",
         "description": "[options] Zoomed pictures opacity option"
-    },
-    "optOpacityUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for opacity option"
     },
     "optActionKeyTitle": {
         "message": "Activar Hover Zoom+",
