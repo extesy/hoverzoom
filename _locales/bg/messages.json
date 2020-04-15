@@ -1,12 +1,4 @@
 {
-    "extName": {
-        "message": "Hover Zoom+",
-        "description": "Extension name"
-    },
-    "extShortName": {
-        "message": "HoverZoom",
-        "description": "Short extension name"
-    },
     "popPreloadingImages": {
         "message": "Предварително зареждане...",
         "description": "[popup] Preloading zoomed images"
@@ -46,10 +38,6 @@
     "optVideoPositionStepUnitName": {
         "message": "сек",
         "description": "[options] Unit name (seconds) for changing video position option"
-    },
-    "optVideoVolumeUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for video volume option"
     },
     "optCenterImages": {
         "message": "Центриране на изображения",
@@ -94,10 +82,6 @@
     "optAlwaysPreload": {
         "message": "Автоматично презареждане на увеличените изображения",
         "description": "[options] Automatically preload zoomed images option"
-    },
-    "optOpacityUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for opacity option"
     },
     "optOpenImageInTabKeyTitle": {
         "message": "Отваряне на изображение в ново табло",
