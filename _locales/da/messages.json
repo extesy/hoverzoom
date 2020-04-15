@@ -1,4 +1,12 @@
 {
+    "extName": {
+        "message": "Hover Zoom+",
+        "description": "Extension name"
+    },
+    "extShortName": {
+        "message": "HoverZoom",
+        "description": "Short extension name"
+    },
     "extDescription": {
         "message": "Før musen over billeder for at forstørre dem. Understøtter mange hjemmesider såsom Reddit, Amazon, Facebook, Twitter, Flickr, osv.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
@@ -63,6 +71,10 @@
         "message": "Vis",
         "description": "[options] Page section for view options"
     },
+    "optSectionVideo": {
+        "message": "Video",
+        "description": "[options] Page section for video options"
+    },
     "optZoomFactor": {
         "message": "Forstør zoomede billeder med denne faktor:",
         "description": "[options] Adjust the size of zoomed images option"
@@ -74,6 +86,26 @@
     "optZoomFactorTooltip": {
         "message": "Forøg størrelsen af forstørrede billeder med denne mændge",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
+    },
+    "optCaptionLocation": {
+        "message": "Caption position:",
+        "description": "[options] Adjust the position of the caption"
+    },
+    "optCaptionLocationTooltip": {
+        "message": "View the caption above/below the image, or not at all",
+        "description": "[options] Tooltip for adjusting the position of the caption"
+    },
+    "optCaptionLocationAbove": {
+        "message": "Above",
+        "description": "[options] Caption location option to put captions above the image"
+    },
+    "optCaptionLocationBelow": {
+        "message": "Below",
+        "description": "[options] Caption location option to put captions below the image"
+    },
+    "optCaptionLocationNone": {
+        "message": "None",
+        "description": "[options] Caption location option to disable captions"
     },
     "optMouseUnderlap": {
         "message": "Stræk forstørrede billeder ned under musemarkøren",
@@ -163,6 +195,10 @@
         "message": "Lyd niveau på videoer med lyd:",
         "description": "[options] Audio volume for unmuted videos option"
     },
+    "optVideoVolumeUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for video volume option"
+    },
     "optVideoVolumeTooltip": {
         "message": "Hvis videoen ikke er helt muted, sæt volumen til denne procent (0-100)",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
@@ -174,6 +210,30 @@
     "optEnableAmbilightTooltip": {
         "message": "Skab en let glød effekt lignende Phillips Ambiligt teknologi.",
         "description": "[options] Tooltip for enable ambient light behind images option"
+    },
+    "optCenterImages": {
+        "message": "Center images",
+        "description": "[options] Center images in the middle of the page option"
+    },
+    "optCenterImagesTooltip": {
+        "message": "Center images as opposed to having them follow the cursor",
+        "description": "[options] Tooltip for center images in the middle of the page option"
+    },
+    "optFrameBackgroundColor": {
+        "message": "Frame background color:",
+        "description": "[options] Frame background color option"
+    },
+    "optFrameBackgroundColorTooltip": {
+        "message": "Background color for the frame the image appears in",
+        "description": "[options] Tooltip for frame background color option"
+    },
+    "optFrameBackgroundColorChooseText": {
+        "message": "Select",
+        "description": "[options] Frame background color button - Select"
+    },
+    "optFrameBackgroundColorCancelText": {
+        "message": "Cancel",
+        "description": "[options] Frame background color button - Cancel"
     },
     "optSectionDelays": {
         "message": "Forsinkelser",
@@ -275,6 +335,10 @@
         "message": "Gennemsigtighed af forstørrede billeder:",
         "description": "[options] Zoomed pictures opacity option"
     },
+    "optOpacityUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for opacity option"
+    },
     "optActionKeyTitle": {
         "message": "Aktiver Hover Zoom+",
         "description": "[options] Action key title"
@@ -346,5 +410,9 @@
     "optFooterReportIssue": {
         "message": "Rapporter en fejl",
         "description": "[options] Report a bug link in page footer"
+    },
+    "optFooterVersionCopyright": {
+        "message": "Version $1 - © 2014-2020 Oleg Anashkin",
+        "description": "[options] Copyright and version number in page footer"
     }
 }
