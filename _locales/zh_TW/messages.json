@@ -168,7 +168,7 @@
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
-        "message": "秒",
+        "message": "sec",
         "description": "[options] Unit name (seconds) for changing video position option"
     },
     "optVideoPositionStepTooltip": {
@@ -412,7 +412,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 - © 2014-2020 Oleg Anashkin",
+        "message": "Version $1 - © 2014-2016 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     }
 }
