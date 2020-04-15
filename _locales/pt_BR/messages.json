@@ -1,4 +1,12 @@
 {
+    "extName": {
+        "message": "Hover Zoom+",
+        "description": "Extension name"
+    },
+    "extShortName": {
+        "message": "HoverZoom",
+        "description": "Short extension name"
+    },
     "extDescription": {
         "message": "Passe o mouse sobre imagens para aumenta-las. Suporta qualquer site como Reddit, Amazon, Facebook, Twitter, Flickr, etc",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
@@ -62,6 +70,10 @@
     "optSectionView": {
         "message": "Exibir",
         "description": "[options] Page section for view options"
+    },
+    "optSectionVideo": {
+        "message": "Video",
+        "description": "[options] Page section for video options"
     },
     "optZoomFactor": {
         "message": "Aumentar zoom das imagens para este fator:",
@@ -183,6 +195,10 @@
         "message": "Volume de audio para videos ativados:",
         "description": "[options] Audio volume for unmuted videos option"
     },
+    "optVideoVolumeUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for video volume option"
+    },
     "optVideoVolumeTooltip": {
         "message": "Se o vídeo não estiver completamente mudo, defina o volume para esta porcentagem (0-100)",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
@@ -202,6 +218,22 @@
     "optCenterImagesTooltip": {
         "message": "Centralizar imagens ao invés delas seguirem o cursor",
         "description": "[options] Tooltip for center images in the middle of the page option"
+    },
+    "optFrameBackgroundColor": {
+        "message": "Frame background color:",
+        "description": "[options] Frame background color option"
+    },
+    "optFrameBackgroundColorTooltip": {
+        "message": "Background color for the frame the image appears in",
+        "description": "[options] Tooltip for frame background color option"
+    },
+    "optFrameBackgroundColorChooseText": {
+        "message": "Select",
+        "description": "[options] Frame background color button - Select"
+    },
+    "optFrameBackgroundColorCancelText": {
+        "message": "Cancel",
+        "description": "[options] Frame background color button - Cancel"
     },
     "optSectionDelays": {
         "message": "Duração",
@@ -223,9 +255,17 @@
         "message": "seg",
         "description": "[options] Short form of \"second\" for delay duration"
     },
+    "optPagePlugins": {
+        "message": "Plugins",
+        "description": "[options] Page title for plugin options"
+    },
     "optPlugins": {
         "message": "Ativar/Desativar plugins especificos",
         "description": "[options] Section which contains checkboxes for disabling plugins"
+    },
+    "optPageSites": {
+        "message": "Sites",
+        "description": "[options] Page title for site options"
     },
     "optSectionSitesEnabled": {
         "message": "URLS no qual Hover Zoom+ precisa ser habilitado",
@@ -294,6 +334,10 @@
     "optPicturesOpacity": {
         "message": "Opacidade de imagem aumentada:",
         "description": "[options] Zoomed pictures opacity option"
+    },
+    "optOpacityUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for opacity option"
     },
     "optActionKeyTitle": {
         "message": "Ativa Hover Zoom+",
