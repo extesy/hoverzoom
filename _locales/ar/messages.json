@@ -220,19 +220,19 @@
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optFrameBackgroundColor": {
-        "message": "Frame background color:",
+        "message": "لون خلفية الإطار:",
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
-        "message": "Background color for the frame the image appears in",
+        "message": "لون الخلفية للإطار الذي تظهر فيه الصورة",
         "description": "[options] Tooltip for frame background color option"
     },
     "optFrameBackgroundColorChooseText": {
-        "message": "Select",
+        "message": "حدد الخيار",
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
-        "message": "Cancel",
+        "message": "إلغاء",
         "description": "[options] Frame background color button - Cancel"
     },
     "optSectionDelays": {
@@ -400,19 +400,19 @@
         "description": "[options] Action key title"
     },
     "optNextImgKeyDescription": {
-        "message": "Press this key to view the next image in a gallery.",
+        "message": "اضغط على هذا المفتاح لعرض الصورة التالية في معرض.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
-        "message": "Source code",
+        "message": "الكود المصدري",
         "description": "[options] Source code link in page footer"
     },
     "optFooterReportIssue": {
-        "message": "Report a bug",
+        "message": "الإبلاغ عن خطأ",
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 - © 2014-2020 Oleg Anashkin",
+        "message": "الإصدار $1 - © 2014-2020 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     }
 }
