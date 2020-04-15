@@ -1,4 +1,12 @@
 {
+    "extName": {
+        "message": "Hover Zoom+",
+        "description": "Extension name"
+    },
+    "extShortName": {
+        "message": "HoverZoom",
+        "description": "Short extension name"
+    },
     "extDescription": {
         "message": "Zoom in op afbeeldingen/videos op al je favoriete websites (Facebook etc). Plaats je muis op een afbeelding om het te vergroten.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
@@ -62,6 +70,10 @@
     "optSectionView": {
         "message": "Toon",
         "description": "[options] Page section for view options"
+    },
+    "optSectionVideo": {
+        "message": "Video",
+        "description": "[options] Page section for video options"
     },
     "optZoomFactor": {
         "message": "Vergroot de gezoomde afbeeldingen met deze factor:",
@@ -155,6 +167,10 @@
         "message": "Gebruikt \"prev\" / \"next\" actietoetsen (of muiswiel) om de video positie te veranderen",
         "description": "[options] Changing video position amount option"
     },
+    "optVideoPositionStepUnitName": {
+        "message": "sec",
+        "description": "[options] Unit name (seconds) for changing video position option"
+    },
     "optVideoPositionStepTooltip": {
         "message": "Skip een video terug of verder for deze hoeveelheid aan seconden",
         "description": "[options] Tooltip for changing video position option"
@@ -179,6 +195,10 @@
         "message": "Audio Volume voor ongedempte video's:",
         "description": "[options] Audio volume for unmuted videos option"
     },
+    "optVideoVolumeUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for video volume option"
+    },
     "optVideoVolumeTooltip": {
         "message": "Als een video nog volledig is gedempt, stel het volume in tussen (0-100)",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
@@ -199,6 +219,22 @@
         "message": "Centreer een afbeelding in plaats van dat ze de muis volgen",
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
+    "optFrameBackgroundColor": {
+        "message": "Frame background color:",
+        "description": "[options] Frame background color option"
+    },
+    "optFrameBackgroundColorTooltip": {
+        "message": "Background color for the frame the image appears in",
+        "description": "[options] Tooltip for frame background color option"
+    },
+    "optFrameBackgroundColorChooseText": {
+        "message": "Select",
+        "description": "[options] Frame background color button - Select"
+    },
+    "optFrameBackgroundColorCancelText": {
+        "message": "Cancel",
+        "description": "[options] Frame background color button - Cancel"
+    },
     "optSectionDelays": {
         "message": "Vertragingen",
         "description": "[options] Page section for delay options"
@@ -215,9 +251,21 @@
         "message": "Duur van vervaag-animatie:",
         "description": "[options] Fading animation duration option"
     },
+    "optDurationUnitName": {
+        "message": "sec",
+        "description": "[options] Short form of \"second\" for delay duration"
+    },
+    "optPagePlugins": {
+        "message": "Plugins",
+        "description": "[options] Page title for plugin options"
+    },
     "optPlugins": {
         "message": "Schakel specifieke plugins in / uit",
         "description": "[options] Section which contains checkboxes for disabling plugins"
+    },
+    "optPageSites": {
+        "message": "Sites",
+        "description": "[options] Page title for site options"
     },
     "optSectionSitesEnabled": {
         "message": "URL's waarvoor Hover Zoom+ moet zijn ingeschakeld",
@@ -286,6 +334,10 @@
     "optPicturesOpacity": {
         "message": "Ingezoomde afbeeldingen doorzichtigheid:",
         "description": "[options] Zoomed pictures opacity option"
+    },
+    "optOpacityUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for opacity option"
     },
     "optActionKeyTitle": {
         "message": "Hover Zoom+ inschakelen",
