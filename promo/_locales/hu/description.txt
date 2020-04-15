@@ -1,7 +1,7 @@
 Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
 
-Hover your mouse over any image on the supported websites and the extension will automatically enlarge the image to its full size, making sure that it still fits into the browser window.
+Vidd az egeret bármilyen kép fölé a támogatott webhelyeken és a bővitmény automatikusan fel fogja nagyítani a teljes méretére, ügyelve arra hogy illeszkedik a böngésző ablakához.
 
-This is an open source version of the original HoverZoom extension which is now overrun by malware and deleted from store. In this version all spyware has been removed, many bugs were fixed and new features were added. It doesn't collect any statistics by default. The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images or get tab urls for per-site configuration.
+Ez egy nyílt forráskódú változata az eredeti HoverZoom bővitménynek, amely most már vírusokkal teli és le lett szedve az áruházból. Ebben a verzióban minden kémprogram el lett távolítva, rengeteg hiba ki lett javítva, új funkciókkal bővült a bővítmény. Nem gyűjt semmilyen statisztikai adatot alapértelmezés szerint. Az egyetlen engedély ami szükséges az a hozzáférés az adatokhoz minden webhelyen (hogy a képeket fel tudja nagyítani), és *opcionális* engedélyek a böngészési előzmények eléréséhez, képek letöltéséhez/mentéséhez vagy az oldal URL-ek eléréséhez az oldalankénti konfigurációhoz.
 
-Sometimes sites change design and when it happens extension needs to be updated. Please report any issues with zoom not working by using Support tab or https://github.com/extesy/hoverzoom/issues page.
+Néha az oldalak design-t változtatnak. Ha ez megtörténik frissíteni kell a bővítményt. Kérlek jelents bármilyen hibát ha a zoom nem működik a Támogatás oldal használatával, vagy az alábbi webhelyen: https://github.com/extesy/hoverzoom/issues
