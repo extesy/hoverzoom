@@ -1,12 +1,4 @@
 {
-    "extName": {
-        "message": "Hover Zoom+",
-        "description": "Extension name"
-    },
-    "extShortName": {
-        "message": "HoverZoom",
-        "description": "Short extension name"
-    },
     "extDescription": {
         "message": "Увеличение изображений/видео на всех любимых сайтах (Facebook и т.д.) Просто наведите мышку на картинку, чтобы увеличить её.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
@@ -195,10 +187,6 @@
         "message": "Громкость звука для видео с отключенным звуком:",
         "description": "[options] Audio volume for unmuted videos option"
     },
-    "optVideoVolumeUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for video volume option"
-    },
     "optVideoVolumeTooltip": {
         "message": "Если звук видео полностью не отключен, то громкость установится на это значение (0-100)",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
@@ -318,10 +306,6 @@
     "optPicturesOpacity": {
         "message": "Прозрачность увеличенного изображения:",
         "description": "[options] Zoomed pictures opacity option"
-    },
-    "optOpacityUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for opacity option"
     },
     "optActionKeyTitle": {
         "message": "Активировать Hover Zoom+",
