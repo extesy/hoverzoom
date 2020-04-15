@@ -1,12 +1,4 @@
 {
-    "extName": {
-        "message": "Hover Zoom+",
-        "description": "Extension name"
-    },
-    "extShortName": {
-        "message": "HoverZoom",
-        "description": "Short extension name"
-    },
     "extDescription": {
         "message": "Zoomez les images/vidéos sur tous vos sites favoris (Facebook, Amazon..). Il suffit de passer la souris sur l'image pour l'agrandir.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
@@ -195,10 +187,6 @@
         "message": "Volume audio pour les vidéos non-muettes:",
         "description": "[options] Audio volume for unmuted videos option"
     },
-    "optVideoVolumeUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for video volume option"
-    },
     "optVideoVolumeTooltip": {
         "message": "Si la vidéo n'est pas complètement muette, régler le volume de ce pourcentage (0-100)",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
@@ -246,10 +234,6 @@
     "optPlugins": {
         "message": "Activer/désactiver des plugins spécifiques",
         "description": "[options] Section which contains checkboxes for disabling plugins"
-    },
-    "optPageSites": {
-        "message": "Sites",
-        "description": "[options] Page title for site options"
     },
     "optSectionSitesEnabled": {
         "message": "Url pour lesquelles Hover Zoom+ doit être activé",
@@ -318,10 +302,6 @@
     "optPicturesOpacity": {
         "message": "Opacité des images zoomées :",
         "description": "[options] Zoomed pictures opacity option"
-    },
-    "optOpacityUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for opacity option"
     },
     "optActionKeyTitle": {
         "message": "Activer Hover Zoom+",
@@ -394,9 +374,5 @@
     "optFooterReportIssue": {
         "message": "Signaler un bug",
         "description": "[options] Report a bug link in page footer"
-    },
-    "optFooterVersionCopyright": {
-        "message": "Version $1 - © 2014-2020 Oleg Anashkin",
-        "description": "[options] Copyright and version number in page footer"
     }
 }
