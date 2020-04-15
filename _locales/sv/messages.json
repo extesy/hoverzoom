@@ -3,6 +3,10 @@
         "message": "Hover Zoom +",
         "description": "Extension name"
     },
+    "extShortName": {
+        "message": "HoverZoom",
+        "description": "Short extension name"
+    },
     "extDescription": {
         "message": "Zooma bilder/video på alla dina favoritwebbplatser (Facebook, YouTube, etc) Håll muspekaren över bilden för att enkelt förstora den.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
@@ -66,6 +70,10 @@
     "optSectionView": {
         "message": "Visa",
         "description": "[options] Page section for view options"
+    },
+    "optSectionVideo": {
+        "message": "Video",
+        "description": "[options] Page section for video options"
     },
     "optZoomFactor": {
         "message": "Förstora zoomade bilder med denna faktor:",
@@ -187,6 +195,10 @@
         "message": "Ljudvolym för videoklipp:",
         "description": "[options] Audio volume for unmuted videos option"
     },
+    "optVideoVolumeUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for video volume option"
+    },
     "optVideoVolumeTooltip": {
         "message": "Om videon är inte helt tyst, ställ in volym mellan 0-100%",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
@@ -207,6 +219,22 @@
         "message": "Centrera bilder istället för att de följer markören",
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
+    "optFrameBackgroundColor": {
+        "message": "Frame background color:",
+        "description": "[options] Frame background color option"
+    },
+    "optFrameBackgroundColorTooltip": {
+        "message": "Background color for the frame the image appears in",
+        "description": "[options] Tooltip for frame background color option"
+    },
+    "optFrameBackgroundColorChooseText": {
+        "message": "Select",
+        "description": "[options] Frame background color button - Select"
+    },
+    "optFrameBackgroundColorCancelText": {
+        "message": "Cancel",
+        "description": "[options] Frame background color button - Cancel"
+    },
     "optSectionDelays": {
         "message": "Fördröjningar",
         "description": "[options] Page section for delay options"
@@ -226,6 +254,10 @@
     "optDurationUnitName": {
         "message": "sek",
         "description": "[options] Short form of \"second\" for delay duration"
+    },
+    "optPagePlugins": {
+        "message": "Plugins",
+        "description": "[options] Page title for plugin options"
     },
     "optPlugins": {
         "message": "Aktivera/inaktivera specifika plugins",
@@ -303,6 +335,10 @@
         "message": "Zoomade bilders opacitet:",
         "description": "[options] Zoomed pictures opacity option"
     },
+    "optOpacityUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for opacity option"
+    },
     "optActionKeyTitle": {
         "message": "Aktivera Hover Zoom+",
         "description": "[options] Action key title"
@@ -374,5 +410,9 @@
     "optFooterReportIssue": {
         "message": "Rapportera bugg",
         "description": "[options] Report a bug link in page footer"
+    },
+    "optFooterVersionCopyright": {
+        "message": "Version $1 - © 2014-2020 Oleg Anashkin",
+        "description": "[options] Copyright and version number in page footer"
     }
 }
