@@ -1,4 +1,12 @@
 {
+    "extName": {
+        "message": "Hover Zoom+",
+        "description": "Extension name"
+    },
+    "extShortName": {
+        "message": "HoverZoom",
+        "description": "Short extension name"
+    },
     "popMoreOptions": {
         "message": "കൂടുതൽ ഓപ്ഷനുകൾ",
         "description": "[popup] More options"
