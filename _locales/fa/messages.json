@@ -191,10 +191,6 @@
         "message": "صدا از فیلم unmuted:",
         "description": "[options] Audio volume for unmuted videos option"
     },
-    "optVideoVolumeUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for video volume option"
-    },
     "optVideoVolumeTooltip": {
         "message": "اگر ویدیو به طور کامل خاموش است، حجم قرار دارد این درصد (0-100)",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
@@ -307,10 +303,6 @@
         "message": "شفافیت بزرگنمایی تصاویر:",
         "description": "[options] Zoomed pictures opacity option"
     },
-    "optOpacityUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for opacity option"
-    },
     "optActionKeyTitle": {
         "message": "فعال کردن زوم شناور+",
         "description": "[options] Action key title"
@@ -382,9 +374,5 @@
     "optFooterReportIssue": {
         "message": "گزارش اشکال",
         "description": "[options] Report a bug link in page footer"
-    },
-    "optFooterVersionCopyright": {
-        "message": "Version $1 - © 2014-2020 Oleg Anashkin",
-        "description": "[options] Copyright and version number in page footer"
     }
 }
