@@ -1,0 +1,5 @@
+files:
+  - source: /_locales/en/*.json
+    translation: /_locales/%two_letters_code%/%original_file_name%
+  - source: /promo/description.txt
+    translation: /promo/_locales/%two_letters_code%/%original_file_name%
