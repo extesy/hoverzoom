@@ -1,12 +1,4 @@
 {
-    "extName": {
-        "message": "Hover Zoom+",
-        "description": "Extension name"
-    },
-    "extShortName": {
-        "message": "HoverZoom",
-        "description": "Short extension name"
-    },
     "extDescription": {
         "message": "Favori sitelerinizdeki (Facebook, Amazon, vb.) resim/videoları yakınlaştırın. Fareyi büyütmek istediğiniz resmin üzerine getirin.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
@@ -70,10 +62,6 @@
     "optSectionView": {
         "message": "Görüntüle",
         "description": "[options] Page section for view options"
-    },
-    "optSectionVideo": {
-        "message": "Video",
-        "description": "[options] Page section for video options"
     },
     "optZoomFactor": {
         "message": "Bu faktör kadar yakınlaştırılmış resimleri büyüt:",
@@ -195,10 +183,6 @@
         "message": "Sessize alınmamış videolar için ses seviyesi:",
         "description": "[options] Audio volume for unmuted videos option"
     },
-    "optVideoVolumeUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for video volume option"
-    },
     "optVideoVolumeTooltip": {
         "message": "Eğer video tamamen sessize alınmamışsa, sesini bu yüzdeye ayarla (0-100)",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
@@ -318,10 +302,6 @@
     "optPicturesOpacity": {
         "message": "Yakınlaştırılmış resimlerin opaklığı:",
         "description": "[options] Zoomed pictures opacity option"
-    },
-    "optOpacityUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for opacity option"
     },
     "optActionKeyTitle": {
         "message": "Hover Zoom+ etkinleştir",
