@@ -3,10 +3,6 @@
         "message": "हॉवर ज़ूम +",
         "description": "Extension name"
     },
-    "extShortName": {
-        "message": "HoverZoom",
-        "description": "Short extension name"
-    },
     "extDescription": {
         "message": "ज़ूम छवियों/वीडियो पर सभी अपने पसंदीदा वेबसाइटों के साथ (Facebook, अमेज़न, आदि). बस अपने माउस मंडराना पर छवि विस्तार करने के लिए ।",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
