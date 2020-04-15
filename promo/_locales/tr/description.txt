@@ -1,7 +1,7 @@
 Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
 
-Hover your mouse over any image on the supported websites and the extension will automatically enlarge the image to its full size, making sure that it still fits into the browser window.
+Desteklenen sitelerde farenizi herhangi bir resmin üzerine getirin ve uzantı otomatik olarak resmi tarayıcı pencerenizden taşmayacak şekilde tam boyutuna yakınlaştırsın.
 
-This is an open source version of the original HoverZoom extension which is now overrun by malware and deleted from store. In this version all spyware has been removed, many bugs were fixed and new features were added. It doesn't collect any statistics by default. The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images or get tab urls for per-site configuration.
+Bu uzantı şu anda kötü amaçlı yazılımlar taşıyan ve mağazadan silinen orijinal HoverZoom uzantısının açık kaynak kodlu sürümüdür. Bu sürümde tüm kötü amaçlı yazılımlar silindi, birçok hata giderildi ve yeni özellikler eklendi. Varsayılan olarak herhangi bir istatistik toplanmaz. The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images or get tab urls for per-site configuration.
 
-Sometimes sites change design and when it happens extension needs to be updated. Please report any issues with zoom not working by using Support tab or https://github.com/extesy/hoverzoom/issues page.
+Bazen siteler tasarımlarını değiştirdiğinde uzantının güncellenmesi gerekebilir. Lütfen destek sekmesini veya https://github.com/extesy/hoverzoom/issues sayfasını kullanarak yakınlaştırma ile ilgili sorunları bildirin.
