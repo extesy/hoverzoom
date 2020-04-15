@@ -1,4 +1,12 @@
 {
+    "extName": {
+        "message": "Hover Zoom+",
+        "description": "Extension name"
+    },
+    "extShortName": {
+        "message": "HoverZoom",
+        "description": "Short extension name"
+    },
     "extDescription": {
         "message": "Viedók és képek nagyítása a kedvenc weboldalaidon (Facebook, Amazon stb.). Csak mutass az egérmutatóval a képre hogy felnagyítsd.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
@@ -187,6 +195,10 @@
         "message": "Hangerő a nem némított videókhoz:",
         "description": "[options] Audio volume for unmuted videos option"
     },
+    "optVideoVolumeUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for video volume option"
+    },
     "optVideoVolumeTooltip": {
         "message": "Ha a videó nincs teljesen némítva, a hangerő ennyi százalék hangos legyen (0-100)",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
@@ -206,6 +218,22 @@
     "optCenterImagesTooltip": {
         "message": "A képek középre helyezése ahelyet, hogy követnék a kurzort",
         "description": "[options] Tooltip for center images in the middle of the page option"
+    },
+    "optFrameBackgroundColor": {
+        "message": "Frame background color:",
+        "description": "[options] Frame background color option"
+    },
+    "optFrameBackgroundColorTooltip": {
+        "message": "Background color for the frame the image appears in",
+        "description": "[options] Tooltip for frame background color option"
+    },
+    "optFrameBackgroundColorChooseText": {
+        "message": "Select",
+        "description": "[options] Frame background color button - Select"
+    },
+    "optFrameBackgroundColorCancelText": {
+        "message": "Cancel",
+        "description": "[options] Frame background color button - Cancel"
     },
     "optSectionDelays": {
         "message": "Késleltetések",
@@ -306,6 +334,10 @@
     "optPicturesOpacity": {
         "message": "Nagyított képek átlátszatlansága:",
         "description": "[options] Zoomed pictures opacity option"
+    },
+    "optOpacityUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for opacity option"
     },
     "optActionKeyTitle": {
         "message": "Hover Zoom+ aktiválása",
