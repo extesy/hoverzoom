@@ -219,6 +219,22 @@
         "message": "Всегда показывать изображения в центре экрана вместо того, чтобы они следовали за курсором",
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
+    "optFrameBackgroundColor": {
+        "message": "Frame background color:",
+        "description": "[options] Frame background color option"
+    },
+    "optFrameBackgroundColorTooltip": {
+        "message": "Background color for the frame the image appears in",
+        "description": "[options] Tooltip for frame background color option"
+    },
+    "optFrameBackgroundColorChooseText": {
+        "message": "Select",
+        "description": "[options] Frame background color button - Select"
+    },
+    "optFrameBackgroundColorCancelText": {
+        "message": "Cancel",
+        "description": "[options] Frame background color button - Cancel"
+    },
     "optSectionDelays": {
         "message": "Задержки",
         "description": "[options] Page section for delay options"
@@ -396,7 +412,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Версия $1 - © 2014-2020 Олег Анашкин",
+        "message": "Версия $1 - © 2014-2017 Олег Анашкин",
         "description": "[options] Copyright and version number in page footer"
     }
 }

@@ -19,6 +19,10 @@
         "message": "모든 사이트에서 사용안함",
         "description": "[popup] Disable the extension"
     },
+    "popAllowPerSiteToggle": {
+        "message": "Allow per-site extension configuration",
+        "description": "[popup] Allow per-site extension configuration"
+    },
     "popDisableForSite": {
         "message": "1$로 해당 기능을 비활성화",
         "description": "[popup] Disables the extension for a specific site"
@@ -107,6 +111,10 @@
         "message": "마우스 커서 아래의 확대 이미지를 확장",
         "description": "[options] Extend zoomed images below the mouse cursor option"
     },
+    "optMouseUnderlapTooltip": {
+        "message": "If unchecked, zoomed images will be resized dynamically",
+        "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
+    },
     "optPageActionEnabled": {
         "message": "주소창의 아이콘 보기",
         "description": "[options] Show icon in address bar option"
@@ -139,12 +147,20 @@
         "message": "마우스 휠로 앨범을 탐색하기",
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
+    "optDisableMouseWheelForVideo": {
+        "message": "Don't use mousewheel to navigate within video (action keys will still work)",
+        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
+    },
+    "optDisableMouseWheelForVideoTooltip": {
+        "message": "Scroll through albums but don't jump forward/backward in videos",
+        "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
+    },
     "optZoomVideos": {
         "message": "비디오 확대 (WebM, MP4)",
         "description": "[options] Zoom videos (WebM, MP4) option"
     },
     "optZoomVideosTooltip": {
-        "message": "비디오 확대 (WebM, MP4)",
+        "message": "Zoom videos (WebM, MP4)",
         "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
     },
     "optVideoPositionStep": {
@@ -154,6 +170,10 @@
     "optVideoPositionStepUnitName": {
         "message": "초",
         "description": "[options] Unit name (seconds) for changing video position option"
+    },
+    "optVideoPositionStepTooltip": {
+        "message": "Skip video back or forth for this amount of seconds",
+        "description": "[options] Tooltip for changing video position option"
     },
     "optMuteVideos": {
         "message": "확대 된 동영상 음소거",
@@ -166,6 +186,10 @@
     "optVideoTimestamp": {
         "message": "비디오의 타임 스탬프 보기",
         "description": "[options] Enable timestamp / video length on videos"
+    },
+    "optVideoTimestampTooltip": {
+        "message": "Enable timestamp / video length on videos",
+        "description": "[options] Tooltip for video length countdown on videos"
     },
     "optVideoVolume": {
         "message": "동영상의 소리 크기",
@@ -187,6 +211,30 @@
         "message": "필립스 주변광 기술(Phillips Ambilight technology) 과 유사한 효과를 생성합니다.",
         "description": "[options] Tooltip for enable ambient light behind images option"
     },
+    "optCenterImages": {
+        "message": "Center images",
+        "description": "[options] Center images in the middle of the page option"
+    },
+    "optCenterImagesTooltip": {
+        "message": "Center images as opposed to having them follow the cursor",
+        "description": "[options] Tooltip for center images in the middle of the page option"
+    },
+    "optFrameBackgroundColor": {
+        "message": "Frame background color:",
+        "description": "[options] Frame background color option"
+    },
+    "optFrameBackgroundColorTooltip": {
+        "message": "Background color for the frame the image appears in",
+        "description": "[options] Tooltip for frame background color option"
+    },
+    "optFrameBackgroundColorChooseText": {
+        "message": "Select",
+        "description": "[options] Frame background color button - Select"
+    },
+    "optFrameBackgroundColorCancelText": {
+        "message": "Cancel",
+        "description": "[options] Frame background color button - Cancel"
+    },
     "optSectionDelays": {
         "message": "딜레이",
         "description": "[options] Page section for delay options"
@@ -199,6 +247,10 @@
         "message": "동영상 표시 딜레이:",
         "description": "[options] Delay before displaying a video option"
     },
+    "optFadeDuration": {
+        "message": "Fading animation duration:",
+        "description": "[options] Fading animation duration option"
+    },
     "optDurationUnitName": {
         "message": "초",
         "description": "[options] Short form of \"second\" for delay duration"
@@ -207,9 +259,37 @@
         "message": "플러그인",
         "description": "[options] Page title for plugin options"
     },
+    "optPlugins": {
+        "message": "Enable/disable specific plugins",
+        "description": "[options] Section which contains checkboxes for disabling plugins"
+    },
     "optPageSites": {
         "message": "웹페이지",
         "description": "[options] Page title for site options"
+    },
+    "optSectionSitesEnabled": {
+        "message": "URLs for which Hover Zoom+ must be enabled",
+        "description": "[options] Page section for enabling extension for specific sites"
+    },
+    "optSectionSitesDisabled": {
+        "message": "URLs for which Hover Zoom+ must be disabled",
+        "description": "[options] Page section for enabling extension for specific sites"
+    },
+    "optWhitelistMode": {
+        "message": "Whitelist mode",
+        "description": "[options] Whitelist mode checkbox"
+    },
+    "optWhitelistModeTooltip": {
+        "message": "Only enable Hover Zoom+ for the sites listed below",
+        "description": "[options] Tooltip for whitelist mode checkbox"
+    },
+    "optSitePlaceholder": {
+        "message": "Examples: facebook.com, google.com/reader",
+        "description": "[options] Placeholder for a site url input box"
+    },
+    "optSiteDisclaimer": {
+        "message": "Be aware that domain filters can overlap. Example: if you have filtered \"picasaweb.google.com\" and \"google.com\", removing \"picasaweb.google.com\" will not reactivate Picasa Web Albums, as it will still be excluded by the \"google.com\" filter.",
+        "description": "[options] Disclaimer on the sites option page"
     },
     "optButtonAddSite": {
         "message": "추가",
@@ -263,33 +343,65 @@
         "message": "호버 줌+ 활성화",
         "description": "[options] Action key title"
     },
+    "optActionKeyDescription": {
+        "message": "If a key is set, Hover Zoom+ will be active only when this key is held down.",
+        "description": "[options] Action key description"
+    },
     "optHideKeyTitle": {
         "message": "호버 줌+ 비활성화",
         "description": "[options] Action key title"
+    },
+    "optHideKeyDescription": {
+        "message": "Holding this key down hides the zoomed picture. Use it when the picture hides elements that are also displayed on mouseover.",
+        "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
         "message": "새 창에서 이미지 열기",
         "description": "[options] Action key title"
     },
+    "optOpenImageInWindowKeyDescription": {
+        "message": "Press this key to open the image you are currently viewing in a new window. Press this key again to close the window.",
+        "description": "[options] Action key description"
+    },
     "optOpenImageInTabKeyTitle": {
         "message": "새 탭에서 이미지 열기",
         "description": "[options] Action key title"
+    },
+    "optOpenImageInTabKeyDescription": {
+        "message": "Press this key to open the image you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
+        "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
         "message": "이미지 저장",
         "description": "[options] Action key title"
     },
+    "optSaveImageKeyDescription": {
+        "message": "Press this key to save the image you are currently viewing.",
+        "description": "[options] Action key description"
+    },
     "optFullZoomKeyTitle": {
         "message": "전체 확대 활성화",
         "description": "[options] Action key title"
+    },
+    "optFullZoomKeyDescription": {
+        "message": "When this key is held down, the picture is displayed using all available space. Useful for high resolution pictures only.",
+        "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
         "message": "갤러리에서 이전 이미지 보기",
         "description": "[options] Action key title"
     },
+    "optPrevImgKeyDescription": {
+        "message": "Press this key to view the previous image in a gallery.",
+        "description": "[options] Action key description"
+    },
     "optNextImgKeyTitle": {
         "message": "갤러리에서 다음 이미지 보기",
         "description": "[options] Action key title"
+    },
+    "optNextImgKeyDescription": {
+        "message": "Press this key to view the next image in a gallery.",
+        "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
         "message": "소스 코드",
@@ -298,5 +410,9 @@
     "optFooterReportIssue": {
         "message": "오류 보고",
         "description": "[options] Report a bug link in page footer"
+    },
+    "optFooterVersionCopyright": {
+        "message": "Version $1 - © 2014-2020 Oleg Anashkin",
+        "description": "[options] Copyright and version number in page footer"
     }
 }

@@ -1,0 +1,7 @@
+Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
+
+Passa o teu rato sobre qualquer imagem nos websites suportados e a extensão aumenta automaticamente a imagem para o seu tamanho máximo, garantindo que encaixa na janela do browser.
+
+Isto é uma versão de código aberto da extensão HoverZoom original que está agora invadida por malware e excluída da loja. In this version all spyware has been removed, many bugs were fixed and new features were added. It doesn't collect any statistics by default. The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images or get tab urls for per-site configuration.
+
+Sometimes sites change design and when it happens extension needs to be updated. Please report any issues with zoom not working by using Support tab or https://github.com/extesy/hoverzoom/issues page.

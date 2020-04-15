@@ -219,6 +219,22 @@
         "message": "Pusat gambar sebagai lawan untuk memiliki mereka mengikuti kursor",
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
+    "optFrameBackgroundColor": {
+        "message": "Frame background color:",
+        "description": "[options] Frame background color option"
+    },
+    "optFrameBackgroundColorTooltip": {
+        "message": "Background color for the frame the image appears in",
+        "description": "[options] Tooltip for frame background color option"
+    },
+    "optFrameBackgroundColorChooseText": {
+        "message": "Select",
+        "description": "[options] Frame background color button - Select"
+    },
+    "optFrameBackgroundColorCancelText": {
+        "message": "Cancel",
+        "description": "[options] Frame background color button - Cancel"
+    },
     "optSectionDelays": {
         "message": "Penundaan",
         "description": "[options] Page section for delay options"
@@ -396,7 +412,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Versi $1 - © 2014-2020 Oleg Anashkin",
+        "message": "Versi $1 - © 2014-2016 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     }
 }

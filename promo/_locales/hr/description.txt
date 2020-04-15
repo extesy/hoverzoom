@@ -1,0 +1,7 @@
+Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
+
+Postavite svoj miš iznad bilo koje slike na podržanoj web stranici i proširenje će automatski povećati sliku na svoju punu veličinu, pazeći da ipak još stane u prozor preglednika.
+
+Ovo je open source verzija od originalnog HoverZoom proširenja koje trenutno zaraženo s virusima i uklonjeno iz trgovine. U ovoj verziji svi virusi su uklonjeni, mnoge greške su ispravljene i dodane su nove funkcije. Ne prikuplja nikakve statističke podatke. The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images or get tab urls for per-site configuration.
+
+Ponekad stranice promijene dizajn, kada se to dogodi potrebno je ažurirati proširenje. Molimo vas, prijavite bilo koji problem sa ne funkcioniranjem zumiranja koristeći karticu Podrška ili na stranici https://github.com/extesy/hoverzoom/issues page.

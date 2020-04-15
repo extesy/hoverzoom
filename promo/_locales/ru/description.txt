@@ -1,0 +1,7 @@
+Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
+
+Наведите мышь на любое изображение на поддерживаемых сайтах и это расширение автоматически увеличит изображение до полного размера, и при этом оно по-прежнему будет вписываться в окно браузера.
+
+Это вариант оригинального расширения HoverZoom с открытым исходным кодом, которое было удалено из магазина Google Chrome после добавления вредоносного кода. В этой версии все шпионские программы были удалены, исправлены многие ошибки и добавлены новые возможности. Это расширение не собирает никакой статистики. The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images or get tab urls for per-site configuration.
+
+Иногда сайты меняют дизайн и, когда это произойдет, расширение необходимо будет обновить. Пожалуйста, сообщайте о любых проблемах с сайтами используя вкладку "Поддержка" или на странице https://github.com/extesy/hoverzoom/issues

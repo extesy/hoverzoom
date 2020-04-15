@@ -1,0 +1,7 @@
+Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
+
+이 확장프로그램은 지원되는 웹사이트에서 이미지위에 마우스를 올리면 자동으로 최대 사이즈의 이미지를 브라우저 창 크기에 맞게 보여줍니다.
+
+이 확장프로그램은 악성코드로 인해 스토어에서 삭제된 HoverZoom 확장프로그램의 오픈소스 버전입니다. 이 버전에서는 모든 스파이웨어를 삭제하고 많은 버그를 수정, 새로운 기능이 추가되었습니다. 이것은 기본적으로 어떠한 통계 데이터도 수집하지 않습니다. The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images or get tab urls for per-site configuration.
+
+가끔 사이트의 디자인이 변경될때 확장 프로그램의 업데이트가 필요할 수 있습니다. 만약 HoverZoom+ 을 사용중에 제대로 동작하지 않거나 개선사항이 있다면 스토어의 지원 탭 이나 https://github.com/extesy/hoverzoom/issues 페이지에 보고 바랍니다.

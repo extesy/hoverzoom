@@ -1,0 +1,7 @@
+Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
+
+Bewegen Sie die Maus über ein Bild auf den unterstützten Websites und die Erweiterung wird das Bild automatisch in seiner vollen Größe darstellen und dabei dafür sorgen, dass es noch in das Browserfenster passt.
+
+Dies ist eine Open-Source-Version der ursprünglichen HoverZoom Erweiterung die nach Malware-Befall aus Store entfernt wurde. In dieser Version wurde die Spyware entfernt, viele Fehler behoben und neue Features hinzugefügt. Es werden standardmäßig keine Daten oder Statistiken gesammelt. The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images or get tab urls for per-site configuration.
+
+Manchmal ändern Seiten ihr Design und wenn dies passiert, kann es sein, dass die Erweiterung aktualisiert werden muss. Bitte melden Sie etwaige Probleme mit nicht funktionierendem Zoom auf der Support-Seite im Store oder unter https://github.com/extesy/hoverzoom/issues.
