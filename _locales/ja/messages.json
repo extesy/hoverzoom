@@ -1,12 +1,4 @@
 {
-    "extName": {
-        "message": "Hover Zoom+",
-        "description": "Extension name"
-    },
-    "extShortName": {
-        "message": "HoverZoom",
-        "description": "Short extension name"
-    },
     "extDescription": {
         "message": "あなたのお気に入りのウェブサイト (Facebook，Amazonなど) 上の画像・ビデオをズームします。画像上にマウスカーソルを置くだけで画像を拡大できます。",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
