@@ -1,12 +1,4 @@
 {
-    "extName": {
-        "message": "Hover Zoom+",
-        "description": "Extension name"
-    },
-    "extShortName": {
-        "message": "HoverZoom",
-        "description": "Short extension name"
-    },
     "extDescription": {
         "message": "Vergrößern Sie Bilder und Videos auf Ihren bevorzugten Websites (Facebook, Amazon, etc.) indem Sie die Maus darüber bewegen.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
@@ -70,10 +62,6 @@
     "optSectionView": {
         "message": "Aussehen",
         "description": "[options] Page section for view options"
-    },
-    "optSectionVideo": {
-        "message": "Video",
-        "description": "[options] Page section for video options"
     },
     "optZoomFactor": {
         "message": "Gezoomte Bilder um diesen Faktor vergrößern:",
@@ -195,10 +183,6 @@
         "message": "Lautstärke für nicht stumm geschaltete Videos:",
         "description": "[options] Audio volume for unmuted videos option"
     },
-    "optVideoVolumeUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for video volume option"
-    },
     "optVideoVolumeTooltip": {
         "message": "Falls das Video nicht komplett stumm geschaltet ist, die Lautstärke auf diesen Prozentsatz (0-100) stellen",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
@@ -318,10 +302,6 @@
     "optPicturesOpacity": {
         "message": "Deckkraft gezoomter Bilder:",
         "description": "[options] Zoomed pictures opacity option"
-    },
-    "optOpacityUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for opacity option"
     },
     "optActionKeyTitle": {
         "message": "Hover Zoom+ aktivieren",
