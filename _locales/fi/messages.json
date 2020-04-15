@@ -1,12 +1,4 @@
 {
-    "extName": {
-        "message": "Hover Zoom+",
-        "description": "Extension name"
-    },
-    "extShortName": {
-        "message": "HoverZoom",
-        "description": "Short extension name"
-    },
     "extDescription": {
         "message": "Suurenna kuvia ja videoita suosikki sivuillasi (Facebook, Amazon, Youtube, jne.). Siirrä hiiri kuvan päälle suurentaaksesi sen.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
@@ -70,10 +62,6 @@
     "optSectionView": {
         "message": "Ruutu",
         "description": "[options] Page section for view options"
-    },
-    "optSectionVideo": {
-        "message": "Video",
-        "description": "[options] Page section for video options"
     },
     "optZoomFactor": {
         "message": "Suurennettavien kuvien koko:",
