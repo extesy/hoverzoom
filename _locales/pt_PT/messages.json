@@ -3,10 +3,6 @@
         "message": "Houver Zoom+",
         "description": "Extension name"
     },
-    "extShortName": {
-        "message": "HoverZoom",
-        "description": "Short extension name"
-    },
     "extDescription": {
         "message": "Ampie imagens/vídeos em todos os seus websites favoritos. Simplesmente passe o rato sobre a imagem para a aumentar.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
@@ -170,10 +166,6 @@
     "optMuteVideosTooltip": {
         "message": "Desactivar som em vídeos ampliados",
         "description": "[options] Tooltip for mute zoomed videos option"
-    },
-    "optVideoVolumeUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for video volume option"
     },
     "optEnableAmbilight": {
         "message": "Permitir luz de ambiente por trás de imagens",
