@@ -187,9 +187,17 @@
         "message": "نمایش برچسب زمان در فیلم ها",
         "description": "[options] Enable timestamp / video length on videos"
     },
+    "optVideoTimestampTooltip": {
+        "message": "Enable timestamp / video length on videos",
+        "description": "[options] Tooltip for video length countdown on videos"
+    },
     "optVideoVolume": {
         "message": "صدا از فیلم unmuted:",
         "description": "[options] Audio volume for unmuted videos option"
+    },
+    "optVideoVolumeUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for video volume option"
     },
     "optVideoVolumeTooltip": {
         "message": "اگر ویدیو به طور کامل خاموش است، حجم قرار دارد این درصد (0-100)",
@@ -202,6 +210,30 @@
     "optEnableAmbilightTooltip": {
         "message": "ایجاد اثر ظریف براق شبیه به تکنولوژی Ambilight فیلیپس.",
         "description": "[options] Tooltip for enable ambient light behind images option"
+    },
+    "optCenterImages": {
+        "message": "Center images",
+        "description": "[options] Center images in the middle of the page option"
+    },
+    "optCenterImagesTooltip": {
+        "message": "Center images as opposed to having them follow the cursor",
+        "description": "[options] Tooltip for center images in the middle of the page option"
+    },
+    "optFrameBackgroundColor": {
+        "message": "Frame background color:",
+        "description": "[options] Frame background color option"
+    },
+    "optFrameBackgroundColorTooltip": {
+        "message": "Background color for the frame the image appears in",
+        "description": "[options] Tooltip for frame background color option"
+    },
+    "optFrameBackgroundColorChooseText": {
+        "message": "Select",
+        "description": "[options] Frame background color button - Select"
+    },
+    "optFrameBackgroundColorCancelText": {
+        "message": "Cancel",
+        "description": "[options] Frame background color button - Cancel"
     },
     "optSectionDelays": {
         "message": "تاخیر",
@@ -303,6 +335,10 @@
         "message": "شفافیت بزرگنمایی تصاویر:",
         "description": "[options] Zoomed pictures opacity option"
     },
+    "optOpacityUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for opacity option"
+    },
     "optActionKeyTitle": {
         "message": "فعال کردن زوم شناور+",
         "description": "[options] Action key title"
@@ -374,5 +410,9 @@
     "optFooterReportIssue": {
         "message": "گزارش اشکال",
         "description": "[options] Report a bug link in page footer"
+    },
+    "optFooterVersionCopyright": {
+        "message": "Version $1 - © 2014-2020 Oleg Anashkin",
+        "description": "[options] Copyright and version number in page footer"
     }
 }
