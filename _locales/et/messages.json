@@ -1,12 +1,4 @@
 {
-    "extName": {
-        "message": "Hover Zoom+",
-        "description": "Extension name"
-    },
-    "extShortName": {
-        "message": "HoverZoom",
-        "description": "Short extension name"
-    },
     "optButtonSave": {
         "message": "Salvesta",
         "description": "[options] Save button label"
@@ -23,10 +15,6 @@
         "message": "Vaata",
         "description": "[options] Page section for view options"
     },
-    "optSectionVideo": {
-        "message": "Video",
-        "description": "[options] Page section for video options"
-    },
     "optZoomFactorUnitName": {
         "message": "korda",
         "description": "[options] Unit name (percentage) for zoomed images size option"
@@ -34,10 +22,6 @@
     "optVideoPositionStepUnitName": {
         "message": "sek",
         "description": "[options] Unit name (seconds) for changing video position option"
-    },
-    "optVideoVolumeUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for video volume option"
     },
     "optDurationUnitName": {
         "message": "sek",
@@ -54,9 +38,5 @@
     "optEnableGalleries": {
         "message": "Luba albumite tugi",
         "description": "[options] Enable albums support option"
-    },
-    "optOpacityUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for opacity option"
     }
 }
