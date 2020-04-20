@@ -28,13 +28,12 @@ function loadOptions() {
     options.picturesOpacity = options.hasOwnProperty('picturesOpacity') ? options.picturesOpacity : 1;
     options.showWhileLoading = options.hasOwnProperty('showWhileLoading') ? options.showWhileLoading : true;
     options.mouseUnderlap = options.hasOwnProperty('mouseUnderlap') ? options.mouseUnderlap : true;
-    options.updateNotifications = options.hasOwnProperty('updateNotifications') ? options.updateNotifications : true;
     options.filterNSFW = options.hasOwnProperty('filterNSFW') ? options.filterNSFW : false;
     options.enableGalleries = options.hasOwnProperty('enableGalleries') ? options.enableGalleries : true;
     options.ambilightEnabled = options.hasOwnProperty('ambilightEnabled') ? options.ambilightEnabled : false;
     options.disabledPlugins = options.hasOwnProperty('disabledPlugins') ? options.disabledPlugins : [];
     options.centerImages = options.hasOwnProperty('centerImages') ? options.centerImages : false;
-    options.frameBackgroundColor = options.hasOwnProperty('frameBackgroundColor') ? options.frameBackgroundColor : "#ffffff"; 
+    options.frameBackgroundColor = options.hasOwnProperty('frameBackgroundColor') ? options.frameBackgroundColor : "#ffffff";
 
     // Used old showCaptions option for backwards compatibility
     var showCaptions = options.hasOwnProperty('showCaptions') ? options.showCaptions : true;
@@ -107,22 +106,6 @@ function keyCodeToKeyName(keyCode) {
     } else {
         return 'None';
     }
-}
-
-function showUpdateNotification() {
-    if (chrome.notifications) {
-        var options = {
-            type: 'list',
-            title: chrome.i18n.getMessage('extUpdated'),
-            message: '',
-            iconUrl: '/images/icon32.png',
-            items: [
-                { title: "Ambient light for images", message: "" }
-            ]
-        };
-        chrome.notifications.create(chrome.i18n.getMessage('extName'), options, function(id) {});
-    }
-    return false;
 }
 
 function i18n() {

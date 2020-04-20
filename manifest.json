@@ -32,7 +32,6 @@
     },
     "permissions": [
         "*://*/*",
-        "notifications",
         "unlimitedStorage"
     ],
     "optional_permissions": [

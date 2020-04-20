@@ -1,7 +1,4 @@
-﻿// True if the current version of the extension has something to show in an update notification
-var hasReleaseNotes = false;
-
-var options;
+﻿var options;
 
 // Performs an ajax request
 function ajaxRequest(request, callback) {
@@ -114,28 +111,12 @@ function showPageAction(tab) {
     chrome.pageAction.show(tab.id);
 }
 
-// Checks if the extension has been updated.
-// Displays a notification if necessary.
-function checkUpdate() {
-    currVersion = 1;
-    if ("app" in chrome) {
-        var currVersion = chrome.runtime.getManifest().version,
-            prevVersion = localStorage.hzVersion;
-        if (hasReleaseNotes && options.updateNotifications && currVersion != prevVersion && typeof prevVersion != 'undefined') {
-            showUpdateNotification();
-        }
-    }
-    localStorage.hzVersion = currVersion;
-}
-
 function init() {
     // Load options
     options = loadOptions();
 
     // Bind events
     chrome.runtime.onMessage.addListener(onMessage);
-
-    checkUpdate();
 }
 
 init();

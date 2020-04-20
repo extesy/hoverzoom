@@ -106,7 +106,6 @@ function saveOptions() {
         options[key] = parseInt($('#sel' + id).val());
     });
 
-    options.updateNotifications = $('#chkUpdateNotifications')[0].checked;
     options.addToHistory = $('#chkAddToHistory')[0].checked;
     options.filterNSFW = $('#chkFilterNSFW')[0].checked;
     options.alwaysPreload = $('#chkAlwaysPreload')[0].checked;
@@ -164,7 +163,6 @@ function restoreOptions() {
         $('#sel' + id).val(options[key]);
     });
 
-    $('#chkUpdateNotifications')[0].checked = options.updateNotifications;
     $('#chkAddToHistory')[0].checked = options.addToHistory;
     $('#chkFilterNSFW')[0].checked = options.filterNSFW;
 
@@ -329,7 +327,6 @@ $(function () {
     $('.actionKey').change(selKeyOnChange);
     $('#btnAddExcludedSite').click(btnAddExcludedSiteOnClick);
     $('#btnRemoveExcludedSite').click(btnRemoveExcludedSiteOnClick);
-    $('#aShowUpdateNotification').click(showUpdateNotification);
 
     restoreOptions();
     loadPlugins();
