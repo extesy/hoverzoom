@@ -1,7 +1,6 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'wallhaven.cc',
-    version: '3.0',
     prepareImgLinks: function (callback) {
         var res = [];
         hoverZoom.urlReplace(res,
