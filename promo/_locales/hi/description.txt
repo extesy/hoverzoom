@@ -1,0 +1,7 @@
+Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
+
+समर्थित वेबसाइटों पर किसी भी छवि पर अपने माउस को घुमाएं और विस्तार स्वचालित रूप से छवि को अपने पूर्ण आकार में बड़ा कर देगा, यह सुनिश्चित करता है कि यह अभी भी ब्राउज़र विंडो में फिट बैठता है।
+
+यह मूल होवरज़ूम एक्सटेंशन का एक ओपन सोर्स वर्जन है जो अब मालवेयर द्वारा ओवररन हो गया और स्टोर से डिलीट हो गया। इस संस्करण में सभी स्पाइवेयर को हटा दिया गया है, कई बग्स को ठीक किया गया था और नई सुविधाओं को जोड़ा गया था। यह डिफ़ॉल्ट रूप से किसी भी आंकड़े एकत्र नहीं करता है । The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images or get tab urls for per-site configuration.
+
+कभी-कभी साइट्स डिज़ाइन बदलती हैं और जब ऐसा होता है तो एक्सटेंशन को अपडेट करने की आवश्यकता होती है। कृपया समर्थन टैब या https://github.com/extesy/hoverzoom/issues पृष्ठ का उपयोग करके ज़ूम न करने वाले किसी भी समस्या की रिपोर्ट करें।

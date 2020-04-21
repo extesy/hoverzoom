@@ -1,0 +1,7 @@
+Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
+
+将你的鼠标指针指向任何被支持的网站上，然后这个扩展将会自动将图片放大直全尺寸，注意请确保图片仍然适合浏览器窗口。
+
+这是一个现在被恶意软件等导致被商店删除的HoverZoom插件的开源版本。 在这个版本中，所有的间谍软件都已经被移除，我们添加了许多新功能并移除了大量的bug。 在默认状态下，这个扩展软件不搜集任何统计信息。 The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images or get tab urls for per-site configuration.
+
+有时有的网站会改变内容的呈现方式，这时这个插件需要更新。 亲请在这个地址https://github.com/extesy/hoverzoom/issues或在支持页面提交任何你遇到的图片不能放大的问题。

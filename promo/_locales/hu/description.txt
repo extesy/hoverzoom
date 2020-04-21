@@ -1,0 +1,7 @@
+Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
+
+Vidd az egeret bármilyen kép fölé a támogatott webhelyeken és a bővitmény automatikusan fel fogja nagyítani a teljes méretére, ügyelve arra hogy illeszkedik a böngésző ablakához.
+
+Ez egy nyílt forráskódú változata az eredeti HoverZoom bővitménynek, amely most már vírusokkal teli és le lett szedve az áruházból. Ebben a verzióban minden kémprogram el lett távolítva, rengeteg hiba ki lett javítva, új funkciókkal bővült a bővítmény. Nem gyűjt semmilyen statisztikai adatot alapértelmezés szerint. Az egyetlen engedély ami szükséges az a hozzáférés az adatokhoz minden webhelyen (hogy a képeket fel tudja nagyítani), és *opcionális* engedélyek a böngészési előzmények eléréséhez, képek letöltéséhez/mentéséhez vagy az oldal URL-ek eléréséhez az oldalankénti konfigurációhoz.
+
+Néha az oldalak design-t változtatnak. Ha ez megtörténik frissíteni kell a bővítményt. Kérlek jelents bármilyen hibát ha a zoom nem működik a Támogatás oldal használatával, vagy az alábbi webhelyen: https://github.com/extesy/hoverzoom/issues

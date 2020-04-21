@@ -1,0 +1,7 @@
+Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
+
+För musen över en bild på hemsidor som stöds så förstorar tillägget bilden automatiskt och ser även till att den passar in i webbläsarfönstret.
+
+Detta är en open source-version av det ursprungliga HoverZoom tillägget som nu är full med virus och borttagen från butiken. I denna version har alla spionprogram tagits bort, många buggar har åtgärdats och nya funktioner har lagts till. Den samlar inte in statistik som standard. The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images or get tab urls for per-site configuration.
+
+Ibland ändrar hemsidor design och när det händer behöver tillägget uppdateras. Vänligen rapportera eventuella problem med zoom med hjälp av fliken Support eller via https://github.com/extesy/hoverzoom/issues.

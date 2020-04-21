@@ -1,0 +1,7 @@
+Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
+
+この拡張機能は、対応しているウェブサイトにある画像上にマウスカーソルを置くと、フルサイズの画像をブラウザのウィンドウ内に収まる形で自動的に拡大して表示します。
+
+この拡張機能は、オリジナル版であるHoverZoneのオープンソース版であり、オリジナル版はマルウェアが仕掛けられていたためにストア上から削除されました。 このバージョンでは、全てのスパイウェアが削除されており、多くのバグが修正され、新しい機能が追加されました。 デフォルトで統計情報を収集することはありません、 The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images or get tab urls for per-site configuration.
+
+Webサイトのデザインが変更された時には、拡張機能をアップデートする必要がしばしばあります。 ズームが機能ない問題が発生した場合には、サポートタブまたはhttps://github.com/extesy/hoverzoom/issuesのページから報告してくださいますようお願い致します。

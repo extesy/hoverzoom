@@ -1,0 +1,7 @@
+Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
+
+ماوس را روی تصاویر وب سایت های مورد پشتیبانی ببرید و تصویر به صورت خودکار به اندازه کامل آن نمایش داده میشد. اطمینان حاصل کنید متناسب با اندازه پنجره مرورگر باشد.
+
+این نسخه از فرمت HoverZoom اصلی است که در حال حاضر تاخت و تاز کردن تروجان و حذف از فروشگاه است. در این نسخه تمام جاسوسافزار حذف شده اند. بسیاری از اشکالات رفع و ویژگی های جدید اضافه شده است. آمار به صورت پیش فرض جمع آوری نمیشود. The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images or get tab urls for per-site configuration.
+
+گاهی اوقات طراحی سایت تغییر میکند و در این صورت پسوند باید به روز شود. لطفا هر گونه اشکال در عملکرد Hover Zoom را با استفاده از برگه پشتیبانی یا از طریق https://github.com/extesy/hoverzoom/issues گزارش دهید.

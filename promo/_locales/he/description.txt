@@ -1,0 +1,7 @@
+Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
+
+העבר את העכבר מעל כל תמונה באתרים נתמכים והתוסף יגדיל את התמונה באופן אוטומטי תוך כדי התאמה למידות חלון הדפדפן.
+
+זוהי גירסת קוד פתוח של התוסף HoverZoom שנפגע מתכניות זדוניות והוסר מהחנות. בגרסא זו כל הרוגלות והווירוסים הוסרו, באגים רבים נפתרו ואפשרויות רבות נוספו. התוסף אינו עוקב אחרי המשתמש. The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images or get tab urls for per-site configuration.
+
+אתרים מסוימים משנים את העיצוב (והתוסף מפסיק לעבוד), לכן יש לעדכן את התוסף והפלאגינים. על כל בעיה יש לדווח בעמוד הGithb של התוסף, בכתובת https://github.com/extesy/hoverzoom/issues.

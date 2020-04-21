@@ -64,7 +64,7 @@
         "description": "[options] Page title for general options"
     },
     "optExtensionEnabled": {
-        "message": "Hover Zoom+ engedélyezése",
+        "message": "Hover Zoom engedélyezése",
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optSectionView": {
@@ -218,6 +218,22 @@
     "optCenterImagesTooltip": {
         "message": "A képek középre helyezése ahelyet, hogy követnék a kurzort",
         "description": "[options] Tooltip for center images in the middle of the page option"
+    },
+    "optFrameBackgroundColor": {
+        "message": "Keret háttérszíne:",
+        "description": "[options] Frame background color option"
+    },
+    "optFrameBackgroundColorTooltip": {
+        "message": "Háttérszín a kerethez amiben megjelenik a kép",
+        "description": "[options] Tooltip for frame background color option"
+    },
+    "optFrameBackgroundColorChooseText": {
+        "message": "Kiválasztás",
+        "description": "[options] Frame background color button - Select"
+    },
+    "optFrameBackgroundColorCancelText": {
+        "message": "Mégse",
+        "description": "[options] Frame background color button - Cancel"
     },
     "optSectionDelays": {
         "message": "Késleltetések",

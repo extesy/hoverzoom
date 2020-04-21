@@ -160,7 +160,7 @@
         "description": "[options] Zoom videos (WebM, MP4) option"
     },
     "optZoomVideosTooltip": {
-        "message": "Zoom video's (WebM, MP4)",
+        "message": "Zoom videos (WebM, MP4)",
         "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
     },
     "optVideoPositionStep": {
@@ -218,6 +218,22 @@
     "optCenterImagesTooltip": {
         "message": "Centreer een afbeelding in plaats van dat ze de muis volgen",
         "description": "[options] Tooltip for center images in the middle of the page option"
+    },
+    "optFrameBackgroundColor": {
+        "message": "Frame background color:",
+        "description": "[options] Frame background color option"
+    },
+    "optFrameBackgroundColorTooltip": {
+        "message": "Background color for the frame the image appears in",
+        "description": "[options] Tooltip for frame background color option"
+    },
+    "optFrameBackgroundColorChooseText": {
+        "message": "Select",
+        "description": "[options] Frame background color button - Select"
+    },
+    "optFrameBackgroundColorCancelText": {
+        "message": "Cancel",
+        "description": "[options] Frame background color button - Cancel"
     },
     "optSectionDelays": {
         "message": "Vertragingen",
@@ -396,7 +412,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Versie $1 - © 2014-2020 Oleg Anashkin",
+        "message": "Versie $1 - © 2014-2016 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     }
 }

@@ -1,0 +1,7 @@
+Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
+
+Arahkan mouse anda ke gambar apapun pada situs web yang didukung dan ekstensi akan secara otomatis memperbesar gambar ke ukuran penuh, memastikan bahwa itu masih cocok ke jendela browser.
+
+Ini adalah open source versi asli HoverZoom ekstensi yang sekarang dikuasai oleh malware dan dihapus dari toko. Dalam versi ini semua spyware telah dihapus, banyak bug yang diperbaiki dan fitur baru yang ditambahkan. Itu tidak mengumpulkan data statistik secara default. The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images or get tab urls for per-site configuration.
+
+Kadang-kadang situs mengubah desain dan ketika itu terjadi ekstensi perlu diupdate. Silakan laporkan masalah apapun dengan zoom tidak bekerja dengan menggunakan Dukungan tab atau https://github.com/extesy/hoverzoom/issues halaman.
