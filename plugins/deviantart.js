@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'deviantART',
-    version:'0.2',
+    version:'0.3',
     prepareImgLinks:function (callback) {
         var res = [];
         $('a[data-super-img], span[data-super-img], div[data-super-img]').each(function () {
@@ -17,6 +17,11 @@ hoverZoomPlugins.push({
             /\/(fs\d+)\/\d+\w+\//,
             '/$1/',
             ':eq(0)'
+        );
+        hoverZoom.urlReplace(res,
+            'img[src]',
+            /(.*)\/v1\/(.*)(\?token=.*)/,
+            '$1$3'
         );
         callback($(res));
     }
