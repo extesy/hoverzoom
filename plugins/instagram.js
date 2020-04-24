@@ -1,31 +1,32 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'Instagram',
-    prepareImgLinks:function (callback) {
-        $('body').on('mouseenter', 'a[href*="?taken-by"]', function () {
-            var link = $(this);
-            if (link.hasClass('hoverZoomLink'))
+    name: 'instagram',
+    prepareImgLinks: function (callback) {
+        $('body').on('mouseenter', 'div[role="button"], a[href*="/p/"]', function () {
+            var elem = $(this);
+            // if (elem.parents('ul').length === 1) elem = $(elem.parents('ul')[0]);
+            var images = elem.find('img');
+            if (images.length === 0) return;
+
+            var res = [];
+            images.each(function() {
+                var img = $(this);
+                var srcset = img.attr('srcset');
+                if (!srcset) return;
+                var urls = srcset.replace(/\s+[0-9]+(\.[0-9]+)?[wx]/g, '').split(/,/);
+                var url = urls[urls.length - 1];
+                res.push(url);
+            });
+            if (res.length === 0) {
                 return;
-            if (link.find('span.coreSpriteSidecarIconLarge').length === 0) {
-                let src;
-                if (options.showHighRes)
-                    src = link.prop('href').replace(/[?]taken-by=.*$/, 'media?size=l');
-                else
-                    src = link.find('img').attr('src');
-                hoverZoom.prepareLink(link, src);
+            } else if (res.length === 1) {
+                elem.data().hoverZoomSrc = res;
             } else {
-                hoverZoom.prepareFromDocument(link, link.attr('href'), function(doc) {
-                    var img = [];
-                    doc.querySelectorAll('script').forEach(script => {
-                        var body = script.innerHTML;
-                        if (!body.startsWith('window._sharedData')) return;
-                        var json = JSON.parse(body.slice(20, -1));
-                        var edges = json.entry_data.PostPage["0"].graphql.shortcode_media.edge_sidecar_to_children.edges;
-                        edges.forEach(edge => img.push([edge.node.display_url]));
-                    });
-                    return img.length > 0 ? img : false;
-                });
+                elem.data().hoverZoomGalleryIndex = 0;
+                elem.data().hoverZoomGallerySrc = [res];
             }
+            elem.addClass('hoverZoomLink');
+            hoverZoom.displayPicFromElement(elem);
         });
-    }
+    },
 });
