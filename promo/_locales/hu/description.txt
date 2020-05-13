@@ -1,4 +1,4 @@
-Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
+Nagyíts fel képeket és videókat a weboldalakon (Facebook, Amazon stb.). Csak vidd rá az egered a képre hogy felnagyítsd.
 
 Vidd az egeret bármilyen kép fölé a támogatott webhelyeken és a bővitmény automatikusan fel fogja nagyítani a teljes méretére, ügyelve arra hogy illeszkedik a böngésző ablakához.
 
