@@ -1,7 +1,7 @@
 {
     "name": "__MSG_extName__",
     "short_name": "__MSG_extShortName__",
-    "version": "1.0.143",
+    "version": "1.0.144",
     "description": "__MSG_extDescription__",
     "homepage_url": "https://github.com/extesy/hoverzoom/",
     "author": "Oleg Anashkin",
@@ -872,7 +872,7 @@
         },
         {
             "js": ["plugins/boardgamegeek.js"],
-            "matches": ["*://*.boardgamegeek.com/*"]
+            "matches": ["*://*.boardgamegeek.com/*", "*://*.rpggeek.com/*", "*://*.videogamegeek.com/*"]
         },
         {
             "js": ["plugins/e621.js"],
