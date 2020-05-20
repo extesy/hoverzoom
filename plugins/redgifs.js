@@ -6,7 +6,7 @@ hoverZoomPlugins.push({
             var link = $(this),
                 gfyId = this.href.replace(/.*redgifs.com\/(..\/)?(watch\/)?(detail\/)?(\w+).*/, '$4');
 
-            $.get('https://api.gfycat.com/v1/gfycats/' + gfyId, function (data) {
+            $.get('https://api.redgifs.com/v1/gfycats/' + gfyId, function (data) {
                 if (data && data.gfyItem) {
                     link.data().hoverZoomSrc = [options.zoomVideos ? data.gfyItem.webmUrl : data.gfyItem.gifUrl]
                     link.addClass('hoverZoomLink');
