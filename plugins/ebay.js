@@ -1,14 +1,21 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'eBay',
-    version:'0.4',
+    version:'0.5',
     prepareImgLinks:function (callback) {
         var res = [];
         var appId = 'RomainVa-3007-4951-b943-aaedf0d9af84';
         var requestUrlBase = 'http://open.api.ebay.com/shopping?appid=' + appId + '&version=687&siteid=0&callname=GetMultipleItems&responseencoding=JSON&ItemID=';
         var itemIndex = 0;
         var hzItems = [], itemIds = [];
-        //var cachePrefix = 'cache_eBayItem_' + (options.showHighRes ? 'hi' : 'lo') + '_';
+
+        hoverZoom.urlReplace(res,
+            'img[src]',
+            /\/s-l\d+\./,
+            '/s-l1600.'
+        );
+
+        callback($(res), this.name);
 
         function getIdFromURL(url) {
             if (!url) {
@@ -33,6 +40,7 @@ hoverZoomPlugins.push({
                 hzItems.push(item);
             }
         });
+        
         $('a img[src*="i.ebayimg.com"], a img[src*="thumbs.ebaystatic.com"]').each(function () {
             var img = $(this);
             var item = { thumb: this, id: '' },
@@ -43,25 +51,7 @@ hoverZoomPlugins.push({
                 hzItems.push(item);
             }
         });
-
-        // Check if some urls were stored
-        //for (var i = 0; i < hzItems.length; i++) {
-        //    var storedItem = localStorage[cachePrefix + hzItems[i].id];
-        //    if (storedItem) {
-        //        storedItem = JSON.parse(storedItem);
-        //        var thumb = $(hzItems[i].thumb), data = thumb.data();
-        //        data.hoverZoomSrc = [storedItem.pictureUrl];
-        //        data.hoverZoomCaption = storedItem.title;
-        //        res.push(thumb);
-        //        hzItems.splice(i, 1);
-        //        i--;
-        //    }
-        //}
-        //if (res.length > 0) {
-        //    callback($(res));
-        //    res = [];
-        //}
-
+        
         // Then we make calls to the eBay API to get details on the items
         // using the IDs we found
         function getItems() {
@@ -71,20 +61,19 @@ hoverZoomPlugins.push({
             var itemBunch = itemIds.slice(itemIndex, indexEnd);
             itemIndex = indexEnd;
             var requestUrl = requestUrlBase + itemBunch.join(',');
-            //console.log('requestUrl: ' + requestUrl);
-
+           
             // Ajax calls are made through the background page (not possible from a content script)
             chrome.runtime.sendMessage({action:'ajaxGet', url:requestUrl}, function (data) {
-                //console.log(data);
+                
                 var getMultipleItemsResponse = JSON.parse(data);
                 if (getMultipleItemsResponse.Errors)
                     return;
                 for (var i = 0; i < getMultipleItemsResponse.Item.length; i++) {
                     var item = getMultipleItemsResponse.Item[i];
-                    //console.log(item);
+                    
                     for (var j = 0; j < hzItems.length; j++) {
                         if (hzItems[j].id == item.ItemID && item.PictureURL && item.PictureURL.length > 0) {
-                            var thumb = $(hzItems[j].thumb), data = thumb.data();//, url = item.PictureURL[0].replace(/~~(\d+)?_\d+\./, '~~$1_32.');
+                            var thumb = $(hzItems[j].thumb), data = thumb.data();
                             if (item.PictureURL.length == 1) {
                                 var url = item.PictureURL[0];
                                 data.hoverZoomSrc = [url];
@@ -98,7 +87,7 @@ hoverZoomPlugins.push({
                                     data.hoverZoomGalleryCaption.push(item.Title);
                                 }
                             }
-                            //console.log(thumb);
+                            
                             res.push(thumb);
 
                             // Items are stored to lessen API calls
@@ -106,7 +95,7 @@ hoverZoomPlugins.push({
                         }
                     }
                 }
-                callback($(res));
+                callback($(res), this.name);
                 res = [];
                 if (itemIndex < itemIds.length) {
                     // Continue with the next 20 items
