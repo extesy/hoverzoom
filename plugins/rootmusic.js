@@ -1,6 +1,6 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'beautify.it',
+    name:'RootMusic',
     version:'0.1',
     prepareImgLinks:function (callback) {
         var res = [];

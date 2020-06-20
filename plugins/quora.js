@@ -1,6 +1,6 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'Weasyl',
+    name:'Quora',
     prepareImgLinks:function (callback) {
         var res = [],
             imgs = qsa('img[master_src]');
