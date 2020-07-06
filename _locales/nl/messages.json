@@ -8,7 +8,7 @@
         "description": "Short extension name"
     },
     "extDescription": {
-        "message": "Zoom in op afbeeldingen/videos op al je favoriete websites (Facebook etc). Plaats je muis op een afbeelding om het te vergroten.",
+        "message": "Zoom foto's/video' s op al uw favoriete websites (Facebook, Amazon, enz.). Beweeg uw muis over de afbeelding om deze te vergroten.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
     "extUpdated": {
@@ -32,7 +32,7 @@
         "description": "[popup] Enables the extension for a specific site"
     },
     "popPreloadImages": {
-        "message": "Voor laden van gezoomde afbeeldingen",
+        "message": "Voorladen van gezoomde afbeeldingen",
         "description": "[popup] Preload zoomed images"
     },
     "popPreloadingImages": {
@@ -56,7 +56,7 @@
         "description": "[options] Reset button label"
     },
     "optSaved": {
-        "message": "Opties opgeslagen. Sommige instellingen zijn van kracht na vernieuwing van pagina.",
+        "message": "Opties opgeslagen. Sommige instellingen vereisen mogelijk een pagina-vernieuwing.",
         "description": "[options] Notification after saving options"
     },
     "optPageGeneral": {
@@ -160,7 +160,7 @@
         "description": "[options] Zoom videos (WebM, MP4) option"
     },
     "optZoomVideosTooltip": {
-        "message": "Zoom videos (WebM, MP4)",
+        "message": "Zoom video's (WebM, MP4)",
         "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
     },
     "optVideoPositionStep": {
@@ -192,7 +192,7 @@
         "description": "[options] Tooltip for video length countdown on videos"
     },
     "optVideoVolume": {
-        "message": "Audio Volume voor ongedempte video's:",
+        "message": "Geluidsvolume voor ongedempte video's:",
         "description": "[options] Audio volume for unmuted videos option"
     },
     "optVideoVolumeUnitName": {
@@ -220,19 +220,19 @@
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optFrameBackgroundColor": {
-        "message": "Frame background color:",
+        "message": "Lijst achtergrondkleur:",
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
-        "message": "Background color for the frame the image appears in",
+        "message": "Achtergrondkleur voor de lijst waarin de afbeelding wordt weergegeven",
         "description": "[options] Tooltip for frame background color option"
     },
     "optFrameBackgroundColorChooseText": {
-        "message": "Select",
+        "message": "Selecteren",
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
-        "message": "Cancel",
+        "message": "Annuleren",
         "description": "[options] Frame background color button - Cancel"
     },
     "optSectionDelays": {
