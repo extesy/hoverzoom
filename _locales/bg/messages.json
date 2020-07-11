@@ -164,7 +164,7 @@
         "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
     },
     "optVideoPositionStep": {
-        "message": "Use prev/next action keys (or mousewheel) to change video position by",
+        "message": "Употреба на клавиши напред/назад (или колелцето на мишката) за промяна на позицията на видео от",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
@@ -220,7 +220,7 @@
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optFrameBackgroundColor": {
-        "message": "Frame background color:",
+        "message": "Фонов цвят на рамката:",
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
