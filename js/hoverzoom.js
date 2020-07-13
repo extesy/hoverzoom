@@ -926,12 +926,14 @@ var hoverZoom = {
                         heightAttr = parseInt(this.getAttribute('height') || this.style.height || this.style.maxHeight || img.css('height') || img.css('max-height')),
                         hzDownscaled = $('<img id="hzDownscaled" style="position: absolute; top: -10000px;">').appendTo(document.body);
 
+                    // skip img if displayed size is above 300 x 300 px
                     if (widthAttr > 300 || heightAttr > 300) {
                         return;
                     }
 
                     hzDownscaled.on('load',function () {
                         setTimeout(function () {
+                            // skip img if displayed size * 1.8 > natural size
                             if (hzDownscaled.height() > heightAttr * 1.8 || hzDownscaled.width() > widthAttr * 1.8) {
                                 var srcs = img.data().hoverZoomSrc || [];
                                 srcs.unshift(img.attr('src'));
