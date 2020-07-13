@@ -20,7 +20,7 @@
         "description": "[popup] Disable the extension"
     },
     "popAllowPerSiteToggle": {
-        "message": "Allow per-site extension configuration",
+        "message": "Позволяване на конфигуриране на всеки сайт поотделно",
         "description": "[popup] Allow per-site extension configuration"
     },
     "popDisableForSite": {
@@ -92,7 +92,7 @@
         "description": "[options] Adjust the position of the caption"
     },
     "optCaptionLocationTooltip": {
-        "message": "View the caption above/below the image, or not at all",
+        "message": "Показване на надписа над/под изображение, или без показването му въобще",
         "description": "[options] Tooltip for adjusting the position of the caption"
     },
     "optCaptionLocationAbove": {
@@ -164,7 +164,7 @@
         "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
     },
     "optVideoPositionStep": {
-        "message": "Use prev/next action keys (or mousewheel) to change video position by",
+        "message": "Употреба на клавиши напред/назад (или колелцето на мишката) за промяна на позицията на видео от",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
@@ -220,7 +220,7 @@
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optFrameBackgroundColor": {
-        "message": "Frame background color:",
+        "message": "Фонов цвят на рамката:",
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
@@ -320,7 +320,7 @@
         "description": "[options] Add viewed pictures to the browser's history option"
     },
     "optFilterNSFW": {
-        "message": "Exclude NSFW images (Reddit only)",
+        "message": "Изключване на изображения NSFW (само за сайта Reddit)",
         "description": "[options] Exclude NSFW images (Reddit only) option"
     },
     "optAlwaysPreload": {
