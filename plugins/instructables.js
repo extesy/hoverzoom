@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Instructables',
-    version:'0.2',
+    version:'0.3',
     prepareImgLinks:function (callback) {
         var res = [];
 
@@ -10,13 +10,22 @@ hoverZoomPlugins.push({
         //https://cdn.instructables.com/ORIG/FLZ/S0HR/JZJ0TDDE/FLZS0HRJZJ0TDDE.jpg?crop=1%3A1&width=48 -> https://cdn.instructables.com/ORIG/FLZ/S0HR/JZJ0TDDE/FLZS0HRJZJ0TDDE.jpg
 
         // deal with lazy-loading using data-src
-        $('img[data-src]').each(function() {
+        $('img[src], img[data-src]').each(function() {
 
             var link = $(this);
             link = $(link);
 
             var re = /(((?:.*?)(?:\/[A-Z\d]+){1,}\.).*?(bmp|gifv?|jpe?g|png|svg|webp)).*/
-            var m = this.dataset.src.match(re);
+            var m;
+
+            if (this.dataset.src) {
+                m = this.dataset.src.match(re);
+            }
+
+            if (m == undefined && this.src) {
+                m = this.src.match(re);
+            }
+
             if (m) {
                 var backupUrl = m[1]; // original url without resize, to be tried iff fullsizeUrl does not exist
                 var fullsizeUrl = m[2] + m[3];
