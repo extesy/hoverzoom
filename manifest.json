@@ -1252,6 +1252,10 @@
         {
             "js": ["plugins/hiptest.js"],
             "matches": ["*://app.hiptest.com/*"]
+        },
+        {
+            "js": ["plugins/safebooru.js"],
+            "matches": ["*://*.safebooru.org/*"]
         }
    ]
 }
