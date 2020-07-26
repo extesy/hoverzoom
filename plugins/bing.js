@@ -1,35 +1,37 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Bing',
+    version:'0.2',
     prepareImgLinks:function (callback) {
-        var currSrc;
 
-        $('a[m*="murl"]').one('mousemove', function() {
+        var res = [];
+
+        $('a[m]').each(function () {
             var link = $(this),
-                m = this.getAttribute('m'),
-                m1 = m.replace(/([{|,])([a-zA-Z0-9]+)\:/g,'$1"$2":'),
+                m = this.getAttribute('m') || '',
+                m1 = m.replace(/([{|,])([a-zA-Z0-9]+)\:/g, '$1"$2":'),
                 m2 = $.parseJSON(m1);
-            url = m2.murl;
-            link.data().hoverZoomSrc = [url];
-            link.data().hoverZoomCaption = this.getAttribute('t1');
-            link.addClass('hoverZoomLink');
-            link.mousemove(function() {
-                currSrc = $(this).data().hoverZoomSrc;
-            });
-            // Trying to suppress default zoom effect. Maybe later.
-            //var parent = link.parents('div.iuscp');
-            //parent.attr('data-hovstyle', parent.attr('style'));
-            //link.attr('data-hovstyle', link.attr('style'));
-            //link.attr('data-nmstyle', link.attr('style'));
-        });
-
-        $('.mimg').on('mouseenter', function() {
-            var img = $(this);
-            if (currSrc) {
-                img.data().hoverZoomSrc = currSrc;
-                img.addClass('hoverZoomLink');
-                img.data().hoverZoomCaption = img.find('alt').text();
+            var url = m2.murl;
+            if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
+            if (url && link.data().hoverZoomSrc.indexOf(url) == -1) {
+                link.data().hoverZoomSrc.unshift(url);
+                if (m2.t) { link.data().hoverZoomCaption = m2.t }
+                link.data().href = m2.purl;
+                res.push(link);
             }
         });
+
+        $('a[href*="mediaurl"]:not([m])').each(function () {
+            var link = $(this);
+            var url = this.href.replace(/.*mediaurl=(.*?)&.*/, '$1');
+            url = decodeURIComponent(url);
+            if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
+            if (url && link.data().hoverZoomSrc.indexOf(url) == -1) {
+                link.data().hoverZoomSrc.unshift(url);
+                res.push(link);
+            }
+        });
+
+        callback($(res));
     }
 });
