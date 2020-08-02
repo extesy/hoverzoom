@@ -208,7 +208,7 @@
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Créer un halo subtile similaire à la technologie Ambilight de Phillips.",
+        "message": "Créer un halo subtile similaire à la technologie Ambilight de Philips.",
         "description": "[options] Tooltip for enable ambient light behind images option"
     },
     "optCenterImages": {
@@ -220,19 +220,19 @@
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optFrameBackgroundColor": {
-        "message": "Frame background color:",
+        "message": "Couleur du cadre:",
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
-        "message": "Background color for the frame the image appears in",
+        "message": "Couleur du cadre dans lequel l'image zoomée est affichée",
         "description": "[options] Tooltip for frame background color option"
     },
     "optFrameBackgroundColorChooseText": {
-        "message": "Select",
+        "message": "Valider",
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
-        "message": "Cancel",
+        "message": "Annuler",
         "description": "[options] Frame background color button - Cancel"
     },
     "optSectionDelays": {
