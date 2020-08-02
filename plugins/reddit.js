@@ -58,7 +58,7 @@ hoverZoomPlugins.push({
             function (xml) {
               try {
                 var xmlDoc = (new DOMParser()).parseFromString(xml, 'application/xml');
-                var highestRes = [].slice.call(xmlDoc.querySelectorAll('Representation[mimeType^="video"]'))
+                var highestRes = [].slice.call(xmlDoc.querySelectorAll('Representation[frameRate]'))
                   .sort(function (r1, r2) {
                     var w1 = parseInt(r1.getAttribute('width')), w2 = parseInt(r2.getAttribute('width'));
                     return w1 > w2 ? -1 : (w1 < w2 ? 1 : 0);
@@ -69,7 +69,7 @@ hoverZoomPlugins.push({
                   img.data('hoverZoomSrc', [link + '/' + highestRes.querySelector('BaseURL').textContent.trim()]);
                 }
 
-                var audio = xmlDoc.querySelector('Representation[mimeType^="audio"'),
+                var audio = xmlDoc.querySelector('Representation[audioSamplingRate]'),
                   audioUrl = audio ? audio.querySelector('BaseURL') : undefined;
                 if (audioUrl) {
                   img.data('hoverZoomAudioSrc', [link + '/' + audioUrl.textContent.trim()]);

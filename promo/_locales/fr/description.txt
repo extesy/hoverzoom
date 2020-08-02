@@ -1,3 +1,4 @@
+
 Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
 
 Passez votre souris sur n'importe quelle image dans un site pris en charge et cette extension agrandira automatiquement l'image vers sa taille réelle, en s'assurant qu'elle entre correctement dans la fenêtre.
