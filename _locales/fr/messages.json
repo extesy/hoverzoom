@@ -208,7 +208,7 @@
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Créer un halo subtile similaire à la technologie Ambilight de Philips.",
+        "message": "Créer un halo subtile similaire à la technologie Ambilight de Philips",
         "description": "[options] Tooltip for enable ambient light behind images option"
     },
     "optCenterImages": {
