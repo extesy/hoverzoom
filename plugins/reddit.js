@@ -40,6 +40,20 @@ hoverZoomPlugins.push({
       });
     });
 
+    $('div[data-url*="//www.reddit.com/gallery/"]').each(function () {
+      var post = $(this);
+      var galleryid = post.attr('data-url').slice(-6);
+      $.get('https://www.reddit.com/by_id/t3_' + galleryid + '.json?raw_json=1', function (data) {
+        if (data && data.data) {
+          post.find('a.thumbnail,a.title').each(function () {
+            var img = $(this);
+            var src = data.data.children[0].data.gallery_data.items.map(item => ['https://i.redd.it/' + item.media_id + '.jpg']);
+            hoverZoom.prepareLink(img, src);
+          });
+        }
+      });
+    });
+
     $('div[data-url*="//v.redd.it/"]').each(function () {
       var post = $(this);
       var link = post.attr('data-url');

@@ -1,6 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'NewEgg',
+    version:'0.2',
     prepareImgLinks:function (callback) {
         var res = [];
         hoverZoom.urlReplace(res,
@@ -14,9 +15,14 @@ hoverZoomPlugins.push({
             '/P800/'
         );
         hoverZoom.urlReplace(res,
-            'img[src*="ProductImageCompress"]',
-            /NeweggImage\/ProductImageCompress.*\//,
-            'productimage/'
+            'img[src]',
+            '/ProductImage/',
+            '/ProductImage1280/'
+        );
+        hoverZoom.urlReplace(res,
+            'img[src]',
+            /\/ProductImageCompressAll.*\//,
+            '/ProductImageCompressAll1280/'
         );
         callback($(res));
     }

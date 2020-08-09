@@ -8,11 +8,11 @@
         "description": "Short extension name"
     },
     "extDescription": {
-        "message": "Amplia imágenes y vídeos en tus sitios preferidos (Facebook, Amazon, etc.). Solo coloca el cursor sobre la imagen para ampliarla.",
+        "message": "Amplia imágenes y vídeos en tus sitios preferidos (Facebook, Amazon, etc.). Basta con colocar el cursor sobre la imagen para ampliarla.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
     "extUpdated": {
-        "message": "Hover Zoom+ Ha sido actualizado",
+        "message": "Hover Zoom+ ha sido actualizado",
         "description": "Extension update notification"
     },
     "popDisableForAllSites": {
@@ -32,7 +32,7 @@
         "description": "[popup] Enables the extension for a specific site"
     },
     "popPreloadImages": {
-        "message": "Pre-cargar imagenes enfocadas",
+        "message": "Pre-cargar imágenes enfocadas",
         "description": "[popup] Preload zoomed images"
     },
     "popPreloadingImages": {
@@ -208,7 +208,7 @@
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Crear un sutil efecto de brillo similar a la de Phillips tecnología Ambilight.",
+        "message": "Crear un sutil efecto de brillo similar a la de Philips tecnología Ambilight.",
         "description": "[options] Tooltip for enable ambient light behind images option"
     },
     "optCenterImages": {
@@ -220,19 +220,19 @@
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optFrameBackgroundColor": {
-        "message": "Frame background color:",
+        "message": "Color de la bordura:",
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
-        "message": "Background color for the frame the image appears in",
+        "message": "Color de la bordura adonde la imagen ampliada se visualiza",
         "description": "[options] Tooltip for frame background color option"
     },
     "optFrameBackgroundColorChooseText": {
-        "message": "Select",
+        "message": "Validar",
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
-        "message": "Cancel",
+        "message": "Cancelar",
         "description": "[options] Frame background color button - Cancel"
     },
     "optSectionDelays": {
@@ -324,7 +324,7 @@
         "description": "[options] Exclude NSFW images (Reddit only) option"
     },
     "optAlwaysPreload": {
-        "message": "Precargar automaticamente las imagenes con zoom",
+        "message": "Precargar automaticamente las imágenes con zoom",
         "description": "[options] Automatically preload zoomed images option"
     },
     "optEnableGalleries": {

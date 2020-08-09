@@ -1,7 +1,7 @@
 {
     "name": "__MSG_extName__",
     "short_name": "__MSG_extShortName__",
-    "version": "1.0.149",
+    "version": "1.0.151",
     "description": "__MSG_extDescription__",
     "homepage_url": "https://github.com/extesy/hoverzoom/",
     "author": "Oleg Anashkin",
@@ -888,7 +888,8 @@
         },
         {
             "js": ["plugins/bing.js"],
-            "matches": ["*://*.bing.com/*"]
+            "matches": ["*://*.bing.com/*"],
+            "all_frames": true
         },
         {
             "js": ["plugins/xuite.js"],
@@ -1252,6 +1253,10 @@
         {
             "js": ["plugins/hiptest.js"],
             "matches": ["*://app.hiptest.com/*"]
+        },
+        {
+            "js": ["plugins/safebooru.js"],
+            "matches": ["*://*.safebooru.org/*"]
         }
    ]
 }
