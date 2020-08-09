@@ -8,7 +8,7 @@
         "description": "Short extension name"
     },
     "extDescription": {
-        "message": "Amplia imágenes y vídeos en tus sitios preferidos (Facebook, Amazon, etc.). Basta con colocar el cursor sobre la imagen para ampliarla.",
+        "message": "Amplia imágenes y vídeos en tus sitios preferidos (Facebook, Amazon, etc.). Solo coloca el cursor sobre la imagen para ampliarla.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
     "extUpdated": {
@@ -208,7 +208,7 @@
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Crear un sutil efecto de brillo similar a la de Philips tecnología Ambilight.",
+        "message": "Crear un sutil efecto de brillo similar a la de Philips tecnología Ambilight",
         "description": "[options] Tooltip for enable ambient light behind images option"
     },
     "optCenterImages": {
