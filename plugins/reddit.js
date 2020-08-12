@@ -47,7 +47,9 @@ hoverZoomPlugins.push({
         if (data && data.data) {
           post.find('a.thumbnail,a.title').each(function () {
             var img = $(this);
-            var src = data.data.children[0].data.gallery_data.items.map(item => ['https://i.redd.it/' + item.media_id + '.jpg']);
+            var items = data.data.children[0].data.gallery_data.items;
+            var media_metadata = data.data.children[0].data.media_metadata;
+            var src = items.map(item => ['https://i.redd.it/' + item.media_id + '.' + media_metadata[item.media_id].m.substring(6)]);
             hoverZoom.prepareLink(img, src);
           });
         }
