@@ -74,7 +74,8 @@
                 "plugins/vine_a.js",
                 "plugins/twitter_a.js",
                 "plugins/clippituser_a.js",
-                "plugins/cloudapp_a.js"
+                "plugins/cloudapp_a.js",
+                "plugins/google_a.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
