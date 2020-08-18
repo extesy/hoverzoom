@@ -79,10 +79,32 @@
                                 </label></li>
                             </div>
                             <div class="ttip" data-i18n-tooltip="optEnableAmbilightTooltip">
-                                <li class="field"><label class="checkbox" for="chkAmbilightEnabled">
-                                    <input type="checkbox" id="chkAmbilightEnabled"><span></span>
-                                    <div style="display:inline" data-i18n="optEnableAmbilight"></div>
-                                </label></li>
+                                <li class="field" style="margin-bottom:0px;">
+                                    <label class="checkbox" for="chkAmbilightEnabled" style="margin-bottom:0px;">
+                                        <input type="checkbox" id="chkAmbilightEnabled"><span></span>
+                                        <div style="display:inline" data-i18n="optEnableAmbilight"></div>
+                                    </label>
+                                </li>
+                            </div>
+                            <div id="divAmbilight" style="display:flex">
+                                <div class="ttip" data-i18n-tooltip="optAmbilightHaloSizeTooltip">
+                                    <div class="append field" style="margin-left:22px">
+                                        <label class="inline" for="txtAmbilightHaloSize">
+                                            <div style="display:inline" data-i18n="optAmbilightHaloSize"></div>
+                                            <input class="xnarrow input" type="range" name="points" min="0" max="100" step="1" id="rngAmbilightHaloSize" style="width:100px">
+                                            <input class="xnarrow text input" type="text" id="txtAmbilightHaloSize" style="width:50px"><span class="adjoined" data-i18n="optAmbilightHaloSizeUnitName"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optAmbilightBackgroundOpacityTooltip">
+                                    <div class="append field" style="margin-left:22px">
+                                        <label class="inline" for="txtAmbilightBackgroundOpacity">
+                                            <div style="display:inline" data-i18n="optAmbilightBackgroundOpacity"></div>
+                                            <input class="xnarrow input" type="range" name="points" min="0" max="100" step="1" id="rngAmbilightBackgroundOpacity" style="width:100px">
+                                            <input class="xnarrow text input" type="text" id="txtAmbilightBackgroundOpacity" style="width:50px"><span class="adjoined" data-i18n="optAmbilightBackgroundOpacityUnitName"></span>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="ttip" data-i18n-tooltip="optCenterImagesTooltip">
                                 <li class="field"><label class="checkbox" for="chkCenterImages">

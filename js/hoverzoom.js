@@ -263,12 +263,22 @@ var hoverZoom = {
                 window.setTimeout(updateAmbilight, 20);
                 return;
             }
+            let width = imgFullSize.width();
+            let height = imgFullSize.height();
+            let blur = options.ambilightHaloSize * 100;
+            let scale = 1 + options.ambilightHaloSize;
+            let scaleW = scale;
+            let scaleH = scale;
+            if (height > width) { scaleH = scale; scaleW = (width + height * (scale - 1)) / width; }
+            if (height < width) { scaleW = scale; scaleH = (height + width * (scale - 1)) / height;  }
 
-            var width = imgFullSize.width(), height = imgFullSize.height(), min = Math.min(width, height), blur = Math.max(10, min/10), scale = Math.max(1.2, 2/Math.log10(min));
-            $(canvas).attr('width', width).attr('height', height)
-                .css('padding', 4*scale*blur + 'px').css('margin-top', -4*scale*blur + 'px').css('margin-left', -4*scale*blur + 'px')
-                .css('-webkit-filter', 'blur(' + Math.blur + 'px)')
-                .css('transform', 'scale(' + scale + ')');
+            $(canvas).attr('width', width)
+                     .attr('height', height)
+                     .css('padding', 4 * scale * blur + 'px')
+                     .css('margin-top', -4 * scale * blur + 'px')
+                     .css('margin-left', -4 * scale * blur + 'px')
+                     .css('-webkit-filter', 'blur(' + blur + 'px)')
+                     .css('transform', 'scale(' + scaleW + ',' + scaleH + ')');
             var ctx = canvas.getContext('2d');
             ctx.drawImage(imgFullSize.get(0), 0, 0, width, height);
 
@@ -609,9 +619,23 @@ var hoverZoom = {
                 hz.hzImg.css('border', '0px');
                 hz.hzImg.css('padding', '0px');
                 hz.hzImg.css('box-shadow', 'none');
-                var background = $('<div style="position: fixed; z-index: -2; top: 0; left: 0; opacity: 0.8; background-color: black; pointer-events: none" />').width(screen.availWidth).height(screen.availHeight);
+                var background = $('<div/>');
+                $(background).css('width', 2 * screen.availWidth)
+                             .css('height', 2 * screen.availHeight)
+                             .css('position', 'fixed')
+                             .css('z-index', -2)
+                             .css('top', 0)
+                             .css('left', 0)
+                             .css('pointer-events', 'none')
+                             .css('background-color', 'black')
+                             .css('opacity', options.ambilightBackgroundOpacity);
                 background.appendTo(hz.hzImg);
-                var canvas = $('<canvas style="position: absolute; z-index: -1; transform: scale(1.2); -webkit-filter: blur(50px); opacity: 1; pointer-events: none"></canvas>');
+
+                var canvas = $('<canvas/>');
+                $(canvas).css('position', 'absolute')
+                         .css('z-index', -1)
+                         .css('pointer-events', 'none')
+                         .css('opacity', 1);
                 canvas.appendTo(hz.hzImg);
             }
 

@@ -86,6 +86,8 @@ function saveOptions() {
     options.displayDelayVideo = getMilliseconds($('#txtDisplayDelayVideo'));
     options.fadeDuration = getMilliseconds($('#txtFadeDuration'));
     options.ambilightEnabled = $('#chkAmbilightEnabled')[0].checked;
+    options.ambilightHaloSize = $('#txtAmbilightHaloSize')[0].value / 100;
+    options.ambilightBackgroundOpacity = $('#txtAmbilightBackgroundOpacity')[0].value / 100;
     options.centerImages = $('#chkCenterImages')[0].checked;
     options.frameBackgroundColor = $('#pickerFrameBackgroundColor')[0].value;
 
@@ -130,8 +132,8 @@ function restoreOptions() {
     $('#txtVideoPositionStep')[0].value = options.videoPositionStep;
     $('#chkMuteVideos')[0].checked = options.muteVideos;
     $('#chkVideoTimestamp')[0].checked = options.videoTimestamp;
-    $('#rngVideoVolume').val(options.videoVolume * 100);
-    $('#txtVideoVolume').val(options.videoVolume * 100);
+    $('#rngVideoVolume').val(parseInt(options.videoVolume * 100));
+    $('#txtVideoVolume').val(parseInt(options.videoVolume * 100));
     $('#chkMouseUnderlap')[0].checked = options.mouseUnderlap;
     $('#chkPageActionEnabled')[0].checked = options.pageActionEnabled;
     $('#chkShowWhileLoading')[0].checked = options.showWhileLoading;
@@ -142,6 +144,10 @@ function restoreOptions() {
     $('#txtDisplayDelayVideo').val((options.displayDelayVideo || 0) / 1000);
     $('#txtFadeDuration').val((options.fadeDuration || 0) / 1000);
     $('#chkAmbilightEnabled')[0].checked = options.ambilightEnabled;
+    $('#rngAmbilightHaloSize').val(parseInt(options.ambilightHaloSize * 100));
+    $('#txtAmbilightHaloSize').val(parseInt(options.ambilightHaloSize * 100));
+    $('#rngAmbilightBackgroundOpacity').val(parseInt(options.ambilightBackgroundOpacity * 100));
+    $('#txtAmbilightBackgroundOpacity').val(parseInt(options.ambilightBackgroundOpacity * 100));
     $('#chkCenterImages')[0].checked = options.centerImages;
     $('#pickerFrameBackgroundColor').val(options.frameBackgroundColor);
     $('#selectCaptionLocation').val(options.captionLocation);
@@ -150,6 +156,12 @@ function restoreOptions() {
         initColorPicker('#ffffff');
     } else {
         initColorPicker(options.frameBackgroundColor);
+    }
+    
+    if (options.ambilightEnabled) {
+        $('#divAmbilight').removeClass('disabled');
+    } else {
+        $('#divAmbilight').addClass('disabled');
     }
 
     $('#chkWhiteListMode')[0].checked = options.whiteListMode;
@@ -168,7 +180,7 @@ function restoreOptions() {
 
     $('#chkAlwaysPreload')[0].checked = options.alwaysPreload;
     $('#chkEnableGalleries')[0].checked = options.enableGalleries;
-    $('#txtPicturesOpacity').val(options.picturesOpacity * 100);
+    $('#txtPicturesOpacity').val(parseInt(options.picturesOpacity * 100));
 
     $('input:checked').trigger('gumby.check');
     return false;
@@ -234,16 +246,48 @@ function initAddToHistory() {
     });
 }
 
-function percentageOnChange() {
-    var value = parseInt(this.value);
+function percentageOnChange(val) {
+    let value = parseInt(typeof val == 'string' ? val : this.value);
     if (isNaN(value)) value = 100;
-    if (value < 1) value = 1;
+    if (value <= 0) value = 0;
     if (value > 100) value = 100;
     this.value = value;
+    return this.value;
+}
+
+function updateDivAmbilight() {
+    if ($('#chkAmbilightEnabled')[0].checked) {
+        $('#divAmbilight').removeClass('disabled');
+    } else {
+        $('#divAmbilight').addClass('disabled');
+    }
+}
+
+function updateTxtAmbilightBackgroundOpacity() {
+    $('#txtAmbilightBackgroundOpacity')[0].value = this.value;
+}
+
+function updateRngAmbilightBackgroundOpacity() {
+    this.value = percentageOnChange(this.value);
+    $('#rngAmbilightBackgroundOpacity').val(this.value);
+}
+
+function updateTxtAmbilightHaloSize() {
+    $('#txtAmbilightHaloSize')[0].value = this.value;
+}
+
+function updateRngAmbilightHaloSize() {
+    this.value = percentageOnChange(this.value);
+    $('#rngAmbilightHaloSize').val(this.value);
 }
 
 function updateTxtVideoVolume() {
     $('#txtVideoVolume')[0].value = this.value;
+}
+
+function updateRngVideoVolume() {
+    this.value = percentageOnChange(this.value);
+    $('#rngVideoVolume').val(this.value);
 }
 
 function onMessage(message, sender, callback) {
@@ -322,7 +366,12 @@ $(function () {
     $('#txtZoomFactor').change(percentageOnChange);
     $('#txtPicturesOpacity').change(percentageOnChange);
     $('#rngVideoVolume').on('input change', updateTxtVideoVolume);
-    $('#txtVideoVolume').change(percentageOnChange);
+    $('#txtVideoVolume').change(updateRngVideoVolume);
+    $('#chkAmbilightEnabled').parent().on('gumby.onChange', updateDivAmbilight);
+    $('#rngAmbilightHaloSize').on('input change', updateTxtAmbilightHaloSize);
+    $('#txtAmbilightHaloSize').change(updateRngAmbilightHaloSize);
+    $('#rngAmbilightBackgroundOpacity').on('input change', updateTxtAmbilightBackgroundOpacity);
+    $('#txtAmbilightBackgroundOpacity').change(updateRngAmbilightBackgroundOpacity);
     $('#txtVideoPositionStep').change(percentageOnChange);
     $('.actionKey').change(selKeyOnChange);
     $('#btnAddExcludedSite').click(btnAddExcludedSiteOnClick);
