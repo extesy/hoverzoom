@@ -31,6 +31,8 @@ function loadOptions() {
     options.filterNSFW = options.hasOwnProperty('filterNSFW') ? options.filterNSFW : false;
     options.enableGalleries = options.hasOwnProperty('enableGalleries') ? options.enableGalleries : true;
     options.ambilightEnabled = options.hasOwnProperty('ambilightEnabled') ? options.ambilightEnabled : false;
+    options.ambilightHaloSize = options.hasOwnProperty('ambilightHaloSize') ? options.ambilightHaloSize : 0.1;
+    options.ambilightBackgroundOpacity = options.hasOwnProperty('ambilightBackgroundOpacity') ? options.ambilightBackgroundOpacity : 0.9;
     options.disabledPlugins = options.hasOwnProperty('disabledPlugins') ? options.disabledPlugins : [];
     options.centerImages = options.hasOwnProperty('centerImages') ? options.centerImages : false;
     options.frameBackgroundColor = options.hasOwnProperty('frameBackgroundColor') ? options.frameBackgroundColor : "#ffffff";
