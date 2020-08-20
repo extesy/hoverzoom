@@ -211,6 +211,30 @@
         "message": "Crear un sutil efecto de brillo similar a la de Philips tecnología Ambilight",
         "description": "[options] Tooltip for enable ambient light behind images option"
     },
+    "optAmbilightHaloSize": {
+        "message": "Tamaño del brillo :",
+        "description": "[options] Size of halo option"
+    },
+    "optAmbilightHaloSizeUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for halo size"
+    },
+    "optAmbilightHaloSizeTooltip": {
+        "message": "Tamaño del brillo alrededor de la imagen engrandecida (0% : no hay halo)",
+        "description": "[options] Tooltip for size of halo"
+    },
+    "optAmbilightBackgroundOpacity": {
+        "message": "Opacidad de fondo :",
+        "description": "[options] Background opacity option"
+    },
+    "optAmbilightBackgroundOpacityUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for background opacity"
+    },
+    "optAmbilightBackgroundOpacityTooltip": {
+        "message": "0% : transparente, 100% : negro",
+        "description": "[options] Tooltip for background opacity"
+    },
     "optCenterImages": {
         "message": "Centrar imágenes",
         "description": "[options] Center images in the middle of the page option"
