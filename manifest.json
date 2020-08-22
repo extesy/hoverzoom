@@ -351,13 +351,22 @@
             "js": ["plugins/amazon.js"],
             "matches": [
                 "*://*.amazon.com/*",
+                "*://*.amazon.com.au/*",
+                "*://*.amazon.com.br/*",
+                "*://*.amazon.com.mx/*",
+                "*://*.amazon.com.tr/*",
+                "*://*.amazon.ae/*",
                 "*://*.amazon.ca/*",
                 "*://*.amazon.cn/*",
-                "*://*.amazon.fr/*",
                 "*://*.amazon.de/*",
+                "*://*.amazon.es/*",
+                "*://*.amazon.fr/*",
                 "*://*.amazon.co.jp/*",
                 "*://*.amazon.co.uk/*",
                 "*://*.amazon.in/*",
+                "*://*.amazon.it/*",
+                "*://*.amazon.nl/*",
+                "*://*.amazon.sg/*",
                 "*://*.gizmodo.jp/*"
             ]
         },
