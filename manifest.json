@@ -1351,6 +1351,35 @@
         {
             "js": ["plugins/publicdomainpictures.js"],
             "matches": ["*://*.publicdomainpictures.net/*"]
+        },
+        {
+            "js": ["plugins/avopix.js"],
+            "matches": ["*://*.avopix.com/*",
+                        "*://*.avopix.com.au/*",
+                        "*://*.avopix.be/*",
+                        "*://*.avopix.ca/*",
+                        "*://*.avopix.co.cz/*",
+                        "*://*.avopix.de/*",
+                        "*://*.avopix.dk/*",
+                        "*://*.avopix.es/*",
+                        "*://*.avopix.fr/*",
+                        "*://*.avopix.in/*",
+                        "*://*.avopix.ie/*",
+                        "*://*.avopix.it/*",
+                        "*://*.avopix.nl/*",
+                        "*://*.avopix.co.nz/*",
+                        "*://*.avopix.no/*",
+                        "*://*.avopix.at/*",
+                        "*://*.avopix.ru/*",
+                        "*://*.avopix.com.pl/*",
+                        "*://*.avopix.pt/*",
+                        "*://*.avopix.ch/*",
+                        "*://*.avopix.fi/*",
+                        "*://*.avopix.se/*",
+                        "*://*.avopix.ae/*",
+                        "*://*.avopix.co.uk/*",
+                        "*://*.avopix.cn/*",
+                        "*://*.avopix.co.jp/*"]
         }
    ]
 }
