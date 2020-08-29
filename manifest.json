@@ -1380,6 +1380,10 @@
                         "*://*.avopix.co.uk/*",
                         "*://*.avopix.cn/*",
                         "*://*.avopix.co.jp/*"]
+        },
+        {
+            "js": ["plugins/bakashots.js"],
+            "matches": ["*://*.bakashots.me/*"]
         }
    ]
 }
