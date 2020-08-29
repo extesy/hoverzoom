@@ -1347,6 +1347,10 @@
         {
             "js": ["plugins/booking.js"],
             "matches": ["*://*.booking.com/*"]
+        },
+        {
+            "js": ["plugins/publicdomainpictures.js"],
+            "matches": ["*://*.publicdomainpictures.net/*"]
         }
    ]
 }
