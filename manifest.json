@@ -1388,6 +1388,10 @@
         {
             "js": ["plugins/fanart.js"],
             "matches": ["*://*.fanart.tv/*"]
+        },
+        {
+            "js": ["plugins/fotki.js"],
+            "matches": ["*://*.fotki.com/*"]
         }
    ]
 }
