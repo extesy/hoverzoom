@@ -1384,6 +1384,10 @@
         {
             "js": ["plugins/bakashots.js"],
             "matches": ["*://*.bakashots.me/*"]
+        },
+        {
+            "js": ["plugins/fanart.js"],
+            "matches": ["*://*.fanart.tv/*"]
         }
    ]
 }
