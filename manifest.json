@@ -1392,6 +1392,10 @@
         {
             "js": ["plugins/fotki.js"],
             "matches": ["*://*.fotki.com/*"]
+        },
+        {
+            "js": ["plugins/free_images.js"],
+            "matches": ["*://*.free-images.com/*"]
         }
    ]
 }
