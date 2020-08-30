@@ -1396,6 +1396,10 @@
         {
             "js": ["plugins/free_images.js"],
             "matches": ["*://*.free-images.com/*"]
+        },
+        {
+            "js": ["plugins/galerie-sakura.js"],
+            "matches": ["*://*.galerie-sakura.com/*"]
         }
    ]
 }
