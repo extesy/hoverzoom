@@ -1,14 +1,16 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Imagefap',
-    version:'0.1',
+    version:'0.2',
     prepareImgLinks:function (callback) {
         var res = [];
+        
         hoverZoom.urlReplace(res,
             'img[src*="/images/"]',
-            /(thumb|mini)/,
-            'full'
+            /(.*)\/images\/(thumb|mini)\/(.*)/,
+            '//x.fap.to/images/full/$3'
         );
-        callback($(res));
+        
+        callback($(res), this.name);
     }
 });
