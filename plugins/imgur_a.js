@@ -1,6 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Imgur',
+    version:'1.1',
     prepareImgLinks:function (callback) {
 
         var res = [];
@@ -32,8 +33,7 @@ hoverZoomPlugins.push({
                 return;
             }
 
-            var hrefNoAnchor = href.indexOf('#') > 0 ? href.substr(0, href.indexOf('#')) : href;
-            if (options.zoomVideos && (hrefNoAnchor.substr(-3) === 'gif' || hrefNoAnchor.substr(-4) === 'gifv')) {
+            if (options.zoomVideos && (href.substr(-3) == 'gif' || href.substr(-4) == 'gifv')) {
                 data.hoverZoomSrc = [href.replace(/\.gifv?/, '.mp4'), href.replace(/\.gifv?/, '.webm'), href];
                 res.push(link);
             } else {
@@ -88,7 +88,7 @@ hoverZoomPlugins.push({
                                                 data.hoverZoomGalleryIndex = index;
                                         }
                                     });
-                                    callback($([link]));
+                                    callback($([link]), this.name);
                                 }
                             }).fail(function(jqXHR) {
                                 if (jqXHR.status === 429) {
@@ -120,8 +120,39 @@ hoverZoomPlugins.push({
             $('a[href*="/gallery/"]').each(prepareImgLink);
         }
 
+        $('[style]').each(function() {
+
+            // extract url from style
+            // ex: backgroundImage = url("http://site.net/image.png")
+            var backgroundImage = this.style.backgroundImage;
+            if (backgroundImage.indexOf("url") != -1 && backgroundImage.indexOf("imgur") != -1) {
+                var reUrl = /.*url\s*\(\s*(.*)\s*\).*/i
+                backgroundImage = backgroundImage.replace(reUrl, '$1');
+                // remove leading & trailing quotes
+                var backgroundImageUrl = backgroundImage.replace(/^['"]/,"").replace(/['"]+$/,"");
+                // check if url is a thumbnail url
+                //ex: "//i.imgur.com/N8hBuw7b.jpg"
+                var reThumb = /(.*imgur.*\/.*)b\./i
+                var fullsizeUrl = backgroundImageUrl.replace(reThumb, '$1.').replace('_d.', '.');
+                if (fullsizeUrl != backgroundImageUrl) {
+                    var link = $(this);
+                    if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
+                    if (link.data().hoverZoomSrc.indexOf(fullsizeUrl) == -1) {
+                        link.data().hoverZoomSrc.unshift(fullsizeUrl);
+                        res.push(link);
+                    }
+                }
+            }
+        });
+
+        hoverZoom.urlReplace(res,
+            'img[src]',
+            '_d.',
+            '.'
+        );
+
         if (res.length) {
-            callback($(res));
+            callback($(res), this.name);
         }
     }
 
