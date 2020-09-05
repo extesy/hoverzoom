@@ -1400,6 +1400,15 @@
         {
             "js": ["plugins/galerie-sakura.js"],
             "matches": ["*://*.galerie-sakura.com/*"]
+        },
+        {
+            "js": ["plugins/lostfilm.js"],
+            "matches": ["*://*.lostfilm.info/*"]
+        },
+        {
+            "js": ["plugins/lostfilmtv.js"],
+            "matches": ["*://*.lostfilm.tv/*",
+                        "*://*.lostfilm.run/*"]
         }
    ]
 }
