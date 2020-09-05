@@ -1409,6 +1409,10 @@
             "js": ["plugins/lostfilmtv.js"],
             "matches": ["*://*.lostfilm.tv/*",
                         "*://*.lostfilm.run/*"]
+        },
+        {
+            "js": ["plugins/meetup.js"],
+            "matches": ["*://*.meetup.com/*"]
         }
    ]
 }
