@@ -1413,6 +1413,10 @@
         {
             "js": ["plugins/meetup.js"],
             "matches": ["*://*.meetup.com/*"]
+        },
+        {
+            "js": ["plugins/nasa.js"],
+            "matches": ["*://*.nasa.gov/*"]
         }
    ]
 }
