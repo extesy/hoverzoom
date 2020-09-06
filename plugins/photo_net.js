@@ -1,15 +1,22 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'photo.net',
-    version:'0.1',
+    version:'0.2',
     prepareImgLinks:function (callback) {
-        var res = [];   
-    
+        var res = [];
+
         hoverZoom.urlReplace(res,
-            'img[src*="photo.net"]',
-            ['thumbs.', '-sm', '-md'],
-            ['gallery.', '-lg', '-lg']
+            'img[src]',
+            ['thumbs.', '-sm', '-md', '-lg'],
+            ['gallery.', '-orig', '-orig', '-orig']
         );
-        callback($(res));
+
+        hoverZoom.urlReplace(res,
+            'img[src]',
+            /\?.*$/,
+            ''
+        );
+
+        callback($(res), this.name);
     }
 });
