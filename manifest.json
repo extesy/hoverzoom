@@ -1425,6 +1425,10 @@
         {
             "js": ["plugins/photoforum.js"],
             "matches": ["*://*.photoforum.ru/*"]
+        },
+        {
+            "js": ["plugins/photo-forum.js"],
+            "matches": ["*://*.photo-forum.net/*"]
         }
    ]
 }
