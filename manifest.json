@@ -1417,6 +1417,10 @@
         {
             "js": ["plugins/nasa.js"],
             "matches": ["*://*.nasa.gov/*"]
+        },
+        {
+            "js": ["plugins/photoblink.js"],
+            "matches": ["*://*.photoblink.com/*"]
         }
    ]
 }
