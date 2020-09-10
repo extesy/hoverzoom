@@ -1433,6 +1433,10 @@
         {
             "js": ["plugins/photographysites.js"],
             "matches": ["*://*.photographysites.com/*"]
+        },
+        {
+            "js": ["plugins/photopost.js"],
+            "matches": ["*://*.photopost.cz/*"]
         }
    ]
 }
