@@ -1437,6 +1437,10 @@
         {
             "js": ["plugins/photopost.js"],
             "matches": ["*://*.photopost.cz/*"]
+        },
+        {
+            "js": ["plugins/photosight.js"],
+            "matches": ["*://*.photosight.ru/*"]
         }
    ]
 }
