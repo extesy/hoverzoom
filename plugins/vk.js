@@ -1,110 +1,90 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'VK.com',
-    version:'0.1',
+    version:'1.2',
     prepareImgLinks:function (callback) {
 
-        function prepareFromPhotoId(link, photoId, listId) {
-            if (!listId) {
-                listId = 'photos' + photoId.match(/(\d+)_/)[1];
-            }
-            chrome.runtime.sendMessage({action:'ajaxRequest',
-                    url:'http://vk.com/al_photos.php',
-                    method:'POST',
-                    data:'al=1&act=show&photo=' + photoId + '&list=' + listId,
-                    headers:[
-                        {header:'Content-Type', value:'application/x-www-form-urlencoded'},
-                        {header:'X-Requested-With', value:'XMLHttpRequest'}
-                    ]},
-                function (response) {
-                    var photos;
+        var res = [];
+        var link;
+
+        //parse onclick function bodys in order to extract alternative images urls
+        function findUrl(id) {
+
+            $('a[data-photo-id=' + id + ']').each(function () {
+                var onclick = this.getAttribute('onclick') || "";
+                var index1 = onclick.indexOf('{');
+                var index2 = onclick.lastIndexOf('}');
+                var json = onclick.substring(index1, index2 + 1);
+                if (json) {
                     try {
-                        photos = JSON.parse(response.match(/<!json>(.*?)<!>/)[1]);
-                    } catch (e) {
-                        return;
-                    }
-                    for (var i in photos) {
-                        if (photos[i].id == photoId) {
-                            link.data().hoverZoomSrc = [photos[i].x_src];
-                            link.addClass('hoverZoomLink');
-                        } else {
-                            // in case the request fetched details on another photo on the page
-                            var otherLink = $('a[href^="/photo' + photos[i].id + '"]');
-                            if (otherLink.length > 0) {
-                                otherLink.addClass('hoverZoomLink');
-                                otherLink.data().hoverZoomSrc = [photos[i].x_src];
-                            }
-                        }
-                    }
-                    if (!link.data().hoverZoomMouseLeft) {
-                        hoverZoom.displayPicFromElement(link);
-                    }
-                });
+                        j = JSON.parse(json);
+                        if (j.base == undefined || j.base == "") { jj = j.temp; }
+                        else { jj = j.base; }
+                        /*base = j.base;
+                        x = "";
+                        x_ = j.x_;
+                        if (x_) { x = x_[0]; if (x) { if (!x.startsWith('http')) { if (base) { x = base + x }} }}
+                        y = "";
+                        y_ = j.y_;
+                        if (y_) { y = y_[0]; if (y) { if (!y.startsWith('http')) { if (base) { y = base + y }} }}
+                        z = "";
+                        z_ = j.z_;
+                        if (z_) { z = z_[0]; if (z) { if (!z.startsWith('http')) { if (base) { z = base + z }} }}
+                        w = "";
+                        w_ = j.w_;
+                        if (w_) { w = w_[0]; if (w) { if (!w.startsWith('http')) { if (base) { w = base + w }} }}*/
+                        var url = "";
+                        if (jj.w) url = jj.w;
+                        else if (jj.z) url = jj.z;
+                        else if (jj.y) url = jj.y;
+                        else if (jj.x) url = jj.x;
+
+                        link.data().hoverZoomSrc = [url];
+                        res.push(link);
+                        return false;
+
+                    } catch(e) {}
+                }
+
+            });
         }
 
-        $('a[href^="/photo"]').mouseenter(function () {
-            var link = $(this), data = link.data();
-            if (data.hoverZoomSrc || link.parents('#pv_box').length > 0) {
-                return;
-            }
-            if (this.onclick) {
-                var onclick = this.onclick.toString();
-                if (onclick.indexOf('x_src:') > -1) {
-                    data.hoverZoomSrc = [onclick.match(/x_src\s*:\s*"([^"]*)"/)[1]];
-                    link.addClass('hoverZoomLink');
-                }
-            }
-            if (data.hoverZoomSrc || data.hoverZoomRequested) {
-                return;
-            }
-            data.hoverZoomRequested = true;
-            var listId, photoId = this.href.match(/\/photo(-?\d+_\d+).*/)[1];
-            if (this.href.indexOf('tag=') > -1) {
-                listId = 'tag' + this.href.match(/tag=(\d+)/)[1];
-            }
-            prepareFromPhotoId(link, photoId, listId);
-        }).mouseleave(function () {
-            $(this).data().hoverZoomMouseLeft = true;
-        });
-
-        $('a[onclick*="showPhoto"]').filter(function () {
-            return !this.hasAttribute("href");
-        }).mouseenter(function () {
-            var link = $(this), data = link.data();
-            if (data.hoverZoomSrc || data.hoverZoomRequested || link.parents('#pv_box').length > 0) {
-                return;
-            }
-            var matches = link.attr('onclick').match(/'(-?\d+_\d+)',\s*'(.+)'/);
-            var photoId = matches[1], listId = matches[2];
-            data.hoverZoomRequested = true;
-            prepareFromPhotoId(link, photoId, listId);
-        }).mouseleave(function () {
-            $(this).data().hoverZoomMouseLeft = true;
-        });
-
-        $('img[src*="/u"]').filter(function () {
-            return this.src.match(/\/u\d+\/[ed]_/);
-        }).mouseenter(function () {
-            var img = $(this), data = img.data();
-            if (data.hoverZoomRequested || data.hoverZoomSrc) {
-                return;
-            }
-            data.hoverZoomRequested = true;
-            var userId = this.src.match(/\/u(\d+)\//)[1];
-            chrome.runtime.sendMessage({action:'ajaxGet', url:'http://vk.com/al_profile.php?al=1&act=get_profile_photos&offset=0&skip_one=0&id=' + userId}, function (response) {
-                var photos;
+        $('a[onclick*=showPhoto]').each(function () {
+            var link = $(this), onclick = this.getAttribute('onclick');
+            var url = "";
+            //parse onclick function body in order to extract alternative images urls
+            var index1 = onclick.indexOf('{');
+            var index2 = onclick.lastIndexOf('}');
+            var json = onclick.substring(index1, index2 + 1);
+            if (json) {
                 try {
-                    photos = JSON.parse(response.match(/<!json>(.*)$/)[1]);
-                } catch (e) {
-                    return;
-                }
-                if (photos.length) {
-                    prepareFromPhotoId(img, photos[0][1].match(/\/photo(\d+_\d+)/)[1], '');
-                }
-            });
-        }).mouseleave(function () {
-            $(this).data().hoverZoomMouseLeft = true;
+                    j = JSON.parse(json);
+                    if (j.base == undefined || j.base == "") { jj = j.temp; }
+                    else { jj = j.base; }
+                    /*base = j.base;
+                    x = "";
+                    x_ = j.x_;
+                    if (x_) { x = x_[0]; if (x) { if (!x.startsWith('http')) { if (base) { x = base + x }} }}
+                    y = "";
+                    y_ = j.y_;
+                    if (y_) { y = y_[0]; if (y) { if (!y.startsWith('http')) { if (base) { y = base + y }} }}
+                    z = "";
+                    z_ = j.z_;
+                    if (z_) { z = z_[0]; if (z) { if (!z.startsWith('http')) { if (base) { z = base + z }} }}
+                    w = "";
+                    w_ = j.w_;
+                    if (w_) { w = w_[0]; if (w) { if (!w.startsWith('http')) { if (base) { w = base + w }} }}*/
+                    if (jj.w) url = jj.w;
+                    else if (jj.z) url = jj.z;
+                    else if (jj.y) url = jj.y;
+                    else if (jj.x) url = jj.x;
+
+                    link.data().hoverZoomSrc = [url];
+                    res.push(link);
+                } catch(e) {}
+            }
         });
 
+        callback($(res), this.name);
     }
 });
