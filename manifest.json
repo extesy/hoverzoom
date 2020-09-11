@@ -1445,6 +1445,10 @@
         {
             "js": ["plugins/picturepush.js"],
             "matches": ["*://*.picturepush.com/*"]
+        },
+        {
+            "js": ["plugins/tuchong.js"],
+            "matches": ["*://*.tuchong.com/*"]
         }
    ]
 }
