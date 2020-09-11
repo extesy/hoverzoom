@@ -1,11 +1,29 @@
 # Changelog
 
-## [Unreleased](https://github.com/extesy/hoverzoom/tree/HEAD)
+## [1.0.155](https://github.com/extesy/hoverzoom/tree/1.0.155) (2020-09-11)
 
-[Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.154...HEAD)
+[Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.154...1.0.155)
 
 **Merged pull requests:**
 
+- New plug-in for : WireImage [\#606](https://github.com/extesy/hoverzoom/pull/606) ([GrosPoulet](https://github.com/GrosPoulet))
+- Update for plug-in : WiReD [\#605](https://github.com/extesy/hoverzoom/pull/605) ([GrosPoulet](https://github.com/GrosPoulet))
+- Update for plug-in : Weibo [\#604](https://github.com/extesy/hoverzoom/pull/604) ([GrosPoulet](https://github.com/GrosPoulet))
+- Fix for plug-in : weheartit [\#603](https://github.com/extesy/hoverzoom/pull/603) ([GrosPoulet](https://github.com/GrosPoulet))
+- Update for plug-in : wallhaven.cc [\#602](https://github.com/extesy/hoverzoom/pull/602) ([GrosPoulet](https://github.com/GrosPoulet))
+- Fix for plug-in : VKontakte [\#601](https://github.com/extesy/hoverzoom/pull/601) ([GrosPoulet](https://github.com/GrosPoulet))
+- Update plug-in : Vimeo [\#600](https://github.com/extesy/hoverzoom/pull/600) ([GrosPoulet](https://github.com/GrosPoulet))
+- New plug-in : tuchong.com [\#599](https://github.com/extesy/hoverzoom/pull/599) ([GrosPoulet](https://github.com/GrosPoulet))
+- Update plug-in : Spinchat [\#598](https://github.com/extesy/hoverzoom/pull/598) ([GrosPoulet](https://github.com/GrosPoulet))
+- Update for plug-in : skyrock.com [\#597](https://github.com/extesy/hoverzoom/pull/597) ([GrosPoulet](https://github.com/GrosPoulet))
+- Update for plug-in : pixnet.net [\#596](https://github.com/extesy/hoverzoom/pull/596) ([GrosPoulet](https://github.com/GrosPoulet))
+- New plug-in : picturepush.com [\#595](https://github.com/extesy/hoverzoom/pull/595) ([GrosPoulet](https://github.com/GrosPoulet))
+- New plug-in : photosight.ru [\#594](https://github.com/extesy/hoverzoom/pull/594) ([GrosPoulet](https://github.com/GrosPoulet))
+- New plug-in : photopost.cz [\#593](https://github.com/extesy/hoverzoom/pull/593) ([GrosPoulet](https://github.com/GrosPoulet))
+- New plug-in : photographysites.com [\#592](https://github.com/extesy/hoverzoom/pull/592) ([GrosPoulet](https://github.com/GrosPoulet))
+- New plug-in : photo-forum.net [\#591](https://github.com/extesy/hoverzoom/pull/591) ([GrosPoulet](https://github.com/GrosPoulet))
+- New plug-in : photoforum.ru [\#590](https://github.com/extesy/hoverzoom/pull/590) ([GrosPoulet](https://github.com/GrosPoulet))
+- New plug-in : photoblink.com [\#589](https://github.com/extesy/hoverzoom/pull/589) ([GrosPoulet](https://github.com/GrosPoulet))
 - Update for plug-in : photo.net [\#587](https://github.com/extesy/hoverzoom/pull/587) ([GrosPoulet](https://github.com/GrosPoulet))
 - Update for plug-in : nintendolife.com [\#586](https://github.com/extesy/hoverzoom/pull/586) ([GrosPoulet](https://github.com/GrosPoulet))
 
