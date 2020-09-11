@@ -1449,6 +1449,19 @@
         {
             "js": ["plugins/tuchong.js"],
             "matches": ["*://*.tuchong.com/*"]
+        },
+        {
+            "js": ["plugins/wireimage.js"],
+            "matches": ["*://*.wireimage.com/*",
+                        "*://*.wireimage.com.au/*",
+                        "*://*.wireimage.de/*",
+                        "*://*.wireimage.es/*",
+                        "*://*.wireimage.co.in/*",
+                        "*://*.wireimage.fr/*",
+                        "*://*.wireimage.it/*",
+                        "*://*.wireimage.jp/*",
+                        "*://*.wireimage.com.pt/*",
+                        "*://*.wireimage.se/*"]
         }
    ]
 }
