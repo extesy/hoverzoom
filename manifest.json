@@ -1462,6 +1462,10 @@
                         "*://*.wireimage.jp/*",
                         "*://*.wireimage.com.pt/*",
                         "*://*.wireimage.se/*"]
+        },
+        {
+            "js": ["plugins/wysp.js"],
+            "matches": ["*://*.wysp.ws/*"]
         }
    ]
 }
