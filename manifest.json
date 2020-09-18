@@ -1546,6 +1546,10 @@
         {
             "js": ["plugins/freerangestock.js"],
             "matches": ["*://*.freerangestock.com/*"]
+        },
+        {
+            "js": ["plugins/joemonster.js"],
+            "matches": ["*://*.joemonster.org/*"]
         }
    ]
 }
