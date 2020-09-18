@@ -1542,6 +1542,10 @@
                         "*://*.tripadvisor.se/*",
                         "*://*.tripadvisor.sk/*"
             ]
+        },
+        {
+            "js": ["plugins/freerangestock.js"],
+            "matches": ["*://*.freerangestock.com/*"]
         }
    ]
 }
