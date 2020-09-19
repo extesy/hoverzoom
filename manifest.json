@@ -1550,6 +1550,10 @@
         {
             "js": ["plugins/joemonster.js"],
             "matches": ["*://*.joemonster.org/*"]
+        },
+        {
+            "js": ["plugins/voxmedia.js"],
+            "matches": ["*://*.vox.com/*"]
         }
    ]
 }
