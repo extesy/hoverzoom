@@ -1064,8 +1064,24 @@ var hoverZoom = {
             prepareImgLinksAsync();
         }
 
+        var lastScrollTop = 0;
+        var deltaMin = 1000;
         function bindEvents() {
             wnd.bind('DOMNodeInserted', windowOnDOMNodeInserted).on('load',windowOnLoad).scroll(cancelImageLoading).blur(cancelImageLoading);
+
+            // to deal with lazy loading : prepare imgs links when user scrolls down more than deltaMin pixels, even if no node inserted
+            // for instance, on TripAdvisor:
+            // img's src placeholder is replaced by real img url stored in data-lazyurl as user scrolls down
+            $(document).on('scroll mousewheel', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+                if (scrollTop < lastScrollTop) {
+                    lastScrollTop = scrollTop < 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+                } else if (scrollTop > lastScrollTop + deltaMin) {
+                    lastScrollTop = scrollTop < 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+                    prepareImgLinksAsync();
+                }
+            });
+
             $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).keydown(documentOnKeyDown).keyup(documentOnKeyUp).mouseleave(cancelImageLoading);
             if (options.galleriesMouseWheel) {
                 window.addEventListener('wheel', documentOnMouseWheel, {passive: false});
