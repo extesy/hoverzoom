@@ -82,13 +82,14 @@ hoverZoomPlugins.push({
                   .find(function (repr) { return !!repr.querySelector('BaseURL'); });
 
                 if (highestRes) {
-                  img.data('hoverZoomSrc', [link + '/' + highestRes.querySelector('BaseURL').textContent.trim()]);
+                  var baseUrl = highestRes.querySelector('BaseURL').textContent.trim();
+                  img.data('hoverZoomSrc', [baseUrl.indexOf('//') !== -1 ? baseUrl : link + '/' + baseUrl]);
                 }
 
                 var audio = xmlDoc.querySelector('Representation[audioSamplingRate]'),
-                  audioUrl = audio ? audio.querySelector('BaseURL') : undefined;
+                  audioUrl = audio ? audio.querySelector('BaseURL').textContent.trim() : undefined;
                 if (audioUrl) {
-                  img.data('hoverZoomAudioSrc', [link + '/' + audioUrl.textContent.trim()]);
+                  img.data('hoverZoomAudioSrc', [audioUrl.indexOf('//') !== -1 ? audioUrl : link + '/' + audioUrl]);
                 }
 
                 resolve(img);
