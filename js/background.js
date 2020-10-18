@@ -2,16 +2,23 @@
 
 // Performs an ajax request
 function ajaxRequest(request, callback) {
+
     var xhr = new XMLHttpRequest();
+    var response = request.response;
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
-                callback(xhr.responseText);
+                if (response === 'URL') {
+                    callback(xhr.responseURL);
+                }
+                else {
+                    callback(xhr.responseText);
+                }
             } else {
                 callback(null);
             }
         }
-    };
+    }
     xhr.open(request.method, request.url, true);
     for (var i in request.headers) {
         xhr.setRequestHeader(request.headers[i].header, request.headers[i].value);
@@ -33,7 +40,7 @@ function onMessage(message, sender, callback) {
                 }
             });
         case 'ajaxGet':
-            ajaxRequest({url: message.url, method: 'GET'}, callback);
+            ajaxRequest({url:message.url, response:message.response, method:'GET'}, callback);
             return true;
         case 'ajaxRequest':
             ajaxRequest(message, callback);

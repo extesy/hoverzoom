@@ -76,7 +76,8 @@
                 "plugins/clippituser_a.js",
                 "plugins/cloudapp_a.js",
                 "plugins/google_a.js",
-                "plugins/bing_a.js"
+                "plugins/bing_a.js",
+                "plugins/facebook_a.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
