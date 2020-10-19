@@ -33,6 +33,33 @@ hoverZoomPlugins.push({
                     hoverZoom.displayPicFromElement(link);
                 });
         });
+        
+        // New in 2020, I guess: <img> tags with "srcset" attribute.
+        // The "src" attribute is empty.
+        $('img[srcset*="media.tumblr.com/"]').one('mouseenter', function () {
+            var img = $(this), link = img.parents('a:eq(0)'),
+                link = link.length ? link : img,
+                data = link.data();
+            if (data.hoverZoomSrc) {
+                return;
+            }
+
+            // If this image is also a link to a post, don't extract the image.
+            // Let the code that handles links to posts extract /all/ images in the post.
+            // This can happen when hovering over the three previews in a user profile popup.
+            var href = link.attr("href");
+            if (href && href.includes("tumblr.com/post/")) {
+                return;
+            }
+            
+            // The "srcset" attribute contains the available versions of the image,
+            // in the format "url1 size1, url2 size2, urlN sizeN", sorted by size, largest last.
+            var srcset = img.attr('srcset').split(" ");
+            
+            link.data().hoverZoomSrc = [srcset[srcset.length - 2]];
+            link.addClass('hoverZoomLink');
+            hoverZoom.displayPicFromElement(link);
+        });
         hoverZoom.urlReplace(res,
             'a[href*="tumblr.com/photo/"]',
             '',
