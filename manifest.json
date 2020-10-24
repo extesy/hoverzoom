@@ -1603,6 +1603,10 @@
         {
             "js": ["plugins/voxmedia.js"],
             "matches": ["*://*.vox.com/*"]
+        },
+        {
+            "js": ["plugins/goodreads.js"],
+            "matches": ["*://*.goodreads.com/*"]
         }
    ]
 }
