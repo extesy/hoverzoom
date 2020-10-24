@@ -1,6 +1,26 @@
 # Changelog
 
-## [1.0.157](https://github.com/extesy/hoverzoom/tree/1.0.157) (2020-09-30)
+## [1.0.158](https://github.com/extesy/hoverzoom/tree/1.0.158) (2020-10-24)
+
+[Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.157...1.0.158)
+
+**Implemented enhancements:**
+
+- Fix for lazy-loading [\#621](https://github.com/extesy/hoverzoom/pull/621) ([GrosPoulet](https://github.com/GrosPoulet))
+
+**Closed issues:**
+
+- Hovering no longer does anything after recent Tumblr changes [\#496](https://github.com/extesy/hoverzoom/issues/496)
+
+**Merged pull requests:**
+
+- New plugin: Goodreads [\#628](https://github.com/extesy/hoverzoom/pull/628) ([dubhater](https://github.com/dubhater))
+- Twitter: Fix loading profile images [\#626](https://github.com/extesy/hoverzoom/pull/626) ([dubhater](https://github.com/dubhater))
+- New Crowdin updates [\#625](https://github.com/extesy/hoverzoom/pull/625) ([extesy](https://github.com/extesy))
+- Update Tumblr plugin [\#623](https://github.com/extesy/hoverzoom/pull/623) ([dubhater](https://github.com/dubhater))
+- Fix plug-in for Facebook new design [\#622](https://github.com/extesy/hoverzoom/pull/622) ([GrosPoulet](https://github.com/GrosPoulet))
+
+## [1.0.157](https://github.com/extesy/hoverzoom/tree/1.0.157) (2020-10-01)
 
 [Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.156...1.0.157)
 
@@ -50,6 +70,7 @@
 - New plug-in : photoforum.ru [\#590](https://github.com/extesy/hoverzoom/pull/590) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in : photoblink.com [\#589](https://github.com/extesy/hoverzoom/pull/589) ([GrosPoulet](https://github.com/GrosPoulet))
 - Update for plug-in : photo.net [\#587](https://github.com/extesy/hoverzoom/pull/587) ([GrosPoulet](https://github.com/GrosPoulet))
+- Update for plug-in : nintendolife.com [\#586](https://github.com/extesy/hoverzoom/pull/586) ([GrosPoulet](https://github.com/GrosPoulet))
 
 ## [1.0.154](https://github.com/extesy/hoverzoom/tree/1.0.154) (2020-09-06)
 
@@ -68,7 +89,6 @@
 
 **Merged pull requests:**
 
-- Update for plug-in : nintendolife.com [\#586](https://github.com/extesy/hoverzoom/pull/586) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in : nasa.gov [\#585](https://github.com/extesy/hoverzoom/pull/585) ([GrosPoulet](https://github.com/GrosPoulet))
 - Update for plug-in : MetMuseum [\#584](https://github.com/extesy/hoverzoom/pull/584) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in : meetup [\#583](https://github.com/extesy/hoverzoom/pull/583) ([GrosPoulet](https://github.com/GrosPoulet))
