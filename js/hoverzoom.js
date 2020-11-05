@@ -13,15 +13,15 @@ var hoverZoom = {
     currentLink:null,
     hzImg:null,
     hzImgCss:{
-        'border':'1px solid #e3e3e3',
-        'line-height':0,
+        'border':'4px solid rgba(255, 255, 0, 1)',
+        'line-height':'0px',
         'overflow':'hidden',
-        'padding':'2px',
-        'margin':0,
+        'padding':'0px',
+        'margin':'4px',
         'position':'absolute',
         'z-index':2147483647,
-        'border-radius':'3px',
-        'box-shadow':'3px 3px 9px 5px rgba(0,0,0,0.33)'
+        'border-radius':'4px',
+        'box-shadow':'0px 1px 3px rgba(0, 0, 0, 0.4)'
     },
     imgLoading:null,
     pageGenerator:'',
@@ -86,14 +86,21 @@ var hoverZoom = {
                 'background-repeat':'no-repeat'
             },
             hzCaptionCss = {
+                'opacity':'1',
                 'font':'menu',
                 'font-size':'11px',
                 'font-weight':'bold',
-                'color':'#333',
+                'color': '#333',
                 'text-align':'center',
-                'max-height':'27px',
+                'height':'auto',
+                'max-height':'40px',
                 'overflow':'hidden',
-                'vertical-align':'top'
+                'display': '-webkit-box',
+                '-webkit-line-clamp': '2',
+                '-webkit-box-orient': 'vertical',
+                'vertical-align':'top',
+                'padding-top':'2px',
+                'padding-bottom':'2px'
             },
             hzGalleryInfoCss = {
                 'position':'absolute',
@@ -115,39 +122,45 @@ var hoverZoom = {
             'www.redditmedia.com'
         ];
 
-        // Calculate optimal image position and size
+        // calculate optimal image position and size
         function posImg(position) {
+
             if (!imgFullSize) {
                 return;
             }
 
+            // because of iframes, we should use parent window (= main window) for positioning and sizing
             if (position === undefined || position.top === undefined || position.left === undefined) {
                 position = {top:mousePos.top, left:mousePos.left};
             }
 
             var offset = 20,
                 padding = 10,
-                statusBarHeight = 15,
-                wndWidth = window.innerWidth,
-                wndHeight = window.innerHeight,
-                wndScrollLeft = (document.documentElement && document.documentElement.scrollLeft) || document.body.scrollLeft,
-                wndScrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop,
+                zoom = window.devicePixelRatio || 1.0,
+                scrollBarHeight = (hasScrollbarH() ? 17 / zoom : 0),
+                statusBarHeight = 30 / zoom,
+                scrollBarWidth = 17 / zoom,
+                wndWidth = innerWidth,
+                wndHeight = innerHeight,
+                bodyStyleLeft = Math.abs(parseInt(document.body.style.left) || 0),
+                bodyStyleTop = Math.abs(parseInt(document.body.style.top) || 0),
+                bodyScrollLeft = document.body.scrollLeft,
+                bodyScrollTop = document.body.scrollTop,
+                docStyleLeft = (document.documentElement ? (Math.abs(parseInt(document.documentElement.style.left) || 0)) : 0),
+                docStyleTop = (document.documentElement ? (Math.abs(parseInt(document.documentElement.style.top) || 0)) : 0),
+                docScrollLeft = (document.documentElement ? document.documentElement.scrollLeft : 0),
+                docScrollTop = (document.documentElement ? document.documentElement.scrollTop : 0),
+                wndScrollLeft = Math.max(bodyStyleLeft, bodyScrollLeft, docStyleLeft, docScrollLeft),
+                wndScrollTop = Math.max(bodyStyleTop, bodyScrollTop, docStyleTop, docScrollTop),
                 bodyWidth = document.body.clientWidth,
                 displayOnRight = (position.left - wndScrollLeft < wndWidth / 2);
 
             function posCaption() {
+
                 if (hzCaption) {
                     hzCaption.css('max-width', imgFullSize.width());
-                    hzCaption.show();
                     if (hzCaption.height() > 20) {
-                        hzCaption.css('font-weight', 'normal');
-                    }
-                    // This is looped 10x max just in case something
-                    // goes wrong, to avoid freezing the process.
-                    var i = 0;
-                    while (hz.hzImg.height() > wndHeight - statusBarHeight && i++ < 10) {
-                        imgFullSize.height(wndHeight - padding - statusBarHeight - hzCaption.height()).width('auto');
-                        hzCaption.css('max-width', imgFullSize.width());
+                        hzCaption.css('font-weight', 'normal'); // do not use bold font when caption is verbose
                     }
                 }
             }
@@ -166,19 +179,18 @@ var hoverZoom = {
             } else {
                 var fullZoom = options.mouseUnderlap || fullZoomKeyDown;
 
-                if (hzCaption) hzCaption.hide();
                 imgFullSize.width('auto').height('auto');
 
-                // Image natural dimensions
+                // image natural dimensions
                 imgDetails.naturalWidth = imgFullSize.width() * options.zoomFactor;
                 imgDetails.naturalHeight = imgFullSize.height() * options.zoomFactor;
                 if (!imgDetails.naturalWidth || !imgDetails.naturalHeight) {
                     return;
                 }
 
-                // Width adjustment
+                // width adjustment
                 if (fullZoom) {
-                    imgFullSize.width(Math.min(imgDetails.naturalWidth, wndWidth - padding + wndScrollLeft));
+                    imgFullSize.width(Math.min(imgDetails.naturalWidth, wndWidth - padding - 2 * scrollBarWidth));
                 } else {
                     if (displayOnRight) {
                         if (imgDetails.naturalWidth + padding > wndWidth - position.left) {
@@ -191,36 +203,36 @@ var hoverZoom = {
                     }
                 }
 
-                // Height adjustment
-                if (hz.hzImg.height() > wndHeight - padding - statusBarHeight) {
-                    imgFullSize.height(wndHeight - padding - statusBarHeight).width('auto');
+                // height adjustment
+                if (hz.hzImg.height() > wndHeight - padding - statusBarHeight - scrollBarHeight - (hzCaption ? hzCaption.height() : 0)) {
+                    imgFullSize.height(wndHeight - padding - statusBarHeight - scrollBarHeight - (hzCaption ? hzCaption.height() : 0)).width('auto');
                 }
 
                 posCaption();
 
                 position.top -= hz.hzImg.height() / 2;
 
-                // Display image on the left side if the mouse is on the right
+                // display image on the left side if the mouse is on the right
                 if (!displayOnRight) {
                     position.left -= hz.hzImg.width() + padding;
                 }
 
-                // Horizontal position adjustment if full zoom
+                // horizontal position adjustment if full zoom
                 if (fullZoom) {
                     if (displayOnRight) {
-                        position.left = Math.min(position.left, wndScrollLeft + wndWidth - hz.hzImg.width() - padding);
+                        position.left = Math.min(position.left, wndScrollLeft + wndWidth - hz.hzImg.width() - padding - 2 * scrollBarWidth);
                     } else {
                         position.left = Math.max(position.left, wndScrollLeft);
                     }
                 }
 
-                // Vertical position adjustments
-                var maxTop = wndScrollTop + wndHeight - hz.hzImg.height() - padding - statusBarHeight;
+                // vertical position adjustments
+                var maxTop = wndScrollTop + wndHeight - hz.hzImg.height() - padding - statusBarHeight - scrollBarHeight;
                 if (position.top > maxTop) {
                     position.top = maxTop;
                 }
-                if (position.top < wndScrollTop) {
-                    position.top = wndScrollTop;
+                if (position.top < wndScrollTop + 0.5 * padding) {
+                    position.top = wndScrollTop + 0.5 * padding;
                 }
 
                 if (options.ambilightEnabled) {
@@ -228,20 +240,47 @@ var hoverZoom = {
                 }
             }
 
-            // This fixes positioning when the body's width is not 100%
-            if (body100pct) {
-                position.left -= (wndWidth - bodyWidth) / 2;
-            }
-
             if (options.centerImages) {
-                hz.hzImg.css('top', (wndHeight / 2 - hz.hzImg.height() / 2) + 'px');
-                hz.hzImg.css('left', (wndWidth / 2 - hz.hzImg.width() / 2) + 'px');
+                hz.hzImg.css('top', (wndHeight / 2 - hz.hzImg.height() / 2 - padding / 2 - statusBarHeight / 2 - scrollBarHeight / 2) + 'px');
+                hz.hzImg.css('left', (wndWidth / 2 - hz.hzImg.width() / 2 - padding / 2 - scrollBarWidth / 2) + 'px');
                 hz.hzImg.css('position', 'fixed');
             } else {
+                // this fixes positioning when the body's width is not 100%
+                if (body100pct) {
+                    position.left -= (wndWidth - bodyWidth) / 2;
+                }
+
+                // check that image is not too much on the left side
+                if (position.left < wndScrollLeft + 0.5 * padding) {
+                    position.left = wndScrollLeft + 0.5 * padding;
+                }
+
+                // check that image is not too much on the right side
+                if (position.left + imgFullSize.width() + 2 * padding > wndScrollLeft + wndWidth) {
+                    position.left = wndScrollLeft + 0.5 * padding;
+                }
+
                 hz.hzImg.css({top:Math.round(position.top), left:Math.round(position.left)});
             }
 
             frameBackgroundColor(options.frameBackgroundColor);
+        }
+
+        // adapted from: https://gist.github.com/numee/1e7a19cd26113323f1ae
+        function hasScrollbarH() {
+            var rootElem = document.documentElement || document.body,
+                overflowStyle;
+
+            if (typeof rootElem.currentStyle !== 'undefined')
+            {
+                overflowStyle = rootElem.currentStyle.overflow;
+            }
+            overflowStyle = overflowStyle || window.getComputedStyle(rootElem, '').overflow;
+
+            var contentOverflows = rootElem.scrollWidth > rootElem.clientWidth;
+            var overflowShown = /(visible|auto)/.test(overflowStyle);
+            var alwaysShowScroll = overflowStyle === 'scroll';
+            return (contentOverflows && overflowShown) || (alwaysShowScroll);
         }
 
         function isVideoLink(url, includeGifs) {
