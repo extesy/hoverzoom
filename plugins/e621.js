@@ -1,14 +1,13 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'e621',
-    version:'0.1',
+    version:'0.2',
     prepareImgLinks:function (callback) {
         var res = [];
-        $('img[src*="data/preview"]').each(function () {
-            var img = $(this),
-                src = img.attr('src');
-            src = src.replace('/preview', '').replace(/jpg$/, '');
-            img.data().hoverZoomSrc = [src + 'jpg', src + 'png', src + 'gif'];
+        $('article[data-file-url]').each(function () {
+            var article = $(this);
+                img = article.find('img');
+            img.data().hoverZoomSrc = [article.attr('data-file-url')];
             res.push(img);
         });
         callback($(res));
