@@ -4,4 +4,4 @@ Vidd az egeret bármilyen kép fölé a támogatott webhelyeken és a bővitmén
 
 Ez egy nyílt forráskódú változata az eredeti HoverZoom bővitménynek, amely most már vírusokkal teli és le lett szedve az áruházból. Ebben a verzióban minden kémprogram el lett távolítva, rengeteg hiba ki lett javítva, új funkciókkal bővült a bővítmény. Nem gyűjt semmilyen statisztikai adatot alapértelmezés szerint. Az egyetlen engedély ami szükséges az a hozzáférés az adatokhoz minden webhelyen (hogy a képeket fel tudja nagyítani), és *opcionális* engedélyek a böngészési előzmények eléréséhez, képek letöltéséhez/mentéséhez vagy az oldal URL-ek eléréséhez az oldalankénti konfigurációhoz.
 
-Néha az oldalak design-t változtatnak. Ha ez megtörténik frissíteni kell a bővítményt. Kérlek jelents bármilyen hibát ha a zoom nem működik a Támogatás oldal használatával, vagy az alábbi webhelyen: https://github.com/extesy/hoverzoom/issues
+Néha az oldalak design-t változtatnak. Ha ez megtörténik frissíteni kell a bővítményt. Kérlek jelents bármilyen hibát ha a nagyítás nem működik a Támogatás oldal használatával, vagy a https://github.com/extesy/hoverzoom/issues oldalon.
