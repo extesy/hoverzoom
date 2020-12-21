@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Facebook',
-    version:'2.0',
+    version:'2.1',
     prepareImgLinks:function (callback) {
 
         var name = this.name;
@@ -9,6 +9,8 @@ hoverZoomPlugins.push({
 
         var doc_id_CometPhotoRootQuery = 3271714669586749; // persisted query ID for CometPhotoRootQuery
         var doc_id_MarketplacePDPContainerQuery = 3423773414366589; // persisted query ID for MarketplacePDPContainerQuery
+        var doc_id_ProfileCometHeaderQuery = 5087453091272318; // persisted query ID for ProfileCometHeaderQuery
+
         var fb_dtsg = undefined;
         var innerHTML = document.documentElement.innerHTML;
         var hookedData = sessionStorage.getItem('hookedData');
@@ -202,6 +204,72 @@ hoverZoomPlugins.push({
             });
         }
 
+        // generate a graphQL request to load detail page containing profile whose id is in argument
+        function loadPageProfile(link, id) {
+            cLog('loadPageProfile');
+
+            if (fb_dtsg == undefined) {
+                fb_dtsg = findFbDtsg();
+            }
+
+            if (fb_dtsg == undefined) return;
+
+            performProfileCometHeaderQuery(link, id);
+        }
+
+        // perform a ProfileCometHeader graphQL query
+        function performProfileCometHeaderQuery(link, id) {
+            cLog('performProfileCometHeaderQuery');
+            let userID = id;
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'text',
+                url: 'https://www.facebook.com/api/graphql',
+                data: 'fb_dtsg=' + fb_dtsg + '&variables={"userID":' + userID + '}&doc_id=' + doc_id_ProfileCometHeaderQuery,
+                success: function (response) { extractProfilePhoto(link, id, response) },
+                error: function (response) { cLog('error: ' + response) }
+            });
+        }
+
+        // parse response looking for uri = fullsize url
+        // sample : "profilePhoto":{"url":"https:\/\/www.facebook.com\/photo.php?fbid=954656828396610&set=a.121176195078015&type=3"
+        function extractProfilePhoto(link, id, data) {
+
+            let url = null;
+            if (data == undefined) return;
+
+            let urlToken = '"profilePhoto":{"url":"';
+            let urlIndex = data.indexOf(urlToken);
+            if (urlIndex == -1) return;
+            urlIndex += urlToken.length;
+            let index2 = data.indexOf('"', urlIndex + 1);
+            url = data.substring(urlIndex, index2 + 1);
+
+            let regexFbid = /fbid=(\d+).*/;
+            let matchesFbid = url.match(regexFbid);
+            let fbid = null;
+            if (matchesFbid) fbid = matchesFbid.length > 1 ? matchesFbid[1] : null;
+
+            let storedUrl = null;
+            // check sessionStorage in case fullsize url was already found
+            if (fbid) {
+                storedUrl = sessionStorage.getItem(fbid);
+                if (storedUrl == null) {
+                    loadPage(link, fbid);
+                } else {
+                    let data = link.data();
+                    if (data.hoverZoomSrc == undefined) {
+                        data.hoverZoomSrc = [];
+                    }
+                    data.hoverZoomSrc.unshift(storedUrl);
+                    res.push(link);
+                    cLog('Facebook photo fullsizeUrl (from sessionStorage): ' + storedUrl);
+                    callback(link, name);
+                }
+            }
+        }
+
         // parse response looking for uri = fullsize url
         // sample : "image":{"uri":"https:\/\/scontent-cdg2-1.xx.fbcdn.net\/v\/t1.0-9\/100913620_10158623488883120_6570526649723387904_o.jpg?_nc_cat=104&_nc_sid=9267fe&_nc_ohc=byYNTvoVKTQAX_gawtT&_nc_ht=scontent-cdg2-1.xx&oh=779b6790fb6d23a4e31ff65db789d460&oe=5F0142AC","height":958,"width":1440}
         // sample : "image":{"height":600,"width":800,"uri":"https://scontent-cdg2-1.xx.fbcdn.net/v/t45.5328-4/120040548_2936650183102715_8176740426141688330_n.jpg?_nc_cat=111&_nc_sid=c48759&_nc_ohc=mdbpc0Ces0cAX88LXhn&_nc_ht=scontent-cdg2-1.xx&oh=9be3e1e4dcc724e8b73b702727df32bd&oe=5FA654D1"}
@@ -256,8 +324,7 @@ hoverZoomPlugins.push({
                 cLog('Facebook user or group id (from profile load): ' + id);
                 let storedUrl = sessionStorage.getItem(id);
                 if (storedUrl == null) {
-                    let requestUrl = 'https://graph.facebook.com/' + id + '/picture?type=large&width=9999';
-                    loadImg(requestUrl, currentLink, id);
+                    loadPageProfile(currentLink, id);
                 } else {
                     let data = currentLink.data();
                     if (data.hoverZoomSrc == undefined) {
@@ -322,10 +389,10 @@ hoverZoomPlugins.push({
                     loadPage(link, imgid);
                 } else if (videoid) {
                     loadPage(link, videoid);
-                } else if (profileid) {
+                } /*else if (profileid) {
                     let requestUrl = 'https://graph.facebook.com/' + profileid + '/picture?type=large&width=9999';
                     loadImg(requestUrl, link, profileid);
-                } else {
+                }*/ else {
                     loadProfile(url, link);
                 }
             } else {
