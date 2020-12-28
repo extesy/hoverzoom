@@ -1462,7 +1462,7 @@ var hoverZoom = {
               headers: new Headers({
                 'Origin': location.origin
               }),
-              mode: 'cors'
+              mode: 'no-cors'
             })
             .then(response => response.blob())
             .then(blob => {
