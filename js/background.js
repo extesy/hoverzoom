@@ -47,8 +47,8 @@ function onMessage(message, sender, callback) {
             return true;
         case 'showPageAction':
             // Firefox url is located at sender.url, copy sender.url to sender.tab.url
-            if(!sender.tab.url && sender.url) 
-              sender.tab.url = sender.url
+            if (!sender.tab.url && sender.url) 
+                sender.tab.url = sender.url
             showPageAction(sender.tab);
             callback();
             return true;
