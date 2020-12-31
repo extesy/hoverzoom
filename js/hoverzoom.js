@@ -83,16 +83,16 @@ var hoverZoom = {
         'box-shadow':'0px 1px 3px rgba(0, 0, 0, 0.4)'
     },
     hzImgLoadingCss:{ // green
-        'border-color':'#9aeb3d',
-        'background-color':'#9aeb3d'
+        'border-color':'#e1ffbf',
+        'background-color':'#e1ffbf'
     },
     hzImgSkippedCss:{ // orange
-        'border-color':'#f2860a',
-        'background-color':'#f2860a'
+        'border-color':'#ffdfbf',
+        'background-color':'#ffdfbf'
     },
     hzImgErrorCss:{ // red
-        'border-color':'#ed0707',
-        'background-color':'#ed0707'
+        'border-color':'#ffbfbf',
+        'background-color':'#ffbfbf'
     },
     pageGenerator:'',
 
@@ -500,7 +500,7 @@ var hoverZoom = {
             }
 
             var src = data[hoverZoomSrcIndex];
-            if (src && src.indexOf('http') !== 0) {
+			if (src && src.indexOf('http:') !== 0 && src.indexOf('https:') !== 0 && src.indexOf('file:') !== 0 && src.indexOf('blob:http:') !== 0 && src.indexOf('blob:https:') !== 0) {
                 if (src.indexOf('//') !== 0) {
                     if (src.indexOf('/') !== 0) {
                         // Image has relative path (doesn't start with '/')
