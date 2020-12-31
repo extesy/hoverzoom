@@ -500,7 +500,7 @@ var hoverZoom = {
             }
 
             var src = data[hoverZoomSrcIndex];
-			if (src && src.indexOf('http:') !== 0 && src.indexOf('https:') !== 0 && src.indexOf('file:') !== 0 && src.indexOf('blob:http:') !== 0 && src.indexOf('blob:https:') !== 0) {
+            if (src && src.indexOf('http:') !== 0 && src.indexOf('https:') !== 0 && src.indexOf('file:') !== 0 && src.indexOf('blob:http:') !== 0 && src.indexOf('blob:https:') !== 0) {
                 if (src.indexOf('//') !== 0) {
                     if (src.indexOf('/') !== 0) {
                         // Image has relative path (doesn't start with '/')
