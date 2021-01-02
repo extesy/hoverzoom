@@ -1439,37 +1439,22 @@ var hoverZoom = {
 
         function openImageInTab(background) {
             chrome.runtime.sendMessage({
-                action:'openViewTab',
-                createData:{
+                action: 'openViewTab',
+                createData: {
                     url:imgDetails.url,
                     active:!background
                 }
             });
         }
 
-        //stackoverflow.com/questions/49474775/chrome-65-blocks-cross-origin-a-download-client-side-workaround-to-force-down
-        function forceDownload(blob, filename) {
-          var a = document.createElement('a');
-          a.download = filename;
-          a.href = blob;
-          a.click();
-        }
-
-        // Current blob size limit is around 500MB for browsers
         function downloadResource(url, filename) {
-          if (!filename) filename = url.split('\\').pop().split('/').pop();
-          fetch(url, {
-              headers: new Headers({
-                'Origin': location.origin
-              }),
-              mode: 'cors'
-            })
-            .then(response => response.blob())
-            .then(blob => {
-              let blobUrl = window.URL.createObjectURL(blob);
-              forceDownload(blobUrl, filename);
-            })
-            .catch(e => console.error(e));
+          if (!filename)
+              filename = url.split('\\').pop().split('/').pop();
+          chrome.runtime.sendMessage({
+              action: 'downloadFile',
+              url: url,
+              filename: filename
+          });
         }
 
         function saveImage() {

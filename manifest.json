@@ -35,6 +35,7 @@
         "unlimitedStorage"
     ],
     "optional_permissions": [
+        "downloads",
         "history",
         "tabs"
     ],
