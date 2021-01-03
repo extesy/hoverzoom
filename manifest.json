@@ -1609,6 +1609,7 @@
             "js": ["plugins/behance.js"],
             "matches": ["*://*.behance.net/*"]
         },
+        {
             "js": ["plugins/goodreads.js"],
             "matches": ["*://*.goodreads.com/*"]
         }

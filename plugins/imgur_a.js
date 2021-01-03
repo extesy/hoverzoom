@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Imgur',
-    version:'1.1',
+    version:'1.2',
     prepareImgLinks:function (callback) {
 
         var res = [];
@@ -149,6 +149,12 @@ hoverZoomPlugins.push({
             'img[src]',
             '_d.',
             '.'
+        );
+
+        hoverZoom.urlReplace(res,
+            'img[src]',
+            /\?s=.*/,
+            ''
         );
 
         if (res.length) {
