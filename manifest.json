@@ -1603,6 +1603,10 @@
         {
             "js": ["plugins/voxmedia.js"],
             "matches": ["*://*.vox.com/*"]
+        },
+        {
+            "js": ["plugins/behance.js"],
+            "matches": ["*://*.behance.net/*"]
         }
    ]
 }
