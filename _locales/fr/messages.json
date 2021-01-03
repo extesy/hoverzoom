@@ -208,8 +208,32 @@
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Créer un halo subtile similaire à la technologie Ambilight de Philips.",
+        "message": "Créer un halo subtile similaire à la technologie Ambilight de Philips",
         "description": "[options] Tooltip for enable ambient light behind images option"
+    },
+    "optAmbilightHaloSize": {
+        "message": "Taille du halo :",
+        "description": "[options] Size of halo option"
+    },
+    "optAmbilightHaloSizeUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for halo size"
+    },
+    "optAmbilightHaloSizeTooltip": {
+        "message": "Taille du halo autour de l'image agrandie (0% : pas de halo)",
+        "description": "[options] Tooltip for size of halo"
+    },
+    "optAmbilightBackgroundOpacity": {
+        "message": "Opacité de l'arrière-plan :",
+        "description": "[options] Background opacity option"
+    },
+    "optAmbilightBackgroundOpacityUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for background opacity"
+    },
+    "optAmbilightBackgroundOpacityTooltip": {
+        "message": "0% : transparent, 100% : noir",
+        "description": "[options] Tooltip for background opacity"
     },
     "optCenterImages": {
         "message": "Centrer les images",

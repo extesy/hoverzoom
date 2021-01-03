@@ -208,8 +208,32 @@
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Hozzon létre egy finom fényhatást, mint a Philips Ambient Technológiá-ban",
+        "message": "Hozzon létre egy finom fényhatást, mint a Philips Ambient technológiában",
         "description": "[options] Tooltip for enable ambient light behind images option"
+    },
+    "optAmbilightHaloSize": {
+        "message": "Halo mérete:",
+        "description": "[options] Size of halo option"
+    },
+    "optAmbilightHaloSizeUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for halo size"
+    },
+    "optAmbilightHaloSizeTooltip": {
+        "message": "Halo mérete a benagyított kép körül (0%: halo letiltása)",
+        "description": "[options] Tooltip for size of halo"
+    },
+    "optAmbilightBackgroundOpacity": {
+        "message": "Háttér átlátszóság:",
+        "description": "[options] Background opacity option"
+    },
+    "optAmbilightBackgroundOpacityUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for background opacity"
+    },
+    "optAmbilightBackgroundOpacityTooltip": {
+        "message": "0%: átlátszó, 100%: fekete",
+        "description": "[options] Tooltip for background opacity"
     },
     "optCenterImages": {
         "message": "Képek elhelyezése az oldal közepén",

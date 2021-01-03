@@ -160,7 +160,7 @@
         "description": "[options] Zoom videos (WebM, MP4) option"
     },
     "optZoomVideosTooltip": {
-        "message": "Zoom videos (WebM, MP4)",
+        "message": "비디오 확대 (WebM, MP4)",
         "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
     },
     "optVideoPositionStep": {
@@ -172,7 +172,7 @@
         "description": "[options] Unit name (seconds) for changing video position option"
     },
     "optVideoPositionStepTooltip": {
-        "message": "Skip video back or forth for this amount of seconds",
+        "message": "이 설정 시간만큼 비디오 시작 혹은 끝 부분을 건너뜁니다.",
         "description": "[options] Tooltip for changing video position option"
     },
     "optMuteVideos": {
@@ -208,8 +208,32 @@
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "필립스 주변광 기술(Phillips Ambilight technology) 과 유사한 효과를 생성합니다.",
+        "message": "Create a subtle glow effect similar to Philips Ambilight technology",
         "description": "[options] Tooltip for enable ambient light behind images option"
+    },
+    "optAmbilightHaloSize": {
+        "message": "Size of halo :",
+        "description": "[options] Size of halo option"
+    },
+    "optAmbilightHaloSizeUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for halo size"
+    },
+    "optAmbilightHaloSizeTooltip": {
+        "message": "Size of halo around zoomed image (0% : no halo)",
+        "description": "[options] Tooltip for size of halo"
+    },
+    "optAmbilightBackgroundOpacity": {
+        "message": "배경 불투명도 :",
+        "description": "[options] Background opacity option"
+    },
+    "optAmbilightBackgroundOpacityUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for background opacity"
+    },
+    "optAmbilightBackgroundOpacityTooltip": {
+        "message": "0% : transparent, 100% : black",
+        "description": "[options] Tooltip for background opacity"
     },
     "optCenterImages": {
         "message": "Center images",

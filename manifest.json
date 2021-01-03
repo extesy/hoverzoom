@@ -1,7 +1,7 @@
 {
     "name": "__MSG_extName__",
     "short_name": "__MSG_extShortName__",
-    "version": "1.0.150",
+    "version": "1.0.162",
     "description": "__MSG_extDescription__",
     "homepage_url": "https://github.com/extesy/hoverzoom/",
     "author": "Oleg Anashkin",
@@ -35,6 +35,7 @@
         "unlimitedStorage"
     ],
     "optional_permissions": [
+        "downloads",
         "history",
         "tabs"
     ],
@@ -1607,6 +1608,9 @@
         {
             "js": ["plugins/behance.js"],
             "matches": ["*://*.behance.net/*"]
+        },
+            "js": ["plugins/goodreads.js"],
+            "matches": ["*://*.goodreads.com/*"]
         }
    ]
 }
