@@ -68,7 +68,10 @@ hoverZoomPlugins.push({
 
         $('a.media-item').each(function() {
             var link = $(this),
-                url = this.style.backgroundImage.replace(/url\("?(.*)"?\)/, '$1').replace(/(\.\w+)(:\w+)?"?$/, '$1:large');
+                url = this.style.backgroundImage
+                .replace(/url\(("?)(.*)\1\)/, '$2')
+                .replace(/(\.\w+)(:\w+)?"?$/, '$1:large')
+                .replace(/\?format=\w+&name=\d+x\d+/, '');
             link.data().hoverZoomSrc = [url];
             res.push(link);
         });
