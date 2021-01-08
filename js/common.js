@@ -1,3 +1,57 @@
+var factorySettings = {
+    extensionEnabled : true,
+    zoomFactor : 1,
+    zoomVideos : true,
+    videoPositionStep : 10,
+    muteVideos : false,
+    videoTimestamp : false,
+    videoVolume : 0.25,
+    pageActionEnabled : true,
+    showHighRes : true,
+    galleriesMouseWheel : true,
+    disableMouseWheelForVideo : false,
+    addToHistory : false,
+    alwaysPreload : false,
+    displayDelay : 100,
+    displayDelayVideo : 500,
+    fadeDuration : 200,
+    excludedSites : [],
+    whiteListMode : false,
+    picturesOpacity : 1,
+    showWhileLoading : true,
+    mouseUnderlap : true,
+    filterNSFW : false,
+    enableGalleries : true,
+    ambilightEnabled : false,
+    ambilightHaloSize : 0.1,
+    ambilightBackgroundOpacity : 0.9,
+    disabledPlugins : [],
+    centerImages : false,
+    frameBackgroundColor: "#ffffff",
+    displayImageLoader: true,
+    enlargementThresholdEnabled : true,
+    enlargementThreshold : 2,
+    displayedSizeThresholdEnabled : true,
+    displayedSizeThreshold : 300,
+    zoomedSizeThresholdEnabled : true,
+    zoomedSizeThreshold : 100,
+    downloadFolder : '',
+    captionLocation : 'below',
+    actionKey : 0,
+    fullZoomKey : 90,
+    hideKey : 88,
+    openImageInWindowKey : 87,
+    openImageInTabKey : 84,
+    saveImageKey : 83,
+    prevImgKey : 37,
+    nextImgKey : 39
+}
+
+// Load options from factory settings (= as if extension has just been installed from webstore)
+function loadFactorySettings() {
+    return factorySettings;
+}
+
 // Load options from local storage
 // Return default values if none exist
 function loadOptions() {
@@ -7,49 +61,57 @@ function loadOptions() {
     }
     options = JSON.parse(localStorage.options);  // TODO: Migrate to https://developer.chrome.com/extensions/storage
 
-    options.extensionEnabled = options.hasOwnProperty('extensionEnabled') ? options.extensionEnabled : true;
-    options.zoomFactor = options.hasOwnProperty('zoomFactor') ? options.zoomFactor : 1;
-    options.zoomVideos = options.hasOwnProperty('zoomVideos') ? options.zoomVideos : true;
-    options.videoPositionStep = options.hasOwnProperty('videoPositionStep') ? options.videoPositionStep : 10;
-    options.muteVideos = options.hasOwnProperty('muteVideos') ? options.muteVideos : false;
-    options.videoTimestamp = options.hasOwnProperty('videoTimestamp') ? options.videoTimestamp : false;
-    options.videoVolume = options.hasOwnProperty('videoVolume') ? options.videoVolume : 0.25;
-    options.pageActionEnabled = options.hasOwnProperty('pageActionEnabled') ? options.pageActionEnabled : true;
-    options.showHighRes = options.hasOwnProperty('showHighRes') ? options.showHighRes : true;
-    options.galleriesMouseWheel = options.hasOwnProperty('galleriesMouseWheel') ? options.galleriesMouseWheel : true;
-    options.disableMouseWheelForVideo = options.hasOwnProperty('disableMouseWheelForVideo') ? options.disableMouseWheelForVideo : false;
-    options.addToHistory = options.hasOwnProperty('addToHistory') ? options.addToHistory : false;
-    options.alwaysPreload = options.hasOwnProperty('alwaysPreload') ? options.alwaysPreload : false;
-    options.displayDelay = options.hasOwnProperty('displayDelay') ? options.displayDelay : 100;
-    options.displayDelayVideo = options.hasOwnProperty('displayDelayVideo') ? options.displayDelayVideo : 500;
-    options.fadeDuration = options.hasOwnProperty('fadeDuration') ? options.fadeDuration : 200;
-    options.excludedSites = options.hasOwnProperty('excludedSites') ? options.excludedSites : [];
-    options.whiteListMode = options.hasOwnProperty('whiteListMode') ? options.whiteListMode : false;
-    options.picturesOpacity = options.hasOwnProperty('picturesOpacity') ? options.picturesOpacity : 1;
-    options.showWhileLoading = options.hasOwnProperty('showWhileLoading') ? options.showWhileLoading : true;
-    options.mouseUnderlap = options.hasOwnProperty('mouseUnderlap') ? options.mouseUnderlap : true;
-    options.filterNSFW = options.hasOwnProperty('filterNSFW') ? options.filterNSFW : false;
-    options.enableGalleries = options.hasOwnProperty('enableGalleries') ? options.enableGalleries : true;
-    options.ambilightEnabled = options.hasOwnProperty('ambilightEnabled') ? options.ambilightEnabled : false;
-    options.ambilightHaloSize = options.hasOwnProperty('ambilightHaloSize') ? options.ambilightHaloSize : 0.1;
-    options.ambilightBackgroundOpacity = options.hasOwnProperty('ambilightBackgroundOpacity') ? options.ambilightBackgroundOpacity : 0.9;
-    options.disabledPlugins = options.hasOwnProperty('disabledPlugins') ? options.disabledPlugins : [];
-    options.centerImages = options.hasOwnProperty('centerImages') ? options.centerImages : false;
-    options.frameBackgroundColor = options.hasOwnProperty('frameBackgroundColor') ? options.frameBackgroundColor : "#ffffff";
+    options.extensionEnabled = options.hasOwnProperty('extensionEnabled') ? options.extensionEnabled : factorySettings.extensionEnabled;
+    options.zoomFactor = options.hasOwnProperty('zoomFactor') ? options.zoomFactor : factorySettings.zoomFactor;
+    options.zoomVideos = options.hasOwnProperty('zoomVideos') ? options.zoomVideos : factorySettings.zoomVideos;
+    options.videoPositionStep = options.hasOwnProperty('videoPositionStep') ? options.videoPositionStep : factorySettings.videoPositionStep;
+    options.muteVideos = options.hasOwnProperty('muteVideos') ? options.muteVideos : factorySettings.muteVideos;
+    options.videoTimestamp = options.hasOwnProperty('videoTimestamp') ? options.videoTimestamp : factorySettings.videoTimestamp;
+    options.videoVolume = options.hasOwnProperty('videoVolume') ? options.videoVolume : factorySettings.videoVolume;
+    options.pageActionEnabled = options.hasOwnProperty('pageActionEnabled') ? options.pageActionEnabled : factorySettings.pageActionEnabled;
+    options.showHighRes = options.hasOwnProperty('showHighRes') ? options.showHighRes : factorySettings.showHighRes;
+    options.galleriesMouseWheel = options.hasOwnProperty('galleriesMouseWheel') ? options.galleriesMouseWheel : factorySettings.galleriesMouseWheel;
+    options.disableMouseWheelForVideo = options.hasOwnProperty('disableMouseWheelForVideo') ? options.disableMouseWheelForVideo : factorySettings.disableMouseWheelForVideo;
+    options.addToHistory = options.hasOwnProperty('addToHistory') ? options.addToHistory : factorySettings.addToHistory;
+    options.alwaysPreload = options.hasOwnProperty('alwaysPreload') ? options.alwaysPreload : factorySettings.alwaysPreload;
+    options.displayDelay = options.hasOwnProperty('displayDelay') ? options.displayDelay : factorySettings.displayDelay;
+    options.displayDelayVideo = options.hasOwnProperty('displayDelayVideo') ? options.displayDelayVideo : factorySettings.displayDelayVideo;
+    options.fadeDuration = options.hasOwnProperty('fadeDuration') ? options.fadeDuration : factorySettings.fadeDuration;
+    options.excludedSites = options.hasOwnProperty('excludedSites') ? options.excludedSites : factorySettings.excludedSites;
+    options.whiteListMode = options.hasOwnProperty('whiteListMode') ? options.whiteListMode : factorySettings.whiteListMode;
+    options.picturesOpacity = options.hasOwnProperty('picturesOpacity') ? options.picturesOpacity : factorySettings.picturesOpacity;
+    options.showWhileLoading = options.hasOwnProperty('showWhileLoading') ? options.showWhileLoading : factorySettings.showWhileLoading;
+    options.mouseUnderlap = options.hasOwnProperty('mouseUnderlap') ? options.mouseUnderlap : factorySettings.mouseUnderlap;
+    options.filterNSFW = options.hasOwnProperty('filterNSFW') ? options.filterNSFW : factorySettings.filterNSFW;
+    options.enableGalleries = options.hasOwnProperty('enableGalleries') ? options.enableGalleries : factorySettings.enableGalleries;
+    options.ambilightEnabled = options.hasOwnProperty('ambilightEnabled') ? options.ambilightEnabled : factorySettings.ambilightEnabled;
+    options.ambilightHaloSize = options.hasOwnProperty('ambilightHaloSize') ? options.ambilightHaloSize : factorySettings.ambilightHaloSize;
+    options.ambilightBackgroundOpacity = options.hasOwnProperty('ambilightBackgroundOpacity') ? options.ambilightBackgroundOpacity : factorySettings.ambilightBackgroundOpacity;
+    options.disabledPlugins = options.hasOwnProperty('disabledPlugins') ? options.disabledPlugins : factorySettings.disabledPlugins;
+    options.centerImages = options.hasOwnProperty('centerImages') ? options.centerImages : factorySettings.centerImages;
+    options.frameBackgroundColor = options.hasOwnProperty('frameBackgroundColor') ? options.frameBackgroundColor : factorySettings.frameBackgroundColor;
+    options.displayImageLoader = options.hasOwnProperty('displayImageLoader') ? options.displayImageLoader : factorySettings.displayImageLoader;
+    options.enlargementThresholdEnabled = options.hasOwnProperty('enlargementThresholdEnabled') ? options.enlargementThresholdEnabled : factorySettings.enlargementThresholdEnabled;
+    options.enlargementThreshold = options.hasOwnProperty('enlargementThreshold') ? options.enlargementThreshold : factorySettings.enlargementThreshold;
+    options.displayedSizeThresholdEnabled = options.hasOwnProperty('displayedSizeThresholdEnabled') ? options.displayedSizeThresholdEnabled : factorySettings.displayedSizeThresholdEnabled;
+    options.displayedSizeThreshold = options.hasOwnProperty('displayedSizeThreshold') ? options.displayedSizeThreshold : factorySettings.displayedSizeThreshold;
+    options.zoomedSizeThresholdEnabled = options.hasOwnProperty('zoomedSizeThresholdEnabled') ? options.zoomedSizeThresholdEnabled : factorySettings.zoomedSizeThresholdEnabled;
+    options.zoomedSizeThreshold = options.hasOwnProperty('zoomedSizeThreshold') ? options.zoomedSizeThreshold : factorySettings.zoomedSizeThreshold;
+    options.downloadFolder = options.hasOwnProperty('downloadFolder') ? options.downloadFolder : factorySettings.downloadFolder;
 
     // Used old showCaptions option for backwards compatibility
     var showCaptions = options.hasOwnProperty('showCaptions') ? options.showCaptions : true;
-    options.captionLocation = options.hasOwnProperty('captionLocation') ? options.captionLocation : (showCaptions ? 'below' : 'none');
+    options.captionLocation = options.hasOwnProperty('captionLocation') ? options.captionLocation : (showCaptions ? factorySettings.captionLocation : 'none');
 
     // Action keys
-    options.actionKey = options.hasOwnProperty('actionKey') ? options.actionKey : 0;
-    options.fullZoomKey = options.hasOwnProperty('fullZoomKey') ? options.fullZoomKey : 90;
-    options.hideKey = options.hasOwnProperty('hideKey') ? options.hideKey : 88;
-    options.openImageInWindowKey = options.hasOwnProperty('openImageInWindowKey') ? options.openImageInWindowKey : 87;
-    options.openImageInTabKey = options.hasOwnProperty('openImageInTabKey') ? options.openImageInTabKey : 84;
-    options.saveImageKey = options.hasOwnProperty('saveImageKey') ? options.saveImageKey : 83;
-    options.prevImgKey = options.hasOwnProperty('prevImgKey') ? options.prevImgKey : 37;
-    options.nextImgKey = options.hasOwnProperty('nextImgKey') ? options.nextImgKey : 39;
+    options.actionKey = options.hasOwnProperty('actionKey') ? options.actionKey : factorySettings.actionKey;
+    options.fullZoomKey = options.hasOwnProperty('fullZoomKey') ? options.fullZoomKey : factorySettings.fullZoomKey;
+    options.hideKey = options.hasOwnProperty('hideKey') ? options.hideKey : factorySettings.hideKey;
+    options.openImageInWindowKey = options.hasOwnProperty('openImageInWindowKey') ? options.openImageInWindowKey : factorySettings.openImageInWindowKey;
+    options.openImageInTabKey = options.hasOwnProperty('openImageInTabKey') ? options.openImageInTabKey : factorySettings.openImageInTabKey;
+    options.saveImageKey = options.hasOwnProperty('saveImageKey') ? options.saveImageKey : factorySettings.saveImageKey;
+    options.prevImgKey = options.hasOwnProperty('prevImgKey') ? options.prevImgKey : factorySettings.prevImgKey;
+    options.nextImgKey = options.hasOwnProperty('nextImgKey') ? options.nextImgKey : factorySettings.nextImgKey;
 
     localStorage.options = JSON.stringify(options);
 

@@ -15,15 +15,41 @@ input[type="range"] {
 }
 
 input[type=range]::-webkit-slider-thumb {
-  cursor: pointer;
-  margin-top: -7px;
+    cursor: pointer;
+    margin-top: -7px;
 }
 
 input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 2px;
-  cursor: pointer;
-  background: #3071a9;
+    width: 100%;
+    height: 2px;
+    cursor: pointer;
+    background: #3071a9;
+}
+
+input[type=text].normal {
+    height: 30px;
+    text-align: left;
+}
+
+input[type=text].xnarrow {
+    width: 50px;
+    height: 30px;
+    text-align: right;
+}
+
+input[type=range].xnarrow {
+    width: 100px;
+    height: 30px;
+}
+
+span.adjoined.xnarrow {
+    height: 30px;
+    line-height: 28px;
+}
+
+select.picker {
+    height: 30px;
+    margin: 0px;
 }
 
 .disabled {
