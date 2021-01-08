@@ -1466,6 +1466,7 @@ var hoverZoom = {
 
         function saveImage() {
             var filename = imgDetails.url.split('/').pop().split('?')[0];
+            if (filename == '') filename = 'image';
             if (filename.indexOf('.') === -1)
                 filename = filename + '.jpg';
             downloadResource(imgDetails.url, filename);
