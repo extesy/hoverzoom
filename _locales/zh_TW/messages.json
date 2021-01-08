@@ -51,6 +51,10 @@
         "message": "儲存",
         "description": "[options] Save button label"
     },
+    "optButtonCancel": {
+        "message": "Cancel",
+        "description": "[options] Cancel button label"
+    },
     "optButtonReset": {
         "message": "重設",
         "description": "[options] Reset button label"
@@ -216,8 +220,8 @@
         "description": "[options] Size of halo option"
     },
     "optAmbilightHaloSizeUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (percentage) for halo size"
+        "message": "pixels",
+        "description": "[options] Unit name (pixel) for halo size"
     },
     "optAmbilightHaloSizeTooltip": {
         "message": "Size of halo around zoomed image (0% : no halo)",
@@ -362,6 +366,22 @@
     "optOpacityUnitName": {
         "message": "%",
         "description": "[options] Unit name (percentage) for opacity option"
+    },
+    "optDownloadFolderTooltip": {
+        "message": "Subfolder(s) will be created if needed",
+        "description": "[options] Tooltip for download folder option"
+    },
+    "optDownloadFolderPlaceholder": {
+        "message": "Example: animals/cats",
+        "description": "[options] Placeholder for download folder option"
+    },
+    "optDownloadFolder": {
+        "message": "Save images to folder: Downloads/",
+        "description": "[options] Download folder option"
+    },
+    "optPixelsUnitName": {
+        "message": "pixels",
+        "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
         "message": "啟動 Hover Zoom+",
