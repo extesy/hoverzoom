@@ -114,6 +114,7 @@ function saveOptions() {
     options.enableGalleries = $('#chkEnableGalleries')[0].checked;
     options.picturesOpacity = $('#txtPicturesOpacity')[0].value / 100;
     options.captionLocation = $('#selectCaptionLocation').val();
+    options.downloadFolder = $('#txtDownloadFolder')[0].value;
 
     localStorage.options = JSON.stringify(options);
     sendOptions(options);
@@ -122,33 +123,38 @@ function saveOptions() {
     return false;
 }
 
-// Restores options from localStorage.
-function restoreOptions() {
-    options = loadOptions();
+// Restores options from factory settings
+function restoreOptionsFromFactorySettings() {
+    restoreOptions(Object.assign({}, factorySettings));
+}
 
-    $('#chkExtensionEnabled')[0].checked = options.extensionEnabled;
+// Restores options from localStorage.
+function restoreOptions(optionsFromFactorySettings) {
+    options = optionsFromFactorySettings || loadOptions();
+
+    $('#chkExtensionEnabled').trigger(options.extensionEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#txtZoomFactor')[0].value = options.zoomFactor;
-    $('#chkZoomVideos')[0].checked = options.zoomVideos;
+    $('#chkZoomVideos').trigger(options.zoomVideos ? 'gumby.check' : 'gumby.uncheck');
     $('#txtVideoPositionStep')[0].value = options.videoPositionStep;
-    $('#chkMuteVideos')[0].checked = options.muteVideos;
-    $('#chkVideoTimestamp')[0].checked = options.videoTimestamp;
+    $('#chkMuteVideos').trigger(options.muteVideos ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkVideoTimestamp').trigger(options.videoTimestamp ? 'gumby.check' : 'gumby.uncheck');
     $('#rngVideoVolume').val(parseInt(options.videoVolume * 100));
     $('#txtVideoVolume').val(parseInt(options.videoVolume * 100));
-    $('#chkMouseUnderlap')[0].checked = options.mouseUnderlap;
-    $('#chkPageActionEnabled')[0].checked = options.pageActionEnabled;
-    $('#chkShowWhileLoading')[0].checked = options.showWhileLoading;
-    $('#chkShowHighRes')[0].checked = options.showHighRes;
-    $('#chkGalleriesMouseWheel')[0].checked = options.galleriesMouseWheel;
-    $('#chkDisableMouseWheelForVideo')[0].checked = options.disableMouseWheelForVideo;
+    $('#chkMouseUnderlap').trigger(options.mouseUnderlap ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkPageActionEnabled').trigger(options.pageActionEnabled ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkShowWhileLoading').trigger(options.showWhileLoading ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkShowHighRes').trigger(options.showHighRes ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkGalleriesMouseWheel').trigger(options.galleriesMouseWheel ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkDisableMouseWheelForVideo').trigger(options.disableMouseWheelForVideo ? 'gumby.check' : 'gumby.uncheck');
     $('#txtDisplayDelay').val((options.displayDelay || 0) / 1000);
     $('#txtDisplayDelayVideo').val((options.displayDelayVideo || 0) / 1000);
     $('#txtFadeDuration').val((options.fadeDuration || 0) / 1000);
-    $('#chkAmbilightEnabled')[0].checked = options.ambilightEnabled;
+    $('#chkAmbilightEnabled').trigger(options.ambilightEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#rngAmbilightHaloSize').val(parseInt(options.ambilightHaloSize * 100));
     $('#txtAmbilightHaloSize').val(parseInt(options.ambilightHaloSize * 100));
     $('#rngAmbilightBackgroundOpacity').val(parseInt(options.ambilightBackgroundOpacity * 100));
     $('#txtAmbilightBackgroundOpacity').val(parseInt(options.ambilightBackgroundOpacity * 100));
-    $('#chkCenterImages')[0].checked = options.centerImages;
+    $('#chkCenterImages').trigger(options.centerImages ? 'gumby.check' : 'gumby.uncheck');
     $('#pickerFrameBackgroundColor').val(options.frameBackgroundColor);
     $('#selectCaptionLocation').val(options.captionLocation);
 
@@ -157,14 +163,20 @@ function restoreOptions() {
     } else {
         initColorPicker(options.frameBackgroundColor);
     }
-    
+
     if (options.ambilightEnabled) {
         $('#divAmbilight').removeClass('disabled');
     } else {
         $('#divAmbilight').addClass('disabled');
     }
 
-    $('#chkWhiteListMode')[0].checked = options.whiteListMode;
+    var plugins = $.unique(hoverZoomPlugins.map(function(plugin) {return plugin.name}));
+    plugins.forEach(function(plugin) {
+        var chkName = 'chkPlugin' + plugin.replace(/[^\w]/g, '').toLowerCase();
+        $('#' + chkName).trigger(options.disabledPlugins.includes(chkName.substr('chkPlugin'.length)) ? 'gumby.uncheck' : 'gumby.check');
+    });
+
+    $('#chkWhiteListMode').trigger(options.whiteListMode ? 'gumby.check' : 'gumby.uncheck');
     $('#selExcludedSites').empty();
     for (var i = 0; i < options.excludedSites.length; i++) {
         appendExcludedSite(options.excludedSites[i]);
@@ -175,14 +187,20 @@ function restoreOptions() {
         $('#sel' + id).val(options[key]);
     });
 
-    $('#chkAddToHistory')[0].checked = options.addToHistory;
-    $('#chkFilterNSFW')[0].checked = options.filterNSFW;
-
-    $('#chkAlwaysPreload')[0].checked = options.alwaysPreload;
-    $('#chkEnableGalleries')[0].checked = options.enableGalleries;
+    $('#chkAddToHistory').trigger(options.addToHistory ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkFilterNSFW').trigger(options.filterNSFW ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkAlwaysPreload').trigger(options.alwaysPreload ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkEnableGalleries').trigger(options.enableGalleries ? 'gumby.check' : 'gumby.uncheck');
     $('#txtPicturesOpacity').val(parseInt(options.picturesOpacity * 100));
+    $('#chkDisplayImageLoader').trigger(options.displayImageLoader ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkEnlargementThresholdEnabled').trigger(options.enlargementThresholdEnabled ? 'gumby.check' : 'gumby.uncheck');
+    $('#selectEnlargementThreshold').val(options.enlargementThreshold);
+    $('#chkDisplayedSizeThresholdEnabled').trigger(options.displayedSizeThresholdEnabled ? 'gumby.check' : 'gumby.uncheck');
+    $('#txtDisplayedSizeThreshold').val(parseInt(options.displayedSizeThreshold));
+    $('#chkZoomedSizeThresholdEnabled').trigger(options.zoomedSizeThresholdEnabled ? 'gumby.check' : 'gumby.uncheck');
+    $('#txtZoomedSizeThreshold').val(parseInt(options.zoomedSizeThreshold));
+    $('#txtDownloadFolder').val(options.downloadFolder);
 
-    $('input:checked').trigger('gumby.check');
     return false;
 }
 
@@ -251,6 +269,32 @@ function percentageOnChange(val) {
     if (isNaN(value)) value = 100;
     if (value <= 0) value = 0;
     if (value > 100) value = 100;
+    this.value = value;
+    return this.value;
+}
+
+function integerOnChange(val) {
+    let value = parseInt(typeof val == 'string' ? val : this.value);
+    if (isNaN(value)) value = 0;
+    if (value <= 0) value = 0;
+    this.value = value;
+    return this.value;
+}
+
+// validate user input
+function downloadFolderOnChange(val) {
+    let value = (typeof val == 'string' ? val : this.value);
+    value = value.trim();
+    if (value == '') return '';
+    // remove Windows Explorer forbidden characters for folder name -> : * ? " < > |
+    // replace \ by / and remove duplicates
+    value = value.replace(/[!*:?"<>|]/g, '').replace(/[\/\\]{1,}/g, '/').replace(/\/ +\//, '/');
+    // remove useless spaces around slashes
+    value = value.replace(/[ ]{0,}\/[ ]{0,}/g, '/');
+    // remove starting slash
+    value = value.replace(/^\//, '');
+    // add ending slash if needed
+    if (! value.endsWith('/')) value += '/';
     this.value = value;
     return this.value;
 }
@@ -359,9 +403,9 @@ $(function () {
     chkWhiteListModeOnChange();
     initAddToHistory();
     $("#version").text(chrome.i18n.getMessage("optFooterVersionCopyright", chrome.runtime.getManifest().version));
-
     $('#btnSave').click(saveOptions);
-    $('#btnReset').click(restoreOptions);
+    $('#btnCancel').click(function() { restoreOptions() });
+    $('#btnReset').click(restoreOptionsFromFactorySettings);
     $('#chkWhiteListMode').parent().on('gumby.onChange', chkWhiteListModeOnChange);
     $('#txtZoomFactor').change(percentageOnChange);
     $('#txtPicturesOpacity').change(percentageOnChange);
@@ -376,6 +420,7 @@ $(function () {
     $('.actionKey').change(selKeyOnChange);
     $('#btnAddExcludedSite').click(btnAddExcludedSiteOnClick);
     $('#btnRemoveExcludedSite').click(btnRemoveExcludedSiteOnClick);
+    $('#txtDownloadFolder').change(downloadFolderOnChange);
 
     restoreOptions();
     loadPlugins();

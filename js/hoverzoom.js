@@ -1448,13 +1448,20 @@ var hoverZoom = {
         }
 
         function downloadResource(url, filename) {
-          if (!filename)
-              filename = url.split('\\').pop().split('/').pop();
-          chrome.runtime.sendMessage({
-              action: 'downloadFile',
-              url: url,
-              filename: filename
-          });
+            if (!filename) filename = url.split('\\').pop().split('/').pop();
+
+            // prefix with download folder if needed
+            if (options.downloadFolder) {
+
+                let downloadFolder = options.downloadFolder;
+                filename = downloadFolder + filename;
+            }
+
+            chrome.runtime.sendMessage({
+                action: 'downloadFile',
+                url: url,
+                filename: filename
+            });
         }
 
         function saveImage() {

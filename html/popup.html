@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../css/gumby.css"/>
-    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/gumby.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <style type="text/css">
         body {
             width: 400px;
@@ -12,36 +12,41 @@
     <script src="../js/libs/modernizr-2.7.1.js"></script>
 </head>
 <body>
-<div class="pretty container">
-    <div class="row">
-        <form>
-            <fieldset><legend data-i18n="extName"></legend>
-                <ul>
-                    <li class="field"><label class="checkbox" for="chkExtensionDisabled">
-                        <input type="checkbox" id="chkExtensionDisabled"><span></span>
-                        <div id="lblDisable" style="display:inline" data-i18n="popDisableForAllSites"></div>
-                    </label></li>
-                    <li class="field"><label class="checkbox" for="chkExcludeSite">
-                        <input type="checkbox" id="chkExcludeSite"><span></span>
-                        <div id="lblToggle" style="display:inline" data-i18n="popAllowPerSiteToggle"></div>
-                    </label></li>
-                </ul>
-                <p><a href="#" id="aPreload" style="display: none" data-i18n="popPreloadImages"></a></p>
-                <p id="lblPreloading" style="display: none"><span id="spanPreloading" data-i18n="popPreloadingImages"></span> <progress id="prgPreloading"></progress></p>
-            </fieldset>
-        </form>
-    </div>
-    <div id="footer" class="row">
-        <div class="twelve columns text-right">
-            <a id="aMoreOptions" href="options.html" target="_blank" data-i18n="popMoreOptions"></a>
+    <div class="pretty container">
+        <div class="row">
+            <form>
+                <fieldset>
+                    <legend data-i18n="extName"></legend>
+                    <ul>
+                        <li class="field">
+                            <label class="checkbox" for="chkExtensionDisabled">
+                                <input type="checkbox" id="chkExtensionDisabled"><span></span>
+                                <div id="lblDisable" style="display:inline" data-i18n="popDisableForAllSites"></div>
+                            </label>
+                        </li>
+                        <li class="field">
+                            <label class="checkbox" for="chkExcludeSite">
+                                <input type="checkbox" id="chkExcludeSite"><span></span>
+                                <div id="lblToggle" style="display:inline" data-i18n="popAllowPerSiteToggle"></div>
+                            </label>
+                        </li>
+                    </ul>
+                    <p><a href="#" id="aPreload" style="display: none" data-i18n="popPreloadImages"></a></p>
+                    <p id="lblPreloading" style="display: none"><span id="spanPreloading" data-i18n="popPreloadingImages"></span> <progress id="prgPreloading"></progress></p>
+                </fieldset>
+            </form>
+        </div>
+        <div id="footer" class="row">
+            <div class="twelve columns text-right">
+                <a id="aMoreOptions" href="options.html" target="_blank" data-i18n="popMoreOptions"></a>
+            </div>
         </div>
     </div>
-</div>
-<script src="../js/libs/backgroundScriptsAPIBridge.js"></script>
-<script src="../js/libs/jquery-3.2.1.js"></script>
-<script src="../js/libs/gumby.js"></script>
-<script src="../js/plugins.js"></script>
-<script src="../js/common.js"></script>
-<script src="../js/popup.js"></script>
+    <script src="../js/libs/backgroundScriptsAPIBridge.js"></script>
+    <script src="../js/libs/jquery-3.2.1.js"></script>
+    <script src="../js/libs/gumby.js"></script>
+    <script src="../js/plugins.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/popup.js"></script>
 </body>
 </html>

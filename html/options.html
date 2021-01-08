@@ -1,278 +1,343 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
     <meta charset="utf-8" />
     <title data-i18n="optTitle"></title>
-    <link rel="stylesheet" href="../css/gumby.css"/>
-    <link rel="stylesheet" href="../css/spectrum.css"/>
-    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/gumby.css" />
+    <link rel="stylesheet" href="../css/spectrum.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <script src="../js/libs/modernizr-2.7.1.js"></script>
 </head>
 <body>
-<div class="pretty container">
-    <div class="row">
-        <div class="two columns text-center"><img src="../images/icon128.png"></div>
-        <h1 class="ten columns text-center" data-i18n="optTitle"></h1>
-    </div>
-    <div class="row">
-        <section class="tabs pill">
-            <ul class="tab-nav">
-                <li class="active"><a href="#" data-i18n="optPageGeneral"></a></li>
-                <li><a href="#" data-i18n="optPagePlugins"></a></li>
-                <li><a href="#" data-i18n="optPageSites"></a></li>
-                <li><a href="#" data-i18n="optPageActionKeys"></a></li>
-                <li><a href="#" data-i18n="optPageAdvanced"></a></li>
-            </ul>
-            <div class="tab-content active">
-                <form>
-                    <div class="field"><label class="checkbox" for="chkExtensionEnabled">
-                        <input type="checkbox" id="chkExtensionEnabled"><span></span>
-                        <div style="display:inline" data-i18n="optExtensionEnabled"></div>
-                    </label></div>
-                    <fieldset>
-                        <legend data-i18n="optSectionView"></legend>
-                        <ul>
-                            <div class="ttip" data-i18n-tooltip="optZoomFactorTooltip">
-                                <li class="append field"><label class="inline" for="txtZoomFactor">
-                                    <div style="display:inline" data-i18n="optZoomFactor"></div>
-                                    <input class="xnarrow text input" type="text" id="txtZoomFactor"><span class="adjoined" data-i18n="optZoomFactorUnitName"></span>
-                                </label></li>
-                            </div>
-                            <div class="ttip" data-i18n-tooltip="optCaptionLocationTooltip">
-                                <li class="field"><label class="checkbox" for="selectCaptionLocation">
-                                    <div style="display:inline" data-i18n="optCaptionLocation"></div>
-                                    <select id="selectCaptionLocation">
-                                        <option value="above" data-i18n="optCaptionLocationAbove"></option>
-                                        <option value="below" data-i18n="optCaptionLocationBelow"></option>
-                                        <option value="none" data-i18n="optCaptionLocationNone"></option>
-                                    </select>
-                                </label></li>
-                            </div>
-                            <div class="ttip" data-i18n-tooltip="optMouseUnderlapTooltip">
-                                <li class="field"><label class="checkbox" for="chkMouseUnderlap">
-                                    <input type="checkbox" id="chkMouseUnderlap"><span></span>
-                                    <div style="display:inline" data-i18n="optMouseUnderlap"></div>
-                                </label></li>
-                            </div>
-                            <div class="ttip" data-i18n-tooltip="optPageActionEnabledTooltip">
-                                <li class="field"><label class="checkbox" for="chkPageActionEnabled">
-                                    <input class="input" type="checkbox" id="chkPageActionEnabled"><span></span>
-                                    <div style="display:inline" data-i18n="optPageActionEnabled"></div>
-                                </label></li>
-                            </div>
-                            <div class="ttip" data-i18n-tooltip="optShowWhileLoadingTooltip">
-                                <li class="field"><label class="checkbox" for="chkShowWhileLoading">
-                                    <input type="checkbox" id="chkShowWhileLoading"><span></span>
-                                    <div style="display:inline" data-i18n="optShowWhileLoading"></div>
-                                </label></li>
-                            </div>
-                            <div class="ttip" data-i18n-tooltip="optShowHighResTooltip">
-                                <li class="field"><label class="checkbox" for="chkShowHighRes">
-                                    <input type="checkbox" id="chkShowHighRes"><span></span>
-                                    <div style="display:inline" data-i18n="optShowHighRes"></div>
-                                </label></li>
-                            </div>
-							<div class="ttip" data-i18n-tooltip="optGalleriesMouseWheelTooltip">
-                                <li class="field"><label class="checkbox" for="chkGalleriesMouseWheel">
-                                    <input type="checkbox" id="chkGalleriesMouseWheel"><span></span>
-                                    <div style="display:inline" data-i18n="optGalleriesMouseWheel"></div>
-                                </label></li>
-                            </div>
-                            <div class="ttip" data-i18n-tooltip="optEnableAmbilightTooltip">
-                                <li class="field" style="margin-bottom:0px;">
-                                    <label class="checkbox" for="chkAmbilightEnabled" style="margin-bottom:0px;">
-                                        <input type="checkbox" id="chkAmbilightEnabled"><span></span>
-                                        <div style="display:inline" data-i18n="optEnableAmbilight"></div>
+    <div class="pretty container">
+        <div class="row">
+            <div class="two columns text-center"><img src="../images/icon128.png"></div>
+            <h1 class="ten columns text-center" data-i18n="optTitle"></h1>
+        </div>
+        <div class="row">
+            <section class="tabs pill">
+                <ul class="tab-nav">
+                    <li class="active"><a href="#" data-i18n="optPageGeneral"></a></li>
+                    <li><a href="#" data-i18n="optPagePlugins"></a></li>
+                    <li><a href="#" data-i18n="optPageSites"></a></li>
+                    <li><a href="#" data-i18n="optPageActionKeys"></a></li>
+                    <li><a href="#" data-i18n="optPageAdvanced"></a></li>
+                </ul>
+                <div class="tab-content active">
+                    <form>
+                        <div class="field">
+                            <label class="checkbox" for="chkExtensionEnabled">
+                                <input type="checkbox" id="chkExtensionEnabled"><span></span>
+                                <div style="display:inline" data-i18n="optExtensionEnabled"></div>
+                            </label>
+                        </div>
+                        <fieldset>
+                            <legend data-i18n="optSectionView"></legend>
+                            <ul>
+                                <div class="ttip" data-i18n-tooltip="optZoomFactorTooltip">
+                                    <li class="append field">
+                                        <label class="inline" for="txtZoomFactor">
+                                            <div style="display:inline" data-i18n="optZoomFactor"></div>
+                                            <input class="xnarrow text input" type="text" id="txtZoomFactor"><span class="adjoined xnarrow" data-i18n="optZoomFactorUnitName"></span>
+                                        </label>
+                                    </li>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optCaptionLocationTooltip">
+                                    <li class="field">
+                                        <label class="checkbox" for="selectCaptionLocation">
+                                            <div style="display:inline" data-i18n="optCaptionLocation"></div>
+                                            <select id="selectCaptionLocation" class="picker">
+                                                <option value="above" data-i18n="optCaptionLocationAbove"></option>
+                                                <option value="below" data-i18n="optCaptionLocationBelow"></option>
+                                                <option value="none" data-i18n="optCaptionLocationNone"></option>
+                                            </select>
+                                        </label>
+                                    </li>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optMouseUnderlapTooltip">
+                                    <li class="field">
+                                        <label class="checkbox" for="chkMouseUnderlap">
+                                            <input type="checkbox" id="chkMouseUnderlap"><span></span>
+                                            <div style="display:inline" data-i18n="optMouseUnderlap"></div>
+                                        </label>
+                                    </li>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optPageActionEnabledTooltip">
+                                    <li class="field">
+                                        <label class="checkbox" for="chkPageActionEnabled">
+                                            <input class="input" type="checkbox" id="chkPageActionEnabled"><span></span>
+                                            <div style="display:inline" data-i18n="optPageActionEnabled"></div>
+                                        </label>
+                                    </li>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optShowWhileLoadingTooltip">
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowWhileLoading">
+                                            <input type="checkbox" id="chkShowWhileLoading"><span></span>
+                                            <div style="display:inline" data-i18n="optShowWhileLoading"></div>
+                                        </label>
+                                    </li>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optShowHighResTooltip">
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowHighRes">
+                                            <input type="checkbox" id="chkShowHighRes"><span></span>
+                                            <div style="display:inline" data-i18n="optShowHighRes"></div>
+                                        </label>
+                                    </li>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optGalleriesMouseWheelTooltip">
+                                    <li class="field">
+                                        <label class="checkbox" for="chkGalleriesMouseWheel">
+                                            <input type="checkbox" id="chkGalleriesMouseWheel"><span></span>
+                                            <div style="display:inline" data-i18n="optGalleriesMouseWheel"></div>
+                                        </label>
+                                    </li>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optEnableAmbilightTooltip">
+                                    <li class="field" style="margin-bottom:0px;">
+                                        <label class="checkbox" for="chkAmbilightEnabled" style="margin-bottom:0px;">
+                                            <input type="checkbox" id="chkAmbilightEnabled"><span></span>
+                                            <div style="display:inline" data-i18n="optEnableAmbilight"></div>
+                                        </label>
+                                    </li>
+                                </div>
+                                <div id="divAmbilight" style="display:flex">
+                                    <div class="ttip" data-i18n-tooltip="optAmbilightHaloSizeTooltip">
+                                        <div class="append field" style="margin-left:22px">
+                                            <label class="inline" for="txtAmbilightHaloSize">
+                                                <div style="display:inline" data-i18n="optAmbilightHaloSize"></div>
+                                                <input class="xnarrow input" type="range" name="points" min="0" max="100" step="1" id="rngAmbilightHaloSize">
+                                                <input class="xnarrow text input" type="text" id="txtAmbilightHaloSize"><span class="adjoined xnarrow" data-i18n="optAmbilightHaloSizeUnitName"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="ttip" data-i18n-tooltip="optAmbilightBackgroundOpacityTooltip">
+                                        <div class="append field" style="margin-left:22px">
+                                            <label class="inline" for="txtAmbilightBackgroundOpacity">
+                                                <div style="display:inline" data-i18n="optAmbilightBackgroundOpacity"></div>
+                                                <input class="xnarrow input" type="range" name="points" min="0" max="100" step="1" id="rngAmbilightBackgroundOpacity">
+                                                <input class="xnarrow text input" type="text" id="txtAmbilightBackgroundOpacity"><span class="adjoined xnarrow" data-i18n="optAmbilightBackgroundOpacityUnitName"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optCenterImagesTooltip">
+                                    <li class="field">
+                                        <label class="checkbox" for="chkCenterImages">
+                                            <input type="checkbox" id="chkCenterImages"><span></span>
+                                            <div style="display:inline" data-i18n="optCenterImages"></div>
+                                        </label>
+                                    </li>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optFrameBackgroundColorTooltip">
+                                    <li class="field">
+                                        <label class="inline" for="pickerFrameBackgroundColor">
+                                            <div style="display:inline" data-i18n="optFrameBackgroundColor"></div>
+                                            <input type="text" id="pickerFrameBackgroundColor" value="">
+                                        </label>
+                                    </li>
+                                </div>
+                            </ul>
+                        </fieldset>
+                        <fieldset>
+                            <legend data-i18n="optSectionVideo"></legend>
+                            <ul>
+                                <div class="ttip" data-i18n-tooltip="optZoomVideosTooltip">
+                                    <li class="field">
+                                        <label class="checkbox" for="chkZoomVideos">
+                                            <input type="checkbox" id="chkZoomVideos"><span></span>
+                                            <div style="display:inline" data-i18n="optZoomVideos"></div>
+                                        </label>
+                                    </li>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optVideoPositionStepTooltip">
+                                    <li class="append field">
+                                        <label class="inline" for="txtVideoPositionStep">
+                                            <div style="display:inline" data-i18n="optVideoPositionStep"></div>
+                                            <input class="xnarrow text input" type="text" id="txtVideoPositionStep"><span class="adjoined xnarrow" data-i18n="optVideoPositionStepUnitName"></span>
+                                        </label>
+                                    </li>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optDisableMouseWheelForVideoTooltip">
+                                    <li class="field">
+                                        <label class="checkbox" for="chkDisableMouseWheelForVideo">
+                                            <input type="checkbox" id="chkDisableMouseWheelForVideo"><span></span>
+                                            <div style="display:inline" data-i18n="optDisableMouseWheelForVideo"></div>
+                                        </label>
+                                    </li>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optMuteVideosTooltip">
+                                    <li class="field">
+                                        <label class="checkbox" for="chkMuteVideos">
+                                            <input type="checkbox" id="chkMuteVideos"><span></span>
+                                            <div style="display:inline" data-i18n="optMuteVideos"></div>
+                                        </label>
+                                    </li>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optVideoTimestampTooltip">
+                                    <li class="field">
+                                        <label class="checkbox" for="chkVideoTimestamp">
+                                            <input type="checkbox" id="chkVideoTimestamp"><span></span>
+                                            <div style="display:inline" data-i18n="optVideoTimestamp"></div>
+                                        </label>
+                                    </li>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optVideoVolumeTooltip">
+                                    <li class="append field">
+                                        <label class="inline" for="txtVideoVolume">
+                                            <div style="display:inline" data-i18n="optVideoVolume"></div>
+                                            <input class="xnarrow input" type="range" name="points" min="0" max="100" step="1" id="rngVideoVolume">
+                                            <input class="xnarrow text input" type="text" id="txtVideoVolume"><span class="adjoined xnarrow" data-i18n="optVideoVolumeUnitName"></span>
+                                        </label>
+                                    </li>
+                                </div>
+                            </ul>
+                        </fieldset>
+                        <fieldset>
+                            <legend data-i18n="optSectionDelays"></legend>
+                            <ul>
+                                <li class="append field">
+                                    <label class="inline" for="txtDisplayDelay">
+                                        <div style="display:inline" data-i18n="optDisplayDelay"></div>
+                                        <input class="xnarrow text input" type="text" id="txtDisplayDelay"><span class="adjoined xnarrow" data-i18n="optDurationUnitName"></span>
                                     </label>
                                 </li>
+                                <li class="append field">
+                                    <label class="inline" for="txtDisplayDelayVideo">
+                                        <div style="display:inline" data-i18n="optDisplayDelayVideo"></div>
+                                        <input class="xnarrow text input" type="text" id="txtDisplayDelayVideo"><span class="adjoined xnarrow" data-i18n="optDurationUnitName"></span>
+                                    </label>
+                                </li>
+                                <li class="append field">
+                                    <label class="inline" for="txtFadeDuration">
+                                        <div style="display:inline" data-i18n="optFadeDuration"></div>
+                                        <input class="xnarrow text input" type="text" id="txtFadeDuration"><span class="adjoined xnarrow" data-i18n="optDurationUnitName"></span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="tab-content">
+                    <form>
+                        <fieldset>
+                            <legend data-i18n="optPlugins"></legend>
+                            <ul id="tblPlugins"></ul>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="tab-content">
+                    <form>
+                        <div class="ttip" data-i18n-tooltip="optWhitelistModeTooltip">
+                            <div class="field">
+                                <label class="checkbox" for="chkWhiteListMode">
+                                    <input type="checkbox" id="chkWhiteListMode"><span></span>
+                                    <div style="display:inline" data-i18n="optWhitelistMode"></div>
+                                </label>
                             </div>
-                            <div id="divAmbilight" style="display:flex">
-                                <div class="ttip" data-i18n-tooltip="optAmbilightHaloSizeTooltip">
-                                    <div class="append field" style="margin-left:22px">
-                                        <label class="inline" for="txtAmbilightHaloSize">
-                                            <div style="display:inline" data-i18n="optAmbilightHaloSize"></div>
-                                            <input class="xnarrow input" type="range" name="points" min="0" max="100" step="1" id="rngAmbilightHaloSize" style="width:100px">
-                                            <input class="xnarrow text input" type="text" id="txtAmbilightHaloSize" style="width:50px"><span class="adjoined" data-i18n="optAmbilightHaloSizeUnitName"></span>
+                        </div>
+                        <fieldset>
+                            <legend id="lblToggle"></legend>
+                            <div class="append field">
+                                <label for="txtAddExcludedSite">
+                                    <input class="wide text input" type="text" id="txtAddExcludedSite" data-i18n-placeholder="optSitePlaceholder">
+                                    <div class="medium primary btn"><a href="#" id="btnAddExcludedSite" data-i18n="optButtonAddSite"></a></div>
+                                </label>
+                            </div>
+                            <ul id="selExcludedSites"></ul>
+                            <p data-i18n="optSiteDisclaimer"></p>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="tab-content">
+                    <table id="tableActionKeys"></table>
+                </div>
+                <div class="tab-content">
+                    <form>
+                        <fieldset>
+                            <legend data-i18n="optSectionAdvanced"></legend>
+                            <ul>
+                                <li class="field">
+                                    <label class="checkbox" for="chkUpdateNotifications">
+                                        <input type="checkbox" id="chkUpdateNotifications"><span></span>
+                                        <div style="display:inline" data-i18n="optUpdateNotifications"></div> <a id="aShowUpdateNotification" data-i18n="optShowLastUpdateNotification"></a>
+                                    </label>
+                                </li>
+                                <li class="field">
+                                    <label class="checkbox" for="chkAddToHistory">
+                                        <input type="checkbox" id="chkAddToHistory"><span></span>
+                                        <div style="display:inline" data-i18n="optAddToHistory"></div>
+                                    </label>
+                                </li>
+                                <li class="field">
+                                    <label class="checkbox" for="chkFilterNSFW">
+                                        <input type="checkbox" id="chkFilterNSFW"><span></span>
+                                        <div style="display:inline" data-i18n="optFilterNSFW"></div>
+                                    </label>
+                                </li>
+                                <li class="field">
+                                    <label class="checkbox" for="chkAlwaysPreload">
+                                        <input type="checkbox" id="chkAlwaysPreload"><span></span>
+                                        <div style="display:inline" data-i18n="optAlwaysPreload"></div>
+                                    </label>
+                                </li>
+                                <li class="field">
+                                    <label class="checkbox" for="chkEnableGalleries">
+                                        <input type="checkbox" id="chkEnableGalleries"><span></span>
+                                        <div style="display:inline" data-i18n="optEnableGalleries"></div>
+                                    </label>
+                                </li>
+                                <li class="append field">
+                                    <label class="inline" for="txtPicturesOpacity">
+                                        <div style="display:inline" data-i18n="optPicturesOpacity"></div>
+                                        <input class="xnarrow text input" type="text" id="txtPicturesOpacity"><span class="adjoined xnarrow" data-i18n="optOpacityUnitName"></span>
+                                    </label>
+                                </li>
+                                <div class="ttip" data-i18n-tooltip="optDownloadFolderTooltip">
+                                    <li class="append field">
+                                        <label class="inline" style="padding-right:10px">
+                                            <div style="display:inline" data-i18n="optDownloadFolder"></div>
                                         </label>
-                                    </div>
+                                        <input class="normal text input" type="text" id="txtDownloadFolder" data-i18n-placeholder="optDownloadFolderPlaceholder">
+                                    </li>
                                 </div>
-                                <div class="ttip" data-i18n-tooltip="optAmbilightBackgroundOpacityTooltip">
-                                    <div class="append field" style="margin-left:22px">
-                                        <label class="inline" for="txtAmbilightBackgroundOpacity">
-                                            <div style="display:inline" data-i18n="optAmbilightBackgroundOpacity"></div>
-                                            <input class="xnarrow input" type="range" name="points" min="0" max="100" step="1" id="rngAmbilightBackgroundOpacity" style="width:100px">
-                                            <input class="xnarrow text input" type="text" id="txtAmbilightBackgroundOpacity" style="width:50px"><span class="adjoined" data-i18n="optAmbilightBackgroundOpacityUnitName"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ttip" data-i18n-tooltip="optCenterImagesTooltip">
-                                <li class="field"><label class="checkbox" for="chkCenterImages">
-                                    <input type="checkbox" id="chkCenterImages"><span></span>
-                                    <div style="display:inline" data-i18n="optCenterImages"></div>
-                                </label></li>
-                            </div>
-                            <div class="ttip" data-i18n-tooltip="optFrameBackgroundColorTooltip">
-                                <li class="field"><label class="inline" for="pickerFrameBackgroundColor">
-                                    <div style="display:inline" data-i18n="optFrameBackgroundColor"></div>
-                                    <input type="text" id="pickerFrameBackgroundColor" value="">
-                                </label></li>
-                            </div>
-                        </ul>
-                    </fieldset>
-                    <fieldset>
-                        <legend data-i18n="optSectionVideo"></legend>
-                        <ul>
-                            <div class="ttip" data-i18n-tooltip="optZoomVideosTooltip">
-                                <li class="field"><label class="checkbox" for="chkZoomVideos">
-                                    <input type="checkbox" id="chkZoomVideos"><span></span>
-                                    <div style="display:inline" data-i18n="optZoomVideos"></div>
-                                </label></li>
-                            </div>
-                            <div class="ttip" data-i18n-tooltip="optVideoPositionStepTooltip">
-                                <li class="append field"><label class="inline" for="txtVideoPositionStep">
-                                    <div style="display:inline" data-i18n="optVideoPositionStep"></div>
-                                    <input class="xnarrow text input" type="text" id="txtVideoPositionStep"><span class="adjoined" data-i18n="optVideoPositionStepUnitName"></span>
-                                </label></li>
-                            </div>
-                            <div class="ttip" data-i18n-tooltip="optDisableMouseWheelForVideoTooltip">
-                                <li class="field"><label class="checkbox" for="chkDisableMouseWheelForVideo">
-                                    <input type="checkbox" id="chkDisableMouseWheelForVideo"><span></span>
-                                    <div style="display:inline" data-i18n="optDisableMouseWheelForVideo"></div>
-                                </label></li>
-                            </div>
-                            <div class="ttip" data-i18n-tooltip="optMuteVideosTooltip">
-                                <li class="field"><label class="checkbox" for="chkMuteVideos">
-                                    <input type="checkbox" id="chkMuteVideos"><span></span>
-                                    <div style="display:inline" data-i18n="optMuteVideos"></div>
-                                </label></li>
-                            </div>
-                            <div class="ttip" data-i18n-tooltip="optVideoTimestampTooltip">
-                                <li class="field"><label class="checkbox" for="chkVideoTimestamp">
-                                    <input type="checkbox" id="chkVideoTimestamp"><span></span>
-                                    <div style="display:inline" data-i18n="optVideoTimestamp"></div>
-                                </label></li>
-                            </div>
-                            <div class="ttip" data-i18n-tooltip="optVideoVolumeTooltip">
-                                <li class="append field"><label class="inline" for="txtVideoVolume">
-                                    <div style="display:inline" data-i18n="optVideoVolume"></div>
-                                    <input class="xnarrow input" type="range" name="points" min="0" max="100" step="1" id="rngVideoVolume">
-                                    <input class="xnarrow text input" type="text" id="txtVideoVolume"><span class="adjoined" data-i18n="optVideoVolumeUnitName"></span>
-                                </label></li>
-                            </div>
-                        </ul>
-                    </fieldset>
-                    <fieldset>
-                        <legend data-i18n="optSectionDelays"></legend>
-                        <ul>
-                            <li class="append field"><label class="inline" for="txtDisplayDelay">
-                                <div style="display:inline" data-i18n="optDisplayDelay"></div>
-                                <input class="xnarrow text input" type="text" id="txtDisplayDelay"><span class="adjoined" data-i18n="optDurationUnitName"></span>
-                            </label></li>
-                            <li class="append field"><label class="inline" for="txtDisplayDelayVideo">
-                                <div style="display:inline" data-i18n="optDisplayDelayVideo"></div>
-                                <input class="xnarrow text input" type="text" id="txtDisplayDelayVideo"><span class="adjoined" data-i18n="optDurationUnitName"></span>
-                            </label></li>
-                            <li class="append field"><label class="inline" for="txtFadeDuration">
-                                <div style="display:inline" data-i18n="optFadeDuration"></div>
-                                <input class="xnarrow text input" type="text" id="txtFadeDuration"><span class="adjoined" data-i18n="optDurationUnitName"></span>
-                            </label></li>
-                        </ul>
-                    </fieldset>
-                </form>
-            </div>
-            <div class="tab-content">
-                <form>
-                    <fieldset>
-                        <legend data-i18n="optPlugins"></legend>
-                        <ul id="tblPlugins"></ul>
-                    </fieldset>
-                </form>
-            </div>
-            <div class="tab-content">
-                <form>
-                    <div class="ttip" data-i18n-tooltip="optWhitelistModeTooltip">
-                        <div class="field"><label class="checkbox" for="chkWhiteListMode">
-                            <input type="checkbox" id="chkWhiteListMode"><span></span>
-                            <div style="display:inline" data-i18n="optWhitelistMode"></div>
-                        </label></div>
-                    </div>
-                    <fieldset>
-                        <legend id="lblToggle"></legend>
-                        <div class="append field"><label for="txtAddExcludedSite">
-                            <input class="wide text input" type="text" id="txtAddExcludedSite" data-i18n-placeholder="optSitePlaceholder">
-                            <div class="medium primary btn"><a href="#" id="btnAddExcludedSite" data-i18n="optButtonAddSite"></a></div>
-                        </label></div>
-                        <ul id="selExcludedSites"></ul>
-                        <p data-i18n="optSiteDisclaimer"></p>
-                    </fieldset>
-                </form>
-            </div>
-            <div class="tab-content">
-                <table id="tableActionKeys"></table>
-            </div>
-            <div class="tab-content">
-                <form>
-                    <fieldset>
-                        <legend data-i18n="optSectionAdvanced"></legend>
-                        <ul>
-                            <li class="field"><label class="checkbox" for="chkUpdateNotifications">
-                                <input type="checkbox" id="chkUpdateNotifications"><span></span>
-                                <div style="display:inline" data-i18n="optUpdateNotifications"></div> <a id="aShowUpdateNotification" data-i18n="optShowLastUpdateNotification"></a>
-                            </label></li>
-                            <li class="field"><label class="checkbox" for="chkAddToHistory">
-                                <input type="checkbox" id="chkAddToHistory"><span></span>
-                                <div style="display:inline" data-i18n="optAddToHistory"></div>
-                            </label></li>
-                            <li class="field"><label class="checkbox" for="chkFilterNSFW">
-                                <input type="checkbox" id="chkFilterNSFW"><span></span>
-                                <div style="display:inline" data-i18n="optFilterNSFW"></div>
-                            </label></li>
-                            <li class="field"><label class="checkbox" for="chkAlwaysPreload">
-                                <input type="checkbox" id="chkAlwaysPreload"><span></span>
-                                <div style="display:inline" data-i18n="optAlwaysPreload"></div>
-                            </label></li>
-                            <li class="field"><label class="checkbox" for="chkEnableGalleries">
-                                <input type="checkbox" id="chkEnableGalleries"><span></span>
-                                <div style="display:inline" data-i18n="optEnableGalleries"></div>
-                            </label></li>
-                            <li class="append field"><label class="inline" for="txtPicturesOpacity">
-                                <div style="display:inline" data-i18n="optPicturesOpacity"></div>
-                                <input class="xnarrow text input" type="text" id="txtPicturesOpacity"><span class="adjoined" data-i18n="optOpacityUnitName"></span>
-                            </label></li>
-                        </ul>
-                    </fieldset>
-                </form>
-            </div>
-        </section>
-    </div>
-    <div class="row">
-        <div class="push_three three columns text-center">
-            <div class="medium success btn icon-left entypo icon-floppy"><a href="#" id="btnSave" data-i18n="optButtonSave"></a></div>
+                            </ul>
+                        </fieldset>
+                    </form>
+                </div>
+            </section>
         </div>
-        <div class="three columns text-center">
-            <div class="medium info btn icon-left entypo icon-arrows-ccw"><a href="#" id="btnReset" data-i18n="optButtonReset"></a></div>
+        <div class="row">
+            <div class="four columns text-center">
+                <div class="medium success btn icon-left entypo icon-floppy"><a href="#" id="btnSave" data-i18n="optButtonSave"></a></div>
+            </div>
+            <div class="four columns text-center">
+                <div class="medium warning btn icon-left entypo icon-cancel"><a href="#" id="btnCancel" data-i18n="optButtonCancel"></a></div>
+            </div>
+            <div class="four columns text-center">
+                <div class="medium info btn icon-left entypo icon-arrows-ccw"><a href="#" id="btnReset" data-i18n="optButtonReset"></a></div>
+            </div>
+        </div>
+        <div id="messages" class="row">
+            <div class="four columns centered text-center">
+                <div class="success alert" data-i18n="optSaved"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="twelve columns centered text-center">
+                <p><a target="_blank" href="https://github.com/extesy/hoverzoom/" data-i18n="optFooterSourceCode"></a> | <a target="_blank" href="https://github.com/extesy/hoverzoom/issues" data-i18n="optFooterReportIssue"></a></p>
+                <p id="version"></p>
+            </div>
         </div>
     </div>
-    <div id="messages" class="row">
-        <div class="four columns centered text-center">
-            <div class="success alert" data-i18n="optSaved"></div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="twelve columns centered text-center">
-            <p><a target="_blank" href="https://github.com/extesy/hoverzoom/" data-i18n="optFooterSourceCode"></a> | <a target="_blank" href="https://github.com/extesy/hoverzoom/issues" data-i18n="optFooterReportIssue"></a></p>
-            <p id="version"></p>
-        </div>
-    </div>
-</div>
-<script src="../js/libs/backgroundScriptsAPIBridge.js"></script>
-<script src="../js/libs/jquery-3.2.1.js"></script>
-<script src="../js/libs/gumby.js"></script>
-<script src="../js/libs/spectrum.js"></script>
-<script src="../js/tools.js"></script>
-<script src="../js/plugins.js"></script>
-<script src="../js/common.js"></script>
-<script src="../js/options.js"></script>
+    <script src="../js/libs/backgroundScriptsAPIBridge.js"></script>
+    <script src="../js/libs/jquery-3.2.1.js"></script>
+    <script src="../js/libs/gumby.js"></script>
+    <script src="../js/libs/spectrum.js"></script>
+    <script src="../js/tools.js"></script>
+    <script src="../js/plugins.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/options.js"></script>
 </body>
 </html>
