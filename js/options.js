@@ -115,6 +115,8 @@ function saveOptions() {
     options.picturesOpacity = $('#txtPicturesOpacity')[0].value / 100;
     options.captionLocation = $('#selectCaptionLocation').val();
     options.downloadFolder = $('#txtDownloadFolder')[0].value;
+    options.useSeparateTabOrWindowForUnloadableUrlsEnabled = $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled')[0].checked;
+    options.useSeparateTabOrWindowForUnloadableUrls = $('#selectUseSeparateTabOrWindowForUnloadableUrls').val();
 
     localStorage.options = JSON.stringify(options);
     sendOptions(options);
@@ -200,6 +202,8 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#chkZoomedSizeThresholdEnabled').trigger(options.zoomedSizeThresholdEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#txtZoomedSizeThreshold').val(parseInt(options.zoomedSizeThreshold));
     $('#txtDownloadFolder').val(options.downloadFolder);
+    $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled').trigger(options.useSeparateTabOrWindowForUnloadableUrlsEnabled ? 'gumby.check' : 'gumby.uncheck');
+    $('#selectUseSeparateTabOrWindowForUnloadableUrls').val(options.useSeparateTabOrWindowForUnloadableUrls);
 
     return false;
 }
@@ -307,6 +311,13 @@ function updateDivAmbilight() {
     }
 }
 
+function updateUseSeparateTabOrWindowForUnloadableUrls() {
+    if ($('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled')[0].checked) {
+        $('#selectUseSeparateTabOrWindowForUnloadableUrls').removeClass('disabled');
+    } else {
+        $('#selectUseSeparateTabOrWindowForUnloadableUrls').addClass('disabled');
+    }
+}
 function updateTxtAmbilightBackgroundOpacity() {
     $('#txtAmbilightBackgroundOpacity')[0].value = this.value;
 }
@@ -376,7 +387,7 @@ function loadPlugins() {
 }
 
 function populatePluginsTable() {
-    var plugins = $.unique(hoverZoomPlugins.map(function(plugin) {return plugin.name}));
+    var plugins = $.unique(hoverZoomPlugins.map(function(plugin) {return plugin.name})).sort(Intl.Collator().compare);
     plugins.forEach(function(plugin) {
         var chkName = 'chkPlugin' + plugin.replace(/[^\w]/g, '').toLowerCase();
         $('<div class="field"><label class="checkbox" for="' + chkName + '"><input type="checkbox" id="' + chkName + '" class="chkPlugin"><span></span>&nbsp;<div style="display:inline">' + plugin + '</div></label></div>').appendTo('#tblPlugins');
@@ -421,6 +432,7 @@ $(function () {
     $('#btnAddExcludedSite').click(btnAddExcludedSiteOnClick);
     $('#btnRemoveExcludedSite').click(btnRemoveExcludedSiteOnClick);
     $('#txtDownloadFolder').change(downloadFolderOnChange);
+    $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled').parent().on('gumby.onChange', updateUseSeparateTabOrWindowForUnloadableUrls);
 
     restoreOptions();
     loadPlugins();
