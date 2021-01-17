@@ -106,6 +106,9 @@ function onMessage(message, sender, callback) {
                 });
             });
             break;
+        case 'updateViewWindow':
+            chrome.windows.getCurrent(window => { chrome.windows.update(window.id, { width:message.updateData.width, height:message.updateData.height, top:message.updateData.top, left:message.updateData.left }) });
+            break;
     }
 }
 

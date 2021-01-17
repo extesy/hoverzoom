@@ -840,32 +840,36 @@ var hoverZoom = {
         }
 
         function imgFullSizeOnError() {
-            let src = imgDetails.url;
-            if (src === $(this).attr('src')) {
+
+            if (imgDetails.url === $(this).prop('src')) {
                 let hoverZoomSrcIndex = hz.currentLink ? hz.currentLink.data().hoverZoomSrcIndex : 0;
-                if (window.location.protocol === 'https:' && src.indexOf('http:') === 0) {
-                    // try switching to https if the main site is loaded using https protocol and image is using http
-                    src = 'https' + src.substr(src.indexOf(':'));
-                } else if (hz.currentLink && hoverZoomSrcIndex < hz.currentLink.data().hoverZoomSrc.length - 1) {
+
+                if (hz.currentLink && hoverZoomSrcIndex < hz.currentLink.data().hoverZoomSrc.length - 1) {
                     // If the link has several possible sources, we try to load the next one
+                    if (imgFullSize) {
+                        imgFullSize.remove();
+                        imgFullSize = null;
+                    }
                     hoverZoomSrcIndex++;
                     hz.currentLink.data().hoverZoomSrcIndex = hoverZoomSrcIndex;
-                    src = hz.currentLink.data().hoverZoomSrc[hoverZoomSrcIndex];
-                } else {
-                    src = null;
-                }
-
-                if (src) {
-                    imgFullSize.remove();
-                    imgFullSize = null;
-                    console.info('[HoverZoom] Failed to load image: ' + imgDetails.url + '\nTrying next one: ' + src);
-                    imgDetails.url = src;
+                    let nextSrc = hz.currentLink.data().hoverZoomSrc[hoverZoomSrcIndex];
+                    console.info('[HoverZoom] Failed to load image: ' + imgDetails.url + '\nTrying next one: ' + nextSrc);
+                    imgDetails.url = nextSrc;
                     clearTimeout(loadFullSizeImageTimeout);
                     loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, 10);
                 } else {
                     hideHoverZoomImg();
-                    //hz.currentLink.removeClass('hoverZoomLink').removeData();
-                    console.warn('[HoverZoom] Failed to load image: ' + src);
+                    if (options.useSeparateTabOrWindowForUnloadableUrlsEnabled) {
+                        // last attempt to display image
+                        console.info('[HoverZoom] Failed to load image: ' + imgDetails.url + ' in current window.\nTrying to load image in separate window or tab...');
+                        if (options.useSeparateTabOrWindowForUnloadableUrls == 'window') {
+                            openImageInWindow();
+                        } else if (options.useSeparateTabOrWindowForUnloadableUrls == 'tab') {
+                            openImageInTab(true); // do not focus tab
+                        }
+                    } else {
+                        console.warn('[HoverZoom] Failed to load image: ' + imgDetails.url);
+                    }
                 }
             }
         }
