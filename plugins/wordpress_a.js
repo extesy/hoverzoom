@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Wordpress',
-    version:'2.0',
+    version:'2.1',
     prepareImgLinks:function (callback) {
 
         var res = [];
@@ -11,10 +11,11 @@ hoverZoomPlugins.push({
                 //re = /-\d+x\d+\./,
                 //a global search is needed
                 //ex:"https://globalvoices.org/wp-content/uploads/2018/11/Migrants_in_Hungary_2015_Aug_018-800x450-400x300.jpg"
+                // or: https://www.ece.fr/ecole-ingenieur/wp-content/uploads/2013/08/prepa-integree-ecole-ingenieur-454x240-c-default.jpg
                 re = /-\d+x\d+/ig,
                 src = this.src;
             if (src.match(re)) {
-                src = src.replace(re, '');
+                src = src.replace('-c-default', '').replace(re, '');
                 img.data().hoverZoomSrc = [src, src.replace(/jpg$/, 'jpeg')];
                 res.push(img);
             }
@@ -32,7 +33,7 @@ hoverZoomPlugins.push({
                 // remove leading & trailing quotes
                 var backgroundImageUrl = backgroundImage.replace(/^['"]/,"").replace(/['"]+$/,"");
                 var reThumb = /-\d+x\d+/ig
-                var fullsizeUrl = backgroundImageUrl.replace(reThumb, '');
+                var fullsizeUrl = backgroundImageUrl.replace('-c-default', '').replace(reThumb, '');
                 if (fullsizeUrl != backgroundImageUrl) {
                     var link = $(this);
                     if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
