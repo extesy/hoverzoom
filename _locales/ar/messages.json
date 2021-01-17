@@ -367,6 +367,22 @@
         "message": "%",
         "description": "[options] Unit name (percentage) for opacity option"
     },
+    "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
+        "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
+        "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
+    },
+    "optUseSeparateTabOrWindowForUnloadableUrls": {
+        "message": "Try to open unloadable urls in separate:",
+        "description": "[options] Use separate tab or window for unloadable urls option"
+    },
+    "optUseSeparateTabForUnloadableUrls": {
+        "message": "Tab",
+        "description": "[options] Use separate tab for unloadable urls option"
+    },
+    "optUseSeparateWindowForUnloadableUrls": {
+        "message": "Window",
+        "description": "[options] Use separate window for unloadable urls option"
+    },
     "optDownloadFolderTooltip": {
         "message": "Subfolder(s) will be created if needed",
         "description": "[options] Tooltip for download folder option"
