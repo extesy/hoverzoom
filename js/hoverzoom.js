@@ -562,7 +562,7 @@ var hoverZoom = {
                         hideHoverZoomImg();
                     }
 
-                    removeTitles();
+                    // removeTitles();
 
                     // If the image source has not been set yet
                     if (!imgFullSize) {
