@@ -859,7 +859,29 @@
         },
         {
             "js": ["plugins/pinterest.js"],
-            "matches": ["*://*.pinterest.com/*"]
+            "matches": ["*://*.pinterest.com/*",
+                        "*://*.pinterest.com.au/*",
+                        "*://*.pinterest.com.mx/*",
+                        "*://*.pinterest.ca/*",
+                        "*://*.pinterest.co.in/*",
+                        "*://*.pinterest.co.kr/*",
+                        "*://*.pinterest.co.nz/*",
+                        "*://*.pinterest.co.uk/*",
+                        "*://*.pinterest.ch/*",
+                        "*://*.pinterest.cz/*",
+                        "*://*.pinterest.de/*",
+                        "*://*.pinterest.dk/*",
+                        "*://*.pinterest.es/*",
+                        "*://*.pinterest.fi/*",
+                        "*://*.pinterest.fr/*",
+                        "*://*.pinterest.ie/*",
+                        "*://*.pinterest.it/*",
+                        "*://*.pinterest.jp/*",
+                        "*://*.pinterest.nl/*",
+                        "*://*.pinterest.pt/*",
+                        "*://*.pinterest.ru/*",
+                        "*://*.pinterest.se/*"
+            ]
         },
         {
             "js": ["plugins/500px.js"],
