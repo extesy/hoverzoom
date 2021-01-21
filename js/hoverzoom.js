@@ -429,11 +429,12 @@ var hoverZoom = {
 
         // Remove the 'title' attribute from all elements to prevent a tooltip from appearing above the zoomed image.
         // Titles are saved so they can be restored later.
-        function removeTitles() {
+        function removeTitles(img) {
             if (titledElements) {
-                return;
+                restoreTitles();
             }
-            titledElements = $('[title]').not('iframe, .lightbox, [rel^="lightbox"]');
+            titledElements = img.parents('[title]').not('iframe, .lightbox, [rel^="lightbox"]');
+            console.log(img, titledElements);
             titledElements.each(function () {
                 $(this).data().hoverZoomTitle = this.getAttribute('title');
                 this.title = '';
@@ -562,7 +563,7 @@ var hoverZoom = {
                         hideHoverZoomImg();
                     }
 
-                    // removeTitles();
+                    removeTitles(target);
 
                     // If the image source has not been set yet
                     if (!imgFullSize) {
