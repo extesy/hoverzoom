@@ -1,24 +1,34 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push( {
     name: 'Weibo',
-    version: '0.1',
+    version: '1.0',
     prepareImgLinks: function(callback) {
         var res = [];
+
         hoverZoom.urlReplace(res,
-            'img[src*="sinaimg.cn/thumbnail/"]',
-            /thumbnail\/([0-9a-z]+)\.jpg/,
-            'large/$1.jpg'
+            'img[src]',
+            /\/thumb\d+\//,
+            '/large/'
         );
+
         hoverZoom.urlReplace(res,
-            'img[src*="sinaimg.cn"]',
-            /50/,
-            '180'
+            'img[src]',
+            /\/(orj|mw)\d+\//,
+            '/large/'
         );
+
         hoverZoom.urlReplace(res,
-            'img[src*="thumbnail"]',
-            /thumbnail/,
-            'bmiddle'
+            'img[src]',
+            /\/crop.*\//,
+            '/large/'
         );
-        callback($(res));
+
+        hoverZoom.urlReplace(res,
+            'img[src]',
+            /\/square.*\//,
+            '//'
+        );
+
+        callback($(res), this.name);
     }
 });

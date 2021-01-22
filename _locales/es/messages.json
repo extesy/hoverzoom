@@ -12,7 +12,7 @@
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
     "extUpdated": {
-        "message": "Hover Zoom+ Ha sido actualizado",
+        "message": "Hover Zoom+ ha sido actualizado",
         "description": "Extension update notification"
     },
     "popDisableForAllSites": {
@@ -32,7 +32,7 @@
         "description": "[popup] Enables the extension for a specific site"
     },
     "popPreloadImages": {
-        "message": "Pre-cargar imagenes enfocadas",
+        "message": "Pre-cargar imágenes enfocadas",
         "description": "[popup] Preload zoomed images"
     },
     "popPreloadingImages": {
@@ -50,6 +50,10 @@
     "optButtonSave": {
         "message": "Guardar",
         "description": "[options] Save button label"
+    },
+    "optButtonCancel": {
+        "message": "Cancel",
+        "description": "[options] Cancel button label"
     },
     "optButtonReset": {
         "message": "Resetear",
@@ -208,8 +212,32 @@
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Crear un sutil efecto de brillo similar a la de Phillips tecnología Ambilight.",
+        "message": "Crear un sutil efecto de brillo similar a la de Philips tecnología Ambilight",
         "description": "[options] Tooltip for enable ambient light behind images option"
+    },
+    "optAmbilightHaloSize": {
+        "message": "Tamaño del brillo :",
+        "description": "[options] Size of halo option"
+    },
+    "optAmbilightHaloSizeUnitName": {
+        "message": "pixels",
+        "description": "[options] Unit name (pixel) for halo size"
+    },
+    "optAmbilightHaloSizeTooltip": {
+        "message": "Tamaño del brillo alrededor de la imagen engrandecida (0% : no hay halo)",
+        "description": "[options] Tooltip for size of halo"
+    },
+    "optAmbilightBackgroundOpacity": {
+        "message": "Opacidad de fondo :",
+        "description": "[options] Background opacity option"
+    },
+    "optAmbilightBackgroundOpacityUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for background opacity"
+    },
+    "optAmbilightBackgroundOpacityTooltip": {
+        "message": "0% : transparente, 100% : negro",
+        "description": "[options] Tooltip for background opacity"
     },
     "optCenterImages": {
         "message": "Centrar imágenes",
@@ -220,19 +248,19 @@
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optFrameBackgroundColor": {
-        "message": "Frame background color:",
+        "message": "Color de la bordura:",
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
-        "message": "Background color for the frame the image appears in",
+        "message": "Color de la bordura adonde la imagen ampliada se visualiza",
         "description": "[options] Tooltip for frame background color option"
     },
     "optFrameBackgroundColorChooseText": {
-        "message": "Select",
+        "message": "Validar",
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
-        "message": "Cancel",
+        "message": "Cancelar",
         "description": "[options] Frame background color button - Cancel"
     },
     "optSectionDelays": {
@@ -324,7 +352,7 @@
         "description": "[options] Exclude NSFW images (Reddit only) option"
     },
     "optAlwaysPreload": {
-        "message": "Precargar automaticamente las imagenes con zoom",
+        "message": "Precargar automaticamente las imágenes con zoom",
         "description": "[options] Automatically preload zoomed images option"
     },
     "optEnableGalleries": {
@@ -338,6 +366,38 @@
     "optOpacityUnitName": {
         "message": "%",
         "description": "[options] Unit name (percentage) for opacity option"
+    },
+    "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
+        "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
+        "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
+    },
+    "optUseSeparateTabOrWindowForUnloadableUrls": {
+        "message": "Try to open unloadable urls in separate:",
+        "description": "[options] Use separate tab or window for unloadable urls option"
+    },
+    "optUseSeparateTabForUnloadableUrls": {
+        "message": "Tab",
+        "description": "[options] Use separate tab for unloadable urls option"
+    },
+    "optUseSeparateWindowForUnloadableUrls": {
+        "message": "Window",
+        "description": "[options] Use separate window for unloadable urls option"
+    },
+    "optDownloadFolderTooltip": {
+        "message": "Subfolder(s) will be created if needed",
+        "description": "[options] Tooltip for download folder option"
+    },
+    "optDownloadFolderPlaceholder": {
+        "message": "Example: animals/cats",
+        "description": "[options] Placeholder for download folder option"
+    },
+    "optDownloadFolder": {
+        "message": "Save images to folder: Downloads/",
+        "description": "[options] Download folder option"
+    },
+    "optPixelsUnitName": {
+        "message": "pixels",
+        "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
         "message": "Activar Hover Zoom+",

@@ -40,6 +40,22 @@ hoverZoomPlugins.push({
       });
     });
 
+    $('div[data-url*="//www.reddit.com/gallery/"]').each(function () {
+      var post = $(this);
+      var galleryid = post.attr('data-url').slice(-6);
+      $.get('https://www.reddit.com/by_id/t3_' + galleryid + '.json?raw_json=1', function (data) {
+        if (data && data.data) {
+          post.find('a.thumbnail,a.title').each(function () {
+            var img = $(this);
+            var items = data.data.children[0].data.gallery_data.items;
+            var media_metadata = data.data.children[0].data.media_metadata;
+            var src = items.map(item => ['https://i.redd.it/' + item.media_id + '.' + media_metadata[item.media_id].m.substring(6)]);
+            hoverZoom.prepareLink(img, src);
+          });
+        }
+      });
+    });
+
     $('div[data-url*="//v.redd.it/"]').each(function () {
       var post = $(this);
       var link = post.attr('data-url');
@@ -58,7 +74,7 @@ hoverZoomPlugins.push({
             function (xml) {
               try {
                 var xmlDoc = (new DOMParser()).parseFromString(xml, 'application/xml');
-                var highestRes = [].slice.call(xmlDoc.querySelectorAll('Representation[mimeType^="video"]'))
+                var highestRes = [].slice.call(xmlDoc.querySelectorAll('Representation[frameRate]'))
                   .sort(function (r1, r2) {
                     var w1 = parseInt(r1.getAttribute('width')), w2 = parseInt(r2.getAttribute('width'));
                     return w1 > w2 ? -1 : (w1 < w2 ? 1 : 0);
@@ -66,13 +82,14 @@ hoverZoomPlugins.push({
                   .find(function (repr) { return !!repr.querySelector('BaseURL'); });
 
                 if (highestRes) {
-                  img.data('hoverZoomSrc', [link + '/' + highestRes.querySelector('BaseURL').textContent.trim()]);
+                  var baseUrl = highestRes.querySelector('BaseURL').textContent.trim();
+                  img.data('hoverZoomSrc', [baseUrl.indexOf('//') !== -1 ? baseUrl : link + '/' + baseUrl]);
                 }
 
-                var audio = xmlDoc.querySelector('Representation[mimeType^="audio"'),
-                  audioUrl = audio ? audio.querySelector('BaseURL') : undefined;
+                var audio = xmlDoc.querySelector('Representation[audioSamplingRate]'),
+                  audioUrl = audio ? audio.querySelector('BaseURL').textContent.trim() : undefined;
                 if (audioUrl) {
-                  img.data('hoverZoomAudioSrc', [link + '/' + audioUrl.textContent.trim()]);
+                  img.data('hoverZoomAudioSrc', [audioUrl.indexOf('//') !== -1 ? audioUrl : link + '/' + audioUrl]);
                 }
 
                 resolve(img);

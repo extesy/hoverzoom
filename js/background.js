@@ -2,16 +2,23 @@
 
 // Performs an ajax request
 function ajaxRequest(request, callback) {
+
     var xhr = new XMLHttpRequest();
+    var response = request.response;
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
-                callback(xhr.responseText);
+                if (response === 'URL') {
+                    callback(xhr.responseURL);
+                }
+                else {
+                    callback(xhr.responseText);
+                }
             } else {
                 callback(null);
             }
         }
-    };
+    }
     xhr.open(request.method, request.url, true);
     for (var i in request.headers) {
         xhr.setRequestHeader(request.headers[i].header, request.headers[i].value);
@@ -33,12 +40,15 @@ function onMessage(message, sender, callback) {
                 }
             });
         case 'ajaxGet':
-            ajaxRequest({url: message.url, method: 'GET'}, callback);
+            ajaxRequest({url:message.url, response:message.response, method:'GET'}, callback);
             return true;
         case 'ajaxRequest':
             ajaxRequest(message, callback);
             return true;
         case 'showPageAction':
+            // Firefox url is located at sender.url, copy sender.url to sender.tab.url
+            if (!sender.tab.url && sender.url) 
+                sender.tab.url = sender.url
             showPageAction(sender.tab);
             callback();
             return true;
@@ -95,6 +105,9 @@ function onMessage(message, sender, callback) {
                     chrome.tabs.executeScript(tab.id, {file:'js/viewTab.js'});
                 });
             });
+            break;
+        case 'updateViewWindow':
+            chrome.windows.getCurrent(window => { chrome.windows.update(window.id, { width:message.updateData.width, height:message.updateData.height, top:message.updateData.top, left:message.updateData.left }) });
             break;
     }
 }

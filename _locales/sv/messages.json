@@ -51,6 +51,10 @@
         "message": "Spara",
         "description": "[options] Save button label"
     },
+    "optButtonCancel": {
+        "message": "Cancel",
+        "description": "[options] Cancel button label"
+    },
     "optButtonReset": {
         "message": "återställ",
         "description": "[options] Reset button label"
@@ -208,8 +212,32 @@
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Skapa en subtil ljuseffekt som liknar Philips Ambilight-teknik.",
+        "message": "Create a subtle glow effect similar to Philips Ambilight technology",
         "description": "[options] Tooltip for enable ambient light behind images option"
+    },
+    "optAmbilightHaloSize": {
+        "message": "Size of halo :",
+        "description": "[options] Size of halo option"
+    },
+    "optAmbilightHaloSizeUnitName": {
+        "message": "pixels",
+        "description": "[options] Unit name (pixel) for halo size"
+    },
+    "optAmbilightHaloSizeTooltip": {
+        "message": "Size of halo around zoomed image (0% : no halo)",
+        "description": "[options] Tooltip for size of halo"
+    },
+    "optAmbilightBackgroundOpacity": {
+        "message": "Background opacity :",
+        "description": "[options] Background opacity option"
+    },
+    "optAmbilightBackgroundOpacityUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for background opacity"
+    },
+    "optAmbilightBackgroundOpacityTooltip": {
+        "message": "0% : transparent, 100% : black",
+        "description": "[options] Tooltip for background opacity"
     },
     "optCenterImages": {
         "message": "Centrera bilder",
@@ -338,6 +366,38 @@
     "optOpacityUnitName": {
         "message": "%",
         "description": "[options] Unit name (percentage) for opacity option"
+    },
+    "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
+        "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
+        "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
+    },
+    "optUseSeparateTabOrWindowForUnloadableUrls": {
+        "message": "Try to open unloadable urls in separate:",
+        "description": "[options] Use separate tab or window for unloadable urls option"
+    },
+    "optUseSeparateTabForUnloadableUrls": {
+        "message": "Tab",
+        "description": "[options] Use separate tab for unloadable urls option"
+    },
+    "optUseSeparateWindowForUnloadableUrls": {
+        "message": "Window",
+        "description": "[options] Use separate window for unloadable urls option"
+    },
+    "optDownloadFolderTooltip": {
+        "message": "Subfolder(s) will be created if needed",
+        "description": "[options] Tooltip for download folder option"
+    },
+    "optDownloadFolderPlaceholder": {
+        "message": "Example: animals/cats",
+        "description": "[options] Placeholder for download folder option"
+    },
+    "optDownloadFolder": {
+        "message": "Save images to folder: Downloads/",
+        "description": "[options] Download folder option"
+    },
+    "optPixelsUnitName": {
+        "message": "pixels",
+        "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
         "message": "Aktivera Hover Zoom+",

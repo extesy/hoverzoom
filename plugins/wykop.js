@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'wykop.pl',
-    version: '0.1',
+    version: '0.2',
     prepareImgLinks(callback) {
         const res = [];
 
@@ -17,6 +17,12 @@ hoverZoomPlugins.push({
 
             res.push($(img));
         });
+
+        hoverZoom.urlReplace(res,
+            'img[src]',
+            /,.*\./,
+            '.'
+        );
 
         if (res.length > 0) {
             callback($(res));

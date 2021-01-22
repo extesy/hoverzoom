@@ -20,7 +20,7 @@
         "description": "[popup] Disable the extension"
     },
     "popAllowPerSiteToggle": {
-        "message": "Allow per-site extension configuration",
+        "message": "Позволяване на конфигуриране на всеки сайт поотделно",
         "description": "[popup] Allow per-site extension configuration"
     },
     "popDisableForSite": {
@@ -50,6 +50,10 @@
     "optButtonSave": {
         "message": "Запис",
         "description": "[options] Save button label"
+    },
+    "optButtonCancel": {
+        "message": "Cancel",
+        "description": "[options] Cancel button label"
     },
     "optButtonReset": {
         "message": "Първоначалност",
@@ -92,7 +96,7 @@
         "description": "[options] Adjust the position of the caption"
     },
     "optCaptionLocationTooltip": {
-        "message": "View the caption above/below the image, or not at all",
+        "message": "Показване на надписа над/под изображение, или без показването му въобще",
         "description": "[options] Tooltip for adjusting the position of the caption"
     },
     "optCaptionLocationAbove": {
@@ -160,11 +164,11 @@
         "description": "[options] Zoom videos (WebM, MP4) option"
     },
     "optZoomVideosTooltip": {
-        "message": "Zoom videos (WebM, MP4)",
+        "message": "Увеличение на видеоклипове (за WebM, MP4)",
         "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
     },
     "optVideoPositionStep": {
-        "message": "Use prev/next action keys (or mousewheel) to change video position by",
+        "message": "Употреба на клавиши напред/назад (или колелцето на мишката) за промяна на позицията на видео от",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
@@ -208,8 +212,32 @@
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Create a subtle glow effect similar to Phillips Ambilight technology",
+        "message": "Create a subtle glow effect similar to Philips Ambilight technology",
         "description": "[options] Tooltip for enable ambient light behind images option"
+    },
+    "optAmbilightHaloSize": {
+        "message": "Size of halo :",
+        "description": "[options] Size of halo option"
+    },
+    "optAmbilightHaloSizeUnitName": {
+        "message": "pixels",
+        "description": "[options] Unit name (pixel) for halo size"
+    },
+    "optAmbilightHaloSizeTooltip": {
+        "message": "Size of halo around zoomed image (0% : no halo)",
+        "description": "[options] Tooltip for size of halo"
+    },
+    "optAmbilightBackgroundOpacity": {
+        "message": "Background opacity :",
+        "description": "[options] Background opacity option"
+    },
+    "optAmbilightBackgroundOpacityUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for background opacity"
+    },
+    "optAmbilightBackgroundOpacityTooltip": {
+        "message": "0% : transparent, 100% : black",
+        "description": "[options] Tooltip for background opacity"
     },
     "optCenterImages": {
         "message": "Центриране на изображения",
@@ -220,7 +248,7 @@
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optFrameBackgroundColor": {
-        "message": "Frame background color:",
+        "message": "Фонов цвят на рамката:",
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
@@ -320,7 +348,7 @@
         "description": "[options] Add viewed pictures to the browser's history option"
     },
     "optFilterNSFW": {
-        "message": "Exclude NSFW images (Reddit only)",
+        "message": "Изключване на изображения NSFW (само за сайта Reddit)",
         "description": "[options] Exclude NSFW images (Reddit only) option"
     },
     "optAlwaysPreload": {
@@ -338,6 +366,38 @@
     "optOpacityUnitName": {
         "message": "%",
         "description": "[options] Unit name (percentage) for opacity option"
+    },
+    "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
+        "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
+        "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
+    },
+    "optUseSeparateTabOrWindowForUnloadableUrls": {
+        "message": "Try to open unloadable urls in separate:",
+        "description": "[options] Use separate tab or window for unloadable urls option"
+    },
+    "optUseSeparateTabForUnloadableUrls": {
+        "message": "Tab",
+        "description": "[options] Use separate tab for unloadable urls option"
+    },
+    "optUseSeparateWindowForUnloadableUrls": {
+        "message": "Window",
+        "description": "[options] Use separate window for unloadable urls option"
+    },
+    "optDownloadFolderTooltip": {
+        "message": "Subfolder(s) will be created if needed",
+        "description": "[options] Tooltip for download folder option"
+    },
+    "optDownloadFolderPlaceholder": {
+        "message": "Example: animals/cats",
+        "description": "[options] Placeholder for download folder option"
+    },
+    "optDownloadFolder": {
+        "message": "Save images to folder: Downloads/",
+        "description": "[options] Download folder option"
+    },
+    "optPixelsUnitName": {
+        "message": "pixels",
+        "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
         "message": "Задействане на Hover Zoom+",

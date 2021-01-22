@@ -1,7 +1,7 @@
-Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
+Acercar imágenes/vídeos en todos tus sitios favoritos (Facebook, Amazon, etc). Simplemente pase el ratón sobre la imagen para agrandarla.
 
-Coloca el mouse sobre cualquier imagen en cualquiera de los sitios soportados y la extensión la ampliará automáticamente a su tamaño original, asegurándose que quepa dentro de la ventana del navegador.
+Coloca el ratón sobre cualquier imagen en cualquiera de los sitios soportados y la extensión lo ampliará automáticamente a su tamaño original, asegurándose que queda dentro de la ventana del navegador.
 
-Esta es una versión de código abierto (Open Source) de la extensión original HoverZoom, la cuál fue reemplazada por virus y borrada de la tienda. En esta versión todos los virus fueron removidos, varios errores corregidos, y nuevas características fueron agregadas. Por defecto, no recopila ninguna estadística. The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images or get tab urls for per-site configuration.
+Esta es una versión de código abierto (Open Source) de la extensión original HoverZoom, la cuál fue plagada de virus y borrada de la tienda. En esta versión todos los virus fueron eliminados, varios errores corregidos, y nuevas características fueron agregadas. Por defecto, no recopila ninguna estadística. El único permiso que necesita es acceder a los datos en todos los sitios web (para extraer imágenes completas), y permisos *opcionales* para acceder al historial del navegador, descargar/guardar imágenes u obtener las urls de las fichas para la configuración por sitio.
 
 Algunas veces los sitios cambian su diseño o estructura interna, y cuando eso pase la extensión necesita ser actualizada. Por favor reporta cualquier inconveniente cuando el zoom no esté funcionando usando la pestaña de soporte, o en nuestra página de github 'https://github.com/extesy/hoverzoom/issues'.
