@@ -77,8 +77,8 @@
                 "plugins/clippituser_a.js",
                 "plugins/cloudapp_a.js",
                 "plugins/google_a.js",
-                "plugins/bing_a.js",
-                "plugins/facebook_a.js"
+                "plugins/facebook_a.js",
+                "plugins/bing_a.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
@@ -597,6 +597,7 @@
             "matches": [
                 "*://*.joystiq.com/*",
                 "*://*.engadget.com/*",
+                "*://*.switched.com/*",
                 "*://*.tuaw.com/*"
             ]
         },
@@ -737,7 +738,10 @@
         },
         {
             "js": ["plugins/rootmusic.js"],
-            "matches": ["*://*.rootmusic.com/fb/*"],
+            "matches": [
+                "*://*.rootmusic.com/fb/*",
+                "*://*.bandpage.com/*"
+            ],
             "all_frames": true
         },
         {
@@ -1249,6 +1253,7 @@
                         "*://*.gettyimages.be/*",
                         "*://*.gettyimages.ca/*",
                         "*://*.gettyimages.co.cz/*",
+                        "*://*.gettyimages.de/*",
                         "*://*.gettyimages.dk/*",
                         "*://*.gettyimages.es/*",
                         "*://*.gettyimages.fr/*",
@@ -1613,7 +1618,8 @@
                         "*://*.tripadvisor.ru/*",
                         "*://*.tripadvisor.se/*",
                         "*://*.tripadvisor.sk/*"
-            ]
+            ],
+            "all_frames": true
         },
         {
             "js": ["plugins/freerangestock.js"],
