@@ -434,7 +434,6 @@ var hoverZoom = {
                 restoreTitles();
             }
             titledElements = img.parents('[title]').not('iframe, .lightbox, [rel^="lightbox"]');
-            console.log(img, titledElements);
             titledElements.each(function () {
                 $(this).data().hoverZoomTitle = this.getAttribute('title');
                 this.title = '';
