@@ -1092,7 +1092,7 @@ var hoverZoom = {
                             // skip img if displayed size * 1.8 > natural size
                             if (hzDownscaled.height() > heightAttr * 1.8 || hzDownscaled.width() > widthAttr * 1.8) {
                                 var srcs = img.data().hoverZoomSrc || [];
-                                srcs.unshift(img.attr('src'));
+                                srcs.push(img.attr('src'));
                                 img.data().hoverZoomSrc = srcs;
                                 img.addClass('hoverZoomLink');
                             }
