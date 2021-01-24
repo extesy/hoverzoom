@@ -90,7 +90,8 @@
         },
         {
             "js": ["plugins/flickr.js"],
-            "matches": ["*://*.flickr.com/*"]
+            "matches": ["*://*.flickr.com/*",
+                "*://*.flickr.net/*"]
         },
         {
             "js": ["plugins/yahoo.js"],
@@ -1333,7 +1334,7 @@
         },
         {
             "js": ["plugins/stocksnap.js"],
-            "matches": ["*://*.stocksnap.io/*"]
+            "matches": ["*://*.stocksnap.io/*", "*://*.stocksnap.com/*"]
         },
         {
             "js": ["plugins/pexels.js"],
@@ -1640,6 +1641,38 @@
         {
             "js": ["plugins/goodreads.js"],
             "matches": ["*://*.goodreads.com/*"]
+        },
+        {
+            "js": ["plugins/pikwizard.js"],
+            "matches": ["*://*.pikwizard.com/*"]
+        },
+    	{
+            "js": ["plugins/thingiverse.js"],
+            "matches": ["*://*.thingiverse.com/*"]
+        },
+        {
+            "js": ["plugins/derpibooru.js"],
+            "matches": ["*://*.derpibooru.org/*"]
+        },
+        {
+            "js": ["plugins/aminus3.js"],
+            "matches": ["*://*.aminus3.com/*"]
+        },
+        {
+            "js": ["plugins/livememe.js"],
+            "matches": ["*://*.livememe.com/*"]
+        },
+        {
+            "js": ["plugins/giphy.js"],
+            "matches": ["*://*.giphy.com/*"]
+        },
+        {
+            "js": ["plugins/imageevent.js"],
+            "matches": ["*://*.imageevent.com/*"]
+        },
+        {
+            "js": ["plugins/aol.js"],
+            "matches": ["*://*.aol.com/*"]
         }
    ]
 }

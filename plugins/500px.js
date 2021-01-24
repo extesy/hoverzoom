@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'500px',
-    version:'0.3',
+    version:'0.4',
     prepareImgLinks:function (callback) {
         var res = [];
         
@@ -24,7 +24,7 @@ hoverZoomPlugins.push({
         //   image id   : 1015291632
         //   API call   : https://api.500px.com/v1/photos?ids=1015291632&image_size[]=34&image_size[]=2048
         // fullsize url : photos.1015291632.image_url[1] = https://drscdn.500px.org/photo/1015291632/m%3D2048/v2?sig=57d8851e13ca77aa5ae595dd07c3a1c049038e571d4298c1ab1ddb5de6f95f9a
-        $('img[src]:not(.hoverZoomLink),[style*=url]:not(.hoverZoomLink)').parent().one('mouseover', function() {
+        $('img[src]:not(.hoverZoomMouseover1),[style*=url]:not(.hoverZoomMouseover1)').addClass('hoverZoomMouseover1').parent().one('mouseover', function() {
               
             // extract url from link, it might be an image or a background-image
             var link = $(this);
@@ -45,7 +45,7 @@ hoverZoomPlugins.push({
             var m = url.match(re);
             if (m) {
                 var id = m[1];
-                console.log('id:' + id);
+                //console.log('id:' + id);
 
                 var fullsizeUrl;
                 // check if API's response is already in sessionStorage to lessen API calls
@@ -70,13 +70,12 @@ hoverZoomPlugins.push({
                         sessionStorage.setItem('p_' + id, response);
 
                         fullsizeUrl = data.photos[id].image_url[1];
-                        console.log('photo fullsizeUrl (from API call):' + fullsizeUrl);
+                        //console.log('photo fullsizeUrl (from API call):' + fullsizeUrl);
 
                         if (fullsizeUrl != undefined && fullsizeUrl != url) {
                             if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
                             if (link.data().hoverZoomSrc.indexOf(fullsizeUrl) == -1) {
-                                link.data().hoverZoomSrc.push(fullsizeUrl);
-                                link.data().hoverZoomSrc.reverse();
+                                link.data().hoverZoomSrc.unshift(fullsizeUrl);
                                 link.addClass('hoverZoomLink');
                                 callback(link);
                             }
@@ -90,13 +89,12 @@ hoverZoomPlugins.push({
                     } catch (e) { return; }
 
                     fullsizeUrl = data.photos[id].image_url[1];
-                    console.log('photo fullsizeUrl (from sessionStorage):' + fullsizeUrl);
+                    //console.log('photo fullsizeUrl (from sessionStorage):' + fullsizeUrl);
 
                     if (fullsizeUrl != undefined && fullsizeUrl != url) {
                         if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
                         if (link.data().hoverZoomSrc.indexOf(fullsizeUrl) == -1) {
-                            link.data().hoverZoomSrc.push(fullsizeUrl);
-                            link.data().hoverZoomSrc.reverse();
+                            link.data().hoverZoomSrc.unshift(fullsizeUrl);
                             link.addClass('hoverZoomLink');
                             callback(link);
                         }
@@ -111,7 +109,7 @@ hoverZoomPlugins.push({
         //   user id    : 1003527811
         //   API call   : https://api.500px.com/v1/users/1003527811
         // fullsize url : user.avatars.default = https://drscdn.500px.org/user_avatar/1003527811/q%3D85_w%3D300_h%3D300/v2?webp=true&v=1&sig=8a008cb904008f58a3bb3e9b9362be910868448375108f3dc2300146c212af84
-        $('img[src]:not(.hoverZoomLink),[style*=url]:not(.hoverZoomLink)').parent().one('mouseover', function() {
+        $('img[src]:not(.hoverZoomMouseover2),[style*=url]:not(.hoverZoomMouseover2)').addClass('hoverZoomMouseover2').parent().one('mouseover', function() {
 
             // extract url from link, it might be an image or a background-image
             var link = $(this);
@@ -132,7 +130,7 @@ hoverZoomPlugins.push({
             var m = url.match(re);
             if (m) {
                 var id = m[1];
-                console.log('id:' + id);
+                //console.log('id:' + id);
 
                 var fullsizeUrl;
                 // check if API's response is already in sessionStorage to lessen API calls
@@ -157,13 +155,12 @@ hoverZoomPlugins.push({
                         sessionStorage.setItem('u_' + id, response);
 
                         fullsizeUrl = data.user.userpic_https_url;
-                        console.log('user fullsizeUrl (from API call):' + fullsizeUrl);
+                        //console.log('user fullsizeUrl (from API call):' + fullsizeUrl);
 
                         if (fullsizeUrl != undefined && fullsizeUrl != url) {
                             if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
                             if (link.data().hoverZoomSrc.indexOf(fullsizeUrl) == -1) {
-                                link.data().hoverZoomSrc.push(fullsizeUrl);
-                                link.data().hoverZoomSrc.reverse();
+                                link.data().hoverZoomSrc.unshift(fullsizeUrl);
                                 link.addClass('hoverZoomLink');
                                 callback(link);
                             }
@@ -177,13 +174,12 @@ hoverZoomPlugins.push({
                     } catch (e) { return; }
 
                     fullsizeUrl = data.user.userpic_https_url;
-                    console.log('user fullsizeUrl (from sessionStorage):' + fullsizeUrl);
+                    //console.log('user fullsizeUrl (from sessionStorage):' + fullsizeUrl);
 
                     if (fullsizeUrl != undefined && fullsizeUrl != url) {
                         if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
                         if (link.data().hoverZoomSrc.indexOf(fullsizeUrl) == -1) {
-                            link.data().hoverZoomSrc.push(fullsizeUrl);
-                            link.data().hoverZoomSrc.reverse();
+                            link.data().hoverZoomSrc.unshift(fullsizeUrl);
                             link.addClass('hoverZoomLink');
                             callback(link);
                         }
