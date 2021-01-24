@@ -7,7 +7,9 @@ hoverZoomPlugins.push({
             var link = $(this).parent();
             var href = link.attr('href');
             var thingId = href.substring(href.lastIndexOf(':') + 1);
-            $.ajax('https://api.thingiverse.com/things/' + thingId + '/images', {headers: {'Authorization': 'Bearer 56edfc79ecf25922b98202dd79a291aa'}}).done(function (images) {
+
+            var apiKey = '56edfc79ecf25922b98202dd79a291aa'; // directly from https://cdn.thingiverse.com/site/js/app.bundle.js
+            $.ajax('https://api.thingiverse.com/things/' + thingId + '/images', {headers: {'Authorization': 'Bearer ' + apiKey}}).done(function (images) {
                 var urls = [];
                 for (var i = 0; i < images.length; i++) {
                     var sizes = images[i].sizes;
