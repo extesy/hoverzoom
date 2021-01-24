@@ -4,7 +4,7 @@ hoverZoomPlugins.push({
     version:'1.0',
     prepareImgLinks:function (callback) {
         $('a > img[src*="card_preview"]').one('mouseover', function() {
-            var link = $(this).parent(), data = link.data();
+            var link = $(this).parent();
             var href = link.attr('href');
             var thingId = href.substring(href.lastIndexOf(':') + 1);
             $.ajax('https://api.thingiverse.com/things/' + thingId + '/images', {headers: {'Authorization': 'Bearer 56edfc79ecf25922b98202dd79a291aa'}}).done(function (images) {
