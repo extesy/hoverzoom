@@ -52,7 +52,7 @@
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
-        "message": "Cancel",
+        "message": "Cancelar",
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
@@ -220,7 +220,7 @@
         "description": "[options] Size of halo option"
     },
     "optAmbilightHaloSizeUnitName": {
-        "message": "pixels",
+        "message": "pixeles",
         "description": "[options] Unit name (pixel) for halo size"
     },
     "optAmbilightHaloSizeTooltip": {
@@ -368,31 +368,31 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
-        "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
+        "message": "Útil para sitios HTTPS como imágenes de Google que impiden la carga de imágenes HTTP",
         "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrls": {
-        "message": "Try to open unloadable urls in separate:",
+        "message": "Intentar abrir urls con errores en ventana o pestaña distincta:",
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
-        "message": "Tab",
+        "message": "Pestaña",
         "description": "[options] Use separate tab for unloadable urls option"
     },
     "optUseSeparateWindowForUnloadableUrls": {
-        "message": "Window",
+        "message": "Ventana",
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
-        "message": "Subfolder(s) will be created if needed",
+        "message": "Subcarpeta(s) se crearán si es necesario",
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
-        "message": "Example: animals/cats",
+        "message": "Ejemplo: animales/gatos",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images to folder: Downloads/",
+        "message": "Guardar imágenes en carpeta: Descargas/",
         "description": "[options] Download folder option"
     },
     "optPixelsUnitName": {
