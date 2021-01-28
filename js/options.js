@@ -114,6 +114,7 @@ function saveOptions() {
     options.enableGalleries = $('#chkEnableGalleries')[0].checked;
     options.picturesOpacity = $('#txtPicturesOpacity')[0].value / 100;
     options.captionLocation = $('#selectCaptionLocation').val();
+    options.displayImageLoader = $('#chkDisplayImageLoader')[0].checked;    
     options.downloadFolder = $('#txtDownloadFolder')[0].value;
     options.useSeparateTabOrWindowForUnloadableUrlsEnabled = $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled')[0].checked;
     options.useSeparateTabOrWindowForUnloadableUrls = $('#selectUseSeparateTabOrWindowForUnloadableUrls').val();
