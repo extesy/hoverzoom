@@ -265,7 +265,7 @@ var hoverZoom = {
 
                 imgFullSize.width('auto').height('auto');
                 hz.hzImg.width('auto').height('auto');
-                hz.hzImg.css('visibility', 'visible');
+                //hz.hzImg.css('visibility', 'visible');
 
                 // image natural dimensions
                 imgDetails.naturalWidth = imgFullSize.width() * options.zoomFactor;
@@ -727,12 +727,16 @@ var hoverZoom = {
         function displayFullSizeImage() {
             cLog('displayFullSizeImage');
 
-            hz.hzImgLoader.remove();
-            hz.hzImgLoader = null;
+            if (hz.hzImgLoader) {
+                hz.hzImgLoader.remove();
+                hz.hzImgLoader = null;
+            }
 
             hz.hzImg.stop(true, true);
             hz.hzImg.offset({top:-9000, left:-9000});    // hides the image while making it available for size calculations
             hz.hzImg.empty();
+
+            hz.hzImg.css('visibility', 'visible');
 
             clearTimeout(cursorHideTimeout);
             hz.hzImg.css('cursor', 'none');
@@ -1656,9 +1660,15 @@ var hoverZoom = {
         }
     },
 
-    // create and display the loading image container
-
+    // handle the loading image spinner
+    // its color depends on loading staus:
+    // - green: loading started
+    // - orange: img skipped (reason depends on Options settings: image already big enough, etc)
+    // - red: an error occured (displayed in console)
     displayImgLoader:function (status, position) {
+
+        // orange & red spinners are optional
+        if (options.displayImageLoader == false && (status == 'skipped' || status == 'error')) return;
 
         // check that loader exists
         if (hoverZoom.hzImgLoader == null) {

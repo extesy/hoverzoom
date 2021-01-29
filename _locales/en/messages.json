@@ -367,6 +367,14 @@
         "message": "%",
         "description": "[options] Unit name (percentage) for opacity option"
     },
+    "optDisplayImageLoaderTooltip": {
+        "message": "Display a little spinner as image is loading (green:loading, orange:skipped, red:error). Orange & red spinners are optional.",
+        "description": "[options] Tooltip for display image loader option"
+    },
+    "optDisplayImageLoader": {
+        "message": "Display image loader",
+        "description": "[options] Display image loader option"
+    },    
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
         "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
         "description": "[options] Tooltip for using separate tab or window for unloadable urls option"

@@ -28,7 +28,7 @@ var factorySettings = {
     disabledPlugins : [],
     centerImages : false,
     frameBackgroundColor: "#ffffff",
-    displayImageLoader: true,
+    displayImageLoader: false,
     enlargementThresholdEnabled : true,
     enlargementThreshold : 2,
     displayedSizeThresholdEnabled : true,
