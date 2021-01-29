@@ -368,11 +368,11 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optDisplayImageLoaderTooltip": {
-        "message": "Display a little spinner as image is loading (green:loading, orange:skipped, red:error). Orange & red spinners are optional.",
+        "message": "Display a little spinner as image is loading (green:loading, red:error). Red spinner is optional.",
         "description": "[options] Tooltip for display image loader option"
     },
     "optDisplayImageLoader": {
-        "message": "Display image loader",
+        "message": "Display a red spinner when image loading failed",
         "description": "[options] Display image loader option"
     },    
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
