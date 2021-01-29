@@ -52,7 +52,7 @@
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
-        "message": "Cancel",
+        "message": "Mégse",
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
@@ -220,7 +220,7 @@
         "description": "[options] Size of halo option"
     },
     "optAmbilightHaloSizeUnitName": {
-        "message": "pixels",
+        "message": "pixel",
         "description": "[options] Unit name (pixel) for halo size"
     },
     "optAmbilightHaloSizeTooltip": {
@@ -368,35 +368,35 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
-        "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
+        "message": "Hasznos olyan HTTPS weboldalakon mint például a Google Fotók, amelyek nem engedélyezik HTTP képek betöltését",
         "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrls": {
-        "message": "Try to open unloadable urls in separate:",
+        "message": "Nem betölthető URL-ek különbe betöltése:",
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
-        "message": "Tab",
+        "message": "Lap",
         "description": "[options] Use separate tab for unloadable urls option"
     },
     "optUseSeparateWindowForUnloadableUrls": {
-        "message": "Window",
+        "message": "Ablak",
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
-        "message": "Subfolder(s) will be created if needed",
+        "message": "Almappá(k) létre lesznek hozva, ha szükséges",
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
-        "message": "Example: animals/cats",
+        "message": "Pálda: állatok/macskák",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images to folder: Downloads/",
+        "message": "Képek mentése mappába: Letöltések/",
         "description": "[options] Download folder option"
     },
     "optPixelsUnitName": {
-        "message": "pixels",
+        "message": "pixel",
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
