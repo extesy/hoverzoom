@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'IMDb',
-    version:'0.5',
+    version:'0.6',
     prepareImgLinks:function (callback) {
         var res = [];
         $('img[src*="._V1"], img.loadlate, div.rec_poster_img').each(function () {

@@ -1,12 +1,25 @@
 # Changelog
 
+## [1.0.167](https://github.com/extesy/hoverzoom/tree/1.0.167) (2021-01-30)
+
+[Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.166...1.0.167)
+
+**Implemented enhancements:**
+
+- Fix for red spinner: now not displayed by default [\#671](https://github.com/extesy/hoverzoom/pull/671) ([GrosPoulet](https://github.com/GrosPoulet))
+
+**Merged pull requests:**
+
+- New Crowdin updates [\#673](https://github.com/extesy/hoverzoom/pull/673) ([extesy](https://github.com/extesy))
+- Updated message about image loader option [\#672](https://github.com/extesy/hoverzoom/pull/672) ([GrosPoulet](https://github.com/GrosPoulet))
+- New Crowdin updates [\#668](https://github.com/extesy/hoverzoom/pull/668) ([extesy](https://github.com/extesy))
+
 ## [1.0.166](https://github.com/extesy/hoverzoom/tree/1.0.166) (2021-01-24)
 
 [Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.165...1.0.166)
 
 **Implemented enhancements:**
 
-- Enhancements to Pinterest plug-in & fix for HZ+ function prepareDowns… [\#664](https://github.com/extesy/hoverzoom/pull/664) ([GrosPoulet](https://github.com/GrosPoulet))
 - Smalls enhancements to manifest [\#662](https://github.com/extesy/hoverzoom/pull/662) ([GrosPoulet](https://github.com/GrosPoulet))
 
 **Closed issues:**
@@ -23,6 +36,10 @@
 ## [1.0.165](https://github.com/extesy/hoverzoom/tree/1.0.165) (2021-01-22)
 
 [Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.164...1.0.165)
+
+**Implemented enhancements:**
+
+- Enhancements to Pinterest plug-in & fix for HZ+ function prepareDowns… [\#664](https://github.com/extesy/hoverzoom/pull/664) ([GrosPoulet](https://github.com/GrosPoulet))
 
 **Closed issues:**
 
@@ -127,7 +144,6 @@
 - New Crowdin updates [\#625](https://github.com/extesy/hoverzoom/pull/625) ([extesy](https://github.com/extesy))
 - Update Tumblr plugin [\#623](https://github.com/extesy/hoverzoom/pull/623) ([dubhater](https://github.com/dubhater))
 - Fix plug-in for Facebook new design [\#622](https://github.com/extesy/hoverzoom/pull/622) ([GrosPoulet](https://github.com/GrosPoulet))
-- Update for plug-in : Yandex [\#619](https://github.com/extesy/hoverzoom/pull/619) ([GrosPoulet](https://github.com/GrosPoulet))
 
 ## [1.0.157](https://github.com/extesy/hoverzoom/tree/1.0.157) (2020-10-01)
 
@@ -135,6 +151,7 @@
 
 **Merged pull requests:**
 
+- Update for plug-in : Yandex [\#619](https://github.com/extesy/hoverzoom/pull/619) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix for plug-in : Vox.com [\#616](https://github.com/extesy/hoverzoom/pull/616) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in : JoeMonster [\#615](https://github.com/extesy/hoverzoom/pull/615) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in : FreeRangeStock [\#614](https://github.com/extesy/hoverzoom/pull/614) ([GrosPoulet](https://github.com/GrosPoulet))
@@ -183,10 +200,6 @@
 ## [1.0.154](https://github.com/extesy/hoverzoom/tree/1.0.154) (2020-09-06)
 
 [Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.153...1.0.154)
-
-**Implemented enhancements:**
-
-- Feature request: Dark overlay without ambient light [\#44](https://github.com/extesy/hoverzoom/issues/44)
 
 **Closed issues:**
 
@@ -241,6 +254,7 @@
 - New plug-in: DepositPhotos [\#553](https://github.com/extesy/hoverzoom/pull/553) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in for : GoogleUserContent [\#551](https://github.com/extesy/hoverzoom/pull/551) ([GrosPoulet](https://github.com/GrosPoulet))
 - New Crowdin updates [\#550](https://github.com/extesy/hoverzoom/pull/550) ([extesy](https://github.com/extesy))
+- New Crowdin updates [\#547](https://github.com/extesy/hoverzoom/pull/547) ([extesy](https://github.com/extesy))
 
 
 
