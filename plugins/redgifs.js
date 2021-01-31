@@ -2,7 +2,7 @@ var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'redgifs.com',
     prepareImgLinks:function (callback) {
-        $('a[href^="https://redgifs.com/"]').one('mouseenter', function() {
+        $('a[href*="redgifs.com/"]').one('mouseenter', function() {
             var link = $(this),
                 gfyId = this.href.replace(/.*redgifs.com\/(..\/)?(watch\/)?(detail\/)?(\w+).*/, '$4');
 
