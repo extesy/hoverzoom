@@ -12,7 +12,7 @@ hoverZoomPlugins.push({
         var patch = '$1?$2';
 
         hoverZoom.urlReplace(res,
-            'img[src*=".bing.net/th"]',
+            'img[src*="/th?"]',
             regex,
             patch
         );

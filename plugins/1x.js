@@ -27,11 +27,21 @@ hoverZoomPlugins.push({
         hoverZoom.urlReplace(res,
             'img[src]',
             '-ld.',
+            '-sd.'
+        );
+        hoverZoom.urlReplace(res,
+            'img[src]',
+            '-ld.',
             '-hd2.'
         );
         hoverZoom.urlReplace(res,
             'img[src]',
             '-ld.',
+            '-hd4.'
+        );
+        hoverZoom.urlReplace(res,
+            'img[src]',
+            '-sq.',
             '-sd.'
         );
         hoverZoom.urlReplace(res,
@@ -42,13 +52,14 @@ hoverZoomPlugins.push({
         hoverZoom.urlReplace(res,
             'img[src]',
             '-sq.',
-            '-sd.'
+            '-hd4.'
         );
         hoverZoom.urlReplace(res,
             'img[src]',
             '-square.',
             '.'
         );
-        callback($(res));
+
+        callback($(res), this.name);
     }
 });
