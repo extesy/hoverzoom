@@ -78,6 +78,7 @@ hoverZoomPlugins.push({
                                 link.data().hoverZoomSrc.unshift(fullsizeUrl);
                                 link.addClass('hoverZoomLink');
                                 callback(link);
+                                hoverZoom.displayPicFromElement(link);
                             }
                         }
                     });
@@ -97,6 +98,7 @@ hoverZoomPlugins.push({
                             link.data().hoverZoomSrc.unshift(fullsizeUrl);
                             link.addClass('hoverZoomLink');
                             callback(link);
+                            hoverZoom.displayPicFromElement(link);
                         }
                     }
                 }
@@ -163,6 +165,7 @@ hoverZoomPlugins.push({
                                 link.data().hoverZoomSrc.unshift(fullsizeUrl);
                                 link.addClass('hoverZoomLink');
                                 callback(link);
+                                hoverZoom.displayPicFromElement(link);
                             }
                         }
                     });
@@ -182,6 +185,7 @@ hoverZoomPlugins.push({
                             link.data().hoverZoomSrc.unshift(fullsizeUrl);
                             link.addClass('hoverZoomLink');
                             callback(link);
+                            hoverZoom.displayPicFromElement(link);
                         }
                     }
                 }
