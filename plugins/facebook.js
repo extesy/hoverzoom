@@ -149,6 +149,7 @@ hoverZoomPlugins.push({
                 // store uri
                 sessionStorage.setItem(currentId, uri);
                 callback(currentLink, name);
+                hoverZoom.displayPicFromElement(currentLink);
             });
         }
 
@@ -266,6 +267,7 @@ hoverZoomPlugins.push({
                     res.push(link);
                     cLog('Facebook photo fullsizeUrl (from sessionStorage): ' + storedUrl);
                     callback(link, name);
+                    hoverZoom.displayPicFromElement(link);
                 }
             }
         }
@@ -296,6 +298,7 @@ hoverZoomPlugins.push({
             // store uri
             sessionStorage.setItem(id, uri);
             callback(link, name);
+            hoverZoom.displayPicFromElement(link);
             return true;
         }
 
@@ -333,6 +336,7 @@ hoverZoomPlugins.push({
                     data.hoverZoomSrc.unshift(storedUrl);
                     cLog('Facebook photo fullsizeUrl (from sessionStorage): ' + storedUrl);
                     callback(currentLink, name);
+                    hoverZoom.displayPicFromElement(currentLink);
                 }
             });
         };
@@ -404,6 +408,7 @@ hoverZoomPlugins.push({
                 res.push(link);
                 cLog('Facebook photo fullsizeUrl (from sessionStorage): ' + storedUrl);
                 callback(link, name);
+                hoverZoom.displayPicFromElement(link);
             }
         }
 
@@ -507,6 +512,7 @@ hoverZoomPlugins.push({
                 res.push(link);
                 cLog('Facebook photo fullsizeUrl (from sessionStorage): ' + storedUrl);
                 callback(link, name);
+                hoverZoom.displayPicFromElement(link);
             }
         });
 
