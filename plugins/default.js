@@ -4,6 +4,8 @@ hoverZoomPlugins.push({
     prepareImgLinks: function (callback) {
         var res = [];
         $('a[href]').filter(function () {
+            if (typeof(this.href) != 'string')
+			    return false;
             if (this.href.substr(0, 10).toLowerCase() == 'data:image')
                 return false;
             return this.href.match(/\/[^:]+\.(?:jpe?g|gifv?|png|webm|mp4|3gpp|svg|webp|bmp|ico|xbm)(?:[\?#].*)?$/i);
@@ -18,7 +20,7 @@ hoverZoomPlugins.push({
             }
         });
         if (res.length) {
-            callback($(res));
+            callback($(res), this.name);
         }
     }
 });

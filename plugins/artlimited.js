@@ -1,15 +1,15 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'artlimited.net',
-    version:'0.1',
+    version:'0.3',
     prepareImgLinks:function (callback) {
-        var res = [];   
-    
+        var res = [];
+
         hoverZoom.urlReplace(res,
-            'img[src*="artlimited.net"]',
-            ['_s', '_m'],
-            ['', '']
+            'img[src]',
+            ['_s', '_m', '-medium-', '-small-'],
+            ['', '', '-large-', '-large-']
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });
