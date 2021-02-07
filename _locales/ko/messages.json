@@ -20,7 +20,7 @@
         "description": "[popup] Disable the extension"
     },
     "popAllowPerSiteToggle": {
-        "message": "Allow per-site extension configuration",
+        "message": "사이트별 확장 프로그램 허용",
         "description": "[popup] Allow per-site extension configuration"
     },
     "popDisableForSite": {
@@ -52,7 +52,7 @@
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
-        "message": "Cancel",
+        "message": "취소",
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
@@ -116,7 +116,7 @@
         "description": "[options] Extend zoomed images below the mouse cursor option"
     },
     "optMouseUnderlapTooltip": {
-        "message": "If unchecked, zoomed images will be resized dynamically",
+        "message": "선택하지 않은 경우 확대한 사진의 크기가 동적으로 조정됨",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
     "optPageActionEnabled": {
@@ -152,11 +152,11 @@
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
     "optDisableMouseWheelForVideo": {
-        "message": "Don't use mousewheel to navigate within video (action keys will still work)",
+        "message": "동영상 탐색 시 마우스 휠 사용 안 함 (활성화 키는 그대로 동작)",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optDisableMouseWheelForVideoTooltip": {
-        "message": "Scroll through albums but don't jump forward/backward in videos",
+        "message": "사진 전환 기능은 켜고 동영상 내 이동 기능은 끄기",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
@@ -220,7 +220,7 @@
         "description": "[options] Size of halo option"
     },
     "optAmbilightHaloSizeUnitName": {
-        "message": "pixels",
+        "message": "픽셀",
         "description": "[options] Unit name (pixel) for halo size"
     },
     "optAmbilightHaloSizeTooltip": {
