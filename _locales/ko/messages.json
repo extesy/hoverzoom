@@ -20,7 +20,7 @@
         "description": "[popup] Disable the extension"
     },
     "popAllowPerSiteToggle": {
-        "message": "Allow per-site extension configuration",
+        "message": "사이트별 확장 프로그램 허용",
         "description": "[popup] Allow per-site extension configuration"
     },
     "popDisableForSite": {
@@ -52,7 +52,7 @@
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
-        "message": "Cancel",
+        "message": "취소",
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
@@ -116,7 +116,7 @@
         "description": "[options] Extend zoomed images below the mouse cursor option"
     },
     "optMouseUnderlapTooltip": {
-        "message": "If unchecked, zoomed images will be resized dynamically",
+        "message": "선택하지 않은 경우 확대한 사진의 크기가 동적으로 조정됨",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
     "optPageActionEnabled": {
@@ -152,11 +152,11 @@
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
     "optDisableMouseWheelForVideo": {
-        "message": "Don't use mousewheel to navigate within video (action keys will still work)",
+        "message": "동영상 탐색 시 마우스 휠 사용 안 함 (활성화 키는 그대로 동작)",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optDisableMouseWheelForVideoTooltip": {
-        "message": "Scroll through albums but don't jump forward/backward in videos",
+        "message": "사진 전환 기능은 켜고 동영상 내 이동 기능은 끄기",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
@@ -192,7 +192,7 @@
         "description": "[options] Enable timestamp / video length on videos"
     },
     "optVideoTimestampTooltip": {
-        "message": "Enable timestamp / video length on videos",
+        "message": "타임스탬프 / 동영상 길이 표시",
         "description": "[options] Tooltip for video length countdown on videos"
     },
     "optVideoVolume": {
@@ -212,7 +212,7 @@
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Create a subtle glow effect similar to Philips Ambilight technology",
+        "message": "필립스 주변광 기술과 유사한 효과 생성",
         "description": "[options] Tooltip for enable ambient light behind images option"
     },
     "optAmbilightHaloSize": {
@@ -220,7 +220,7 @@
         "description": "[options] Size of halo option"
     },
     "optAmbilightHaloSizeUnitName": {
-        "message": "pixels",
+        "message": "픽셀",
         "description": "[options] Unit name (pixel) for halo size"
     },
     "optAmbilightHaloSizeTooltip": {
@@ -384,27 +384,27 @@
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
-        "message": "Tab",
+        "message": "탭",
         "description": "[options] Use separate tab for unloadable urls option"
     },
     "optUseSeparateWindowForUnloadableUrls": {
-        "message": "Window",
+        "message": "창",
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
-        "message": "Subfolder(s) will be created if needed",
+        "message": "필요한 경우 하위 폴더가 생성될 수 있음",
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
-        "message": "Example: animals/cats",
+        "message": "예시: 동물/고양이",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images to folder: Downloads/",
+        "message": "폴더에 이미지 저장하기: Downloads/",
         "description": "[options] Download folder option"
     },
     "optPixelsUnitName": {
-        "message": "pixels",
+        "message": "픽셀",
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
@@ -412,7 +412,7 @@
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "If a key is set, Hover Zoom+ will be active only when this key is held down.",
+        "message": "키가 설정되면 Hover Zoom+는 해당 키가 눌렸을 때만 활성화됩니다.",
         "description": "[options] Action key description"
     },
     "optHideKeyTitle": {
