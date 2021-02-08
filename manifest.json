@@ -78,7 +78,8 @@
                 "plugins/cloudapp_a.js",
                 "plugins/google_a.js",
                 "plugins/facebook_a.js",
-                "plugins/bing_a.js"
+                "plugins/bing_a.js",
+                "plugins/medium_a.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
