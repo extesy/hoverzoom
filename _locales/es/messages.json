@@ -368,11 +368,11 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optDisplayImageLoaderTooltip": {
-        "message": "Display a little spinner as image is loading (green:loading, red:error). Red spinner is optional.",
+        "message": "Enseña una animación cuando la imagen está cargando (verde:cargando, roja:error). La animación roja es opcional.",
         "description": "[options] Tooltip for display image loader option"
     },
     "optDisplayImageLoader": {
-        "message": "Display a red spinner when image loading failed",
+        "message": "Enseña una animación roja cuando la imagen no se pudo cargar",
         "description": "[options] Display image loader option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
@@ -404,7 +404,7 @@
         "description": "[options] Download folder option"
     },
     "optPixelsUnitName": {
-        "message": "pixels",
+        "message": "pixeles",
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
