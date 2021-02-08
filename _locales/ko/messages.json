@@ -192,7 +192,7 @@
         "description": "[options] Enable timestamp / video length on videos"
     },
     "optVideoTimestampTooltip": {
-        "message": "Enable timestamp / video length on videos",
+        "message": "타임스탬프 / 동영상 길이 표시",
         "description": "[options] Tooltip for video length countdown on videos"
     },
     "optVideoVolume": {
@@ -212,7 +212,7 @@
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Create a subtle glow effect similar to Philips Ambilight technology",
+        "message": "필립스 주변광 기술과 유사한 효과 생성",
         "description": "[options] Tooltip for enable ambient light behind images option"
     },
     "optAmbilightHaloSize": {
@@ -384,27 +384,27 @@
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
-        "message": "Tab",
+        "message": "탭",
         "description": "[options] Use separate tab for unloadable urls option"
     },
     "optUseSeparateWindowForUnloadableUrls": {
-        "message": "Window",
+        "message": "창",
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
-        "message": "Subfolder(s) will be created if needed",
+        "message": "필요한 경우 하위 폴더가 생성될 수 있음",
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
-        "message": "Example: animals/cats",
+        "message": "예시: 동물/고양이",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images to folder: Downloads/",
+        "message": "폴더에 이미지 저장하기: Downloads/",
         "description": "[options] Download folder option"
     },
     "optPixelsUnitName": {
-        "message": "pixels",
+        "message": "픽셀",
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
@@ -412,7 +412,7 @@
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "If a key is set, Hover Zoom+ will be active only when this key is held down.",
+        "message": "키가 설정되면 Hover Zoom+는 해당 키가 눌렸을 때만 활성화됩니다.",
         "description": "[options] Action key description"
     },
     "optHideKeyTitle": {
