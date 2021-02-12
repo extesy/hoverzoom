@@ -5,7 +5,6 @@ hoverZoomPlugins.push({
     prepareImgLinks:function (callback) {
 
         var JSESSIONIDCookie = getCookie("JSESSIONID").replace(/"/g, '');
-        console.log('JSESSIONID cookie:' + JSESSIONIDCookie);
 
         // individuals
         $('a[href*="/in/"]:not([href*="/detail/"]):not(.hoverZoomMouseover)').addClass('hoverZoomMouseover').one('mouseover', function () {
@@ -22,9 +21,8 @@ hoverZoomPlugins.push({
         // parse url to extract company's id then call API to find url of fullsize company photo
         // NB: API can not be called using company name, we need its id
         function fetchCompany(link, attr) {
-            console.log('fetchCompany');
-            let url = link.prop(attr);
 
+            let url = link.prop(attr);
             let companyId = null;
 
             // sample: https://www.linkedin.com/company/1951
@@ -32,7 +30,6 @@ hoverZoomPlugins.push({
             let regexCompanyId = /\/company\/([0-9]{2,})/;
             let matchesCompanyId = url.match(regexCompanyId);
             if (matchesCompanyId) companyId = matchesCompanyId.length > 1 ? matchesCompanyId[1] : null;
-            console.log('companyId:' + companyId);
 
             if (companyId == null) {
                 // sample: https://www.linkedin.com/company/celsius-therapeutics/?miniCompanyUrn=urn%3Ali%3Afs_miniCompany%3A28591021
@@ -40,7 +37,6 @@ hoverZoomPlugins.push({
                 let regexCompanyId = /\/company\/.*%3A([0-9]{2,})/;
                 let matchesCompanyId = url.match(regexCompanyId);
                 if (matchesCompanyId) companyId = matchesCompanyId.length > 1 ? matchesCompanyId[1] : null;
-                console.log('companyId:' + companyId);
             }
 
             if (companyId == null) return;
@@ -63,8 +59,8 @@ hoverZoomPlugins.push({
                         request.setRequestHeader("csrf-token", JSESSIONIDCookie);
                     },
                     url: "https://www.linkedin.com/voyager/api/entities/companies/" + companyId,
-                    success: function(response) { console.log('success: ' + response); extractCompanyPhoto(link, companyId, response); },
-                    error: function(response) { console.log('error: ' + response) }
+                    success: function(response) { extractCompanyPhoto(link, companyId, response); },
+                    error: function(response) { }
                 });
 
             } else {
@@ -75,14 +71,13 @@ hoverZoomPlugins.push({
                 data.hoverZoomSrc.unshift(storedUrl);
                 data.hoverZoomCaption = storedCaption;
                 res.push(link);
-                console.log('Linkedin fullsize company photo (from sessionStorage): ' + storedUrl);
                 callback(link, name);
             }
         }
 
         // parse url to extract profile's name then call API to find url of fullsize profile photo
         function fetchProfile(link, attr) {
-            console.log('fetchProfile');
+
             let url = link.prop(attr);
 
             // sample: https://www.linkedin.com/in/williamhgates/
@@ -93,7 +88,7 @@ hoverZoomPlugins.push({
             let matchesProfileName = url.match(regexProfileName);
             let profileName = null;
             if (matchesProfileName) profileName = matchesProfileName.length > 1 ? matchesProfileName[1] : null;
-            console.log('profileName:' + profileName);
+
             if (profileName == null) return;
 
             let storedUrl = null;
@@ -114,8 +109,8 @@ hoverZoomPlugins.push({
                         request.setRequestHeader("csrf-token", JSESSIONIDCookie);
                     },
                     url: "https://www.linkedin.com/voyager/api/identity/profiles/" + profileName,
-                    success: function(response) { console.log('success: ' + response); extractProfilePhoto(link, profileName, response); },
-                    error: function(response) { console.log('error: ' + response) }
+                    success: function(response) { extractProfilePhoto(link, profileName, response); },
+                    error: function(response) { }
                 });
 
             } else {
@@ -126,7 +121,7 @@ hoverZoomPlugins.push({
                 data.hoverZoomSrc.unshift(storedUrl);
                 data.hoverZoomCaption = storedCaption;
                 res.push(link);
-                console.log('Linkedin fullsize profile photo (from sessionStorage): ' + storedUrl);
+
                 callback(link, name);
             }
         }
@@ -140,7 +135,6 @@ hoverZoomPlugins.push({
                 let largestPicture = j.basicCompanyInfo.miniCompany.logo["com.linkedin.common.VectorImage"].artifacts[nbPictures - 1].fileIdentifyingUrlPathSegment;
                 let fullsizeUrl = rootUrl + largestPicture;
                 let caption = j.basicCompanyInfo.miniCompany.name;
-                console.log('fullsizeUrl: ' + fullsizeUrl);
 
                 let data = link.data();
                 if (data.hoverZoomSrc == undefined) {
@@ -148,7 +142,7 @@ hoverZoomPlugins.push({
                 }
                 data.hoverZoomSrc.unshift(fullsizeUrl);
                 data.hoverZoomCaption =
-                console.log('Linkedin fullsize company photo (from API call): ' + fullsizeUrl);
+
                 // store url
                 sessionStorage.setItem(companyId + "_url", fullsizeUrl);
                 callback(link, name);
@@ -167,7 +161,6 @@ hoverZoomPlugins.push({
                 let largestPicture = j.miniProfile.picture["com.linkedin.common.VectorImage"].artifacts[nbPictures - 1].fileIdentifyingUrlPathSegment;
                 let fullsizeUrl = rootUrl + largestPicture;
                 let caption = j.firstName + " " + j.lastName + " - " + j.headline;
-                console.log('fullsizeUrl: ' + fullsizeUrl);
 
                 let data = link.data();
                 if (data.hoverZoomSrc == undefined) {
@@ -175,7 +168,7 @@ hoverZoomPlugins.push({
                 }
                 data.hoverZoomSrc.unshift(fullsizeUrl);
                 data.hoverZoomCaption = caption;
-                console.log('Linkedin fullsize profile photo (from API call): ' + fullsizeUrl);
+
                 // store url & caption
                 sessionStorage.setItem(profileName + "_url", fullsizeUrl);
                 sessionStorage.setItem(profileName + "_caption", caption);
