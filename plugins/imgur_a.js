@@ -1,9 +1,10 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Imgur',
-    version:'1.2',
+    version:'1.3',
     prepareImgLinks:function (callback) {
 
+        var name = this.name;
         var res = [];
 
         function createUrls(hash) {
@@ -21,7 +22,14 @@ hoverZoomPlugins.push({
 
         function prepareImgLink() {
             var link = $(this), data = link.data(), href = link.attr('href');
-            if (data.hoverZoomSrc || data.hoverZoomGallerySrc) {
+            
+            // special case for Google Docs
+            if (window.location.host == 'docs.google.com') {
+                data.hoverZoomSrc = [href];
+                data.hoverZoomCaption = href;
+                res.push(link);
+                return;
+            } else if (data.hoverZoomSrc || data.hoverZoomGallerySrc) {
                 return;
             }
 
@@ -29,7 +37,6 @@ hoverZoomPlugins.push({
             if (-1 !== href.indexOf('i.stack.imgur.com')) {
                 data.hoverZoomSrc = [href.replace('http:', window.location.protocol)];
                 res.push(link);
-
                 return;
             }
 
@@ -88,7 +95,7 @@ hoverZoomPlugins.push({
                                                 data.hoverZoomGalleryIndex = index;
                                         }
                                     });
-                                    callback($([link]), this.name);
+                                    callback($([link]), name);
                                 }
                             }).fail(function(jqXHR) {
                                 if (jqXHR.status === 429) {
@@ -158,7 +165,7 @@ hoverZoomPlugins.push({
         );
 
         if (res.length) {
-            callback($(res), this.name);
+            callback($(res), name);
         }
     }
 
