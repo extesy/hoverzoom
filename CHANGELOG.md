@@ -1,6 +1,28 @@
 # Changelog
 
-## [1.0.168](https://github.com/extesy/hoverzoom/tree/1.0.168) (2021-02-05)
+## [1.0.169](https://github.com/extesy/hoverzoom/tree/1.0.169) (2021-02-13)
+
+[Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.168...1.0.169)
+
+**Implemented enhancements:**
+
+- Plug-ins enhancements + 1 new plug-in: Medium\_a [\#682](https://github.com/extesy/hoverzoom/pull/682) ([GrosPoulet](https://github.com/GrosPoulet))
+
+**Closed issues:**
+
+- Extension doesn't work in Google Sheets? [\#523](https://github.com/extesy/hoverzoom/issues/523)
+- Hover functionality for gelbooru.com [\#61](https://github.com/extesy/hoverzoom/issues/61)
+
+**Merged pull requests:**
+
+- HZ+ now works on Gelbooru.com [\#688](https://github.com/extesy/hoverzoom/pull/688) ([GrosPoulet](https://github.com/GrosPoulet))
+- Fix for plug-in: Imgur [\#686](https://github.com/extesy/hoverzoom/pull/686) ([GrosPoulet](https://github.com/GrosPoulet))
+- Update linkedin.js [\#685](https://github.com/extesy/hoverzoom/pull/685) ([GrosPoulet](https://github.com/GrosPoulet))
+- Fix for plug-in: LinkedIn [\#684](https://github.com/extesy/hoverzoom/pull/684) ([GrosPoulet](https://github.com/GrosPoulet))
+- New Crowdin updates [\#683](https://github.com/extesy/hoverzoom/pull/683) ([extesy](https://github.com/extesy))
+- New Crowdin updates [\#681](https://github.com/extesy/hoverzoom/pull/681) ([extesy](https://github.com/extesy))
+
+## [1.0.168](https://github.com/extesy/hoverzoom/tree/1.0.168) (2021-02-06)
 
 [Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.167...1.0.168)
 
@@ -105,6 +127,7 @@
 
 **Merged pull requests:**
 
+- Fix typo + improvement to Imgur plug-in [\#648](https://github.com/extesy/hoverzoom/pull/648) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in for : Behance [\#647](https://github.com/extesy/hoverzoom/pull/647) ([GrosPoulet](https://github.com/GrosPoulet))
 
 ## [1.0.160](https://github.com/extesy/hoverzoom/tree/1.0.160) (2020-12-31)
@@ -117,7 +140,6 @@
 
 **Merged pull requests:**
 
-- Fix typo + improvement to Imgur plug-in [\#648](https://github.com/extesy/hoverzoom/pull/648) ([GrosPoulet](https://github.com/GrosPoulet))
 - New colors for image loader + fix on urls normalization [\#643](https://github.com/extesy/hoverzoom/pull/643) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix CORS downloads [\#641](https://github.com/extesy/hoverzoom/pull/641) ([fhadiel](https://github.com/fhadiel))
 - Fix firefox not showing page action icon [\#640](https://github.com/extesy/hoverzoom/pull/640) ([fhadiel](https://github.com/fhadiel))
@@ -168,7 +190,6 @@
 - New plug-in : JoeMonster [\#615](https://github.com/extesy/hoverzoom/pull/615) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in : FreeRangeStock [\#614](https://github.com/extesy/hoverzoom/pull/614) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in : Tripadvisor [\#613](https://github.com/extesy/hoverzoom/pull/613) ([GrosPoulet](https://github.com/GrosPoulet))
-- New plug-in : Bing\_a.js + fix for Yahoo plug-in [\#610](https://github.com/extesy/hoverzoom/pull/610) ([GrosPoulet](https://github.com/GrosPoulet))
 
 ## [1.0.156](https://github.com/extesy/hoverzoom/tree/1.0.156) (2020-09-14)
 
@@ -178,6 +199,7 @@
 
 - Update for plug-in : Zhihu [\#612](https://github.com/extesy/hoverzoom/pull/612) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix for plug-in : Yelp [\#611](https://github.com/extesy/hoverzoom/pull/611) ([GrosPoulet](https://github.com/GrosPoulet))
+- New plug-in : Bing\_a.js + fix for Yahoo plug-in [\#610](https://github.com/extesy/hoverzoom/pull/610) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix for plug-in : google\_a.js [\#609](https://github.com/extesy/hoverzoom/pull/609) ([GrosPoulet](https://github.com/GrosPoulet))
 - Update for plug-in : wysp.ws [\#608](https://github.com/extesy/hoverzoom/pull/608) ([GrosPoulet](https://github.com/GrosPoulet))
 - Update for plug-in : Wordpress [\#607](https://github.com/extesy/hoverzoom/pull/607) ([GrosPoulet](https://github.com/GrosPoulet))
