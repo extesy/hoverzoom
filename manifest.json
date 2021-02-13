@@ -1371,7 +1371,8 @@
         },
         {
             "js": ["plugins/safebooru.js"],
-            "matches": ["*://*.safebooru.org/*"]
+            "matches": ["*://*.safebooru.org/*",
+                        "*://*.gelbooru.com/*"]
         },
         {
             "js": ["plugins/depositphotos.js"],
