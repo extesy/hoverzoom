@@ -79,7 +79,9 @@
                 "plugins/google_a.js",
                 "plugins/facebook_a.js",
                 "plugins/bing_a.js",
-                "plugins/medium_a.js"
+                "plugins/medium_a.js",
+                "plugins/imgflip_a.js",
+                "plugins/ebay_a.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
@@ -945,7 +947,8 @@
             "js": ["plugins/e621.js"],
             "matches": [
                 "*://*.e621.net/*",
-                "*://*.e926.net/*"
+                "*://*.e926.net/*",
+                "*://danbooru.donmai.us/*"
             ]
         },
         {
@@ -1675,6 +1678,14 @@
         {
             "js": ["plugins/aol.js"],
             "matches": ["*://*.aol.com/*"]
+        },
+        {
+            "js": ["plugins/govdeals.js"],
+            "matches": ["*://*.govdeals.com/*"]
+        },
+        {
+            "js": ["plugins/minds.js"],
+            "matches": ["*://*.minds.com/*"]
         }
    ]
 }
