@@ -1219,6 +1219,9 @@ var hoverZoom = {
                 }
             });
 
+            // needed when navigating galleries fullscreen
+            $(document).on('click', function() { console.log('click'); prepareImgLinksAsync(); });
+
             $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).keydown(documentOnKeyDown).keyup(documentOnKeyUp).mouseleave(cancelImageLoading);
             if (options.galleriesMouseWheel) {
                 window.addEventListener('wheel', documentOnMouseWheel, {passive: false});

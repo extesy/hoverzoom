@@ -81,7 +81,8 @@
                 "plugins/bing_a.js",
                 "plugins/medium_a.js",
                 "plugins/imgflip_a.js",
-                "plugins/ebay_a.js"
+                "plugins/ebay_a.js",
+                "plugins/cloudinary_a.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
@@ -1686,6 +1687,10 @@
         {
             "js": ["plugins/minds.js"],
             "matches": ["*://*.minds.com/*"]
+        },
+        {
+            "js": ["plugins/gitlab.js"],
+            "matches": ["*://*.gitlab.com/*"]
         }
    ]
 }
