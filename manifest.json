@@ -82,7 +82,8 @@
                 "plugins/medium_a.js",
                 "plugins/imgflip_a.js",
                 "plugins/ebay_a.js",
-                "plugins/cloudinary_a.js"
+                "plugins/cloudinary_a.js",
+                "plugins/chan_a.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
@@ -1669,6 +1670,11 @@
             "matches": ["*://*.livememe.com/*"]
         },
         {
+            "js": ["plugins/8kun.js"],
+            "matches": ["*://*.8kun.top/*",
+                        "*://*.8ch.net/*"]
+        },
+        {
             "js": ["plugins/giphy.js"],
             "matches": ["*://*.giphy.com/*"]
         },
@@ -1691,6 +1697,10 @@
         {
             "js": ["plugins/gitlab.js"],
             "matches": ["*://*.gitlab.com/*"]
+        },
+        {
+            "js": ["plugins/phorio.js"],
+            "matches": ["*://*.phorio.com/*"]
         }
    ]
 }
