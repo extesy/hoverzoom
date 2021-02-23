@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.0.170](https://github.com/extesy/hoverzoom/tree/1.0.170) (2021-02-22)
+
+[Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.169...1.0.170)
+
+**Implemented enhancements:**
+
+- Fix for plug-in: furaffinity + new plug-ins + manifest update [\#689](https://github.com/extesy/hoverzoom/pull/689) ([GrosPoulet](https://github.com/GrosPoulet))
+
+**Closed issues:**
+
+- No more working on Furaffinity [\#618](https://github.com/extesy/hoverzoom/issues/618)
+- Add support for : gitlab.com and based on it [\#488](https://github.com/extesy/hoverzoom/issues/488)
+- On google image search, sometimes starts to spin icon, but then nothing is displayed [\#452](https://github.com/extesy/hoverzoom/issues/452)
+- New plugin request: Minds.com [\#430](https://github.com/extesy/hoverzoom/issues/430)
+- pixabay.com problem [\#339](https://github.com/extesy/hoverzoom/issues/339)
+- New plugin request: Danbooru.donmai.us [\#251](https://github.com/extesy/hoverzoom/issues/251)
+- ebay Kleinanzeigen please [\#53](https://github.com/extesy/hoverzoom/issues/53)
+
+**Merged pull requests:**
+
+- New plug-ins: 4chan \(& others "chan"\), 8kun, Phorio [\#692](https://github.com/extesy/hoverzoom/pull/692) ([GrosPoulet](https://github.com/GrosPoulet))
+- Remove debug logging [\#691](https://github.com/extesy/hoverzoom/pull/691) ([GrosPoulet](https://github.com/GrosPoulet))
+- New plug-ins for: gitlab & cloudinary [\#690](https://github.com/extesy/hoverzoom/pull/690) ([GrosPoulet](https://github.com/GrosPoulet))
+
 ## [1.0.169](https://github.com/extesy/hoverzoom/tree/1.0.169) (2021-02-13)
 
 [Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.168...1.0.169)
@@ -50,6 +74,7 @@
 - New Crowdin updates [\#673](https://github.com/extesy/hoverzoom/pull/673) ([extesy](https://github.com/extesy))
 - Updated message about image loader option [\#672](https://github.com/extesy/hoverzoom/pull/672) ([GrosPoulet](https://github.com/GrosPoulet))
 - New Crowdin updates [\#668](https://github.com/extesy/hoverzoom/pull/668) ([extesy](https://github.com/extesy))
+- New Crowdin updates [\#665](https://github.com/extesy/hoverzoom/pull/665) ([extesy](https://github.com/extesy))
 
 ## [1.0.166](https://github.com/extesy/hoverzoom/tree/1.0.166) (2021-01-24)
 
@@ -68,8 +93,6 @@
 
 - Fix for 2 plug-ins + 7 new plug-ins [\#667](https://github.com/extesy/hoverzoom/pull/667) ([GrosPoulet](https://github.com/GrosPoulet))
 - New Crowdin updates [\#666](https://github.com/extesy/hoverzoom/pull/666) ([extesy](https://github.com/extesy))
-- New Crowdin updates [\#665](https://github.com/extesy/hoverzoom/pull/665) ([extesy](https://github.com/extesy))
-- Merge remote-tracking branch 'upstream/master' [\#663](https://github.com/extesy/hoverzoom/pull/663) ([GrosPoulet](https://github.com/GrosPoulet))
 
 ## [1.0.165](https://github.com/extesy/hoverzoom/tree/1.0.165) (2021-01-22)
 
@@ -105,6 +128,7 @@
 
 **Merged pull requests:**
 
+- Merge remote-tracking branch 'upstream/master' [\#663](https://github.com/extesy/hoverzoom/pull/663) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix for plug-in : Wordpress [\#658](https://github.com/extesy/hoverzoom/pull/658) ([GrosPoulet](https://github.com/GrosPoulet))
 - New Crowdin updates [\#657](https://github.com/extesy/hoverzoom/pull/657) ([extesy](https://github.com/extesy))
 - Fix for plug-in : LeBonCoin [\#653](https://github.com/extesy/hoverzoom/pull/653) ([GrosPoulet](https://github.com/GrosPoulet))
