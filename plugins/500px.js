@@ -45,7 +45,7 @@ hoverZoomPlugins.push({
             var m = url.match(re);
             if (m) {
                 var id = m[1];
-                //console.log('id:' + id);
+                cLog('id:' + id);
 
                 var fullsizeUrl;
                 // check if API's response is already in sessionStorage to lessen API calls
@@ -70,7 +70,7 @@ hoverZoomPlugins.push({
                         sessionStorage.setItem('p_' + id, response);
 
                         fullsizeUrl = data.photos[id].image_url[1];
-                        //console.log('photo fullsizeUrl (from API call):' + fullsizeUrl);
+                        cLog('photo fullsizeUrl (from API call):' + fullsizeUrl);
 
                         if (fullsizeUrl != undefined && fullsizeUrl != url) {
                             if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
@@ -90,7 +90,7 @@ hoverZoomPlugins.push({
                     } catch (e) { return; }
 
                     fullsizeUrl = data.photos[id].image_url[1];
-                    //console.log('photo fullsizeUrl (from sessionStorage):' + fullsizeUrl);
+                    cLog('photo fullsizeUrl (from sessionStorage):' + fullsizeUrl);
 
                     if (fullsizeUrl != undefined && fullsizeUrl != url) {
                         if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
@@ -132,7 +132,7 @@ hoverZoomPlugins.push({
             var m = url.match(re);
             if (m) {
                 var id = m[1];
-                //console.log('id:' + id);
+                cLog('id:' + id);
 
                 var fullsizeUrl;
                 // check if API's response is already in sessionStorage to lessen API calls
@@ -157,7 +157,7 @@ hoverZoomPlugins.push({
                         sessionStorage.setItem('u_' + id, response);
 
                         fullsizeUrl = data.user.userpic_https_url;
-                        //console.log('user fullsizeUrl (from API call):' + fullsizeUrl);
+                        cLog('user fullsizeUrl (from API call):' + fullsizeUrl);
 
                         if (fullsizeUrl != undefined && fullsizeUrl != url) {
                             if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
@@ -177,7 +177,7 @@ hoverZoomPlugins.push({
                     } catch (e) { return; }
 
                     fullsizeUrl = data.user.userpic_https_url;
-                    //console.log('user fullsizeUrl (from sessionStorage):' + fullsizeUrl);
+                    cLog('user fullsizeUrl (from sessionStorage):' + fullsizeUrl);
 
                     if (fullsizeUrl != undefined && fullsizeUrl != url) {
                         if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }

@@ -46,7 +46,7 @@ hoverZoomPlugins.push({
             var m = url.match(re);
             if (m) {
                 var id = m[1];
-                console.log('id:' + id);
+                cLog('id:' + id);
 
                 var fullsizeUrl;
                 // check if API's response is already in sessionStorage to lessen API calls
@@ -70,7 +70,7 @@ hoverZoomPlugins.push({
                         // store response in sessionStorage
                         fullsizeUrl = data.images.original.url;
                         sessionStorage.setItem(id, fullsizeUrl);
-                        console.log('photo fullsizeUrl (from API call):' + fullsizeUrl);
+                        cLog('photo fullsizeUrl (from API call):' + fullsizeUrl);
 
                         if (fullsizeUrl != undefined) {
                             if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
@@ -85,7 +85,7 @@ hoverZoomPlugins.push({
 
                     // use data found in sessionStorage
                     var fullsizeUrl = dataFromSessionStorage;
-                    console.log('photo fullsizeUrl (from sessionStorage):' + fullsizeUrl);
+                    cLog('photo fullsizeUrl (from sessionStorage):' + fullsizeUrl);
 
                     if (fullsizeUrl != undefined) {
                         if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }

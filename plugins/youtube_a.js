@@ -62,7 +62,7 @@ hoverZoomPlugins.push({
                 link.removeClass('hoverZoomLoading');
                 var video = decodeQueryString(video_info);
                 if (video.status === "fail") {
-                    console.log(video.reason);
+                    cLog(video.reason);
                     return;
                 }
                 var sources = decodeStreamMap(video.url_encoded_fmt_stream_map);
