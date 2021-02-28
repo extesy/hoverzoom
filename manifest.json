@@ -1701,6 +1701,10 @@
         {
             "js": ["plugins/phorio.js"],
             "matches": ["*://*.phorio.com/*"]
+        },
+        {
+            "js": ["plugins/wallapop.js"],
+            "matches": ["*://*.wallapop.com/*"]
         }
    ]
 }

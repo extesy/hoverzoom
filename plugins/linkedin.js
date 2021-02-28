@@ -141,10 +141,11 @@ hoverZoomPlugins.push({
                     data.hoverZoomSrc = [];
                 }
                 data.hoverZoomSrc.unshift(fullsizeUrl);
-                data.hoverZoomCaption =
+                data.hoverZoomCaption = caption;
 
-                // store url
+                // store url & caption
                 sessionStorage.setItem(companyId + "_url", fullsizeUrl);
+                sessionStorage.setItem(companyId + "_caption", caption);
                 callback(link, name);
                 hoverZoom.displayPicFromElement(link);
 
