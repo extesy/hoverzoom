@@ -28,6 +28,11 @@ hoverZoomPlugins.push({
             /.*imgurl=([^&]+).*/,
             '$1'
         );
+        hoverZoom.urlReplace(res,
+            'div[style*="background-image"]',
+            /(.*=)(.*)/,
+            '$1s0'
+        );
 
         // Hook Google 'Open' XMLHttpRequests to catch data & metadata associated with pictures displayed
         // These requests are issued by client side to Google servers in order to obtain new data when user scrolls down
@@ -149,12 +154,20 @@ hoverZoomPlugins.push({
                 }
             }
 
-           links = $(this).find('a');
-           if (links.length > 0) {
-               // update image link (1st link) with url
-               imageLink = links.eq(0);
-               imageLink.attr('href', url);
-           }
+            links = $(this).find('a');
+            if (links.length > 0) {
+                // update image link (1st link) with url
+                imageLink = links.eq(0);
+                if (url != undefined) { imageLink.attr('href', url); }
+                // extract a valid href (= url of page where image is displayed) from 2nd link
+                hrefPage = links.eq(1).attr('href');
+            }
+
+            if (imageLink != undefined) {
+                imageLink.data().href = hrefPage;
+                if (url != undefined) { imageLink.data().hoverZoomSrc = [url]; }
+                res.push(imageLink);
+            }
         });
 
         callback($(res));
