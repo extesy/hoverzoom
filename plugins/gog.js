@@ -25,7 +25,7 @@ hoverZoomPlugins.push({
             hoverZoom.prepareLink(link, src);
         });
 
-        $('img.menu-product__image').one('mouseover', function () {
+        $('img.menu-product__image,img.product-row__img').one('mouseover', function () {
             var link = $(this);
             var srcset = link.attr('srcset').split(',');
             var src = srcset[srcset.length-1].trim().split(' ')[0];
