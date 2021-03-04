@@ -1707,6 +1707,10 @@
             "matches": ["*://*.wallapop.com/*"]
         },
         {
+            "js": ["plugins/gog.js"],
+            "matches": ["*://*.gog.com/*"]
+        },
+        {
             "js": ["plugins/picclick.js"],
             "matches": ["*://*.picclick.com/*",
                         "*://*.picclick.com.au/*",
