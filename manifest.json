@@ -1705,6 +1705,23 @@
         {
             "js": ["plugins/wallapop.js"],
             "matches": ["*://*.wallapop.com/*"]
+        },
+        {
+            "js": ["plugins/picclick.js"],
+            "matches": ["*://*.picclick.com/*",
+                        "*://*.picclick.com.au/*",
+                        "*://*.picclick.at/*",
+                        "*://*.picclick.be/*",
+                        "*://*.picclick.ca/*",
+                        "*://*.picclick.fr/*",
+                        "*://*.picclick.de/*",
+                        "*://*.picclick.ie/*",
+                        "*://*.picclick.it/*",
+                        "*://*.picclick.nl/*",
+                        "*://*.picclick.es/*",
+                        "*://*.picclick.ch/*",
+                        "*://*.picclick.co.uk/*"
+            ]
         }
    ]
 }
