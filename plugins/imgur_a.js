@@ -132,7 +132,7 @@ hoverZoomPlugins.push({
             // extract url from style
             // ex: backgroundImage = url("http://site.net/image.png")
             var backgroundImage = this.style.backgroundImage;
-            if (backgroundImage.indexOf("url") != -1 && backgroundImage.indexOf("imgur") != -1) {
+            if (backgroundImage.indexOf("url") !== -1 && backgroundImage.indexOf("imgur") !== -1) {
                 var reUrl = /.*url\s*\(\s*(.*)\s*\).*/i
                 backgroundImage = backgroundImage.replace(reUrl, '$1');
                 // remove leading & trailing quotes
@@ -141,28 +141,16 @@ hoverZoomPlugins.push({
                 //ex: "//i.imgur.com/N8hBuw7b.jpg"
                 var reThumb = /(.*imgur.*\/.*)b\./i
                 var fullsizeUrl = backgroundImageUrl.replace(reThumb, '$1.').replace('_d.', '.');
-                if (fullsizeUrl != backgroundImageUrl) {
+                if (fullsizeUrl !== backgroundImageUrl) {
                     var link = $(this);
-                    if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
-                    if (link.data().hoverZoomSrc.indexOf(fullsizeUrl) == -1) {
+                    if (link.data().hoverZoomSrc === undefined) { link.data().hoverZoomSrc = [] }
+                    if (link.data().hoverZoomSrc.indexOf(fullsizeUrl) === -1) {
                         link.data().hoverZoomSrc.unshift(fullsizeUrl);
                         res.push(link);
                     }
                 }
             }
         });
-
-        hoverZoom.urlReplace(res,
-            'img[src]',
-            '_d.',
-            '.'
-        );
-
-        hoverZoom.urlReplace(res,
-            'img[src]',
-            /\?s=.*/,
-            ''
-        );
 
         if (res.length) {
             callback($(res), name);
