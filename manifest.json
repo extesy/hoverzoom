@@ -1505,7 +1505,7 @@
             "matches": ["*://*.fotki.com/*"]
         },
         {
-            "js": ["plugins/free_images.js"],
+            "js": ["plugins/free-images.js"],
             "matches": ["*://*.free-images.com/*"]
         },
         {

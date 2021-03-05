@@ -1,6 +1,6 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'_freeimages.com',
+    name:'freeimages.com',
     version:'0.2',
     prepareImgLinks:function (callback) {
         var res = [];   

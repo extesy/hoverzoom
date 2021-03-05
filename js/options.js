@@ -390,7 +390,7 @@ function loadPlugins() {
 function populatePluginsTable() {
     var plugins = $.unique(hoverZoomPlugins.map(function(plugin) {return plugin.name})).sort(Intl.Collator().compare);
     plugins.forEach(function(plugin) {
-        var chkName = 'chkPlugin' + plugin.replace(/[^\w]/g, '').toLowerCase();
+        var chkName = 'chkPlugin' + plugin.replace(/[^\w\-_]/g, '').toLowerCase();
         $('<div class="field"><label class="checkbox" for="' + chkName + '"><input type="checkbox" id="' + chkName + '" class="chkPlugin"><span></span>&nbsp;<div style="display:inline">' + plugin + '</div></label></div>').appendTo('#tblPlugins');
         $('#' + chkName)[0].checked = !options.disabledPlugins.includes(chkName.substr('chkPlugin'.length));
     });

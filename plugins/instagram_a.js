@@ -1,6 +1,6 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'Instagram',
+    name:'Instagram_a',
     prepareImgLinks:function (callback) {
         var res = [],
             search = /.*(?:instagr\.am|instagram\.com)\/p\/([^\/]+).*/i,
