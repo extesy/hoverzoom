@@ -1,6 +1,6 @@
 {
     "extName": {
-        "message": "Houver Zoom+",
+        "message": "Hover Zoom+",
         "description": "Extension name"
     },
     "extShortName": {
@@ -12,7 +12,7 @@
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
     "extUpdated": {
-        "message": "Hover Zoom+ foi actualizado",
+        "message": "Hover Zoom+ foi atualizado",
         "description": "Extension update notification"
     },
     "popDisableForAllSites": {
