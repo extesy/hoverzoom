@@ -83,7 +83,8 @@
                 "plugins/imgflip_a.js",
                 "plugins/ebay_a.js",
                 "plugins/cloudinary_a.js",
-                "plugins/chan_a.js"
+                "plugins/chan_a.js",
+                "plugins/cloudfront_a.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
