@@ -1,6 +1,6 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'deviantART',
+    name:'deviantART_a',
     version:'0.1',
     prepareImgLinks:function (callback) {
         if (location.host.indexOf('deviantart.com') !== -1)

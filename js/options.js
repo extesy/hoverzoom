@@ -173,9 +173,9 @@ function restoreOptions(optionsFromFactorySettings) {
         $('#divAmbilight').addClass('disabled');
     }
 
-    var plugins = $.unique(hoverZoomPlugins.map(function(plugin) {return plugin.name}));
+    var plugins = $.unique(hoverZoomPlugins.map(function(plugin) {return plugin.name})).sort(Intl.Collator().compare);
     plugins.forEach(function(plugin) {
-        var chkName = 'chkPlugin' + plugin.replace(/[^\w]/g, '').toLowerCase();
+        var chkName = 'chkPlugin' + plugin.replace(/[^\w\-_]/g, '').toLowerCase();
         $('#' + chkName).trigger(options.disabledPlugins.includes(chkName.substr('chkPlugin'.length)) ? 'gumby.uncheck' : 'gumby.check');
     });
 
