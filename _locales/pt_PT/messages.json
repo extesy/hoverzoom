@@ -8,7 +8,7 @@
         "description": "Short extension name"
     },
     "extDescription": {
-        "message": "Ampie imagens/vídeos em todos os seus websites favoritos. Simplesmente passe o rato sobre a imagem para a aumentar.",
+        "message": "Faça Zoom a imagens/vídeos em todas as suas páginas favoritas. Apenas coloque o ponteiro do rato por cima da imagem para ampliar.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
     "extUpdated": {
@@ -16,7 +16,7 @@
         "description": "Extension update notification"
     },
     "popDisableForAllSites": {
-        "message": "Desactivar para todos os websites",
+        "message": "Desativar para todos os sites",
         "description": "[popup] Disable the extension"
     },
     "popAllowPerSiteToggle": {
@@ -24,11 +24,11 @@
         "description": "[popup] Allow per-site extension configuration"
     },
     "popDisableForSite": {
-        "message": "Desactivar por $1",
+        "message": "Desativar para $1",
         "description": "[popup] Disables the extension for a specific site"
     },
     "popEnableForSite": {
-        "message": "Activar por $1",
+        "message": "Ativar para $1",
         "description": "[popup] Enables the extension for a specific site"
     },
     "popPreloadImages": {
