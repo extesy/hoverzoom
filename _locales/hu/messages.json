@@ -368,11 +368,11 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optDisplayImageLoaderTooltip": {
-        "message": "Display a little spinner as image is loading (green:loading, red:error). Red spinner is optional.",
+        "message": "Pörgető mutatása kép betöltése közben (zöld: betöltés, piros: hiba). A piros pörgető választható.",
         "description": "[options] Tooltip for display image loader option"
     },
     "optDisplayImageLoader": {
-        "message": "Display a red spinner when image loading failed",
+        "message": "Piros pörgető mutatása, ha a kép betöltése nem sikerült",
         "description": "[options] Display image loader option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
