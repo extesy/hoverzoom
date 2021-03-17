@@ -132,7 +132,7 @@
         "description": "[options] Show zoomed pictures while loading option"
     },
     "optShowWhileLoadingTooltip": {
-        "message": "Imagens ampliadas vão ser mostradas antes de carregarem totalmente",
+        "message": "As imagens ampliadas vão ser mostradas antes de carregarem totalmente",
         "description": "[options] Tooltip for show zoomed pictures while loading option"
     },
     "optShowHighRes": {
@@ -160,11 +160,11 @@
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
-        "message": "Amplie vídeos (WebM, MP4)",
+        "message": "Ampliar vídeos (WebM, MP4)",
         "description": "[options] Zoom videos (WebM, MP4) option"
     },
     "optZoomVideosTooltip": {
-        "message": "Amplie vídeos (WebM, MP4)",
+        "message": "Amplia os vídeos (WebM, MP4)",
         "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
     },
     "optVideoPositionStep": {
@@ -184,7 +184,7 @@
         "description": "[options] Mute zoomed videos option"
     },
     "optMuteVideosTooltip": {
-        "message": "Desativar som em vídeos ampliados",
+        "message": "Desativa o som em vídeos ampliados",
         "description": "[options] Tooltip for mute zoomed videos option"
     },
     "optVideoTimestamp": {
@@ -192,7 +192,7 @@
         "description": "[options] Enable timestamp / video length on videos"
     },
     "optVideoTimestampTooltip": {
-        "message": "Ativar informação de data/hora / duração do vídeo nos vídeos",
+        "message": "Ativa a informação de data/hora / duração do vídeo nos vídeos",
         "description": "[options] Tooltip for video length countdown on videos"
     },
     "optVideoVolume": {
@@ -204,7 +204,7 @@
         "description": "[options] Unit name (percentage) for video volume option"
     },
     "optVideoVolumeTooltip": {
-        "message": "Se o vídeo não estiver completamente silenciado, defina o volume para esta percentagem (0-100)",
+        "message": "Se o vídeo não estiver completamente silenciado, define o volume para esta percentagem (0-100)",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
     },
     "optEnableAmbilight": {
@@ -244,7 +244,7 @@
         "description": "[options] Center images in the middle of the page option"
     },
     "optCenterImagesTooltip": {
-        "message": "Centrar as imagens ao invés delas seguirem o ponteiro do rato",
+        "message": "Centra as imagens ao invés delas seguirem o ponteiro do rato",
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optFrameBackgroundColor": {
@@ -264,15 +264,15 @@
         "description": "[options] Frame background color button - Cancel"
     },
     "optSectionDelays": {
-        "message": "Atrasos",
+        "message": "Atrasos (Delays)",
         "description": "[options] Page section for delay options"
     },
     "optDisplayDelay": {
-        "message": "Atraso (Delay) antes de exibir uma imagem:",
+        "message": "Atraso (Delay) antes de exibir uma imagem de:",
         "description": "[options] Delay before displaying a picture option"
     },
     "optDisplayDelayVideo": {
-        "message": "Atraso (Delay) antes de exibir um vídeo:",
+        "message": "Atraso (Delay) antes de exibir um vídeo de:",
         "description": "[options] Delay before displaying a video option"
     },
     "optFadeDuration": {
@@ -316,7 +316,7 @@
         "description": "[options] Placeholder for a site url input box"
     },
     "optSiteDisclaimer": {
-        "message": "Esteja ciente de que os filtros de domínio podem sobrepor-se. Exemplo: se tiver filtrado \"picasaweb.google.com\" e \"google.com\", remover \"picasaweb.google.com\" não reativará os Picasa Web Albums, uma vez que ainda será excluído pelo filtro \"google.com\".",
+        "message": "Esteja ciente de que os filtros de domínio podem sobrepor-se. Exemplo: se tiver filtrado \"picasaweb.google.com\" e \"google.com\", ao remover \"picasaweb.google.com\" não reativará os Picasa Web Albums, uma vez que ainda será excluído pelo filtro \"google.com\".",
         "description": "[options] Disclaimer on the sites option page"
     },
     "optButtonAddSite": {
@@ -340,7 +340,7 @@
         "description": "[options] Show update notifications option"
     },
     "optShowLastUpdateNotification": {
-        "message": "(mostrar a última notificação)",
+        "message": "(mostra a última notificação)",
         "description": "[options] Show last update notification"
     },
     "optAddToHistory": {
@@ -372,7 +372,7 @@
         "description": "[options] Tooltip for display image loader option"
     },
     "optDisplayImageLoader": {
-        "message": "Mostra um ícone animado vermelho quando dá erro ao carregar a imagem",
+        "message": "Mostrar um ícone animado vermelho quando ocorrer um erro ao carregar a imagem",
         "description": "[options] Display image loader option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
@@ -380,7 +380,7 @@
         "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrls": {
-        "message": "Tente abrir URLs não carregáveis separadamente:",
+        "message": "Tentar abrir URLs não carregáveis separadamente:",
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
@@ -464,11 +464,11 @@
         "description": "[options] Action key description"
     },
     "optNextImgKeyTitle": {
-        "message": "Ver a próxima imagem numa galeria",
+        "message": "Ver a imagem seguinte numa galeria",
         "description": "[options] Action key title"
     },
     "optNextImgKeyDescription": {
-        "message": "Pressione esta tecla para ver a próxima imagem numa galeria.",
+        "message": "Pressione esta tecla para ver a imagem seguinte numa galeria.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
