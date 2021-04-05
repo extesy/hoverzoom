@@ -1,14 +1,16 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Etsy',
-    version:'0.1',
+    version:'0.3',
     prepareImgLinks:function (callback) {
         var res = [];
+
         hoverZoom.urlReplace(res,
-            'img[src*="/il_"], li.listing a',
-            /il_\d+x\d+./,
-            options.showHighRes ? 'il_fullxfull.' : 'il_570xN.'
+            'img[src], [style*=url], li.listing a',
+            /_\d+x\d+\./,
+            '_fullxfull.'
         );
-        callback($(res));
+
+        callback($(res), this.name);
     }
 });
