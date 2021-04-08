@@ -84,7 +84,10 @@
                 "plugins/ebay_a.js",
                 "plugins/cloudinary_a.js",
                 "plugins/chan_a.js",
-                "plugins/cloudfront_a.js"
+                "plugins/cloudfront_a.js",
+                "plugins/squarespace_a.js",
+                "plugins/alicdn_a.js",
+                "plugins/aws_a.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
