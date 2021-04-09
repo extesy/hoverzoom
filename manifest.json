@@ -1730,6 +1730,21 @@
                         "*://*.picclick.ch/*",
                         "*://*.picclick.co.uk/*"
             ]
+        },
+        {
+            "js": ["plugins/libraryofcongress.js"],
+            "matches": ["*://*.loc.gov/*"
+            ]
+        },
+        {
+            "js": ["plugins/duitang.js"],
+            "matches": ["*://*.duitang.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/wdl.js"],
+            "matches": ["*://*.wdl.org/*"
+            ]
         }
    ]
 }
