@@ -46,7 +46,8 @@ var factorySettings = {
     openImageInTabKey : 84,
     saveImageKey : 83,
     prevImgKey : 37,
-    nextImgKey : 39
+    nextImgKey : 39,
+    escKey : 27
 }
 
 // Load options from factory settings (= as if extension has just been installed from webstore)
@@ -116,6 +117,7 @@ function loadOptions() {
     options.saveImageKey = options.hasOwnProperty('saveImageKey') ? options.saveImageKey : factorySettings.saveImageKey;
     options.prevImgKey = options.hasOwnProperty('prevImgKey') ? options.prevImgKey : factorySettings.prevImgKey;
     options.nextImgKey = options.hasOwnProperty('nextImgKey') ? options.nextImgKey : factorySettings.nextImgKey;
+    options.escKey = factorySettings.escKey;
 
     localStorage.options = JSON.stringify(options);
 
