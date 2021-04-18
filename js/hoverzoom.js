@@ -465,7 +465,13 @@ var hoverZoom = {
             hzCaptionCss.color = textColor;
         }
 
+        function stopMedias() {
+            stopMedia('video');
+            stopMedia('audio');
+        }
+
         function stopMedia(selector) {
+            if (!hz.hzImg) return;
             var el = hz.hzImg.find(selector).get(0);
             if (el) {
                 el.pause();
@@ -479,15 +485,22 @@ var hoverZoom = {
             if ((!now && !imgFullSize) || !hz.hzImg || fullZoomKeyDown) {
                 return;
             }
-            imgFullSize = null;
+            if (imgFullSize) {
+                stopMedias();
+                imgFullSize.remove();
+                imgFullSize = null;
+            }
             if (loading) {
                 now = true;
             }
             hz.hzImg.stop(true, true).fadeOut(now ? 0 : options.fadeDuration, function () {
-                stopMedia('video');
-                stopMedia('audio');
+                stopMedias();
                 hzCaption = null;
                 hz.hzImg.empty();
+                if (imgFullSize) {
+                    imgFullSize.remove();
+                    imgFullSize = null;
+                }
                 restoreTitles();
             });
             //chrome.runtime.sendMessage({action: 'viewWindow', visible: false});
@@ -1276,10 +1289,21 @@ var hoverZoom = {
                     return false;
                 }
             }
-            // Hide key (hide zoomed image) is pressed down
+            // escape key is pressed down
+            if (event.which == options.escKey) {
+                if (hz.hzImg) {
+                    stopMedias();
+                    hz.hzImg.hide();
+                }
+                if (imgFullSize) {
+                    return false;
+                }
+            }
+            // hide key (hide zoomed image) is pressed down
             if (event.which == options.hideKey && !hideKeyDown) {
                 hideKeyDown = true;
                 if (hz.hzImg) {
+                    stopMedias();
                     hz.hzImg.hide();
                 }
                 if (imgFullSize) {
@@ -1623,7 +1647,7 @@ var hoverZoom = {
     getThumbUrl:function (el) {
         var compStyle = (el && el.nodeType == 1) ? getComputedStyle(el) : false,
             backgroundImage = compStyle ? compStyle.backgroundImage : 'none';
-        if (backgroundImage.indexOf("url") != -1) {
+        if (backgroundImage.indexOf("url") != -1 && backgroundImage.indexOf('data:image') == -1 && backgroundImage.indexOf('base64') == -1) {
             return backgroundImage.replace(/.*url\s*\(\s*(.*)\s*\).*/i, '$1').replace(/"/g,'');
         } else {
             return el.src || el.href;
