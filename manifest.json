@@ -1745,6 +1745,16 @@
             "js": ["plugins/wdl.js"],
             "matches": ["*://*.wdl.org/*"
             ]
+        },
+        {
+            "js": ["plugins/hibid.js"],
+            "matches": ["*://*.hibid.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/maxsold.js"],
+            "matches": ["*://*.maxsold.com/*"
+            ]
         }
    ]
 }
