@@ -1647,11 +1647,22 @@ var hoverZoom = {
     getThumbUrl:function (el) {
         var compStyle = (el && el.nodeType == 1) ? getComputedStyle(el) : false,
             backgroundImage = compStyle ? compStyle.backgroundImage : 'none';
-        if (backgroundImage.indexOf("url") != -1 && backgroundImage.indexOf('data:image') == -1 && backgroundImage.indexOf('base64') == -1) {
+
+        if (backgroundImage.indexOf("url") != -1) {
+            if (hoverZoom.isEmbeddedImg(backgroundImage)) return ''; // discard embedded images
             return backgroundImage.replace(/.*url\s*\(\s*(.*)\s*\).*/i, '$1').replace(/"/g,'');
-        } else {
-            return el.src || el.href;
         }
+
+        if (hoverZoom.isEmbeddedImg(el.src)) return ''; // discard embedded images
+        return el.src || el.href;
+    },
+
+    // Embedded image url look like:  "data:image/png;base64,Base64 encoded string of the image"
+    // sample: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+    isEmbeddedImg:function (url) {
+        if (!url) return false;
+        if (url.indexOf('data:image') === -1 && url.indexOf('base64') === -1) return false;
+        return true;
     },
 
     // Simulates a mousemove event to force a zoom call
