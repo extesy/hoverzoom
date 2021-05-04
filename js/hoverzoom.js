@@ -371,11 +371,25 @@ var hoverZoom = {
         }
 
         function isVideoLink(url, includeGifs) {
+
+            if (url.indexOf('.video') != -1) return true;
+
             if (url.lastIndexOf('?') > 0)
                 url = url.substr(0, url.lastIndexOf('?'));
             var ext = url.substr(url.length - 4).toLowerCase();
             includeGifs = includeGifs || false;
             return (includeGifs && (ext == '.gif' || ext == 'gifv')) || ext == 'webm' || ext == '.mp4' || ext == '3gpp' || url.indexOf('googlevideo.com/videoplayback') > 0 || url.indexOf('v.redd.it') > 0;
+        }
+
+        // some plug-ins append:
+        // .video to video streams so url =  videourl.video
+        // .audio to audio streams so url = audiourl.audio
+        // if both urls are present then url = videourl.video_audiourl.audio
+        function getVideoAudioFromUrl() {
+            var videourl = imgDetails.url.split('.video')[0];
+            var audiourl = imgDetails.url.split('.video')[1] || '';
+            if (audiourl.endsWith('.audio')) { imgDetails.audioUrl = audiourl.replace(/^_/, '').replace('.audio', ''); }
+            imgDetails.url = videourl;
         }
 
         function updateAmbilight() {
@@ -628,6 +642,8 @@ var hoverZoom = {
 
                 imgDetails.video = isVideoLink(imgDetails.url);
                 if (imgDetails.video) {
+                    getVideoAudioFromUrl();
+
                     if (!options.zoomVideos) {
                         cancelImageLoading();
                         return;
@@ -740,10 +756,7 @@ var hoverZoom = {
         function displayFullSizeImage() {
             cLog('displayFullSizeImage');
 
-            if (hz.hzImgLoader) {
-                hz.hzImgLoader.remove();
-                hz.hzImgLoader = null;
-            }
+            if (hz.hzImgLoader) { hz.hzImgLoader.remove(); hz.hzImgLoader = null; }
 
             hz.hzImg.stop(true, true);
             hz.hzImg.offset({top:-9000, left:-9000});    // hides the image while making it available for size calculations
@@ -1008,7 +1021,7 @@ var hoverZoom = {
                             return srcs.map(deepUnescape);
                         });
                         updateImageFromGallery(link);
-                    } else {
+                    } else if (linkData.hoverZoomSrc) {
                         linkData.hoverZoomSrc = linkData.hoverZoomSrc.map(deepUnescape);
                     }
 
@@ -1500,11 +1513,82 @@ var hoverZoom = {
         }
 
         function saveImage() {
-            var filename = imgDetails.url.split('/').pop().split('?')[0];
+            saveImg();
+            saveVideo();
+            saveAudio();
+        }
+
+        function saveImg() {
+            if (!hz.hzImg) return;
+            let img = hz.hzImg.find('img').get(0);
+            if (!img) return;
+            let src = img.src;
+            let filename = src.split('/').pop().split('?')[0];
             if (filename == '') filename = 'image';
-            if (filename.indexOf('.') === -1)
-                filename = filename + '.jpg';
-            downloadResource(imgDetails.url, filename);
+            if (filename.indexOf('.') === -1) filename = filename + '.jpg';
+            if (options.addDownloadSize) {
+                // prefix with size [WxH]
+                let size = '[' + img.naturalWidth + 'x' + img.naturalHeight + ']';
+                filename = size + filename;
+            }
+            if (options.addDownloadOrigin) {
+                // prefix with origin
+                let origin = '[' + getOrigin() + ']';
+                filename = origin + filename;
+            }
+            downloadResource(src, filename);
+        }
+
+        function saveVideo() {
+            if (!hz.hzImg) return;
+            let video = hz.hzImg.find('video').get(0);
+            if (!video) return;
+            let src = video.src;
+            let filename = src.split('/').pop().split('?')[0];
+            if (filename == '') filename = 'video';
+            if (filename.indexOf('.') === -1) filename = filename + '.mp4';
+            if (options.addDownloadSize) {
+                // prefix with size [WxH]
+                let size = '[' + video.videoWidth + 'x' + video.videoHeight + ']';
+                filename = size + filename;
+            }
+            if (options.addDownloadDuration) {
+                // prefix with duration [hh mm ss]
+                let duration = hz.secondsToHms(video.duration);
+                filename = (duration != '' ? '[' + duration + ']' : '') + filename;
+            }
+            if (options.addDownloadOrigin) {
+                // prefix with origin
+                let origin = '[' + getOrigin() + ']';
+                filename = origin + filename;
+            }
+            downloadResource(src, filename);
+        }
+
+        function saveAudio() {
+            if (!hz.hzImg) return;
+            let audio = hz.hzImg.find('audio').get(0);
+            if (!audio) return;
+            let src = audio.src;
+            let filename = src.split('/').pop().split('?')[0];
+            if (filename == '') filename = 'audio';
+            if (filename.indexOf('.') === -1) filename = filename + '.mp4';
+            if (options.addDownloadDuration) {
+                // prefix with duration [hh mm ss]
+                let duration = hz.secondsToHms(audio.duration);
+                filename = (duration != '' ? '[' + duration + ']' : '') + filename;
+            }
+            if (options.addDownloadOrigin) {
+                // prefix with origin
+                let origin = '[' + getOrigin() + ']';
+                filename = origin + filename;
+            }
+            downloadResource(src, filename);
+        }
+
+        // return hostname with special characters replaced by '_'
+        function getOrigin() {
+            return window.location.hostname.replace(/[\\/:*?"<>|]/g, '_');
         }
 
         function rotateGalleryImg(rot) {
@@ -1812,6 +1896,22 @@ var hoverZoom = {
             if (src)
                 hoverZoom.prepareLink(link, src);
         });
+    },
+
+    // https://dev.to/alexparra/js-seconds-to-hh-mm-ss-22o6
+    // * Convert seconds to HH MM SS
+    // * If seconds exceeds 24 hours, hours will be greater than 24 (30 05 10)
+    // *
+    // * @param {number} seconds
+    // * @returns {string}
+    secondsToHms:function (seconds) {
+        if (isNaN(seconds)) return '';
+        const SECONDS_PER_DAY = 86400;
+        const HOURS_PER_DAY = 24;
+        const days = Math.floor(seconds / SECONDS_PER_DAY);
+        const remainderSeconds = seconds % SECONDS_PER_DAY;
+        const hms = new Date(remainderSeconds * 1000).toISOString().substring(11, 19);
+        return hms.replace(/^(\d+)/, h => `${Number(h) + days * HOURS_PER_DAY}`.padStart(2, '0')).replace(/:/g, ' ');
     },
 
     cLog:function (msg) {

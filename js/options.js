@@ -116,6 +116,9 @@ function saveOptions() {
     options.captionLocation = $('#selectCaptionLocation').val();
     options.displayImageLoader = $('#chkDisplayImageLoader')[0].checked;    
     options.downloadFolder = $('#txtDownloadFolder')[0].value;
+    options.addDownloadOrigin = $('#chkAddDownloadOrigin')[0].checked;
+    options.addDownloadSize = $('#chkAddDownloadSize')[0].checked;
+    options.addDownloadDuration = $('#chkAddDownloadDuration')[0].checked;
     options.useSeparateTabOrWindowForUnloadableUrlsEnabled = $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled')[0].checked;
     options.useSeparateTabOrWindowForUnloadableUrls = $('#selectUseSeparateTabOrWindowForUnloadableUrls').val();
 
@@ -203,6 +206,9 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#chkZoomedSizeThresholdEnabled').trigger(options.zoomedSizeThresholdEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#txtZoomedSizeThreshold').val(parseInt(options.zoomedSizeThreshold));
     $('#txtDownloadFolder').val(options.downloadFolder);
+    $('#chkAddDownloadOrigin').trigger(options.addDownloadOrigin ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkAddDownloadSize').trigger(options.addDownloadSize ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkAddDownloadDuration').trigger(options.addDownloadDuration ? 'gumby.check' : 'gumby.uncheck');
     $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled').trigger(options.useSeparateTabOrWindowForUnloadableUrlsEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#selectUseSeparateTabOrWindowForUnloadableUrls').val(options.useSeparateTabOrWindowForUnloadableUrls);
 
@@ -319,6 +325,7 @@ function updateUseSeparateTabOrWindowForUnloadableUrls() {
         $('#selectUseSeparateTabOrWindowForUnloadableUrls').addClass('disabled');
     }
 }
+
 function updateTxtAmbilightBackgroundOpacity() {
     $('#txtAmbilightBackgroundOpacity')[0].value = this.value;
 }
