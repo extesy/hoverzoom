@@ -400,8 +400,40 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "폴더에 이미지 저장하기: Downloads/",
+        "message": "폴더에 사진 및 동영상 저장하기: Downloads/",
         "description": "[options] Download folder option"
+    },
+    "optRenameDownloadsTooltip": {
+        "message": "파일을 보다 쉽게 관리할 수 있도록 출처, 크기, 기간을 파일 이름 앞에 붙입니다",
+        "description": "[options] Tooltip for rename downloads option"
+    },
+    "optRenameDownloads": {
+        "message": "저장한 사진과 동영상의 파일 이름에 문자 추가:",
+        "description": "[options] Rename downloads option"
+    },
+    "optAddDownloadOriginTooltip": {
+        "message": "출처 추가 (예: www.deviantart.com)",
+        "description": "[options] Tooltip for add download origin option"
+    },
+    "optAddDownloadOrigin": {
+        "message": "출처",
+        "description": "[options] Add download origin option"
+    },
+    "optAddDownloadSizeTooltip": {
+        "message": "픽셀 단위의 크기(너비x높이) 추가 (예: 1024x750)",
+        "description": "[options] Tooltip for add download size option"
+    },
+    "optAddDownloadSize": {
+        "message": "크기",
+        "description": "[options] Add download size option"
+    },
+    "optAddDownloadDurationTooltip": {
+        "message": "동영상 길이(시간 분 초) 추가 (예: 00 16 35)",
+        "description": "[options] Tooltip for add download duration option"
+    },
+    "optAddDownloadDuration": {
+        "message": "길이",
+        "description": "[options] Add download duration option"
     },
     "optPixelsUnitName": {
         "message": "픽셀",
