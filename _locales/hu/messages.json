@@ -400,7 +400,7 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images & videos to folder: Downloads/",
+        "message": "Képek és videók mentése mappába: Letöltések/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
@@ -424,7 +424,7 @@
         "description": "[options] Tooltip for add download size option"
     },
     "optAddDownloadSize": {
-        "message": "size",
+        "message": "méret",
         "description": "[options] Add download size option"
     },
     "optAddDownloadDurationTooltip": {
@@ -512,7 +512,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 - © 2014-2021 Oleg Anashkin",
+        "message": "$1 verzió - © 2014-2021 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     }
 }
