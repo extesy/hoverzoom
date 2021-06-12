@@ -359,10 +359,6 @@
         "message": "Enable albums support",
         "description": "[options] Enable albums support option"
     },
-    "optDebugMode": {
-        "message": "Enable debug mode",
-        "description": "[options] Enable debug mode option"
-    },
     "optPicturesOpacity": {
         "message": "Zoomed pictures opacity:",
         "description": "[options] Zoomed pictures opacity option"
