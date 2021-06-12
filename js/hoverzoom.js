@@ -1,27 +1,26 @@
 var hoverZoomPlugins = hoverZoomPlugins || [],
-    debug = false,
     logger = Logger();
 
 function cLog(msg) {
-    if (debug) {
+    if (options.debugMode) {
         console.log(msg);
     }
 }
 
 function cTime(msg) {
-    if (debug) {
+    if (options.debugMode) {
         console.time(msg);
     }
 }
 
 function cTimeLog(msg) {
-    if (debug) {
+    if (options.debugMode) {
         console.timeLog(msg);
     }
 }
 
 function cTimeEnd(msg) {
-    if (debug) {
+    if (options.debugMode) {
         console.timeEnd(msg);
     }
 }
@@ -32,7 +31,7 @@ function getFuncName() {
 
 function Logger() {
     this.logger = {};
-    if (debug) {
+    if (options.debugMode) {
 
         for (var m in console)
             if (typeof console[m] == 'function')

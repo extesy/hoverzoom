@@ -112,9 +112,10 @@ function saveOptions() {
     options.filterNSFW = $('#chkFilterNSFW')[0].checked;
     options.alwaysPreload = $('#chkAlwaysPreload')[0].checked;
     options.enableGalleries = $('#chkEnableGalleries')[0].checked;
+    options.debugMode = $('#chkDebugMode')[0].checked;
     options.picturesOpacity = $('#txtPicturesOpacity')[0].value / 100;
     options.captionLocation = $('#selectCaptionLocation').val();
-    options.displayImageLoader = $('#chkDisplayImageLoader')[0].checked;    
+    options.displayImageLoader = $('#chkDisplayImageLoader')[0].checked;
     options.downloadFolder = $('#txtDownloadFolder')[0].value;
     options.addDownloadOrigin = $('#chkAddDownloadOrigin')[0].checked;
     options.addDownloadSize = $('#chkAddDownloadSize')[0].checked;
@@ -197,6 +198,7 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#chkFilterNSFW').trigger(options.filterNSFW ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAlwaysPreload').trigger(options.alwaysPreload ? 'gumby.check' : 'gumby.uncheck');
     $('#chkEnableGalleries').trigger(options.enableGalleries ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkDebugMode').trigger(options.debugMode ? 'gumby.check' : 'gumby.uncheck');
     $('#txtPicturesOpacity').val(parseInt(options.picturesOpacity * 100));
     $('#chkDisplayImageLoader').trigger(options.displayImageLoader ? 'gumby.check' : 'gumby.uncheck');
     $('#chkEnlargementThresholdEnabled').trigger(options.enlargementThresholdEnabled ? 'gumby.check' : 'gumby.uncheck');
