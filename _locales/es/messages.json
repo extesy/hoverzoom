@@ -400,39 +400,39 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images & videos to folder: Downloads/",
+        "message": "Guardar imágenes y vídeos en la carpeta: Descargas/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Prefix original names of downloads with origin, size and/or duration for easier management",
+        "message": "Prefijar los nombres originales de las descargas con el origen, tamaño y/o duración para una gestión más fácil",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Rename saved images & videos by adding:",
+        "message": "Renombrar las imágenes y vídeos guardados añadiendo:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
-        "message": "Add origin (e.g. www.deviantart.com)",
+        "message": "Añadir origen (ejemplo: www.devianart.com)",
         "description": "[options] Tooltip for add download origin option"
     },
     "optAddDownloadOrigin": {
-        "message": "origin",
+        "message": "origen",
         "description": "[options] Add download origin option"
     },
     "optAddDownloadSizeTooltip": {
-        "message": "Add size (WxH) in pixels (e.g. 1024x750)",
+        "message": "Añadir tamaño (WxH) en píxeles (ejemplo: 1024x750)",
         "description": "[options] Tooltip for add download size option"
     },
     "optAddDownloadSize": {
-        "message": "size",
+        "message": "tamaño",
         "description": "[options] Add download size option"
     },
     "optAddDownloadDurationTooltip": {
-        "message": "Add duration (hh mm ss) of video (e.g. 00 16 35)",
+        "message": "Agregar duración (hh mm ss) del vídeo (ejemplo: 00 16 35)",
         "description": "[options] Tooltip for add download duration option"
     },
     "optAddDownloadDuration": {
-        "message": "duration",
+        "message": "duración",
         "description": "[options] Add download duration option"
     },
     "optPixelsUnitName": {
@@ -512,7 +512,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 - © 2014-2021 Oleg Anashkin",
+        "message": "Versión $1 - © 2014-2021 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     }
 }
