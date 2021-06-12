@@ -449,8 +449,8 @@ var hoverZoom = {
             }
             titledElements = img.parents('[title]').not('iframe, .lightbox, [rel^="lightbox"]');
             // Occasionally, the img element itself will have a title attribute
-            // which we like to  handle that as well
-            titledElements = titledElements.add(img.filter('[title]');
+            // which we like to handle that as well
+            titledElements = titledElements.add(img.filter('[title]'));
             titledElements.each(function () {
                 $(this).data().hoverZoomTitle = this.getAttribute('title');
                 this.title = '';
