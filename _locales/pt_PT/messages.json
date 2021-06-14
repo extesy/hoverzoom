@@ -188,11 +188,11 @@
         "description": "[options] Tooltip for mute zoomed videos option"
     },
     "optVideoTimestamp": {
-        "message": "Mostrar informação de data/hora nos vídeos",
+        "message": "Mostrar informação de data e hora nos vídeos",
         "description": "[options] Enable timestamp / video length on videos"
     },
     "optVideoTimestampTooltip": {
-        "message": "Ativa a informação de data/hora / duração do vídeo nos vídeos",
+        "message": "Ativa a informação de data e hora / duração do vídeo nos vídeos",
         "description": "[options] Tooltip for video length countdown on videos"
     },
     "optVideoVolume": {
@@ -400,39 +400,39 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images & videos to folder: Downloads/",
+        "message": "Guardar as imagens e os vídeos na pasta: Transferências/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Prefix original names of downloads with origin, size and/or duration for easier management",
+        "message": "Prefixo nomes originais de transferências com fonte, tamanho e/ou duração para uma gestão mais fácil",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Rename saved images & videos by adding:",
+        "message": "Renomeie imagens e vídeos guardados adicionando:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
-        "message": "Add origin (e.g. www.deviantart.com)",
+        "message": "Adicionar fonte (por exemplo, www.deviantart.com)",
         "description": "[options] Tooltip for add download origin option"
     },
     "optAddDownloadOrigin": {
-        "message": "origin",
+        "message": "fonte",
         "description": "[options] Add download origin option"
     },
     "optAddDownloadSizeTooltip": {
-        "message": "Add size (WxH) in pixels (e.g. 1024x750)",
+        "message": "Adicionar tamanho (LxA) em píxeis (por exemplo, 1024x750)",
         "description": "[options] Tooltip for add download size option"
     },
     "optAddDownloadSize": {
-        "message": "size",
+        "message": "tamanho",
         "description": "[options] Add download size option"
     },
     "optAddDownloadDurationTooltip": {
-        "message": "Add duration (hh mm ss) of video (e.g. 00 16 35)",
+        "message": "Adicionar duração (hh mm ss) do vídeo (por exemplo, 00 16 35)",
         "description": "[options] Tooltip for add download duration option"
     },
     "optAddDownloadDuration": {
-        "message": "duration",
+        "message": "duração",
         "description": "[options] Add download duration option"
     },
     "optPixelsUnitName": {
