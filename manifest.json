@@ -1755,6 +1755,11 @@
             "js": ["plugins/maxsold.js"],
             "matches": ["*://*.maxsold.com/*"
             ]
+        },
+        {
+            "js": ["plugins/myanimelist.js"],
+            "matches": ["*://*.myanimelist.net/*"
+            ]
         }
    ]
 }
