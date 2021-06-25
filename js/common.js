@@ -47,8 +47,8 @@ var factorySettings = {
     hideKey : 88,
     openImageInWindowKey : 87,
     openImageInTabKey : 84,
-    lockImageKey : 76,
-    saveImageKey : 0,
+    lockImageKey : 0,
+    saveImageKey : 83,
     prevImgKey : 37,
     nextImgKey : 39,
     escKey : 27
