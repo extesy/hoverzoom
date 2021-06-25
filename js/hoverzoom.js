@@ -649,6 +649,7 @@ var hoverZoom = {
         }
 
         function documentContextMenu(event) {
+            // If it's been less than 300ms since right click, lock image and prevent context menu.
             var lockElapsed = event.timeStamp - lockImageClickTime;
             if (imgFullSize && !imageLocked && options.lockImageKey == -1 & lockElapsed < 300) {     
                 lockImage();
@@ -871,6 +872,7 @@ var hoverZoom = {
                 hz.hzImg.css('cursor', 'pointer');
 
                 if (imageLocked) {
+                    // Allow clicking on locked image.
                     hz.hzImg.css('pointer-events', 'auto');
                 }
 
@@ -962,6 +964,7 @@ var hoverZoom = {
             }
 
             if (imageLocked) {
+                // Don't hide cursor on locked image.
                 return;
             }
 
@@ -1307,7 +1310,7 @@ var hoverZoom = {
 
         function documentOnMouseWheel(event) {
             if (imageLocked) {
-                // Scale up or down then clamp between 0.1x and 100x
+                // Scale up or down locked image then clamp between 0.1x and 10x.
                 zoomFactor = zoomFactor * (event.deltaY < 0 ? 1.25 : 0.8);
                 zoomFactor = Math.max(Math.min(zoomFactor, 10), 0.1);
                 posImg();
