@@ -1,24 +1,36 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Ravelry',
-    version:'0.1',
+    version:'0.3',
     prepareImgLinks:function (callback) {
         var res = [];
-        var repl = options.showHighRes ? '' : '_medium2';
+        var repl = '';
 
         hoverZoom.urlReplace(res,
-            '.thumbnail, .zoomable_photo, .photo',
-            ['_small_best_fit', '_small', '_best_fit', /_[mst]\./],
-            [repl, repl, repl, '.']
+            'img[src-webp], [style*="url"]',
+            /(.*)\/webp\/(.*?)_.*\.(.*)$/,
+            '$1/$2.$3'
         );
 
         hoverZoom.urlReplace(res,
-            'a img',
-            '_square',
+            'img[src]:not([src-webp]), [style*="url"]',
+            /_medium2?/,
             repl
         );
 
-        callback($(res));
+        hoverZoom.urlReplace(res,
+            'img[src]:not([src-webp]), [style*="url"]',
+            ['_small_best_fit', /_small2?/, /_thumbnail2?/, /_square2?/, /_large2?/, '_best_fit', '_tiny', '_banner', '/webp/', '.webp#jpg', '.webp#JPG'],
+            [repl, repl, repl, repl, repl, repl, repl, repl, '/', '.jpg', '.JPG']
+        );
+
+        hoverZoom.urlReplace(res,
+            'img[src]:not([src-webp]), [style*="url"]',
+            /_[mst]\./,
+            '.'
+        );
+
+        callback($(res), this.name);
 
         // This second processing makes use of the Flickr API to try to get larger pictures.
         if (options.showHighRes) {

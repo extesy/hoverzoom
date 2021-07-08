@@ -35,7 +35,7 @@ function initActionKeys() {
         var title = chrome.i18n.getMessage("opt" + id + "Title");
         var description = chrome.i18n.getMessage("opt" + id + "Description");
         $('<tr><td>' + title + '<p>' + description + '</p></td>' +
-            '<td><select id="sel' + id + '" class="actionKey"/></td></tr>').appendTo($('#tableActionKeys'));
+            '<td><select id="sel' + id + '" class="actionKey picker"/></td></tr>').appendTo($('#tableActionKeys'));
         loadKeys($('#sel' + id));
     });
 }
@@ -90,6 +90,7 @@ function saveOptions() {
     options.ambilightBackgroundOpacity = $('#txtAmbilightBackgroundOpacity')[0].value / 100;
     options.centerImages = $('#chkCenterImages')[0].checked;
     options.frameBackgroundColor = $('#pickerFrameBackgroundColor')[0].value;
+    options.frameThickness = $('#txtFrameThickness')[0].value;
 
     options.whiteListMode = $('#chkWhiteListMode')[0].checked;
     options.excludedSites = [];
@@ -114,7 +115,10 @@ function saveOptions() {
     options.enableGalleries = $('#chkEnableGalleries')[0].checked;
     options.picturesOpacity = $('#txtPicturesOpacity')[0].value / 100;
     options.captionLocation = $('#selectCaptionLocation').val();
-    options.displayImageLoader = $('#chkDisplayImageLoader')[0].checked;    
+    options.detailsLocation = $('#selectDetailsLocation').val();
+    options.fontSize = $('#txtFontSize')[0].value;
+    options.fontOutline = $('#chkFontOutline')[0].checked;
+    options.displayImageLoader = $('#chkDisplayImageLoader')[0].checked;
     options.downloadFolder = $('#txtDownloadFolder')[0].value;
     options.addDownloadOrigin = $('#chkAddDownloadOrigin')[0].checked;
     options.addDownloadSize = $('#chkAddDownloadSize')[0].checked;
@@ -162,7 +166,13 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#txtAmbilightBackgroundOpacity').val(parseInt(options.ambilightBackgroundOpacity * 100));
     $('#chkCenterImages').trigger(options.centerImages ? 'gumby.check' : 'gumby.uncheck');
     $('#pickerFrameBackgroundColor').val(options.frameBackgroundColor);
+    $('#rngFrameThickness').val(parseInt(options.frameThickness));
+    $('#txtFrameThickness').val(parseInt(options.frameThickness));
     $('#selectCaptionLocation').val(options.captionLocation);
+    $('#selectDetailsLocation').val(options.detailsLocation);
+    $('#rngFontSize').val(parseInt(options.fontSize));
+    $('#txtFontSize').val(parseInt(options.fontSize));
+    $('#chkFontOutline').trigger(options.fontOutline ? 'gumby.check' : 'gumby.uncheck');
 
     if (options.frameBackgroundColor == "") {
         initColorPicker('#ffffff');
@@ -344,6 +354,24 @@ function updateRngAmbilightHaloSize() {
     $('#rngAmbilightHaloSize').val(this.value);
 }
 
+function updateTxtFrameThickness() {
+    $('#txtFrameThickness')[0].value = this.value;
+}
+
+function updateRngFrameThickness() {
+    this.value = percentageOnChange(this.value);
+    $('#rngFrameThickness').val(this.value);
+}
+
+function updateTxtFontSize() {
+    $('#txtFontSize')[0].value = this.value;
+}
+
+function updateRngFontSize() {
+    this.value = percentageOnChange(this.value);
+    $('#rngFontSize').val(this.value);
+}
+
 function updateTxtVideoVolume() {
     $('#txtVideoVolume')[0].value = this.value;
 }
@@ -435,6 +463,10 @@ $(function () {
     $('#txtAmbilightHaloSize').change(updateRngAmbilightHaloSize);
     $('#rngAmbilightBackgroundOpacity').on('input change', updateTxtAmbilightBackgroundOpacity);
     $('#txtAmbilightBackgroundOpacity').change(updateRngAmbilightBackgroundOpacity);
+    $('#rngFrameThickness').on('input change', updateTxtFrameThickness);
+    $('#txtFrameThickness').change(updateRngFrameThickness);
+    $('#rngFontSize').on('input change', updateTxtFontSize);
+    $('#txtFontSize').change(updateRngFontSize);
     $('#txtVideoPositionStep').change(percentageOnChange);
     $('.actionKey').change(selKeyOnChange);
     $('#btnAddExcludedSite').click(btnAddExcludedSiteOnClick);
