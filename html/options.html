@@ -42,17 +42,44 @@
                                         </label>
                                     </li>
                                 </div>
-                                <div class="ttip" data-i18n-tooltip="optCaptionLocationTooltip">
-                                    <li class="field">
-                                        <label class="checkbox" for="selectCaptionLocation">
+                                <div id="divCaptionDetails" style="display:flex">
+                                   <div class="ttip" data-i18n-tooltip="optCaptionLocationTooltip">
+                                        <li class="field">
                                             <div style="display:inline" data-i18n="optCaptionLocation"></div>
                                             <select id="selectCaptionLocation" class="picker">
                                                 <option value="above" data-i18n="optCaptionLocationAbove"></option>
                                                 <option value="below" data-i18n="optCaptionLocationBelow"></option>
                                                 <option value="none" data-i18n="optCaptionLocationNone"></option>
                                             </select>
-                                        </label>
-                                    </li>
+                                        </li>
+                                    </div>
+                                    <div class="ttip" data-i18n-tooltip="optDetailsLocationTooltip">
+                                        <li class="field" style="margin-left:30px">
+                                            <div style="display:inline" data-i18n="optDetailsLocation"></div>
+                                            <select id="selectDetailsLocation" class="picker">
+                                                <option value="above" data-i18n="optDetailsLocationAbove"></option>
+                                                <option value="below" data-i18n="optDetailsLocationBelow"></option>
+                                                <option value="none" data-i18n="optDetailsLocationNone"></option>
+                                            </select>
+                                        </li>
+                                    </div>
+                                    <div class="ttip" data-i18n-tooltip="optFontSizeTooltip">
+                                        <div class="append field" style="margin-left:30px">
+                                            <label class="inline" for="txtFontSize">
+                                                <div style="display:inline" data-i18n="optFontSize"></div>
+                                                <input class="xnarrow input" type="range" name="points" min="8" max="20" step="1" id="rngFontSize">
+                                                <input class="xnarrow text input" type="text" id="txtFontSize"><span class="adjoined xnarrow" data-i18n="optFontSizeUnitName"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="ttip" data-i18n-tooltip="optFontOutlineTooltip">
+                                        <div class="append field" style="margin-left:10px; margin-top:3.5px">
+                                            <label class="checkbox" for="chkFontOutline">
+                                                <input type="checkbox" id="chkFontOutline"><span></span>
+                                                <div style="display:inline" data-i18n="optFontOutline"></div>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="ttip" data-i18n-tooltip="optMouseUnderlapTooltip">
                                     <li class="field">
@@ -130,13 +157,24 @@
                                         </label>
                                     </li>
                                 </div>
-                                <div class="ttip" data-i18n-tooltip="optFrameBackgroundColorTooltip">
-                                    <li class="field">
-                                        <label class="inline" for="pickerFrameBackgroundColor">
-                                            <div style="display:inline" data-i18n="optFrameBackgroundColor"></div>
-                                            <input type="text" id="pickerFrameBackgroundColor" value="">
-                                        </label>
-                                    </li>
+                                <div id="divFrame" style="display:flex">
+                                    <div class="ttip" data-i18n-tooltip="optFrameBackgroundColorTooltip">
+                                        <li class="field">
+                                            <label class="inline" for="pickerFrameBackgroundColor">
+                                                <div style="display:inline" data-i18n="optFrameBackgroundColor"></div>
+                                                <input type="text" id="pickerFrameBackgroundColor" value="">
+                                            </label>
+                                        </li>
+                                    </div>
+                                    <div class="ttip" data-i18n-tooltip="optFrameThicknessTooltip">
+                                        <div class="append field" style="margin-left:22px">
+                                            <label class="inline" for="txtFrameThickness">
+                                                <div style="display:inline" data-i18n="optFrameThickness"></div>
+                                                <input class="xnarrow input" type="range" name="points" min="0" max="10" step="1" id="rngFrameThickness">
+                                                <input class="xnarrow text input" type="text" id="txtFrameThickness"><span class="adjoined xnarrow" data-i18n="optFrameThicknessUnitName"></span>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="ttip" data-i18n-tooltip="optUseSeparateTabOrWindowForUnloadableUrlsTooltip">
                                     <li class="field">
@@ -253,7 +291,7 @@
                         </div>
                         <fieldset>
                             <legend id="lblToggle"></legend>
-                            <div class="append field">
+                            <div class="field">
                                 <label for="txtAddExcludedSite">
                                     <input class="wide text input" type="text" id="txtAddExcludedSite" data-i18n-placeholder="optSitePlaceholder">
                                     <div class="medium primary btn"><a href="#" id="btnAddExcludedSite" data-i18n="optButtonAddSite"></a></div>

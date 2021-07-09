@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'Imgur',
-    version:'1.3',
+    name:'Imgur_a',
+    version:'1.4',
     prepareImgLinks:function (callback) {
 
         var name = this.name;
@@ -151,6 +151,18 @@ hoverZoomPlugins.push({
                 }
             }
         });
+
+        hoverZoom.urlReplace(res,
+            'img[src*="imgur"]',
+            '_d.',
+            '.'
+        );
+
+        hoverZoom.urlReplace(res,
+            'img[src*="imgur"]',
+            /\?s=.*/,
+            ''
+        );
 
         if (res.length) {
             callback($(res), name);

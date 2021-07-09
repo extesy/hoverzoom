@@ -28,6 +28,7 @@ var factorySettings = {
     disabledPlugins : [],
     centerImages : false,
     frameBackgroundColor: "#ffffff",
+    frameThickness: 4,
     displayImageLoader: false,
     enlargementThresholdEnabled : true,
     enlargementThreshold : 2,
@@ -42,6 +43,9 @@ var factorySettings = {
     useSeparateTabOrWindowForUnloadableUrlsEnabled: false,
     useSeparateTabOrWindowForUnloadableUrls: 'window',
     captionLocation : 'below',
+    detailsLocation : 'none',
+    fontSize : 11,
+    fontOutline : false,
     actionKey : 0,
     fullZoomKey : 90,
     hideKey : 88,
@@ -96,6 +100,7 @@ function loadOptions() {
     options.disabledPlugins = options.hasOwnProperty('disabledPlugins') ? options.disabledPlugins : factorySettings.disabledPlugins;
     options.centerImages = options.hasOwnProperty('centerImages') ? options.centerImages : factorySettings.centerImages;
     options.frameBackgroundColor = options.hasOwnProperty('frameBackgroundColor') ? options.frameBackgroundColor : factorySettings.frameBackgroundColor;
+    options.frameThickness = options.hasOwnProperty('frameThickness') ? options.frameThickness : factorySettings.frameThickness;
     options.displayImageLoader = options.hasOwnProperty('displayImageLoader') ? options.displayImageLoader : factorySettings.displayImageLoader;
     options.enlargementThresholdEnabled = options.hasOwnProperty('enlargementThresholdEnabled') ? options.enlargementThresholdEnabled : factorySettings.enlargementThresholdEnabled;
     options.enlargementThreshold = options.hasOwnProperty('enlargementThreshold') ? options.enlargementThreshold : factorySettings.enlargementThreshold;
@@ -113,6 +118,10 @@ function loadOptions() {
     // Used old showCaptions option for backwards compatibility
     var showCaptions = options.hasOwnProperty('showCaptions') ? options.showCaptions : true;
     options.captionLocation = options.hasOwnProperty('captionLocation') ? options.captionLocation : (showCaptions ? factorySettings.captionLocation : 'none');
+
+    options.detailsLocation = options.hasOwnProperty('detailsLocation') ? options.detailsLocation : factorySettings.detailsLocation;
+    options.fontSize = options.hasOwnProperty('fontSize') ? options.fontSize : factorySettings.fontSize;
+    options.fontOutline = options.hasOwnProperty('fontOutline') ? options.fontOutline : factorySettings.fontOutline;
 
     // Action keys
     options.actionKey = options.hasOwnProperty('actionKey') ? options.actionKey : factorySettings.actionKey;
