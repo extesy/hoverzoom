@@ -111,6 +111,34 @@
         "message": "비활성화",
         "description": "[options] Caption location option to disable captions"
     },
+    "optDetailsLocation": {
+        "message": "Details position:",
+        "description": "[options] Adjust the position of details"
+    },
+    "optDetailsLocationTooltip": {
+        "message": "View details (size, format...) above/below the image, or not at all",
+        "description": "[options] Tooltip for adjusting the position of details"
+    },
+    "optDetailsLocationAbove": {
+        "message": "Above",
+        "description": "[options] Details location option to put details above the image"
+    },
+    "optDetailsLocationBelow": {
+        "message": "Below",
+        "description": "[options] Details location option to put details below the image"
+    },
+    "optDetailsLocationNone": {
+        "message": "None",
+        "description": "[options] Details location option to disable details"
+    },
+    "optFontOutline": {
+        "message": "Font outline",
+        "description": "[options] Outline option"
+    },
+    "optFontOutlineTooltip": {
+        "message": "If checked: use white font + thin black border for caption & details",
+        "description": "[options] Tooltip for outline option"
+    },
     "optMouseUnderlap": {
         "message": "마우스 커서 아래의 확대 이미지를 확장",
         "description": "[options] Extend zoomed images below the mouse cursor option"
@@ -220,8 +248,8 @@
         "description": "[options] Size of halo option"
     },
     "optAmbilightHaloSizeUnitName": {
-        "message": "픽셀",
-        "description": "[options] Unit name (pixel) for halo size"
+        "message": "%",
+        "description": "[options] Unit name (percentage) for halo size"
     },
     "optAmbilightHaloSizeTooltip": {
         "message": "확대한 사진 주변의 주변광 크기 (0%: 주변광 없음)",
@@ -262,6 +290,30 @@
     "optFrameBackgroundColorCancelText": {
         "message": "취소",
         "description": "[options] Frame background color button - Cancel"
+    },
+    "optFrameThickness": {
+        "message": "Frame thickness:",
+        "description": "[options] Frame thickness option"
+    },
+    "optFrameThicknessTooltip": {
+        "message": "Thickness of border for the frame the image appears in (0 : no frame)",
+        "description": "[options] Tooltip for frame thickness option"
+    },
+    "optFrameThicknessUnitName": {
+        "message": "pixels",
+        "description": "[options] Unit name (pixel) for frame thickness"
+    },
+    "optFontSize": {
+        "message": "Font size:",
+        "description": "[options] Font size option"
+    },
+    "optFontSizeTooltip": {
+        "message": "Size of font used for captions & details",
+        "description": "[options] Tooltip for font size option"
+    },
+    "optFontSizeUnitName": {
+        "message": "pixels",
+        "description": "[options] Unit name (pixel) for font size"
     },
     "optSectionDelays": {
         "message": "딜레이",
