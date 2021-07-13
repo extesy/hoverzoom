@@ -10,7 +10,7 @@ chrome.runtime.sendMessage({action:'getOptions'}, function (options) {
 });
 
 // one and only one image should be displayed
-if (document.images.length == 1) {
+if (document.images.length == 1 || document.querySelector('video')) {
     var naturalWidth = document.images[0].naturalWidth;
     var naturalHeight = document.images[0].naturalHeight;
 

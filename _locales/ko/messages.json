@@ -111,6 +111,34 @@
         "message": "비활성화",
         "description": "[options] Caption location option to disable captions"
     },
+    "optDetailsLocation": {
+        "message": "상세 정보 위치:",
+        "description": "[options] Adjust the position of details"
+    },
+    "optDetailsLocationTooltip": {
+        "message": "(크기, 형식 등) 상세 정보를 해당 이미지의 위/아래에 표시, 혹은 삭제",
+        "description": "[options] Tooltip for adjusting the position of details"
+    },
+    "optDetailsLocationAbove": {
+        "message": "위",
+        "description": "[options] Details location option to put details above the image"
+    },
+    "optDetailsLocationBelow": {
+        "message": "아래",
+        "description": "[options] Details location option to put details below the image"
+    },
+    "optDetailsLocationNone": {
+        "message": "사용 안 함",
+        "description": "[options] Details location option to disable details"
+    },
+    "optFontOutline": {
+        "message": "글꼴 외곽선",
+        "description": "[options] Outline option"
+    },
+    "optFontOutlineTooltip": {
+        "message": "활성화 시 흰 글꼴에 얇고 검은 테두리를 가진 글씨로 자막과 상세 정보를 표시",
+        "description": "[options] Tooltip for outline option"
+    },
     "optMouseUnderlap": {
         "message": "마우스 커서 아래의 확대 이미지를 확장",
         "description": "[options] Extend zoomed images below the mouse cursor option"
@@ -220,8 +248,8 @@
         "description": "[options] Size of halo option"
     },
     "optAmbilightHaloSizeUnitName": {
-        "message": "픽셀",
-        "description": "[options] Unit name (pixel) for halo size"
+        "message": "%",
+        "description": "[options] Unit name (percentage) for halo size"
     },
     "optAmbilightHaloSizeTooltip": {
         "message": "확대한 사진 주변의 주변광 크기 (0%: 주변광 없음)",
@@ -262,6 +290,30 @@
     "optFrameBackgroundColorCancelText": {
         "message": "취소",
         "description": "[options] Frame background color button - Cancel"
+    },
+    "optFrameThickness": {
+        "message": "외곽선 두께:",
+        "description": "[options] Frame thickness option"
+    },
+    "optFrameThicknessTooltip": {
+        "message": "사진이 뜨는 액자 테두리의 두께 (0으로 설정하면 테두리 없음)",
+        "description": "[options] Tooltip for frame thickness option"
+    },
+    "optFrameThicknessUnitName": {
+        "message": "픽셀",
+        "description": "[options] Unit name (pixel) for frame thickness"
+    },
+    "optFontSize": {
+        "message": "글꼴 크기:",
+        "description": "[options] Font size option"
+    },
+    "optFontSizeTooltip": {
+        "message": "자막과 상세 정보 표시에 쓰이는 글씨의 크기",
+        "description": "[options] Tooltip for font size option"
+    },
+    "optFontSizeUnitName": {
+        "message": "픽셀",
+        "description": "[options] Unit name (pixel) for font size"
     },
     "optSectionDelays": {
         "message": "딜레이",

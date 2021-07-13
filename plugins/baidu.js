@@ -97,13 +97,15 @@ hoverZoomPlugins.push({
                 src = decodeURIComponent(src);
             } catch { return; }
 
+            src = src.replace('http:', 'https:')
+
             if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
             if (link.data().hoverZoomSrc.indexOf(src) == -1) {
                 link.data().hoverZoomSrc.unshift(src);
                 res.push(link);
             }
 
-            // update underlaying img too
+            // update underlying img too
             let img = link.find('img');
             if (img.length != 1) return;
             img = $(img[0]);
