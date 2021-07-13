@@ -113,6 +113,9 @@ var hoverZoom = {
             actionKeyDown = false,
             fullZoomKeyDown = false,
             hideKeyDown = false,
+            imageLocked = false;
+            imageLockTime = 0;
+            zoomFactor = 1;
             pageActionShown = false,
             skipFadeIn = false,
             titledElements = null,
@@ -294,7 +297,8 @@ var hoverZoom = {
 
                 // this is looped 10x max just in case something goes wrong, to avoid freezing the process
                 let i = 0;
-                while (hz.hzImg.height() > wndHeight - statusBarHeight - scrollBarHeight && i++ < 10) {
+
+                while (!imageLocked && hz.hzImg.height() > wndHeight - statusBarHeight - scrollBarHeight && i++ < 10) {
                     imgFullSize.height(wndHeight - padding - statusBarHeight - scrollBarHeight - (hzAbove ? hzAbove.height() : 0) - (hzBelow ? hzBelow.height() : 0)).width('auto');
                 }
 
@@ -363,28 +367,29 @@ var hoverZoom = {
                 //imgDetails.naturalHeight = imgFullSize.height() * options.zoomFactor;
                 imgDetails.naturalWidth = (imgFullSize[0].naturalWidth ? imgFullSize[0].naturalWidth : imgFullSize.width()) * options.zoomFactor;
                 imgDetails.naturalHeight = (imgFullSize[0].naturalHeight ? imgFullSize[0].naturalHeight : imgFullSize.height()) * options.zoomFactor;
+
                 if (!imgDetails.naturalWidth || !imgDetails.naturalHeight) {
                     return;
                 }
 
                 // width adjustment
-                var fullZoom = options.mouseUnderlap || fullZoomKeyDown;
-                if (fullZoom) {
+                var fullZoom = options.mouseUnderlap || fullZoomKeyDown || imageLocked;
+                if (imageLocked) {
+                    imgFullSize.width(imgDetails.naturalWidth);
+                } else if (fullZoom) {
                     imgFullSize.width(Math.min(imgDetails.naturalWidth, wndWidth - padding - 2 * scrollBarWidth));
+                } else if (displayOnRight) {
+                    if (imgDetails.naturalWidth + padding > wndWidth - position.left) {
+                        imgFullSize.width(wndWidth - position.left - padding + wndScrollLeft);
+                    }
                 } else {
-                    if (displayOnRight) {
-                        if (imgDetails.naturalWidth + padding > wndWidth - position.left) {
-                            imgFullSize.width(wndWidth - position.left - padding + wndScrollLeft);
-                        }
-                    } else {
-                        if (imgDetails.naturalWidth + padding > position.left) {
-                            imgFullSize.width(position.left - padding - wndScrollLeft);
-                        }
+                    if (imgDetails.naturalWidth + padding > position.left) {
+                        imgFullSize.width(position.left - padding - wndScrollLeft);
                     }
                 }
 
                 // height adjustment
-                if (hz.hzImg.height() > wndHeight - padding - statusBarHeight - scrollBarHeight) {
+                if (!imageLocked && hz.hzImg.height() > wndHeight - padding - statusBarHeight - scrollBarHeight) {
                     imgFullSize.height(wndHeight - padding - statusBarHeight - scrollBarHeight).width('auto');
                 }
 
@@ -420,7 +425,7 @@ var hoverZoom = {
                 }
             }
 
-            if (options.centerImages) {
+            if (options.centerImages || imageLocked) {
                 hz.hzImg.css('top', (wndHeight / 2 - hz.hzImg.height() / 2 - padding / 2 - statusBarHeight / 2 - scrollBarHeight / 2) + 'px');
                 hz.hzImg.css('left', (wndWidth / 2 - hz.hzImg.width() / 2 - padding / 2 - scrollBarWidth / 2) + 'px');
                 hz.hzImg.css('position', 'fixed');
@@ -442,6 +447,16 @@ var hoverZoom = {
 
                 hz.hzImg.css({top:Math.round(position.top), left:Math.round(position.left)});
             }
+        }
+
+        function panLockedImage() {
+            var widthOffset = (imgFullSize[0].width - window.innerWidth) / 2;
+            var heightOffset = (imgFullSize[0].height - window.innerHeight) / 2;
+            var ratioX = 1 - (2 * event.clientX / window.innerWidth);
+            var ratioY = 1 - (2 * event.clientY / window.innerHeight);
+            var dx = widthOffset > 0 ? ratioX * (widthOffset + 50) : 0;
+            var dy = heightOffset > 0 ?ratioY * (heightOffset + 50) : 0;
+            hz.hzImg.css('transform', `translate(${dx}px, ${dy}px)`);
         }
 
         // adapted from: https://gist.github.com/numee/1e7a19cd26113323f1ae
@@ -616,8 +631,9 @@ var hoverZoom = {
 
         function hideHoverZoomImg(now) {
             cLog('hideHoverZoomImg(' + now + ')');
+
             if (hz.hzImgLoader) { hz.hzImgLoader.remove(); hz.hzImgLoader = null; }
-            if ((!now && !imgFullSize) || !hz.hzImg || fullZoomKeyDown) {
+            if ((!now && !imgFullSize) || !hz.hzImg || fullZoomKeyDown || imageLocked) {
                 return;
             }
             if (imgFullSize) {
@@ -667,6 +683,12 @@ var hoverZoom = {
 
         function documentMouseMove(event) {
             if (!options.extensionEnabled || fullZoomKeyDown || isExcludedSite() || wnd.height() < 30 || wnd.width() < 30) {
+                return;
+            }
+
+            // Pan image around if it's zoomed larger than the screen.
+            if (imageLocked && imgFullSize) {
+                panLockedImage();
                 return;
             }
 
@@ -748,8 +770,23 @@ var hoverZoom = {
             }
         }
 
+        function documentContextMenu(event) {
+            // If it's been less than 300ms since right click, lock image and prevent context menu.
+            var lockElapsed = event.timeStamp - lockImageClickTime;
+            if (imgFullSize && !imageLocked && options.lockImageKey == -1 & lockElapsed < 300) {     
+                lockImage();
+                event.preventDefault();
+            }
+        }
+
         function documentMouseDown(event) {
-            if (imgFullSize && event.target != hz.hzImg[0] && event.target != imgFullSize[0]) {
+            // Right click pressed and lockImageKey is set to special value for right click (-1).
+            if (imgFullSize && !imageLocked && options.lockImageKey == -1 && event.button == 2) {
+                lockImageClickTime = event.timeStamp;
+            } else if (imgFullSize && event.target != hz.hzImg[0] && event.target != imgFullSize[0]) {
+                if (imageLocked && event.button == 0) {
+                    imageLocked = false;
+                }
                 cancelImageLoading();
                 restoreTitles();
             }
@@ -761,6 +798,7 @@ var hoverZoom = {
             if (!imgFullSize) {
                 hz.displayImgLoader('loading');
                 hz.createHzImg(!hideKeyDown);
+                zoomFactor = parseInt(options.zoomFactor);
 
                 imgDetails.video = isVideoLink(imgDetails.url);
                 if (imgDetails.video) {
@@ -923,8 +961,8 @@ var hoverZoom = {
                              .css('height', 2 * screen.availHeight)
                              .css('position', 'fixed')
                              .css('z-index', -2)
-                             .css('top', 0)
-                             .css('left', 0)
+                             .css('top', -screen.availHeight)
+                             .css('left', -screen.availWidth)
                              .css('pointer-events', 'none')
                              .css('background-color', 'black')
                              .css('opacity', options.ambilightBackgroundOpacity);
@@ -978,6 +1016,11 @@ var hoverZoom = {
                  }*/
 
                 hz.hzImg.css('cursor', 'pointer');
+
+                if (imageLocked) {
+                    // Allow clicking on locked image.
+                    hz.hzImg.css('pointer-events', 'auto');
+                }
 
                 initLinkRect(imgThumb || hz.currentLink);
             }
@@ -1118,8 +1161,14 @@ var hoverZoom = {
         var lastMousePosLeft = -1;
 
         function imgFullSizeOnMouseMove() {
-            if (lastMousePosTop == mousePos.top && lastMousePosLeft == mousePos.left)
+            if (lastMousePosTop == mousePos.top && lastMousePosLeft == mousePos.left) {
                 return;
+            }
+
+            if (imageLocked) {
+                // Don't hide cursor on locked image.
+                return;
+            }
 
             lastMousePosTop = mousePos.top;
             lastMousePosLeft = mousePos.left;
@@ -1510,7 +1559,9 @@ var hoverZoom = {
             // needed when navigating galleries fullscreen
             $(document).on('click', function() { prepareImgLinksAsync(); });
 
-            $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).keydown(documentOnKeyDown).keyup(documentOnKeyUp).mouseleave(cancelImageLoading);
+            $(document).contextmenu(documentContextMenu);
+            $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).mouseleave(cancelImageLoading);
+            $(document).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
             if (options.galleriesMouseWheel) {
                 window.addEventListener('wheel', documentOnMouseWheel, {passive: false});
             }
@@ -1520,7 +1571,14 @@ var hoverZoom = {
         }
 
         function documentOnMouseWheel(event) {
-            if (imgFullSize) {
+            if (imageLocked) {
+                // Scale up or down locked image then clamp between 0.1x and 10x.
+                zoomFactor = zoomFactor * (event.deltaY < 0 ? 1.25 : 0.8);
+                zoomFactor = Math.max(Math.min(zoomFactor, 10), 0.1);
+                posImg();
+                panLockedImage();
+                event.preventDefault();
+            } else if (imgFullSize) {
                 var link = hz.currentLink, data = link.data();
                 if (data.hoverZoomGallerySrc && data.hoverZoomGallerySrc.length !== 1) {
                     event.preventDefault();
@@ -1566,6 +1624,7 @@ var hoverZoom = {
             }
             // escape key is pressed down
             if (event.which == options.escKey) {
+                imageLocked = false;
                 if (hz.hzImg) {
                     stopMedias();
                     hz.hzImg.hide();
@@ -1597,6 +1656,11 @@ var hoverZoom = {
                 if (event.which == options.openImageInTabKey) {
                     if (imgDetails.video) openVideoInTab(event.shiftKey);
                     else openImageInTab(event.shiftKey);
+                    return false;
+                }
+                // "Lock image" key
+                if (event.which == options.lockImageKey) {
+                    lockImage();
                     return false;
                 }
                 // "Save image" key
@@ -2008,6 +2072,11 @@ var hoverZoom = {
             }
 
             return '';
+        }
+
+        function lockImage() {
+            imageLocked = true;
+            displayFullSizeImage();
         }
 
         function saveImage() {

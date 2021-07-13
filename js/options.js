@@ -2,7 +2,7 @@ var options,
     hoverZoomPlugins = hoverZoomPlugins || [],
     VK_CTRL = 1024,
     VK_SHIFT = 2048,
-    actionKeys = ['actionKey', 'hideKey', 'openImageInWindowKey', 'openImageInTabKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey'];
+    actionKeys = ['actionKey', 'hideKey', 'openImageInWindowKey', 'openImageInTabKey', 'lockImageKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey'];
 
 function getMilliseconds(ctrl) {
     var value = parseFloat(ctrl.val());
@@ -42,6 +42,8 @@ function initActionKeys() {
 
 function loadKeys(sel) {
     $('<option value="0">None</option>').appendTo(sel);
+    if (sel.attr('id') != 'lockImageKey')
+        $('<option value="-1">Right Click</option>').appendTo(sel);
     if (sel.attr('id') != 'selOpenImageInTabKey')
         $('<option value="16">Shift</option>').appendTo(sel);
     $('<option value="17">Ctrl</option>').appendTo(sel);

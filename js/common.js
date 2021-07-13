@@ -51,6 +51,7 @@ var factorySettings = {
     hideKey : 88,
     openImageInWindowKey : 87,
     openImageInTabKey : 84,
+    lockImageKey : 0,
     saveImageKey : 83,
     prevImgKey : 37,
     nextImgKey : 39,
@@ -129,6 +130,7 @@ function loadOptions() {
     options.hideKey = options.hasOwnProperty('hideKey') ? options.hideKey : factorySettings.hideKey;
     options.openImageInWindowKey = options.hasOwnProperty('openImageInWindowKey') ? options.openImageInWindowKey : factorySettings.openImageInWindowKey;
     options.openImageInTabKey = options.hasOwnProperty('openImageInTabKey') ? options.openImageInTabKey : factorySettings.openImageInTabKey;
+    options.lockImageKey = options.hasOwnProperty('lockImageKey') ? options.lockImageKey : factorySettings.lockImageKey;
     options.saveImageKey = options.hasOwnProperty('saveImageKey') ? options.saveImageKey : factorySettings.saveImageKey;
     options.prevImgKey = options.hasOwnProperty('prevImgKey') ? options.prevImgKey : factorySettings.prevImgKey;
     options.nextImgKey = options.hasOwnProperty('nextImgKey') ? options.nextImgKey : factorySettings.nextImgKey;
