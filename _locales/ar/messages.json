@@ -523,6 +523,14 @@
         "message": "اضغط على هذا المفتاح لفتح الصورة التي تعرضها حاليًا في علامة تبويب جديدة. اضغط على هذا المفتاح مرة أخرى لإغلاق علامة التبويب. المفتاح Shift + يفتح الصورة في علامة تبويب الخلفية.",
         "description": "[options] Action key description"
     },
+    "optLockImageKeyTitle": {
+        "message": "Lock image on screen",
+        "description": "[options] Action key title"
+    },
+    "optLockImageKeyDescription": {
+        "message": "Press this key to lock the image in the center of the page, allowing you to zoom and pan around. Press ESC or click outside the image to unlock the image.",
+        "description": "[options] Action key description"
+    },
     "optSaveImageKeyTitle": {
         "message": "احفظ الصورة",
         "description": "[options] Action key title"
