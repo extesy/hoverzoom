@@ -523,6 +523,14 @@
         "message": "Tekan tombol ini untuk membuka gambar yang sedang anda lihat di tab baru. Tekan tombol ini lagi untuk menutup tab. Shift+tombol buka gambar di tab latar belakang.",
         "description": "[options] Action key description"
     },
+    "optLockImageKeyTitle": {
+        "message": "Lock image on screen",
+        "description": "[options] Action key title"
+    },
+    "optLockImageKeyDescription": {
+        "message": "Press this key to lock the image in the center of the page, allowing you to zoom and pan around. Press ESC or click outside the image to unlock the image.",
+        "description": "[options] Action key description"
+    },
     "optSaveImageKeyTitle": {
         "message": "Simpan gambar",
         "description": "[options] Action key title"
