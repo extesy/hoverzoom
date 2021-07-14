@@ -523,6 +523,14 @@
         "message": "이 키를 누르면 현재 보는 사진을 새 탭에서 엽니다. 키를 다시 누르면 탭이 닫힙니다. Shift 키를 누른 채로 이 키를 누르면 백그라운드 탭으로 사진을 엽니다.",
         "description": "[options] Action key description"
     },
+    "optLockImageKeyTitle": {
+        "message": "화면에 사진 잠금",
+        "description": "[options] Action key title"
+    },
+    "optLockImageKeyDescription": {
+        "message": "이 키를 누르면 사진을 페이지의 중앙에 고정하여, 확대하고 이동할 수 있도록 해 줍니다. ESC를 누르거나 사진 바깥을 클릭하여 고정을 해제할 수 있습니다.",
+        "description": "[options] Action key description"
+    },
     "optSaveImageKeyTitle": {
         "message": "이미지 저장",
         "description": "[options] Action key title"
