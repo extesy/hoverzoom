@@ -523,6 +523,14 @@
         "message": "Premi questo tasto per aprire l'immagine ingrandita in una nuova scheda. Premere di nuovo questo tasto per chiudere la scheda. \"Shift+tasto\" apre l'immagine in una scheda in sottofondo.",
         "description": "[options] Action key description"
     },
+    "optLockImageKeyTitle": {
+        "message": "Lock image on screen",
+        "description": "[options] Action key title"
+    },
+    "optLockImageKeyDescription": {
+        "message": "Press this key to lock the image in the center of the page, allowing you to zoom and pan around. Press ESC or click outside the image to unlock the image.",
+        "description": "[options] Action key description"
+    },
     "optSaveImageKeyTitle": {
         "message": "Salva Immagine",
         "description": "[options] Action key title"
