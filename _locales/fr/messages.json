@@ -523,6 +523,14 @@
         "message": "Appuyez sur cette touche pour ouvrir l'image en cours de visualisation dans un nouvel onglet. Appuyez sur cette touche pour fermer l'onglet. Maj+touche ouvre l'image dans un onglet en arrière-plan.",
         "description": "[options] Action key description"
     },
+    "optLockImageKeyTitle": {
+        "message": "Lock image on screen",
+        "description": "[options] Action key title"
+    },
+    "optLockImageKeyDescription": {
+        "message": "Press this key to lock the image in the center of the page, allowing you to zoom and pan around. Press ESC or click outside the image to unlock the image.",
+        "description": "[options] Action key description"
+    },
     "optSaveImageKeyTitle": {
         "message": "Enregistrer l'image",
         "description": "[options] Action key title"
