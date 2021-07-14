@@ -523,6 +523,14 @@
         "message": "Pulse esta tecla para abrir la imagen que se está visualizando en una nueva pestaña. Pulse de nuevo esta tecla para cerrar la pestaña. Mayús+tecla abre la imagen en una pestaña en segundo plano.",
         "description": "[options] Action key description"
     },
+    "optLockImageKeyTitle": {
+        "message": "Lock image on screen",
+        "description": "[options] Action key title"
+    },
+    "optLockImageKeyDescription": {
+        "message": "Press this key to lock the image in the center of the page, allowing you to zoom and pan around. Press ESC or click outside the image to unlock the image.",
+        "description": "[options] Action key description"
+    },
     "optSaveImageKeyTitle": {
         "message": "Guardar imagen",
         "description": "[options] Action key title"
