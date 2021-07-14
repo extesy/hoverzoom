@@ -523,6 +523,14 @@
         "message": "Press this key to open the image you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
         "description": "[options] Action key description"
     },
+    "optLockImageKeyTitle": {
+        "message": "在屏幕上锁定图像",
+        "description": "[options] Action key title"
+    },
+    "optLockImageKeyDescription": {
+        "message": "按此键锁定图像于页面中心，允许您缩放并平移。 按 ESC 键或点击图像外解锁图像。",
+        "description": "[options] Action key description"
+    },
     "optSaveImageKeyTitle": {
         "message": "保存图片",
         "description": "[options] Action key title"
