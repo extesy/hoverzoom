@@ -523,6 +523,14 @@
         "message": "Pritisnite ovu tipku da biste otvorili sliku koju trenutno gledate u novoj kartici. Pritisnite ovu tipku ponovno da biste zatvorili karticu. Shift+tipka otvara sliku u pozadini.",
         "description": "[options] Action key description"
     },
+    "optLockImageKeyTitle": {
+        "message": "Lock image on screen",
+        "description": "[options] Action key title"
+    },
+    "optLockImageKeyDescription": {
+        "message": "Press this key to lock the image in the center of the page, allowing you to zoom and pan around. Press ESC or click outside the image to unlock the image.",
+        "description": "[options] Action key description"
+    },
     "optSaveImageKeyTitle": {
         "message": "Spremi sliku",
         "description": "[options] Action key title"

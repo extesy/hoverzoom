@@ -523,6 +523,14 @@
         "message": "Görüntülemekte olduğunuz resmi yeni sekmede açmak için bu tuşa basın. Sekmeyi kapatmak için tekrar aynı tuşa basın. Shift+tuş resmi arkaplandaki bir sekmede açar.",
         "description": "[options] Action key description"
     },
+    "optLockImageKeyTitle": {
+        "message": "Lock image on screen",
+        "description": "[options] Action key title"
+    },
+    "optLockImageKeyDescription": {
+        "message": "Press this key to lock the image in the center of the page, allowing you to zoom and pan around. Press ESC or click outside the image to unlock the image.",
+        "description": "[options] Action key description"
+    },
     "optSaveImageKeyTitle": {
         "message": "Resmi kaydet",
         "description": "[options] Action key title"

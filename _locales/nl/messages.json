@@ -523,6 +523,14 @@
         "message": "Druk op deze toets om een afbeelding te bekijken in een nieuwe tab. Druk op dezelfde toets opnieuw om de tab te sluiten. Shift+key zal de afbeelding openen in een achtergrondtab.",
         "description": "[options] Action key description"
     },
+    "optLockImageKeyTitle": {
+        "message": "Lock image on screen",
+        "description": "[options] Action key title"
+    },
+    "optLockImageKeyDescription": {
+        "message": "Press this key to lock the image in the center of the page, allowing you to zoom and pan around. Press ESC or click outside the image to unlock the image.",
+        "description": "[options] Action key description"
+    },
     "optSaveImageKeyTitle": {
         "message": "Afbeelding opslaan",
         "description": "[options] Action key title"
