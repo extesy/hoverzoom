@@ -363,10 +363,8 @@ var hoverZoom = {
                 //hz.hzImg.css('visibility', 'visible');
 
                 // image natural dimensions
-                //imgDetails.naturalWidth = imgFullSize.width() * options.zoomFactor;
-                //imgDetails.naturalHeight = imgFullSize.height() * options.zoomFactor;
-                imgDetails.naturalWidth = (imgFullSize[0].naturalWidth ? imgFullSize[0].naturalWidth : imgFullSize.width()) * options.zoomFactor;
-                imgDetails.naturalHeight = (imgFullSize[0].naturalHeight ? imgFullSize[0].naturalHeight : imgFullSize.height()) * options.zoomFactor;
+                imgDetails.naturalWidth = (imgFullSize[0].naturalWidth ? imgFullSize[0].naturalWidth : imgFullSize.width()) * zoomFactor;
+                imgDetails.naturalHeight = (imgFullSize[0].naturalHeight ? imgFullSize[0].naturalHeight : imgFullSize.height()) * zoomFactor;
 
                 if (!imgDetails.naturalWidth || !imgDetails.naturalHeight) {
                     return;
