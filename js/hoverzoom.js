@@ -773,7 +773,7 @@ var hoverZoom = {
         function documentContextMenu(event) {
             // If it's been less than 300ms since right click, lock image and prevent context menu.
             var lockElapsed = event.timeStamp - lockImageClickTime;
-            if (imgFullSize && !imageLocked && options.lockImageKey == -1 & lockElapsed < 300) {     
+            if (imgFullSize && !imageLocked && options.lockImageKey == -1 & lockElapsed < 300) {
                 lockImage();
                 event.preventDefault();
             }
@@ -1209,7 +1209,7 @@ var hoverZoom = {
             return JSON.stringify(details);
         }
 
-        function getImgCaption(link) {
+        function prepareImgCaption(link) {
 
             logger.enterFunc();
             logger.info(link[0].outerHTML);
@@ -1231,11 +1231,11 @@ var hoverZoom = {
                 link.data().hoverZoomCaption = titledElement.attr('title');
             } else {
                 var alt = link.attr('alt') || link.find('[alt]').attr('alt');
-                if (alt && alt.length > 6 && !/^\d+$/.test(alt)) {
+                if (alt && !/^\d+$/.test(alt)) {
                     link.data().hoverZoomCaption = alt;
                 } else {
                     var ref = link.attr('ref') || link.find('[ref]').attr('ref');
-                    if (ref && ref.length > 6 && !/^\d+$/.test(ref)) {
+                    if (ref && !/^\d+$/.test(ref)) {
                         link.data().hoverZoomCaption = ref;
                     }
                 }
@@ -1304,7 +1304,7 @@ var hoverZoom = {
 
                     // Caption
                     if (options.captionLocation !== "none" && !options.ambilightEnabled && !linkData.hoverZoomCaption) {
-                        linkData.hoverZoomCaption = getImgCaption(link);
+                        prepareImgCaption(link);
                     }
                 }
             });
@@ -2226,7 +2226,7 @@ var hoverZoom = {
                 if (data.hoverZoomGalleryCaption) {
                     data.hoverZoomCaption = data.hoverZoomGalleryCaption[data.hoverZoomGalleryIndex];
                 } else {
-                    data.hoverZoomCaption = getImgCaption(link);
+                    prepareImgCaption(link);
                 }
             }
         }
