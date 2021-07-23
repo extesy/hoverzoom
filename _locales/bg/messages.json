@@ -523,6 +523,14 @@
         "message": "Натиснете този клавиш, за да отворите текущото разглеждано изображение в нов подпрозорец. Натиснете пак този клавиш, за да затворите подпрозореца. Shift+клавиш отварящ изображението на фонов подпрозорец.",
         "description": "[options] Action key description"
     },
+    "optLockImageKeyTitle": {
+        "message": "Lock image on screen",
+        "description": "[options] Action key title"
+    },
+    "optLockImageKeyDescription": {
+        "message": "Press this key to lock the image in the center of the page, allowing you to zoom and pan around. Press ESC or click outside the image to unlock the image.",
+        "description": "[options] Action key description"
+    },
     "optSaveImageKeyTitle": {
         "message": "Запазване на изображението",
         "description": "[options] Action key title"

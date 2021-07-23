@@ -523,6 +523,14 @@
         "message": "Нажмите эту клавишу, чтобы открыть картинку в новой вкладке. Нажмите ее еще раз, чтобы закрыть вкладку. Нажатие Shift+клавиша откроет картинку в фоновой вкладке.",
         "description": "[options] Action key description"
     },
+    "optLockImageKeyTitle": {
+        "message": "Lock image on screen",
+        "description": "[options] Action key title"
+    },
+    "optLockImageKeyDescription": {
+        "message": "Press this key to lock the image in the center of the page, allowing you to zoom and pan around. Press ESC or click outside the image to unlock the image.",
+        "description": "[options] Action key description"
+    },
     "optSaveImageKeyTitle": {
         "message": "Сохранить картинку",
         "description": "[options] Action key title"

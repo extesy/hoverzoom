@@ -741,7 +741,8 @@ var hoverZoom = {
 
                         if (links.data().hoverZoomSrc && (!options.actionKey || actionKeyDown)) {
 
-							var src = hoverZoom.getFullUrl(links.data().hoverZoomSrc[hoverZoomSrcIndex]);
+                            var src = hoverZoom.getFullUrl(links.data().hoverZoomSrc[hoverZoomSrcIndex]);
+                            var audioSrc = (links.data().hoverZoomAudioSrc ? hoverZoom.getFullUrl(links.data().hoverZoomAudioSrc[hoverZoomSrcIndex]) : undefined);
 
                             // only works after img has been loaded
                             /*let height = undefined;
@@ -753,6 +754,7 @@ var hoverZoom = {
                             imgDetails.displayedHeight = links.height();
 
                             imgDetails.url = src;
+                            imgDetails.audioUrl = audioSrc;
                             clearTimeout(loadFullSizeImageTimeout);
 
                             // if the action key has been pressed over an image, no delay is applied
