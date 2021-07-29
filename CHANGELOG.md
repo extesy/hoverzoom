@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.0.177](https://github.com/extesy/hoverzoom/tree/1.0.177) (2021-07-23)
+
+[Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.176...1.0.177)
+
+**Implemented enhancements:**
+
+- Caption - additional info [\#371](https://github.com/extesy/hoverzoom/issues/371)
+
+**Fixed bugs:**
+
+- page unresponsive for ~10 seconds [\#343](https://github.com/extesy/hoverzoom/issues/343)
+
+**Closed issues:**
+
+- v.redd.it videos no audio on hover [\#758](https://github.com/extesy/hoverzoom/issues/758)
+- Zoomed videos from v.redd.it don't play sound [\#756](https://github.com/extesy/hoverzoom/issues/756)
+- Add support for : MyAnimeList [\#744](https://github.com/extesy/hoverzoom/issues/744)
+
+**Merged pull requests:**
+
+- Fix mouse wheel zooming on locked images [\#759](https://github.com/extesy/hoverzoom/pull/759) ([EhsanKia](https://github.com/EhsanKia))
+- Fix for : no sound on Reddit zoomed videos [\#757](https://github.com/extesy/hoverzoom/pull/757) ([GrosPoulet](https://github.com/GrosPoulet))
+- New image/video viewer [\#751](https://github.com/extesy/hoverzoom/pull/751) ([GrosPoulet](https://github.com/GrosPoulet))
+
 ## [1.0.176](https://github.com/extesy/hoverzoom/tree/1.0.176) (2021-07-20)
 
 [Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.175...1.0.176)
@@ -15,7 +39,6 @@
 - New Crowdin updates [\#754](https://github.com/extesy/hoverzoom/pull/754) ([extesy](https://github.com/extesy))
 - New Crowdin updates [\#753](https://github.com/extesy/hoverzoom/pull/753) ([extesy](https://github.com/extesy))
 - New Crowdin updates [\#752](https://github.com/extesy/hoverzoom/pull/752) ([extesy](https://github.com/extesy))
-- New image/video viewer [\#751](https://github.com/extesy/hoverzoom/pull/751) ([GrosPoulet](https://github.com/GrosPoulet))
 - Initial prototype for locking image on screen, allowing user to zoom and pan around. [\#746](https://github.com/extesy/hoverzoom/pull/746) ([EhsanKia](https://github.com/EhsanKia))
 - New plug-in : MyAnimeList [\#745](https://github.com/extesy/hoverzoom/pull/745) ([GrosPoulet](https://github.com/GrosPoulet))
 - New Crowdin updates [\#742](https://github.com/extesy/hoverzoom/pull/742) ([extesy](https://github.com/extesy))
@@ -36,6 +59,7 @@
 - Hotkey No reaction [\#724](https://github.com/extesy/hoverzoom/issues/724)
 - HoverZoom freezes webpage on aws.amazon.com/elasticmapreduce [\#715](https://github.com/extesy/hoverzoom/issues/715)
 - Hoverzoom crashes the AWS Amplify dashboard [\#545](https://github.com/extesy/hoverzoom/issues/545)
+- Fix for embedded images [\#727](https://github.com/extesy/hoverzoom/pull/727) ([GrosPoulet](https://github.com/GrosPoulet))
 
 **Merged pull requests:**
 
@@ -56,7 +80,6 @@
 **Fixed bugs:**
 
 - Audio for Hoverzoome'd video will play in background even after video closes - Version 1.0.159 [\#638](https://github.com/extesy/hoverzoom/issues/638)
-- Fix for embedded images [\#727](https://github.com/extesy/hoverzoom/pull/727) ([GrosPoulet](https://github.com/GrosPoulet))
 
 **Closed issues:**
 

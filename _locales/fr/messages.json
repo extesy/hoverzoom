@@ -112,31 +112,31 @@
         "description": "[options] Caption location option to disable captions"
     },
     "optDetailsLocation": {
-        "message": "Details position:",
+        "message": "Position des détails :",
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
-        "message": "View details (size, format...) above/below the image, or not at all",
+        "message": "Afficher les détails (taille, format...) au-dessus/au-bas de l'image, ou pas du tout",
         "description": "[options] Tooltip for adjusting the position of details"
     },
     "optDetailsLocationAbove": {
-        "message": "Above",
+        "message": "Au-dessus",
         "description": "[options] Details location option to put details above the image"
     },
     "optDetailsLocationBelow": {
-        "message": "Below",
+        "message": "Au-dessous",
         "description": "[options] Details location option to put details below the image"
     },
     "optDetailsLocationNone": {
-        "message": "None",
+        "message": "Aucun",
         "description": "[options] Details location option to disable details"
     },
     "optFontOutline": {
-        "message": "Font outline",
+        "message": "Contour de police",
         "description": "[options] Outline option"
     },
     "optFontOutlineTooltip": {
-        "message": "If checked: use white font + thin black border for caption & details",
+        "message": "Si coché: utiliser des caractères blancs + fine bordure noire pour les légendes & détails",
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
@@ -292,11 +292,11 @@
         "description": "[options] Frame background color button - Cancel"
     },
     "optFrameThickness": {
-        "message": "Frame thickness:",
+        "message": "Épaisseur du cadre :",
         "description": "[options] Frame thickness option"
     },
     "optFrameThicknessTooltip": {
-        "message": "Thickness of border for the frame the image appears in (0 : no frame)",
+        "message": "Épaisseur de la bordure du cadre dans lequel l'image apparaît (0 : pas de cadre)",
         "description": "[options] Tooltip for frame thickness option"
     },
     "optFrameThicknessUnitName": {
@@ -304,11 +304,11 @@
         "description": "[options] Unit name (pixel) for frame thickness"
     },
     "optFontSize": {
-        "message": "Font size:",
+        "message": "Taille de police :",
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
-        "message": "Size of font used for captions & details",
+        "message": "Taille de la police utilisée pour les légendes et détails",
         "description": "[options] Tooltip for font size option"
     },
     "optFontSizeUnitName": {
@@ -452,39 +452,39 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images & videos to folder: Downloads/",
+        "message": "Enregistrer les images et les vidéos dans le dossier : Téléchargements/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Prefix original names of downloads with origin, size and/or duration for easier management",
+        "message": "Préfixer les noms originaux des téléchargements avec l'origine, la taille et/ou la durée pour une gestion plus facile",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Rename saved images & videos by adding:",
+        "message": "Renommer les images et vidéos enregistrées en ajoutant :",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
-        "message": "Add origin (e.g. www.deviantart.com)",
+        "message": "Ajouter l'origine (par ex. www.deviantart.com)",
         "description": "[options] Tooltip for add download origin option"
     },
     "optAddDownloadOrigin": {
-        "message": "origin",
+        "message": "origine",
         "description": "[options] Add download origin option"
     },
     "optAddDownloadSizeTooltip": {
-        "message": "Add size (WxH) in pixels (e.g. 1024x750)",
+        "message": "Ajouter la taille (LxH) en pixels (par ex. 1024x750)",
         "description": "[options] Tooltip for add download size option"
     },
     "optAddDownloadSize": {
-        "message": "size",
+        "message": "taille",
         "description": "[options] Add download size option"
     },
     "optAddDownloadDurationTooltip": {
-        "message": "Add duration (hh mm ss) of video (e.g. 00 16 35)",
+        "message": "Ajouter la durée (hh mm ss) de la vidéo (par ex. 00 16 35)",
         "description": "[options] Tooltip for add download duration option"
     },
     "optAddDownloadDuration": {
-        "message": "duration",
+        "message": "durée",
         "description": "[options] Add download duration option"
     },
     "optPixelsUnitName": {
@@ -524,11 +524,11 @@
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
-        "message": "Lock image on screen",
+        "message": "Verrouiller l'image à l'écran",
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "Press this key to lock the image in the center of the page, allowing you to zoom and pan around. Press ESC or click outside the image to unlock the image.",
+        "message": "Appuyer sur cette touche pour verrouiller l'image au centre de la page, afin de zoomer et de faire un panoramique. Appuyer sur ESC ou cliquer en dehors de l'image pour déverrouiller l'image.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
