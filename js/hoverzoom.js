@@ -66,7 +66,8 @@ var hoverZoom = {
         'overflow':'hidden',
         'padding':'10px',
         'position':'absolute',
-        'z-index':2147483647
+        'z-index':2147483647,
+        'transform':''
     },
     hzImgLoaderCss:{
         'background':'none',
@@ -448,12 +449,14 @@ var hoverZoom = {
         }
 
         function panLockedImage() {
-            var widthOffset = (imgFullSize[0].width - window.innerWidth) / 2;
-            var heightOffset = (imgFullSize[0].height - window.innerHeight) / 2;
+            var width = imgFullSize[0].width || imgFullSize[0].videoWidth * zoomFactor;
+            var height = imgFullSize[0].height || imgFullSize[0].videoHeight * zoomFactor;
+            var widthOffset = (width - window.innerWidth) / 2;
+            var heightOffset = (height - window.innerHeight) / 2;
             var ratioX = 1 - (2 * event.clientX / window.innerWidth);
             var ratioY = 1 - (2 * event.clientY / window.innerHeight);
             var dx = widthOffset > 0 ? ratioX * (widthOffset + 50) : 0;
-            var dy = heightOffset > 0 ?ratioY * (heightOffset + 50) : 0;
+            var dy = heightOffset > 0 ? ratioY * (heightOffset + 50) : 0;
             hz.hzImg.css('transform', `translate(${dx}px, ${dy}px)`);
         }
 
@@ -507,6 +510,7 @@ var hoverZoom = {
                 window.setTimeout(updateAmbilight, 20);
                 return;
             }
+
             let width = imgFullSize.width();
             let height = imgFullSize.height();
             let blur = options.ambilightHaloSize * 100;
@@ -638,6 +642,7 @@ var hoverZoom = {
                 stopMedias();
                 imgFullSize.remove();
                 imgFullSize = null;
+                imageLocked = false;
             }
             if (loading) {
                 now = true;
@@ -650,6 +655,7 @@ var hoverZoom = {
                 if (imgFullSize) {
                     imgFullSize.remove();
                     imgFullSize = null;
+                    imageLocked = false;
                 }
                 restoreTitles();
             });
@@ -1120,6 +1126,7 @@ var hoverZoom = {
                 if (imgFullSize) {
                     imgFullSize.remove();
                     imgFullSize = null;
+                    imageLocked = false;
                 }
 
                 if (hz.currentLink && hoverZoomSrcIndex < hz.currentLink.data().hoverZoomSrc.length - 1) {
@@ -1135,7 +1142,7 @@ var hoverZoom = {
                     // no more sources to try
                     loading = false;
                     if (options.useSeparateTabOrWindowForUnloadableUrlsEnabled) {
-                        // last attempt to display image
+                        // last attempt to display image in separate tab or window
                         console.info('[HoverZoom] Failed to load image: ' + imgDetails.url + ' in current window.\nTrying to load image in separate window or tab...');
                         if (options.useSeparateTabOrWindowForUnloadableUrls == 'window') {
                             openImageInWindow();
