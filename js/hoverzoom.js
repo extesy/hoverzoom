@@ -1420,13 +1420,16 @@ var hoverZoom = {
             }).one('mouseover.hoverZoom', function () {
                     var img = $(this),
                         widthAttr = parseInt(this.getAttribute('width') || this.style.width || this.style.maxWidth || img.css('width') || img.css('max-width')),
-                        heightAttr = parseInt(this.getAttribute('height') || this.style.height || this.style.maxHeight || img.css('height') || img.css('max-height')),
-                        hzDownscaled = $('<img id="hzDownscaled" style="position: absolute; top: -10000px;">').appendTo(document.body);
+                        heightAttr = parseInt(this.getAttribute('height') || this.style.height || this.style.maxHeight || img.css('height') || img.css('max-height'));
 
                     // skip img if displayed size is above 300 x 300 px
                     if (widthAttr > 300 || heightAttr > 300) {
                         return;
                     }
+
+                    if (document.body.querySelector('#hzDownscaled') !== null)
+                        return;
+                    var hzDownscaled = $('<img id="hzDownscaled" style="position: absolute; top: -10000px;">').appendTo(document.body);
 
                     hzDownscaled.on('load',function () {
                         setTimeout(function () {
