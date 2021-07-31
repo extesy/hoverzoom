@@ -1678,6 +1678,14 @@ var hoverZoom = {
                     saveImage();
                     return false;
                 }
+                if (event.which == options.copyImageKey) {
+                    copyImage();
+                    return false;
+                }
+                if (event.which == options.copyImageUrlKey) {
+                    copyLink();
+                    return false;
+                }
                 // Cancels event if an action key is held down (auto repeat may trigger additional events)
                 if (event.which == options.actionKey ||
                     event.which == options.fullZoomKey ||
@@ -2093,6 +2101,49 @@ var hoverZoom = {
             saveImg();
             saveVideo();
             saveAudio();
+        }
+
+        function _copyImage(url){
+            var img=document.createElement('img');
+            img.src=url;
+            document.body.appendChild(img);
+            var r = document.createRange();
+            r.setStartBefore(img);
+            r.setEndAfter(img);
+            r.selectNode(img);
+            var sel = window.getSelection();
+            sel.addRange(r);
+            document.execCommand('Copy');
+        }
+
+        function copyLink() {
+            if (!hz.hzImg) return;
+            let img = hz.hzImg.find('img').get(0);
+            if (!img) return;
+            let src = img.src;
+
+            navigator.clipboard.writeText(src);
+        }
+
+        function copyImage() {
+            if (!hz.hzImg) return;
+            let img = hz.hzImg.find('img').get(0);
+
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            ctx.drawImage(img, 0, 0, img.width, img.height);
+
+            canvas.toBlob(blob => {
+                navigator.clipboard.write([
+                    new ClipboardItem({
+                        'image/png': blob
+                    })
+                ]);
+            }, 'image/png', 1);
         }
 
         function saveImg() {

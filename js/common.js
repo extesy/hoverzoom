@@ -48,6 +48,8 @@ var factorySettings = {
     fontOutline : false,
     actionKey : 0,
     fullZoomKey : 90,
+    copyImageKey: 67,
+    copyImageUrlKey: 76,
     hideKey : 88,
     openImageInWindowKey : 87,
     openImageInTabKey : 84,
@@ -127,6 +129,8 @@ function loadOptions() {
     // Action keys
     options.actionKey = options.hasOwnProperty('actionKey') ? options.actionKey : factorySettings.actionKey;
     options.fullZoomKey = options.hasOwnProperty('fullZoomKey') ? options.fullZoomKey : factorySettings.fullZoomKey;
+    options.copyImageKey = options.hasOwnProperty('copyImageKey') ? options.copyImageKey : factorySettings.copyImageKey;
+    options.copyImageUrlKey = options.hasOwnProperty('copyImageUrlKey') ? options.copyImageUrlKey : factorySettings.copyImageUrlKey;
     options.hideKey = options.hasOwnProperty('hideKey') ? options.hideKey : factorySettings.hideKey;
     options.openImageInWindowKey = options.hasOwnProperty('openImageInWindowKey') ? options.openImageInWindowKey : factorySettings.openImageInWindowKey;
     options.openImageInTabKey = options.hasOwnProperty('openImageInTabKey') ? options.openImageInTabKey : factorySettings.openImageInTabKey;
