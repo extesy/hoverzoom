@@ -2103,26 +2103,13 @@ var hoverZoom = {
             saveAudio();
         }
 
-        function _copyImage(url){
-            var img=document.createElement('img');
-            img.src=url;
-            document.body.appendChild(img);
-            var r = document.createRange();
-            r.setStartBefore(img);
-            r.setEndAfter(img);
-            r.selectNode(img);
-            var sel = window.getSelection();
-            sel.addRange(r);
-            document.execCommand('Copy');
-        }
-
         function copyLink() {
             if (!hz.hzImg) return;
             let img = hz.hzImg.find('img').get(0);
             let video = hz.hzImg.find('video').get(0);
             let target = img || video;
             if (!target) return;
-            
+
             let src = target.src;
 
             navigator.clipboard.writeText(src);
