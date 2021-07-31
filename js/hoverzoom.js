@@ -2119,8 +2119,11 @@ var hoverZoom = {
         function copyLink() {
             if (!hz.hzImg) return;
             let img = hz.hzImg.find('img').get(0);
-            if (!img) return;
-            let src = img.src;
+            let video = hz.hzImg.find('video').get(0);
+            let target = img || video;
+            if (!target) return;
+            
+            let src = target.src;
 
             navigator.clipboard.writeText(src);
         }
@@ -2128,6 +2131,7 @@ var hoverZoom = {
         function copyImage() {
             if (!hz.hzImg) return;
             let img = hz.hzImg.find('img').get(0);
+            if (!img) return;
 
             const canvas = document.createElement("canvas");
             const ctx = canvas.getContext("2d");
