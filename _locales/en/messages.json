@@ -556,11 +556,11 @@
         "description": "[options] Action key description"
     },
     "optCopyImageUrlKeyTitle": {
-        "message": "Copy image to clipboard",
+        "message": "Copy image URL to clipboard",
         "description": "[options] Action key title"
     },
     "optCopyImageUrlKeyDescription": {
-        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "message": "When this key is pressed, the image's URL is copied into the clipboard'.",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
