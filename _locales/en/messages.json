@@ -560,7 +560,7 @@
         "description": "[options] Action key title"
     },
     "optCopyImageUrlKeyDescription": {
-        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard'.",
+        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
