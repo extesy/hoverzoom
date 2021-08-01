@@ -2140,8 +2140,7 @@ var hoverZoom = {
         }
 
         function copyImage() {
-            if (!hz.hzImg) return;
-            let img = hz.hzImg.find('img').get(0);
+            const img = hz.hzImg?.find('img')?.get(0);
             if (!img) return;
 
             toBlob(img)
