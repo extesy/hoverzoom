@@ -2115,11 +2115,15 @@ var hoverZoom = {
             navigator.clipboard.writeText(src);
         }
 
-        function copyImage() {
-            if (!hz.hzImg) return;
-            let img = hz.hzImg.find('img').get(0);
-            if (!img) return;
+        async function toBlob(img) {
+            const isPng = img.src?.endsWith('png');
 
+            // Fetch cached image data if it's a png
+            if (isPng) {
+                return fetch(img.src).then(res => res.blob())
+            }
+
+            // Else render to a canvas to convert to a png
             const canvas = document.createElement("canvas");
             const ctx = canvas.getContext("2d");
 
@@ -2128,13 +2132,22 @@ var hoverZoom = {
 
             ctx.drawImage(img, 0, 0, img.width, img.height);
 
-            canvas.toBlob(blob => {
-                navigator.clipboard.write([
-                    new ClipboardItem({
-                        'image/png': blob
-                    })
-                ]);
-            }, 'image/png', 1);
+            return new Promise(resolve => {
+                canvas.toBlob(blob => {
+                    resolve(blob);
+                }, 'image/png', 1);
+            });
+        }
+
+        function copyImage() {
+            if (!hz.hzImg) return;
+            let img = hz.hzImg.find('img').get(0);
+            if (!img) return;
+
+            toBlob(img)
+                .then(blob => new ClipboardItem({'image/png': blob}))
+                .then(item => navigator.clipboard.write([item]));
+            
         }
 
         function saveImg() {
