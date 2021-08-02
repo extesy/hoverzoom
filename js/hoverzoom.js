@@ -2104,49 +2104,30 @@ var hoverZoom = {
         }
 
         function copyLink() {
-            if (!hz.hzImg) return;
-            let img = hz.hzImg.find('img').get(0);
-            let video = hz.hzImg.find('video').get(0);
-            let target = img || video;
-            if (!target) return;
+            const url = imgDetails.url;
+            if (!url) return;
 
-            let src = target.src;
-
-            navigator.clipboard.writeText(src);
-        }
-
-        async function toBlob(img) {
-            const isPng = img.src?.endsWith('png');
-
-            // Fetch cached image data if it's a png
-            if (isPng) {
-                return fetch(img.src).then(res => res.blob())
-            }
-
-            // Else render to a canvas to convert to a png
-            const canvas = document.createElement("canvas");
-            const ctx = canvas.getContext("2d");
-
-            canvas.width = img.width;
-            canvas.height = img.height;
-
-            ctx.drawImage(img, 0, 0, img.width, img.height);
-
-            return new Promise(resolve => {
-                canvas.toBlob(blob => {
-                    resolve(blob);
-                }, 'image/png', 1);
-            });
+            navigator.clipboard.writeText(url);
         }
 
         function copyImage() {
-            const img = hz.hzImg?.find('img')?.get(0);
-            if (!img) return;
+            const url = imgDetails.url;
+            if(!url) return;
 
-            toBlob(img)
-                .then(blob => new ClipboardItem({'image/png': blob}))
-                .then(item => navigator.clipboard.write([item]));
-            
+            const supported = window.ClipboardItem && navigator.clipboard.write;
+            if (!supported) return;
+
+            fetch(url)
+                .then(resp => resp.blob())
+                .then(blob => blob.arrayBuffer())
+                .then(buffer => {
+                    // Lie about the data type
+                    // Note: This does not work on FireFox
+                    const blob = new Blob([buffer], {'type': 'image/png'});
+                    const item = new ClipboardItem({'image/png': blob});
+                    navigator.clipboard.write([item]);
+                });
+
         }
 
         function saveImg() {
