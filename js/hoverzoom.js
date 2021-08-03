@@ -1678,9 +1678,11 @@ var hoverZoom = {
                     saveImage();
                     return false;
                 }
-                if (event.which == options.copyImageKey) {
-                    copyImage();
-                    return false;
+                if (isChromiumBased) {
+                    if (event.which == options.copyImageKey) {
+                        copyImage();
+                        return false;
+                    }
                 }
                 if (event.which == options.copyImageUrlKey) {
                     copyLink();
@@ -2111,8 +2113,6 @@ var hoverZoom = {
         }
 
         function copyImage() {
-            if (!isChromiumBased) return;
-
             const url = imgDetails.url;
             if(!url) return;
 
