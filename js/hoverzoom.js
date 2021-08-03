@@ -2116,9 +2116,6 @@ var hoverZoom = {
             const url = imgDetails.url;
             if(!url) return;
 
-            const supported = window.ClipboardItem && navigator.clipboard.write;
-            if (!supported) return;
-
             fetch(url)
                 .then(resp => resp.blob())
                 .then(blob => blob.arrayBuffer())

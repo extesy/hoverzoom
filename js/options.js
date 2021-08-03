@@ -33,13 +33,9 @@ function keyCodeToString(key) {
 const chromiumOnly = ['copyImageKey', 'copyImageUrlKey'];
 
 function initActionKeys() {
-    actionKeys.forEach(key => {
-        if (chromiumOnly.includes(key)) {
-            if (!isChromiumBased) {
-                return;
-            }
-        }
-
+    actionKeys
+    .filter(key => isChromiumBased || !chromiumOnly.includes(key))
+    .forEach(key => {
         var id = key[0].toUpperCase() + key.substr(1);
         var title = chrome.i18n.getMessage("opt" + id + "Title");
         var description = chrome.i18n.getMessage("opt" + id + "Description");
