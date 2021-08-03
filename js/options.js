@@ -29,8 +29,17 @@ function keyCodeToString(key) {
     return s;
 }
 
+// Options that are only enabled for Chromium-based browsers
+const chromiumOnly = ['copyImageKey', 'copyImageUrlKey'];
+
 function initActionKeys() {
-    actionKeys.forEach(function(key) {
+    actionKeys.forEach(key => {
+        if (chromiumOnly.includes(key)) {
+            if (!isChromiumBased) {
+                return;
+            }
+        }
+
         var id = key[0].toUpperCase() + key.substr(1);
         var title = chrome.i18n.getMessage("opt" + id + "Title");
         var description = chrome.i18n.getMessage("opt" + id + "Description");

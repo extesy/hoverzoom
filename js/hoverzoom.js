@@ -2111,6 +2111,8 @@ var hoverZoom = {
         }
 
         function copyImage() {
+            if (!isChromiumBased) return;
+
             const url = imgDetails.url;
             if(!url) return;
 
