@@ -547,6 +547,22 @@
         "message": "Kada je ova tipka pritisnuta, slika se prikazuje uz korištenje svog dostupnog prostora. Samo korisno za slike visoke rezolucije.",
         "description": "[options] Action key description"
     },
+    "optCopyImageKeyTitle": {
+        "message": "Copy image to clipboard",
+        "description": "[options] Action key title"
+    },
+    "optCopyImageKeyDescription": {
+        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "description": "[options] Action key description"
+    },
+    "optCopyImageUrlKeyTitle": {
+        "message": "Copy image URL to clipboard",
+        "description": "[options] Action key title"
+    },
+    "optCopyImageUrlKeyDescription": {
+        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
+        "description": "[options] Action key description"
+    },
     "optPrevImgKeyTitle": {
         "message": "Pogledajte prethodne slike u galeriji",
         "description": "[options] Action key title"
