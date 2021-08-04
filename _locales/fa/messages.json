@@ -547,6 +547,22 @@
         "message": "زمانی که این کلید را بزنید، تصویر با استفاده از تمام فضای نمایش داده می شود. مفید برای تصاویر با وضوح بالا تنها.",
         "description": "[options] Action key description"
     },
+    "optCopyImageKeyTitle": {
+        "message": "Copy image to clipboard",
+        "description": "[options] Action key title"
+    },
+    "optCopyImageKeyDescription": {
+        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "description": "[options] Action key description"
+    },
+    "optCopyImageUrlKeyTitle": {
+        "message": "Copy image URL to clipboard",
+        "description": "[options] Action key title"
+    },
+    "optCopyImageUrlKeyDescription": {
+        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
+        "description": "[options] Action key description"
+    },
     "optPrevImgKeyTitle": {
         "message": "مشاهده تصویر قبلی در گالری",
         "description": "[options] Action key title"
