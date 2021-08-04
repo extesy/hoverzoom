@@ -547,6 +547,22 @@
         "message": "Quando esta tecla é pressionada, a imagem é exibida usando todo o espaço disponível. Útil apenas para imagens de alta resolução.",
         "description": "[options] Action key description"
     },
+    "optCopyImageKeyTitle": {
+        "message": "Copy image to clipboard",
+        "description": "[options] Action key title"
+    },
+    "optCopyImageKeyDescription": {
+        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "description": "[options] Action key description"
+    },
+    "optCopyImageUrlKeyTitle": {
+        "message": "Copy image URL to clipboard",
+        "description": "[options] Action key title"
+    },
+    "optCopyImageUrlKeyDescription": {
+        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
+        "description": "[options] Action key description"
+    },
     "optPrevImgKeyTitle": {
         "message": "Ver a imagem anterior numa galeria",
         "description": "[options] Action key title"
