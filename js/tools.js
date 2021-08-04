@@ -1,4 +1,6 @@
-﻿function slice(a) {
+﻿const isChromiumBased = !!navigator.userAgentData?.brands?.some(item => item.brand === 'Chromium')
+
+function slice(a) {
   return Array.prototype.slice.call(a);
 }
 
