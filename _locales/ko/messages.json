@@ -548,19 +548,19 @@
         "description": "[options] Action key description"
     },
     "optCopyImageKeyTitle": {
-        "message": "Copy image to clipboard",
+        "message": "클립보드로 사진 복사하기",
         "description": "[options] Action key title"
     },
     "optCopyImageKeyDescription": {
-        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "message": "이 키를 누르면 사진을 클립보드로 복사합니다.",
         "description": "[options] Action key description"
     },
     "optCopyImageUrlKeyTitle": {
-        "message": "Copy image URL to clipboard",
+        "message": "클립보드로 사진 URL 복사하기",
         "description": "[options] Action key title"
     },
     "optCopyImageUrlKeyDescription": {
-        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
+        "message": "이 키를 누르면 사진이나 동영상의 URL을 클립보드로 복사합니다.",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
