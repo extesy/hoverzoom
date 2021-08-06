@@ -547,6 +547,22 @@
         "message": "이 키를 누르고 있으면, 사진이 최대한 공간을 차지하며 표시됩니다. 고화질 사진에만 유용합니다.",
         "description": "[options] Action key description"
     },
+    "optCopyImageKeyTitle": {
+        "message": "클립보드로 사진 복사하기",
+        "description": "[options] Action key title"
+    },
+    "optCopyImageKeyDescription": {
+        "message": "이 키를 누르면 사진을 클립보드로 복사합니다.",
+        "description": "[options] Action key description"
+    },
+    "optCopyImageUrlKeyTitle": {
+        "message": "클립보드로 사진 URL 복사하기",
+        "description": "[options] Action key title"
+    },
+    "optCopyImageUrlKeyDescription": {
+        "message": "이 키를 누르면 사진이나 동영상의 URL을 클립보드로 복사합니다.",
+        "description": "[options] Action key description"
+    },
     "optPrevImgKeyTitle": {
         "message": "갤러리에서 이전 이미지 보기",
         "description": "[options] Action key title"

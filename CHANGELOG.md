@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.0.178](https://github.com/extesy/hoverzoom/tree/1.0.178) (2021-07-29)
+
+[Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.177...1.0.178)
+
+**Fixed bugs:**
+
+- Right clicking causes "lockImageClickTime is not defined" errors [\#760](https://github.com/extesy/hoverzoom/issues/760)
+- Fix for captions [\#763](https://github.com/extesy/hoverzoom/pull/763) ([GrosPoulet](https://github.com/GrosPoulet))
+
+**Closed issues:**
+
+- sound not working on videos [\#761](https://github.com/extesy/hoverzoom/issues/761)
+
+**Merged pull requests:**
+
+- Image lock : added pan around for videos [\#767](https://github.com/extesy/hoverzoom/pull/767) ([GrosPoulet](https://github.com/GrosPoulet))
+- Fix right click image locking [\#766](https://github.com/extesy/hoverzoom/pull/766) ([EhsanKia](https://github.com/EhsanKia))
+- New Crowdin updates [\#762](https://github.com/extesy/hoverzoom/pull/762) ([extesy](https://github.com/extesy))
+
 ## [1.0.177](https://github.com/extesy/hoverzoom/tree/1.0.177) (2021-07-23)
 
 [Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.176...1.0.177)
@@ -22,7 +41,6 @@
 
 - Fix mouse wheel zooming on locked images [\#759](https://github.com/extesy/hoverzoom/pull/759) ([EhsanKia](https://github.com/EhsanKia))
 - Fix for : no sound on Reddit zoomed videos [\#757](https://github.com/extesy/hoverzoom/pull/757) ([GrosPoulet](https://github.com/GrosPoulet))
-- New image/video viewer [\#751](https://github.com/extesy/hoverzoom/pull/751) ([GrosPoulet](https://github.com/GrosPoulet))
 
 ## [1.0.176](https://github.com/extesy/hoverzoom/tree/1.0.176) (2021-07-20)
 
@@ -39,6 +57,7 @@
 - New Crowdin updates [\#754](https://github.com/extesy/hoverzoom/pull/754) ([extesy](https://github.com/extesy))
 - New Crowdin updates [\#753](https://github.com/extesy/hoverzoom/pull/753) ([extesy](https://github.com/extesy))
 - New Crowdin updates [\#752](https://github.com/extesy/hoverzoom/pull/752) ([extesy](https://github.com/extesy))
+- New image/video viewer [\#751](https://github.com/extesy/hoverzoom/pull/751) ([GrosPoulet](https://github.com/GrosPoulet))
 - Initial prototype for locking image on screen, allowing user to zoom and pan around. [\#746](https://github.com/extesy/hoverzoom/pull/746) ([EhsanKia](https://github.com/EhsanKia))
 - New plug-in : MyAnimeList [\#745](https://github.com/extesy/hoverzoom/pull/745) ([GrosPoulet](https://github.com/GrosPoulet))
 - New Crowdin updates [\#742](https://github.com/extesy/hoverzoom/pull/742) ([extesy](https://github.com/extesy))
@@ -59,7 +78,6 @@
 - Hotkey No reaction [\#724](https://github.com/extesy/hoverzoom/issues/724)
 - HoverZoom freezes webpage on aws.amazon.com/elasticmapreduce [\#715](https://github.com/extesy/hoverzoom/issues/715)
 - Hoverzoom crashes the AWS Amplify dashboard [\#545](https://github.com/extesy/hoverzoom/issues/545)
-- Fix for embedded images [\#727](https://github.com/extesy/hoverzoom/pull/727) ([GrosPoulet](https://github.com/GrosPoulet))
 
 **Merged pull requests:**
 
@@ -80,6 +98,7 @@
 **Fixed bugs:**
 
 - Audio for Hoverzoome'd video will play in background even after video closes - Version 1.0.159 [\#638](https://github.com/extesy/hoverzoom/issues/638)
+- Fix for embedded images [\#727](https://github.com/extesy/hoverzoom/pull/727) ([GrosPoulet](https://github.com/GrosPoulet))
 
 **Closed issues:**
 
@@ -428,6 +447,8 @@
 - Fix for plug-in : Flipkart [\#564](https://github.com/extesy/hoverzoom/pull/564) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in : Fanart.tv [\#563](https://github.com/extesy/hoverzoom/pull/563) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix for plug-in : Dribbble [\#562](https://github.com/extesy/hoverzoom/pull/562) ([GrosPoulet](https://github.com/GrosPoulet))
+- fix for plug-in : deviantART [\#561](https://github.com/extesy/hoverzoom/pull/561) ([GrosPoulet](https://github.com/GrosPoulet))
+- New plug-in : bakashots [\#560](https://github.com/extesy/hoverzoom/pull/560) ([GrosPoulet](https://github.com/GrosPoulet))
 
 ## [1.0.153](https://github.com/extesy/hoverzoom/tree/1.0.153) (2020-08-29)
 
@@ -439,8 +460,6 @@
 
 **Merged pull requests:**
 
-- fix for plug-in : deviantART [\#561](https://github.com/extesy/hoverzoom/pull/561) ([GrosPoulet](https://github.com/GrosPoulet))
-- New plug-in : bakashots [\#560](https://github.com/extesy/hoverzoom/pull/560) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in : Avopix [\#559](https://github.com/extesy/hoverzoom/pull/559) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix for plug-in : LeBonCoin [\#558](https://github.com/extesy/hoverzoom/pull/558) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in : PublicDomainPictures [\#557](https://github.com/extesy/hoverzoom/pull/557) ([GrosPoulet](https://github.com/GrosPoulet))

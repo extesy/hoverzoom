@@ -1,8 +1,8 @@
 var options,
     hoverZoomPlugins = hoverZoomPlugins || [],
     VK_CTRL = 1024,
-    VK_SHIFT = 2048,
-    actionKeys = ['actionKey', 'hideKey', 'openImageInWindowKey', 'openImageInTabKey', 'lockImageKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey', 'flipImageKey'];
+    VK_SHIFT = 2048,    
+    actionKeys = ['actionKey', 'hideKey', 'openImageInWindowKey', 'openImageInTabKey', 'lockImageKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey', 'flipImageKey', 'copyImageKey', 'copyImageUrlKey'];
 
 function getMilliseconds(ctrl) {
     var value = parseFloat(ctrl.val());
@@ -29,8 +29,13 @@ function keyCodeToString(key) {
     return s;
 }
 
+// Options that are only enabled for Chromium-based browsers
+const chromiumOnly = ['copyImageKey', 'copyImageUrlKey'];
+
 function initActionKeys() {
-    actionKeys.forEach(function(key) {
+    actionKeys
+    .filter(key => isChromiumBased || !chromiumOnly.includes(key))
+    .forEach(key => {
         var id = key[0].toUpperCase() + key.substr(1);
         var title = chrome.i18n.getMessage("opt" + id + "Title");
         var description = chrome.i18n.getMessage("opt" + id + "Description");

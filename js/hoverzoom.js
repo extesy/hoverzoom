@@ -1750,6 +1750,16 @@ var hoverZoom = {
                     saveImage();
                     return false;
                 }
+                if (isChromiumBased) {
+                    if (event.which == options.copyImageKey) {
+                        copyImage();
+                        return false;
+                    }
+                }
+                if (event.which == options.copyImageUrlKey) {
+                    copyLink();
+                    return false;
+                }
                 // Cancels event if an action key is held down (auto repeat may trigger additional events)
                 if (event.which == options.actionKey ||
                     event.which == options.fullZoomKey ||
@@ -2210,6 +2220,30 @@ var hoverZoom = {
             saveImg();
             saveVideo();
             saveAudio();
+        }
+
+        function copyLink() {
+            const url = imgDetails.url;
+            if (!url) return;
+
+            navigator.clipboard.writeText(url);
+        }
+
+        function copyImage() {
+            const url = imgDetails.url;
+            if(!url) return;
+
+            fetch(url)
+                .then(resp => resp.blob())
+                .then(blob => blob.arrayBuffer())
+                .then(buffer => {
+                    // Lie about the data type
+                    // Note: This does not work on FireFox
+                    const blob = new Blob([buffer], {'type': 'image/png'});
+                    const item = new ClipboardItem({'image/png': blob});
+                    navigator.clipboard.write([item]);
+                });
+
         }
 
         function saveImg() {
