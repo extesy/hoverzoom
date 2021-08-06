@@ -548,19 +548,19 @@
         "description": "[options] Action key description"
     },
     "optCopyImageKeyTitle": {
-        "message": "Copy image to clipboard",
+        "message": "Copiar imagen al cortapapeles",
         "description": "[options] Action key title"
     },
     "optCopyImageKeyDescription": {
-        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "message": "Cuando esta tecla es pulsada, la imagen es copiada al cortapapeles.",
         "description": "[options] Action key description"
     },
     "optCopyImageUrlKeyTitle": {
-        "message": "Copy image URL to clipboard",
+        "message": "Copiar URL de la imagen al cortapapeles",
         "description": "[options] Action key title"
     },
     "optCopyImageUrlKeyDescription": {
-        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
+        "message": "Cuando esta tecla es pulsada, la URL de la imagen o el vídeo es copiada al cortapapeles.",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
@@ -577,6 +577,14 @@
     },
     "optNextImgKeyDescription": {
         "message": "Presione esta tecla para ver la siguiente imagen en una galería.",
+        "description": "[options] Action key description"
+    },
+    "optFlipImageKeyTitle": {
+        "message": "Flip image",
+        "description": "[options] Action key title"
+    },
+    "optFlipImageKeyDescription": {
+        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
