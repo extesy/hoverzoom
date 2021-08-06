@@ -51,10 +51,11 @@ var factorySettings = {
     hideKey : 88,
     openImageInWindowKey : 87,
     openImageInTabKey : 84,
-    lockImageKey : 0,
+    lockImageKey : 76,
     saveImageKey : 83,
     prevImgKey : 37,
     nextImgKey : 39,
+    flipImageKey : 70,
     escKey : 27
 }
 
@@ -134,6 +135,7 @@ function loadOptions() {
     options.saveImageKey = options.hasOwnProperty('saveImageKey') ? options.saveImageKey : factorySettings.saveImageKey;
     options.prevImgKey = options.hasOwnProperty('prevImgKey') ? options.prevImgKey : factorySettings.prevImgKey;
     options.nextImgKey = options.hasOwnProperty('nextImgKey') ? options.nextImgKey : factorySettings.nextImgKey;
+    options.flipImageKey = options.hasOwnProperty('flipImageKey') ? options.flipImageKey : factorySettings.flipImageKey;
     options.escKey = factorySettings.escKey;
 
     localStorage.options = JSON.stringify(options);
