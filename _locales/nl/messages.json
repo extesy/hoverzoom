@@ -579,6 +579,14 @@
         "message": "Druk op deze toets om de volgende afbeelding te zien in een galerij.",
         "description": "[options] Action key description"
     },
+    "optFlipImageKeyTitle": {
+        "message": "Flip image",
+        "description": "[options] Action key title"
+    },
+    "optFlipImageKeyDescription": {
+        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Broncode",
         "description": "[options] Source code link in page footer"
