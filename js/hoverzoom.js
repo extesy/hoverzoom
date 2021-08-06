@@ -1,5 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [],
     regexImgUrl = /\.(jpe?g|gifv?|png|webm|mp4|3gpp|svg|webp|bmp|ico|xbm)([\?#].*)?$/i,
+    regexSpecialChars = /[\r\n\t\v\f]/g,
+    regexForbiddenChars = /[\\/:*?"<>|]/g,
     debug = false,
     logger = Logger();
 
@@ -64,7 +66,7 @@ var hoverZoom = {
         'background':'none',
         'line-height':'0px',
         'overflow':'hidden',
-        'padding':'10px',
+        'padding':'5px',
         'position':'absolute',
         'z-index':2147483647,
         'transform':''
@@ -148,6 +150,7 @@ var hoverZoom = {
                 'border-radius':'2px'
             },
             imgFullSizeCss = {
+                'transform':'',
                 'opacity':'1',
                 'position':'static',
                 'height':'auto',
@@ -159,6 +162,7 @@ var hoverZoom = {
                 'margin':'0',
                 'padding':'0',
                 'border-style':'solid',
+                'background-color':'black', // display black background as large images/videos are loading
                 'background-size':'100% 100%',
                 'background-position':'center',
                 'background-repeat':'no-repeat',
@@ -244,6 +248,21 @@ var hoverZoom = {
                 'vertical-align':'top',
                 'horizontal-align':'right'
             };
+
+        // needed to flip text tracks on videos
+        var styleFlip = document.createElement('style');
+        styleFlip.innerHTML = `
+            .flipX video::-webkit-media-text-track-display {
+                transform: matrix(-1, 0, 0, 1, 0, 0) !important;
+            }
+            .flipXY video::-webkit-media-text-track-display {
+                transform: matrix(-1, 0, 0, -1, 0, 0) !important;
+            }
+            .flipXYX video::-webkit-media-text-track-display {
+                transform: matrix(1, 0, 0, -1, 0, 0) !important;
+            }`;
+        document.head.appendChild(styleFlip);
+
         var flashFixDomains = [
             'www.redditmedia.com'
         ];
@@ -364,8 +383,9 @@ var hoverZoom = {
                 //hz.hzImg.css('visibility', 'visible');
 
                 // image natural dimensions
-                imgDetails.naturalWidth = (imgFullSize[0].naturalWidth ? imgFullSize[0].naturalWidth : imgFullSize.width()) * zoomFactor;
-                imgDetails.naturalHeight = (imgFullSize[0].naturalHeight ? imgFullSize[0].naturalHeight : imgFullSize.height()) * zoomFactor;
+                
+                imgDetails.naturalWidth = (imgFullSize[0].naturalWidth ? imgFullSize[0].naturalWidth : imgFullSize.width());
+                imgDetails.naturalHeight = (imgFullSize[0].naturalHeight ? imgFullSize[0].naturalHeight : imgFullSize.height());
 
                 if (!imgDetails.naturalWidth || !imgDetails.naturalHeight) {
                     return;
@@ -374,15 +394,15 @@ var hoverZoom = {
                 // width adjustment
                 var fullZoom = options.mouseUnderlap || fullZoomKeyDown || imageLocked;
                 if (imageLocked) {
-                    imgFullSize.width(imgDetails.naturalWidth);
+                    imgFullSize.width(imgDetails.naturalWidth * zoomFactor);
                 } else if (fullZoom) {
-                    imgFullSize.width(Math.min(imgDetails.naturalWidth, wndWidth - padding - 2 * scrollBarWidth));
+                    imgFullSize.width(Math.min(imgDetails.naturalWidth * zoomFactor, wndWidth - padding - 2 * scrollBarWidth));
                 } else if (displayOnRight) {
-                    if (imgDetails.naturalWidth + padding > wndWidth - position.left) {
+                    if (imgDetails.naturalWidth * zoomFactor + padding > wndWidth - position.left) {
                         imgFullSize.width(wndWidth - position.left - padding + wndScrollLeft);
                     }
                 } else {
-                    if (imgDetails.naturalWidth + padding > position.left) {
+                    if (imgDetails.naturalWidth * zoomFactor + padding > position.left) {
                         imgFullSize.width(position.left - padding - wndScrollLeft);
                     }
                 }
@@ -421,6 +441,11 @@ var hoverZoom = {
 
                 if (options.ambilightEnabled) {
                     updateAmbilight();
+                } else {
+                    // in case of images with transparent background add a background color
+                    let ext = getExtensionFromUrl(imgDetails.url);
+                    if (ext == 'gif' || ext == 'svg' || ext == 'png')
+                        imgFullSize.css('background-color', options.frameBackgroundColor);
                 }
             }
 
@@ -511,6 +536,21 @@ var hoverZoom = {
                 return;
             }
 
+            imgFullSize.css('background-color', '');
+
+            // if image or video is flipped then canvas must be flipped too
+            let transfo = imgFullSize.css('transform');
+            let transfoX = 1;
+            let transfoY = 1;
+            if (transfo == 'matrix(-1, 0, 0, 1, 0, 0)') {
+                transfoX = -1;
+            } else if (transfo == 'matrix(1, 0, 0, -1, 0, 0)') {
+                transfoY = -1;
+            } else if (transfo == 'matrix(-1, 0, 0, -1, 0, 0)') {
+                transfoX = -1;
+                transfoY = -1;
+            }
+
             let width = imgFullSize.width();
             let height = imgFullSize.height();
             let blur = options.ambilightHaloSize * 100;
@@ -526,7 +566,8 @@ var hoverZoom = {
                      .css('margin-top', -4 * scale * blur + 'px')
                      .css('margin-left', -4 * scale * blur + 'px')
                      .css('-webkit-filter', 'blur(' + blur + 'px)')
-                     .css('transform', 'scale(' + scaleW + ',' + scaleH + ')');
+                     //.css('transform', 'scale(' + scaleW + ',' + scaleH + ')');
+                     .css('transform', ' scale(' + transfoX * scaleW + ',' + transfoY * scaleH + ') ');
             var ctx = canvas.getContext('2d');
             ctx.drawImage(imgFullSize.get(0), 0, 0, width, height);
 
@@ -580,7 +621,8 @@ var hoverZoom = {
 
         // set frame background color and border to match chosen option
         function frameBackgroundColor(color) {
-            imgFullSizeCss.borderColor = imgFullSizeCss.backgroundColor = hzCaptionCss.backgroundColor = hzDetailCss.backgroundColor = hzMiscellaneousCss.backgroundColor = color;
+            //imgFullSizeCss.borderColor = imgFullSizeCss.backgroundColor = hzCaptionCss.backgroundColor = hzDetailCss.backgroundColor = hzMiscellaneousCss.backgroundColor = color;
+            imgFullSizeCss.borderColor = hzCaptionCss.backgroundColor = hzDetailCss.backgroundColor = hzMiscellaneousCss.backgroundColor = color;
 
             if (options.fontOutline) {
                 // outline text: white font + thin black border
@@ -638,6 +680,10 @@ var hoverZoom = {
             if ((!now && !imgFullSize) || !hz.hzImg || fullZoomKeyDown || imageLocked) {
                 return;
             }
+
+            $('#hzAbove').remove();
+            $('#hzBelow').remove();
+
             if (imgFullSize) {
                 stopMedias();
                 imgFullSize.remove();
@@ -1076,8 +1122,13 @@ var hoverZoom = {
                     if (hzDetails.find('#hzDetailDuration').length == 0)
                         $('<div/>', {id:'hzDetailDuration', text:details.duration, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
 
-                // add dimensions (WxH) at first position (left-most)
+                // add dimensions (WxH) & ratio (% of full size)
                 if (details.dimensions) {
+                    if (hzDetails.find('#hzDetailRatio').length == 0)
+                        $('<div/>', {id:'hzDetailRatio', text:details.ratio, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                    else // update ratio in case of resize
+                        $('#hzDetailRatio').text(details.ratio);
+
                     if (hzDetails.find('#hzDetailDimensions').length == 0)
                         $('<div/>', {id:'hzDetailDimensions', text:details.dimensions, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
                 }
@@ -1207,6 +1258,8 @@ var hoverZoom = {
         function getImgDetails(link) {
             let details = {};
             details.dimensions = imgDetails.naturalWidth / options.zoomFactor + 'x' + imgDetails.naturalHeight / options.zoomFactor;
+            let displayedWidth = imgFullSize.width() || imgFullSize[0].width;
+            details.ratio = Math.round(100.0 * displayedWidth / imgDetails.naturalWidth) + '%';
             details.extension = getExtensionFromUrl(imgDetails.url);
             details.host = imgDetails.host;
             let filename = getDownloadFilename();
@@ -1518,6 +1571,7 @@ var hoverZoom = {
             });
         }
 
+        // deals with messages sent by background.js
         function onMessage(message, sender, sendResponse) {
             if (message.action === 'optionsChanged') {
                 options = message.options;
@@ -1578,12 +1632,30 @@ var hoverZoom = {
             if (options.zoomVideos) {
                 $(document).on('visibilitychange', hideHoverZoomImg);
             }
+
+            bindJsaction();
+        }
+
+        // jsaction hides binding performed at document level by HZ+ in bindEvents() function, so some extra bindings are needed
+        // note: jsaction is used by Google Maps (at least)
+        function bindJsaction() {
+            $('[jsaction*=mousemove]').each(function() {
+                //if (getEventListeners(this)['mousemove'] == undefined) // only works in Chrome console
+                if ($._data(this, 'events') == undefined || $._data(this, 'events')['mousemove'] == undefined)
+                    $(this).on('mousemove', documentMouseMove);
+            });
+
+            $('[jsaction*=keyup]').each(function() {
+                if ($._data(this, 'events') == undefined || $._data(this, 'events')['keyup'] == undefined)
+                    $(this).on('keyup', documentOnKeyUp);
+            });
         }
 
         function documentOnMouseWheel(event) {
             if (imageLocked) {
                 // Scale up or down locked image then clamp between 0.1x and 10x.
-                zoomFactor = zoomFactor * (event.deltaY < 0 ? 1.25 : 0.8);
+                let step = zoomFactor < 2 ? 0.1 : 0.1 * Math.floor(zoomFactor);
+                zoomFactor = zoomFactor + (event.deltaY < 0 ? 1 : -1) * step;
                 zoomFactor = Math.max(Math.min(zoomFactor, 10), 0.1);
                 posImg();
                 panLockedImage();
@@ -1708,6 +1780,11 @@ var hoverZoom = {
                     else changeVideoPosition(parseInt(options.videoPositionStep));
                     return false;
                 }
+                // "Flip image" key
+                if (event.which == options.flipImageKey) {
+                    flipImage();
+                    return false;
+                }
             }
         }
 
@@ -1773,9 +1850,11 @@ var hoverZoom = {
         }
 
         function getExtensionFromUrl(url) {
-            url = url.split(/[\?!#&]/)[0];
-            var ext = url.substr(url.lastIndexOf('.') + 1);
-            ext = ext.replace(/\//g, '');
+            // remove trailing / & trailing query
+            url = url.replace(/\/$/, '').split(/[\?!#&]/)[0];
+            // extract filename
+            let filename = url.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
+            let ext = (filename.lastIndexOf('.') == -1 ? '' : filename.substr(filename.lastIndexOf('.') + 1));
             if (ext == '' || ext.length > 5) ext = 'jpg';
             return ext;
         }
@@ -2063,9 +2142,10 @@ var hoverZoom = {
                     let img = hz.hzImg.find('img').get(0);
                     if (!img) return '';
                     src = img.src;
-                    // remove trailing /
-                    src = src.replace(/\/$/, '');
-                    filename = src.split('/').pop().split(/[\?!#&]/)[0];
+                    // remove trailing / & trailing query
+                    src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
+                    // extract filename
+                    filename = src.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
                     if (filename == '') filename = 'image';
                     if (filename.indexOf('.') === -1) filename = filename + '.jpg';
                     return filename;
@@ -2075,7 +2155,10 @@ var hoverZoom = {
                     let video = hz.hzImg.find('video').get(0);
                     if (!video) return '';
                     src = video.src;
-                    filename = src.split('/').pop().split(/[\?!#&]/)[0];
+                    // remove trailing / & trailing query
+                    src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
+                    // extract filename
+                    filename = src.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
                     if (filename == '') filename = 'video';
                     if (filename.indexOf('.') === -1) filename = filename + '.mp4';
                     return filename;
@@ -2085,7 +2168,10 @@ var hoverZoom = {
                     let audio = hz.hzImg.find('audio').get(0);
                     if (!audio) return '';
                     src = audio.src;
-                    filename = src.split('/').pop().split(/[\?!#&]/)[0];
+                    // remove trailing / & trailing query
+                    src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
+                    // extract filename
+                    filename = src.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
                     if (filename == '') filename = 'audio';
                     if (filename.indexOf('.') === -1) filename = filename + '.mp4';
                     return filename;
@@ -2097,6 +2183,37 @@ var hoverZoom = {
         function lockImage() {
             imageLocked = true;
             displayFullSizeImage();
+        }
+
+        // alternately flip image or video vertically and horizontally
+        function flipImage() {
+            if (!imgFullSize) return;
+
+            let flip = '';
+            if (imgFullSize.css('transform') == 'matrix(1, 0, 0, 1, 0, 0)' || imgFullSize.css('transform') == 'none' || imgFullSize.css('transform') == '') {
+                imgFullSize.css('transform', 'matrix(-1, 0, 0, 1, 0, 0)'); // scaleX(-1)
+                flip = 'flipX';
+            }
+            else if (imgFullSize.css('transform') == 'matrix(-1, 0, 0, 1, 0, 0)') {
+                imgFullSize.css('transform', 'matrix(-1, 0, 0, -1, 0, 0)'); // scaleX(-1) scaleY(-1)
+                flip = 'flipXY';
+            }
+            else if (imgFullSize.css('transform') == 'matrix(-1, 0, 0, -1, 0, 0)') {
+                imgFullSize.css('transform', 'matrix(1, 0, 0, -1, 0, 0)'); // scaleX(-1) scaleY(-1) scaleX(-1)
+                flip = 'flipXYX';
+            }
+            else if (imgFullSize.css('transform') == 'matrix(1, 0, 0, -1, 0, 0)')
+                imgFullSize.css('transform', '');
+
+            if (options.ambilightEnabled)
+                updateAmbilight();
+
+            // flip timestamp on videos
+            if (imgFullSize.is('video') && options.videoTimestamp) {
+                $('#hzImgContainer').removeClass('flipX flipXY flipXYX');
+                $('#hzImgContainer').addClass(flip);
+                addTimestampTrack(imgFullSize[0]);
+            }
         }
 
         function saveImage() {
@@ -2213,9 +2330,9 @@ var hoverZoom = {
             return hz.secondsToHms(audio.duration);
         }
 
-        // return hostname with special characters replaced by '_'
+        // return hostname with forbidden characters replaced by '_'
         function getOrigin() {
-            return window.location.hostname.replace(/[\\/:*?"<>|]/g, '_');
+            return window.location.hostname.replace(regexForbiddenChars, '_');
         }
 
         function rotateGalleryImg(rot) {

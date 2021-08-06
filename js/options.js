@@ -1,8 +1,8 @@
 var options,
     hoverZoomPlugins = hoverZoomPlugins || [],
     VK_CTRL = 1024,
-    VK_SHIFT = 2048,
-    actionKeys = ['actionKey', 'hideKey', 'openImageInWindowKey', 'openImageInTabKey', 'lockImageKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey', 'copyImageKey', 'copyImageUrlKey'];
+    VK_SHIFT = 2048,    
+    actionKeys = ['actionKey', 'hideKey', 'openImageInWindowKey', 'openImageInTabKey', 'lockImageKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey', 'flipImageKey', 'copyImageKey', 'copyImageUrlKey'];
 
 function getMilliseconds(ctrl) {
     var value = parseFloat(ctrl.val());
