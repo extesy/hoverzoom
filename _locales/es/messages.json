@@ -580,11 +580,11 @@
         "description": "[options] Action key description"
     },
     "optFlipImageKeyTitle": {
-        "message": "Flip image",
+        "message": "Voltear imagen",
         "description": "[options] Action key title"
     },
     "optFlipImageKeyDescription": {
-        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+        "message": "Presione esta tecla para voltear imagen verticalmente y horizontalmente.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {

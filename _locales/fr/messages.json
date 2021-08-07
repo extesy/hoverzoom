@@ -548,19 +548,19 @@
         "description": "[options] Action key description"
     },
     "optCopyImageKeyTitle": {
-        "message": "Copy image to clipboard",
+        "message": "Copier l'image dans le presse-papiers",
         "description": "[options] Action key title"
     },
     "optCopyImageKeyDescription": {
-        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "message": "Lorsque cette touche est enfoncée, l'image est copiée dans le presse-papiers.",
         "description": "[options] Action key description"
     },
     "optCopyImageUrlKeyTitle": {
-        "message": "Copy image URL to clipboard",
+        "message": "Copier l'URL de l'image dans le presse-papiers",
         "description": "[options] Action key title"
     },
     "optCopyImageUrlKeyDescription": {
-        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
+        "message": "Lorsque cette touche est enfoncée, l'URL de l'image ou de la vidéo est copiée dans le presse-papiers.",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
@@ -580,11 +580,11 @@
         "description": "[options] Action key description"
     },
     "optFlipImageKeyTitle": {
-        "message": "Flip image",
+        "message": "Retourner l'image",
         "description": "[options] Action key title"
     },
     "optFlipImageKeyDescription": {
-        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+        "message": "Appuyer sur cette touche pour retourner alternativement l'image verticalement et horizontalement. Pratique pour lire des textes et des logos dans des images ou des vidéos en miroir.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {

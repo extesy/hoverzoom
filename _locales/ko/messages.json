@@ -580,11 +580,11 @@
         "description": "[options] Action key description"
     },
     "optFlipImageKeyTitle": {
-        "message": "Flip image",
+        "message": "이미지 대칭",
         "description": "[options] Action key title"
     },
     "optFlipImageKeyDescription": {
-        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+        "message": "이 키를 누르면 사진이 가로, 세로 교대로 뒤집힙니다. 반전된 사진이나 동영상 속 글씨나 로고를 읽을 때 유용합니다.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
