@@ -49,7 +49,7 @@ var factorySettings = {
     actionKey : 0,
     fullZoomKey : 90,
     copyImageKey: 67,
-    copyImageUrlKey: 76,
+    copyImageUrlKey: 85,
     hideKey : 88,
     openImageInWindowKey : 87,
     openImageInTabKey : 84,
