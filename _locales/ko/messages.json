@@ -579,6 +579,14 @@
         "message": "이 키를 누르면 갤러리의 다음 사진을 봅니다.",
         "description": "[options] Action key description"
     },
+    "optFlipImageKeyTitle": {
+        "message": "Flip image",
+        "description": "[options] Action key title"
+    },
+    "optFlipImageKeyDescription": {
+        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "소스 코드",
         "description": "[options] Source code link in page footer"
