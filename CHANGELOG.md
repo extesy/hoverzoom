@@ -1,6 +1,46 @@
 # Changelog
 
-## [1.0.178](https://github.com/extesy/hoverzoom/tree/1.0.178) (2021-07-29)
+## [1.0.179](https://github.com/extesy/hoverzoom/tree/1.0.179) (2021-08-17)
+
+[Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.178...1.0.179)
+
+**Implemented enhancements:**
+
+- Copy URL of image or video [\#765](https://github.com/extesy/hoverzoom/issues/765)
+- Add copy to clipboard hotkey [\#750](https://github.com/extesy/hoverzoom/issues/750)
+- \[Feature Request\] shortcut copy image [\#459](https://github.com/extesy/hoverzoom/issues/459)
+- Please add the resized image the resize percent to corner! [\#156](https://github.com/extesy/hoverzoom/issues/156)
+
+**Fixed bugs:**
+
+- Action Key for "Save Image" does not work in Chrome in 4chan and 4channel [\#484](https://github.com/extesy/hoverzoom/issues/484)
+
+**Closed issues:**
+
+- redgifs [\#780](https://github.com/extesy/hoverzoom/issues/780)
+- Won’t work at all on Chrome \(MacBook Pro 13” M1\) [\#769](https://github.com/extesy/hoverzoom/issues/769)
+- HoverzZoom+ and Chrome - Autocloses zoomed videos when opened in new window [\#693](https://github.com/extesy/hoverzoom/issues/693)
+- Google Chat horribly laggy [\#620](https://github.com/extesy/hoverzoom/issues/620)
+- HoverZoom locks up windows rendering [\#492](https://github.com/extesy/hoverzoom/issues/492)
+- "save image" does not work in 4chan  [\#491](https://github.com/extesy/hoverzoom/issues/491)
+- New tab media has no sound [\#439](https://github.com/extesy/hoverzoom/issues/439)
+- Please add support for yande.re and danbooru.donmai.us [\#348](https://github.com/extesy/hoverzoom/issues/348)
+- Imgflip domain not working [\#310](https://github.com/extesy/hoverzoom/issues/310)
+- Bing Images not enlarging on mouseover using Chrome and Windows 7 [\#297](https://github.com/extesy/hoverzoom/issues/297)
+- Hoverzoom loads things from the previous Google images page [\#135](https://github.com/extesy/hoverzoom/issues/135)
+
+**Merged pull requests:**
+
+- New Crowdin updates [\#781](https://github.com/extesy/hoverzoom/pull/781) ([extesy](https://github.com/extesy))
+- New Crowdin updates [\#778](https://github.com/extesy/hoverzoom/pull/778) ([extesy](https://github.com/extesy))
+- New action key for Copy Image URL : U [\#777](https://github.com/extesy/hoverzoom/pull/777) ([GrosPoulet](https://github.com/GrosPoulet))
+- New Crowdin updates [\#775](https://github.com/extesy/hoverzoom/pull/775) ([extesy](https://github.com/extesy))
+- New action key: flip + zoom scale display [\#774](https://github.com/extesy/hoverzoom/pull/774) ([GrosPoulet](https://github.com/GrosPoulet))
+- New Crowdin updates [\#773](https://github.com/extesy/hoverzoom/pull/773) ([extesy](https://github.com/extesy))
+- New Crowdin updates [\#772](https://github.com/extesy/hoverzoom/pull/772) ([extesy](https://github.com/extesy))
+- Feat: Add Ability to Copy Images and Image URLs into the Clipboard [\#768](https://github.com/extesy/hoverzoom/pull/768) ([George-lewis](https://github.com/George-lewis))
+
+## [1.0.178](https://github.com/extesy/hoverzoom/tree/1.0.178) (2021-07-30)
 
 [Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.177...1.0.178)
 
@@ -274,7 +314,6 @@
 **Fixed bugs:**
 
 - Subreddit flairs hiding/showing when hovering over posts [\#659](https://github.com/extesy/hoverzoom/issues/659)
-- Download fix for empty filenames \(like in Google Maps\) [\#651](https://github.com/extesy/hoverzoom/pull/651) ([GrosPoulet](https://github.com/GrosPoulet))
 
 **Closed issues:**
 
@@ -311,6 +350,10 @@
 
 [Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.159...1.0.160)
 
+**Fixed bugs:**
+
+- Download fix for empty filenames \(like in Google Maps\) [\#651](https://github.com/extesy/hoverzoom/pull/651) ([GrosPoulet](https://github.com/GrosPoulet))
+
 **Closed issues:**
 
 - The loading animation is in green color now, it was white-grey before the last update [\#639](https://github.com/extesy/hoverzoom/issues/639)
@@ -334,7 +377,6 @@
 
 - Improvement for Facebook plug-in [\#636](https://github.com/extesy/hoverzoom/pull/636) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix e621/e926 unreliable image hovering [\#630](https://github.com/extesy/hoverzoom/pull/630) ([pinnae](https://github.com/pinnae))
-- Cosmetic changes: better display of zoomed images [\#629](https://github.com/extesy/hoverzoom/pull/629) ([GrosPoulet](https://github.com/GrosPoulet))
 
 ## [1.0.158](https://github.com/extesy/hoverzoom/tree/1.0.158) (2020-10-24)
 
@@ -362,6 +404,7 @@
 
 **Merged pull requests:**
 
+- Cosmetic changes: better display of zoomed images [\#629](https://github.com/extesy/hoverzoom/pull/629) ([GrosPoulet](https://github.com/GrosPoulet))
 - Update for plug-in : Yandex [\#619](https://github.com/extesy/hoverzoom/pull/619) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix for plug-in : Vox.com [\#616](https://github.com/extesy/hoverzoom/pull/616) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in : JoeMonster [\#615](https://github.com/extesy/hoverzoom/pull/615) ([GrosPoulet](https://github.com/GrosPoulet))
@@ -447,7 +490,6 @@
 - Fix for plug-in : Flipkart [\#564](https://github.com/extesy/hoverzoom/pull/564) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in : Fanart.tv [\#563](https://github.com/extesy/hoverzoom/pull/563) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix for plug-in : Dribbble [\#562](https://github.com/extesy/hoverzoom/pull/562) ([GrosPoulet](https://github.com/GrosPoulet))
-- fix for plug-in : deviantART [\#561](https://github.com/extesy/hoverzoom/pull/561) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in : bakashots [\#560](https://github.com/extesy/hoverzoom/pull/560) ([GrosPoulet](https://github.com/GrosPoulet))
 
 ## [1.0.153](https://github.com/extesy/hoverzoom/tree/1.0.153) (2020-08-29)
@@ -460,6 +502,7 @@
 
 **Merged pull requests:**
 
+- fix for plug-in : deviantART [\#561](https://github.com/extesy/hoverzoom/pull/561) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in : Avopix [\#559](https://github.com/extesy/hoverzoom/pull/559) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix for plug-in : LeBonCoin [\#558](https://github.com/extesy/hoverzoom/pull/558) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in : PublicDomainPictures [\#557](https://github.com/extesy/hoverzoom/pull/557) ([GrosPoulet](https://github.com/GrosPoulet))
