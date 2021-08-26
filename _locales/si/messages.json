@@ -1,10 +1,10 @@
 {
     "extName": {
-        "message": "Hover Zoom+",
+        "message": "හෝවර් සූම්+",
         "description": "Extension name"
     },
     "extShortName": {
-        "message": "HoverZoom",
+        "message": "හෝවර්සූම්",
         "description": "Short extension name"
     },
     "extDescription": {
@@ -16,7 +16,7 @@
         "description": "Extension update notification"
     },
     "popDisableForAllSites": {
-        "message": "Disable for all sites",
+        "message": "සියලුම අඩවි සඳහා අබලකරන්න",
         "description": "[popup] Disable the extension"
     },
     "popAllowPerSiteToggle": {
@@ -24,11 +24,11 @@
         "description": "[popup] Allow per-site extension configuration"
     },
     "popDisableForSite": {
-        "message": "Disable for $1",
+        "message": "$1 කට අබල කරන්න",
         "description": "[popup] Disables the extension for a specific site"
     },
     "popEnableForSite": {
-        "message": "Enable for $1",
+        "message": "$1 කට සබල කරන්න",
         "description": "[popup] Enables the extension for a specific site"
     },
     "popPreloadImages": {
@@ -40,23 +40,23 @@
         "description": "[popup] Preloading zoomed images"
     },
     "popMoreOptions": {
-        "message": "More options",
+        "message": "තව විකල්ප",
         "description": "[popup] More options"
     },
     "optTitle": {
-        "message": "Hover Zoom+ Options",
+        "message": "හෝවර් සූම්+ විකල්ප",
         "description": "[options] Page title"
     },
     "optButtonSave": {
-        "message": "Save",
+        "message": "සුරකින්න",
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
-        "message": "Cancel",
+        "message": "අවලංගු",
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
-        "message": "Reset",
+        "message": "නැවත සකසන්න",
         "description": "[options] Reset button label"
     },
     "optSaved": {
@@ -68,7 +68,7 @@
         "description": "[options] Page title for general options"
     },
     "optExtensionEnabled": {
-        "message": "Enable Hover Zoom",
+        "message": "හෝවර් සූම් සබලකරන්න",
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optSectionView": {
@@ -76,7 +76,7 @@
         "description": "[options] Page section for view options"
     },
     "optSectionVideo": {
-        "message": "Video",
+        "message": "දෘශ්‍යකය",
         "description": "[options] Page section for video options"
     },
     "optZoomFactor": {
@@ -188,11 +188,11 @@
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
-        "message": "Zoom videos (WebM, MP4)",
+        "message": "දෘශ්‍යක විශාලකරන්න (WebM, MP4)",
         "description": "[options] Zoom videos (WebM, MP4) option"
     },
     "optZoomVideosTooltip": {
-        "message": "Zoom videos (WebM, MP4)",
+        "message": "දෘශ්‍යක විශාලකරන්න (WebM, MP4)",
         "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
     },
     "optVideoPositionStep": {
@@ -288,7 +288,7 @@
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
-        "message": "Cancel",
+        "message": "අවලංගු",
         "description": "[options] Frame background color button - Cancel"
     },
     "optFrameThickness": {
@@ -304,7 +304,7 @@
         "description": "[options] Unit name (pixel) for frame thickness"
     },
     "optFontSize": {
-        "message": "Font size:",
+        "message": "මුද්‍රණඅකුරේ ප්‍රමාණය:",
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
@@ -332,7 +332,7 @@
         "description": "[options] Fading animation duration option"
     },
     "optDurationUnitName": {
-        "message": "sec",
+        "message": "තත්.",
         "description": "[options] Short form of \"second\" for delay duration"
     },
     "optPagePlugins": {
@@ -344,7 +344,7 @@
         "description": "[options] Section which contains checkboxes for disabling plugins"
     },
     "optPageSites": {
-        "message": "Sites",
+        "message": "අඩවි",
         "description": "[options] Page title for site options"
     },
     "optSectionSitesEnabled": {
@@ -372,23 +372,23 @@
         "description": "[options] Disclaimer on the sites option page"
     },
     "optButtonAddSite": {
-        "message": "Add",
+        "message": "එකතු",
         "description": "[options] Button for adding a site on sites option page"
     },
     "optPageActionKeys": {
-        "message": "Action keys",
+        "message": "ක්‍රියාමාර්ග යතුරු",
         "description": "[options] Page title for action key options"
     },
     "optPageAdvanced": {
-        "message": "Advanced",
+        "message": "වැඩිදුර",
         "description": "[options] Page title for advanced options"
     },
     "optSectionAdvanced": {
-        "message": "Advanced options",
+        "message": "වැඩිදුර විකල්ප",
         "description": "[options] Page section for advanced options"
     },
     "optUpdateNotifications": {
-        "message": "Show update notifications",
+        "message": "යාවත්කාල දැනුම්දීම් පෙන්වන්න",
         "description": "[options] Show update notifications option"
     },
     "optShowLastUpdateNotification": {
@@ -440,7 +440,7 @@
         "description": "[options] Use separate tab for unloadable urls option"
     },
     "optUseSeparateWindowForUnloadableUrls": {
-        "message": "Window",
+        "message": "කවුළුව",
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
@@ -448,7 +448,7 @@
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
-        "message": "Example: animals/cats",
+        "message": "උදාහරණය: සතුන්/බළලුන්",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
@@ -476,7 +476,7 @@
         "description": "[options] Tooltip for add download size option"
     },
     "optAddDownloadSize": {
-        "message": "size",
+        "message": "ප්‍රමාණය",
         "description": "[options] Add download size option"
     },
     "optAddDownloadDurationTooltip": {
@@ -492,7 +492,7 @@
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
-        "message": "Activate Hover Zoom+",
+        "message": "හෝවර් සූම්+ ක්‍රියාත්මක කරන්න",
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
@@ -500,7 +500,7 @@
         "description": "[options] Action key description"
     },
     "optHideKeyTitle": {
-        "message": "Disable Hover Zoom+",
+        "message": "හෝවර් සූම්+ අබලකරන්න",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
@@ -596,7 +596,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 - © 2014-2021 Oleg Anashkin",
+        "message": "අනුවාදය $1 - © 2014-2021 ඔලෙග් අනශ්කින්",
         "description": "[options] Copyright and version number in page footer"
     }
 }
