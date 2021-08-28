@@ -92,6 +92,8 @@ function saveOptions() {
     options.displayDelay = getMilliseconds($('#txtDisplayDelay'));
     options.displayDelayVideo = getMilliseconds($('#txtDisplayDelayVideo'));
     options.fadeDuration = getMilliseconds($('#txtFadeDuration'));
+    options.hideMouseCursor = $('#chkHideMouseCursor')[0].checked;
+    options.hideMouseCursorDelay = getMilliseconds($('#txtHideMouseCursor'));
     options.ambilightEnabled = $('#chkAmbilightEnabled')[0].checked;
     options.ambilightHaloSize = $('#txtAmbilightHaloSize')[0].value / 100;
     options.ambilightBackgroundOpacity = $('#txtAmbilightBackgroundOpacity')[0].value / 100;
@@ -166,6 +168,8 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#txtDisplayDelay').val((options.displayDelay || 0) / 1000);
     $('#txtDisplayDelayVideo').val((options.displayDelayVideo || 0) / 1000);
     $('#txtFadeDuration').val((options.fadeDuration || 0) / 1000);
+    $('#chkHideMouseCursor').trigger(options.hideMouseCursor ? 'gumby.check' : 'gumby.uncheck');
+    $('#txtHideMouseCursor').val((options.hideMouseCursorDelay || 0) / 1000);
     $('#chkAmbilightEnabled').trigger(options.ambilightEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#rngAmbilightHaloSize').val(parseInt(options.ambilightHaloSize * 100));
     $('#txtAmbilightHaloSize').val(parseInt(options.ambilightHaloSize * 100));
@@ -343,6 +347,14 @@ function updateUseSeparateTabOrWindowForUnloadableUrls() {
     }
 }
 
+function updateDivHideMouseCursor() {
+    if ($('#chkHideMouseCursor')[0].checked) {
+        $('#divHideMouseCursor').removeClass('disabled');
+    } else {
+        $('#divHideMouseCursor').addClass('disabled');
+    }
+}
+
 function updateTxtAmbilightBackgroundOpacity() {
     $('#txtAmbilightBackgroundOpacity')[0].value = this.value;
 }
@@ -480,6 +492,7 @@ $(function () {
     $('#btnRemoveExcludedSite').click(btnRemoveExcludedSiteOnClick);
     $('#txtDownloadFolder').change(downloadFolderOnChange);
     $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled').parent().on('gumby.onChange', updateUseSeparateTabOrWindowForUnloadableUrls);
+    $('#chkHideMouseCursor').parent().on('gumby.onChange', updateDivHideMouseCursor);
 
     restoreOptions();
     loadPlugins();
