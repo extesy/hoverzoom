@@ -147,6 +147,14 @@
         "message": "如果未选中, 将动态调整缩放图像的大小",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
+    "optHideMouseCursor": {
+        "message": "Hide mouse cursor after:",
+        "description": "[options] Hide mouse cursor option"
+    },
+    "optHideMouseCursorTooltip": {
+        "message": "If checked, mouse cursor will be hidden after delay",
+        "description": "[options] Tooltip for hide mouse cursor option"
+    },
     "optPageActionEnabled": {
         "message": "在地址栏中显示图标",
         "description": "[options] Show icon in address bar option"

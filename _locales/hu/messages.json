@@ -147,6 +147,14 @@
         "message": "Ha nincs bejelölve, a nagyított képek dinamikusan lesznek méretezve",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
+    "optHideMouseCursor": {
+        "message": "Hide mouse cursor after:",
+        "description": "[options] Hide mouse cursor option"
+    },
+    "optHideMouseCursorTooltip": {
+        "message": "If checked, mouse cursor will be hidden after delay",
+        "description": "[options] Tooltip for hide mouse cursor option"
+    },
     "optPageActionEnabled": {
         "message": "Ikon megjelenítése a címsorban",
         "description": "[options] Show icon in address bar option"

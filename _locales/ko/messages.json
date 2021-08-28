@@ -147,6 +147,14 @@
         "message": "선택하지 않은 경우 확대한 사진의 크기가 동적으로 조정됨",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
+    "optHideMouseCursor": {
+        "message": "Hide mouse cursor after:",
+        "description": "[options] Hide mouse cursor option"
+    },
+    "optHideMouseCursorTooltip": {
+        "message": "If checked, mouse cursor will be hidden after delay",
+        "description": "[options] Tooltip for hide mouse cursor option"
+    },
     "optPageActionEnabled": {
         "message": "주소창의 아이콘 보기",
         "description": "[options] Show icon in address bar option"
