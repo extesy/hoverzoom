@@ -56,3 +56,7 @@ select.picker {
     pointer-events: none;
     opacity: 0.5;
 }
+
+legend {
+    font-weight: bold;
+}

@@ -20,6 +20,8 @@ var factorySettings = {
     picturesOpacity : 1,
     showWhileLoading : true,
     mouseUnderlap : true,
+    hideMouseCursor : false,
+    hideMouseCursorDelay : 500,
     filterNSFW : false,
     enableGalleries : true,
     ambilightEnabled : false,
@@ -96,6 +98,8 @@ function loadOptions() {
     options.picturesOpacity = options.hasOwnProperty('picturesOpacity') ? options.picturesOpacity : factorySettings.picturesOpacity;
     options.showWhileLoading = options.hasOwnProperty('showWhileLoading') ? options.showWhileLoading : factorySettings.showWhileLoading;
     options.mouseUnderlap = options.hasOwnProperty('mouseUnderlap') ? options.mouseUnderlap : factorySettings.mouseUnderlap;
+    options.hideMouseCursor = options.hasOwnProperty('hideMouseCursor') ? options.hideMouseCursor : factorySettings.hideMouseCursor;
+    options.hideMouseCursorDelay = options.hasOwnProperty('hideMouseCursorDelay') ? options.hideMouseCursorDelay : factorySettings.hideMouseCursorDelay;
     options.filterNSFW = options.hasOwnProperty('filterNSFW') ? options.filterNSFW : factorySettings.filterNSFW;
     options.enableGalleries = options.hasOwnProperty('enableGalleries') ? options.enableGalleries : factorySettings.enableGalleries;
     options.ambilightEnabled = options.hasOwnProperty('ambilightEnabled') ? options.ambilightEnabled : factorySettings.ambilightEnabled;

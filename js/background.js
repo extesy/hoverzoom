@@ -5,20 +5,27 @@ function ajaxRequest(request, callback) {
 
     var xhr = new XMLHttpRequest();
     var response = request.response;
+    var method = request.method;
+    var url = request.url;
     xhr.onreadystatechange = function () {
+
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
-                if (response === 'URL') {
-                    callback(xhr.responseURL);
-                }
-                else {
-                    callback(xhr.responseText);
+                if (method == 'HEAD') {
+                    callback({url:url, headers:xhr.getAllResponseHeaders()});
+                } else {
+                    if (response === 'URL') {
+                        callback(xhr.responseURL);
+                    } else {
+                        callback(xhr.responseText);
+                    }
                 }
             } else {
                 callback(null);
             }
         }
     }
+
     xhr.open(request.method, request.url, true);
     for (var i in request.headers) {
         xhr.setRequestHeader(request.headers[i].header, request.headers[i].value);
@@ -41,6 +48,9 @@ function onMessage(message, sender, callback) {
             });
         case 'ajaxGet':
             ajaxRequest({url:message.url, response:message.response, method:'GET'}, callback);
+            return true;
+        case 'ajaxGetHeaders':
+            ajaxRequest({url:message.url, response:message.response, method:'HEAD'}, callback);
             return true;
         case 'ajaxRequest':
             ajaxRequest(message, callback);
