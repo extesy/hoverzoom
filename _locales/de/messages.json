@@ -147,6 +147,14 @@
         "message": "Wenn nicht gesetzt, werden die Bilder in dynamischer Größe gezeigt",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
+    "optHideMouseCursor": {
+        "message": "Hide mouse cursor after:",
+        "description": "[options] Hide mouse cursor option"
+    },
+    "optHideMouseCursorTooltip": {
+        "message": "If checked, mouse cursor will be hidden after delay",
+        "description": "[options] Tooltip for hide mouse cursor option"
+    },
     "optPageActionEnabled": {
         "message": "Symbol in der Adressleiste anzeigen",
         "description": "[options] Show icon in address bar option"
