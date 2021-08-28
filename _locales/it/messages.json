@@ -147,6 +147,14 @@
         "message": "Se deselezionata, le immagini ingrandite verranno ridimensionate in modo dinamico",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
+    "optHideMouseCursor": {
+        "message": "Hide mouse cursor after:",
+        "description": "[options] Hide mouse cursor option"
+    },
+    "optHideMouseCursorTooltip": {
+        "message": "If checked, mouse cursor will be hidden after delay",
+        "description": "[options] Tooltip for hide mouse cursor option"
+    },
     "optPageActionEnabled": {
         "message": "Mostra icona nella barra degli indirizzi",
         "description": "[options] Show icon in address bar option"
