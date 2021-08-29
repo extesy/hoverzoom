@@ -148,11 +148,11 @@
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
     "optHideMouseCursor": {
-        "message": "Hide mouse cursor after:",
+        "message": "Ascunde cursorul mouse-ului după:",
         "description": "[options] Hide mouse cursor option"
     },
     "optHideMouseCursorTooltip": {
-        "message": "If checked, mouse cursor will be hidden after delay",
+        "message": "Dacă este bifat, cursorul mouse-ului va fi ascuns după o perioadă",
         "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optPageActionEnabled": {
