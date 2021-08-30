@@ -148,11 +148,11 @@
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
     "optHideMouseCursor": {
-        "message": "Hide mouse cursor after:",
+        "message": "Cacher le curseur de la souris après :",
         "description": "[options] Hide mouse cursor option"
     },
     "optHideMouseCursorTooltip": {
-        "message": "If checked, mouse cursor will be hidden after delay",
+        "message": "Si coché, le curseur de la souris sera masqué après le délai",
         "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optPageActionEnabled": {

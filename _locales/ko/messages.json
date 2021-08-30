@@ -148,11 +148,11 @@
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
     "optHideMouseCursor": {
-        "message": "Hide mouse cursor after:",
+        "message": "마우스 커서 숨김 시간:",
         "description": "[options] Hide mouse cursor option"
     },
     "optHideMouseCursorTooltip": {
-        "message": "If checked, mouse cursor will be hidden after delay",
+        "message": "특정 시간 후 마우스 커서를 숨깁니다",
         "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optPageActionEnabled": {
