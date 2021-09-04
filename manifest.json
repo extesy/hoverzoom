@@ -1381,7 +1381,9 @@
         {
             "js": ["plugins/safebooru.js"],
             "matches": ["*://*.safebooru.org/*",
-                        "*://*.gelbooru.com/*"]
+                        "*://*.gelbooru.com/*",
+                        "*://*.xbooru.com/*",
+                        "*://*.booru.org/*"]
         },
         {
             "js": ["plugins/depositphotos.js"],
@@ -1759,6 +1761,21 @@
         {
             "js": ["plugins/myanimelist.js"],
             "matches": ["*://*.myanimelist.net/*"
+            ]
+        },
+        {
+            "js": ["plugins/themoviedb.js"],
+            "matches": ["*://*.themoviedb.org/*"
+            ]
+        },
+        {
+            "js": ["plugins/twibooru.js"],
+            "matches": ["*://*.twibooru.org/*"
+            ]
+        },
+        {
+            "js": ["plugins/catawiki.js"],
+            "matches": ["*://*.catawiki.com/*"
             ]
         }
    ]
