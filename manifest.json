@@ -1777,6 +1777,11 @@
             "js": ["plugins/catawiki.js"],
             "matches": ["*://*.catawiki.com/*"
             ]
+        },
+        {
+            "js": ["plugins/qwant.js"],
+            "matches": ["*://*.qwant.com/*"
+            ]
         }
    ]
 }

@@ -2156,7 +2156,7 @@ var hoverZoom = {
                 }
             }
             let lastModified = headers.match(/last-modified:(.*)/i);
-            if (lastModified) infos.lastModified = lastModified[1].trim();
+            if (lastModified && lastModified[1].indexOf('01 Jan 1970') == -1) infos.lastModified = lastModified[1].trim();
             return infos;
         }
 
