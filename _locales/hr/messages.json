@@ -495,6 +495,18 @@
         "message": "trajanje",
         "description": "[options] Add download duration option"
     },
+    "optSectionTroubleshooting": {
+        "message": "Troubleshooting",
+        "description": "[options] Page section for troubleshooting"
+    },
+    "optEnableDebugTooltip": {
+        "message": "Display debug messages in browser's console (to open console: press F12)",
+        "description": "[options] Tooltip for enable debug option"
+    },
+    "optEnableDebug": {
+        "message": "Enable debug",
+        "description": "[options] Enable debug option"
+    },
     "optPixelsUnitName": {
         "message": "piksela",
         "description": "[options] Unit name (pixels)"
