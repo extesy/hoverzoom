@@ -112,31 +112,31 @@
         "description": "[options] Caption location option to disable captions"
     },
     "optDetailsLocation": {
-        "message": "Details position:",
+        "message": "Posição dos detalhes:",
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
-        "message": "View details (size, format...) above/below the image, or not at all",
+        "message": "Ver os detalhes (tamanho, formato...) acima/abaixo da imagem, ou nem por isso",
         "description": "[options] Tooltip for adjusting the position of details"
     },
     "optDetailsLocationAbove": {
-        "message": "Above",
+        "message": "Acima",
         "description": "[options] Details location option to put details above the image"
     },
     "optDetailsLocationBelow": {
-        "message": "Below",
+        "message": "Abaixo",
         "description": "[options] Details location option to put details below the image"
     },
     "optDetailsLocationNone": {
-        "message": "None",
+        "message": "Nenhuma",
         "description": "[options] Details location option to disable details"
     },
     "optFontOutline": {
-        "message": "Font outline",
+        "message": "Contorno da fonte",
         "description": "[options] Outline option"
     },
     "optFontOutlineTooltip": {
-        "message": "If checked: use white font + thin black border for caption & details",
+        "message": "Se esta opção estiver selecionada, use fonte branca + borda preta fina para legendas e detalhes",
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
@@ -148,11 +148,11 @@
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
     "optHideMouseCursor": {
-        "message": "Hide mouse cursor after:",
+        "message": "Esconda o ponteiro do rato depois:",
         "description": "[options] Hide mouse cursor option"
     },
     "optHideMouseCursorTooltip": {
-        "message": "If checked, mouse cursor will be hidden after delay",
+        "message": "Se esta opção estiver selecionada, o ponteiro do rato será escondido após o atraso (delay)",
         "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optPageActionEnabled": {
@@ -300,7 +300,7 @@
         "description": "[options] Frame background color button - Cancel"
     },
     "optFrameThickness": {
-        "message": "Frame thickness:",
+        "message": "Espessura do quadro:",
         "description": "[options] Frame thickness option"
     },
     "optFrameThicknessTooltip": {
@@ -308,19 +308,19 @@
         "description": "[options] Tooltip for frame thickness option"
     },
     "optFrameThicknessUnitName": {
-        "message": "pixels",
+        "message": "píxeis",
         "description": "[options] Unit name (pixel) for frame thickness"
     },
     "optFontSize": {
-        "message": "Font size:",
+        "message": "Tamanho do tipo de letra:",
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
-        "message": "Size of font used for captions & details",
+        "message": "Tamanho do tipo de letra usado para legendas e detalhes",
         "description": "[options] Tooltip for font size option"
     },
     "optFontSizeUnitName": {
-        "message": "pixels",
+        "message": "píxeis",
         "description": "[options] Unit name (pixel) for font size"
     },
     "optSectionDelays": {
@@ -356,11 +356,11 @@
         "description": "[options] Page title for site options"
     },
     "optSectionSitesEnabled": {
-        "message": "URLs para os quais Hover Zoom+ deve ser ativado",
+        "message": "Links para os quais Hover Zoom+ deve ser ativado",
         "description": "[options] Page section for enabling extension for specific sites"
     },
     "optSectionSitesDisabled": {
-        "message": "URLs para os quais Hover Zoom+ deve ser desativado",
+        "message": "Links para os quais Hover Zoom+ deve ser desativado",
         "description": "[options] Page section for enabling extension for specific sites"
     },
     "optWhitelistMode": {
@@ -440,7 +440,7 @@
         "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrls": {
-        "message": "Tentar abrir URLs não carregáveis separadamente:",
+        "message": "Tentar abrir links não carregáveis separadamente:",
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
@@ -495,6 +495,18 @@
         "message": "duração",
         "description": "[options] Add download duration option"
     },
+    "optSectionTroubleshooting": {
+        "message": "Resolução de problemas",
+        "description": "[options] Page section for troubleshooting"
+    },
+    "optEnableDebugTooltip": {
+        "message": "Display debug messages in browser's console (to open console: press F12)",
+        "description": "[options] Tooltip for enable debug option"
+    },
+    "optEnableDebug": {
+        "message": "Ativar depuração",
+        "description": "[options] Enable debug option"
+    },
     "optPixelsUnitName": {
         "message": "píxeis",
         "description": "[options] Unit name (pixels)"
@@ -532,11 +544,11 @@
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
-        "message": "Lock image on screen",
+        "message": "Bloquear a imagem no ecrã",
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "Press this key to lock the image in the center of the page, allowing you to zoom and pan around. Press ESC or click outside the image to unlock the image.",
+        "message": "Pressione esta tecla para bloquear a imagem no centro da página, permitindo-lhe ampliar e panorâmica. Pressione ESC ou clique fora da imagem para desbloquear a imagem.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -560,15 +572,15 @@
         "description": "[options] Action key title"
     },
     "optCopyImageKeyDescription": {
-        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "message": "Quando esta tecla é pressionada, a imagem é copiada para a área de transferência.",
         "description": "[options] Action key description"
     },
     "optCopyImageUrlKeyTitle": {
-        "message": "Copy image URL to clipboard",
+        "message": "Copiar o link da imagem para a área de transferência",
         "description": "[options] Action key title"
     },
     "optCopyImageUrlKeyDescription": {
-        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
+        "message": "Quando esta tecla é pressionada, o link da imagem ou do vídeo é copiado para a área de transferência.",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
@@ -588,11 +600,11 @@
         "description": "[options] Action key description"
     },
     "optFlipImageKeyTitle": {
-        "message": "Flip image",
+        "message": "Inverter imagem",
         "description": "[options] Action key title"
     },
     "optFlipImageKeyDescription": {
-        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+        "message": "Pressione esta tecla para inverter alternadamente a imagem vertical e horizontalmente. Útil para ler textos e logotipos em imagens ou vídeos espelhados.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {

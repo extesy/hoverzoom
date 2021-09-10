@@ -112,31 +112,31 @@
         "description": "[options] Caption location option to disable captions"
     },
     "optDetailsLocation": {
-        "message": "Details position:",
+        "message": "Részletek pozíciója:",
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
-        "message": "View details (size, format...) above/below the image, or not at all",
+        "message": "Részletek megjelenítése (méret, formátum...) a kép felett/alatt, vagy egyáltalán nem",
         "description": "[options] Tooltip for adjusting the position of details"
     },
     "optDetailsLocationAbove": {
-        "message": "Above",
+        "message": "Fölötte",
         "description": "[options] Details location option to put details above the image"
     },
     "optDetailsLocationBelow": {
-        "message": "Below",
+        "message": "Alatta",
         "description": "[options] Details location option to put details below the image"
     },
     "optDetailsLocationNone": {
-        "message": "None",
+        "message": "Egyik sem",
         "description": "[options] Details location option to disable details"
     },
     "optFontOutline": {
-        "message": "Font outline",
+        "message": "Betűtípus körvonala",
         "description": "[options] Outline option"
     },
     "optFontOutlineTooltip": {
-        "message": "If checked: use white font + thin black border for caption & details",
+        "message": "Ha be van kapcsolva: fehér betűtípus + vékony fekete szegély használata a feliratokhoz és a részletekhez",
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
@@ -148,11 +148,11 @@
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
     "optHideMouseCursor": {
-        "message": "Hide mouse cursor after:",
+        "message": "Egérmutató elrejtése ennyi idő után:",
         "description": "[options] Hide mouse cursor option"
     },
     "optHideMouseCursorTooltip": {
-        "message": "If checked, mouse cursor will be hidden after delay",
+        "message": "Ha be van kapcsolva, az egérmutató el lesz rejtve késleltetés után",
         "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optPageActionEnabled": {
@@ -300,27 +300,27 @@
         "description": "[options] Frame background color button - Cancel"
     },
     "optFrameThickness": {
-        "message": "Frame thickness:",
+        "message": "Keretvastagság:",
         "description": "[options] Frame thickness option"
     },
     "optFrameThicknessTooltip": {
-        "message": "Thickness of border for the frame the image appears in (0 : no frame)",
+        "message": "A képkeret szegélyének vastagsága (0: nincs keret)",
         "description": "[options] Tooltip for frame thickness option"
     },
     "optFrameThicknessUnitName": {
-        "message": "pixels",
+        "message": "képpont",
         "description": "[options] Unit name (pixel) for frame thickness"
     },
     "optFontSize": {
-        "message": "Font size:",
+        "message": "Szövegméret:",
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
-        "message": "Size of font used for captions & details",
+        "message": "A feliratokhoz és részletekhez használt betűtípus mérete",
         "description": "[options] Tooltip for font size option"
     },
     "optFontSizeUnitName": {
-        "message": "pixels",
+        "message": "képpont",
         "description": "[options] Unit name (pixel) for font size"
     },
     "optSectionDelays": {
@@ -495,6 +495,18 @@
         "message": "hossz",
         "description": "[options] Add download duration option"
     },
+    "optSectionTroubleshooting": {
+        "message": "Hibaelhárítás",
+        "description": "[options] Page section for troubleshooting"
+    },
+    "optEnableDebugTooltip": {
+        "message": "Hibakeresési üzenetek megjelenítése a böngésző konzoljában (a konzol megnyitásához nyomd meg az F12 billentyűt)",
+        "description": "[options] Tooltip for enable debug option"
+    },
+    "optEnableDebug": {
+        "message": "Hibakeresés engedélyezése",
+        "description": "[options] Enable debug option"
+    },
     "optPixelsUnitName": {
         "message": "pixel",
         "description": "[options] Unit name (pixels)"
@@ -532,11 +544,11 @@
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
-        "message": "Lock image on screen",
+        "message": "Kép zárolása a képernyőn",
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "Press this key to lock the image in the center of the page, allowing you to zoom and pan around. Press ESC or click outside the image to unlock the image.",
+        "message": "Ezzel a billentyűvel rögzítheted a képet az oldal közepére, lehetővé téve a nagyítást és a pásztázást. A kép zárolásának feloldásához nyomd meg az ESC billentyűt vagy kattints a képen kívülre.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -556,19 +568,19 @@
         "description": "[options] Action key description"
     },
     "optCopyImageKeyTitle": {
-        "message": "Copy image to clipboard",
+        "message": "Kép másolása a vágólapra",
         "description": "[options] Action key title"
     },
     "optCopyImageKeyDescription": {
-        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "message": "E billentyű megnyomására a kép a vágólapra lesz másolva.",
         "description": "[options] Action key description"
     },
     "optCopyImageUrlKeyTitle": {
-        "message": "Copy image URL to clipboard",
+        "message": "Kép URL-jének másolása a vágólapra",
         "description": "[options] Action key title"
     },
     "optCopyImageUrlKeyDescription": {
-        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
+        "message": "E billentyű megnyomására a kép vagy videó URL -címe a vágólapra kerül.",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
@@ -588,11 +600,11 @@
         "description": "[options] Action key description"
     },
     "optFlipImageKeyTitle": {
-        "message": "Flip image",
+        "message": "Kép felfordítása",
         "description": "[options] Action key title"
     },
     "optFlipImageKeyDescription": {
-        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+        "message": "Ezzel a billentyűvel felválthatod függőlegesen és vízszintesen a képet. Hasznos szövegek és logók olvasásához tükrözött képeken vagy videókban.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
