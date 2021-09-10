@@ -131,6 +131,7 @@ function saveOptions() {
     options.downloadFolder = $('#txtDownloadFolder')[0].value;
     options.addDownloadOrigin = $('#chkAddDownloadOrigin')[0].checked;
     options.addDownloadSize = $('#chkAddDownloadSize')[0].checked;
+    options.debug = $('#chkEnableDebug')[0].checked;
     options.addDownloadDuration = $('#chkAddDownloadDuration')[0].checked;
     options.useSeparateTabOrWindowForUnloadableUrlsEnabled = $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled')[0].checked;
     options.useSeparateTabOrWindowForUnloadableUrls = $('#selectUseSeparateTabOrWindowForUnloadableUrls').val();
@@ -232,6 +233,7 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#chkAddDownloadDuration').trigger(options.addDownloadDuration ? 'gumby.check' : 'gumby.uncheck');
     $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled').trigger(options.useSeparateTabOrWindowForUnloadableUrlsEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#selectUseSeparateTabOrWindowForUnloadableUrls').val(options.useSeparateTabOrWindowForUnloadableUrls);
+    $('#chkEnableDebug').trigger(options.debug ? 'gumby.check' : 'gumby.uncheck');
 
     return false;
 }

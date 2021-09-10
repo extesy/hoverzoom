@@ -2169,13 +2169,15 @@ var hoverZoom = {
         }
 
         function downloadResource(url, filename, callback) {
+            cLog('download: ' + url);
             if (!filename) filename = url.split('\\').pop().split('/').pop();
 
             // prefix with download folder if needed
             if (options.downloadFolder) {
-
+                cLog('options.downloadFolder: ' + options.downloadFolder);
                 let downloadFolder = options.downloadFolder;
                 filename = downloadFolder + filename;
+                cLog('filename: ' + filename);
             }
 
             chrome.runtime.sendMessage({
@@ -2485,6 +2487,9 @@ var hoverZoom = {
             prepareImgLinks();
             bindEvents();
             fixFlash();
+
+            debug = options.debug;
+
         }
 
         chrome.runtime.onMessage.addListener(onMessage);
