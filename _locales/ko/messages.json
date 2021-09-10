@@ -495,6 +495,18 @@
         "message": "길이",
         "description": "[options] Add download duration option"
     },
+    "optSectionTroubleshooting": {
+        "message": "문제 해결",
+        "description": "[options] Page section for troubleshooting"
+    },
+    "optEnableDebugTooltip": {
+        "message": "브라우저 콘솔에 디버그 메시지를 표시합니다 (콘솔 열기: F12)",
+        "description": "[options] Tooltip for enable debug option"
+    },
+    "optEnableDebug": {
+        "message": "디버그 활성화",
+        "description": "[options] Enable debug option"
+    },
     "optPixelsUnitName": {
         "message": "픽셀",
         "description": "[options] Unit name (pixels)"
