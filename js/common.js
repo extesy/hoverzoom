@@ -60,7 +60,8 @@ var factorySettings = {
     prevImgKey : 37,
     nextImgKey : 39,
     flipImageKey : 70,
-    escKey : 27
+    escKey : 27,
+    debug : false
 }
 
 // Load options from factory settings (= as if extension has just been installed from webstore)
@@ -145,6 +146,9 @@ function loadOptions() {
     options.nextImgKey = options.hasOwnProperty('nextImgKey') ? options.nextImgKey : factorySettings.nextImgKey;
     options.flipImageKey = options.hasOwnProperty('flipImageKey') ? options.flipImageKey : factorySettings.flipImageKey;
     options.escKey = factorySettings.escKey;
+
+    // debug
+    options.debug = options.hasOwnProperty('debug') ? options.debug : factorySettings.debug;
 
     localStorage.options = JSON.stringify(options);
 
