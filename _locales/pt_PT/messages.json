@@ -284,11 +284,11 @@
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optFrameBackgroundColor": {
-        "message": "Cor de fundo para o quadro:",
+        "message": "Cor de fundo para a moldura:",
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
-        "message": "Cor de fundo para o quadro onde a imagem ampliada é exibida",
+        "message": "Cor de fundo para a moldura onde a imagem ampliada é exibida",
         "description": "[options] Tooltip for frame background color option"
     },
     "optFrameBackgroundColorChooseText": {
@@ -300,11 +300,11 @@
         "description": "[options] Frame background color button - Cancel"
     },
     "optFrameThickness": {
-        "message": "Espessura do quadro:",
+        "message": "Espessura da moldura:",
         "description": "[options] Frame thickness option"
     },
     "optFrameThicknessTooltip": {
-        "message": "Thickness of border for the frame the image appears in (0 : no frame)",
+        "message": "A espessura da borda da moldura para a imagem é (0 : sem moldura)",
         "description": "[options] Tooltip for frame thickness option"
     },
     "optFrameThicknessUnitName": {
@@ -444,7 +444,7 @@
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
-        "message": "Tab",
+        "message": "Separador",
         "description": "[options] Use separate tab for unloadable urls option"
     },
     "optUseSeparateWindowForUnloadableUrls": {
@@ -500,7 +500,7 @@
         "description": "[options] Page section for troubleshooting"
     },
     "optEnableDebugTooltip": {
-        "message": "Display debug messages in browser's console (to open console: press F12)",
+        "message": "Mostrar mensagens de depuração na consola do navegador (para abrir a consola: prima F12)",
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
@@ -548,7 +548,7 @@
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "Pressione esta tecla para bloquear a imagem no centro da página, permitindo-lhe ampliar e panorâmica. Pressione ESC ou clique fora da imagem para desbloquear a imagem.",
+        "message": "Pressione esta tecla para bloquear a imagem no centro da página, permitindo-lhe ampliar e ver em panorâmica. Pressione ESC ou clique fora da imagem para desbloquear a imagem.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -568,7 +568,7 @@
         "description": "[options] Action key description"
     },
     "optCopyImageKeyTitle": {
-        "message": "Copy image to clipboard",
+        "message": "Copiar a imagem para a área de transferência",
         "description": "[options] Action key title"
     },
     "optCopyImageKeyDescription": {
