@@ -1782,6 +1782,11 @@
             "js": ["plugins/qwant.js"],
             "matches": ["*://*.qwant.com/*"
             ]
+        },
+        {
+            "js": ["plugins/duckduckgo.js"],
+            "matches": ["*://*.duckduckgo.com/*"
+            ]
         }
    ]
 }
