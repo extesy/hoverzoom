@@ -1281,11 +1281,15 @@ var hoverZoom = {
             let duration = getDurationFromVideo();
             if (duration) details.duration = duration.replace(/ /g, ':');
 
-            let infos = sessionStorage.getItem(imgDetails.url);
-            if (infos) {
-                try { infos = JSON.parse(infos);
-                    details.contentLength = infos.contentLength;
-                    details.lastModified = infos.lastModified;
+            let additionaInfos = sessionStorage.getItem('hoverZoomAdditionalInfos');
+            if (additionaInfos) {
+                try {
+                    additionaInfos = JSON.parse(additionaInfos);
+                    let infos = additionaInfos[imgDetails.url];
+                    if (infos) {
+                        details.contentLength = infos.contentLength;
+                        details.lastModified = infos.lastModified;
+                    }
                 } catch {}
             }
 
@@ -2130,7 +2134,14 @@ var hoverZoom = {
         function getAdditionalInfosFromServer(url) {
 
             // check if additional infos already received
-            if (sessionStorage.getItem(url)) return;
+            let additionaInfos = sessionStorage.getItem('hoverZoomAdditionalInfos');
+            if (additionaInfos) {
+                try {
+                    additionaInfos = JSON.parse(additionaInfos);
+                    let infos = additionaInfos[imgDetails.url];
+                    if (infos) return;
+                } catch {}
+            }
 
             chrome.runtime.sendMessage({
                 action: 'ajaxGetHeaders',
@@ -2138,7 +2149,17 @@ var hoverZoom = {
             }, function(response) {
                 if (response == null) return;
                 let infos = parseHeaders(response.headers);
-                sessionStorage.setItem(response.url, JSON.stringify(infos));
+                if (!$.isEmptyObject(infos)) {
+                    // store infos
+                    let additionalInfos = sessionStorage.getItem('hoverZoomAdditionalInfos') || '{}';
+                    try {
+                        additionalInfos = JSON.parse(additionalInfos);
+                        if (!additionalInfos[response.url]) {
+                            additionalInfos[response.url] = infos;
+                            sessionStorage.setItem('hoverZoomAdditionalInfos', JSON.stringify(additionalInfos));
+                        }
+                    } catch {}
+                }
                 posImg();
             } );
         }
