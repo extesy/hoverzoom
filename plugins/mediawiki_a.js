@@ -8,25 +8,6 @@ hoverZoomPlugins.push({
 
         // thumbnail: https://runescape.wiki/images/thumb/2/26/Senntisten_Kree%27arra_vs_Nodon.png/534px-Senntisten_Kree%27arra_vs_Nodon.png?de6e2
         //  fullsize: https://runescape.wiki/images/2/26/Senntisten_Kree%27arra_vs_Nodon.png
-        //$('img[src*="thumb/"]').each(function () {
-        //    var _this = $(this),
-        //        src = this.src,
-        //        srcs = [],
-        //        ext;
-
-        //    src = src.replace(/([^\?]{1,}).*/, '$1');
-
-        //    if (src.substr(src.length - 8) == '.svg.png') {
-        //        ext = '.svg';
-        //    } else {
-        //        ext = src.substr(src.lastIndexOf('.'));
-        //    }
-
-        //   srcs.push(src.substring(0, src.indexOf(ext) + ext.length).replace('thumb/', ''));
-        //    _this.data().hoverZoomSrc = srcs;
-        //    res.push(_this);
-        //});
-
         $('img[src*="thumb/"], image').each(function() {
             let _this = $(this);
             let src = '';
