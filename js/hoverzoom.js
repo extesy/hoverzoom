@@ -2702,6 +2702,10 @@ var hoverZoom = {
                             if (hoverZoomSrcIndex < link.data().hoverZoomSrc.length - 1) {
                                 link.data().hoverZoomSrcIndex++;
                                 preloadIndex--;
+                            } else {
+                                // all attempts to pre-load img have failed and there are no more src to try, 
+                                // so tag img as preloaded and move to next img
+                                link.data().hoverZoomPreloaded = true;
                             }
                             setTimeout(preloadNextImage, preloadDelay);
                         });
