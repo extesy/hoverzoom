@@ -500,11 +500,11 @@
         "description": "[options] Page section for troubleshooting"
     },
     "optEnableDebugTooltip": {
-        "message": "Display debug messages in browser's console (to open console: press F12)",
+        "message": "Mostrar mensajes de depuración en la consola del navegador (para abrir la consola: presione F12)",
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
-        "message": "Enable debug",
+        "message": "Habilitar Debug",
         "description": "[options] Enable debug option"
     },
     "optPixelsUnitName": {
