@@ -1,11 +1,12 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'duckduckgo',
-    version:'1.0',
+    version:'1.1',
     prepareImgLinks:function (callback) {
 
         var res = [];
         var DDGData = null;
+        var DDGDataLowerCase = null;
         var DDGDataJson = {};
 
         // This script is injected into DDG results page in order to gain access to DDG internal data
@@ -96,7 +97,7 @@ hoverZoomPlugins.push({
         // Find value(s) in JSON object and return corresponding key(s) and path(s)
         // If value not found then return []
         // ref: https://gist.github.com/killants/569c4af5f2983e340512916e15a48ac0
-        function getValuesInObject(jsonObj, searchValue, isRegex, isPartialMatch, maxDeepLevel, currDeepLevel) {
+        function getValuesInObject(jsonObj, searchValue, isRegex, isPartialMatch, isFirstMatchOnly, maxDeepLevel, currDeepLevel) {
 
             var bShowInfo = false;
 
@@ -113,6 +114,8 @@ hoverZoomPlugins.push({
                     cLog(e);
                     return [];
                 }
+            } else {
+                searchValue = searchValue.toString().toLowerCase();
             }
 
             if ( currDeepLevel > maxDeepLevel ) {
@@ -130,15 +133,15 @@ hoverZoomPlugins.push({
 
                     if ( typeof currElem == "object" ) { // object is "object" and "array" is also in the eyes of "typeof"
                         // search again :D
-                        var deepKeys = getValuesInObject( currElem, searchValue, isRegex, isPartialMatch, maxDeepLevel, currDeepLevel + 1 );
+                        var deepKeys = getValuesInObject( currElem, searchValue, isRegex, isPartialMatch, isFirstMatchOnly, maxDeepLevel, currDeepLevel + 1 );
                         for ( var e = 0; e < deepKeys.length; e++ ) {
                             // update path backwards
                             deepKeys[e].path = '["' + curr + '"]' + deepKeys[e].path;
                             keys.push( deepKeys[e] );
                         }
                     } else {
-
-                        if ( isRegex ? re.test(currElem) : ( isPartialMatch ? currElem.toString().toLowerCase().indexOf(searchValue.toString().toLowerCase()) != -1 : currElem.toString().toLowerCase() === searchValue.toString().toLowerCase() ) ){
+                        
+                        if ( isRegex ? re.test(currElem) : ( isPartialMatch ? currElem.toString().toLowerCase().indexOf(searchValue) != -1 : currElem.toString().toLowerCase() === searchValue ) ){
 
                             var r = {};
                             r.key = curr;
@@ -146,6 +149,7 @@ hoverZoomPlugins.push({
                             r.path = '["' + curr + '"]';
                             r.depth = currDeepLevel;
                             keys.push( r );
+                            if (isFirstMatchOnly) return keys;
                         }
                     }
                 }
@@ -187,12 +191,16 @@ hoverZoomPlugins.push({
             if (!DDGData) {
 
                 DDGData = sessionStorage.getItem('DDGData');
+                DDGDataLowerCase = DDGData.toString().toLowerCase();
                 try {
                     DDGDataJson = JSON.parse(DDGData);
                 } catch {}
             }
             if (DDGDataJson) {
-                let values = getValuesInObject(DDGDataJson, thumbnail, false, true); // look for a partial match
+
+                if (DDGDataLowerCase.indexOf(thumbnail.toString().toLowerCase()) == -1) return;
+
+                let values = getValuesInObject(DDGDataJson, thumbnail, false, true, true); // look for a partial match & stop after 1st match
                 if (values.length == 0) return;
                 let o = getObjectFromPath(DDGDataJson, values[0].path.substring(0, values[0].path.lastIndexOf('[')));
                 if (o.image) {
