@@ -1787,6 +1787,11 @@
             "js": ["plugins/duckduckgo.js"],
             "matches": ["*://*.duckduckgo.com/*"
             ]
+        },
+        {
+            "js": ["plugins/googlesheets.js"],
+            "matches": ["*://docs.google.com/spreadsheets/*"
+            ]
         }
    ]
 }

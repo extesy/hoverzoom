@@ -45,63 +45,6 @@ hoverZoomPlugins.push({
             (document.head || document.documentElement).appendChild(fetchScript);
         }
 
-        // Find key(s) in JSON object and return corresponding value(s) and path(s)
-        // If key not found then return []
-        // https://gist.github.com/killants/569c4af5f2983e340512916e15a48ac0
-        function getKeysInObject(jsonObj, searchKey, isRegex, maxDeepLevel, currDeepLevel) {
-
-            var bShowInfo = false;
-
-            maxDeepLevel = ( maxDeepLevel || maxDeepLevel == 0 ) ? maxDeepLevel : 100;
-            currDeepLevel = currDeepLevel ? currDeepLevel : 1 ;
-            isRegex = isRegex ? isRegex : false;
-
-            // check RegEx validity if needed
-            var re;
-            if (isRegex) {
-                try {
-                    re = new RegExp(searchKey);
-                } catch (e) {
-                    cLog(e);
-                    return [];
-                }
-            }
-
-            if( currDeepLevel > maxDeepLevel ) {
-                return [];
-            } else {
-
-                var keys = [];
-
-                for(var curr in jsonObj) {
-                    var currElem = jsonObj[curr];
-
-                    if( currDeepLevel == 1 && bShowInfo ) { cLog("getKeysInObject : Looking property \"" + curr + "\" ") }
-
-                    if( isRegex ? re.test(curr) : curr === searchKey ){
-                        var r = {};
-                        r.key = curr;
-                        r.value = currElem;
-                        r.path = '["' + curr + '"]';
-                        r.depth = currDeepLevel;
-                        keys.push( r );
-                    }
-
-                    if( typeof currElem == "object" ) { // object is "object" and "array" is also in the eyes of "typeof"
-                        // search again :D
-                        var deepKeys = getKeysInObject( currElem, searchKey, isRegex, maxDeepLevel, currDeepLevel + 1 );
-
-                        for(var e = 0 ; e < deepKeys.length; e++) {
-                            // update path backwards
-                            deepKeys[e].path = '["' + curr + '"]' + deepKeys[e].path;
-                            keys.push( deepKeys[e] );
-                        }
-                    }
-                }
-                return keys;
-            }
-        }
-
         // Find value(s) in JSON object and return corresponding key(s) and path(s)
         // If value not found then return []
         // ref: https://gist.github.com/killants/569c4af5f2983e340512916e15a48ac0
@@ -133,7 +76,7 @@ hoverZoomPlugins.push({
                 for(var curr in jsonObj) {
                     var currElem = jsonObj[curr];
 
-                    if( currDeepLevel == 1 && bShowInfo ) { cLog("getKeysInObject : Looking property \"" + curr + "\" ") }
+                    if( currDeepLevel == 1 && bShowInfo ) { cLog("getValuesInObject : Looking property \"" + curr + "\" ") }
 
                     if( typeof currElem == "object" ) { // object is "object" and "array" is also in the eyes of "typeof"
                         // search again :D
