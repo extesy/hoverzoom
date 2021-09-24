@@ -1789,6 +1789,12 @@
             ]
         },
         {
+            "js": ["plugins/sogou.js"],
+            "matches": ["*://*.sogou.com/*",
+                        "*://*.sogou.cn/*"
+            ]
+        },
+        {
             "js": ["plugins/googlesheets.js"],
             "matches": ["*://docs.google.com/spreadsheets/*"
             ]
