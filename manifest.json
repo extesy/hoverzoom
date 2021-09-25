@@ -1798,6 +1798,13 @@
             "js": ["plugins/googlesheets.js"],
             "matches": ["*://docs.google.com/spreadsheets/*"
             ]
+        },
+        {
+            "js": ["plugins/bilibili.js"],
+            "matches": ["*://*.bilibili.com/*",
+                        "*://*.bilibili.cn/*",
+                        "*://*.biligame.com/*"
+            ]
         }
    ]
 }
