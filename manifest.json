@@ -767,10 +767,6 @@
             "matches": ["*://*.funnyjunk.com/*"]
         },
         {
-            "js": ["plugins/sky_it.js"],
-            "matches": ["*://*.sky.it/*"]
-        },
-        {
             "js": ["plugins/blogo_it.js"],
             "matches": [
                 "*://*.02blog.it/*",
@@ -1735,58 +1731,47 @@
         },
         {
             "js": ["plugins/libraryofcongress.js"],
-            "matches": ["*://*.loc.gov/*"
-            ]
+            "matches": ["*://*.loc.gov/*"]
         },
         {
             "js": ["plugins/duitang.js"],
-            "matches": ["*://*.duitang.com/*"
-            ]
+            "matches": ["*://*.duitang.com/*"]
         },
         {
             "js": ["plugins/wdl.js"],
-            "matches": ["*://*.wdl.org/*"
-            ]
+            "matches": ["*://*.wdl.org/*"]
         },
         {
             "js": ["plugins/hibid.js"],
-            "matches": ["*://*.hibid.com/*"
-            ]
+            "matches": ["*://*.hibid.com/*"]
         },
         {
             "js": ["plugins/maxsold.js"],
-            "matches": ["*://*.maxsold.com/*"
-            ]
+            "matches": ["*://*.maxsold.com/*"]
         },
         {
             "js": ["plugins/myanimelist.js"],
-            "matches": ["*://*.myanimelist.net/*"
-            ]
+            "matches": ["*://*.myanimelist.net/*"]
         },
         {
             "js": ["plugins/themoviedb.js"],
-            "matches": ["*://*.themoviedb.org/*"
-            ]
+            "matches": ["*://*.themoviedb.org/*"]
         },
         {
             "js": ["plugins/twibooru.js"],
-            "matches": ["*://*.twibooru.org/*"
-            ]
+            "matches": ["*://*.twibooru.org/*"]
         },
         {
             "js": ["plugins/catawiki.js"],
-            "matches": ["*://*.catawiki.com/*"
-            ]
+            "matches": ["*://*.catawiki.com/*"]
         },
         {
             "js": ["plugins/qwant.js"],
-            "matches": ["*://*.qwant.com/*"
-            ]
+            "matches": ["*://*.qwant.com/*"]
         },
         {
             "js": ["plugins/duckduckgo.js"],
-            "matches": ["*://*.duckduckgo.com/*"
-            ]
+            "matches": ["*://*.duckduckgo.com/*"]
         },
         {
             "js": ["plugins/sogou.js"],
@@ -1796,8 +1781,7 @@
         },
         {
             "js": ["plugins/googlesheets.js"],
-            "matches": ["*://docs.google.com/spreadsheets/*"
-            ]
+            "matches": ["*://docs.google.com/spreadsheets/*"]
         },
         {
             "js": ["plugins/bilibili.js"],
