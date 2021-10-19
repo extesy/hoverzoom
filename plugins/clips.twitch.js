@@ -4,14 +4,12 @@ hoverZoomPlugins.push({
     prepareImgLinks:function (callback) {
         $('a[href*="clips.twitch.tv/"]').one('mouseenter', function() {
             if(!options.zoomVideos) return;
-            var link = $(this),
-                slug = this.href.replace(/.*clips.twitch.tv\/(\w+).*/, '$1');
-            $.get('https://clips.twitch.tv/api/v2/clips/' + slug + '/status', function (data) {
-                if (data && data.quality_options) {
-                    link.data().hoverZoomSrc = [data.quality_options[0].source]
-                    link.addClass('hoverZoomLink');
-                    hoverZoom.displayPicFromElement(link);
-                }            
+            var slug = this.href.replace(/.*clips.twitch.tv\/([\w-]+)/, '$1');
+            hoverZoom.prepareFromDocument($(this), 'https://clips.twitch.tv/' + slug, function (doc) {
+                var twitterImg = doc.head.querySelector('meta[name="twitter:image"]');
+                if (twitterImg) {
+                    return twitterImg.content.replace('-social-preview.jpg', '.mp4');
+                }
             });
         });
     }
