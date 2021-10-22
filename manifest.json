@@ -1789,6 +1789,12 @@
                         "*://*.bilibili.cn/*",
                         "*://*.biligame.com/*"
             ]
+        },
+	{
+            "js": ["plugins/naver.js"],
+            "matches": ["*://*.naver.com/*"
+            ],
+            "all_frames": true
         }
    ]
 }

@@ -2170,7 +2170,7 @@ var hoverZoom = {
             let contentLength = headers.match(/content-length:(.*)/i);
             if (contentLength) {
                 contentLength = contentLength[1].trim();
-                if (!isNaN(contentLength)) {
+                if (!isNaN(contentLength) && contentLength > 0) {
                     contentLength /= 1024;
                     if (contentLength < 1000) infos.contentLength = (contentLength).toFixed(0) + ' Ko';
                     else infos.contentLength = (contentLength / 1024).toFixed(1) + ' Mo';
@@ -2703,7 +2703,7 @@ var hoverZoom = {
                                 link.data().hoverZoomSrcIndex++;
                                 preloadIndex--;
                             } else {
-                                // all attempts to pre-load img have failed and there are no more src to try, 
+                                // all attempts to pre-load img have failed and there are no more src to try,
                                 // so tag img as preloaded and move to next img
                                 link.data().hoverZoomPreloaded = true;
                             }
@@ -2738,10 +2738,11 @@ var hoverZoom = {
             link.data().hoverZoomSrc = [src];
         }
         link.addClass('hoverZoomLink');
+        link.addClass('hoverZoomLinkFromPlugIn');
         hoverZoom.displayPicFromElement(link);
     },
 
-    prepareFromDocument:function (link, url, getSrc) {
+    prepareFromDocument:function (link, url, getSrc, isAsync = false) {
         url = url.replace('http:', location.protocol);
         chrome.runtime.sendMessage({action:'ajaxRequest', url: url, method: 'GET'}, function(data) {
             var doc = document.implementation.createHTMLDocument();
@@ -2750,15 +2751,23 @@ var hoverZoom = {
             doc.close();
             var httpRefresh = doc.querySelector('meta[http-equiv="refresh"][content]');
             if (httpRefresh) {
-                var redirUrl = httpRefresh.content.substr(httpRefresh.content.toLowerCase().indexOf('url=')+4);
+                var redirUrl = httpRefresh.content.substr(httpRefresh.content.toLowerCase().indexOf('url=') + 4);
                 if (redirUrl) {
                     redirUrl = redirUrl.replace('http:', location.protocol);
                     hoverZoom.prepareFromDocument(link, redirUrl, getSrc);
                 }
             }
-            var src = getSrc(doc);
+            var handleSrc = function (src) {
             if (src)
                 hoverZoom.prepareLink(link, src);
+            };
+
+            if (isAsync) {
+                getSrc(doc, handleSrc);
+            } else {
+                var src = getSrc(doc);
+                handleSrc(src);
+            }
         });
     },
 
