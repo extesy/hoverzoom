@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Google',
-    version:'3.0',
+    version:'4.0',
     prepareImgLinks:function (callback) {
         var res = [];
         var initData = null;
@@ -14,22 +14,19 @@ hoverZoomPlugins.push({
         }
 
         hoverZoom.urlReplace(res,
-            'img[src*=".googleusercontent.com/"], img[src*=".ggpht.com/"]',
+            'img[src*=".googleusercontent.com/"], img[src*=".ggpht.com/"], img[src*=".google.com/"]',
             /(\/|=)(w\d{2,}-h\d{2,}|[hws]\d{2,})(-[npckorw]+)*(\/|$)/,
             options.showHighRes ? '$1s0$4' : '$1s800$4'
         );
-        /*hoverZoom.urlReplace(res,
-            'img[src*=".googleusercontent.com/"], img[src*=".ggpht.com/"]',
-            /(\/|=)(w\d{2,}-h\d{2,}|[hws]\d{2,})(-[npcko]+)*(\/|$)/,
-            options.showHighRes ? '$1s0$4' : '$1s800$4'
-        );*/
+
         hoverZoom.urlReplace(res,
             'a[href*="imgurl="]',
             /.*imgurl=([^&]+).*/,
             '$1'
         );
+        
         hoverZoom.urlReplace(res,
-            'div[style*="background-image"]',
+            'div[style*="background-image"]:not([style*="?"])',
             /(.*=)(.*)/,
             '$1s0'
         );

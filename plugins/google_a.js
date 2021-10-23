@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'GoogleUserContent',
-    version:'1.2',
+    version:'1.3',
     prepareImgLinks:function (callback) {
 
         var res = [];
@@ -31,7 +31,7 @@ hoverZoomPlugins.push({
         var patch4 = '$1=9999';
 
         hoverZoom.urlReplace(res,
-            'img[src*=".googleusercontent.com/"], img[src*=".ggpht.com/"]',
+            'img[src*=".googleusercontent.com/"], img[src*=".ggpht.com/"], img[src*=".google.com/"]',
             regex1,
             patch1
         );
