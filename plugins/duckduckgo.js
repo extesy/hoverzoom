@@ -160,7 +160,11 @@ hoverZoomPlugins.push({
         // Return JSON object corresponding to path, without using the Evil eval
         // path syntax: [key1][key2][key3]...
         function getObjectFromPath(objJson, path) {
-            return new Function('return ' + JSON.stringify(objJson) + path)();
+            if (!path || path.length < 4) return objJson;
+            const keys = path.substr(2, path.length-4).split('"]["');
+            let result = objJson;
+            keys.forEach(key => result = result[key]);
+            return result;
         }
 
         //        src: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.7U2iajPXuu6D4PSvAoI1wQHaFu%26pid%3DApi&f=1

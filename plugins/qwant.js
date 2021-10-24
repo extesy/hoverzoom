@@ -106,7 +106,11 @@ hoverZoomPlugins.push({
         // Return JSON object corresponding to path, without using the Evil eval
         // path syntax: [key1][key2][key3]...
         function getObjectFromPath(objJson, path) {
-            return new Function('return ' + JSON.stringify(objJson) + path)();
+            if (!path || path.length < 4) return objJson;
+            const keys = path.substr(2, path.length-4).split('"]["');
+            let result = objJson;
+            keys.forEach(key => result = result[key]);
+            return result;
         }
 
         function cleanUrl(url) {
