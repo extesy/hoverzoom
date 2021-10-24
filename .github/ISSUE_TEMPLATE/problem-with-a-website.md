@@ -20,4 +20,4 @@ assignees: ''
 2.
 3.
 
-## OS version, extension version (Chrome only, Firefox is not supported)
+## OS version, extension version
