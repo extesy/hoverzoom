@@ -1,14 +1,14 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'MediaWiki_a',
-    version:'0.8',
+    version:'0.9',
     prepareImgLinks:function (callback) {
 
         var res = [];
 
         // thumbnail: https://runescape.wiki/images/thumb/2/26/Senntisten_Kree%27arra_vs_Nodon.png/534px-Senntisten_Kree%27arra_vs_Nodon.png?de6e2
         //  fullsize: https://runescape.wiki/images/2/26/Senntisten_Kree%27arra_vs_Nodon.png
-        $('img[src*="/images/thumb/"], image').each(function() {
+        $('img[src*="wiki"][src*="thumb/"], image[href*="wiki"]').each(function() {
             let _this = $(this);
             let src = '';
             let srcs = [];
