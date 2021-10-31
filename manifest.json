@@ -1788,7 +1788,8 @@
             "matches": ["*://*.bilibili.com/*",
                         "*://*.bilibili.cn/*",
                         "*://*.biligame.com/*"
-            ]
+            ],
+            "all_frames": true
         },
 	{
             "js": ["plugins/naver.js"],
