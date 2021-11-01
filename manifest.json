@@ -1791,11 +1791,15 @@
             ],
             "all_frames": true
         },
-	{
+        {
             "js": ["plugins/naver.js"],
             "matches": ["*://*.naver.com/*"
             ],
             "all_frames": true
+        },
+        {
+            "js": ["plugins/allegro.js"],
+            "matches": ["*://*.allegro.pl/*"]
         }
    ]
 }
