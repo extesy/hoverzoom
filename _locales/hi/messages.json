@@ -44,11 +44,11 @@
         "description": "[popup] More options"
     },
     "optTitle": {
-        "message": "Hover Zoom+ Options",
+        "message": "होवर ज़ूम + विकल्प",
         "description": "[options] Page title"
     },
     "optButtonSave": {
-        "message": "Save",
+        "message": "सेव",
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
