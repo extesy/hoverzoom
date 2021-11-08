@@ -52,115 +52,115 @@
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
-        "message": "Cancel",
+        "message": "रद्द करें",
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
-        "message": "Reset",
+        "message": "रीसेट",
         "description": "[options] Reset button label"
     },
     "optSaved": {
-        "message": "Options saved. Some settings might need a page refresh.",
+        "message": "विकल्प सेव किये गए। कुछ सेटिंग्स को पेज रीफ्रेश करने की आवश्यकता हो सकती है।",
         "description": "[options] Notification after saving options"
     },
     "optPageGeneral": {
-        "message": "General",
+        "message": "सामान्य",
         "description": "[options] Page title for general options"
     },
     "optExtensionEnabled": {
-        "message": "Enable Hover Zoom",
+        "message": "होवर ज़ूम शुरू करें",
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optSectionView": {
-        "message": "View",
+        "message": "वीउ",
         "description": "[options] Page section for view options"
     },
     "optSectionVideo": {
-        "message": "Video",
+        "message": "वीडियो",
         "description": "[options] Page section for video options"
     },
     "optZoomFactor": {
-        "message": "Enlarge zoomed images by this factor:",
+        "message": "इस कारक द्वारा ज़ूम की गई छवियों को बड़ा करें:",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optZoomFactorUnitName": {
-        "message": "times",
+        "message": "इतने बार",
         "description": "[options] Unit name (percentage) for zoomed images size option"
     },
     "optZoomFactorTooltip": {
-        "message": "Multiply the size of zoomed images by this amount",
+        "message": "ज़ूम की गई छवियों के आकार को इस राशि से गुणा करें",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optCaptionLocation": {
-        "message": "Caption position:",
+        "message": "कैप्शन की स्थिति:",
         "description": "[options] Adjust the position of the caption"
     },
     "optCaptionLocationTooltip": {
-        "message": "View the caption above/below the image, or not at all",
+        "message": "इमेज के ऊपर या नीचे कैप्शन देखें, या बिल्कुल नहीं",
         "description": "[options] Tooltip for adjusting the position of the caption"
     },
     "optCaptionLocationAbove": {
-        "message": "Above",
+        "message": "ऊपर",
         "description": "[options] Caption location option to put captions above the image"
     },
     "optCaptionLocationBelow": {
-        "message": "Below",
+        "message": "नीचे",
         "description": "[options] Caption location option to put captions below the image"
     },
     "optCaptionLocationNone": {
-        "message": "None",
+        "message": "कोई नहीं",
         "description": "[options] Caption location option to disable captions"
     },
     "optDetailsLocation": {
-        "message": "Details position:",
+        "message": "विवरण स्थिति:",
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
-        "message": "View details (size, format...) above/below the image, or not at all",
+        "message": "चित्र के ऊपर या नीचे विवरण (आकार, प्रारूप...) देखें, या बिल्कुल नहीं",
         "description": "[options] Tooltip for adjusting the position of details"
     },
     "optDetailsLocationAbove": {
-        "message": "Above",
+        "message": "ऊपर",
         "description": "[options] Details location option to put details above the image"
     },
     "optDetailsLocationBelow": {
-        "message": "Below",
+        "message": "नीचे",
         "description": "[options] Details location option to put details below the image"
     },
     "optDetailsLocationNone": {
-        "message": "None",
+        "message": "कोई नहीं",
         "description": "[options] Details location option to disable details"
     },
     "optFontOutline": {
-        "message": "Font outline",
+        "message": "फ़ॉन्ट रूपरेखा",
         "description": "[options] Outline option"
     },
     "optFontOutlineTooltip": {
-        "message": "If checked: use white font + thin black border for caption & details",
+        "message": "यदि चेक किया गया है: कैप्शन और विवरण के लिए सफेद फ़ॉन्ट + पतली काली सीमा का उपयोग करें",
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
-        "message": "Extend zoomed images below the mouse cursor",
+        "message": "माउस कर्सर के नीचे ज़ूम की गई छवियों को बढ़ाएँ",
         "description": "[options] Extend zoomed images below the mouse cursor option"
     },
     "optMouseUnderlapTooltip": {
-        "message": "If unchecked, zoomed images will be resized dynamically",
+        "message": "यदि अनचेक किया गया है, तो ज़ूम की गई छवियों को गतिशील रूप से आकार दिया जाएगा",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
     "optHideMouseCursor": {
-        "message": "Hide mouse cursor after:",
+        "message": "सेकंड के बाद माउस कर्सर छुपाएं",
         "description": "[options] Hide mouse cursor option"
     },
     "optHideMouseCursorTooltip": {
-        "message": "If checked, mouse cursor will be hidden after delay",
+        "message": "यदि चेक किया गया है, तो देरी के बाद माउस कर्सर छुपाया जाएगा",
         "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optPageActionEnabled": {
-        "message": "Show icon in address bar",
+        "message": "पता बार में आइकन दिखाएं",
         "description": "[options] Show icon in address bar option"
     },
     "optPageActionEnabledTooltip": {
-        "message": "Only when images can be zoomed",
+        "message": "केवल जब छवियों को ज़ूम किया जा सकता है",
         "description": "[options] Tooltip for show icon in address bar option"
     },
     "optShowWhileLoading": {
