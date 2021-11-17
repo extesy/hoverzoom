@@ -496,15 +496,15 @@
         "description": "[options] Add download duration option"
     },
     "optSectionTroubleshooting": {
-        "message": "Troubleshooting",
+        "message": "Depanare",
         "description": "[options] Page section for troubleshooting"
     },
     "optEnableDebugTooltip": {
-        "message": "Display debug messages in browser's console (to open console: press F12)",
+        "message": "Afișează mesajele de depanare în consola browser-ului (pentru a deschide consola: apăsați F12)",
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
-        "message": "Enable debug",
+        "message": "Activează depanarea",
         "description": "[options] Enable debug option"
     },
     "optPixelsUnitName": {
