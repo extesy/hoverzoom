@@ -40,6 +40,9 @@ hoverZoomPlugins.push({
                 return;
             }
 
+            // strip query parameters
+            href = href.split("?")[0];
+
             if (options.zoomVideos && (href.substr(-3) == 'gif' || href.substr(-4) == 'gifv')) {
                 data.hoverZoomSrc = [href.replace(/\.gifv?/, '.mp4'), href.replace(/\.gifv?/, '.webm'), href];
                 res.push(link);
