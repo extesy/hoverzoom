@@ -40,7 +40,7 @@ function onMessage(message, sender, callback) {
                 permissions: ['downloads']
             }, function (granted) {
                 if (granted) {
-                    chrome.downloads.download({url: message.url, filename: message.filename});
+                    chrome.downloads.download({url: message.url, filename: message.filename, conflictAction: message.conflictAction, saveAs: false});
                     return true;
                 } else {
                     return false;
