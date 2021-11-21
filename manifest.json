@@ -50,7 +50,7 @@
     ],
     "content_scripts": [
         {
-            "js": [ "js/libs/jquery-3.2.1.js", "js/libs/contentScriptsAPIBridge.js", "js/tools.js", "js/plugins.js", "plugins/default.js", "js/hoverzoom.js"],
+            "js": [ "js/hls.js", "js/libs/jquery-3.2.1.js", "js/libs/contentScriptsAPIBridge.js", "js/tools.js", "js/plugins.js", "plugins/default.js", "js/hoverzoom.js"],
             "matches": ["<all_urls>"],
             "all_frames": true
         },
@@ -1687,6 +1687,10 @@
         {
             "js": ["plugins/aol.js"],
             "matches": ["*://*.aol.com/*"]
+        },
+        {
+            "js": ["plugins/twitch.js"],
+            "matches": ["*://*.twitch.tv/*"]
         },
         {
             "js": ["plugins/govdeals.js"],
