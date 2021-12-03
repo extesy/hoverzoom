@@ -2731,6 +2731,9 @@ var hoverZoom = {
             } else {
                 link = _this;
             }
+            if (!link[0]) {
+                return;
+            }
             url = hoverZoom.getThumbUrl(this);
             if (!url) {
                 return;

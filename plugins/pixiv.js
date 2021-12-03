@@ -1,21 +1,22 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'Pixiv',
+    version:'2.0',
     prepareImgLinks: function (callback) {
         // the element selector
         const selector = {
-            thumbnail: 'a[href*="/artworks/"], a[href*="member_illust.php?mode="]',
+            thumbnail: 'a[href*="/artworks/"], a[href*="member_illust.php?mode="], a[href*="/group/"]',
         }
 
         /**
-         * extract image count from html string 
-         * Example : 
+         * extract image count from html string
+         * Example :
          * html string : ...-fzXfOs bAzGJS">25</span></div>...
          * Captures:
-         * Group 1 : 25 
+         * Group 1 : 25
          */
-        // 
-        const imageCountRegex = />(\d+)<\/span/ 
+        //
+        const imageCountRegex = />(\d+)<\/span/
         function getImgCount(containerStr) {
             const match = containerStr.match(imageCountRegex)
             if(match != null) {
@@ -28,12 +29,12 @@ hoverZoomPlugins.push({
         /**
          * get the date and id from url of thumbnail
          * it will search from html string
-         * 
+         *
          * Example Urls : https://i.pximg.net/c/150x150/img-master/img/2019/09/19/11/04/57/76858051_p0_master1200.jpg
          * Group 1      : (the date) 2019/09/19/11/04/57
          * Group 3      : (the id) 76858051
          */
-        const urlregex = /img-master\/img\/(\d+\/(\d\d\/?(?!\d{3})){5})\/(\d+)_/
+        const urlregex = /\/img\/(\d+\/(\d\d\/?(?!\d{3})){5})\/(\d+)_/
         function getData(containerStr) {
             const match = containerStr.match(urlregex)
             if (match != null)
@@ -45,7 +46,7 @@ hoverZoomPlugins.push({
 
         /**
          * jQuery one listener
-         * only 
+         * only
          */
         const imageElements = $(selector.thumbnail)
         imageElements.one('mouseover', function () {
@@ -54,7 +55,7 @@ hoverZoomPlugins.push({
             // stop function if data already bind
             if(jcontainer.data().hoverZoomGallerySrc) return;
             const containerString = this.outerHTML
-            
+
             const data = getData(containerString)
             // abort if the data not found
             if(!data) return
@@ -70,8 +71,8 @@ hoverZoomPlugins.push({
                     regular: `https://i.pximg.net/img-master/img/${data.date}/${data.id}_p${i}_master1200.jpg`
                 }
                 const urls = [url.regular]
-                
-                /** 
+
+                /**
                  * unshift original value if options showHighRes is true
                  * so its loaded first
                 */
@@ -81,7 +82,55 @@ hoverZoomPlugins.push({
                 galleryUrls.push(urls)
             }
             jcontainer.data('hoverZoomGallerySrc', galleryUrls)
+
             callback($([jcontainer]))
         })
+
+
+        var res = [];
+
+        // user profile
+        // sample:   https://i.pximg.net/user-profile/img/2021/08/28/02/44/33/21309524_fa9dbf2139f21008fed22e85eb406285_50.png
+        // original: https://i.pximg.net/user-profile/img/2021/08/28/02/44/33/21309524_fa9dbf2139f21008fed22e85eb406285.png
+        hoverZoom.urlReplace(res,
+            'img[src],[style*="url"]',
+            /(\/user-profile\/.*)_\d+\./,
+            '$1.',
+            'a'
+        );
+
+        // booth
+        // sample:   https://booth.pximg.net/c/300x300_a2_g5/7684ea57-1144-4938-9b81-f6cb7688d683/i/3349359/84ac0b91-4b42-4ae1-a5b7-549d163cbd33_base_resized.jpg
+        // original: https://booth.pximg.net/7684ea57-1144-4938-9b81-f6cb7688d683/i/3349359/84ac0b91-4b42-4ae1-a5b7-549d163cbd33_base_resized.jpg
+        hoverZoom.urlReplace(res,
+            'img[src],[style*="url"]',
+            /booth\.pximg\.net\/.*?\/.*?\//,
+            'booth.pximg.net/',
+            'a'
+        );
+
+        // novel, imgaz
+        // sample:   https://i.pximg.net/c/600x600/novel-cover-master/img/2021/04/08/15/34/41/15007597_21fda528ee2782885384385d50bcd9f5_master1200.jpg
+        // original: https://i.pximg.net/novel-cover-master/img/2021/04/08/15/34/41/15007597_21fda528ee2782885384385d50bcd9f5_master1200.jpg
+        hoverZoom.urlReplace(res,
+            'img[src],[style*="url"]',
+            /i\.pximg\.net\/.*?\/.*?\/(novel|imgaz)/,
+            'i.pximg.net/$1',
+            'a'
+        );
+
+        // sketch
+        // sample:   https://img-sketch.pximg.net/c!/w=120,h=120,f=webp:jpeg/uploads/medium/file/9030309/sq800_1008336241213197030.png
+        // original: https://img-sketch.pximg.net/uploads/medium/file/9030309/1008336241213197030.png
+        hoverZoom.urlReplace(res,
+            'img[src],[style*="url"]',
+            [/img-sketch\.pximg\.net\/.*?\/.*?\//, /sq\d+_/],
+            ['img-sketch.pximg.net/', ''],
+            'a'
+        );
+
+        if (res.length) {
+            callback($(res), this.name);
+        }
     }
 });
