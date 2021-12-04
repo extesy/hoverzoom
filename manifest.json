@@ -87,7 +87,8 @@
                 "plugins/cloudfront_a.js",
                 "plugins/squarespace_a.js",
                 "plugins/alicdn_a.js",
-                "plugins/aws_a.js"
+                "plugins/aws_a.js",
+                "plugins/imagebam_a.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
