@@ -1,13 +1,13 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'cloudfront_a',
-    version:'0.1',
+    version:'0.2',
     prepareImgLinks:function (callback) {
         var res = [];
 
         // sample: https://d38hokjm2drjyk.cloudfront.net/?url=nypost.com%2Fwp-content%2Fuploads%2Fsites%2F2%2F2021%2F03%2Fjen-psaki.jpg%3Fquality%3D90%26strip%3Dall%26w%3D1200&w=300&h=190&secure=yes&token=cdb675f5d8e584c6d6233188352417df6750c099
         //      -> nypost.com/wp-content/uploads/sites/2/2021/03/jen-psaki.jpg
-        var reThumb1 = /.*cloudfront.net\/\?url=(.*)\.(jpe?g|gif|png|webp)(.*)/;
+        var reThumb1 = /.*cloudfront.net.*?\?url=(.*)\.(jpe?g|gif|png|webp)(.*)/;
         var reReplace1 = '$1.$2';
 
         // sample: https://www.leparisien.fr/resizer/xRuYCaOxI88qdE8cFXvzjqhmje4=/932x582/cloudfront-eu-central-1.images.arcpublishing.com/leparisien/5WVYUA3CRHLVQ2B5HZZCL43LTM.jpg
