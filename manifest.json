@@ -1809,6 +1809,10 @@
         {
             "js": ["plugins/startpage.js"],
             "matches": ["*://*.startpage.com/*"]
+        },
+        {
+            "js": ["plugins/redgifs.js"],
+            "matches": ["*://*.redgifs.com/*"]
         }
    ]
 }
