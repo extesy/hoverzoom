@@ -1,13 +1,21 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Twitter',
+    version:'0.3',
     prepareImgLinks:function (callback) {
         var res = [];
-        
+
         hoverZoom.urlReplace(res,
             'img[src*="_mini"]:not([src*="default_profile_"]), img[src*="_normal"]:not([src*="default_profile_"]), img[src*="_bigger"]:not([src*="default_profile_"])',
             /_(mini|normal|bigger)/,
             ''
+        );
+
+        hoverZoom.urlReplace(res,
+            'img[src*="/profile_images/"]',
+            /_(mini|normal|bigger)/,
+            '',
+            'a'
         );
 
         hoverZoom.urlReplace(res,
