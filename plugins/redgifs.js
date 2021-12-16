@@ -1,9 +1,10 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'redgifs.com',
-    version:'0.2',
+    version:'0.3',
     prepareImgLinks:function (callback) {
         var res = [];
+        var name = this.name;
 
         $('a[href^="https://redgifs.com/"],a[href^="https://www.redgifs.com/"]').one('mouseenter', function() {
             var link = $(this),
@@ -12,7 +13,7 @@ hoverZoomPlugins.push({
             $.get('https://api.redgifs.com/v1/gfycats/' + gfyId, function (data) {
                 if (data && data.gfyItem) {
                     link.data().hoverZoomSrc = [options.zoomVideos ? data.gfyItem.mp4Url : data.gfyItem.gifUrl]
-                    link.addClass('hoverZoomLink');
+                    callback(link, name);
                     hoverZoom.displayPicFromElement(link);
                 }
             });
@@ -30,9 +31,13 @@ hoverZoomPlugins.push({
         // best quality version: https://thumbs2.redgifs.com/CookedUprightAfricanparadiseflycatcher.mp4
         $('video:not(.hoverZoomMouseover)').addClass('hoverZoomMouseover').one('mouseover', function() {
             let link = $(this);
-            let srcs = $(this).find('source[src]');
-            if (srcs.length != 1) return;
-            let videoUrlMobile = srcs[0].src;
+            let src = this.src;
+            if (src == "") {
+                let srcs = $(this).find('source[src]');
+                if (srcs.length != 1) return;
+                src = srcs[0].src;
+            }
+            let videoUrlMobile = src;
             let videoUrlBestQuality = videoUrlMobile.replace('-mobile', '');
             let videoUrl = videoUrlMobile + '.video';
             if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
@@ -49,7 +54,7 @@ hoverZoomPlugins.push({
         });
 
         if (res.length) {
-            callback($(res), this.name);
+            callback($(res), name);
         }
     }
 });
