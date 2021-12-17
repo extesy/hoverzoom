@@ -1,8 +1,12 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Bing_a',
-    version:'0.4',
+    version:'0.5',
     prepareImgLinks:function (callback) {
+
+        // skip some search engines
+        if (window.location.host.indexOf('you.com') != -1) return; // skip You.com
+        if (window.location.host.indexOf('ecosia.org') != -1) return; // skip Ecosia.org
 
         var res = [];
 
