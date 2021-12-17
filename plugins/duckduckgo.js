@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'duckduckgo',
-    version:'1.1',
+    version:'1.2',
     prepareImgLinks:function (callback) {
 
         var res = [];
@@ -18,8 +18,11 @@ hoverZoomPlugins.push({
             var DDGcallback = function() {
                 // skip storage if DDG internal data has not been modified
                 let DDGDataOld = sessionStorage.getItem('DDGData');
-                let DDGDataNew = JSON.stringify(window.DDG.Data.answers._definitions[1].model.items);
-                if (DDGDataNew != DDGDataOld) {
+                let DDGDataNew = undefined;
+                try {
+                    DDGDataNew = JSON.stringify(window.DDG.Data.answers._definitions[1].model.items);
+                } catch {}
+                if (DDGDataNew && DDGDataNew != DDGDataOld) {
                     sessionStorage.setItem('DDGData', DDGDataNew);
                     // Add & remove empty <a> element to/from DOM to trigger HoverZoom,
                     // so data just added to sessionStorage can be used
@@ -193,14 +196,13 @@ hoverZoomPlugins.push({
 
             // search for thumbnail among DDG internal data
             if (!DDGData) {
-
-                DDGData = sessionStorage.getItem('DDGData');
-                DDGDataLowerCase = DDGData.toString().toLowerCase();
                 try {
+                    DDGData = sessionStorage.getItem('DDGData');
+                    DDGDataLowerCase = DDGData.toString().toLowerCase();
                     DDGDataJson = JSON.parse(DDGData);
                 } catch {}
             }
-            if (DDGDataJson) {
+            if (DDGDataLowerCase && DDGDataJson) {
 
                 if (DDGDataLowerCase.indexOf(thumbnail.toString().toLowerCase()) == -1) return;
 

@@ -1813,6 +1813,10 @@
         {
             "js": ["plugins/redgifs.js"],
             "matches": ["*://*.redgifs.com/*"]
+        },
+        {
+            "js": ["plugins/you.js"],
+            "matches": ["*://*.you.com/*"]
         }
    ]
 }
