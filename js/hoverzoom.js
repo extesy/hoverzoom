@@ -174,7 +174,7 @@ var hoverZoom = {
                 'box-shadow':'1px 1px 5px rgba(0, 0, 0, 0.5), -1px 1px 5px rgba(0, 0, 0, 0.5), 1px -1px 5px rgba(0, 0, 0, 0.5), -1px -1px 5px rgba(0, 0, 0, 0.5)' // cast shadow in every direction
             },
             audioFullSizeCss = {
-                'opacity':'1',
+                'opacity':'0',
                 'position':'absolute',
                 'left':'0',
                 'top':'0',
@@ -923,7 +923,7 @@ var hoverZoom = {
                     var video = document.createElement('video');
                     video.style.width = 0;
                     video.style.height = 0;
-                    video.controls = true;
+                    video.controls = imageLocked;
                     video.loop = true;
                     video.autoplay = true;
                     video.muted = options.muteVideos;
@@ -946,7 +946,7 @@ var hoverZoom = {
 
                     if (imgDetails.audioUrl) {
                         var audio = document.createElement('audio');
-                        audio.controls = true;
+                        audio.controls = imageLocked;
                         audio.autoplay = false;
                         audio.muted = options.muteVideos;
                         audio.volume = options.videoVolume;
@@ -986,7 +986,7 @@ var hoverZoom = {
                     var video = document.createElement('video');
                     video.style.width = 0;
                     video.style.height = 0;
-                    video.controls = true;
+                    video.controls = imageLocked;
                     imgFullSize = $(video).appendTo(hz.hzImg);
                     hls = new Hls({
                         //debug: true,
@@ -1135,26 +1135,34 @@ var hoverZoom = {
 
             hz.hzImg.hzImgContainer = $('<div id="hzImgContainer" style="position:relative"></div>').appendTo(hz.hzImg);
             imgFullSize.css(imgFullSizeCss).appendTo(hz.hzImg.hzImgContainer);
+
+            // display video controls
+            if (imageLocked) {
+                let v = hz.hzImg.find('video')[0];
+                if (v) v.controls = true;
+            }
+
             if (audioFullSize) {
+                // display audio controls
+                if (imageLocked) {
+                    audioFullSize[0].controls = true;
 
-                audioFullSize[0].controlsTimeout = setTimeout(function() { audioFullSize[0].style.opacity = 0 }, 2500);
+                    audioFullSize.hover(function() {
+                        clearTimeout(audioFullSize[0].controlsTimeout);
+                        audioFullSize[0].style.opacity = 1;
+                    });
 
-                audioFullSize.hover(function() {
-                    clearTimeout(audioFullSize[0].controlsTimeout);
-                    audioFullSize[0].style.opacity = 1;
-                });
+                    imgFullSize.mousemove(function() {
+                        clearTimeout(audioFullSize[0].controlsTimeout);
+                        audioFullSize[0].style.opacity = 1;
+                        audioFullSize[0].controlsTimeout = setTimeout(function() { audioFullSize[0].style.opacity = 0 }, 2500);
+                    });
 
-                imgFullSize.mousemove(function() {
-                    clearTimeout(audioFullSize[0].controlsTimeout);
-                    audioFullSize[0].style.opacity = 1;
-                    audioFullSize[0].controlsTimeout = setTimeout(function() { audioFullSize[0].style.opacity = 0 }, 2500);
-                });
-
-                imgFullSize.mouseleave(function() {
-                    clearTimeout(audioFullSize[0].controlsTimeout);
-                    audioFullSize[0].style.opacity = 0;
-                });
-
+                    imgFullSize.mouseleave(function() {
+                        clearTimeout(audioFullSize[0].controlsTimeout);
+                        audioFullSize[0].style.opacity = 0;
+                    });
+                }
                 audioFullSize.css(audioFullSizeCss).appendTo(hz.hzImg.hzImgContainer);
             }
 
