@@ -85,6 +85,12 @@ var hoverZoom = {
         'border-radius':'4px',
         'box-shadow':'0px 1px 3px rgba(0, 0, 0, 0.4)'
     },
+    hzImgContainerCss:{
+        'position':'relative',
+        'display':'flex',
+        'align-items':'center',
+        'justify-content':'center'
+    },
     hzImgLoadingCss:{ // green
         'border-color':'#e1ffbf',
         'background-color':'#e1ffbf'
@@ -184,6 +190,14 @@ var hoverZoom = {
                 'padding':'0',
                 'transition':'opacity ease 1s'
             },
+            videoErrorMsgCss = {
+                'font':'menu',
+                'font-size':'xxx-large',
+                'font-weight':'bold',
+                'color':'white',
+                'text-shadow':'1px 1px 0px black, -1px 1px 0px black, 1px -1px 0px black, -1px -1px 0px black',
+                'text-align':'center'
+            },
             hzCaptionCss = {
                 'opacity':'1',
                 'font':'menu',
@@ -278,6 +292,24 @@ var hoverZoom = {
                 transform: matrix(1, 0, 0, -1, 0, 0) !important;
             }`;
         document.head.appendChild(styleFlip);
+
+        // blinker
+        var styleBlink = document.createElement('style');
+        styleBlink.innerHTML = `
+            @keyframes blink {
+                0% { color: red; }
+                100% { color: white; }
+            }
+            @-webkit-keyframes blink {
+                0% { color: red; }
+                100% { color: white; }
+            }
+            .blink {
+                -webkit-animation: blink 1s linear infinite;
+                -moz-animation: blink 1s linear infinite;
+                animation: blink 1s linear infinite;
+            }`;
+        document.head.appendChild(styleBlink);
 
         var flashFixDomains = [
             'www.redditmedia.com'
@@ -940,8 +972,25 @@ var hoverZoom = {
                     });
                     video.addEventListener('loadeddata', function() {
                         imgFullSizeOnLoad();
-                        video.play();
-                        video.removeAttribute('poster');
+                        let startPlayPromise = video.play();
+                        if (startPlayPromise !== undefined) {
+                            startPlayPromise.then(() => {
+                                cLog("play started");
+                                video.removeAttribute('poster');
+                            }).catch(error => {
+                                if (error.name === "NotAllowedError") {
+                                    // NotAllowedError: play() failed because the user didn't interact with the document first. https://goo.gl/xX8pDD
+                                    cLog("Play not allowed: " + error);
+                                    let videoMsgDiv = $('<div/>');
+                                    $('<p/>').text(chrome.i18n.getMessage("msgClickPageToPlayVideo")).css(videoErrorMsgCss).addClass('blink').appendTo(videoMsgDiv);
+                                    $(hz.hzImg.hzImgContainer).css(hz.hzImgContainerCss);
+                                    $(videoMsgDiv).css({'width':'100%','position':'absolute'}).appendTo(hz.hzImg.hzImgContainer);
+                                    video.removeAttribute('poster');
+                                } else {
+                                    cLog("Play error: " + error);
+                                }
+                            });
+                        }
                     });
 
                     if (imgDetails.audioUrl) {
@@ -1010,12 +1059,29 @@ var hoverZoom = {
                     });
                     video.addEventListener('loadeddata', function() {
                         displayFullSizeImage();
-                        video.play();
-                        video.removeAttribute('poster');
+
+                        let startPlayPromise = video.play();
+                        if (startPlayPromise !== undefined) {
+                            startPlayPromise.then(() => {
+                                cLog("play started");
+                                video.removeAttribute('poster');
+                            }).catch(error => {
+                                if (error.name === "NotAllowedError") {
+                                    // NotAllowedError: play() failed because the user didn't interact with the document first. https://goo.gl/xX8pDD
+                                    cLog("Play not allowed: " + error);
+                                    let videoMsgDiv = $('<div/>');
+                                    $('<p/>').text(chrome.i18n.getMessage("msgClickPageToPlayVideo")).css(videoErrorMsgCss).addClass('blink').appendTo(videoMsgDiv);
+                                    $(hz.hzImg.hzImgContainer).css(hz.hzImgContainerCss);
+                                    $(videoMsgDiv).css({'width':'100%','position':'absolute'}).appendTo(hz.hzImg.hzImgContainer);
+                                    video.removeAttribute('poster');
+                                } else {
+                                    cLog("Play error: " + error);
+                                }
+                            });
+                        }
                     });
                 } else {
-
-                    hoverZoom.hzImg.hzImgContainer = $('<div id="hzImgContainer" style="position:relative"></div>').appendTo(hoverZoom.hzImg);
+                    hz.hzImg.hzImgContainer = $('<div id="hzImgContainer"/>').css(hz.hzImgContainerCss).appendTo(hz.hzImg);
                     imgFullSize = $('<img style="border: none" />').appendTo(hz.hzImg.hzImgContainer).on('load', imgFullSizeOnLoad).on('error', imgFullSizeOnError).attr('src', imgDetails.url);
                     // Note for Chrome: if image is loaded from cache then 'load' event is never fired
                 }
@@ -1132,8 +1198,8 @@ var hoverZoom = {
                          .css('opacity', 1);
                 canvas.appendTo(hz.hzImg);
             }
-
-            hz.hzImg.hzImgContainer = $('<div id="hzImgContainer" style="position:relative"></div>').appendTo(hz.hzImg);
+            
+            hz.hzImg.hzImgContainer = $('<div id="hzImgContainer"/>').css(hz.hzImgContainerCss).appendTo(hz.hzImg);
             imgFullSize.css(imgFullSizeCss).appendTo(hz.hzImg.hzImgContainer);
 
             // display video controls
