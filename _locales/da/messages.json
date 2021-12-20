@@ -618,5 +618,9 @@
     "optFooterVersionCopyright": {
         "message": "Version $1 - © 2014-2021 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
+    },
+    "msgClickPageToPlayVideo": {
+        "message": "click page then hover again",
+        "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }
