@@ -13,7 +13,7 @@ hoverZoomPlugins.push({
             ''
         );
 
-        $('div.product-tile__cover').one('mouseover', function () {
+        $('div.product-tile__cover,div.product-tile__image-wrapper').one('mouseover', function () {
             var link = $(this);
             var sources = link.find('source');
             if (sources.length == 0) return;
@@ -21,7 +21,9 @@ hoverZoomPlugins.push({
             var src = srcset[srcset.length-1].trim().split(' ')[0];
             // sample: //images-2.gog-statics.com/c0a40a3c31a46d4bf1f7d4454f4c4da5bb4f76d85ddaba20485b7c3a793c5610_product_tile_116.webp
             //      -> //images-2.gog-statics.com/c0a40a3c31a46d4bf1f7d4454f4c4da5bb4f76d85ddaba20485b7c3a793c5610.webp
-            src = src.replace(/_product_tile_.+\d+/, '');
+            console.log(src);
+            src = src.replace(/_product_tile_.+?\d+w?(_\dx)?/, '');
+            console.log(src);
             hoverZoom.prepareLink(link, src);
         });
 
