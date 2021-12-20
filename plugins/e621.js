@@ -22,6 +22,14 @@ hoverZoomPlugins.push({
             res.push(img);
         });
 
+        $('img[src*="/180x180/"], img[src*="/360x360/"]').each(function () {
+            var img = $(this),
+                src = img.attr('src');
+            src = src.replace('/180x180/', '/original/').replace('/360x360/', '/original/').replace(/jpg$/, '');
+            img.data().hoverZoomSrc = [src + 'jpg', src + 'png', src + 'gif', src + 'webm'];
+            res.push(img);
+        });
+
         callback($(res), this.name);
     }
 });
