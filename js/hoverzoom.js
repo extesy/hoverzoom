@@ -293,24 +293,6 @@ var hoverZoom = {
             }`;
         document.head.appendChild(styleFlip);
 
-        // blinker
-        var styleBlink = document.createElement('style');
-        styleBlink.innerHTML = `
-            @keyframes blink {
-                0% { color: red; }
-                100% { color: white; }
-            }
-            @-webkit-keyframes blink {
-                0% { color: red; }
-                100% { color: white; }
-            }
-            .blink {
-                -webkit-animation: blink 1s linear infinite;
-                -moz-animation: blink 1s linear infinite;
-                animation: blink 1s linear infinite;
-            }`;
-        document.head.appendChild(styleBlink);
-
         var flashFixDomains = [
             'www.redditmedia.com'
         ];
@@ -982,7 +964,7 @@ var hoverZoom = {
                                     // NotAllowedError: play() failed because the user didn't interact with the document first. https://goo.gl/xX8pDD
                                     cLog("Play not allowed: " + error);
                                     let videoMsgDiv = $('<div/>');
-                                    $('<p/>').text(chrome.i18n.getMessage("msgClickPageToPlayVideo")).css(videoErrorMsgCss).addClass('blink').appendTo(videoMsgDiv);
+                                    $('<p/>').text(chrome.i18n.getMessage("msgClickPageToPlayVideo")).css(videoErrorMsgCss).appendTo(videoMsgDiv);
                                     $(hz.hzImg.hzImgContainer).css(hz.hzImgContainerCss);
                                     $(videoMsgDiv).css({'width':'100%','position':'absolute'}).appendTo(hz.hzImg.hzImgContainer);
                                     video.removeAttribute('poster');
@@ -1070,7 +1052,7 @@ var hoverZoom = {
                                     // NotAllowedError: play() failed because the user didn't interact with the document first. https://goo.gl/xX8pDD
                                     cLog("Play not allowed: " + error);
                                     let videoMsgDiv = $('<div/>');
-                                    $('<p/>').text(chrome.i18n.getMessage("msgClickPageToPlayVideo")).css(videoErrorMsgCss).addClass('blink').appendTo(videoMsgDiv);
+                                    $('<p/>').text(chrome.i18n.getMessage("msgClickPageToPlayVideo")).css(videoErrorMsgCss).appendTo(videoMsgDiv);
                                     $(hz.hzImg.hzImgContainer).css(hz.hzImgContainerCss);
                                     $(videoMsgDiv).css({'width':'100%','position':'absolute'}).appendTo(hz.hzImg.hzImgContainer);
                                     video.removeAttribute('poster');
