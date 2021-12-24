@@ -116,11 +116,11 @@
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
-        "message": "View details (size, format...) above/below the image, or not at all",
+        "message": "Открыть детали (размер, формат...) сверху/снизу от изображения или полностью спрятать",
         "description": "[options] Tooltip for adjusting the position of details"
     },
     "optDetailsLocationAbove": {
-        "message": "Above",
+        "message": "Над",
         "description": "[options] Details location option to put details above the image"
     },
     "optDetailsLocationBelow": {
