@@ -1817,6 +1817,11 @@
         {
             "js": ["plugins/you.js"],
             "matches": ["*://*.you.com/*"]
+        },
+        {
+            "js": ["plugins/wikifeet.js"],
+            "matches": ["*://*.wikifeetx.com/*",
+                        "*://*.mywikifeet.com/*"]
         }
    ]
 }
