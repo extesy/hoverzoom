@@ -293,6 +293,24 @@ var hoverZoom = {
             }`;
         document.head.appendChild(styleFlip);
 
+        // blinker
+        var styleBlink = document.createElement('style');
+        styleBlink.innerHTML = `
+            @keyframes blinkWarning {
+                0% { color: red; }
+                100% { color: white; }
+            }
+            @-webkit-keyframes blinkWarning {
+                0% { color: red; }
+                100% { color: white; }
+            }
+            .blinkWarning {
+                -webkit-animation: blinkWarning 1s linear infinite;
+                -moz-animation: blinkWarning 1s linear infinite;
+                animation: blinkWarning 1s linear infinite;
+            }`;
+        document.head.appendChild(styleBlink);
+
         var flashFixDomains = [
             'www.redditmedia.com'
         ];
@@ -964,7 +982,7 @@ var hoverZoom = {
                                     // NotAllowedError: play() failed because the user didn't interact with the document first. https://goo.gl/xX8pDD
                                     cLog("Play not allowed: " + error);
                                     let videoMsgDiv = $('<div/>');
-                                    $('<p/>').text(chrome.i18n.getMessage("msgClickPageToPlayVideo")).css(videoErrorMsgCss).appendTo(videoMsgDiv);
+                                    $('<p/>').text(chrome.i18n.getMessage("msgClickPageToPlayVideo")).css(videoErrorMsgCss).addClass('blinkWarning').appendTo(videoMsgDiv);
                                     $(hz.hzImg.hzImgContainer).css(hz.hzImgContainerCss);
                                     $(videoMsgDiv).css({'width':'100%','position':'absolute'}).appendTo(hz.hzImg.hzImgContainer);
                                     video.removeAttribute('poster');
@@ -1052,7 +1070,7 @@ var hoverZoom = {
                                     // NotAllowedError: play() failed because the user didn't interact with the document first. https://goo.gl/xX8pDD
                                     cLog("Play not allowed: " + error);
                                     let videoMsgDiv = $('<div/>');
-                                    $('<p/>').text(chrome.i18n.getMessage("msgClickPageToPlayVideo")).css(videoErrorMsgCss).appendTo(videoMsgDiv);
+                                    $('<p/>').text(chrome.i18n.getMessage("msgClickPageToPlayVideo")).css(videoErrorMsgCss).addClass('blinkWarning').appendTo(videoMsgDiv);
                                     $(hz.hzImg.hzImgContainer).css(hz.hzImgContainerCss);
                                     $(videoMsgDiv).css({'width':'100%','position':'absolute'}).appendTo(hz.hzImg.hzImgContainer);
                                     video.removeAttribute('poster');
@@ -1180,7 +1198,7 @@ var hoverZoom = {
                          .css('opacity', 1);
                 canvas.appendTo(hz.hzImg);
             }
-            
+
             hz.hzImg.hzImgContainer = $('<div id="hzImgContainer"/>').css(hz.hzImgContainerCss).appendTo(hz.hzImg);
             imgFullSize.css(imgFullSizeCss).appendTo(hz.hzImg.hzImgContainer);
 
