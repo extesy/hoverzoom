@@ -142,4 +142,26 @@ function init() {
     chrome.runtime.onMessage.addListener(onMessage);
 }
 
+// Store HZ+ dates of installation & last update
+chrome.runtime.onInstalled.addListener((details) => {
+
+    const reason = details.reason;
+    let d = new Date();
+    let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+
+    switch (reason) {
+        case 'install':
+            localStorage['HoverZoomInstallation'] = d.toLocaleDateString(undefined, options);
+            break;
+        case 'update':
+            localStorage['HoverZoomLastUpdate'] = d.toLocaleDateString(undefined, options);
+            break;
+        case 'chrome_update':
+        case 'shared_module_update':
+        default:
+            // Other install events within the browser
+            break;
+    }
+})
+
 init();
