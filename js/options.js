@@ -1,7 +1,7 @@
 var options,
     hoverZoomPlugins = hoverZoomPlugins || [],
     VK_CTRL = 1024,
-    VK_SHIFT = 2048,    
+    VK_SHIFT = 2048,
     actionKeys = ['actionKey', 'hideKey', 'openImageInWindowKey', 'openImageInTabKey', 'lockImageKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey', 'flipImageKey', 'copyImageKey', 'copyImageUrlKey'];
 
 function getMilliseconds(ctrl) {
@@ -470,7 +470,7 @@ $(function () {
     i18n();
     chkWhiteListModeOnChange();
     initAddToHistory();
-    $("#version").text(chrome.i18n.getMessage("optFooterVersionCopyright", chrome.runtime.getManifest().version));
+    $("#version").text(chrome.i18n.getMessage("optFooterVersionCopyright", [chrome.runtime.getManifest().version, localStorage['HoverZoomLastUpdate'] ? localStorage['HoverZoomLastUpdate'] : localStorage['HoverZoomInstallation']]));
     $('#btnSave').click(saveOptions);
     $('#btnCancel').click(function() { restoreOptions() });
     $('#btnReset').click(restoreOptionsFromFactorySettings);
