@@ -611,12 +611,16 @@
         "message": "Código fonte",
         "description": "[options] Source code link in page footer"
     },
+    "optFooterChangelog": {
+        "message": "Changelog",
+        "description": "[options] Changelog link in page footer"
+    },
     "optFooterReportIssue": {
         "message": "Reportar um erro",
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Versão $1 - © 2014-2021 Oleg Anashkin",
+        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {

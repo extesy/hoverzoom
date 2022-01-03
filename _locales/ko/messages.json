@@ -611,12 +611,16 @@
         "message": "소스 코드",
         "description": "[options] Source code link in page footer"
     },
+    "optFooterChangelog": {
+        "message": "변경 내역",
+        "description": "[options] Changelog link in page footer"
+    },
     "optFooterReportIssue": {
         "message": "오류 보고",
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 - © 2014-2021 Oleg Anashkin",
+        "message": "버전 $1 (최근 업데이트: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
