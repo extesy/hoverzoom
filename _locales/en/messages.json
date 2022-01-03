@@ -11,10 +11,6 @@
         "message": "Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
-    "extUpdated": {
-        "message": "Hover Zoom+ has been updated",
-        "description": "Extension update notification"
-    },
     "popDisableForAllSites": {
         "message": "Disable for all sites",
         "description": "[popup] Disable the extension"
@@ -394,14 +390,6 @@
     "optSectionAdvanced": {
         "message": "Advanced options",
         "description": "[options] Page section for advanced options"
-    },
-    "optUpdateNotifications": {
-        "message": "Show update notifications",
-        "description": "[options] Show update notifications option"
-    },
-    "optShowLastUpdateNotification": {
-        "message": "(show last notification)",
-        "description": "[options] Show last update notification"
     },
     "optAddToHistory": {
         "message": "Add viewed pictures to the browser's history",
