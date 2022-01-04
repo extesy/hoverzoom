@@ -11,10 +11,6 @@
         "message": "بزرگنمایی عکس/فیلم در تمام وب سایت های دلخواه (فیس بوک، آمازون، و غیره). به سادگی ماوس خود را روی تصویر حرکت دهید و آن را بزرگ ببید.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
-    "extUpdated": {
-        "message": "زوم شناور+ به روز شده است",
-        "description": "Extension update notification"
-    },
     "popDisableForAllSites": {
         "message": "غیر فعال کردن برای همه سایت ها",
         "description": "[popup] Disable the extension"
@@ -395,14 +391,6 @@
         "message": "گزینه های پیشرفته",
         "description": "[options] Page section for advanced options"
     },
-    "optUpdateNotifications": {
-        "message": "نمایش اطلاعیه های به روز رسانی",
-        "description": "[options] Show update notifications option"
-    },
-    "optShowLastUpdateNotification": {
-        "message": "(نمایش آخرین اطلاع رسانی)",
-        "description": "[options] Show last update notification"
-    },
     "optAddToHistory": {
         "message": "تصاویر دیده شده به تاریخچه مرورگر اضافه شود",
         "description": "[options] Add viewed pictures to the browser's history option"
@@ -624,7 +612,7 @@
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click page then hover again",
+        "message": "Click anywhere on the page then hover again",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }
