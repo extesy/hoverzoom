@@ -11,10 +11,6 @@
         "message": "Viedók és képek nagyítása a kedvenc weboldalaidon (Facebook, Amazon stb.). Csak mutass az egérmutatóval a képre hogy felnagyítsd.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
-    "extUpdated": {
-        "message": "A Hover Zoom frissült",
-        "description": "Extension update notification"
-    },
     "popDisableForAllSites": {
         "message": "Letiltás az összes oldalon",
         "description": "[popup] Disable the extension"
@@ -395,14 +391,6 @@
         "message": "Haladó beállítások",
         "description": "[options] Page section for advanced options"
     },
-    "optUpdateNotifications": {
-        "message": "Frissítési értesítések",
-        "description": "[options] Show update notifications option"
-    },
-    "optShowLastUpdateNotification": {
-        "message": "(legutóbbi értesítés megjelenítése)",
-        "description": "[options] Show last update notification"
-    },
     "optAddToHistory": {
         "message": "Megtekintett képek hozzáadása a böngészési előzményekhez",
         "description": "[options] Add viewed pictures to the browser's history option"
@@ -624,7 +612,7 @@
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click page then hover again",
+        "message": "Click anywhere on the page then hover again",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }
