@@ -11,10 +11,6 @@
         "message": "Favori sitelerinizdeki (Facebook, Amazon, vb.) resim/videoları yakınlaştırın. Fareyi büyütmek istediğiniz resmin üzerine getirin.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
-    "extUpdated": {
-        "message": "Hover Zoom+ güncellendi",
-        "description": "Extension update notification"
-    },
     "popDisableForAllSites": {
         "message": "Tüm siteler için devre dışı bırakın",
         "description": "[popup] Disable the extension"
@@ -395,14 +391,6 @@
         "message": "Gelişmiş seçenekler",
         "description": "[options] Page section for advanced options"
     },
-    "optUpdateNotifications": {
-        "message": "Güncelleme bildirimlerini göster",
-        "description": "[options] Show update notifications option"
-    },
-    "optShowLastUpdateNotification": {
-        "message": "(son bildirimi göster)",
-        "description": "[options] Show last update notification"
-    },
     "optAddToHistory": {
         "message": "Görüntülenen resimleri tarayıcı geçmişine ekle",
         "description": "[options] Add viewed pictures to the browser's history option"
@@ -624,7 +612,7 @@
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click page then hover again",
+        "message": "Click anywhere on the page then hover again",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }
