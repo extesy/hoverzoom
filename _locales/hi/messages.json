@@ -11,10 +11,6 @@
         "message": "ज़ूम छवियों/वीडियो पर सभी अपने पसंदीदा वेबसाइटों के साथ (Facebook, अमेज़न, आदि). बस अपने माउस मंडराना पर छवि विस्तार करने के लिए ।",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
-    "extUpdated": {
-        "message": "मंडराना ज़ूम+ में अद्यतन किया गया है",
-        "description": "Extension update notification"
-    },
     "popDisableForAllSites": {
         "message": "सभी साइट्स के लिए अक्षम करें",
         "description": "[popup] Disable the extension"
@@ -395,14 +391,6 @@
         "message": "Advanced options",
         "description": "[options] Page section for advanced options"
     },
-    "optUpdateNotifications": {
-        "message": "Show update notifications",
-        "description": "[options] Show update notifications option"
-    },
-    "optShowLastUpdateNotification": {
-        "message": "(show last notification)",
-        "description": "[options] Show last update notification"
-    },
     "optAddToHistory": {
         "message": "Add viewed pictures to the browser's history",
         "description": "[options] Add viewed pictures to the browser's history option"
@@ -624,7 +612,7 @@
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click page then hover again",
+        "message": "Click anywhere on the page then hover again",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }
