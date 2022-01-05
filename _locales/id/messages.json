@@ -11,10 +11,6 @@
         "message": "Zoom gambar/video pada semua situs web favorit (Facebook, Amazon, dll). Cukup Arahkan mouse ke gambar untuk memperbesar.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
-    "extUpdated": {
-        "message": "Hover Zoom+ telah diperbarui",
-        "description": "Extension update notification"
-    },
     "popDisableForAllSites": {
         "message": "Menonaktifkan untuk semua situs",
         "description": "[popup] Disable the extension"
@@ -395,14 +391,6 @@
         "message": "Opsi lanjutan",
         "description": "[options] Page section for advanced options"
     },
-    "optUpdateNotifications": {
-        "message": "Tampilkan pemberitahuan pembaruan",
-        "description": "[options] Show update notifications option"
-    },
-    "optShowLastUpdateNotification": {
-        "message": "(lihat pemberitahuan terakhir)",
-        "description": "[options] Show last update notification"
-    },
     "optAddToHistory": {
         "message": "Tambahkan dilihat gambar untuk sejarah browser",
         "description": "[options] Add viewed pictures to the browser's history option"
@@ -624,7 +612,7 @@
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click page then hover again",
+        "message": "Click anywhere on the page then hover again",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }

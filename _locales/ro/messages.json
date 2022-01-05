@@ -11,10 +11,6 @@
         "message": "Mărește imaginile/videoclipurile de pe site-urile tale preferate. Treci cu mouse-ul peste o imagine pentru a o mări.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
-    "extUpdated": {
-        "message": "Hover Zoom+ a fost actualizat",
-        "description": "Extension update notification"
-    },
     "popDisableForAllSites": {
         "message": "Dezactivează pentru toate site-urile",
         "description": "[popup] Disable the extension"
@@ -395,14 +391,6 @@
         "message": "Opțiuni avansate",
         "description": "[options] Page section for advanced options"
     },
-    "optUpdateNotifications": {
-        "message": "Arată notificările de actualizare",
-        "description": "[options] Show update notifications option"
-    },
-    "optShowLastUpdateNotification": {
-        "message": "(arată ultima notificare)",
-        "description": "[options] Show last update notification"
-    },
     "optAddToHistory": {
         "message": "Adaugă imaginile văzute în istoricul browser-ului",
         "description": "[options] Add viewed pictures to the browser's history option"
@@ -624,7 +612,7 @@
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click page then hover again",
+        "message": "Click anywhere on the page then hover again",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }

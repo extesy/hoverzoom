@@ -11,10 +11,6 @@
         "message": "Zoomez les images/vidéos sur tous vos sites favoris (Facebook, Amazon..). Il suffit de passer la souris sur l'image pour l'agrandir.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
-    "extUpdated": {
-        "message": "Hover Zoom+ a été mis à jour",
-        "description": "Extension update notification"
-    },
     "popDisableForAllSites": {
         "message": "Désactiver pour tous les sites",
         "description": "[popup] Disable the extension"
@@ -395,14 +391,6 @@
         "message": "Options avancées",
         "description": "[options] Page section for advanced options"
     },
-    "optUpdateNotifications": {
-        "message": "Afficher les notifications de mise à jour",
-        "description": "[options] Show update notifications option"
-    },
-    "optShowLastUpdateNotification": {
-        "message": "(afficher la dernière notification)",
-        "description": "[options] Show last update notification"
-    },
     "optAddToHistory": {
         "message": "Ajouter les images regardées à l'historique",
         "description": "[options] Add viewed pictures to the browser's history option"
@@ -624,7 +612,7 @@
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click page then hover again",
+        "message": "Click anywhere on the page then hover again",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }

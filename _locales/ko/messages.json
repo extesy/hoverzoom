@@ -11,10 +11,6 @@
         "message": "모든 즐겨찾기 사이트(페이스북, 아마존 등) 의 이미지/비디오를 확대해서 보여줍니다. 확대하려는 이미지 위에 마우스를 올려 놓으세요.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
-    "extUpdated": {
-        "message": "호버 줌+ 가 업데이트 되었습니다.",
-        "description": "Extension update notification"
-    },
     "popDisableForAllSites": {
         "message": "모든 사이트에서 사용안함",
         "description": "[popup] Disable the extension"
@@ -395,14 +391,6 @@
         "message": "고급 설정",
         "description": "[options] Page section for advanced options"
     },
-    "optUpdateNotifications": {
-        "message": "업데이트 알림 표시",
-        "description": "[options] Show update notifications option"
-    },
-    "optShowLastUpdateNotification": {
-        "message": "(마지막 알림 표시)",
-        "description": "[options] Show last update notification"
-    },
     "optAddToHistory": {
         "message": "확인한 사진을 브라우저 히스토리에 추가",
         "description": "[options] Add viewed pictures to the browser's history option"
@@ -624,7 +612,7 @@
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "페이지를 클릭한 뒤 다시 마우스를 올리세요",
+        "message": "페이지의 아무 곳이나 클릭한 뒤 다시 마우스를 올리세요",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }

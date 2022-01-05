@@ -11,10 +11,6 @@
         "message": "Passa il mouse sulle immagini per ingrandirle. Supporta molti siti, come Reddit, Amazon, Facebook, Twitter, Flickr, ecc",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
-    "extUpdated": {
-        "message": "Hover Zoom+ è stato aggiornato",
-        "description": "Extension update notification"
-    },
     "popDisableForAllSites": {
         "message": "Disabilita per tutti i siti",
         "description": "[popup] Disable the extension"
@@ -395,14 +391,6 @@
         "message": "Opzioni Avanzate",
         "description": "[options] Page section for advanced options"
     },
-    "optUpdateNotifications": {
-        "message": "Visualizza notifiche di aggiornamento",
-        "description": "[options] Show update notifications option"
-    },
-    "optShowLastUpdateNotification": {
-        "message": "(Visualizza l'ultima notifica)",
-        "description": "[options] Show last update notification"
-    },
     "optAddToHistory": {
         "message": "Aggiungi le immagini ingrandite nella cronologia",
         "description": "[options] Add viewed pictures to the browser's history option"
@@ -624,7 +612,7 @@
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click page then hover again",
+        "message": "Click anywhere on the page then hover again",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }

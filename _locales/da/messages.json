@@ -11,10 +11,6 @@
         "message": "Før musen over billeder for at forstørre dem. Understøtter mange hjemmesider såsom Reddit, Amazon, Facebook, Twitter, Flickr, osv.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
-    "extUpdated": {
-        "message": "Hover Zoom+ er blevet opdateret",
-        "description": "Extension update notification"
-    },
     "popDisableForAllSites": {
         "message": "Deaktiver for alle sider",
         "description": "[popup] Disable the extension"
@@ -395,14 +391,6 @@
         "message": "Avancerede indstillinger",
         "description": "[options] Page section for advanced options"
     },
-    "optUpdateNotifications": {
-        "message": "Vis opdateringsmeddelelser",
-        "description": "[options] Show update notifications option"
-    },
-    "optShowLastUpdateNotification": {
-        "message": "(vis sidste meddelelse)",
-        "description": "[options] Show last update notification"
-    },
     "optAddToHistory": {
         "message": "Tilføj sete billeder til browserens historik",
         "description": "[options] Add viewed pictures to the browser's history option"
@@ -624,7 +612,7 @@
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click page then hover again",
+        "message": "Click anywhere on the page then hover again",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }
