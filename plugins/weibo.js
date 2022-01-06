@@ -1,32 +1,32 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push( {
     name: 'Weibo',
-    version: '1.0',
+    version: '2.0',
     prepareImgLinks: function(callback) {
         var res = [];
 
         hoverZoom.urlReplace(res,
             'img[src]',
             /\/thumb\d+\//,
-            '/large/'
+            '/original/'
         );
 
         hoverZoom.urlReplace(res,
             'img[src]',
             /\/(orj|mw)\d+\//,
-            '/large/'
+            '/original/'
         );
 
         hoverZoom.urlReplace(res,
             'img[src]',
-            /\/crop.*\//,
-            '/large/'
+            /\/crop.*?\//,
+            '/original/'
         );
 
         hoverZoom.urlReplace(res,
             'img[src]',
-            /\/square.*\//,
-            '//'
+            /\/square.*?\//,
+            '/original/'
         );
 
         callback($(res), this.name);

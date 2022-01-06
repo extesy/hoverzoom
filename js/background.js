@@ -47,7 +47,7 @@ function onMessage(message, sender, callback) {
                 }
             });
         case 'ajaxGet':
-            ajaxRequest({url:message.url, response:message.response, method:'GET'}, callback);
+            ajaxRequest({url:message.url, response:message.response, method:'GET', headers:message.headers}, callback);
             return true;
         case 'ajaxGetHeaders':
             ajaxRequest({url:message.url, response:message.response, method:'HEAD'}, callback);
