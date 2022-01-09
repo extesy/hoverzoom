@@ -1822,6 +1822,10 @@
             "js": ["plugins/wikifeet.js"],
             "matches": ["*://*.wikifeetx.com/*",
                         "*://*.mywikifeet.com/*"]
+        },
+        {
+            "js": ["plugins/gfycat.js"],
+            "matches": ["*://*.gfycat.com/*"]
         }
    ]
 }
