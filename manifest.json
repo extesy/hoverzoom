@@ -1820,7 +1820,8 @@
         },
         {
             "js": ["plugins/wikifeet.js"],
-            "matches": ["*://*.wikifeetx.com/*",
+            "matches": ["*://*.wikifeet.com/*",
+                        "*://*.wikifeetx.com/*",
                         "*://*.mywikifeet.com/*"]
         },
         {
