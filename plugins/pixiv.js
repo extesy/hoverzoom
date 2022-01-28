@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'Pixiv',
-    version:'2.0',
+    version:'3.0',
     prepareImgLinks: function (callback) {
         // the element selector
         const selector = {
@@ -127,6 +127,13 @@ hoverZoomPlugins.push({
             [/img-sketch\.pximg\.net\/.*?\/.*?\//, /sq\d+_/],
             ['img-sketch.pximg.net/', ''],
             'a'
+        );
+
+        // single images (not included in a gallery)
+        hoverZoom.urlReplace(res,
+            'a:not([href*="/artworks/"]):not([href*="member_illust.php?mode="]):not([href*="/group/"]) img[src], a:not([href*="/artworks/"]):not([href*="member_illust.php?mode="]):not([href*="/group/"]) div[src], [style*="url"]',
+            /\.pximg\.net\/.*?\/.*?\/(.*)/,
+            '.pximg.net/$1'
         );
 
         if (res.length) {
