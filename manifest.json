@@ -1827,6 +1827,10 @@
         {
             "js": ["plugins/gfycat.js"],
             "matches": ["*://*.gfycat.com/*"]
+        },
+        {
+            "js": ["plugins/tipeee.js"],
+            "matches": ["*://*.tipeee.com/*"]
         }
    ]
 }
