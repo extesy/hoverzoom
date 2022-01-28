@@ -590,7 +590,10 @@
         },
         {
             "js": ["plugins/pixiv.js"],
-            "matches": ["*://*.pixiv.net/*"]
+            "matches": ["*://*.pixiv.net/*",
+                        "*://*.pixivision.net/*",
+                        "*://*.vroid.com/*",
+                        "*://*.fanbox.cc/*"]
         },
         {
             "js": ["plugins/rakuten.js"],
