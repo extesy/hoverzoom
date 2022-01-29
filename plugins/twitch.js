@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'twitch',
-    version:'2.0',
+    version:'2.1',
     prepareImgLinks:function (callback) {
 
         var res = [];
@@ -54,6 +54,7 @@ hoverZoomPlugins.push({
                 if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
                 if (link.data().hoverZoomSrc.indexOf(fullsizeUrl) == -1) {
                     link.data().hoverZoomSrc.unshift(fullsizeUrl);
+                    link.data().hoverZoomTwitchApiVideoUrl = fullsizeUrl;
                 }
                 callback(link, name);
                 hoverZoom.displayPicFromElement(link);
@@ -74,7 +75,7 @@ hoverZoomPlugins.push({
         // sample: https://www.twitch.tv/potion_kr/clip/OpenPopularKimchiThunBeast-1MHlQ1yr5K5l7kTm
         // sample: https://www.twitch.tv/potion_kr/clip/OpenPopularKimchiThunBeast-1MHlQ1yr5K5l7kTm?filter=clips&range=30d&sort=time
         // sample: https://clips.twitch.tv/ConsiderateCuteGrouseOneHand-JKJrY3qglQ37kdsY?tt_medium=clips&tt_content=recommendation
-        $('a[href]:not(.hoverZoomMouseover)').filter(function() { return (/\/clip\//.test(this.href)) || (/clips.twitch.tv\//.test(this.href)) }).addClass('hoverZoomMouseover').one('mouseover', function() {
+        $('a[href]').filter(function() { return (/\/clip\//.test(this.href)) || (/clips.twitch.tv\//.test(this.href)) }).one('mouseover', function() {
 
             var link = this;
             link = $(link);
@@ -83,6 +84,18 @@ hoverZoomPlugins.push({
             var m = this.href.match(re);
             if (m == undefined) return;
             var slug = m[2];
+
+            // resuse previous result
+            if (link.data().hoverZoomTwitchApiSlug == slug) {
+                if (link.data().hoverZoomTwitchApiVideoUrl) link.data().hoverZoomSrc = [link.data().hoverZoomTwitchApiVideoUrl];
+                return;
+            }
+
+            link.data().hoverZoomTwitchApiSlug = slug;
+            link.data().hoverZoomTwitchApiVideoUrl = undefined;
+
+            // clean previous result
+            link.data().hoverZoomSrc = [];
 
             // build GraphQL query
             $.ajax({
@@ -101,7 +114,7 @@ hoverZoomPlugins.push({
 
         // ---------------------------------------------------- live
         // sample: https://www.twitch.tv/beyondthesummit2
-        $('a[href]:not(.hoverZoomMouseover2)').filter(function() { return (/^\/[^/]{1,}$/.test($(this).attr('href'))) }).addClass('hoverZoomMouseover2').one('mouseover', function() {
+        $('a[href]').filter(function() { return (/^\/[^/]{1,}$/.test($(this).attr('href'))) }).one('mouseover', function() {
 
             var link = this;
             link = $(link);
