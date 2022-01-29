@@ -719,7 +719,8 @@
                 "plugins/pornbot.js",
                 "plugins/redgifs.js",
                 "plugins/memedad.js",
-                "plugins/clips.twitch.js"
+                "plugins/clips.twitch.js",
+                "plugins/twitch.js"
             ]
         },
         {
