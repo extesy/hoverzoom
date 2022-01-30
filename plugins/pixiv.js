@@ -136,6 +136,38 @@ hoverZoomPlugins.push({
             '.pximg.net/$1'
         );
 
+        // live streams
+        // sample: https://sketch.pixiv.net/@silvercoin1911/lives/1317584211526544880
+        $('a[href*="/lives/"]').filter(function() { return (/@.*?\/lives\/\d+/.test($(this).attr('href'))) }).one('mouseover', function() {
+
+            var link = this;
+            link = $(link);
+
+            // call api
+            var re = /\/lives\/(\d+)/;
+            var m = link.attr('href').match(re);
+            if (m == null) return;
+            var id = m[1];
+            var url = "https://sketch.pixiv.net/api/lives/" + id + ".json";
+
+            $.ajax({
+                type: "GET",
+                dataType: 'text',
+                url: url,
+                success: function(response) {
+
+                    try {
+                        urlPlaylist = JSON.parse(response).data.owner.hls_movie.url;
+                        let data = link.data();
+                        data.hoverZoomSrc = [urlPlaylist];
+                        callback(link, name);
+                        hoverZoom.displayPicFromElement(link);
+                    } catch {}
+                },
+                error: function(response) { }
+            })
+        });
+
         if (res.length) {
             callback($(res), this.name);
         }
