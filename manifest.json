@@ -589,7 +589,7 @@
             "matches": ["*://*.reddit.com/*"]
         },
         {
-            "js": ["plugins/pixiv.js"],
+            "js": ["plugins/pixiv.js", "js/hls.js"],
             "matches": ["*://*.pixiv.net/*",
                         "*://*.pixivision.net/*",
                         "*://*.vroid.com/*",
