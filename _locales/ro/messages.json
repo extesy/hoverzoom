@@ -600,7 +600,7 @@
         "description": "[options] Source code link in page footer"
     },
     "optFooterChangelog": {
-        "message": "Changelog",
+        "message": "Istoric modificări",
         "description": "[options] Changelog link in page footer"
     },
     "optFooterReportIssue": {
@@ -608,11 +608,11 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
+        "message": "Versiunea $1 (ultima actualizare: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "Click anywhere on the page then hover again",
+        "message": "Dă click oriunde pe pagină și mută cursorul înapoi",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }
