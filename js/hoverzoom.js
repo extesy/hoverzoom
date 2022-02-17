@@ -138,6 +138,7 @@ var hoverZoom = {
         var imgDetails = {
                 url:'',
                 audioUrl:'',
+                audioMuted:false,
                 host:'',
                 naturalHeight:0,
                 naturalWidth:0,
@@ -490,7 +491,7 @@ var hoverZoom = {
                     updateAmbilight();
                 } else {
                     // in case of images with transparent background add a background color
-                    let ext = getExtensionFromUrl(imgDetails.url);
+                    let ext = getExtensionFromUrl(imgDetails.url, imgDetails.video, imgDetails.playlist);
                     if (ext == 'gif' || ext == 'svg' || ext == 'png')
                         imgFullSize.css('background-color', options.frameBackgroundColor);
                 }
@@ -573,7 +574,14 @@ var hoverZoom = {
         function getVideoAudioFromUrl() {
             var videourl = imgDetails.url.split('.video')[0];
             var audiourl = imgDetails.url.split('.video')[1] || '';
-            if (audiourl.endsWith('.audio')) { imgDetails.audioUrl = audiourl.replace(/^_/, '').replace('.audio', ''); }
+            if (audiourl.endsWith('.audio')) {
+                imgDetails.audioUrl = audiourl.replace(/^_/, '').replace('.audio', '');
+                imgDetails.audioMuted = false;
+            }
+            if (audiourl.endsWith('.audiomuted')) {
+                imgDetails.audioUrl = audiourl.replace(/^_/, '').replace('.audiomuted', '');
+                imgDetails.audioMuted = true;  // in case of video with audio track embeded + distinct audio track: mute distinct audio track
+            }
             imgDetails.url = videourl;
         }
 
@@ -735,8 +743,49 @@ var hoverZoom = {
             }
         }
 
-        function hideHoverZoomImg(now) {
-            cLog('hideHoverZoomImg(' + now + ')');
+        function pauseMedias() {
+            pauseMedia('video');
+            pauseMedia('audio');
+        }
+
+        function pauseMedia(selector) {
+            console.log('pauseMedia selector=' + selector);
+            if (!hz.hzImg) return;
+            var el = hz.hzImg.find(selector).get(0);
+            if (el) {
+                if (selector == 'audio') {
+                    console.log('pause audio');
+                    el.pause();
+                }
+                if (selector == 'video') {
+                    console.log('pause video');
+                    el.pause();
+                }
+            }
+        }
+
+        function playMedias() {
+            playMedia('video');
+            playMedia('audio');
+        }
+
+        function playMedia(selector) {
+            console.log('playMedia selector=' + selector);
+            if (!hz.hzImg) return;
+            var el = hz.hzImg.find(selector).get(0);
+            if (el) {
+                if (selector == 'audio') {
+                    console.log('play audio');
+                    el.play();
+                }
+                if (selector == 'video') {
+                    console.log('play video');
+                    el.play();
+                }
+            }
+        }
+        function closeHoverZoomImg(now) {
+            cLog('closeHoverZoomImg(' + now + ')');
 
             if (hz.hzImgLoader) { hz.hzImgLoader.remove(); hz.hzImgLoader = null; }
             if ((!now && !imgFullSize) || !hz.hzImg || fullZoomKeyDown || imageLocked) {
@@ -870,7 +919,7 @@ var hoverZoom = {
                     // Happens when the mouse goes from an image to another without hovering the page background
                     if (imgDetails.url && links.data().hoverZoomSrc[hoverZoomSrcIndex] !== imgDetails.url) {
                         cLog("hiding because " + links.data().hoverZoomSrc[hoverZoomSrcIndex] + " !== " + imgDetails.url);
-                        hideHoverZoomImg();
+                        closeHoverZoomImg();
                     }
 
                     removeTitles(target);
@@ -997,7 +1046,7 @@ var hoverZoom = {
                         var audio = document.createElement('audio');
                         audio.controls = imageLocked;
                         audio.autoplay = false;
-                        audio.muted = options.muteVideos;
+                        audio.muted = (imgDetails.audioMuted ? true : options.muteVideos);
                         audio.volume = options.videoVolume;
                         audio.src = imgDetails.audioUrl;
                         audioFullSize= $(audio).appendTo(hz.hzImg);
@@ -1300,8 +1349,6 @@ var hoverZoom = {
             }
         }
 
-
-
         function displayCaptionMiscellaneousDetails() {
 
             $('#hzAbove').remove();
@@ -1453,7 +1500,7 @@ var hoverZoom = {
             loading = false;
             hz.currentLink = null;
             clearTimeout(loadFullSizeImageTimeout);
-            hideHoverZoomImg();
+            closeHoverZoomImg();
         }
 
         function getTextSelected() {
@@ -1467,7 +1514,7 @@ var hoverZoom = {
             if (imgDetails.naturalWidth) details.ratio = getImgRatio(imgDetails.naturalWidth, imgDetails.naturalHeight);
             let displayedWidth = imgFullSize.width() || imgFullSize[0].width;
             if (imgDetails.naturalWidth) details.scale = Math.round(100.0 * displayedWidth / imgDetails.naturalWidth) + '%';
-            details.extension = getExtensionFromUrl(imgDetails.url);
+            details.extension = getExtensionFromUrl(imgDetails.url, imgDetails.video, imgDetails.playlist);
             details.host = imgDetails.host;
             let filename = getDownloadFilename();
             if (filename) details.filename = filename;
@@ -1763,7 +1810,7 @@ var hoverZoom = {
         function applyOptions() {
             init();
             if (!options.extensionEnabled || isExcludedSite()) {
-                hideHoverZoomImg();
+                closeHoverZoomImg();
                 $(document).unbind('mousemove', documentMouseMove);
             }
         }
@@ -1865,7 +1912,7 @@ var hoverZoom = {
                 window.addEventListener('wheel', documentOnMouseWheel, {passive: false});
             }
             if (options.zoomVideos) {
-                $(document).on('visibilitychange', hideHoverZoomImg);
+                $(document).on('visibilitychange', closeHoverZoomImg);
             }
 
             bindJsaction();
@@ -1954,7 +2001,7 @@ var hoverZoom = {
             if (event.which == options.hideKey && !hideKeyDown) {
                 hideKeyDown = true;
                 if (hz.hzImg) {
-                    stopMedias();
+                    pauseMedias();
                     hz.hzImg.hide();
                 }
                 if (imgFullSize) {
@@ -2036,7 +2083,7 @@ var hoverZoom = {
             // Action key (zoom image) is released
             if (event.which == options.actionKey) {
                 actionKeyDown = false;
-                hideHoverZoomImg();
+                closeHoverZoomImg();
             }
             // Full zoom key is released
             if (event.which == options.fullZoomKey) {
@@ -2048,6 +2095,7 @@ var hoverZoom = {
                 hideKeyDown = false;
                 if (imgFullSize) {
                     hz.hzImg.show();
+                    playMedias();
                 }
                 $(this).mousemove();
             }
@@ -2086,13 +2134,23 @@ var hoverZoom = {
                 });
         }
 
-        function getExtensionFromUrl(url) {
+        function getExtensionFromUrl(url, video, playlist) {
+            let fullurl = url;
             // remove trailing / & trailing query
             url = url.replace(/\/$/, '').split(/[\?!#&]/)[0];
             // extract filename
             let filename = url.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
             let ext = (filename.lastIndexOf('.') == -1 ? '' : filename.substr(filename.lastIndexOf('.') + 1));
-            if (ext == '' || ext.length > 5) ext = 'jpg';
+            if (ext == '' || ext.length > 5) {
+                // try to guess correct extension
+                if (!video && !playlist) ext = 'jpg'; // default image extension
+                if (playlist) ext = 'm3u8'; // default playlist extension
+                if (video) {
+                    if (fullurl.indexOf('mp4') != -1) ext = 'mp4';
+                    else if (fullurl.indexOf('webm') != -1) ext = 'webm';
+                    else ext = 'video';
+                }
+            }
             return ext;
         }
 
