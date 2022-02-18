@@ -507,12 +507,28 @@
         "message": "키가 설정되면 Hover Zoom+는 해당 키가 눌렸을 때만 활성화됩니다.",
         "description": "[options] Action key description"
     },
+    "optToggleKeyTitle": {
+        "message": "Toggle HoverZoom+",
+        "description": "[options] Action key title"
+    },
+    "optToggleKeyDescription": {
+        "message": "Enable/disable HoverZoom+",
+        "description": "[options] Action key description"
+    },
+    "optCloseKeyTitle": {
+        "message": "Close image",
+        "description": "[options] Action key title"
+    },
+    "optCloseKeyDescription": {
+        "message": "Press this key to close zoomed image or video.",
+        "description": "[options] Action key description"
+    },
     "optHideKeyTitle": {
-        "message": "호버 줌+ 비활성화",
+        "message": "Hide image",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "이 키를 누르고 있으면 확대한 사진이 숨겨집니다. 사진이 다른 마우스 오버 요소를 가리는 경우 사용하십시오.",
+        "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -520,7 +536,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "이 키를 누르면 현재 보는 사진을 새 창에서 엽니다. 키를 다시 누르면 창이 닫힙니다.",
+        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
@@ -528,7 +544,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "이 키를 누르면 현재 보는 사진을 새 탭에서 엽니다. 키를 다시 누르면 탭이 닫힙니다. Shift 키를 누른 채로 이 키를 누르면 백그라운드 탭으로 사진을 엽니다.",
+        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
@@ -536,7 +552,7 @@
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "이 키를 누르면 사진을 페이지의 중앙에 고정하여, 확대하고 이동할 수 있도록 해 줍니다. ESC를 누르거나 사진 바깥을 클릭하여 고정을 해제할 수 있습니다.",
+        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -544,7 +560,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "이 키를 누르면 현재 보고 있는 사진을 저장합니다.",
+        "message": "Press this key to save the image or video you are currently viewing.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
