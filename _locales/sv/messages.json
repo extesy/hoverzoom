@@ -507,12 +507,28 @@
         "message": "Om en knapp är angiven kan Hover Zoom+ endast fungera medan denna är nedtryckt.",
         "description": "[options] Action key description"
     },
+    "optToggleKeyTitle": {
+        "message": "Toggle HoverZoom+",
+        "description": "[options] Action key title"
+    },
+    "optToggleKeyDescription": {
+        "message": "Enable/disable HoverZoom+",
+        "description": "[options] Action key description"
+    },
+    "optCloseKeyTitle": {
+        "message": "Close image",
+        "description": "[options] Action key title"
+    },
+    "optCloseKeyDescription": {
+        "message": "Press this key to close zoomed image or video.",
+        "description": "[options] Action key description"
+    },
     "optHideKeyTitle": {
-        "message": "Inaktivera Hover Zoom+",
+        "message": "Hide image",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Håll ned denna knapp för att dölja den zoomade bilden. Använd detta när bilden döljer element som visas vid på mouseover.",
+        "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -520,7 +536,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Tryck på den här knappen för att öppna bilden du visar i ett nytt fönster. Tryck på denna knapp igen för att stänga fönstret.",
+        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
@@ -528,7 +544,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Tryck på den här knappen för att öppna bilden du visar i en ny flik. Tryck på denna knapp igen för att stänga fönstret.",
+        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
@@ -536,7 +552,7 @@
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "Press this key to lock the image in the center of the page, allowing you to zoom and pan around. Press ESC or click outside the image to unlock the image.",
+        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -544,7 +560,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Tryck på den här knappen för att spara den bild som du visar.",
+        "message": "Press this key to save the image or video you are currently viewing.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
