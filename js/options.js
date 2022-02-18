@@ -2,7 +2,7 @@ var options,
     hoverZoomPlugins = hoverZoomPlugins || [],
     VK_CTRL = 1024,
     VK_SHIFT = 2048,
-    actionKeys = ['actionKey', 'hideKey', 'openImageInWindowKey', 'openImageInTabKey', 'lockImageKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey', 'flipImageKey', 'copyImageKey', 'copyImageUrlKey'];
+    actionKeys = ['actionKey', 'toggleKey', 'closeKey', 'hideKey', 'openImageInWindowKey', 'openImageInTabKey', 'lockImageKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey', 'flipImageKey', 'copyImageKey', 'copyImageUrlKey'];
 
 function getMilliseconds(ctrl) {
     var value = parseFloat(ctrl.val());
@@ -61,6 +61,7 @@ function loadKeys(sel) {
     for (var i = 112; i < 124; i++) {
         $('<option value="' + i + '">F' + (i - 111) + '</option>').appendTo(sel);
     }
+    $('<option value="27">Escape</option>').appendTo(sel);
     $('<option value="33">Page Up</option>').appendTo(sel);
     $('<option value="34">Page Down</option>').appendTo(sel);
     $('<option value="35">End</option>').appendTo(sel);

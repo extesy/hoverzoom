@@ -49,6 +49,7 @@ var factorySettings = {
     fontSize : 11,
     fontOutline : false,
     actionKey : 0,
+    toggleKey : 69,
     fullZoomKey : 90,
     copyImageKey: 67,
     copyImageUrlKey: 85,
@@ -60,7 +61,7 @@ var factorySettings = {
     prevImgKey : 37,
     nextImgKey : 39,
     flipImageKey : 70,
-    escKey : 27,
+    closeKey : 27,
     debug : false
 }
 
@@ -134,6 +135,7 @@ function loadOptions() {
 
     // Action keys
     options.actionKey = options.hasOwnProperty('actionKey') ? options.actionKey : factorySettings.actionKey;
+    options.toggleKey = options.hasOwnProperty('toggleKey') ? options.toggleKey : factorySettings.toggleKey;
     options.fullZoomKey = options.hasOwnProperty('fullZoomKey') ? options.fullZoomKey : factorySettings.fullZoomKey;
     options.copyImageKey = options.hasOwnProperty('copyImageKey') ? options.copyImageKey : factorySettings.copyImageKey;
     options.copyImageUrlKey = options.hasOwnProperty('copyImageUrlKey') ? options.copyImageUrlKey : factorySettings.copyImageUrlKey;
@@ -145,7 +147,7 @@ function loadOptions() {
     options.prevImgKey = options.hasOwnProperty('prevImgKey') ? options.prevImgKey : factorySettings.prevImgKey;
     options.nextImgKey = options.hasOwnProperty('nextImgKey') ? options.nextImgKey : factorySettings.nextImgKey;
     options.flipImageKey = options.hasOwnProperty('flipImageKey') ? options.flipImageKey : factorySettings.flipImageKey;
-    options.escKey = factorySettings.escKey;
+    options.closeKey = options.hasOwnProperty('closeKey') ? options.closeKey : factorySettings.closeKey;
 
     // debug
     options.debug = options.hasOwnProperty('debug') ? options.debug : factorySettings.debug;

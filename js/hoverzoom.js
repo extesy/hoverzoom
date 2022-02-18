@@ -1970,6 +1970,21 @@ var hoverZoom = {
             if (event.target && ['INPUT','TEXTAREA','SELECT'].indexOf(event.target.tagName) > -1) {
                 return;
             }
+            // Toggle key is pressed down
+            if (event.which == options.toggleKey) {
+                options.extensionEnabled = !options.extensionEnabled;
+                if (! options.extensionEnabled) { 
+                    // close zoomed image or video
+                    imageLocked = false;
+                    if (hz.hzImg) {
+                        stopMedias();
+                        hz.hzImg.hide();
+                    }
+                    if (imgFullSize) {
+                        return false;
+                    }
+                }
+            }
             // Action key (zoom image) is pressed down
             if (event.which == options.actionKey && !actionKeyDown) {
                 actionKeyDown = true;
@@ -1986,8 +2001,9 @@ var hoverZoom = {
                     return false;
                 }
             }
-            // escape key is pressed down
-            if (event.which == options.escKey) {
+            // close key (close zoomed image) is pressed down
+            // => zoomed image is closed immediately
+            if (event.which == options.closeKey) {
                 imageLocked = false;
                 if (hz.hzImg) {
                     stopMedias();
@@ -1998,6 +2014,7 @@ var hoverZoom = {
                 }
             }
             // hide key (hide zoomed image) is pressed down
+            // => zoomed image remains hidden until key is released
             if (event.which == options.hideKey && !hideKeyDown) {
                 hideKeyDown = true;
                 if (hz.hzImg) {
