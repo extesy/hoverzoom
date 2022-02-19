@@ -1835,6 +1835,10 @@
         {
             "js": ["plugins/tipeee.js"],
             "matches": ["*://*.tipeee.com/*"]
+        },
+        {
+            "js": ["plugins/pic2me.js"],
+            "matches": ["*://*.pic2.me/*"]
         }
    ]
 }
