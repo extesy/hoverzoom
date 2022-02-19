@@ -1839,6 +1839,10 @@
         {
             "js": ["plugins/pic2me.js"],
             "matches": ["*://*.pic2.me/*"]
+        },
+        {
+            "js": ["plugins/celebs-place.js"],
+            "matches": ["*://*.celebs-place.com/*"]
         }
    ]
 }
