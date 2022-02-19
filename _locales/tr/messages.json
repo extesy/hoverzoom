@@ -48,7 +48,7 @@
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
-        "message": "Cancel",
+        "message": "Kapat",
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
@@ -108,7 +108,7 @@
         "description": "[options] Caption location option to disable captions"
     },
     "optDetailsLocation": {
-        "message": "Details position:",
+        "message": "Detaylı pozisyon:",
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
@@ -260,7 +260,7 @@
         "description": "[options] Tooltip for size of halo"
     },
     "optAmbilightBackgroundOpacity": {
-        "message": "Background opacity :",
+        "message": "Arkaplan Şeffaflığı: ",
         "description": "[options] Background opacity option"
     },
     "optAmbilightBackgroundOpacityUnitName": {
@@ -288,7 +288,7 @@
         "description": "[options] Tooltip for frame background color option"
     },
     "optFrameBackgroundColorChooseText": {
-        "message": "Select",
+        "message": "Seç",
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
@@ -308,7 +308,7 @@
         "description": "[options] Unit name (pixel) for frame thickness"
     },
     "optFontSize": {
-        "message": "Font size:",
+        "message": "Yazı boyutu: ",
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
@@ -432,11 +432,11 @@
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
-        "message": "Tab",
+        "message": "Sekme",
         "description": "[options] Use separate tab for unloadable urls option"
     },
     "optUseSeparateWindowForUnloadableUrls": {
-        "message": "Window",
+        "message": "Pencere",
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
@@ -444,11 +444,11 @@
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
-        "message": "Example: animals/cats",
+        "message": "Örnek: hayvanlar/kediler",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images & videos to folder: Downloads/",
+        "message": "Resimleri & Videoları şu klasöre kaydet: İndirilenler/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
@@ -472,7 +472,7 @@
         "description": "[options] Tooltip for add download size option"
     },
     "optAddDownloadSize": {
-        "message": "size",
+        "message": "boyut",
         "description": "[options] Add download size option"
     },
     "optAddDownloadDurationTooltip": {
@@ -480,7 +480,7 @@
         "description": "[options] Tooltip for add download duration option"
     },
     "optAddDownloadDuration": {
-        "message": "duration",
+        "message": "Süre",
         "description": "[options] Add download duration option"
     },
     "optSectionTroubleshooting": {
@@ -492,11 +492,11 @@
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
-        "message": "Enable debug",
+        "message": "Hata ayıklamayı ektinleştir",
         "description": "[options] Enable debug option"
     },
     "optPixelsUnitName": {
-        "message": "pixels",
+        "message": "pikseller",
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
@@ -608,7 +608,7 @@
         "description": "[options] Action key title"
     },
     "optFlipImageKeyDescription": {
-        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+        "message": "Görüntüyü dönüşümlü olarak dikey ve yatay olarak çevirmek için bu tuşa basın. Yansıtılmış görüntülerdeki veya videolardaki metinleri ve logoları okumak için kullanışlıdır.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
@@ -616,7 +616,7 @@
         "description": "[options] Source code link in page footer"
     },
     "optFooterChangelog": {
-        "message": "Changelog",
+        "message": "Değişiklikler",
         "description": "[options] Changelog link in page footer"
     },
     "optFooterReportIssue": {
@@ -624,11 +624,11 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
+        "message": "Versiyon $1 (Son Güncelleme: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "Click anywhere on the page then hover again",
+        "message": "Sayfada herhangi bir yeri tıklayın ve ardından tekrar fareyle üzerine gelin",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }
