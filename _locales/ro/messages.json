@@ -507,12 +507,28 @@
         "message": "Dacă o tastă este setată, Hover Zoom+ va fi activ doar când acea tastă este apăsată.",
         "description": "[options] Action key description"
     },
+    "optToggleKeyTitle": {
+        "message": "Toggle HoverZoom+",
+        "description": "[options] Action key title"
+    },
+    "optToggleKeyDescription": {
+        "message": "Enable/disable HoverZoom+",
+        "description": "[options] Action key description"
+    },
+    "optCloseKeyTitle": {
+        "message": "Close image",
+        "description": "[options] Action key title"
+    },
+    "optCloseKeyDescription": {
+        "message": "Press this key to close zoomed image or video.",
+        "description": "[options] Action key description"
+    },
     "optHideKeyTitle": {
-        "message": "Dezctivează Hover Zoom+",
+        "message": "Hide image",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Imaginile mărite sunt ascunse cât timp această tastă este apăsată. Este utilă când imaginea ascunde alte elemente activate de cursor.",
+        "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -520,7 +536,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Apăsarea acestei taste deschide imaginea curentă într-o fereastră nouă. Încă o apăsare închide această fereastră.",
+        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
@@ -528,7 +544,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Apăsarea acestei taste deschide imaginea curentă într-o filă nouă. Încă o apăsare închide această filă. Combinarea acestei taste cu Shift deschide imaginea într-o filă în fundal.",
+        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
@@ -536,7 +552,7 @@
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "Apăsarea acestei taste blochează imaginea pe centrul paginii, permițând mărirea și mutarea ei. Apăsarea ESC sau click-ul în afara imaginii o deblochează.",
+        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -544,7 +560,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Apăsarea acestei taste salvează imaginea curentă.",
+        "message": "Press this key to save the image or video you are currently viewing.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {

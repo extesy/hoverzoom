@@ -507,12 +507,28 @@
         "message": "Si une touche est définie, Hover Zoom+ ne sera actif que lorsque cette touche est maintenue enfoncée.",
         "description": "[options] Action key description"
     },
+    "optToggleKeyTitle": {
+        "message": "Toggle HoverZoom+",
+        "description": "[options] Action key title"
+    },
+    "optToggleKeyDescription": {
+        "message": "Enable/disable HoverZoom+",
+        "description": "[options] Action key description"
+    },
+    "optCloseKeyTitle": {
+        "message": "Close image",
+        "description": "[options] Action key title"
+    },
+    "optCloseKeyDescription": {
+        "message": "Press this key to close zoomed image or video.",
+        "description": "[options] Action key description"
+    },
     "optHideKeyTitle": {
-        "message": "Désactiver Hover Zoom+",
+        "message": "Hide image",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Maintenir cette touche enfoncée cache l'image zoomée. À utiliser lorsque l'image cache des éléments qui sont également affichés au passage de la souris.",
+        "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -520,7 +536,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Appuyez sur cette touche pour ouvrir l'image que vous êtes en train de visualiser dans une nouvelle fenêtre. Appuyez sur cette touche pour fermer la fenêtre.",
+        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
@@ -528,7 +544,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Appuyez sur cette touche pour ouvrir l'image en cours de visualisation dans un nouvel onglet. Appuyez sur cette touche pour fermer l'onglet. Maj+touche ouvre l'image dans un onglet en arrière-plan.",
+        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
@@ -536,7 +552,7 @@
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "Appuyer sur cette touche pour verrouiller l'image au centre de la page, afin de zoomer et de faire un panoramique. Appuyer sur ESC ou cliquer en dehors de l'image pour déverrouiller l'image.",
+        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -544,7 +560,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Appuyez sur cette touche pour enregistrer l'image en cours de visualisation.",
+        "message": "Press this key to save the image or video you are currently viewing.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {

@@ -48,7 +48,7 @@
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
-        "message": "Cancel",
+        "message": "Kapat",
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
@@ -108,7 +108,7 @@
         "description": "[options] Caption location option to disable captions"
     },
     "optDetailsLocation": {
-        "message": "Details position:",
+        "message": "Detaylı pozisyon:",
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
@@ -260,7 +260,7 @@
         "description": "[options] Tooltip for size of halo"
     },
     "optAmbilightBackgroundOpacity": {
-        "message": "Background opacity :",
+        "message": "Arkaplan Şeffaflığı: ",
         "description": "[options] Background opacity option"
     },
     "optAmbilightBackgroundOpacityUnitName": {
@@ -288,7 +288,7 @@
         "description": "[options] Tooltip for frame background color option"
     },
     "optFrameBackgroundColorChooseText": {
-        "message": "Select",
+        "message": "Seç",
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
@@ -308,7 +308,7 @@
         "description": "[options] Unit name (pixel) for frame thickness"
     },
     "optFontSize": {
-        "message": "Font size:",
+        "message": "Yazı boyutu: ",
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
@@ -432,11 +432,11 @@
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
-        "message": "Tab",
+        "message": "Sekme",
         "description": "[options] Use separate tab for unloadable urls option"
     },
     "optUseSeparateWindowForUnloadableUrls": {
-        "message": "Window",
+        "message": "Pencere",
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
@@ -444,11 +444,11 @@
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
-        "message": "Example: animals/cats",
+        "message": "Örnek: hayvanlar/kediler",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images & videos to folder: Downloads/",
+        "message": "Resimleri & Videoları şu klasöre kaydet: İndirilenler/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
@@ -472,7 +472,7 @@
         "description": "[options] Tooltip for add download size option"
     },
     "optAddDownloadSize": {
-        "message": "size",
+        "message": "boyut",
         "description": "[options] Add download size option"
     },
     "optAddDownloadDurationTooltip": {
@@ -480,7 +480,7 @@
         "description": "[options] Tooltip for add download duration option"
     },
     "optAddDownloadDuration": {
-        "message": "duration",
+        "message": "Süre",
         "description": "[options] Add download duration option"
     },
     "optSectionTroubleshooting": {
@@ -492,11 +492,11 @@
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
-        "message": "Enable debug",
+        "message": "Hata ayıklamayı ektinleştir",
         "description": "[options] Enable debug option"
     },
     "optPixelsUnitName": {
-        "message": "pixels",
+        "message": "pikseller",
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
@@ -507,12 +507,28 @@
         "message": "Eğer bir tuş ayarlanırsa, Hover Zoom+ sadece bu tuşa basılı tutulduğunda etkin olacaktır.",
         "description": "[options] Action key description"
     },
+    "optToggleKeyTitle": {
+        "message": "Toggle HoverZoom+",
+        "description": "[options] Action key title"
+    },
+    "optToggleKeyDescription": {
+        "message": "Enable/disable HoverZoom+",
+        "description": "[options] Action key description"
+    },
+    "optCloseKeyTitle": {
+        "message": "Close image",
+        "description": "[options] Action key title"
+    },
+    "optCloseKeyDescription": {
+        "message": "Press this key to close zoomed image or video.",
+        "description": "[options] Action key description"
+    },
     "optHideKeyTitle": {
-        "message": "Hover Zoom+ devre dışı bırak",
+        "message": "Hide image",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Bu tuşa basılı tutmak yakınlaştırılmış resmi gizler. Yakınlaştırılan resim fareyi üzerine getirerek görüntülenen diğer şeylerin önüne geçtiğinde kullanın.",
+        "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -520,7 +536,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Görüntülemekte olduğunuz resmi yeni pencerede açmak için bu tuşa basın. Pencereyi kapatmak için tekrar aynı tuşa basın.",
+        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
@@ -528,7 +544,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Görüntülemekte olduğunuz resmi yeni sekmede açmak için bu tuşa basın. Sekmeyi kapatmak için tekrar aynı tuşa basın. Shift+tuş resmi arkaplandaki bir sekmede açar.",
+        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
@@ -536,7 +552,7 @@
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "Press this key to lock the image in the center of the page, allowing you to zoom and pan around. Press ESC or click outside the image to unlock the image.",
+        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -544,7 +560,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Görüntülemekte olduğunuz resmi kaydetmek için bu tuşa basın.",
+        "message": "Press this key to save the image or video you are currently viewing.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
@@ -592,7 +608,7 @@
         "description": "[options] Action key title"
     },
     "optFlipImageKeyDescription": {
-        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+        "message": "Görüntüyü dönüşümlü olarak dikey ve yatay olarak çevirmek için bu tuşa basın. Yansıtılmış görüntülerdeki veya videolardaki metinleri ve logoları okumak için kullanışlıdır.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
@@ -600,7 +616,7 @@
         "description": "[options] Source code link in page footer"
     },
     "optFooterChangelog": {
-        "message": "Changelog",
+        "message": "Değişiklikler",
         "description": "[options] Changelog link in page footer"
     },
     "optFooterReportIssue": {
@@ -608,11 +624,11 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
+        "message": "Versiyon $1 (Son Güncelleme: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "Click anywhere on the page then hover again",
+        "message": "Sayfada herhangi bir yeri tıklayın ve ardından tekrar fareyle üzerine gelin",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }
