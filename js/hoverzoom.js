@@ -1346,6 +1346,9 @@ var hoverZoom = {
 
             if (options.addToHistory && !chrome.extension.inIncognitoContext) {
                 chrome.runtime.sendMessage({action:'addUrlToHistory', url:imgDetails.url});
+                // #881: add link url to history if available, this is needed to turn hovered links purple
+                let linkUrl = hz.currentLink.prop('href');
+                if (linkUrl != imgDetails.url) chrome.runtime.sendMessage({action:'addUrlToHistory', url:linkUrl});
             }
         }
 
