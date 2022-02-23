@@ -41,4 +41,4 @@ node_modules/
 web-ext-artifacts
 hoverzoom.zip
 .vscode
-.package-lock.json
+package-lock.json
