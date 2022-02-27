@@ -138,9 +138,10 @@ function saveOptions() {
     options.useSeparateTabOrWindowForUnloadableUrls = $('#selectUseSeparateTabOrWindowForUnloadableUrls').val();
 
     localStorage.options = JSON.stringify(options);
+
     sendOptions(options);
     restoreOptions();
-    $('#messages').clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
+
     return false;
 }
 
@@ -466,15 +467,34 @@ function initColorPicker(color){
     })
 }
 
+const Saved = Symbol("saved");
+const Cancel = Symbol("cancel");
+const Reset = Symbol("reset");
+function displayMsg(msg) {
+    switch (msg)  {
+        case Saved:
+            $('#msgtxt').removeClass().addClass('centered text-center alert success').text(chrome.i18n.getMessage('optSaved')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
+            break;
+        case Cancel:
+            $('#msgtxt').removeClass().addClass('centered text-center alert warning').text(chrome.i18n.getMessage('optCancel')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
+            break;
+        case Reset:
+            $('#msgtxt').removeClass().addClass('centered text-center alert info').text(chrome.i18n.getMessage('optReset')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
+            break;
+        default:
+            break;
+    }
+}
+
 $(function () {
     initActionKeys();
     i18n();
     chkWhiteListModeOnChange();
     initAddToHistory();
     $("#version").text(chrome.i18n.getMessage("optFooterVersionCopyright", [chrome.runtime.getManifest().version, localStorage['HoverZoomLastUpdate'] ? localStorage['HoverZoomLastUpdate'] : localStorage['HoverZoomInstallation']]));
-    $('#btnSave').click(saveOptions);
-    $('#btnCancel').click(function() { restoreOptions() });
-    $('#btnReset').click(restoreOptionsFromFactorySettings);
+    $('#btnSave').click(function() { saveOptions(); displayMsg(Saved); return false; }); // "return false" needed to prevent page scroll
+    $('#btnCancel').click(function() { restoreOptions(); displayMsg(Cancel); return false; });
+    $('#btnReset').click(function() { restoreOptionsFromFactorySettings(); displayMsg(Reset); return false; });
     $('#chkWhiteListMode').parent().on('gumby.onChange', chkWhiteListModeOnChange);
     $('#txtZoomFactor').change(percentageOnChange);
     $('#txtPicturesOpacity').change(percentageOnChange);

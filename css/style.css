@@ -1,7 +1,8 @@
 #messages {
-    opacity: 0;
     margin-top: 2em;
     margin-bottom: 2em;
+    display: flex;
+    justify-content: center;
 }
 
 .append input[type=range] + input[type=text] {
@@ -60,3 +61,28 @@ select.picker {
 legend {
     font-weight: bold;
 }
+
+.popup table { width: max-content; margin-bottom: 0px;}
+.popup table tr:nth-child(even) { background-color: #FFCF0940; } /* yellow */
+.popup table tr:nth-child(odd) { background-color: #85B7E740; } /* blue */
+.popup table tr td { font-size: 12px; padding-left: 5px; padding-right: 5px; padding-top: 1px; padding-bottom: 1px; }
+.popup table tr td.ttip { padding-right: 30px; }
+
+.popup .picker { height: auto; padding-right: 5px; }
+
+.popup .tab-content { padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px; }
+
+.popup .buttons { display: flex; justify-content: space-around; padding: 10px; }
+
+.popup .header { display: flex; padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 10px; }
+
+.popup .footer { position: fixed; bottom: 0px; left: 0px; width: 100%; text-align: center; padding: 0px; font-size: 12px; font-weight: bold; }
+
+.popup a { font-size: 115%; }
+
+.popup .ttip:after,.ttip:before { display: block; font-size: 12px; margin-left: 0px; padding-left: 3px; padding-top: 0px; padding-bottom: 0px; text-align: left; }
+
+.popup #messages { margin-top: 0px; margin-bottom: 0px; }
+
+.popup .alert { margin-top: 0px; margin-bottom: 0px; font-size: 12px; }
+
