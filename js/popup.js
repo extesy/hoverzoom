@@ -1,4 +1,4 @@
-﻿var options,
+var options,
     siteHostname,
     prgPreloading, lblPreloading, aPreload,
     VK_CTRL = 1024,

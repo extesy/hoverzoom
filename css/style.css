@@ -103,5 +103,3 @@ legend {
 
 /* highlight user modification(s) in popup & options pages */
 select.modified, span.modified { outline-color: orange; outline-style: solid; outline-width: medium; } 
-
-
