@@ -1,5 +1,5 @@
 ﻿var options,
-    siteDomain,
+    siteHostname,
     prgPreloading, lblPreloading, aPreload,
     VK_CTRL = 1024,
     VK_SHIFT = 2048,
@@ -71,6 +71,23 @@ function loadKeys(sel) {
 // TODO: Migrate to https://developer.chrome.com/extensions/storage
 function saveOptions() {
 
+    // Get the excluded site index if it has already been added
+    var excludedSiteIndex = -1;
+    for (var i = 0; i < options.excludedSites.length; i++) {
+        if (options.excludedSites[i] == siteHostname) {
+            excludedSiteIndex = i;
+            break;
+        }
+    }
+
+    if ($('#chkExcludeSite')[0].checked) {
+        if (excludedSiteIndex == -1)
+            options.excludedSites.push(siteHostname);
+    } else {
+        if (excludedSiteIndex > -1)
+            options.excludedSites.splice(excludedSiteIndex, 1);
+    }
+
     actionKeys.forEach(function(key) {
         var id = key[0].toUpperCase() + key.substr(1);
         options[key] = parseInt($('#sel' + id).val());
@@ -89,25 +106,75 @@ function restoreOptionsFromFactorySettings() {
 
 // Restores options from localStorage.
 function restoreOptions(optionsFromFactorySettings) {
-    options = optionsFromFactorySettings || loadOptions();
+
+    if (optionsFromFactorySettings) {
+        // only reset popup settings (actions keys & excluded site)
+        // other settings are not reset
+        let excludedSiteIndex = -1;
+        for (var i = 0; i < options.excludedSites.length; i++) {
+            if (options.excludedSites[i] == siteHostname) {
+                excludedSiteIndex = i;
+                break;
+            }
+        }
+        if (excludedSiteIndex > -1)
+            options.excludedSites.splice(excludedSiteIndex, 1);
+
+        actionKeys.forEach(function(key) {
+            options[key] = optionsFromFactorySettings[key];
+        });
+
+    } else {
+        options = loadOptions();
+    }
+
+    // update display
+    chrome.tabs.query({active: true, currentWindow: true}, function (tabArr) {
+        var tab = tabArr[0];
+        if (options.whiteListMode) {
+            $('#chkExcludeSite').trigger(isExcludedSite(tab.url) ? 'gumby.uncheck' : 'gumby.check');
+            if ($('#chkExcludeSite')[0].dataset.val0 == undefined) $('#chkExcludeSite')[0].dataset.val0 = (isExcludedSite(tab.url) ? 'unchecked' : 'checked');
+            else $('#chkExcludeSite')[0].dataset.val1 = (isExcludedSite(tab.url) ? 'unchecked' : 'checked');
+        }
+        else {
+            $('#chkExcludeSite').trigger(isExcludedSite(tab.url) ? 'gumby.check' : 'gumby.uncheck');
+            if ($('#chkExcludeSite')[0].dataset.val0 == undefined) $('#chkExcludeSite')[0].dataset.val0 = (isExcludedSite(tab.url) ? 'checked' : 'unchecked');
+            else $('#chkExcludeSite')[0].dataset.val1 = (isExcludedSite(tab.url) ? 'checked' : 'unchecked');
+        }
+    });
 
     actionKeys.forEach(function(key) {
         var id = key[0].toUpperCase() + key.substr(1);
         $('#sel' + id).val(options[key]);
+        if ($('#sel' + id)[0].dataset.val0 == undefined) $('#sel' + id)[0].dataset.val0 = options[key];
+        else $('#sel' + id)[0].dataset.val1 = options[key];
     });
 
+    checkModifications();
     return false;
 }
 
 function selKeyOnChange(event) {
     var currSel = $(event.target);
+    if (currSel[0].dataset.val0 == undefined) return; // event fired before init
+    currSel[0].dataset.val1 = currSel.val();
+    checkModification(currSel);
     if (currSel.val() != '0') {
         $('.actionKey').each(function () {
             if (!$(this).is(currSel) && $(this).val() == currSel.val()) {
-                $(this).val('0').effect("highlight", {color:'red'}, 5000);
+                $(this).val('0');
+                $(this)[0].dataset.val1 = $(this).val();
+                checkModification($(this));
             }
         });
     }
+}
+
+function chkExcludeSiteOnChange(event) {
+    let checkbox = $(event.target).find('input')[0];
+    if (checkbox.dataset.val0 == undefined) return; // event fired before init
+    checkbox.dataset.val1 = (checkbox.checked ? 'checked' : 'unchecked');
+    checkModification($(checkbox));
 }
 
 const Saved = Symbol("saved");
@@ -134,21 +201,92 @@ $(function () {
     i18n();
     options = loadOptions();
 
-    $('#btnSave').click(function() { saveOptions(); displayMsg(Saved); return false; }); // "return false" needed to prevent page scroll
-    $('#btnCancel').click(function() { restoreOptions(); displayMsg(Cancel); return false; });
+    $('#btnSave').click(function() { removeModifications(); saveOptions(); displayMsg(Saved); return false; }); // "return false" needed to prevent page scroll
+    $('#btnCancel').click(function() { removeModifications(); restoreOptions(); displayMsg(Cancel); return false; });
     $('#btnReset').click(function() { restoreOptionsFromFactorySettings(); displayMsg(Reset); return false; });
 
     $('.actionKey').change(selKeyOnChange);
 
-    restoreOptions();
+    chrome.permissions.contains({permissions: ['tabs']}, function (granted) {
+        if (granted) {
+            setTabHook(options);
+            $('#chkExcludeSite').parent().on('gumby.onChange', chkExcludeSiteOnChange);
+        } else {
+            $('#lblToggle').text(chrome.i18n.getMessage('popAllowPerSiteToggle'));
+            $('#chkExcludeSite').parent().on('gumby.onChange', askTabsPermissions);
+        }
+    });
 
+    restoreOptions();
     chrome.runtime.onMessage.addListener(onMessage);
 });
+
+function askTabsPermissions() {
+    chrome.permissions.contains({permissions: ['tabs']}, function (granted) {
+        if (!granted) {
+            chrome.permissions.request({permissions: ['tabs']}, function (granted) {
+                if (granted) {
+                    setTabHook(options);
+                    location.reload();
+                }
+            });
+        }
+    });
+}
+
+function setTabHook(options) {
+    chrome.tabs.query({active: true, currentWindow: true}, function (tabArr) {
+        var tab = tabArr[0];
+        siteHostname = new URL(tab.url)['hostname'];
+        if (siteHostname.substr(0, 4) === 'www.')
+            siteHostname = siteHostname.substr(4);
+        $('#lblToggle').text(chrome.i18n.getMessage(options.whiteListMode ? 'popEnableForSite' : 'popDisableForSite'));
+        $('#lblSite').removeClass().addClass(options.whiteListMode ? 'enableForSite' : 'disableForSite').text(siteHostname);
+        $('#chkExcludeSite')[0].checked = (options.whiteListMode ? !isExcludedSite(tab.url) : isExcludedSite(tab.url));
+        $('input:checked').trigger('gumby.check');
+    });
+}
 
 function onMessage(message, sender, callback) {
     switch (message.action) {
         case 'optionsChanged':
             restoreOptions();
             break;
+        case 'askTabsPermissions':
+            chrome.permissions.request({permissions: ['tabs']}, function (granted) {
+                callback(granted);
+            });
+            break;
     }
+}
+
+// highlight item if modified, unhighlight if not modified
+function checkModification(item) {
+    if (item[0].dataset.val1 == undefined) return;
+    let highlight = (item[0].dataset.val0 != item[0].dataset.val1 ? true : false);
+
+    // choose which control to highlight/unhighlight depending on item's type
+    switch (item[0].type) {
+        case 'checkbox':
+            if (highlight) item.siblings('span').addClass('modified');
+            else item.siblings('span').removeClass('modified');
+            break;
+        case 'select-one':
+            if (highlight) item.addClass('modified');
+            else item.removeClass('modified');
+            break;
+        default:
+            break;
+    }
+}
+
+// highlight/unhighlight all items
+function checkModifications() {
+    $('[data-val0]').each(function() { checkModification($(this)); });
+}
+
+function removeModifications() {
+    $('.modified').removeClass('modified');
+    $('[data-val0]').each(function() { delete $(this)[0].dataset.val0; });
+    $('[data-val1]').each(function() { delete $(this)[0].dataset.val1; });
 }

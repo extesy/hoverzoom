@@ -62,27 +62,46 @@ legend {
     font-weight: bold;
 }
 
+/* popup styling */
 .popup table { width: max-content; margin-bottom: 0px;}
-.popup table tr:nth-child(even) { background-color: #FFCF0940; } /* yellow */
-.popup table tr:nth-child(odd) { background-color: #85B7E740; } /* blue */
+.popup table tr:nth-child(even) { background-color: #FFCF0940; } /* light yellow */
+.popup table tr:nth-child(odd) { background-color: #85B7E740; } /* light blue */
 .popup table tr td { font-size: 12px; padding-left: 5px; padding-right: 5px; padding-top: 1px; padding-bottom: 1px; }
 .popup table tr td.ttip { padding-right: 30px; }
 
 .popup .picker { height: auto; padding-right: 5px; }
 
-.popup .tab-content { padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px; }
+.popup .tab-content, .popup .checkbox { padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px; }
 
 .popup .buttons { display: flex; justify-content: space-around; padding: 10px; }
 
-.popup .header { display: flex; padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 10px; }
+.popup .header { display: flex; padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px; }
 
 .popup .footer { position: fixed; bottom: 0px; left: 0px; width: 100%; text-align: center; padding: 0px; font-size: 12px; font-weight: bold; }
 
 .popup a { font-size: 115%; }
 
+.popup #aMoreOptions { color: #2644D0FF; } /* strong blue */
+
 .popup .ttip:after,.ttip:before { display: block; font-size: 12px; margin-left: 0px; padding-left: 3px; padding-top: 0px; padding-bottom: 0px; text-align: left; }
 
 .popup #messages { margin-top: 0px; margin-bottom: 0px; }
 
-.popup .alert { margin-top: 0px; margin-bottom: 0px; font-size: 12px; }
+.popup .alert { margin-top: 0px; margin-bottom: 0px; font-size: 12px; line-height: 150%; }
+
+.popup label { font-size: 12px; font-weight: bold; }
+
+.popup input { margin: 0px; }
+
+.popup div.field { margin-bottom: 0px; }
+
+.popup .noscrollbars::-webkit-scrollbar { display: none; }
+.popup body { padding: 0px; margin: 0px; }
+
+.popup .enableForSite { color: limegreen; }
+.popup .disableForSite { color: red; }
+
+/* highlight user modification(s) in popup & options pages */
+select.modified, span.modified { outline-color: orange; outline-style: solid; outline-width: medium; } 
+
 

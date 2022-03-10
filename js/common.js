@@ -176,23 +176,19 @@ function sendOptions(options) {
     chrome.runtime.sendMessage(request);
 }
 
-// Return true is the url is part of an excluded site
-function isExcludedSite(url) {
-    var excluded = !options.whiteListMode;
-    var siteAddress = url.substr(url.indexOf('://') + 3);
-    if (siteAddress.substr(0, 4) == 'www.') {
-        siteAddress = siteAddress.substr(4);
-    }
-    for (var i = 0; i < options.excludedSites.length; i++) {
-        var es = options.excludedSites[i];
-        if (es.substr(0, 4) == 'www.') {
-            es = es.substr(4);
-        }
-        if (es && es.length <= siteAddress.length) {
-            if (siteAddress.substr(0, es.length) == es) {
-                return excluded;
-            }
-        }
+// Return true if the url is part of an excluded site
+function isExcludedSite(link) {
+    let linkHostname = new URL(link)['hostname'];
+    let excluded = !options.whiteListMode;
+    for (let i = 0; i < options.excludedSites.length; i++) {
+   
+        // check if excluded site is included in link hostname
+        // e.g:
+        // link hostname = www.tiktok.com
+        // excluded site = tiktok
+        // => link excluded
+        let es = options.excludedSites[i];
+        if (linkHostname.indexOf(es) != -1) return excluded;
     }
     return !excluded;
 }

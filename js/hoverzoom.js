@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [],
     regexImgUrl = /\.(jpe?g|gifv?|png|webm|mp4|3gpp|svg|webp|bmp|ico|xbm)([\?#].*)?$/i,
     regexSpecialChars = /[\r\n\t\v\f]/g,
-    regexForbiddenChars = /[\\/:*?"<>|]/g,
+    regexForbiddenChars = /[\\/:*?"<>|~]/g,
     debug = false,
     logger = Logger(),
     hls = null; // https://github.com/video-dev/hls.js/
@@ -1830,15 +1830,17 @@ var hoverZoom = {
         }
 
         function isExcludedLink(link) {
-            let url = new URL(link)['hostname'];
+            let linkHostname = new URL(link)['hostname'];
             let excluded = !options.whiteListMode;
             for (let i = 0; i < options.excludedSites.length; i++) {
-                let es = new URL('http://' + options.excludedSites[i])['hostname'];
-                if (es && es.length <= url.length) {
-                    if (url.substr(url.length - es.length, es.length) === es) {
-                        return excluded;
-                    }
-                }
+       
+                // check if excluded site is included in link hostname
+                // e.g:
+                // link hostname = www.tiktok.com
+                // excluded site = tiktok
+                // => link excluded
+                let es = options.excludedSites[i];
+                if (linkHostname.indexOf(es) != -1) return excluded;
             }
             return !excluded;
         }

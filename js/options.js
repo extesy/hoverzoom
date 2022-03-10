@@ -259,6 +259,10 @@ function btnAddExcludedSiteOnClick() {
 }
 
 function appendExcludedSite(site) {
+    // do not add site twice 
+    var es = $('#selExcludedSites').find('span').filter(function() { if($(this).text() == site) return true; else return false;  });
+    if (es.length != 0) return;
+    
     $('<li><a href="#"><i class="icon-cancel"></i></a> <span>' + site + '</span></li>').appendTo('#selExcludedSites').find('a').on('click', btnRemoveExcludedSiteOnClick);
 }
 
