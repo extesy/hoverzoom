@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -13,10 +13,18 @@
     <script src="../js/libs/modernizr-2.7.1.js"></script>
 </head>
 <body>
-    <div class="pretty container popup">
+    <div class="pretty container popup noscrollbars">
         <div class="header">
             <div><img src="../images/icon48.png"></div>
             <h5 data-i18n="optTitle"></h5>
+        </div>
+        <div class="field">
+            <label class="checkbox" for="chkExcludeSite">
+                <input type="checkbox" id="chkExcludeSite"><span></span>
+                <div style="display:inline-flex">
+                    <div id="lblToggle"></div><div>&nbsp</div><div id="lblSite"></div>
+                </div>
+            </label>
         </div>
         <div>
             <section>

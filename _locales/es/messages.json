@@ -59,6 +59,14 @@
         "message": "Opciones guardadas. Algunos ajustes pueden necesitar volver a cargar la página.",
         "description": "[options] Notification after saving options"
     },
+    "optCancel": {
+        "message": "Modificación(es) cancelada(s).",
+        "description": "[options] Notification after cancelling modification(s) to options"
+    },
+    "optReset": {
+        "message": "Opciones restauradas a la configuración de fábrica, guardar para aplicar.",
+        "description": "[options] Notification after resetting options to factory settings"
+    },
     "optPageGeneral": {
         "message": "General",
         "description": "[options] Page title for general options"
@@ -508,27 +516,27 @@
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
-        "message": "Toggle HoverZoom+",
+        "message": "Activar/desactivar HoverZoom+",
         "description": "[options] Action key title"
     },
     "optToggleKeyDescription": {
-        "message": "Enable/disable HoverZoom+",
+        "message": "Activar/desactivar HoverZoom+",
         "description": "[options] Action key description"
     },
     "optCloseKeyTitle": {
-        "message": "Close image",
+        "message": "Cerrar imagen",
         "description": "[options] Action key title"
     },
     "optCloseKeyDescription": {
-        "message": "Press this key to close zoomed image or video.",
+        "message": "Presione esta tecla para cerrar la imagen o el vídeo ampliado.",
         "description": "[options] Action key description"
     },
     "optHideKeyTitle": {
-        "message": "Hide image",
+        "message": "Ocultar imagen",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
+        "message": "Mantener presionada esta tecla oculta la imagen o video ampliado. Utilizar cuando la imagen oculta elementos que también aparecen en mouseover.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -536,7 +544,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
+        "message": "Pulse esta tecla para abrir la imagen o vídeo que está viendo actualmente en una nueva ventana. Pulse esta tecla de nuevo para cerrar la ventana.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
@@ -544,7 +552,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
+        "message": "Pulse esta tecla para abrir la imagen o vídeo que está viendo actualmente en una nueva pestaña. Pulse esta tecla de nuevo para cerrar la pestaña. Mayús+tecla abre la imagen en una pestaña de fondo.",
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
@@ -552,7 +560,7 @@
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
+        "message": "Pulse esta tecla para bloquear la imagen o vídeo en el centro de la página, permitiéndole hacer zoom y desplazarse. Pulse la tecla Cerrar o haga clic fuera de la imagen para desbloquear.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -560,7 +568,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Press this key to save the image or video you are currently viewing.",
+        "message": "Pulse esta tecla para guardar la imagen o vídeo que está viendo actualmente.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
@@ -624,11 +632,11 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
+        "message": "Versión $1 (última actualización: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "Click anywhere on the page then hover again",
+        "message": "Haga clic en cualquier parte de la página y luego vuelva a pasar el cursor",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }
