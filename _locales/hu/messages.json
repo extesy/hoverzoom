@@ -60,7 +60,7 @@
         "description": "[options] Notification after saving options"
     },
     "optCancel": {
-        "message": "Modification(s) cancelled.",
+        "message": "Módosítás(ok) visszavonva.",
         "description": "[options] Notification after cancelling modification(s) to options"
     },
     "optReset": {
