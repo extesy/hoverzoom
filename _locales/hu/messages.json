@@ -520,23 +520,23 @@
         "description": "[options] Action key title"
     },
     "optToggleKeyDescription": {
-        "message": "Enable/disable HoverZoom+",
+        "message": "HoverZoom+ be-/kikapcsolása",
         "description": "[options] Action key description"
     },
     "optCloseKeyTitle": {
-        "message": "Close image",
+        "message": "Kép bezárása",
         "description": "[options] Action key title"
     },
     "optCloseKeyDescription": {
-        "message": "Press this key to close zoomed image or video.",
+        "message": "Nyomja meg ezt a billentyűt hogy bezárja a nagyított képet vagy videőt.",
         "description": "[options] Action key description"
     },
     "optHideKeyTitle": {
-        "message": "Hide image",
+        "message": "Kép elrejtése",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
+        "message": "E billentyű nyomva tartása elrejti a nagyított képet vagy videót. Akkor használd, ha a nagyított kép elrejt olyan elemeket, amelyek csak akkor jelennek meg, ha az egérmutató a képen van.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -544,7 +544,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
+        "message": "Nyomd meg ezt a billentyűt hogy a kép vagy videó megjelenjen egy új ablakban. Nyomd meg megint hogy bezáródjon az ablak.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
@@ -552,7 +552,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
+        "message": "Nyomd meg ezt a billentyűt hogy a kép vagy videó megjelenjen egy új lapon. Nyomd meg megint hogy bezáródjon a lap. A Shift+billentyű egy háttérlapon nyitja meg a képet.",
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
