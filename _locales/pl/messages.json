@@ -43,6 +43,14 @@
         "message": "Opcje Hover Zoom+",
         "description": "[options] Page title"
     },
+    "optButtonDisableAllPlugins": {
+        "message": "Disable all",
+        "description": "[options] disable all plugins button label"
+    },
+    "optButtonEnableAllPlugins": {
+        "message": "Enable all",
+        "description": "[options] enable all plugins button label"
+    },
     "optButtonSave": {
         "message": "Zapisz",
         "description": "[options] Save button label"
