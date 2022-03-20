@@ -10,7 +10,7 @@
     margin-left: -6px;
 }
 
-input[type="range"] {
+input[type=range] {
     vertical-align: top;
     border-radius: 4px 0 0 4px;
 }
@@ -30,6 +30,8 @@ input[type=range]::-webkit-slider-runnable-track {
 input[type=text].normal {
     height: 30px;
     text-align: left;
+    border-radius: 4px; 
+    margin: 3px;
 }
 
 input[type=text].xnarrow {
@@ -50,7 +52,7 @@ span.adjoined.xnarrow {
 
 select.picker {
     height: 30px;
-    margin: 0px;
+    margin: 3px;
 }
 
 .disabled {
@@ -61,6 +63,8 @@ select.picker {
 legend {
     font-weight: bold;
 }
+
+label { margin: 3px; }
 
 /* popup styling */
 .popup table { width: max-content; margin-bottom: 0px;}
@@ -102,4 +106,6 @@ legend {
 .popup .disableForSite { color: red; }
 
 /* highlight user modification(s) in popup & options pages */
-select.modified, span.modified { outline-color: orange; outline-style: solid; outline-width: medium; } 
+div.modified, select.modified, span.modified, input[type=text].modified, input[type=range].modified { outline-color: orange; outline-style: solid; outline-width: medium; }
+
+span.added { outline-color: orange; outline-style: solid; outline-width: medium; padding-left: 3px; padding-right: 3px; border-radius: 4px; }

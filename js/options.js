@@ -203,13 +203,15 @@ function restoreOptions(optionsFromFactorySettings) {
     var plugins = $.unique(hoverZoomPlugins.map(function(plugin) {return plugin.name})).sort(Intl.Collator().compare);
     plugins.forEach(function(plugin) {
         var chkName = 'chkPlugin' + plugin.replace(/[^\w\-_]/g, '').toLowerCase();
-        $('#' + chkName).trigger(options.disabledPlugins.includes(chkName.substr('chkPlugin'.length)) ? 'gumby.uncheck' : 'gumby.check');
+        var disabled = (options.disabledPlugins.includes(chkName.substr('chkPlugin'.length)) ? true : false);
+        $('#' + chkName).trigger(disabled ? 'gumby.uncheck' : 'gumby.check');
     });
 
     $('#chkWhiteListMode').trigger(options.whiteListMode ? 'gumby.check' : 'gumby.uncheck');
+
     $('#selExcludedSites').empty();
     for (var i = 0; i < options.excludedSites.length; i++) {
-        appendExcludedSite(options.excludedSites[i]);
+        appendExcludedSite(options.excludedSites[i], false);
     }
 
     actionKeys.forEach(function(key) {
@@ -237,7 +239,60 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#selectUseSeparateTabOrWindowForUnloadableUrls').val(options.useSeparateTabOrWindowForUnloadableUrls);
     $('#chkEnableDebug').trigger(options.debug ? 'gumby.check' : 'gumby.uncheck');
 
+    $('input[type=checkbox]').each(function() { initCheckBox(this) });
+    $('input[type=text]:not("#txtAddExcludedSite")').each(function() { initText(this) });
+    $('input[type=range]').each(function() { initRange(this) });
+    $('select').each(function() { initSelect(this) });
+
+    checkModifications();
     return false;
+}
+
+function initRange(range) {
+    if (range.dataset.val0 == undefined) range.dataset.val0 = range.value;
+    else range.dataset.val1 = range.value;
+}
+
+function updateRange(range) {
+    if (range.dataset.val0 == undefined) return; // event fired before init
+    range.dataset.val1 = range.value;
+    checkModification($(range));
+}
+
+function initText(text) {
+    let val = text.value.trim();
+    if (text.dataset.val0 == undefined) text.dataset.val0 = val;
+    else text.dataset.val1 = val;
+}
+
+function updateText(text) {
+    let val = text.value.trim();
+    if (text.dataset.val0 == undefined) return; // event fired before init
+    text.dataset.val1 = val;
+    checkModification($(text));
+}
+
+function initSelect(select) {
+    if (select.dataset.val0 == undefined) select.dataset.val0 = select.value;
+    else select.dataset.val1 = select.value;
+}
+
+function updateSelect(select) {
+    if (select.dataset.val0 == undefined) return; // event fired before init
+    select.dataset.val1 = select.value;
+    checkModification($(select));
+}
+
+function initCheckBox(checkbox) {
+    if (checkbox.dataset.val0 == undefined) checkbox.dataset.val0 = checkbox.checked;
+    else checkbox.dataset.val1 = checkbox.checked;
+}
+
+function updateCheckBox(checkbox) {
+    if ($(checkbox)[0].type != 'checkbox') checkbox = $(checkbox).find('input')[0];
+    if (checkbox.dataset.val0 == undefined) return; // event fired before init
+    checkbox.dataset.val1 = checkbox.checked;
+    checkModification($(checkbox));
 }
 
 function btnAddExcludedSiteOnClick() {
@@ -250,7 +305,7 @@ function btnAddExcludedSiteOnClick() {
         if (site.substr(0, 4) === 'www.')
             site = site.substr(4);
         if (site)
-            appendExcludedSite(site);
+            appendExcludedSite(site, true);
         field.val('').focus();
     } catch (e) {
         // ignore the exception
@@ -258,12 +313,12 @@ function btnAddExcludedSiteOnClick() {
     return false;
 }
 
-function appendExcludedSite(site) {
-    // do not add site twice 
+function appendExcludedSite(site, added) {
+    // do not add site twice
     var es = $('#selExcludedSites').find('span').filter(function() { if($(this).text() == site) return true; else return false;  });
     if (es.length != 0) return;
-    
-    $('<li><a href="#"><i class="icon-cancel"></i></a> <span>' + site + '</span></li>').appendTo('#selExcludedSites').find('a').on('click', btnRemoveExcludedSiteOnClick);
+
+    $('<li><a href="#"><i class="icon-cancel"></i></a> <span' + (added ? ' class="added">' : '>') + site + '</span></li>').appendTo('#selExcludedSites').find('a').on('click', btnRemoveExcludedSiteOnClick);
 }
 
 function btnRemoveExcludedSiteOnClick() {
@@ -273,10 +328,15 @@ function btnRemoveExcludedSiteOnClick() {
 
 function selKeyOnChange(event) {
     var currSel = $(event.target);
+    if (currSel[0].dataset.val0 == undefined) return; // event fired before init
+    currSel[0].dataset.val1 = currSel.val();
+    checkModification(currSel);
     if (currSel.val() != '0') {
         $('.actionKey').each(function () {
             if (!$(this).is(currSel) && $(this).val() == currSel.val()) {
-                $(this).val('0').effect("highlight", {color:'red'}, 5000);
+                $(this).val('0');
+                $(this)[0].dataset.val1 = $(this).val();
+                checkModification($(this));
             }
         });
     }
@@ -455,7 +515,9 @@ function populatePluginsTable() {
         var chkName = 'chkPlugin' + plugin.replace(/[^\w\-_]/g, '').toLowerCase();
         $('<div class="field"><label class="checkbox" for="' + chkName + '"><input type="checkbox" id="' + chkName + '" class="chkPlugin"><span></span>&nbsp;<div style="display:inline">' + plugin + '</div></label></div>').appendTo('#tblPlugins');
         $('#' + chkName)[0].checked = !options.disabledPlugins.includes(chkName.substr('chkPlugin'.length));
+        $('#' + chkName).each(function() { initCheckBox(this,  $('#' + chkName)[0].checked) });
     });
+    $('input[type=checkbox]').each(function() { $(this).parent().on('gumby.onChange', function() { updateCheckBox(this) }) });
     Gumby.initialize('checkbox');
 }
 
@@ -491,14 +553,17 @@ function displayMsg(msg) {
 }
 
 $(function () {
+    options = loadOptions();
     initActionKeys();
     i18n();
     chkWhiteListModeOnChange();
     initAddToHistory();
     $("#version").text(chrome.i18n.getMessage("optFooterVersionCopyright", [chrome.runtime.getManifest().version, localStorage['HoverZoomLastUpdate'] ? localStorage['HoverZoomLastUpdate'] : localStorage['HoverZoomInstallation']]));
-    $('#btnSave').click(function() { saveOptions(); displayMsg(Saved); return false; }); // "return false" needed to prevent page scroll
-    $('#btnCancel').click(function() { restoreOptions(); displayMsg(Cancel); return false; });
+    $('#btnSave').click(function() { removeModifications(); saveOptions(); displayMsg(Saved); return false; }); // "return false" needed to prevent page scroll
+    $('#btnCancel').click(function() { removeModifications(); restoreOptions(); displayMsg(Cancel); return false; });
     $('#btnReset').click(function() { restoreOptionsFromFactorySettings(); displayMsg(Reset); return false; });
+    $('#btnDisableAllPlugins').click(function() { disableAllPlugins(); return false; });
+    $('#btnEnableAllPlugins').click(function() { enableAllPlugins(); return false; });
     $('#chkWhiteListMode').parent().on('gumby.onChange', chkWhiteListModeOnChange);
     $('#txtZoomFactor').change(percentageOnChange);
     $('#txtPicturesOpacity').change(percentageOnChange);
@@ -524,5 +589,63 @@ $(function () {
     restoreOptions();
     loadPlugins();
 
+    $('input[type=checkbox]').each(function() { $(this).parent().on('gumby.onChange', function() { updateCheckBox(this) }) });
+    $('input[type=text]:not("#txtAddExcludedSite")').each(function() { $(this).change(function() { updateText(this) }) });
+    $('input[type=range]').each(function() { $(this).change(function() { updateRange(this) }) });
+    $('select').each(function() { $(this).change(function() { updateSelect(this) }) });
+
     chrome.runtime.onMessage.addListener(onMessage);
 });
+
+function disableAllPlugins() {
+    $('input.chkPlugin').each(function() { $(this).trigger('gumby.uncheck'); })
+}
+
+function enableAllPlugins() {
+    $('input.chkPlugin').each(function() { $(this).trigger('gumby.check'); })
+}
+
+// highlight item if modified, unhighlight if not modified
+function checkModification(item) {
+    if (item[0].dataset.val1 == undefined) return;
+    let highlight = (item[0].dataset.val0 != item[0].dataset.val1 ? true : false);
+
+    // choose which control to highlight/unhighlight depending on item's type
+    switch (item[0].type) {
+        case 'checkbox':
+            if (highlight) item.siblings('span').addClass('modified');
+            else item.siblings('span').removeClass('modified');
+            break;
+        case 'select-one':
+            if (highlight) item.addClass('modified');
+            else item.removeClass('modified');
+            break;
+        case 'text':
+        case 'range':
+            if (highlight) {
+                item.addClass('modified');
+                item.siblings('input[type=text],input[type=range],span').addClass('modified');
+                if (item[0].id == 'pickerFrameBackgroundColor') $('.sp-replacer').addClass('modified');
+            }
+            else {
+                item.removeClass('modified');
+                item.siblings('input[type=text],input[type=range],span').removeClass('modified');
+                if (item[0].id == 'pickerFrameBackgroundColor') $('.sp-replacer').removeClass('modified');
+            }
+            break;
+        default:
+            break;
+    }
+}
+
+// highlight/unhighlight all items
+function checkModifications() {
+    $('[data-val0]').each(function() { checkModification($(this)); });
+}
+
+function removeModifications() {
+    $('.modified').removeClass('modified');
+    $('.added').removeClass('added');
+    $('[data-val0]').each(function() { delete $(this)[0].dataset.val0; });
+    $('[data-val1]').each(function() { delete $(this)[0].dataset.val1; });
+}

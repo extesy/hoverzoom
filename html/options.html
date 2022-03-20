@@ -54,7 +54,7 @@
                                         </li>
                                     </div>
                                     <div class="ttip" data-i18n-tooltip="optDetailsLocationTooltip">
-                                        <li class="field" style="margin-left:30px">
+                                        <li class="field" style="margin-left:10px">
                                             <div style="display:inline" data-i18n="optDetailsLocation"></div>
                                             <select id="selectDetailsLocation" class="picker">
                                                 <option value="above" data-i18n="optDetailsLocationAbove"></option>
@@ -64,7 +64,7 @@
                                         </li>
                                     </div>
                                     <div class="ttip" data-i18n-tooltip="optFontSizeTooltip">
-                                        <div class="append field" style="margin-left:30px">
+                                        <div class="append field" style="margin-left:10px">
                                             <label class="inline" for="txtFontSize">
                                                 <div style="display:inline" data-i18n="optFontSize"></div>
                                                 <input class="xnarrow input" type="range" name="points" min="8" max="20" step="1" id="rngFontSize">
@@ -273,7 +273,7 @@
                                             <input type="checkbox" id="chkHideMouseCursor"><span></span>
                                             <div style="display:inline" data-i18n="optHideMouseCursor"></div>
                                         </label>
-                                        <div id="divHideMouseCursor" style="display:inline"><input class="xnarrow text input" type="text" id="txtHideMouseCursor"><span class="adjoined xnarrow" data-i18n="optDurationUnitName"></span></div>
+                                        <div id="divHideMouseCursor" style="display:inline"><input class="xnarrow text input" type="text" id="txtHideMouseCursor" style="margin-top:3px"><span class="adjoined xnarrow" data-i18n="optDurationUnitName"></span></div>
                                     </li>
                                 </div>
                             </ul>
@@ -282,9 +282,13 @@
                 </div>
                 <div class="tab-content">
                     <form>
+                        <div style="display:flex; justify-content:flex-end; gap:10px;">                         
+                            <div class="btn default"><a href="#" id="btnDisableAllPlugins" data-i18n="optButtonDisableAllPlugins"></a></div>                      
+                            <div class="btn default"><a href="#" id="btnEnableAllPlugins" data-i18n="optButtonEnableAllPlugins"></a></div>
+                        </div>
                         <fieldset>
                             <legend data-i18n="optPlugins"></legend>
-                            <ul id="tblPlugins"></ul>
+                            <div id="tblPlugins" style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr"></div>
                         </fieldset>
                     </form>
                 </div>
