@@ -43,6 +43,14 @@
         "message": "होवर ज़ूम + विकल्प",
         "description": "[options] Page title"
     },
+    "optButtonDisableAllPlugins": {
+        "message": "Disable all",
+        "description": "[options] disable all plugins button label"
+    },
+    "optButtonEnableAllPlugins": {
+        "message": "Enable all",
+        "description": "[options] enable all plugins button label"
+    },
     "optButtonSave": {
         "message": "सेव",
         "description": "[options] Save button label"
