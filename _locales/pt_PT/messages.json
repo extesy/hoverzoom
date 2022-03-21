@@ -44,11 +44,11 @@
         "description": "[options] Page title"
     },
     "optButtonDisableAllPlugins": {
-        "message": "Disable all",
+        "message": "Desativar todos os plugins",
         "description": "[options] disable all plugins button label"
     },
     "optButtonEnableAllPlugins": {
-        "message": "Enable all",
+        "message": "Ativar todos os plugins",
         "description": "[options] enable all plugins button label"
     },
     "optButtonSave": {
