@@ -1085,6 +1085,10 @@ var hoverZoom = {
                     video.style.width = 0;
                     video.style.height = 0;
                     video.controls = imageLocked;
+                    video.loop = true;
+                    video.autoplay = true;
+                    video.muted = options.muteVideos;
+                    video.volume = options.videoVolume;
                     imgFullSize = $(video).appendTo(hz.hzImg);
                     hls = new Hls({
                         //debug: true,
