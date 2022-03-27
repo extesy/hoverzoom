@@ -1814,6 +1814,11 @@
         {
             "js": ["plugins/celebs-place.js"],
             "matches": ["*://*.celebs-place.com/*"]
+        },
+        {
+            "js": ["plugins/viewbug.js"],
+            "matches": ["*://*.viewbug.com/*"],
+            "all_frames": true
         }
    ]
 }

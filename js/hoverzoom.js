@@ -1833,7 +1833,7 @@ var hoverZoom = {
             let linkHostname = new URL(link)['hostname'];
             let excluded = !options.whiteListMode;
             for (let i = 0; i < options.excludedSites.length; i++) {
-       
+
                 // check if excluded site is included in link hostname
                 // e.g:
                 // link hostname = www.tiktok.com
@@ -1978,7 +1978,7 @@ var hoverZoom = {
             // Toggle key is pressed down
             if (event.which == options.toggleKey) {
                 options.extensionEnabled = !options.extensionEnabled;
-                if (! options.extensionEnabled) { 
+                if (! options.extensionEnabled) {
                     // close zoomed image or video
                     imageLocked = false;
                     if (hz.hzImg) {
@@ -2918,17 +2918,23 @@ var hoverZoom = {
 
     // Extract a thumbnail url from an element, whether it be a link,
     // an image or a element with a background image.
+    // If image and backgroundImage are both present: choose image
     getThumbUrl:function (el) {
         var compStyle = (el && el.nodeType == 1) ? getComputedStyle(el) : false,
             backgroundImage = compStyle ? compStyle.backgroundImage : 'none';
 
+        var imageSrc = '';
+        var backgroundImageSrc = '';
+
         if (backgroundImage.indexOf("url") != -1) {
-            if (hoverZoom.isEmbeddedImg(backgroundImage)) return ''; // discard embedded images
-            return backgroundImage.replace(/.*url\s*\(\s*(.*)\s*\).*/i, '$1').replace(/"/g,'');
+            if (hoverZoom.isEmbeddedImg(backgroundImage)) backgroundImageSrc = ''; // discard embedded images
+            else backgroundImageSrc = backgroundImage.replace(/.*url\s*\(\s*(.*)\s*\).*/i, '$1').replace(/"/g,'');
         }
 
-        if (hoverZoom.isEmbeddedImg(el.src)) return ''; // discard embedded images
-        return el.src || el.href;
+        if (hoverZoom.isEmbeddedImg(el.src)) imageSrc = ''; // discard embedded images
+        else imageSrc = el.src;
+
+        return imageSrc || backgroundImageSrc || el.href;
     },
 
     // Embedded image url look like:  "data:image/png;base64,Base64 encoded string of the image"
