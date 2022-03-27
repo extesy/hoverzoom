@@ -969,7 +969,8 @@
         },
         {
             "js": ["plugins/bing.js"],
-            "matches": ["*://*.bing.com/*"]
+            "matches": ["*://*.bing.com/*"],
+            "all_frames": true
         },
         {
             "js": ["plugins/xuite.js"],
