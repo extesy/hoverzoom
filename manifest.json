@@ -56,7 +56,8 @@
                 "js/tools.js",
                 "js/plugins.js",
                 "plugins/default.js",
-                "js/hoverzoom.js"
+                "js/hoverzoom.js",
+                "js/hls.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
@@ -95,7 +96,8 @@
                 "plugins/vbulletin_a.js",
                 "plugins/vine_a.js",
                 "plugins/wordpress_a.js",
-                "plugins/youtube_a.js"
+                "plugins/youtube_a.js",
+                "plugins/tiktok_a.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
