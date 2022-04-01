@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'twitch',
-    version:'2.1',
+    name:'twitch_a',
+    version:'2.2',
     prepareImgLinks:function (callback) {
 
         var res = [];
@@ -14,13 +14,13 @@ hoverZoomPlugins.push({
         );
 
         hoverZoom.urlReplace(res,
-            'img[src]:not([src*="profile_image"]):not([src*="clips"]):not([src*="vods"]):not([src*="previews-ttv"])',
+            'img[src*="jtvnw.net"]:not([src*="profile_image"]):not([src*="clips"]):not([src*="vods"]):not([src*="previews-ttv"])',
             /(-\d+x\d+)\./,
             '.'
         );
 
         hoverZoom.urlReplace(res,
-            'img[src]:not([src*="profile_image"]):not([src*="clips"]):not([src*="vods"]):not([src*="previews-ttv"])',
+            'img[src*="jtvnw.net"]:not([src*="profile_image"]):not([src*="clips"]):not([src*="vods"]):not([src*="previews-ttv"])',
             ['320x180','188x20'],
             ['2048x1152','1540x2048']
         );
@@ -63,7 +63,7 @@ hoverZoomPlugins.push({
 
         // ---------------------------------------------------- params
         var ClientID = "kimne78kx3ncx6brgo4mv6wki5h1ko";
-        var XDeviceID = getCookie('unique_id') || getCookie('unique_id_durable') || localStorage.local_copy_unique_id;
+        var XDeviceID = getCookie('unique_id') || getCookie('unique_id_durable') || localStorage.local_copy_unique_id || 'd56e8463c57c7cd7';
         // operation names
         var operationNameClip = "VideoAccessToken_Clip";
         var operationNameLiveOrVOD = "PlaybackAccessToken";
@@ -75,7 +75,7 @@ hoverZoomPlugins.push({
         // sample: https://www.twitch.tv/potion_kr/clip/OpenPopularKimchiThunBeast-1MHlQ1yr5K5l7kTm
         // sample: https://www.twitch.tv/potion_kr/clip/OpenPopularKimchiThunBeast-1MHlQ1yr5K5l7kTm?filter=clips&range=30d&sort=time
         // sample: https://clips.twitch.tv/ConsiderateCuteGrouseOneHand-JKJrY3qglQ37kdsY?tt_medium=clips&tt_content=recommendation
-        $('a[href]').filter(function() { return (/\/clip\//.test(this.href)) || (/clips.twitch.tv\//.test(this.href)) }).one('mouseover', function() {
+        $('a[href]').filter(function() { return (/twitch\.tv/.test(this.href)) }).filter(function() { return (/\/clip\//.test(this.href)) || (/clips.twitch.tv\//.test(this.href)) }).one('mouseover', function() {
 
             var link = this;
             link = $(link);
@@ -98,23 +98,25 @@ hoverZoomPlugins.push({
             link.data().hoverZoomSrc = [];
 
             // build GraphQL query
-            $.ajax({
-                type: "POST",
-                dataType: "text",
-                url: "https://gql.twitch.tv/gql",
-                headers: {"Client-ID":ClientID,"X-Device-Id":XDeviceID},
-                data: "{\"operationName\":\"" + operationNameClip + "\",\"variables\":{\"slug\":\"" + slug + "\"},\"extensions\":{\"persistedQuery\":{\"version\":1,\"sha256Hash\":\"" + sha256HashClip + "\"}}}",
-                success: function(response) {
-                    buildFullsizeUrl(link, response);
-                },
-                error: function(response) {
-                }
-            });
+
+            chrome.runtime.sendMessage({action:'ajaxRequest',
+                                        method: 'POST',
+                                        url: 'https://gql.twitch.tv/gql',
+                                        headers: [{"header":"Client-ID","value":ClientID}, {"header":"X-Device-Id","value":XDeviceID}],
+                                        data: "{\"operationName\":\"" + operationNameClip + "\",\"variables\":{\"slug\":\"" + slug + "\"},\"extensions\":{\"persistedQuery\":{\"version\":1,\"sha256Hash\":\"" + sha256HashClip + "\"}}}"},
+
+                                        function (response) {
+
+                                            if (response == null) { return; }
+
+                                            buildFullsizeUrl(link, response);
+                                        });
+
         });
 
         // ---------------------------------------------------- live
         // sample: https://www.twitch.tv/beyondthesummit2
-        $('a[href]').filter(function() { return (/^\/[^/]{1,}$/.test($(this).attr('href'))) }).one('mouseover', function() {
+        $('a[href]').filter(function() { return (/\.twitch\.tv\/[^/]{1,}$/.test(this.href)) }).one('mouseover', function() {
 
             var link = this;
             link = $(link);
@@ -126,18 +128,20 @@ hoverZoomPlugins.push({
         });
 
         function performGraphQLLive(login, link) {
-            $.ajax({
-                type: "POST",
-                dataType: "text",
-                url: "https://gql.twitch.tv/gql",
-                headers: {"Client-ID":ClientID,"X-Device-Id":XDeviceID},
-                data: "{\"operationName\":\"" + operationNameLiveOrVOD + "\",\"variables\":{\"isLive\":true,\"login\":\"" + login + "\",\"isVod\":false,\"vodID\":\"\",\"playerType\":\"site\"},\"extensions\":{\"persistedQuery\":{\"version\":1,\"sha256Hash\":\"" + sha256HashLiveOrVOD + "\"}}}",
-                success: function(response) {
-                    getPlaylistUrlLive(link, response);
-                },
-                error: function(response) {
-                }
-            });
+
+            chrome.runtime.sendMessage({action:'ajaxRequest',
+                                        method: 'POST',
+                                        url: 'https://gql.twitch.tv/gql',
+                                        headers: [{"header":"Client-ID","value":ClientID}, {"header":"X-Device-Id","value":XDeviceID}],
+                                        data: "{\"operationName\":\"" + operationNameLiveOrVOD + "\",\"variables\":{\"isLive\":true,\"login\":\"" + login + "\",\"isVod\":false,\"vodID\":\"\",\"playerType\":\"site\"},\"extensions\":{\"persistedQuery\":{\"version\":1,\"sha256Hash\":\"" + sha256HashLiveOrVOD + "\"}}}"},
+
+                                        function (response) {
+
+                                            if (response == null) { return; }
+
+                                            getPlaylistUrlLive(link, response);
+                                        });
+
         }
 
         //extract token, channel & signature from response and use them to build playlist url
@@ -165,13 +169,13 @@ hoverZoomPlugins.push({
 
         // ---------------------------------------------------- videos
         // sample: https://www.twitch.tv/videos/1178403330?filter=archives&sort=time
-        //$('a[href*="/videos/"]:not(.hoverZoomMouseover3)').addClass('hoverZoomMouseover3').one('mouseover', function() {
-        $('a[href*="/videos/"]').one('mouseover', function() {
+        // sample: https://www.twitch.tv/mrriflez/video/1442006232
+        $('a[href*="/videos/"],a[href*="/video/"]').filter(function() { return (/twitch\.tv/.test(this.href)) }).one('mouseover', function() {
 
             var link = this;
             link = $(link);
 
-            var re = /\/videos\/(\d+)/;
+            var re = /\/videos?\/(\d+)/;
             var m = link.attr('href').match(re);
             if (m == null) return;
             var vodID = m[1];
@@ -181,18 +185,20 @@ hoverZoomPlugins.push({
         });
 
         function performGraphQLVOD(vodID, link) {
-            $.ajax({
-                type: "POST",
-                dataType: "text",
-                url: "https://gql.twitch.tv/gql",
-                headers: {"Client-ID":ClientID,"X-Device-Id":XDeviceID},
-                data: "{\"operationName\":\"" + operationNameLiveOrVOD + "\",\"variables\":{\"isLive\":false,\"login\":\"\",\"isVod\":true,\"vodID\":\"" + vodID + "\",\"playerType\":\"site\"},\"extensions\":{\"persistedQuery\":{\"version\":1,\"sha256Hash\":\"" + sha256HashLiveOrVOD + "\"}}}",
-                success: function(response) {
-                    getPlaylistUrlVOD(link, response);
-                },
-                error: function(response) {
-                }
-            });
+
+            chrome.runtime.sendMessage({action:'ajaxRequest',
+                                        method: 'POST',
+                                        url: 'https://gql.twitch.tv/gql',
+                                        headers: [{"header":"Client-ID","value":ClientID}, {"header":"X-Device-Id","value":XDeviceID}],
+                                        data: "{\"operationName\":\"" + operationNameLiveOrVOD + "\",\"variables\":{\"isLive\":false,\"login\":\"\",\"isVod\":true,\"vodID\":\"" + vodID + "\",\"playerType\":\"site\"},\"extensions\":{\"persistedQuery\":{\"version\":1,\"sha256Hash\":\"" + sha256HashLiveOrVOD + "\"}}}"},
+
+                                        function (response) {
+
+                                            if (response == null) { return; }
+
+                                            getPlaylistUrlVOD(link, response);
+                                        });
+
         }
 
         //extract token, channel & signature from response and use them to build playlist url

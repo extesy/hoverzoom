@@ -91,13 +91,14 @@
                 "plugins/photoshop_a.js",
                 "plugins/squarespace_a.js",
                 "plugins/streamable_a.js",
+                "plugins/tiktok_a.js",
                 "plugins/tumblr_a.js",
+                "plugins/twitch_a.js",
                 "plugins/twitter_a.js",
                 "plugins/vbulletin_a.js",
                 "plugins/vine_a.js",
                 "plugins/wordpress_a.js",
-                "plugins/youtube_a.js",
-                "plugins/tiktok_a.js"
+                "plugins/youtube_a.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
@@ -724,8 +725,7 @@
                 "plugins/pornbot.js",
                 "plugins/reddit.js",
                 "plugins/redgifs.js",
-                "plugins/slutcapades.js",
-                "plugins/twitch.js"
+                "plugins/slutcapades.js"
             ]
         },
         {
@@ -1664,10 +1664,6 @@
         {
             "js": ["plugins/aol.js"],
             "matches": ["*://*.aol.com/*"]
-        },
-        {
-            "js": ["plugins/twitch.js", "js/hls.js"],
-            "matches": ["*://*.twitch.tv/*"]
         },
         {
             "js": ["plugins/govdeals.js"],
