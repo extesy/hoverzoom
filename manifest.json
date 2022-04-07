@@ -1818,6 +1818,10 @@
             "js": ["plugins/viewbug.js"],
             "matches": ["*://*.viewbug.com/*"],
             "all_frames": true
+        },
+        {
+            "js": ["plugins/shein.js"],
+            "matches": ["*://*.shein.com/*"]
         }
    ]
 }
