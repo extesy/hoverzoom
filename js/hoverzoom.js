@@ -719,6 +719,22 @@ var hoverZoom = {
             hzAboveCss.marginBottom = hzBelowCss.marginTop = -0.25 * size + 'px';
         }
 
+        function removeMedias() {
+            stopMedias();
+
+            if (imgFullSize) {
+                imgFullSize.remove();
+                imgFullSize = null;
+                imageLocked = false;
+            }
+
+            if (audioFullSize) {
+                audioFullSize.remove();
+                audioFullSize = null;
+                imageLocked = false;
+            }
+        }
+
         function stopMedias() {
             stopMedia('video');
             stopMedia('audio');
@@ -796,19 +812,7 @@ var hoverZoom = {
             $('#hzBelow').remove();
             restoreTitles();
 
-            if (imgFullSize) {
-                stopMedias();
-                imgFullSize.remove();
-                imgFullSize = null;
-                imageLocked = false;
-            }
-
-            if (audioFullSize) {
-                stopMedias();
-                audioFullSize.remove();
-                audioFullSize = null;
-                imageLocked = false;
-            }
+            removeMedias();
 
             if (loading) {
                 now = true;
@@ -829,7 +833,6 @@ var hoverZoom = {
                     imageLocked = false;
                 }
             });
-            //chrome.runtime.sendMessage({action: 'viewWindow', visible: false});
         }
 
         function normalizeSrc(hoverZoomSrcIndex, links, dataKey) {
@@ -1451,17 +1454,7 @@ var hoverZoom = {
             if (imgDetails.url === $(this).prop('src') || imgDetails.url === unescape($(this).prop('src'))) {
                 let hoverZoomSrcIndex = hz.currentLink ? hz.currentLink.data().hoverZoomSrcIndex : 0;
 
-                if (imgFullSize) {
-                    imgFullSize.remove();
-                    imgFullSize = null;
-                    imageLocked = false;
-                }
-
-                if (audioFullSize) {
-                    audioFullSize.remove();
-                    audioFullSize = null;
-                    imageLocked = false;
-                }
+                removeMedias();
 
                 if (hz.currentLink && hoverZoomSrcIndex < hz.currentLink.data().hoverZoomSrc.length - 1) {
                     // if the link has several possible sources, we try to load the next one
@@ -2786,6 +2779,8 @@ var hoverZoom = {
             loading = true;
             hzGallery.text('.../' + data.hoverZoomGallerySrc.length);
 
+            removeMedias();
+
             loadNextGalleryImage();
             preloadGalleryImage((data.hoverZoomGalleryIndex + rot + l) % l);
         }
@@ -2793,7 +2788,7 @@ var hoverZoom = {
         function loadNextGalleryImage() {
             clearTimeout(loadFullSizeImageTimeout);
             imgDetails.url = hz.currentLink.data().hoverZoomSrc[hz.currentLink.data().hoverZoomSrcIndex];
-            imgFullSize.on('load', nextGalleryImageOnLoad).on('error', imgFullSizeOnError).attr('src', imgDetails.url);
+            loadFullSizeImage();
             getAdditionalInfosFromServer(imgDetails.url);
         }
 
