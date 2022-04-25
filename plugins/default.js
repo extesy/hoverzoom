@@ -1,12 +1,15 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'Default',
+    version:'0.2',
     prepareImgLinks: function (callback) {
         var res = [];
         $('a[href]').filter(function () {
+            if (typeof(this.href) != 'string')
+			    return false;
             if (this.href.substr(0, 10).toLowerCase() == 'data:image')
                 return false;
-            return this.href.match(/\/[^:]+\.(?:jpe?g|gifv?|png|webm|mp4|3gpp|svg|webp|bmp|ico|xbm)(?:[\?#].*)?$/i);
+            return this.href.match(/\/[^:]+\.(?:jpe?g|gifv?|png|webm|mp4|3gpp|svg|webp|bmp|ico|xbm)(?:[\?#].*)?(?:\/)?$/i);
         }).each(function () {
             var _this = $(this), data = _this.data();
             if (!data.hoverZoomSrc) {
@@ -18,7 +21,7 @@ hoverZoomPlugins.push({
             }
         });
         if (res.length) {
-            callback($(res));
+            callback($(res), this.name);
         }
     }
 });

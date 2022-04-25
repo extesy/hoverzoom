@@ -11,10 +11,6 @@
         "message": "Viedók és képek nagyítása a kedvenc weboldalaidon (Facebook, Amazon stb.). Csak mutass az egérmutatóval a képre hogy felnagyítsd.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
-    "extUpdated": {
-        "message": "A Hover Zoom frissült",
-        "description": "Extension update notification"
-    },
     "popDisableForAllSites": {
         "message": "Letiltás az összes oldalon",
         "description": "[popup] Disable the extension"
@@ -47,12 +43,20 @@
         "message": "Hover Zoom+ opciók",
         "description": "[options] Page title"
     },
+    "optButtonDisableAllPlugins": {
+        "message": "Disable all",
+        "description": "[options] disable all plugins button label"
+    },
+    "optButtonEnableAllPlugins": {
+        "message": "Enable all",
+        "description": "[options] enable all plugins button label"
+    },
     "optButtonSave": {
         "message": "Mentés",
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
-        "message": "Cancel",
+        "message": "Mégse",
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
@@ -62,6 +66,14 @@
     "optSaved": {
         "message": "A beállítások el lettek mentve, néhány alkalmazásához újra kell tölteni az oldalt.",
         "description": "[options] Notification after saving options"
+    },
+    "optCancel": {
+        "message": "Módosítás(ok) visszavonva.",
+        "description": "[options] Notification after cancelling modification(s) to options"
+    },
+    "optReset": {
+        "message": "Options reset to factory settings, save to apply.",
+        "description": "[options] Notification after resetting options to factory settings"
     },
     "optPageGeneral": {
         "message": "Általános",
@@ -111,6 +123,34 @@
         "message": "Sehol",
         "description": "[options] Caption location option to disable captions"
     },
+    "optDetailsLocation": {
+        "message": "Részletek pozíciója:",
+        "description": "[options] Adjust the position of details"
+    },
+    "optDetailsLocationTooltip": {
+        "message": "Részletek megjelenítése (méret, formátum...) a kép felett/alatt, vagy egyáltalán nem",
+        "description": "[options] Tooltip for adjusting the position of details"
+    },
+    "optDetailsLocationAbove": {
+        "message": "Fölötte",
+        "description": "[options] Details location option to put details above the image"
+    },
+    "optDetailsLocationBelow": {
+        "message": "Alatta",
+        "description": "[options] Details location option to put details below the image"
+    },
+    "optDetailsLocationNone": {
+        "message": "Egyik sem",
+        "description": "[options] Details location option to disable details"
+    },
+    "optFontOutline": {
+        "message": "Betűtípus körvonala",
+        "description": "[options] Outline option"
+    },
+    "optFontOutlineTooltip": {
+        "message": "Ha be van kapcsolva: fehér betűtípus + vékony fekete szegély használata a feliratokhoz és a részletekhez",
+        "description": "[options] Tooltip for outline option"
+    },
     "optMouseUnderlap": {
         "message": "Nagyított képek meghosszabbítása a kurzor alatt",
         "description": "[options] Extend zoomed images below the mouse cursor option"
@@ -118,6 +158,14 @@
     "optMouseUnderlapTooltip": {
         "message": "Ha nincs bejelölve, a nagyított képek dinamikusan lesznek méretezve",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
+    },
+    "optHideMouseCursor": {
+        "message": "Egérmutató elrejtése ennyi idő után:",
+        "description": "[options] Hide mouse cursor option"
+    },
+    "optHideMouseCursorTooltip": {
+        "message": "Ha be van kapcsolva, az egérmutató el lesz rejtve késleltetés után",
+        "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optPageActionEnabled": {
         "message": "Ikon megjelenítése a címsorban",
@@ -220,8 +268,8 @@
         "description": "[options] Size of halo option"
     },
     "optAmbilightHaloSizeUnitName": {
-        "message": "pixels",
-        "description": "[options] Unit name (pixel) for halo size"
+        "message": "%",
+        "description": "[options] Unit name (percentage) for halo size"
     },
     "optAmbilightHaloSizeTooltip": {
         "message": "Halo mérete a benagyított kép körül (0%: halo letiltása)",
@@ -262,6 +310,30 @@
     "optFrameBackgroundColorCancelText": {
         "message": "Mégse",
         "description": "[options] Frame background color button - Cancel"
+    },
+    "optFrameThickness": {
+        "message": "Keretvastagság:",
+        "description": "[options] Frame thickness option"
+    },
+    "optFrameThicknessTooltip": {
+        "message": "A képkeret szegélyének vastagsága (0: nincs keret)",
+        "description": "[options] Tooltip for frame thickness option"
+    },
+    "optFrameThicknessUnitName": {
+        "message": "képpont",
+        "description": "[options] Unit name (pixel) for frame thickness"
+    },
+    "optFontSize": {
+        "message": "Szövegméret:",
+        "description": "[options] Font size option"
+    },
+    "optFontSizeTooltip": {
+        "message": "A feliratokhoz és részletekhez használt betűtípus mérete",
+        "description": "[options] Tooltip for font size option"
+    },
+    "optFontSizeUnitName": {
+        "message": "képpont",
+        "description": "[options] Unit name (pixel) for font size"
     },
     "optSectionDelays": {
         "message": "Késleltetések",
@@ -335,14 +407,6 @@
         "message": "Haladó beállítások",
         "description": "[options] Page section for advanced options"
     },
-    "optUpdateNotifications": {
-        "message": "Frissítési értesítések",
-        "description": "[options] Show update notifications option"
-    },
-    "optShowLastUpdateNotification": {
-        "message": "(legutóbbi értesítés megjelenítése)",
-        "description": "[options] Show last update notification"
-    },
     "optAddToHistory": {
         "message": "Megtekintett képek hozzáadása a böngészési előzményekhez",
         "description": "[options] Add viewed pictures to the browser's history option"
@@ -367,36 +431,88 @@
         "message": "%",
         "description": "[options] Unit name (percentage) for opacity option"
     },
+    "optDisplayImageLoaderTooltip": {
+        "message": "Pörgető mutatása kép betöltése közben (zöld: betöltés, piros: hiba). A piros pörgető választható.",
+        "description": "[options] Tooltip for display image loader option"
+    },
+    "optDisplayImageLoader": {
+        "message": "Piros pörgető mutatása, ha a kép betöltése nem sikerült",
+        "description": "[options] Display image loader option"
+    },
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
-        "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
+        "message": "Hasznos olyan HTTPS weboldalakon mint például a Google Fotók, amelyek nem engedélyezik HTTP képek betöltését",
         "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrls": {
-        "message": "Try to open unloadable urls in separate:",
+        "message": "Nem betölthető URL-ek különbe betöltése:",
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
-        "message": "Tab",
+        "message": "Lap",
         "description": "[options] Use separate tab for unloadable urls option"
     },
     "optUseSeparateWindowForUnloadableUrls": {
-        "message": "Window",
+        "message": "Ablak",
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
-        "message": "Subfolder(s) will be created if needed",
+        "message": "Almappá(k) létre lesznek hozva, ha szükséges",
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
-        "message": "Example: animals/cats",
+        "message": "Pálda: állatok/macskák",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images to folder: Downloads/",
+        "message": "Képek és videók mentése mappába: Letöltések/",
         "description": "[options] Download folder option"
     },
+    "optRenameDownloadsTooltip": {
+        "message": "Letöltések eredeti nevének előtagolása forrással, mérettel és/vagy hosszal könnyebb kezelésért",
+        "description": "[options] Tooltip for rename downloads option"
+    },
+    "optRenameDownloads": {
+        "message": "Mentett képek és videók átnevezése ennek a hozzáadásával:",
+        "description": "[options] Rename downloads option"
+    },
+    "optAddDownloadOriginTooltip": {
+        "message": "Forrás hozzáadása (pl. www.deviantart.com)",
+        "description": "[options] Tooltip for add download origin option"
+    },
+    "optAddDownloadOrigin": {
+        "message": "forrás",
+        "description": "[options] Add download origin option"
+    },
+    "optAddDownloadSizeTooltip": {
+        "message": "Méret hozzáadása (SxM) pixelekben (pl. 1024x750)",
+        "description": "[options] Tooltip for add download size option"
+    },
+    "optAddDownloadSize": {
+        "message": "méret",
+        "description": "[options] Add download size option"
+    },
+    "optAddDownloadDurationTooltip": {
+        "message": "Videó hosszának (óó pp mpmp) hozzáadása (pl. 00 16 35)",
+        "description": "[options] Tooltip for add download duration option"
+    },
+    "optAddDownloadDuration": {
+        "message": "hossz",
+        "description": "[options] Add download duration option"
+    },
+    "optSectionTroubleshooting": {
+        "message": "Hibaelhárítás",
+        "description": "[options] Page section for troubleshooting"
+    },
+    "optEnableDebugTooltip": {
+        "message": "Hibakeresési üzenetek megjelenítése a böngésző konzoljában (a konzol megnyitásához nyomd meg az F12 billentyűt)",
+        "description": "[options] Tooltip for enable debug option"
+    },
+    "optEnableDebug": {
+        "message": "Hibakeresés engedélyezése",
+        "description": "[options] Enable debug option"
+    },
     "optPixelsUnitName": {
-        "message": "pixels",
+        "message": "pixel",
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
@@ -407,12 +523,28 @@
         "message": "Ha egy billentyű be van állítva, Hover Zoom+ csak akkor lesz aktív ha a kiválasztott billentyű nyomvatartva van.",
         "description": "[options] Action key description"
     },
+    "optToggleKeyTitle": {
+        "message": "Toggle HoverZoom+",
+        "description": "[options] Action key title"
+    },
+    "optToggleKeyDescription": {
+        "message": "HoverZoom+ be-/kikapcsolása",
+        "description": "[options] Action key description"
+    },
+    "optCloseKeyTitle": {
+        "message": "Kép bezárása",
+        "description": "[options] Action key title"
+    },
+    "optCloseKeyDescription": {
+        "message": "Nyomja meg ezt a billentyűt hogy bezárja a nagyított képet vagy videőt.",
+        "description": "[options] Action key description"
+    },
     "optHideKeyTitle": {
-        "message": "Hover Zoom+ aktiválása",
+        "message": "Kép elrejtése",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "A billentyű nyomva tartása elrejti a képet. Akkor használd, ha a nagyított kép elrejt olyan elemeket, amelyek csak akkor jelennek meg, ha az egérmutató a képen van.",
+        "message": "E billentyű nyomva tartása elrejti a nagyított képet vagy videót. Akkor használd, ha a nagyított kép elrejt olyan elemeket, amelyek csak akkor jelennek meg, ha az egérmutató a képen van.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -420,7 +552,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Nyomd meg ezt a billentyűt hogy a kép jelenjen meg egy új ablakban. Nyomd meg megint hogy bezáródjon az ablak.",
+        "message": "Nyomd meg ezt a billentyűt hogy a kép vagy videó megjelenjen egy új ablakban. Nyomd meg megint hogy bezáródjon az ablak.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
@@ -428,7 +560,15 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Nyomd meg ezt a billentyűt hogy a kép jelenjen meg egy új lapon. Nyomd meg megint hogy bezáródjon a lap. A Shift+billentyű egy háttérlapon nyitja meg a képet.",
+        "message": "Nyomd meg ezt a billentyűt hogy a kép vagy videó megjelenjen egy új lapon. Nyomd meg megint hogy bezáródjon a lap. A Shift+billentyű egy háttérlapon nyitja meg a képet.",
+        "description": "[options] Action key description"
+    },
+    "optLockImageKeyTitle": {
+        "message": "Kép zárolása a képernyőn",
+        "description": "[options] Action key title"
+    },
+    "optLockImageKeyDescription": {
+        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -436,7 +576,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Nyomd meg ezt a billentyűt hogy mentsd a képet amit nézel.",
+        "message": "Press this key to save the image or video you are currently viewing.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
@@ -445,6 +585,22 @@
     },
     "optFullZoomKeyDescription": {
         "message": "Ha ez a billentyű nyomvatartva van, a kép ki fogja tölteni az összes rendelkezésre álló teret. Csak nagy felbontású képeknél hasznos.",
+        "description": "[options] Action key description"
+    },
+    "optCopyImageKeyTitle": {
+        "message": "Kép másolása a vágólapra",
+        "description": "[options] Action key title"
+    },
+    "optCopyImageKeyDescription": {
+        "message": "E billentyű megnyomására a kép a vágólapra lesz másolva.",
+        "description": "[options] Action key description"
+    },
+    "optCopyImageUrlKeyTitle": {
+        "message": "Kép URL-jének másolása a vágólapra",
+        "description": "[options] Action key title"
+    },
+    "optCopyImageUrlKeyDescription": {
+        "message": "E billentyű megnyomására a kép vagy videó URL -címe a vágólapra kerül.",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
@@ -463,16 +619,32 @@
         "message": "Nyomd meg ezt a gombot a következő kép galériában való megjelenítéséhez.",
         "description": "[options] Action key description"
     },
+    "optFlipImageKeyTitle": {
+        "message": "Kép felfordítása",
+        "description": "[options] Action key title"
+    },
+    "optFlipImageKeyDescription": {
+        "message": "Ezzel a billentyűvel felválthatod függőlegesen és vízszintesen a képet. Hasznos szövegek és logók olvasásához tükrözött képeken vagy videókban.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Forráskód",
         "description": "[options] Source code link in page footer"
+    },
+    "optFooterChangelog": {
+        "message": "Változtatási napló",
+        "description": "[options] Changelog link in page footer"
     },
     "optFooterReportIssue": {
         "message": "Hiba jelentése",
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Verzió $1 - © 2014-2020 Oleg Anashkin",
+        "message": "Verzió: $1 (legutóbb frissítve: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
+    },
+    "msgClickPageToPlayVideo": {
+        "message": "Kattints bárhova ezen az oldalon, majd mutass a videóra megint",
+        "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }

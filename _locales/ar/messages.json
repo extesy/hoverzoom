@@ -11,10 +11,6 @@
         "message": "كبر الصور والفيديوهات في مواقعك المفضلة (فيسبوك , امازون ,..الخ) فقط بالتاشير بالفارة علي الصورة لتكبيرها.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
-    "extUpdated": {
-        "message": "تم تحديث Hover Zoom+",
-        "description": "Extension update notification"
-    },
     "popDisableForAllSites": {
         "message": "تعطيل في جميع المواقع",
         "description": "[popup] Disable the extension"
@@ -47,6 +43,14 @@
         "message": "اعدادات hoverzoom+",
         "description": "[options] Page title"
     },
+    "optButtonDisableAllPlugins": {
+        "message": "Disable all",
+        "description": "[options] disable all plugins button label"
+    },
+    "optButtonEnableAllPlugins": {
+        "message": "Enable all",
+        "description": "[options] enable all plugins button label"
+    },
     "optButtonSave": {
         "message": "حفظ",
         "description": "[options] Save button label"
@@ -62,6 +66,14 @@
     "optSaved": {
         "message": "تم حفظ الاعدادات. بعض التغييرات قد تحتاج إعادة تحديث الصفحة.",
         "description": "[options] Notification after saving options"
+    },
+    "optCancel": {
+        "message": "Modification(s) cancelled.",
+        "description": "[options] Notification after cancelling modification(s) to options"
+    },
+    "optReset": {
+        "message": "Options reset to factory settings, save to apply.",
+        "description": "[options] Notification after resetting options to factory settings"
     },
     "optPageGeneral": {
         "message": "عام",
@@ -111,6 +123,34 @@
         "message": "لا تظهره",
         "description": "[options] Caption location option to disable captions"
     },
+    "optDetailsLocation": {
+        "message": "Details position:",
+        "description": "[options] Adjust the position of details"
+    },
+    "optDetailsLocationTooltip": {
+        "message": "View details (size, format...) above/below the image, or not at all",
+        "description": "[options] Tooltip for adjusting the position of details"
+    },
+    "optDetailsLocationAbove": {
+        "message": "Above",
+        "description": "[options] Details location option to put details above the image"
+    },
+    "optDetailsLocationBelow": {
+        "message": "Below",
+        "description": "[options] Details location option to put details below the image"
+    },
+    "optDetailsLocationNone": {
+        "message": "None",
+        "description": "[options] Details location option to disable details"
+    },
+    "optFontOutline": {
+        "message": "Font outline",
+        "description": "[options] Outline option"
+    },
+    "optFontOutlineTooltip": {
+        "message": "If checked: use white font + thin black border for caption & details",
+        "description": "[options] Tooltip for outline option"
+    },
     "optMouseUnderlap": {
         "message": "Étendre les images de zoom sous le pointeur de la souris",
         "description": "[options] Extend zoomed images below the mouse cursor option"
@@ -118,6 +158,14 @@
     "optMouseUnderlapTooltip": {
         "message": "إذا لم تقم بإختيارها, الصور المكبره سيتم تغيير مقاسها تلقائياً",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
+    },
+    "optHideMouseCursor": {
+        "message": "Hide mouse cursor after:",
+        "description": "[options] Hide mouse cursor option"
+    },
+    "optHideMouseCursorTooltip": {
+        "message": "If checked, mouse cursor will be hidden after delay",
+        "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optPageActionEnabled": {
         "message": "إظهار الأيقونة في شريط العنوان",
@@ -220,8 +268,8 @@
         "description": "[options] Size of halo option"
     },
     "optAmbilightHaloSizeUnitName": {
-        "message": "pixels",
-        "description": "[options] Unit name (pixel) for halo size"
+        "message": "%",
+        "description": "[options] Unit name (percentage) for halo size"
     },
     "optAmbilightHaloSizeTooltip": {
         "message": "Size of halo around zoomed image (0% : no halo)",
@@ -262,6 +310,30 @@
     "optFrameBackgroundColorCancelText": {
         "message": "إلغاء",
         "description": "[options] Frame background color button - Cancel"
+    },
+    "optFrameThickness": {
+        "message": "Frame thickness:",
+        "description": "[options] Frame thickness option"
+    },
+    "optFrameThicknessTooltip": {
+        "message": "Thickness of border for the frame the image appears in (0 : no frame)",
+        "description": "[options] Tooltip for frame thickness option"
+    },
+    "optFrameThicknessUnitName": {
+        "message": "pixels",
+        "description": "[options] Unit name (pixel) for frame thickness"
+    },
+    "optFontSize": {
+        "message": "Font size:",
+        "description": "[options] Font size option"
+    },
+    "optFontSizeTooltip": {
+        "message": "Size of font used for captions & details",
+        "description": "[options] Tooltip for font size option"
+    },
+    "optFontSizeUnitName": {
+        "message": "pixels",
+        "description": "[options] Unit name (pixel) for font size"
     },
     "optSectionDelays": {
         "message": "التأخير",
@@ -335,14 +407,6 @@
         "message": "خيارات متقدمة",
         "description": "[options] Page section for advanced options"
     },
-    "optUpdateNotifications": {
-        "message": "عرض إشعارات التحديث",
-        "description": "[options] Show update notifications option"
-    },
-    "optShowLastUpdateNotification": {
-        "message": "(عرض الإخطار الأخير)",
-        "description": "[options] Show last update notification"
-    },
     "optAddToHistory": {
         "message": "أضف الصور التي تم عرضها إلى سجل المتصفح",
         "description": "[options] Add viewed pictures to the browser's history option"
@@ -366,6 +430,14 @@
     "optOpacityUnitName": {
         "message": "%",
         "description": "[options] Unit name (percentage) for opacity option"
+    },
+    "optDisplayImageLoaderTooltip": {
+        "message": "Display a little spinner as image is loading (green:loading, red:error). Red spinner is optional.",
+        "description": "[options] Tooltip for display image loader option"
+    },
+    "optDisplayImageLoader": {
+        "message": "Display a red spinner when image loading failed",
+        "description": "[options] Display image loader option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
         "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
@@ -392,8 +464,52 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images to folder: Downloads/",
+        "message": "Save images & videos to folder: Downloads/",
         "description": "[options] Download folder option"
+    },
+    "optRenameDownloadsTooltip": {
+        "message": "Prefix original names of downloads with origin, size and/or duration for easier management",
+        "description": "[options] Tooltip for rename downloads option"
+    },
+    "optRenameDownloads": {
+        "message": "Rename saved images & videos by adding:",
+        "description": "[options] Rename downloads option"
+    },
+    "optAddDownloadOriginTooltip": {
+        "message": "Add origin (e.g. www.deviantart.com)",
+        "description": "[options] Tooltip for add download origin option"
+    },
+    "optAddDownloadOrigin": {
+        "message": "origin",
+        "description": "[options] Add download origin option"
+    },
+    "optAddDownloadSizeTooltip": {
+        "message": "Add size (WxH) in pixels (e.g. 1024x750)",
+        "description": "[options] Tooltip for add download size option"
+    },
+    "optAddDownloadSize": {
+        "message": "size",
+        "description": "[options] Add download size option"
+    },
+    "optAddDownloadDurationTooltip": {
+        "message": "Add duration (hh mm ss) of video (e.g. 00 16 35)",
+        "description": "[options] Tooltip for add download duration option"
+    },
+    "optAddDownloadDuration": {
+        "message": "duration",
+        "description": "[options] Add download duration option"
+    },
+    "optSectionTroubleshooting": {
+        "message": "Troubleshooting",
+        "description": "[options] Page section for troubleshooting"
+    },
+    "optEnableDebugTooltip": {
+        "message": "Display debug messages in browser's console (to open console: press F12)",
+        "description": "[options] Tooltip for enable debug option"
+    },
+    "optEnableDebug": {
+        "message": "Enable debug",
+        "description": "[options] Enable debug option"
     },
     "optPixelsUnitName": {
         "message": "pixels",
@@ -407,12 +523,28 @@
         "message": "إذا تم تعيين مفتاح ما ، فسيكون Hover Zoom + نشطًا فقط عند الضغط على هذا المفتاح.",
         "description": "[options] Action key description"
     },
+    "optToggleKeyTitle": {
+        "message": "Toggle HoverZoom+",
+        "description": "[options] Action key title"
+    },
+    "optToggleKeyDescription": {
+        "message": "Enable/disable HoverZoom+",
+        "description": "[options] Action key description"
+    },
+    "optCloseKeyTitle": {
+        "message": "Close image",
+        "description": "[options] Action key title"
+    },
+    "optCloseKeyDescription": {
+        "message": "Press this key to close zoomed image or video.",
+        "description": "[options] Action key description"
+    },
     "optHideKeyTitle": {
-        "message": "تعطيل Hover Zoom+",
+        "message": "Hide image",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "الضغط على هذا المفتاح لأسفل يخفي الصورة المكبرة. استخدمها عندما تخفي الصورة العناصر التي يتم عرضها أيضًا على الماوس.",
+        "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -420,7 +552,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "اضغط على هذا المفتاح لفتح الصورة التي تعرضها حاليًا في نافذة جديدة. اضغط على هذا المفتاح مرة أخرى لإغلاق النافذة.",
+        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
@@ -428,7 +560,15 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "اضغط على هذا المفتاح لفتح الصورة التي تعرضها حاليًا في علامة تبويب جديدة. اضغط على هذا المفتاح مرة أخرى لإغلاق علامة التبويب. المفتاح Shift + يفتح الصورة في علامة تبويب الخلفية.",
+        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
+        "description": "[options] Action key description"
+    },
+    "optLockImageKeyTitle": {
+        "message": "Lock image on screen",
+        "description": "[options] Action key title"
+    },
+    "optLockImageKeyDescription": {
+        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -436,7 +576,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "اضغط على هذا المفتاح لحفظ الصورة التي تعرضها حاليًا.",
+        "message": "Press this key to save the image or video you are currently viewing.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
@@ -445,6 +585,22 @@
     },
     "optFullZoomKeyDescription": {
         "message": "عند الضغط على هذا المفتاح ، يتم عرض الصورة باستخدام كل المساحة المتاحة. مفيدة للصور عالية الدقة فقط.",
+        "description": "[options] Action key description"
+    },
+    "optCopyImageKeyTitle": {
+        "message": "Copy image to clipboard",
+        "description": "[options] Action key title"
+    },
+    "optCopyImageKeyDescription": {
+        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "description": "[options] Action key description"
+    },
+    "optCopyImageUrlKeyTitle": {
+        "message": "Copy image URL to clipboard",
+        "description": "[options] Action key title"
+    },
+    "optCopyImageUrlKeyDescription": {
+        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
@@ -463,16 +619,32 @@
         "message": "اضغط على هذا المفتاح لعرض الصورة التالية في معرض.",
         "description": "[options] Action key description"
     },
+    "optFlipImageKeyTitle": {
+        "message": "Flip image",
+        "description": "[options] Action key title"
+    },
+    "optFlipImageKeyDescription": {
+        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "الكود المصدري",
         "description": "[options] Source code link in page footer"
+    },
+    "optFooterChangelog": {
+        "message": "Changelog",
+        "description": "[options] Changelog link in page footer"
     },
     "optFooterReportIssue": {
         "message": "الإبلاغ عن خطأ",
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "الإصدار $1 - © 2014-2020 Oleg Anashkin",
+        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
+    },
+    "msgClickPageToPlayVideo": {
+        "message": "Click anywhere on the page then hover again",
+        "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }

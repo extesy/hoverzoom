@@ -11,10 +11,6 @@
         "message": "Zoomez les images/vidéos sur tous vos sites favoris (Facebook, Amazon..). Il suffit de passer la souris sur l'image pour l'agrandir.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
-    "extUpdated": {
-        "message": "Hover Zoom+ a été mis à jour",
-        "description": "Extension update notification"
-    },
     "popDisableForAllSites": {
         "message": "Désactiver pour tous les sites",
         "description": "[popup] Disable the extension"
@@ -47,12 +43,20 @@
         "message": "Options d'Hover Zoom+",
         "description": "[options] Page title"
     },
+    "optButtonDisableAllPlugins": {
+        "message": "Disable all",
+        "description": "[options] disable all plugins button label"
+    },
+    "optButtonEnableAllPlugins": {
+        "message": "Enable all",
+        "description": "[options] enable all plugins button label"
+    },
     "optButtonSave": {
         "message": "Sauvegarder",
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
-        "message": "Cancel",
+        "message": "Annuler",
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
@@ -62,6 +66,14 @@
     "optSaved": {
         "message": "Options enregistrées. Certains paramètres peuvent nécessiter un rechargement de page.",
         "description": "[options] Notification after saving options"
+    },
+    "optCancel": {
+        "message": "Modification(s) annulée(s).",
+        "description": "[options] Notification after cancelling modification(s) to options"
+    },
+    "optReset": {
+        "message": "Les options sont réinitialisées aux paramètres d'usine, enregistrer pour les appliquer.",
+        "description": "[options] Notification after resetting options to factory settings"
     },
     "optPageGeneral": {
         "message": "Général",
@@ -111,6 +123,34 @@
         "message": "Aucun",
         "description": "[options] Caption location option to disable captions"
     },
+    "optDetailsLocation": {
+        "message": "Position des détails :",
+        "description": "[options] Adjust the position of details"
+    },
+    "optDetailsLocationTooltip": {
+        "message": "Afficher les détails (taille, format...) au-dessus/au-bas de l'image, ou pas du tout",
+        "description": "[options] Tooltip for adjusting the position of details"
+    },
+    "optDetailsLocationAbove": {
+        "message": "Au-dessus",
+        "description": "[options] Details location option to put details above the image"
+    },
+    "optDetailsLocationBelow": {
+        "message": "Au-dessous",
+        "description": "[options] Details location option to put details below the image"
+    },
+    "optDetailsLocationNone": {
+        "message": "Aucun",
+        "description": "[options] Details location option to disable details"
+    },
+    "optFontOutline": {
+        "message": "Contour de police",
+        "description": "[options] Outline option"
+    },
+    "optFontOutlineTooltip": {
+        "message": "Si coché: utiliser des caractères blancs + fine bordure noire pour les légendes & détails",
+        "description": "[options] Tooltip for outline option"
+    },
     "optMouseUnderlap": {
         "message": "Élargir les images zoomées en dessous du curseur de la souris",
         "description": "[options] Extend zoomed images below the mouse cursor option"
@@ -118,6 +158,14 @@
     "optMouseUnderlapTooltip": {
         "message": "Si cette option est décochée, les images zoomées seront redimensionnées de manière dynamique",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
+    },
+    "optHideMouseCursor": {
+        "message": "Cacher le curseur de la souris après :",
+        "description": "[options] Hide mouse cursor option"
+    },
+    "optHideMouseCursorTooltip": {
+        "message": "Si coché, le curseur de la souris sera masqué après le délai",
+        "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optPageActionEnabled": {
         "message": "Afficher une icône dans la barre d'adresse",
@@ -220,8 +268,8 @@
         "description": "[options] Size of halo option"
     },
     "optAmbilightHaloSizeUnitName": {
-        "message": "pixels",
-        "description": "[options] Unit name (pixel) for halo size"
+        "message": "%",
+        "description": "[options] Unit name (percentage) for halo size"
     },
     "optAmbilightHaloSizeTooltip": {
         "message": "Taille du halo autour de l'image agrandie (0% : pas de halo)",
@@ -262,6 +310,30 @@
     "optFrameBackgroundColorCancelText": {
         "message": "Annuler",
         "description": "[options] Frame background color button - Cancel"
+    },
+    "optFrameThickness": {
+        "message": "Épaisseur du cadre :",
+        "description": "[options] Frame thickness option"
+    },
+    "optFrameThicknessTooltip": {
+        "message": "Épaisseur de la bordure du cadre dans lequel l'image apparaît (0 : pas de cadre)",
+        "description": "[options] Tooltip for frame thickness option"
+    },
+    "optFrameThicknessUnitName": {
+        "message": "pixels",
+        "description": "[options] Unit name (pixel) for frame thickness"
+    },
+    "optFontSize": {
+        "message": "Taille de police :",
+        "description": "[options] Font size option"
+    },
+    "optFontSizeTooltip": {
+        "message": "Taille de la police utilisée pour les légendes et détails",
+        "description": "[options] Tooltip for font size option"
+    },
+    "optFontSizeUnitName": {
+        "message": "pixels",
+        "description": "[options] Unit name (pixel) for font size"
     },
     "optSectionDelays": {
         "message": "Délais",
@@ -335,14 +407,6 @@
         "message": "Options avancées",
         "description": "[options] Page section for advanced options"
     },
-    "optUpdateNotifications": {
-        "message": "Afficher les notifications de mise à jour",
-        "description": "[options] Show update notifications option"
-    },
-    "optShowLastUpdateNotification": {
-        "message": "(afficher la dernière notification)",
-        "description": "[options] Show last update notification"
-    },
     "optAddToHistory": {
         "message": "Ajouter les images regardées à l'historique",
         "description": "[options] Add viewed pictures to the browser's history option"
@@ -367,33 +431,85 @@
         "message": "%",
         "description": "[options] Unit name (percentage) for opacity option"
     },
+    "optDisplayImageLoaderTooltip": {
+        "message": "Affiche une icône animée pendant le chargement de l'image (verte: chargement en cours, rouge: erreur). L'icône rouge est optionnelle.",
+        "description": "[options] Tooltip for display image loader option"
+    },
+    "optDisplayImageLoader": {
+        "message": "Affiche une icône animée rouge quand le chargement de l'image a échoué",
+        "description": "[options] Display image loader option"
+    },
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
-        "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
+        "message": "Utile pour les sites en HTTPS tels que Google Images qui bloquent le chargement d'images d'origine HTTP",
         "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrls": {
-        "message": "Try to open unloadable urls in separate:",
+        "message": "Essayer d'ouvrir les urls en erreur dans une fenêtre ou un onglet séparé(e):",
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
-        "message": "Tab",
+        "message": "Onglet",
         "description": "[options] Use separate tab for unloadable urls option"
     },
     "optUseSeparateWindowForUnloadableUrls": {
-        "message": "Window",
+        "message": "Fenêtre",
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
-        "message": "Subfolder(s) will be created if needed",
+        "message": "Les sous-dossiers seront créés si nécessaire",
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
-        "message": "Example: animals/cats",
+        "message": "Par exemple: animaux/chats",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images to folder: Downloads/",
+        "message": "Enregistrer les images et les vidéos dans le dossier : Téléchargements/",
         "description": "[options] Download folder option"
+    },
+    "optRenameDownloadsTooltip": {
+        "message": "Préfixer les noms originaux des téléchargements avec l'origine, la taille et/ou la durée pour une gestion plus facile",
+        "description": "[options] Tooltip for rename downloads option"
+    },
+    "optRenameDownloads": {
+        "message": "Renommer les images et vidéos enregistrées en ajoutant :",
+        "description": "[options] Rename downloads option"
+    },
+    "optAddDownloadOriginTooltip": {
+        "message": "Ajouter l'origine (par ex. www.deviantart.com)",
+        "description": "[options] Tooltip for add download origin option"
+    },
+    "optAddDownloadOrigin": {
+        "message": "origine",
+        "description": "[options] Add download origin option"
+    },
+    "optAddDownloadSizeTooltip": {
+        "message": "Ajouter la taille (LxH) en pixels (par ex. 1024x750)",
+        "description": "[options] Tooltip for add download size option"
+    },
+    "optAddDownloadSize": {
+        "message": "taille",
+        "description": "[options] Add download size option"
+    },
+    "optAddDownloadDurationTooltip": {
+        "message": "Ajouter la durée (hh mm ss) de la vidéo (par ex. 00 16 35)",
+        "description": "[options] Tooltip for add download duration option"
+    },
+    "optAddDownloadDuration": {
+        "message": "durée",
+        "description": "[options] Add download duration option"
+    },
+    "optSectionTroubleshooting": {
+        "message": "Dépannage",
+        "description": "[options] Page section for troubleshooting"
+    },
+    "optEnableDebugTooltip": {
+        "message": "Afficher les messages de débogage dans la console du navigateur (pour ouvrir la console : appuyer sur F12)",
+        "description": "[options] Tooltip for enable debug option"
+    },
+    "optEnableDebug": {
+        "message": "Activer le débogage",
+        "description": "[options] Enable debug option"
     },
     "optPixelsUnitName": {
         "message": "pixels",
@@ -407,12 +523,28 @@
         "message": "Si une touche est définie, Hover Zoom+ ne sera actif que lorsque cette touche est maintenue enfoncée.",
         "description": "[options] Action key description"
     },
+    "optToggleKeyTitle": {
+        "message": "Activer/désactiver HoverZoom+",
+        "description": "[options] Action key title"
+    },
+    "optToggleKeyDescription": {
+        "message": "Activer/désactiver HoverZoom+",
+        "description": "[options] Action key description"
+    },
+    "optCloseKeyTitle": {
+        "message": "Fermer l'image",
+        "description": "[options] Action key title"
+    },
+    "optCloseKeyDescription": {
+        "message": "Appuyez sur cette touche pour fermer l'image zoomée ou la vidéo.",
+        "description": "[options] Action key description"
+    },
     "optHideKeyTitle": {
-        "message": "Désactiver Hover Zoom+",
+        "message": "Cacher l'image",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Maintenir cette touche enfoncée cache l'image zoomée. À utiliser lorsque l'image cache des éléments qui sont également affichés au passage de la souris.",
+        "message": "Maintenir cette touche enfoncée cache l'image ou la vidéo zoomée. À utiliser lorsque l'image cache des éléments qui sont également affichés au passage de la souris.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -420,7 +552,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Appuyez sur cette touche pour ouvrir l'image que vous êtes en train de visualiser dans une nouvelle fenêtre. Appuyez sur cette touche pour fermer la fenêtre.",
+        "message": "Appuyez sur cette touche pour ouvrir l'image ou la vidéo que vous êtes en train de visualiser dans une nouvelle fenêtre. Appuyez sur cette touche pour fermer la fenêtre.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
@@ -428,7 +560,15 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Appuyez sur cette touche pour ouvrir l'image en cours de visualisation dans un nouvel onglet. Appuyez sur cette touche pour fermer l'onglet. Maj+touche ouvre l'image dans un onglet en arrière-plan.",
+        "message": "Appuyez sur cette touche pour ouvrir l'image ou la vidéo en cours de visualisation dans un nouvel onglet. Appuyez sur cette touche pour fermer l'onglet. Maj+touche ouvre l'image dans un onglet en arrière-plan.",
+        "description": "[options] Action key description"
+    },
+    "optLockImageKeyTitle": {
+        "message": "Verrouiller l'image à l'écran",
+        "description": "[options] Action key title"
+    },
+    "optLockImageKeyDescription": {
+        "message": "Appuyer sur cette touche pour verrouiller l'imag ou la vidéo au centre de la page, afin de zoomer et de faire un panoramique. Appuyer sur la touche de fermeture ou cliquer en dehors de l'image pour déverrouiller l'image.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -436,7 +576,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Appuyez sur cette touche pour enregistrer l'image en cours de visualisation.",
+        "message": "Appuyez sur cette touche pour enregistrer l'image ou la vidéo en cours de visualisation.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
@@ -445,6 +585,22 @@
     },
     "optFullZoomKeyDescription": {
         "message": "Lorsque cette touche est maintenue enfoncée, l'image est affichée en utilisant tout l'espace disponible. Utile pour les images de haute résolution.",
+        "description": "[options] Action key description"
+    },
+    "optCopyImageKeyTitle": {
+        "message": "Copier l'image dans le presse-papiers",
+        "description": "[options] Action key title"
+    },
+    "optCopyImageKeyDescription": {
+        "message": "Lorsque cette touche est enfoncée, l'image est copiée dans le presse-papiers.",
+        "description": "[options] Action key description"
+    },
+    "optCopyImageUrlKeyTitle": {
+        "message": "Copier l'URL de l'image dans le presse-papiers",
+        "description": "[options] Action key title"
+    },
+    "optCopyImageUrlKeyDescription": {
+        "message": "Lorsque cette touche est enfoncée, l'URL de l'image ou de la vidéo est copiée dans le presse-papiers.",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
@@ -463,16 +619,32 @@
         "message": "Appuyez sur cette touche pour afficher l'image suivante dans une galerie.",
         "description": "[options] Action key description"
     },
+    "optFlipImageKeyTitle": {
+        "message": "Retourner l'image",
+        "description": "[options] Action key title"
+    },
+    "optFlipImageKeyDescription": {
+        "message": "Appuyer sur cette touche pour retourner alternativement l'image verticalement et horizontalement. Pratique pour lire des textes et des logos dans des images ou des vidéos en miroir.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Code source",
         "description": "[options] Source code link in page footer"
+    },
+    "optFooterChangelog": {
+        "message": "Changelog",
+        "description": "[options] Changelog link in page footer"
     },
     "optFooterReportIssue": {
         "message": "Signaler un bug",
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 - © 2014-2016 Oleg Anashkin",
+        "message": "Version $1 (dernière mise à jour : $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
+    },
+    "msgClickPageToPlayVideo": {
+        "message": "Cliquez n'importe où sur la page puis survolez à nouveau",
+        "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }

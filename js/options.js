@@ -2,7 +2,7 @@ var options,
     hoverZoomPlugins = hoverZoomPlugins || [],
     VK_CTRL = 1024,
     VK_SHIFT = 2048,
-    actionKeys = ['actionKey', 'hideKey', 'openImageInWindowKey', 'openImageInTabKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey'];
+    actionKeys = ['actionKey', 'toggleKey', 'closeKey', 'hideKey', 'openImageInWindowKey', 'openImageInTabKey', 'lockImageKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey', 'flipImageKey', 'copyImageKey', 'copyImageUrlKey'];
 
 function getMilliseconds(ctrl) {
     var value = parseFloat(ctrl.val());
@@ -29,19 +29,26 @@ function keyCodeToString(key) {
     return s;
 }
 
+// Options that are only enabled for Chromium-based browsers
+const chromiumOnly = ['copyImageKey', 'copyImageUrlKey'];
+
 function initActionKeys() {
-    actionKeys.forEach(function(key) {
+    actionKeys
+    .filter(key => isChromiumBased || !chromiumOnly.includes(key))
+    .forEach(key => {
         var id = key[0].toUpperCase() + key.substr(1);
         var title = chrome.i18n.getMessage("opt" + id + "Title");
         var description = chrome.i18n.getMessage("opt" + id + "Description");
         $('<tr><td>' + title + '<p>' + description + '</p></td>' +
-            '<td><select id="sel' + id + '" class="actionKey"/></td></tr>').appendTo($('#tableActionKeys'));
+            '<td><select id="sel' + id + '" class="actionKey picker"/></td></tr>').appendTo($('#tableActionKeys'));
         loadKeys($('#sel' + id));
     });
 }
 
 function loadKeys(sel) {
     $('<option value="0">None</option>').appendTo(sel);
+    if (sel.attr('id') != 'lockImageKey')
+        $('<option value="-1">Right Click</option>').appendTo(sel);
     if (sel.attr('id') != 'selOpenImageInTabKey')
         $('<option value="16">Shift</option>').appendTo(sel);
     $('<option value="17">Ctrl</option>').appendTo(sel);
@@ -54,6 +61,7 @@ function loadKeys(sel) {
     for (var i = 112; i < 124; i++) {
         $('<option value="' + i + '">F' + (i - 111) + '</option>').appendTo(sel);
     }
+    $('<option value="27">Escape</option>').appendTo(sel);
     $('<option value="33">Page Up</option>').appendTo(sel);
     $('<option value="34">Page Down</option>').appendTo(sel);
     $('<option value="35">End</option>').appendTo(sel);
@@ -85,11 +93,14 @@ function saveOptions() {
     options.displayDelay = getMilliseconds($('#txtDisplayDelay'));
     options.displayDelayVideo = getMilliseconds($('#txtDisplayDelayVideo'));
     options.fadeDuration = getMilliseconds($('#txtFadeDuration'));
+    options.hideMouseCursor = $('#chkHideMouseCursor')[0].checked;
+    options.hideMouseCursorDelay = getMilliseconds($('#txtHideMouseCursor'));
     options.ambilightEnabled = $('#chkAmbilightEnabled')[0].checked;
     options.ambilightHaloSize = $('#txtAmbilightHaloSize')[0].value / 100;
     options.ambilightBackgroundOpacity = $('#txtAmbilightBackgroundOpacity')[0].value / 100;
     options.centerImages = $('#chkCenterImages')[0].checked;
     options.frameBackgroundColor = $('#pickerFrameBackgroundColor')[0].value;
+    options.frameThickness = $('#txtFrameThickness')[0].value;
 
     options.whiteListMode = $('#chkWhiteListMode')[0].checked;
     options.excludedSites = [];
@@ -114,14 +125,23 @@ function saveOptions() {
     options.enableGalleries = $('#chkEnableGalleries')[0].checked;
     options.picturesOpacity = $('#txtPicturesOpacity')[0].value / 100;
     options.captionLocation = $('#selectCaptionLocation').val();
+    options.detailsLocation = $('#selectDetailsLocation').val();
+    options.fontSize = $('#txtFontSize')[0].value;
+    options.fontOutline = $('#chkFontOutline')[0].checked;
+    options.displayImageLoader = $('#chkDisplayImageLoader')[0].checked;
     options.downloadFolder = $('#txtDownloadFolder')[0].value;
+    options.addDownloadOrigin = $('#chkAddDownloadOrigin')[0].checked;
+    options.addDownloadSize = $('#chkAddDownloadSize')[0].checked;
+    options.debug = $('#chkEnableDebug')[0].checked;
+    options.addDownloadDuration = $('#chkAddDownloadDuration')[0].checked;
     options.useSeparateTabOrWindowForUnloadableUrlsEnabled = $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled')[0].checked;
     options.useSeparateTabOrWindowForUnloadableUrls = $('#selectUseSeparateTabOrWindowForUnloadableUrls').val();
 
     localStorage.options = JSON.stringify(options);
+
     sendOptions(options);
     restoreOptions();
-    $('#messages').clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
+
     return false;
 }
 
@@ -151,6 +171,8 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#txtDisplayDelay').val((options.displayDelay || 0) / 1000);
     $('#txtDisplayDelayVideo').val((options.displayDelayVideo || 0) / 1000);
     $('#txtFadeDuration').val((options.fadeDuration || 0) / 1000);
+    $('#chkHideMouseCursor').trigger(options.hideMouseCursor ? 'gumby.check' : 'gumby.uncheck');
+    $('#txtHideMouseCursor').val((options.hideMouseCursorDelay || 0) / 1000);
     $('#chkAmbilightEnabled').trigger(options.ambilightEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#rngAmbilightHaloSize').val(parseInt(options.ambilightHaloSize * 100));
     $('#txtAmbilightHaloSize').val(parseInt(options.ambilightHaloSize * 100));
@@ -158,7 +180,13 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#txtAmbilightBackgroundOpacity').val(parseInt(options.ambilightBackgroundOpacity * 100));
     $('#chkCenterImages').trigger(options.centerImages ? 'gumby.check' : 'gumby.uncheck');
     $('#pickerFrameBackgroundColor').val(options.frameBackgroundColor);
+    $('#rngFrameThickness').val(parseInt(options.frameThickness));
+    $('#txtFrameThickness').val(parseInt(options.frameThickness));
     $('#selectCaptionLocation').val(options.captionLocation);
+    $('#selectDetailsLocation').val(options.detailsLocation);
+    $('#rngFontSize').val(parseInt(options.fontSize));
+    $('#txtFontSize').val(parseInt(options.fontSize));
+    $('#chkFontOutline').trigger(options.fontOutline ? 'gumby.check' : 'gumby.uncheck');
 
     if (options.frameBackgroundColor == "") {
         initColorPicker('#ffffff');
@@ -172,16 +200,18 @@ function restoreOptions(optionsFromFactorySettings) {
         $('#divAmbilight').addClass('disabled');
     }
 
-    var plugins = $.unique(hoverZoomPlugins.map(function(plugin) {return plugin.name}));
+    var plugins = $.unique(hoverZoomPlugins.map(function(plugin) {return plugin.name})).sort(Intl.Collator().compare);
     plugins.forEach(function(plugin) {
-        var chkName = 'chkPlugin' + plugin.replace(/[^\w]/g, '').toLowerCase();
-        $('#' + chkName).trigger(options.disabledPlugins.includes(chkName.substr('chkPlugin'.length)) ? 'gumby.uncheck' : 'gumby.check');
+        var chkName = 'chkPlugin' + plugin.replace(/[^\w\-_]/g, '').toLowerCase();
+        var disabled = (options.disabledPlugins.includes(chkName.substr('chkPlugin'.length)) ? true : false);
+        $('#' + chkName).trigger(disabled ? 'gumby.uncheck' : 'gumby.check');
     });
 
     $('#chkWhiteListMode').trigger(options.whiteListMode ? 'gumby.check' : 'gumby.uncheck');
+
     $('#selExcludedSites').empty();
     for (var i = 0; i < options.excludedSites.length; i++) {
-        appendExcludedSite(options.excludedSites[i]);
+        appendExcludedSite(options.excludedSites[i], false);
     }
 
     actionKeys.forEach(function(key) {
@@ -202,10 +232,67 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#chkZoomedSizeThresholdEnabled').trigger(options.zoomedSizeThresholdEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#txtZoomedSizeThreshold').val(parseInt(options.zoomedSizeThreshold));
     $('#txtDownloadFolder').val(options.downloadFolder);
+    $('#chkAddDownloadOrigin').trigger(options.addDownloadOrigin ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkAddDownloadSize').trigger(options.addDownloadSize ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkAddDownloadDuration').trigger(options.addDownloadDuration ? 'gumby.check' : 'gumby.uncheck');
     $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled').trigger(options.useSeparateTabOrWindowForUnloadableUrlsEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#selectUseSeparateTabOrWindowForUnloadableUrls').val(options.useSeparateTabOrWindowForUnloadableUrls);
+    $('#chkEnableDebug').trigger(options.debug ? 'gumby.check' : 'gumby.uncheck');
 
+    $('input[type=checkbox]').each(function() { initCheckBox(this) });
+    $('input[type=text]:not("#txtAddExcludedSite")').each(function() { initText(this) });
+    $('input[type=range]').each(function() { initRange(this) });
+    $('select').each(function() { initSelect(this) });
+
+    checkModifications();
     return false;
+}
+
+function initRange(range) {
+    if (range.dataset.val0 == undefined) range.dataset.val0 = range.value;
+    else range.dataset.val1 = range.value;
+}
+
+function updateRange(range) {
+    if (range.dataset.val0 == undefined) return; // event fired before init
+    range.dataset.val1 = range.value;
+    checkModification($(range));
+}
+
+function initText(text) {
+    let val = text.value.trim();
+    if (text.dataset.val0 == undefined) text.dataset.val0 = val;
+    else text.dataset.val1 = val;
+}
+
+function updateText(text) {
+    let val = text.value.trim();
+    if (text.dataset.val0 == undefined) return; // event fired before init
+    text.dataset.val1 = val;
+    checkModification($(text));
+}
+
+function initSelect(select) {
+    if (select.dataset.val0 == undefined) select.dataset.val0 = select.value;
+    else select.dataset.val1 = select.value;
+}
+
+function updateSelect(select) {
+    if (select.dataset.val0 == undefined) return; // event fired before init
+    select.dataset.val1 = select.value;
+    checkModification($(select));
+}
+
+function initCheckBox(checkbox) {
+    if (checkbox.dataset.val0 == undefined) checkbox.dataset.val0 = checkbox.checked;
+    else checkbox.dataset.val1 = checkbox.checked;
+}
+
+function updateCheckBox(checkbox) {
+    if ($(checkbox)[0].type != 'checkbox') checkbox = $(checkbox).find('input')[0];
+    if (checkbox.dataset.val0 == undefined) return; // event fired before init
+    checkbox.dataset.val1 = checkbox.checked;
+    checkModification($(checkbox));
 }
 
 function btnAddExcludedSiteOnClick() {
@@ -218,7 +305,7 @@ function btnAddExcludedSiteOnClick() {
         if (site.substr(0, 4) === 'www.')
             site = site.substr(4);
         if (site)
-            appendExcludedSite(site);
+            appendExcludedSite(site, true);
         field.val('').focus();
     } catch (e) {
         // ignore the exception
@@ -226,8 +313,12 @@ function btnAddExcludedSiteOnClick() {
     return false;
 }
 
-function appendExcludedSite(site) {
-    $('<li><a href="#"><i class="icon-cancel"></i></a> <span>' + site + '</span></li>').appendTo('#selExcludedSites').find('a').on('click', btnRemoveExcludedSiteOnClick);
+function appendExcludedSite(site, added) {
+    // do not add site twice
+    var es = $('#selExcludedSites').find('span').filter(function() { if($(this).text() == site) return true; else return false;  });
+    if (es.length != 0) return;
+
+    $('<li><a href="#"><i class="icon-cancel"></i></a> <span' + (added ? ' class="added">' : '>') + site + '</span></li>').appendTo('#selExcludedSites').find('a').on('click', btnRemoveExcludedSiteOnClick);
 }
 
 function btnRemoveExcludedSiteOnClick() {
@@ -237,10 +328,15 @@ function btnRemoveExcludedSiteOnClick() {
 
 function selKeyOnChange(event) {
     var currSel = $(event.target);
+    if (currSel[0].dataset.val0 == undefined) return; // event fired before init
+    currSel[0].dataset.val1 = currSel.val();
+    checkModification(currSel);
     if (currSel.val() != '0') {
         $('.actionKey').each(function () {
             if (!$(this).is(currSel) && $(this).val() == currSel.val()) {
-                $(this).val('0').effect("highlight", {color:'red'}, 5000);
+                $(this).val('0');
+                $(this)[0].dataset.val1 = $(this).val();
+                checkModification($(this));
             }
         });
     }
@@ -318,6 +414,15 @@ function updateUseSeparateTabOrWindowForUnloadableUrls() {
         $('#selectUseSeparateTabOrWindowForUnloadableUrls').addClass('disabled');
     }
 }
+
+function updateDivHideMouseCursor() {
+    if ($('#chkHideMouseCursor')[0].checked) {
+        $('#divHideMouseCursor').removeClass('disabled');
+    } else {
+        $('#divHideMouseCursor').addClass('disabled');
+    }
+}
+
 function updateTxtAmbilightBackgroundOpacity() {
     $('#txtAmbilightBackgroundOpacity')[0].value = this.value;
 }
@@ -334,6 +439,24 @@ function updateTxtAmbilightHaloSize() {
 function updateRngAmbilightHaloSize() {
     this.value = percentageOnChange(this.value);
     $('#rngAmbilightHaloSize').val(this.value);
+}
+
+function updateTxtFrameThickness() {
+    $('#txtFrameThickness')[0].value = this.value;
+}
+
+function updateRngFrameThickness() {
+    this.value = percentageOnChange(this.value);
+    $('#rngFrameThickness').val(this.value);
+}
+
+function updateTxtFontSize() {
+    $('#txtFontSize')[0].value = this.value;
+}
+
+function updateRngFontSize() {
+    this.value = percentageOnChange(this.value);
+    $('#rngFontSize').val(this.value);
 }
 
 function updateTxtVideoVolume() {
@@ -389,10 +512,12 @@ function loadPlugins() {
 function populatePluginsTable() {
     var plugins = $.unique(hoverZoomPlugins.map(function(plugin) {return plugin.name})).sort(Intl.Collator().compare);
     plugins.forEach(function(plugin) {
-        var chkName = 'chkPlugin' + plugin.replace(/[^\w]/g, '').toLowerCase();
+        var chkName = 'chkPlugin' + plugin.replace(/[^\w\-_]/g, '').toLowerCase();
         $('<div class="field"><label class="checkbox" for="' + chkName + '"><input type="checkbox" id="' + chkName + '" class="chkPlugin"><span></span>&nbsp;<div style="display:inline">' + plugin + '</div></label></div>').appendTo('#tblPlugins');
         $('#' + chkName)[0].checked = !options.disabledPlugins.includes(chkName.substr('chkPlugin'.length));
+        $('#' + chkName).each(function() { initCheckBox(this,  $('#' + chkName)[0].checked) });
     });
+    $('input[type=checkbox]').each(function() { $(this).parent().on('gumby.onChange', function() { updateCheckBox(this) }) });
     Gumby.initialize('checkbox');
 }
 
@@ -408,15 +533,37 @@ function initColorPicker(color){
     })
 }
 
+const Saved = Symbol("saved");
+const Cancel = Symbol("cancel");
+const Reset = Symbol("reset");
+function displayMsg(msg) {
+    switch (msg)  {
+        case Saved:
+            $('#msgtxt').removeClass().addClass('centered text-center alert success').text(chrome.i18n.getMessage('optSaved')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
+            break;
+        case Cancel:
+            $('#msgtxt').removeClass().addClass('centered text-center alert warning').text(chrome.i18n.getMessage('optCancel')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
+            break;
+        case Reset:
+            $('#msgtxt').removeClass().addClass('centered text-center alert info').text(chrome.i18n.getMessage('optReset')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
+            break;
+        default:
+            break;
+    }
+}
+
 $(function () {
+    options = loadOptions();
     initActionKeys();
     i18n();
     chkWhiteListModeOnChange();
     initAddToHistory();
-    $("#version").text(chrome.i18n.getMessage("optFooterVersionCopyright", chrome.runtime.getManifest().version));
-    $('#btnSave').click(saveOptions);
-    $('#btnCancel').click(function() { restoreOptions() });
-    $('#btnReset').click(restoreOptionsFromFactorySettings);
+    $("#version").text(chrome.i18n.getMessage("optFooterVersionCopyright", [chrome.runtime.getManifest().version, localStorage['HoverZoomLastUpdate'] ? localStorage['HoverZoomLastUpdate'] : localStorage['HoverZoomInstallation']]));
+    $('#btnSave').click(function() { removeModifications(); saveOptions(); displayMsg(Saved); return false; }); // "return false" needed to prevent page scroll
+    $('#btnCancel').click(function() { removeModifications(); restoreOptions(); displayMsg(Cancel); return false; });
+    $('#btnReset').click(function() { restoreOptionsFromFactorySettings(); displayMsg(Reset); return false; });
+    $('#btnDisableAllPlugins').click(function() { disableAllPlugins(); return false; });
+    $('#btnEnableAllPlugins').click(function() { enableAllPlugins(); return false; });
     $('#chkWhiteListMode').parent().on('gumby.onChange', chkWhiteListModeOnChange);
     $('#txtZoomFactor').change(percentageOnChange);
     $('#txtPicturesOpacity').change(percentageOnChange);
@@ -427,15 +574,78 @@ $(function () {
     $('#txtAmbilightHaloSize').change(updateRngAmbilightHaloSize);
     $('#rngAmbilightBackgroundOpacity').on('input change', updateTxtAmbilightBackgroundOpacity);
     $('#txtAmbilightBackgroundOpacity').change(updateRngAmbilightBackgroundOpacity);
+    $('#rngFrameThickness').on('input change', updateTxtFrameThickness);
+    $('#txtFrameThickness').change(updateRngFrameThickness);
+    $('#rngFontSize').on('input change', updateTxtFontSize);
+    $('#txtFontSize').change(updateRngFontSize);
     $('#txtVideoPositionStep').change(percentageOnChange);
     $('.actionKey').change(selKeyOnChange);
     $('#btnAddExcludedSite').click(btnAddExcludedSiteOnClick);
     $('#btnRemoveExcludedSite').click(btnRemoveExcludedSiteOnClick);
     $('#txtDownloadFolder').change(downloadFolderOnChange);
     $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled').parent().on('gumby.onChange', updateUseSeparateTabOrWindowForUnloadableUrls);
+    $('#chkHideMouseCursor').parent().on('gumby.onChange', updateDivHideMouseCursor);
 
     restoreOptions();
     loadPlugins();
 
+    $('input[type=checkbox]').each(function() { $(this).parent().on('gumby.onChange', function() { updateCheckBox(this) }) });
+    $('input[type=text]:not("#txtAddExcludedSite")').each(function() { $(this).change(function() { updateText(this) }) });
+    $('input[type=range]').each(function() { $(this).change(function() { updateRange(this) }) });
+    $('select').each(function() { $(this).change(function() { updateSelect(this) }) });
+
     chrome.runtime.onMessage.addListener(onMessage);
 });
+
+function disableAllPlugins() {
+    $('input.chkPlugin').each(function() { $(this).trigger('gumby.uncheck'); })
+}
+
+function enableAllPlugins() {
+    $('input.chkPlugin').each(function() { $(this).trigger('gumby.check'); })
+}
+
+// highlight item if modified, unhighlight if not modified
+function checkModification(item) {
+    if (item[0].dataset.val1 == undefined) return;
+    let highlight = (item[0].dataset.val0 != item[0].dataset.val1 ? true : false);
+
+    // choose which control to highlight/unhighlight depending on item's type
+    switch (item[0].type) {
+        case 'checkbox':
+            if (highlight) item.siblings('span').addClass('modified');
+            else item.siblings('span').removeClass('modified');
+            break;
+        case 'select-one':
+            if (highlight) item.addClass('modified');
+            else item.removeClass('modified');
+            break;
+        case 'text':
+        case 'range':
+            if (highlight) {
+                item.addClass('modified');
+                item.siblings('input[type=text],input[type=range],span').addClass('modified');
+                if (item[0].id == 'pickerFrameBackgroundColor') $('.sp-replacer').addClass('modified');
+            }
+            else {
+                item.removeClass('modified');
+                item.siblings('input[type=text],input[type=range],span').removeClass('modified');
+                if (item[0].id == 'pickerFrameBackgroundColor') $('.sp-replacer').removeClass('modified');
+            }
+            break;
+        default:
+            break;
+    }
+}
+
+// highlight/unhighlight all items
+function checkModifications() {
+    $('[data-val0]').each(function() { checkModification($(this)); });
+}
+
+function removeModifications() {
+    $('.modified').removeClass('modified');
+    $('.added').removeClass('added');
+    $('[data-val0]').each(function() { delete $(this)[0].dataset.val0; });
+    $('[data-val1]').each(function() { delete $(this)[0].dataset.val1; });
+}

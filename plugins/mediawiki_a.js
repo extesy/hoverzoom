@@ -1,30 +1,43 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'MediaWiki',
-    version:'0.5',
+    name:'MediaWiki_a',
+    version:'0.9',
     prepareImgLinks:function (callback) {
-        if (!hoverZoom.pageGenerator || hoverZoom.pageGenerator.indexOf('MediaWiki') == -1) {
-            return;
-        }
+
         var res = [];
-        $('img[src*="thumb/"]').each(function () {
-            var _this = $(this),
-                src = this.src,
-                srcs = [],
-                ext;
+
+        // thumbnail: https://runescape.wiki/images/thumb/2/26/Senntisten_Kree%27arra_vs_Nodon.png/534px-Senntisten_Kree%27arra_vs_Nodon.png?de6e2
+        //  fullsize: https://runescape.wiki/images/2/26/Senntisten_Kree%27arra_vs_Nodon.png
+        $('img[src*="wiki"][src*="thumb/"], image[href*="wiki"]').each(function() {
+            let _this = $(this);
+            let src = '';
+            let srcs = [];
+            let ext = '';
+
+            if (this.src) {
+                src = this.src;
+            } else {
+                if (!this.href) return;
+                if (!this.href.baseVal) return;
+                src = this.href.baseVal;
+            }
+
+            src = src.replace(/([^\?]{1,}).*/, '$1');
+
             if (src.substr(src.length - 8) == '.svg.png') {
                 ext = '.svg';
-            }
-            else {
+            } else {
                 ext = src.substr(src.lastIndexOf('.'));
             }
-            if (!options.showHighRes) {
-                srcs.push(src.replace(/\/\d+px-(?:.*?-)?/, '/800px-'));
-            }
+
+            if (src.indexOf(ext + '/') == -1) return;
+
             srcs.push(src.substring(0, src.indexOf(ext) + ext.length).replace('thumb/', ''));
             _this.data().hoverZoomSrc = srcs;
             res.push(_this);
+
         });
-        callback($(res));
+
+        callback($(res), this.name);
     }
 });

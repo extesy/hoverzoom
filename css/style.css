@@ -1,7 +1,8 @@
 #messages {
-    opacity: 0;
     margin-top: 2em;
     margin-bottom: 2em;
+    display: flex;
+    justify-content: center;
 }
 
 .append input[type=range] + input[type=text] {
@@ -9,7 +10,7 @@
     margin-left: -6px;
 }
 
-input[type="range"] {
+input[type=range] {
     vertical-align: top;
     border-radius: 4px 0 0 4px;
 }
@@ -29,6 +30,8 @@ input[type=range]::-webkit-slider-runnable-track {
 input[type=text].normal {
     height: 30px;
     text-align: left;
+    border-radius: 4px; 
+    margin: 3px;
 }
 
 input[type=text].xnarrow {
@@ -49,10 +52,60 @@ span.adjoined.xnarrow {
 
 select.picker {
     height: 30px;
-    margin: 0px;
+    margin: 3px;
 }
 
 .disabled {
     pointer-events: none;
     opacity: 0.5;
 }
+
+legend {
+    font-weight: bold;
+}
+
+label { margin: 3px; }
+
+/* popup styling */
+.popup table { width: max-content; margin-bottom: 0px;}
+.popup table tr:nth-child(even) { background-color: #FFCF0940; } /* light yellow */
+.popup table tr:nth-child(odd) { background-color: #85B7E740; } /* light blue */
+.popup table tr td { font-size: 12px; padding-left: 5px; padding-right: 5px; padding-top: 1px; padding-bottom: 1px; }
+.popup table tr td.ttip { padding-right: 30px; }
+
+.popup .picker { height: auto; padding-right: 5px; }
+
+.popup .tab-content, .popup .checkbox { padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px; }
+
+.popup .buttons { display: flex; justify-content: space-around; padding: 10px; }
+
+.popup .header { display: flex; padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px; }
+
+.popup .footer { position: fixed; bottom: 0px; left: 0px; width: 100%; text-align: center; padding: 0px; font-size: 12px; font-weight: bold; }
+
+.popup a { font-size: 115%; }
+
+.popup #aMoreOptions { color: #2644D0FF; } /* strong blue */
+
+.popup .ttip:after,.ttip:before { display: block; font-size: 12px; margin-left: 0px; padding-left: 3px; padding-top: 0px; padding-bottom: 0px; text-align: left; }
+
+.popup #messages { margin-top: 0px; margin-bottom: 0px; }
+
+.popup .alert { margin-top: 0px; margin-bottom: 0px; font-size: 12px; line-height: 150%; }
+
+.popup label { font-size: 12px; font-weight: bold; }
+
+.popup input { margin: 0px; }
+
+.popup div.field { margin-bottom: 0px; }
+
+.popup .noscrollbars::-webkit-scrollbar { display: none; }
+.popup body { padding: 0px; margin: 0px; }
+
+.popup .enableForSite { color: limegreen; }
+.popup .disableForSite { color: red; }
+
+/* highlight user modification(s) in popup & options pages */
+div.modified, select.modified, span.modified, input[type=text].modified, input[type=range].modified { outline-color: orange; outline-style: solid; outline-width: medium; }
+
+span.added { outline-color: orange; outline-style: solid; outline-width: medium; padding-left: 3px; padding-right: 3px; border-radius: 4px; }

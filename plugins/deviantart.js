@@ -79,7 +79,7 @@ hoverZoomPlugins.push({
                 try {
                     re = new RegExp(searchKey);
                 } catch (e) {
-                    console.log(e);
+                    cLog(e);
                     return [];
                 }
             }
@@ -93,7 +93,7 @@ hoverZoomPlugins.push({
                 for(var curr in obj) {
                     var currElem = obj[curr];
 
-                    if( currDeepLevel == 1 && bShowInfo ) { console.log("getKeysInObject : Looking property \"" + curr + "\" ") }
+                    if( currDeepLevel == 1 && bShowInfo ) { cLog("getKeysInObject : Looking property \"" + curr + "\" ") }
 
                     if( isRegex ? re.test(curr) : curr === searchKey ){
                         var r = {};
@@ -132,7 +132,7 @@ hoverZoomPlugins.push({
                 try {
                     re = new RegExp(searchValue);
                 } catch (e) {
-                    console.log(e);
+                    cLog(e);
                     return [];
                 }
             }
@@ -146,7 +146,7 @@ hoverZoomPlugins.push({
                 for(var curr in obj) {
                     var currElem = obj[curr];
 
-                    if( currDeepLevel == 1 && bShowInfo ) { console.log("getKeysInObject : Looking property \"" + curr + "\" ") }
+                    if( currDeepLevel == 1 && bShowInfo ) { cLog("getKeysInObject : Looking property \"" + curr + "\" ") }
 
                     if( typeof currElem == "object" ) { // object is "object" and "array" is also in the eyes of "typeof"
                         // search again :D
@@ -174,7 +174,7 @@ hoverZoomPlugins.push({
 
         // Extract data in window.__INITIAL_STATE__
         function parseScripts() {
-            console.log('parseScripts');
+            cLog('parseScripts');
             if (document.scripts == undefined) return [];
             scripts = Array.from(document.scripts);
             goodScript = scripts.filter(script => /__INITIAL_STATE__/.test(script.text));
@@ -279,7 +279,7 @@ hoverZoomPlugins.push({
                 var media = findMedia(token, baseUri);
                 if (media[0]) {
                     url = findUrl(media[0], token);
-                    console.log('photo fullsizeUrl (from scripts data):' + url);
+                    cLog('photo fullsizeUrl (from scripts data):' + url);
 
                     // store url
                     sessionStorage.setItem(mToken ? token : baseUri, url);
@@ -293,7 +293,7 @@ hoverZoomPlugins.push({
                     }
                 }
             } else {
-                console.log('photo fullsizeUrl (from sessionStorage):' + url);
+                cLog('photo fullsizeUrl (from sessionStorage):' + url);
 
                 if (url) {
                     if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
@@ -324,7 +324,7 @@ hoverZoomPlugins.push({
                     mediasFromAPI = getKeysInObject(data, 'media');
                     if (mediasFromAPI[0]) {
                         url = findUrl(mediasFromAPI[0]);
-                        console.log('photo fullsizeUrl (from API data):' + url);
+                        cLog('photo fullsizeUrl (from API data):' + url);
                         // store url
                         sessionStorage.setItem(deviationId, url);
 

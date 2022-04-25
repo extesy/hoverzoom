@@ -1,16 +1,17 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'_free-images.com',
-    version:'0.1',
+    name:'pikwizard',
+    version:'1.0',
     prepareImgLinks:function (callback) {
-        var res = [];   
-    
+
+        var res = [];
+
         hoverZoom.urlReplace(res,
             'img[src]',
-            ['/tn/', '/sm/', '/md/', '/lg/'],
-            ['/or/', '/or/', '/or/', '/or/']
+            /-[a-z]{1}\./,
+            '-l.'
         );
-                
+
         callback($(res), this.name);
     }
 });

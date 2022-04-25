@@ -1,7 +1,5 @@
-Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.
+Tüm favori web sitelerinizde (Facebook, Amazon, vb.) Görüntüleri/videoları yakınlaştırın. Desteklenen sitelerde farenizi herhangi bir resmin üzerine getirin ve uzantı otomatik olarak resmi tarayıcı pencerenizden taşmayacak şekilde tam boyutuna yakınlaştırsın.
 
-Desteklenen sitelerde farenizi herhangi bir resmin üzerine getirin ve uzantı otomatik olarak resmi tarayıcı pencerenizden taşmayacak şekilde tam boyutuna yakınlaştırsın.
+Bu uzantı şu anda kötü amaçlı yazılımlar taşıyan ve mağazadan silinen orijinal HoverZoom uzantısının açık kaynak kodlu sürümüdür. Bu sürümde tüm kötü amaçlı yazılımlar silindi, birçok hata giderildi ve yeni özellikler eklendi. İstatiksel hiçbir veri toplamaz. ihtiyacı olan tek izin, tüm web sitelerindeki verilere erişmek (tam görüntüleri çıkarmak için) ve tarayıcı geçmişine erişmek, görüntüleri indirmek/kaydetmek veya site başına yapılandırma için sekme URL'leri almak için *isteğe bağlı* izinlerdir.
 
-Bu uzantı şu anda kötü amaçlı yazılımlar taşıyan ve mağazadan silinen orijinal HoverZoom uzantısının açık kaynak kodlu sürümüdür. Bu sürümde tüm kötü amaçlı yazılımlar silindi, birçok hata giderildi ve yeni özellikler eklendi. Varsayılan olarak herhangi bir istatistik toplanmaz. The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images or get tab urls for per-site configuration.
-
-Bazen siteler tasarımlarını değiştirdiğinde uzantının güncellenmesi gerekebilir. Lütfen destek sekmesini veya https://github.com/extesy/hoverzoom/issues sayfasını kullanarak yakınlaştırma ile ilgili sorunları bildirin.
+Bazen siteler çalışma stilini değiştirir ve bu olduğunda uzantının güncellenmesi gerekir. Lütfen destek sekmesini veya https://github.com/extesy/hoverzoom/issues sayfasını kullanarak yakınlaştırma ile ilgili sorunları bildirin.

@@ -116,15 +116,35 @@ hoverZoomPlugins.push({
             return urlTargetId;
         }
 
+        // March, 2021 : Facebook modified the way fb_dtsg value is encoded in document, making this method obsolete
         // get fb_dtsg from document
         // sample : {"name":"fb_dtsg","value":"AQGTALQ9UBXa:AQG-mujgyqQp"}
-        function findFbDtsg() {
+        function findFbDtsg_obsolete() {
 
             let index1 = innerHTML.indexOf('{"name":"fb_dtsg"');
             if (index1 == -1) return undefined;
             let index2 = innerHTML.indexOf('}', index1);
             let fbDtsgJson = innerHTML.substring(index1, index2 + 1);
             let fbdtsg = JSON.parse(fbDtsgJson).value;
+            cLog('fb_dtsg: ', fbdtsg);
+            return fbdtsg;
+        };
+
+        // get fb_dtsg from document
+        // samples :
+        // ["DTSGInitialData",[],{"token":"AQGNKxGZChye:AQE6nMJf1oiR"},258]
+        // ["DTSGInitData",[],{"token":"AQGNKxGZChye:AQE6nMJf1oiR","async_get_token":"AQxMihxz0r8DhmCe4Ga4XeM2jBWley10P7nMQKYX8Hn1YA:AQwKhv4RPLljN0sU78j60-zxEHL02GUd8HzBYH5RMqXflg"},3515]
+        function findFbDtsg() {
+
+            let index0 = innerHTML.indexOf('["DTSGInitialData",[],{"token":');
+            if (index0 == -1) index0 = innerHTML.indexOf('["DTSGInitData",[],{"token":');
+            let index1 = -1;
+            if (index0 != -1) index1 = innerHTML.indexOf('{"token":', index0);
+            else index1 = innerHTML.indexOf('{"token":');
+            if (index1 == -1) return undefined; // token not found
+            let index2 = innerHTML.indexOf('}', index1);
+            let fbDtsgJson = innerHTML.substring(index1, index2 + 1);
+            let fbdtsg = JSON.parse(fbDtsgJson).token;
             cLog('fb_dtsg: ', fbdtsg);
             return fbdtsg;
         };
@@ -149,6 +169,7 @@ hoverZoomPlugins.push({
                 // store uri
                 sessionStorage.setItem(currentId, uri);
                 callback(currentLink, name);
+                hoverZoom.displayPicFromElement(currentLink);
             });
         }
 
@@ -266,6 +287,7 @@ hoverZoomPlugins.push({
                     res.push(link);
                     cLog('Facebook photo fullsizeUrl (from sessionStorage): ' + storedUrl);
                     callback(link, name);
+                    hoverZoom.displayPicFromElement(link);
                 }
             }
         }
@@ -296,6 +318,7 @@ hoverZoomPlugins.push({
             // store uri
             sessionStorage.setItem(id, uri);
             callback(link, name);
+            hoverZoom.displayPicFromElement(link);
             return true;
         }
 
@@ -333,6 +356,7 @@ hoverZoomPlugins.push({
                     data.hoverZoomSrc.unshift(storedUrl);
                     cLog('Facebook photo fullsizeUrl (from sessionStorage): ' + storedUrl);
                     callback(currentLink, name);
+                    hoverZoom.displayPicFromElement(currentLink);
                 }
             });
         };
@@ -404,6 +428,7 @@ hoverZoomPlugins.push({
                 res.push(link);
                 cLog('Facebook photo fullsizeUrl (from sessionStorage): ' + storedUrl);
                 callback(link, name);
+                hoverZoom.displayPicFromElement(link);
             }
         }
 
@@ -507,6 +532,7 @@ hoverZoomPlugins.push({
                 res.push(link);
                 cLog('Facebook photo fullsizeUrl (from sessionStorage): ' + storedUrl);
                 callback(link, name);
+                hoverZoom.displayPicFromElement(link);
             }
         });
 

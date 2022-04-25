@@ -42,17 +42,44 @@
                                         </label>
                                     </li>
                                 </div>
-                                <div class="ttip" data-i18n-tooltip="optCaptionLocationTooltip">
-                                    <li class="field">
-                                        <label class="checkbox" for="selectCaptionLocation">
+                                <div id="divCaptionDetails" style="display:flex">
+                                   <div class="ttip" data-i18n-tooltip="optCaptionLocationTooltip">
+                                        <li class="field">
                                             <div style="display:inline" data-i18n="optCaptionLocation"></div>
                                             <select id="selectCaptionLocation" class="picker">
                                                 <option value="above" data-i18n="optCaptionLocationAbove"></option>
                                                 <option value="below" data-i18n="optCaptionLocationBelow"></option>
                                                 <option value="none" data-i18n="optCaptionLocationNone"></option>
                                             </select>
-                                        </label>
-                                    </li>
+                                        </li>
+                                    </div>
+                                    <div class="ttip" data-i18n-tooltip="optDetailsLocationTooltip">
+                                        <li class="field" style="margin-left:10px">
+                                            <div style="display:inline" data-i18n="optDetailsLocation"></div>
+                                            <select id="selectDetailsLocation" class="picker">
+                                                <option value="above" data-i18n="optDetailsLocationAbove"></option>
+                                                <option value="below" data-i18n="optDetailsLocationBelow"></option>
+                                                <option value="none" data-i18n="optDetailsLocationNone"></option>
+                                            </select>
+                                        </li>
+                                    </div>
+                                    <div class="ttip" data-i18n-tooltip="optFontSizeTooltip">
+                                        <div class="append field" style="margin-left:10px">
+                                            <label class="inline" for="txtFontSize">
+                                                <div style="display:inline" data-i18n="optFontSize"></div>
+                                                <input class="xnarrow input" type="range" name="points" min="8" max="20" step="1" id="rngFontSize">
+                                                <input class="xnarrow text input" type="text" id="txtFontSize"><span class="adjoined xnarrow" data-i18n="optFontSizeUnitName"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="ttip" data-i18n-tooltip="optFontOutlineTooltip">
+                                        <div class="append field" style="margin-left:10px; margin-top:3.5px">
+                                            <label class="checkbox" for="chkFontOutline">
+                                                <input type="checkbox" id="chkFontOutline"><span></span>
+                                                <div style="display:inline" data-i18n="optFontOutline"></div>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="ttip" data-i18n-tooltip="optMouseUnderlapTooltip">
                                     <li class="field">
@@ -130,13 +157,24 @@
                                         </label>
                                     </li>
                                 </div>
-                                <div class="ttip" data-i18n-tooltip="optFrameBackgroundColorTooltip">
-                                    <li class="field">
-                                        <label class="inline" for="pickerFrameBackgroundColor">
-                                            <div style="display:inline" data-i18n="optFrameBackgroundColor"></div>
-                                            <input type="text" id="pickerFrameBackgroundColor" value="">
-                                        </label>
-                                    </li>
+                                <div id="divFrame" style="display:flex">
+                                    <div class="ttip" data-i18n-tooltip="optFrameBackgroundColorTooltip">
+                                        <li class="field">
+                                            <label class="inline" for="pickerFrameBackgroundColor">
+                                                <div style="display:inline" data-i18n="optFrameBackgroundColor"></div>
+                                                <input type="text" id="pickerFrameBackgroundColor" value="">
+                                            </label>
+                                        </li>
+                                    </div>
+                                    <div class="ttip" data-i18n-tooltip="optFrameThicknessTooltip">
+                                        <div class="append field" style="margin-left:22px">
+                                            <label class="inline" for="txtFrameThickness">
+                                                <div style="display:inline" data-i18n="optFrameThickness"></div>
+                                                <input class="xnarrow input" type="range" name="points" min="0" max="10" step="1" id="rngFrameThickness">
+                                                <input class="xnarrow text input" type="text" id="txtFrameThickness"><span class="adjoined xnarrow" data-i18n="optFrameThicknessUnitName"></span>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="ttip" data-i18n-tooltip="optUseSeparateTabOrWindowForUnloadableUrlsTooltip">
                                     <li class="field">
@@ -229,15 +267,28 @@
                                         <input class="xnarrow text input" type="text" id="txtFadeDuration"><span class="adjoined xnarrow" data-i18n="optDurationUnitName"></span>
                                     </label>
                                 </li>
+                                <div class="ttip" data-i18n-tooltip="optHideMouseCursorTooltip">
+                                    <li class="append field">
+                                        <label class="checkbox inline" style="padding-right:10px" for="chkHideMouseCursor">
+                                            <input type="checkbox" id="chkHideMouseCursor"><span></span>
+                                            <div style="display:inline" data-i18n="optHideMouseCursor"></div>
+                                        </label>
+                                        <div id="divHideMouseCursor" style="display:inline"><input class="xnarrow text input" type="text" id="txtHideMouseCursor" style="margin-top:3px"><span class="adjoined xnarrow" data-i18n="optDurationUnitName"></span></div>
+                                    </li>
+                                </div>
                             </ul>
                         </fieldset>
                     </form>
                 </div>
                 <div class="tab-content">
                     <form>
+                        <div style="display:flex; justify-content:flex-end; gap:10px;">                         
+                            <div class="btn default"><a href="#" id="btnDisableAllPlugins" data-i18n="optButtonDisableAllPlugins"></a></div>                      
+                            <div class="btn default"><a href="#" id="btnEnableAllPlugins" data-i18n="optButtonEnableAllPlugins"></a></div>
+                        </div>
                         <fieldset>
                             <legend data-i18n="optPlugins"></legend>
-                            <ul id="tblPlugins"></ul>
+                            <div id="tblPlugins" style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr"></div>
                         </fieldset>
                     </form>
                 </div>
@@ -253,7 +304,7 @@
                         </div>
                         <fieldset>
                             <legend id="lblToggle"></legend>
-                            <div class="append field">
+                            <div class="field">
                                 <label for="txtAddExcludedSite">
                                     <input class="wide text input" type="text" id="txtAddExcludedSite" data-i18n-placeholder="optSitePlaceholder">
                                     <div class="medium primary btn"><a href="#" id="btnAddExcludedSite" data-i18n="optButtonAddSite"></a></div>
@@ -272,12 +323,6 @@
                         <fieldset>
                             <legend data-i18n="optSectionAdvanced"></legend>
                             <ul>
-                                <li class="field">
-                                    <label class="checkbox" for="chkUpdateNotifications">
-                                        <input type="checkbox" id="chkUpdateNotifications"><span></span>
-                                        <div style="display:inline" data-i18n="optUpdateNotifications"></div> <a id="aShowUpdateNotification" data-i18n="optShowLastUpdateNotification"></a>
-                                    </label>
-                                </li>
                                 <li class="field">
                                     <label class="checkbox" for="chkAddToHistory">
                                         <input type="checkbox" id="chkAddToHistory"><span></span>
@@ -308,12 +353,64 @@
                                         <input class="xnarrow text input" type="text" id="txtPicturesOpacity"><span class="adjoined xnarrow" data-i18n="optOpacityUnitName"></span>
                                     </label>
                                 </li>
+                                <div class="ttip" data-i18n-tooltip="optDisplayImageLoaderTooltip">
+                                    <li class="field">
+                                        <label class="checkbox" for="chkDisplayImageLoader">
+                                            <input type="checkbox" id="chkDisplayImageLoader"><span></span>
+                                            <div style="display:inline" data-i18n="optDisplayImageLoader"></div>
+                                        </label>
+                                    </li>
+                                </div>
                                 <div class="ttip" data-i18n-tooltip="optDownloadFolderTooltip">
                                     <li class="append field">
                                         <label class="inline" style="padding-right:10px">
                                             <div style="display:inline" data-i18n="optDownloadFolder"></div>
                                         </label>
                                         <input class="normal text input" type="text" id="txtDownloadFolder" data-i18n-placeholder="optDownloadFolderPlaceholder">
+                                    </li>
+                                </div>
+                                <div style="display:flex">
+                                    <div class="ttip" data-i18n-tooltip="optRenameDownloadsTooltip">
+                                        <label class="inline" for="txtRenameDownloads">
+                                            <div style="display:inline" data-i18n="optRenameDownloads"></div>
+                                        </label>
+                                    </div>
+                                    <div class="ttip" data-i18n-tooltip="optAddDownloadOriginTooltip">
+                                        <div class="field">
+                                            <label class="checkbox" style="padding-right:100px" for="chkAddDownloadOrigin">
+                                                <input type="checkbox" id="chkAddDownloadOrigin"><span></span>
+                                                <div style="display:inline" data-i18n="optAddDownloadOrigin"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                   <div class="ttip" data-i18n-tooltip="optAddDownloadSizeTooltip">
+                                        <div class="field">
+                                            <label class="checkbox" style="padding-right:100px" for="chkAddDownloadSize">
+                                                <input type="checkbox" id="chkAddDownloadSize"><span></span>
+                                                <div style="display:inline" data-i18n="optAddDownloadSize"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="ttip" data-i18n-tooltip="optAddDownloadDurationTooltip">
+                                        <div class="field">
+                                            <label class="checkbox" for="chkAddDownloadDuration">
+                                                <input type="checkbox" id="chkAddDownloadDuration"><span></span>
+                                                <div style="display:inline" data-i18n="optAddDownloadDuration"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ul>
+                        </fieldset>
+                        <fieldset>
+                            <legend data-i18n="optSectionTroubleshooting"></legend>
+                            <ul>
+                                <div class="ttip" data-i18n-tooltip="optEnableDebugTooltip">
+                                    <li class="field">
+                                        <label class="checkbox" for="chkEnableDebug">
+                                            <input type="checkbox" id="chkEnableDebug"><span></span>
+                                            <div style="display:inline" data-i18n="optEnableDebug"></div>
+                                        </label>
                                     </li>
                                 </div>
                             </ul>
@@ -334,13 +431,11 @@
             </div>
         </div>
         <div id="messages" class="row">
-            <div class="four columns centered text-center">
-                <div class="success alert" data-i18n="optSaved"></div>
-            </div>
+            <div id="msgtxt" class="alert" style="opacity:0">placeholder</div>
         </div>
         <div class="row">
             <div class="twelve columns centered text-center">
-                <p><a target="_blank" href="https://github.com/extesy/hoverzoom/" data-i18n="optFooterSourceCode"></a> | <a target="_blank" href="https://github.com/extesy/hoverzoom/issues" data-i18n="optFooterReportIssue"></a></p>
+                <p><a target="_blank" href="https://github.com/extesy/hoverzoom/" data-i18n="optFooterSourceCode"></a> | <a target="_blank" href="https://github.com/extesy/hoverzoom/blob/master/CHANGELOG.md" data-i18n="optFooterChangelog"></a> | <a target="_blank" href="https://github.com/extesy/hoverzoom/issues" data-i18n="optFooterReportIssue"></a></p>
                 <p id="version"></p>
             </div>
         </div>

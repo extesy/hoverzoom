@@ -1,6 +1,10 @@
 var hoverZoomPlugins = hoverZoomPlugins || [],
+    regexImgUrl = /\.(jpe?g|gifv?|png|webm|mp4|3gpp|svg|webp|bmp|ico|xbm)([\?#].*)?$/i,
+    regexSpecialChars = /[\r\n\t\v\f]/g,
+    regexForbiddenChars = /[\\/:*?"<>|~]/g,
     debug = false,
-    logger = Logger();
+    logger = Logger(),
+    hls = null; // https://github.com/video-dev/hls.js/
 
 function cLog(msg) {
     if (debug) {
@@ -60,17 +64,16 @@ var hoverZoom = {
     hzImg:null,
     hzImgLoader:null,
     hzImgCss:{
-        'border':'4px solid rgba(255, 255, 0, 1)',
+        'background':'none',
         'line-height':'0px',
         'overflow':'hidden',
-        'padding':'0px',
-        'margin':'4px',
+        'padding':'5px',
         'position':'absolute',
         'z-index':2147483647,
-        'border-radius':'4px',
-        'box-shadow':'0px 1px 3px rgba(0, 0, 0, 0.4)'
+        'transform':''
     },
     hzImgLoaderCss:{
+        'background':'none',
         'border-style':'solid',
         'border-width':'4px',
         'line-height':'0px',
@@ -81,6 +84,12 @@ var hoverZoom = {
         'z-index':'2147483647',
         'border-radius':'4px',
         'box-shadow':'0px 1px 3px rgba(0, 0, 0, 0.4)'
+    },
+    hzImgContainerCss:{
+        'position':'relative',
+        'display':'flex',
+        'align-items':'center',
+        'justify-content':'center'
     },
     hzImgLoadingCss:{ // green
         'border-color':'#e1ffbf',
@@ -100,9 +109,13 @@ var hoverZoom = {
         var hz = hoverZoom,
             wnd = $(window),
             body = $(document.body),
-            hzCaption = null,
+            hzAbove = null,
+            hzBelow = null,
+            hzCaptionMiscellaneous = null,
+            hzDetails = null,
             hzGallery = null,
             imgFullSize = null,
+            audioFullSize = null,
             imgThumb = null,
             mousePos = {},
             loading = false,
@@ -111,6 +124,9 @@ var hoverZoom = {
             actionKeyDown = false,
             fullZoomKeyDown = false,
             hideKeyDown = false,
+            imageLocked = false,
+            lockImageClickTime = 0,
+            zoomFactor = 1,
             pageActionShown = false,
             skipFadeIn = false,
             titledElements = null,
@@ -122,10 +138,16 @@ var hoverZoom = {
         var imgDetails = {
                 url:'',
                 audioUrl:'',
+                audioMuted:false,
                 host:'',
                 naturalHeight:0,
                 naturalWidth:0,
-                video:false
+                displayedHeight:0,
+                displayedWidth:0,
+                video:false,
+                playlist:false,
+                contentLength:0,
+                lastModified:''
             };
 
         var progressCss = {
@@ -140,6 +162,7 @@ var hoverZoom = {
                 'border-radius':'2px'
             },
             imgFullSizeCss = {
+                'transform':'',
                 'opacity':'1',
                 'position':'static',
                 'height':'auto',
@@ -150,53 +173,156 @@ var hoverZoom = {
                 'max-width':'none',
                 'margin':'0',
                 'padding':'0',
-                'border-radius':'0',
+                'border-style':'solid',
+                'background-color':'black', // display black background as large images/videos are loading
                 'background-size':'100% 100%',
                 'background-position':'center',
-                'background-repeat':'no-repeat'
+                'background-repeat':'no-repeat',
+                'box-shadow':'1px 1px 5px rgba(0, 0, 0, 0.5), -1px 1px 5px rgba(0, 0, 0, 0.5), 1px -1px 5px rgba(0, 0, 0, 0.5), -1px -1px 5px rgba(0, 0, 0, 0.5)' // cast shadow in every direction
+            },
+            audioFullSizeCss = {
+                'opacity':'0',
+                'position':'absolute',
+                'left':'0',
+                'top':'0',
+                'max-height':'20%',
+                'max-width':'90%',
+                'margin':'0',
+                'padding':'0',
+                'transition':'opacity ease 1s'
+            },
+            videoErrorMsgCss = {
+                'font':'menu',
+                'font-size':'xxx-large',
+                'font-weight':'bold',
+                'color':'white',
+                'text-shadow':'1px 1px 0px black, -1px 1px 0px black, 1px -1px 0px black, -1px -1px 0px black',
+                'text-align':'center'
             },
             hzCaptionCss = {
                 'opacity':'1',
                 'font':'menu',
-                'font-size':'11px',
                 'font-weight':'bold',
-                'color': '#333',
                 'text-align':'center',
-                'height':'auto',
-                'max-height':'40px',
                 'overflow':'hidden',
-                'display': '-webkit-box',
-                '-webkit-line-clamp': '2',
-                '-webkit-box-orient': 'vertical',
-                'vertical-align':'top',
-                'padding-top':'2px',
-                'padding-bottom':'2px'
+                'overflow-wrap':'break-word',
+                'display':'-webkit-box',
+                '-webkit-line-clamp':'2',
+                '-webkit-box-orient':'vertical',
+                'min-width':'25%',
+                'z-index':2147483647,
+                'box-shadow':'1px 1px 5px rgba(0, 0, 0, 0.5), -1px 1px 5px rgba(0, 0, 0, 0.5), 1px -1px 5px rgba(0, 0, 0, 0.5), -1px -1px 5px rgba(0, 0, 0, 0.5)' // cast shadow in every direction
+            },
+            hzMiscellaneousCss = {
+                'opacity':'1',
+                'font':'menu',
+                'font-weight':'bold',
+                'text-align':'center',
+                'overflow':'hidden',
+                'overflow-wrap':'break-word',
+                'display':'-webkit-box',
+                '-webkit-line-clamp':'2',
+                '-webkit-box-orient':'vertical',
+                'min-width':'25%',
+                'z-index':2147483647,
+                'box-shadow':'1px 1px 5px rgba(0, 0, 0, 0.5), -1px 1px 5px rgba(0, 0, 0, 0.5), 1px -1px 5px rgba(0, 0, 0, 0.5), -1px -1px 5px rgba(0, 0, 0, 0.5)' // cast shadow in every direction
+            },
+            hzDetailCss = {
+                'opacity':'1',
+                'font':'menu',
+                'font-weight':'bold',
+                'white-space':'nowrap',
+                'z-index':2147483647,
+                'box-shadow':'1px 1px 5px rgba(0, 0, 0, 0.5), -1px 1px 5px rgba(0, 0, 0, 0.5), 1px -1px 5px rgba(0, 0, 0, 0.5), -1px -1px 5px rgba(0, 0, 0, 0.5)' // cast shadow in every direction
+            },
+            hzAboveCss = {
+                'background':'none',
+                'display':'flex',
+                'flex-direction':'row',
+                'flex-wrap':'nowrap',
+                'align-items':'flex-end'
+            },
+            hzBelowCss = {
+                'background':'none',
+                'display':'flex',
+                'flex-direction':'row',
+                'flex-wrap':'nowrap',
+                'align-items':'flex-start'
+            },
+            hzCaptionMiscellaneousCss = {
+                'background':'none',
+                'display':'flex',
+                'margin':'auto',
+                'justify-content':'center',
+                'min-width':'25%'
+            },
+            hzDetailsCss = {
+                'background':'none',
+                'display':'flex',
+                'flex-direction':'row',
+                'flex-wrap':'nowrap',
+                'min-width':'25%'
             },
             hzGalleryInfoCss = {
                 'position':'absolute',
-                'top':'5px',
-                'right':'5px',
+                'z-index':'2147483647',
+                'padding':'2px',
+                'top':'14px',
+                'left':'20px',
                 'font':'menu',
                 'font-size':'14px',
                 'font-weight':'bold',
                 'color':'white',
-                'padding':'3px',
-                'text-shadow':'-2px -2px 1px black, -2px 0 1px black, -2px 2px 1px black, 0 -2px 1px black, 0 2px 1px black, 2px -2px 1px black, 2px 0 1px black, 2px 2px 1px black',
+                'text-shadow':'1px 1px 0px black, -1px 1px 0px black, 1px -1px 0px black, -1px -1px 0px black',
                 'text-align':'center',
                 'overflow':'hidden',
                 'vertical-align':'top',
                 'horizontal-align':'right'
             };
+
+        // needed to flip text tracks on videos
+        var styleFlip = document.createElement('style');
+        styleFlip.innerHTML = `
+            .flipX video::-webkit-media-text-track-display {
+                transform: matrix(-1, 0, 0, 1, 0, 0) !important;
+            }
+            .flipXY video::-webkit-media-text-track-display {
+                transform: matrix(-1, 0, 0, -1, 0, 0) !important;
+            }
+            .flipXYX video::-webkit-media-text-track-display {
+                transform: matrix(1, 0, 0, -1, 0, 0) !important;
+            }`;
+        document.head.appendChild(styleFlip);
+
+        // blinker
+        var styleBlink = document.createElement('style');
+        styleBlink.innerHTML = `
+            @keyframes blinkWarning {
+                0% { color: red; }
+                100% { color: white; }
+            }
+            @-webkit-keyframes blinkWarning {
+                0% { color: red; }
+                100% { color: white; }
+            }
+            .blinkWarning {
+                -webkit-animation: blinkWarning 1s linear infinite;
+                -moz-animation: blinkWarning 1s linear infinite;
+                animation: blinkWarning 1s linear infinite;
+            }`;
+        document.head.appendChild(styleBlink);
+
         var flashFixDomains = [
-            /*'www.youtube.com',*/
             'www.redditmedia.com'
         ];
 
         // calculate optimal image position and size
         function posImg(position) {
 
+            imgSkipped = false
+            imgError = false;
+
             if (!imgFullSize) {
-                hz.displayImgLoader('error', position);
                 return;
             }
 
@@ -226,21 +352,62 @@ var hoverZoom = {
                 bodyWidth = document.body.clientWidth,
                 displayOnRight = (position.left - wndScrollLeft < wndWidth / 2);
 
-            function adjustCaption() {
+            function adjustCaptionMiscellaneousDetails() {
 
-                if (hzCaption)
-                    hzCaption.css('max-width', 0); // needed to avoid a bug when caption is larger than img
+                // needed to avoid a bug with some websites (e.g. instagram)
+                if (hzCaptionMiscellaneous)
+                    hzCaptionMiscellaneous.css('max-width', 0);
+                if (hzDetails)
+                    hzDetails.css('max-width', 0);
+                if (hzAbove)
+                    hzAbove.css('max-width', 0);
+                if (hzBelow)
+                    hzBelow.css('max-width', 0);
 
                 // this is looped 10x max just in case something goes wrong, to avoid freezing the process
                 let i = 0;
-                while (hz.hzImg.height() > wndHeight - statusBarHeight - scrollBarHeight && i++ < 10) {
-                    imgFullSize.height(wndHeight - padding - statusBarHeight - scrollBarHeight - (hzCaption ? hzCaption.height() : 0)).width('auto');
+
+                while (!imageLocked && hz.hzImg.height() > wndHeight - statusBarHeight - scrollBarHeight && i++ < 10) {
+                    imgFullSize.height(wndHeight - padding - statusBarHeight - scrollBarHeight - (hzAbove ? hzAbove.height() : 0) - (hzBelow ? hzBelow.height() : 0)).width('auto');
                 }
 
-                if (hzCaption) {
-                    hzCaption.css('max-width', imgFullSize.width());
-                    if (hzCaption.height() > 20) {
-                        hzCaption.css('font-weight', 'normal'); // do not use bold font when caption is verbose
+                if (hzCaptionMiscellaneous)
+                    hzCaptionMiscellaneous.css('max-width', imgFullSize[0].clientWidth);
+                if (hzDetails)
+                    hzDetails.css('max-width', imgFullSize[0].clientWidth);
+                if (hzAbove)
+                    hzAbove.css('max-width', imgFullSize[0].clientWidth);
+                if (hzBelow)
+                    hzBelow.css('max-width', imgFullSize[0].clientWidth);
+
+                // do not display caption nor details if img is too small
+                if (imgFullSize[0].clientWidth < 50) {
+                    if (hzAbove) hzAbove.hide();
+                    if (hzBelow) hzBelow.hide();
+                } else {
+                    if (hzAbove) hzAbove.show();
+                    if (hzBelow) hzBelow.show();
+
+                    if (hzDetails) {
+                        displayDetails();
+
+                        let nb = hzDetails.find('.hzDetail').length;
+
+                        // do not show empty details
+                        for (let i = 0; i < nb; i++) {
+                            let detail = hzDetails.find('.hzDetail').eq(i);
+                            if (!detail.text()) detail.hide();
+                        }
+
+                        let i = 0;
+                        while (hzDetails[0].scrollWidth - 1 <= hzDetails[0].clientWidth && i < nb ) {
+                            let detail = hzDetails.find('.hzDetail').eq(i++);
+                            if (detail.text()) detail.show();
+                        }
+                        i = nb;
+                        while (hzDetails[0].scrollWidth - 1 > hzDetails[0].clientWidth && i > 0) {
+                            hzDetails.find('.hzDetail').eq(--i).hide();
+                        }
                     }
                 }
             }
@@ -252,50 +419,48 @@ var hoverZoom = {
             }
 
             if ($('#hzImgLoader.imgLoading')[0] != undefined) {
-
                 hz.displayImgLoader('loading', position);
                 return;
-
-                /*position.top -= 10;
-                if (!displayOnRight) {
-                    position.left -= 25;
-                }*/
-
             } else {
+
+                // img fully loaded
+                loading = false;
 
                 imgFullSize.width('auto').height('auto');
                 hz.hzImg.width('auto').height('auto');
-                hz.hzImg.css('visibility', 'visible');
+                //hz.hzImg.css('visibility', 'visible');
 
                 // image natural dimensions
-                imgDetails.naturalWidth = imgFullSize.width() * options.zoomFactor;
-                imgDetails.naturalHeight = imgFullSize.height() * options.zoomFactor;
+
+                imgDetails.naturalWidth = (imgFullSize[0].naturalWidth ? imgFullSize[0].naturalWidth : imgFullSize.width());
+                imgDetails.naturalHeight = (imgFullSize[0].naturalHeight ? imgFullSize[0].naturalHeight : imgFullSize.height());
+
                 if (!imgDetails.naturalWidth || !imgDetails.naturalHeight) {
                     return;
                 }
 
                 // width adjustment
-                var fullZoom = options.mouseUnderlap || fullZoomKeyDown;
-                if (fullZoom) {
-                    imgFullSize.width(Math.min(imgDetails.naturalWidth, wndWidth - padding - 2 * scrollBarWidth));
+                var fullZoom = options.mouseUnderlap || fullZoomKeyDown || imageLocked;
+                if (imageLocked) {
+                    imgFullSize.width(imgDetails.naturalWidth * zoomFactor);
+                } else if (fullZoom) {
+                    imgFullSize.width(Math.min(imgDetails.naturalWidth * zoomFactor, wndWidth - padding - 2 * scrollBarWidth));
+                } else if (displayOnRight) {
+                    if (imgDetails.naturalWidth * zoomFactor + padding > wndWidth - position.left) {
+                        imgFullSize.width(wndWidth - position.left - padding + wndScrollLeft);
+                    }
                 } else {
-                    if (displayOnRight) {
-                        if (imgDetails.naturalWidth + padding > wndWidth - position.left) {
-                            imgFullSize.width(wndWidth - position.left - padding + wndScrollLeft);
-                        }
-                    } else {
-                        if (imgDetails.naturalWidth + padding > position.left) {
-                            imgFullSize.width(position.left - padding - wndScrollLeft);
-                        }
+                    if (imgDetails.naturalWidth * zoomFactor + padding > position.left) {
+                        imgFullSize.width(position.left - padding - wndScrollLeft);
                     }
                 }
 
                 // height adjustment
-                if (hz.hzImg.height() > wndHeight - padding - statusBarHeight - scrollBarHeight - (hzCaption ? hzCaption.height() : 0)) {
-                    imgFullSize.height(wndHeight - padding - statusBarHeight - scrollBarHeight - (hzCaption ? hzCaption.height() : 0)).width('auto');
+                if (!imageLocked && hz.hzImg.height() > wndHeight - padding - statusBarHeight - scrollBarHeight) {
+                    imgFullSize.height(wndHeight - padding - statusBarHeight - scrollBarHeight).width('auto');
                 }
 
-                adjustCaption();
+                adjustCaptionMiscellaneousDetails();
 
                 position.top -= hz.hzImg.height() / 2;
 
@@ -324,10 +489,15 @@ var hoverZoom = {
 
                 if (options.ambilightEnabled) {
                     updateAmbilight();
+                } else {
+                    // in case of images with transparent background add a background color
+                    let ext = getExtensionFromUrl(imgDetails.url, imgDetails.video, imgDetails.playlist);
+                    if (ext == 'gif' || ext == 'svg' || ext == 'png')
+                        imgFullSize.css('background-color', options.frameBackgroundColor);
                 }
             }
 
-            if (options.centerImages) {
+            if (options.centerImages || imageLocked) {
                 hz.hzImg.css('top', (wndHeight / 2 - hz.hzImg.height() / 2 - padding / 2 - statusBarHeight / 2 - scrollBarHeight / 2) + 'px');
                 hz.hzImg.css('left', (wndWidth / 2 - hz.hzImg.width() / 2 - padding / 2 - scrollBarWidth / 2) + 'px');
                 hz.hzImg.css('position', 'fixed');
@@ -349,8 +519,18 @@ var hoverZoom = {
 
                 hz.hzImg.css({top:Math.round(position.top), left:Math.round(position.left)});
             }
+        }
 
-            frameBackgroundColor(options.frameBackgroundColor);
+        function panLockedImage() {
+            var width = imgFullSize[0].width || imgFullSize[0].videoWidth * zoomFactor;
+            var height = imgFullSize[0].height || imgFullSize[0].videoHeight * zoomFactor;
+            var widthOffset = (width - window.innerWidth) / 2;
+            var heightOffset = (height - window.innerHeight) / 2;
+            var ratioX = 1 - (2 * event.clientX / window.innerWidth);
+            var ratioY = 1 - (2 * event.clientY / window.innerHeight);
+            var dx = widthOffset > 0 ? ratioX * (widthOffset + 50) : 0;
+            var dy = heightOffset > 0 ? ratioY * (heightOffset + 50) : 0;
+            hz.hzImg.css('transform', `translate(${dx}px, ${dy}px)`);
         }
 
         // adapted from: https://gist.github.com/numee/1e7a19cd26113323f1ae
@@ -371,11 +551,38 @@ var hoverZoom = {
         }
 
         function isVideoLink(url, includeGifs) {
+
+            if (url.indexOf('.video') != -1) return true;
+
             if (url.lastIndexOf('?') > 0)
                 url = url.substr(0, url.lastIndexOf('?'));
             var ext = url.substr(url.length - 4).toLowerCase();
             includeGifs = includeGifs || false;
             return (includeGifs && (ext == '.gif' || ext == 'gifv')) || ext == 'webm' || ext == '.mp4' || ext == '3gpp' || url.indexOf('googlevideo.com/videoplayback') > 0 || url.indexOf('v.redd.it') > 0;
+        }
+
+        function isPlaylistLink(url) {
+
+            if (url.indexOf('.m3u8') != -1) return true;
+            return false;
+        }
+
+        // some plug-ins append:
+        // .video to video streams so url =  videourl.video
+        // .audio to audio streams so url = audiourl.audio
+        // if both urls are present then url = videourl.video_audiourl.audio
+        function getVideoAudioFromUrl() {
+            var videourl = imgDetails.url.split('.video')[0];
+            var audiourl = imgDetails.url.split('.video')[1] || '';
+            if (audiourl.endsWith('.audio')) {
+                imgDetails.audioUrl = audiourl.replace(/^_/, '').replace('.audio', '');
+                imgDetails.audioMuted = false;
+            }
+            if (audiourl.endsWith('.audiomuted')) {
+                imgDetails.audioUrl = audiourl.replace(/^_/, '').replace('.audiomuted', '');
+                imgDetails.audioMuted = true;  // in case of video with audio track embeded + distinct audio track: mute distinct audio track
+            }
+            imgDetails.url = videourl;
         }
 
         function updateAmbilight() {
@@ -389,6 +596,22 @@ var hoverZoom = {
                 window.setTimeout(updateAmbilight, 20);
                 return;
             }
+
+            imgFullSize.css('background-color', '');
+
+            // if image or video is flipped then canvas must be flipped too
+            let transfo = imgFullSize.css('transform');
+            let transfoX = 1;
+            let transfoY = 1;
+            if (transfo == 'matrix(-1, 0, 0, 1, 0, 0)') {
+                transfoX = -1;
+            } else if (transfo == 'matrix(1, 0, 0, -1, 0, 0)') {
+                transfoY = -1;
+            } else if (transfo == 'matrix(-1, 0, 0, -1, 0, 0)') {
+                transfoX = -1;
+                transfoY = -1;
+            }
+
             let width = imgFullSize.width();
             let height = imgFullSize.height();
             let blur = options.ambilightHaloSize * 100;
@@ -404,7 +627,7 @@ var hoverZoom = {
                      .css('margin-top', -4 * scale * blur + 'px')
                      .css('margin-left', -4 * scale * blur + 'px')
                      .css('-webkit-filter', 'blur(' + blur + 'px)')
-                     .css('transform', 'scale(' + scaleW + ',' + scaleH + ')');
+                     .css('transform', ' scale(' + transfoX * scaleW + ',' + transfoY * scaleH + ') ');
             var ctx = canvas.getContext('2d');
             ctx.drawImage(imgFullSize.get(0), 0, 0, width, height);
 
@@ -434,6 +657,9 @@ var hoverZoom = {
                 restoreTitles();
             }
             titledElements = img.parents('[title]').not('iframe, .lightbox, [rel^="lightbox"]');
+            // Occasionally, the img element itself will have a title attribute
+            // which we like to handle that as well
+            titledElements = titledElements.add(img.filter('[title]'));
             titledElements.each(function () {
                 $(this).data().hoverZoomTitle = this.getAttribute('title');
                 this.title = '';
@@ -453,44 +679,160 @@ var hoverZoom = {
             titledElements = null;
         }
 
-        //Set frame background color and border to match chosen option
+        // set frame background color and border to match chosen option
         function frameBackgroundColor(color) {
-            hz.hzImg.css('background-color', color);
-            hz.hzImg.css('border-color', color);
+            imgFullSizeCss.borderColor = hzCaptionCss.backgroundColor = hzDetailCss.backgroundColor = hzMiscellaneousCss.backgroundColor = color;
 
-            color = color.toString().substr(1);
-            var textColor = parseInt(color, 16) > 0xffffff/2 ? '#333':'#f0f0f0';
+            if (options.fontOutline) {
+                // outline text: white font + thin black border
+                hzCaptionCss.color = hzMiscellaneousCss.color = hzDetailCss.color = 'white';
+                hzCaptionCss.textShadow = hzMiscellaneousCss.textShadow = hzDetailCss.textShadow = '1px 1px 0px black, -1px 1px 0px black, 1px -1px 0px black, -1px -1px 0px black';
+                return;
+            }
 
-            //change text color based on frame background color
-            hzCaptionCss.color = textColor;
+            // update text color in function of frame background color
+            let hsl = hz.hexToHSL(color);
+            let textColor = (hsl.l > 50 ? 'black' : 'white');
+            hzCaptionCss.color = hzMiscellaneousCss.color = hzDetailCss.color = textColor;
+            hzCaptionCss.textShadow = hzMiscellaneousCss.textShadow = hzDetailCss.textShadow = '';
+        }
+
+        // set border thickness in pixel(s)
+        function frameThickness(thickness) {
+            imgFullSizeCss.borderWidth = imgFullSizeCss.borderRadius = thickness + 'px';
+            audioFullSizeCss.margin = thickness + 'px';
+        }
+
+        // set font size in pixel(s)
+        function fontSize(size) {
+            size = parseInt(size);
+            hzCaptionCss.fontSize = hzMiscellaneousCss.fontSize = hzDetailCss.fontSize = size + 'px';
+            hzDetailCss.paddingTop = 0.3 * size + 'px';
+            hzDetailCss.paddingBottom = 0.3 * size + 'px';
+            hzDetailCss.paddingLeft = hzDetailCss.paddingRight = 0.5 * size + 'px';
+            hzDetailCss.lineHeight = size + 'px';
+            hzCaptionCss.padding = hzMiscellaneousCss.padding = 0.2 * size + 'px';
+            hzCaptionCss.paddingLeft = hzMiscellaneousCss.paddingLeft = hzCaptionCss.paddingRight = hzMiscellaneousCss.paddingRight = 0.5 * size + 'px';
+            hzCaptionCss.marginLeft = hzMiscellaneousCss.marginLeft = hzDetailCss.marginLeft = size + 'px';
+            hzCaptionCss.marginRight = hzMiscellaneousCss.marginRight = size + 'px';
+            hzCaptionCss.borderRadius = hzMiscellaneousCss.borderRadius = hzDetailCss.borderRadius = 0.25 * size + 'px';
+            hzAboveCss.marginBottom = hzBelowCss.marginTop = -0.25 * size + 'px';
+        }
+
+        function removeMedias() {
+            stopMedias();
+
+            if (imgFullSize) {
+                imgFullSize.remove();
+                imgFullSize = null;
+                imageLocked = false;
+            }
+
+            if (audioFullSize) {
+                audioFullSize.remove();
+                audioFullSize = null;
+                imageLocked = false;
+            }
+        }
+
+        function stopMedias() {
+            stopMedia('video');
+            stopMedia('audio');
         }
 
         function stopMedia(selector) {
+            if (!hz.hzImg) return;
             var el = hz.hzImg.find(selector).get(0);
             if (el) {
-                el.pause();
-                el.src = '';
+                if (selector == 'audio') {
+                    el.pause();
+                    el.src = '';
+                }
+                if (selector == 'video') {
+                    if (hls) {
+                        hls.detachMedia();
+                        hls.destroy(); // free ressources
+                    }
+                    el.pause();
+                    el.src = '';
+                }
             }
         }
 
-        function hideHoverZoomImg(now) {
-            cLog('hideHoverZoomImg(' + now + ')');
-            if (hz.hzImgLoader) hz.hzImgLoader.remove();
-            if ((!now && !imgFullSize) || !hz.hzImg || fullZoomKeyDown) {
+        function pauseMedias() {
+            pauseMedia('video');
+            pauseMedia('audio');
+        }
+
+        function pauseMedia(selector) {
+            console.log('pauseMedia selector=' + selector);
+            if (!hz.hzImg) return;
+            var el = hz.hzImg.find(selector).get(0);
+            if (el) {
+                if (selector == 'audio') {
+                    console.log('pause audio');
+                    el.pause();
+                }
+                if (selector == 'video') {
+                    console.log('pause video');
+                    el.pause();
+                }
+            }
+        }
+
+        function playMedias() {
+            playMedia('video');
+            playMedia('audio');
+        }
+
+        function playMedia(selector) {
+            console.log('playMedia selector=' + selector);
+            if (!hz.hzImg) return;
+            var el = hz.hzImg.find(selector).get(0);
+            if (el) {
+                if (selector == 'audio') {
+                    console.log('play audio');
+                    el.play();
+                }
+                if (selector == 'video') {
+                    console.log('play video');
+                    el.play();
+                }
+            }
+        }
+        function closeHoverZoomImg(now) {
+            cLog('closeHoverZoomImg(' + now + ')');
+
+            if (hz.hzImgLoader) { hz.hzImgLoader.remove(); hz.hzImgLoader = null; }
+            if ((!now && !imgFullSize) || !hz.hzImg || fullZoomKeyDown || imageLocked) {
                 return;
             }
-            imgFullSize = null;
+
+            $('#hzAbove').remove();
+            $('#hzBelow').remove();
+            restoreTitles();
+
+            removeMedias();
+
             if (loading) {
                 now = true;
             }
             hz.hzImg.stop(true, true).fadeOut(now ? 0 : options.fadeDuration, function () {
-                stopMedia('video');
-                stopMedia('audio');
-                hzCaption = null;
+                stopMedias();
+                hzCaptionMiscellaneous = null;
+                hzDetails = null;
                 hz.hzImg.empty();
-                restoreTitles();
+                if (imgFullSize) {
+                    imgFullSize.remove();
+                    imgFullSize = null;
+                    imageLocked = false;
+                }
+                if (audioFullSize) {
+                    audioFullSize.remove();
+                    audioFullSize = null;
+                    imageLocked = false;
+                }
             });
-            //chrome.runtime.sendMessage({action: 'viewWindow', visible: false});
         }
 
         function normalizeSrc(hoverZoomSrcIndex, links, dataKey) {
@@ -500,7 +842,7 @@ var hoverZoom = {
             }
 
             var src = data[hoverZoomSrcIndex];
-            if (src && src.indexOf('http:') !== 0 && src.indexOf('https:') !== 0 && src.indexOf('file:') !== 0 && src.indexOf('blob:http:') !== 0 && src.indexOf('blob:https:') !== 0) {
+            if (src && src.indexOf('http') !== 0) {
                 if (src.indexOf('//') !== 0) {
                     if (src.indexOf('/') !== 0) {
                         // Image has relative path (doesn't start with '/')
@@ -516,9 +858,35 @@ var hoverZoom = {
             return src;
         }
 
+        var lastMousePosTop = -1, lastMousePosLeft = -1, cursorHideTimeout = 0;
+
         function documentMouseMove(event) {
+
             if (!options.extensionEnabled || fullZoomKeyDown || isExcludedSite() || wnd.height() < 30 || wnd.width() < 30) {
                 return;
+            }
+
+            // check that mouse really moved
+            if (lastMousePosTop != mousePos.top || lastMousePosLeft != mousePos.left) {
+                lastMousePosTop = mousePos.top;
+                lastMousePosLeft = mousePos.left;
+
+                if (imageLocked) {
+                    // Don't hide cursor on locked image & allow clicking.
+                    if (hz.hzImg) { hz.hzImg.css('cursor', 'pointer'); hz.hzImg.css('pointer-events', 'auto'); }
+                    if (imgFullSize) panLockedImage();
+                    return;
+                }
+
+                if (hz.hzImg && imgFullSize) {
+                    showCursor();
+
+                    if (options.hideMouseCursor) {
+                        // hide cursor after <delay> ms without mouse move
+                        clearTimeout(cursorHideTimeout);
+                        cursorHideTimeout = setTimeout(hideCursor, options.hideMouseCursorDelay);
+                    }
+                }
             }
 
             var links,
@@ -539,14 +907,9 @@ var hoverZoom = {
             }
 
             if (options.mouseUnderlap && target.length && mousePos && linkRect &&
-                (imgFullSize && imgFullSize.length && target[0] === imgFullSize[0] ||
-                    hz.hzImg && hz.hzImg.length && target[0] === hz.hzImg[0])) {
-                /*cLog('Over image. linkRect:');
-                cLog(linkRect);
-                cLog('Over image. mousePos:');
-                cLog(mousePos);*/
+                (imgFullSize && imgFullSize.length && target[0] == imgFullSize[0] ||
+                    hz.hzImg && hz.hzImg.length && target[0] == hz.hzImg[0])) {
                 if (mousePos.top > linkRect.top && mousePos.top < linkRect.bottom && mousePos.left > linkRect.left && mousePos.left < linkRect.right) {
-                    //cLog('Mouse over link');
                     return;
                 }
             }
@@ -559,33 +922,35 @@ var hoverZoom = {
                     // Happens when the mouse goes from an image to another without hovering the page background
                     if (imgDetails.url && links.data().hoverZoomSrc[hoverZoomSrcIndex] !== imgDetails.url) {
                         cLog("hiding because " + links.data().hoverZoomSrc[hoverZoomSrcIndex] + " !== " + imgDetails.url);
-                        hideHoverZoomImg();
+                        closeHoverZoomImg();
                     }
 
                     removeTitles(target);
 
-                    // If the image source has not been set yet
+                    // if the image source has not been set yet
                     if (!imgFullSize) {
                         hz.currentLink = links;
-                        //initLinkRect(hz.currentLink);
-                        if (!options.actionKey || actionKeyDown) {
-                            var src = normalizeSrc(hoverZoomSrcIndex, links, 'hoverZoomSrc');
-                            var audioSrc = normalizeSrc(hoverZoomSrcIndex, links, 'hoverZoomAudioSrc');
 
-                            if (!options.whiteListMode && isExcludedLink(src)) {
-                                return;
-                            }
+                        if (links.data().hoverZoomSrc && (!options.actionKey || actionKeyDown)) {
 
-                            if (isVideoLink(src) && !options.zoomVideos) { // if we have a video link and don't want to zoom videos, don't do any of the loading
-                              return;
-                            }
+                            var src = hoverZoom.getFullUrl(links.data().hoverZoomSrc[hoverZoomSrcIndex]);
+                            var audioSrc = (links.data().hoverZoomAudioSrc ? hoverZoom.getFullUrl(links.data().hoverZoomAudioSrc[hoverZoomSrcIndex]) : undefined);
+
+                            // only works after img has been loaded
+                            /*let height = undefined;
+                            let width = undefined;
+                            let imgDim = hz.getImageDimensions(src, width, height);*/
+
+
+                            imgDetails.displayedWidth = links.width();
+                            imgDetails.displayedHeight = links.height();
 
                             imgDetails.url = src;
                             imgDetails.audioUrl = audioSrc;
                             clearTimeout(loadFullSizeImageTimeout);
 
-                            // If the action key has been pressed over an image, no delay is applied
-                            var delay = actionKeyDown ? 0 : (isVideoLink(imgDetails.url) ? options.displayDelayVideo : options.displayDelay);
+                            // if the action key has been pressed over an image, no delay is applied
+                            var delay = actionKeyDown || explicitCall ? 0 : (isVideoLink(imgDetails.url) ? options.displayDelayVideo : options.displayDelay);
                             loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
 
                             loading = true;
@@ -599,8 +964,23 @@ var hoverZoom = {
             }
         }
 
+        function documentContextMenu(event) {
+            // If it's been less than 300ms since right click, lock image and prevent context menu.
+            var lockElapsed = event.timeStamp - lockImageClickTime;
+            if (imgFullSize && !imageLocked && options.lockImageKey == -1 & lockElapsed < 300) {
+                lockImage();
+                event.preventDefault();
+            }
+        }
+
         function documentMouseDown(event) {
-            if (imgFullSize && event.target != hz.hzImg[0] && event.target != imgFullSize[0]) {
+            // Right click pressed and lockImageKey is set to special value for right click (-1).
+            if (imgFullSize && !imageLocked && options.lockImageKey == -1 && event.button == 2) {
+                lockImageClickTime = event.timeStamp;
+            } else if (imgFullSize && event.target != hz.hzImg[0] && event.target != imgFullSize[0]) {
+                if (imageLocked && event.button == 0) {
+                    imageLocked = false;
+                }
                 cancelImageLoading();
                 restoreTitles();
             }
@@ -612,21 +992,29 @@ var hoverZoom = {
             if (!imgFullSize) {
                 hz.displayImgLoader('loading');
                 hz.createHzImg(!hideKeyDown);
+                zoomFactor = parseInt(options.zoomFactor);
 
                 imgDetails.video = isVideoLink(imgDetails.url);
+                imgDetails.playlist = isPlaylistLink(imgDetails.url);
                 if (imgDetails.video) {
+                    getVideoAudioFromUrl();
+
                     if (!options.zoomVideos) {
                         cancelImageLoading();
                         return;
                     }
+
                     var video = document.createElement('video');
                     video.style.width = 0;
                     video.style.height = 0;
+                    video.controls = imageLocked;
                     video.loop = true;
+                    video.autoplay = true;
                     video.muted = options.muteVideos;
                     video.volume = options.videoVolume;
                     video.src = imgDetails.url;
                     imgFullSize = $(video).appendTo(hz.hzImg);
+
                     video.addEventListener('error', imgFullSizeOnError);
                     video.addEventListener('loadedmetadata', function() {
                         posImg();
@@ -636,20 +1024,43 @@ var hoverZoom = {
                     });
                     video.addEventListener('loadeddata', function() {
                         imgFullSizeOnLoad();
-                        video.play();
-                        video.removeAttribute('poster');
+                        let startPlayPromise = video.play();
+                        if (startPlayPromise !== undefined) {
+                            startPlayPromise.then(() => {
+                                cLog("play started");
+                                video.removeAttribute('poster');
+                            }).catch(error => {
+                                if (error.name === "NotAllowedError") {
+                                    // NotAllowedError: play() failed because the user didn't interact with the document first. https://goo.gl/xX8pDD
+                                    cLog("Play not allowed: " + error);
+                                    let videoMsgDiv = $('<div/>');
+                                    $('<p/>').text(chrome.i18n.getMessage("msgClickPageToPlayVideo")).css(videoErrorMsgCss).addClass('blinkWarning').appendTo(videoMsgDiv);
+                                    $(hz.hzImg.hzImgContainer).css(hz.hzImgContainerCss);
+                                    $(videoMsgDiv).css({'width':'100%','position':'absolute'}).appendTo(hz.hzImg.hzImgContainer);
+                                    video.removeAttribute('poster');
+                                } else {
+                                    cLog("Play error: " + error);
+                                }
+                            });
+                        }
                     });
 
                     if (imgDetails.audioUrl) {
                         var audio = document.createElement('audio');
+                        audio.controls = imageLocked;
                         audio.autoplay = false;
-                        audio.muted = options.muteVideos;
+                        audio.muted = (imgDetails.audioMuted ? true : options.muteVideos);
                         audio.volume = options.videoVolume;
                         audio.src = imgDetails.audioUrl;
-                        $(audio).appendTo(imgFullSize);
+                        audioFullSize= $(audio).appendTo(hz.hzImg);
 
+                        // synchronize audio controls with video controls
                         video.addEventListener('play', function() {
                             audio.play();
+                        });
+
+                        video.addEventListener('pause', function() {
+                            audio.pause();
                         });
 
                         video.addEventListener('seeked', function() {
@@ -664,11 +1075,75 @@ var hoverZoom = {
                     }
 
                     video.load();
+                } else if (imgDetails.playlist) {
+                    // instantiate a specific player (= HLS) for playlists (= M3U8 files)
+                    // this is needed for browsers that do not support natively playlists, such as Chrome
+
+                    if (!options.zoomVideos) {
+                        cancelImageLoading();
+                        return;
+                    }
+
+                    var video = document.createElement('video');
+                    video.style.width = 0;
+                    video.style.height = 0;
+                    video.controls = imageLocked;
+                    video.loop = true;
+                    video.autoplay = true;
+                    video.muted = options.muteVideos;
+                    video.volume = options.videoVolume;
+                    imgFullSize = $(video).appendTo(hz.hzImg);
+                    hls = new Hls({
+                        //debug: true,
+                    });
+
+                    hls.loadSource(imgDetails.url);
+                    hls.attachMedia(video);
+
+                    // MANIFEST_LOADED
+                    // MANIFEST_PARSED
+                    // MEDIA_ATTACHED
+                    // MEDIA_DETACHED
+                    // ERROR
+
+                    video.addEventListener('error', imgFullSizeOnError);
+                    video.addEventListener('loadedmetadata', function() {
+                        posImg();
+                        if (options.videoTimestamp) {
+                            addTimestampTrack(video);
+                        }
+                    });
+                    video.addEventListener('loadeddata', function() {
+                        displayFullSizeImage();
+
+                        let startPlayPromise = video.play();
+                        if (startPlayPromise !== undefined) {
+                            startPlayPromise.then(() => {
+                                cLog("play started");
+                                video.removeAttribute('poster');
+                            }).catch(error => {
+                                if (error.name === "NotAllowedError") {
+                                    // NotAllowedError: play() failed because the user didn't interact with the document first. https://goo.gl/xX8pDD
+                                    cLog("Play not allowed: " + error);
+                                    let videoMsgDiv = $('<div/>');
+                                    $('<p/>').text(chrome.i18n.getMessage("msgClickPageToPlayVideo")).css(videoErrorMsgCss).addClass('blinkWarning').appendTo(videoMsgDiv);
+                                    $(hz.hzImg.hzImgContainer).css(hz.hzImgContainerCss);
+                                    $(videoMsgDiv).css({'width':'100%','position':'absolute'}).appendTo(hz.hzImg.hzImgContainer);
+                                    video.removeAttribute('poster');
+                                } else {
+                                    cLog("Play error: " + error);
+                                }
+                            });
+                        }
+                    });
                 } else {
-                    imgFullSize = $('<img style="border: none" />').appendTo(hz.hzImg).on('load',imgFullSizeOnLoad).on('error',imgFullSizeOnError).attr('src', imgDetails.url);
+                    hz.hzImg.hzImgContainer = $('<div id="hzImgContainer"/>').css(hz.hzImgContainerCss).appendTo(hz.hzImg);
+                    imgFullSize = $('<img style="border: none" />').appendTo(hz.hzImg.hzImgContainer).on('load', imgFullSizeOnLoad).on('error', imgFullSizeOnError).attr('src', imgDetails.url);
+                    // Note for Chrome: if image is loaded from cache then 'load' event is never fired
                 }
 
                 imgDetails.host = getHostFromUrl(imgDetails.url);
+                getAdditionalInfosFromServer(imgDetails.url);
 
                 skipFadeIn = false;
                 imgFullSize.css(progressCss);
@@ -681,7 +1156,20 @@ var hoverZoom = {
         }
 
         function addTimestampTrack(video){
-            var track = video.addTextTrack("captions", "English", "en");
+
+            var track;
+            if (video.textTracks.length) {
+                // reuse previous track: remove all cues
+                track = video.textTracks[0];
+                for (let c = track.cues.length - 1; c >= 0; c--) {
+                    let cue = track.cues[c];
+                    track.removeCue(cue);
+                }
+                track.mode = "hidden"; // needed to update video
+            } else {
+                track = video.addTextTrack("captions", "English", "en");
+            }
+
             var duration = Math.ceil(video.duration);
             // create an array that hosts the times from decending order
             // TODO: see if there is a way to optimize this as it causes a small lag
@@ -690,7 +1178,7 @@ var hoverZoom = {
                 var hours = Math.floor(time / 3600);
                 var minutes = Math.floor((time - hours*3600) / 60);
                 var seconds = time % 60;
-                var finalTime = "-";
+                var finalTime = "";
                 if (hours > 0) {
                     finalTime += hours + ":";
                 }
@@ -727,29 +1215,33 @@ var hoverZoom = {
         function displayFullSizeImage() {
             cLog('displayFullSizeImage');
 
-            hz.hzImgLoader.remove();
-            hz.hzImgLoader = null;
+            if (hz.hzImgLoader) { hz.hzImgLoader.remove(); hz.hzImgLoader = null; }
 
             hz.hzImg.stop(true, true);
-            hz.hzImg.offset({top:-9000, left:-9000});    // hides the image while making it available for size calculations
+            hz.hzImg.offset({top:-9000, left:-9000}); // hides the image while making it available for size calculations
             hz.hzImg.empty();
 
-            clearTimeout(cursorHideTimeout);
-            hz.hzImg.css('cursor', 'none');
-            hz.hzImg.css('pointer-events', 'none');
+            hz.hzImg.css('visibility', 'visible');
 
             if (options.ambilightEnabled) {
+
+                imgFullSizeCss.boxShadow = 'none';
+                imgFullSizeCss.borderColor = 'none';
+                imgFullSizeCss.borderRadius = 'none';
+                imgFullSizeCss.borderStyle = 'none';
+                imgFullSizeCss.borderWidth = 'none';
+
                 hz.hzImg.css('overflow', 'visible');
                 hz.hzImg.css('border', '0px');
-                hz.hzImg.css('padding', '0px');
+                hz.hzImg.css('padding', '10px');
                 hz.hzImg.css('box-shadow', 'none');
                 var background = $('<div/>');
-                $(background).css('width', 2 * screen.availWidth)
-                             .css('height', 2 * screen.availHeight)
+                $(background).css('width', 20 * screen.availWidth) // background canvas must be very large in case of zooming
+                             .css('height', 20 * screen.availHeight)
                              .css('position', 'fixed')
                              .css('z-index', -2)
-                             .css('top', 0)
-                             .css('left', 0)
+                             .css('top', -screen.availHeight)
+                             .css('left', -screen.availWidth)
                              .css('pointer-events', 'none')
                              .css('background-color', 'black')
                              .css('opacity', options.ambilightBackgroundOpacity);
@@ -763,7 +1255,38 @@ var hoverZoom = {
                 canvas.appendTo(hz.hzImg);
             }
 
-            imgFullSize.css(imgFullSizeCss).appendTo(hz.hzImg).mousemove(imgFullSizeOnMouseMove);
+            hz.hzImg.hzImgContainer = $('<div id="hzImgContainer"/>').css(hz.hzImgContainerCss).appendTo(hz.hzImg);
+            imgFullSize.css(imgFullSizeCss).appendTo(hz.hzImg.hzImgContainer);
+
+            // display video controls
+            if (imageLocked) {
+                let v = hz.hzImg.find('video')[0];
+                if (v) v.controls = true;
+            }
+
+            if (audioFullSize) {
+                // display audio controls
+                if (imageLocked) {
+                    audioFullSize[0].controls = true;
+
+                    audioFullSize.hover(function() {
+                        clearTimeout(audioFullSize[0].controlsTimeout);
+                        audioFullSize[0].style.opacity = 1;
+                    });
+
+                    imgFullSize.mousemove(function() {
+                        clearTimeout(audioFullSize[0].controlsTimeout);
+                        audioFullSize[0].style.opacity = 1;
+                        audioFullSize[0].controlsTimeout = setTimeout(function() { audioFullSize[0].style.opacity = 0 }, 2500);
+                    });
+
+                    imgFullSize.mouseleave(function() {
+                        clearTimeout(audioFullSize[0].controlsTimeout);
+                        audioFullSize[0].style.opacity = 0;
+                    });
+                }
+                audioFullSize.css(audioFullSizeCss).appendTo(hz.hzImg.hzImgContainer);
+            }
 
             if (hz.currentLink) {
                 // Sets up the thumbnail as a full-size background
@@ -797,27 +1320,24 @@ var hoverZoom = {
                     imgThumb = null;
                 }
 
-                /*if (thumb.length == 1) {
-                 panningThumb = thumb.first();
-                 }*/
+                //hz.hzImg.css('cursor', 'pointer');
 
-                hz.hzImg.css('cursor', 'pointer');
+                if (imageLocked) {
+                    // Allow clicking on locked image.
+                    hz.hzImg.css('pointer-events', 'auto');
+                }
 
                 initLinkRect(imgThumb || hz.currentLink);
             }
 
             if (hz.currentLink) {
                 var linkData = hz.currentLink.data();
-                if (!options.ambilightEnabled && linkData.hoverZoomCaption) {
-                    if (options.captionLocation === "below") {
-                        hzCaption = $('<div/>', {id:'hzCaption', text:linkData.hoverZoomCaption}).css(hzCaptionCss).appendTo(hz.hzImg);
-                    } else if (options.captionLocation === "above") {
-                        hzCaption = $('<div/>', {id:'hzCaption', text:linkData.hoverZoomCaption}).css(hzCaptionCss).prependTo(hz.hzImg);
-                    }
-                }
+
+                if (!options.ambilightEnabled) displayCaptionMiscellaneousDetails();
+
                 if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) {
                     var info = (linkData.hoverZoomGalleryIndex + 1) + '/' + linkData.hoverZoomGallerySrc.length;
-                    hzGallery = $('<div/>', {id:'hzGallery', text:info}).css(hzGalleryInfoCss).appendTo(hz.hzImg);
+                    hzGallery = $('<div/>', {id:'hzGallery', text:info}).css(hzGalleryInfoCss).prependTo(hz.hzImg.hzImgContainer);
                     if (linkData.hoverZoomGalleryIndex == 0 && linkData.hoverZoomGallerySrc.length > 1) {
                         preloadGalleryImage(1);
                     }
@@ -832,35 +1352,124 @@ var hoverZoom = {
             setTimeout(posImg, options.showWhileLoading ? 0 : 10);
 
             if (options.addToHistory && !chrome.extension.inIncognitoContext) {
-                var url = hz.currentLink.attr('href') || imgDetails.url;
-                if (url.startsWith('/') && url.indexOf('http') < 0)
-                    url = window.location.protocol + '//' + window.location.hostname + url;
-                chrome.runtime.sendMessage({action:'addUrlToHistory', url:url});
+                chrome.runtime.sendMessage({action:'addUrlToHistory', url:imgDetails.url});
+                // #881: add link url to history if available, this is needed to turn hovered links purple
+                let linkUrl = hz.currentLink.prop('href');
+                if (linkUrl && linkUrl != imgDetails.url) chrome.runtime.sendMessage({action:'addUrlToHistory', url:linkUrl});
+            }
+        }
+
+        function displayCaptionMiscellaneousDetails() {
+
+            $('#hzAbove').remove();
+            $('#hzBelow').remove();
+            hzAbove = $('<div/>', {id:'hzAbove'}).css(hzAboveCss).prependTo(hz.hzImg);
+            hzBelow = $('<div/>', {id:'hzBelow'}).css(hzBelowCss).appendTo(hz.hzImg);
+
+            if (options.detailsLocation != "none") displayDetails();
+            if (options.captionLocation != "none") displayCaptionMiscellaneous();
+        }
+
+        function displayCaptionMiscellaneous() {
+            let linkData = hz.currentLink.data();
+            let caption = linkData.hoverZoomCaption;
+            let miscellaneous = getTextSelected();
+
+            if (caption || miscellaneous) {
+                if (options.captionLocation === "above")
+                    if (hzAbove.find('#hzCaptionMiscellaneous').length == 0)
+                        hzCaptionMiscellaneous = $('<div/>', {id:'hzCaptionMiscellaneous'}).css(hzCaptionMiscellaneousCss).appendTo(hzAbove);
+                if (options.captionLocation === "below")
+                    if (hzBelow.find('#hzCaptionMiscellaneous').length == 0)
+                        hzCaptionMiscellaneous = $('<div/>', {id:'hzCaptionMiscellaneous'}).css(hzCaptionMiscellaneousCss).appendTo(hzBelow);
+
+                if (caption)
+                    if (hzCaptionMiscellaneous.find('#hzCaption').length == 0)
+                        $('<div/>', {id:'hzCaption', text:caption}).css(hzCaptionCss).appendTo(hzCaptionMiscellaneous);
+                if (miscellaneous)
+                    if (hzCaptionMiscellaneous.find('#hzMiscellaneous').length == 0)
+                        $('<div/>', {id:'hzMiscellaneous', text:miscellaneous}).css(hzMiscellaneousCss).appendTo(hzCaptionMiscellaneous);
+            }
+        }
+
+        function displayDetails() {
+            let details = getImgDetails(hz.currentLink);
+            if (details) {
+                if (options.detailsLocation === "above")
+                    if (hzAbove.find('#hzDetails').length == 0)
+                        hzDetails = $('<div/>', {id:'hzDetails'}).css(hzDetailsCss).appendTo(hzAbove);
+                if (options.detailsLocation === "below")
+                    if (hzBelow.find('#hzDetails').length == 0)
+                        hzDetails = $('<div/>', {id:'hzDetails'}).css(hzDetailsCss).appendTo(hzBelow);
+
+                if (hzDetails.find('#hzDetailFilename').length == 0)
+                    $('<div/>', {id:'hzDetailFilename', text:details.filename, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                else
+                    $('#hzDetailFilename').text(details.filename);
+
+                if (hzDetails.find('#hzDetailHost').length == 0)
+                    $('<div/>', {id:'hzDetailHost', text:details.host, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                else
+                    $('#hzDetailHost').text(details.host);
+
+                if (hzDetails.find('#hzDetailLastModified').length == 0)
+                    $('<div/>', {id:'hzDetailLastModified', text:details.lastModified, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                else
+                    $('#hzDetailLastModified').text(details.lastModified);
+
+                if (hzDetails.find('#hzDetailExtension').length == 0)
+                    $('<div/>', {id:'hzDetailExtension', text:details.extension.toUpperCase(), class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                else
+                    $('#hzDetailExtension').text(details.extension.toUpperCase());
+
+                if (hzDetails.find('#hzDetailContentLength').length == 0)
+                    $('<div/>', {id:'hzDetailContentLength', text:details.contentLength, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                else
+                    $('#hzDetailContentLength').text(details.contentLength);
+
+                if (hzDetails.find('#hzDetailDuration').length == 0)
+                    $('<div/>', {id:'hzDetailDuration', text:details.duration, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                else
+                    $('#hzDetailDuration').text(details.duration);
+
+                if (hzDetails.find('#hzDetailScale').length == 0)
+                    $('<div/>', {id:'hzDetailScale', text:details.scale, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                else
+                    $('#hzDetailScale').text(details.scale);
+
+                if (hzDetails.find('#hzDetailRatio').length == 0)
+                    $('<div/>', {id:'hzDetailRatio', text:details.ratio, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                else
+                    $('#hzDetailRatio').text(details.ratio);
+
+                if (hzDetails.find('#hzDetailDimensions').length == 0)
+                    $('<div/>', {id:'hzDetailDimensions', text:details.dimensions, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                else
+                    $('#hzDetailDimensions').text(details.dimensions);
             }
         }
 
         function imgFullSizeOnError() {
 
-            if (imgDetails.url === $(this).prop('src')) {
+            if (imgDetails.url === $(this).prop('src') || imgDetails.url === unescape($(this).prop('src'))) {
                 let hoverZoomSrcIndex = hz.currentLink ? hz.currentLink.data().hoverZoomSrcIndex : 0;
 
+                removeMedias();
+
                 if (hz.currentLink && hoverZoomSrcIndex < hz.currentLink.data().hoverZoomSrc.length - 1) {
-                    // If the link has several possible sources, we try to load the next one
-                    if (imgFullSize) {
-                        imgFullSize.remove();
-                        imgFullSize = null;
-                    }
+                    // if the link has several possible sources, we try to load the next one
                     hoverZoomSrcIndex++;
                     hz.currentLink.data().hoverZoomSrcIndex = hoverZoomSrcIndex;
                     let nextSrc = hz.currentLink.data().hoverZoomSrc[hoverZoomSrcIndex];
                     console.info('[HoverZoom] Failed to load image: ' + imgDetails.url + '\nTrying next one: ' + nextSrc);
                     imgDetails.url = nextSrc;
                     clearTimeout(loadFullSizeImageTimeout);
-                    loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, 10);
+                    loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, 100);
                 } else {
-                    hideHoverZoomImg();
+                    // no more sources to try
+                    loading = false;
                     if (options.useSeparateTabOrWindowForUnloadableUrlsEnabled) {
-                        // last attempt to display image
+                        // last attempt to display image in separate tab or window
                         console.info('[HoverZoom] Failed to load image: ' + imgDetails.url + ' in current window.\nTrying to load image in separate window or tab...');
                         if (options.useSeparateTabOrWindowForUnloadableUrls == 'window') {
                             openImageInWindow();
@@ -874,33 +1483,16 @@ var hoverZoom = {
             }
         }
 
-        var firstMouseMoveAfterCursorHide = false,
-            cursorHideTimeout = 0;
-
         function hideCursor() {
-            firstMouseMoveAfterCursorHide = true;
+            if (!hz.hzImg) return;
             hz.hzImg.css('cursor', 'none');
+            hz.hzImg.css('pointer-events', 'auto');
         }
 
-        var lastMousePosTop = -1;
-        var lastMousePosLeft = -1;
-
-        function imgFullSizeOnMouseMove() {
-            if (lastMousePosTop == mousePos.top && lastMousePosLeft == mousePos.left)
-                return;
-
-            lastMousePosTop = mousePos.top;
-            lastMousePosLeft = mousePos.left;
-
-            if (!imgFullSize && !options.mouseUnderlap) {
-                hideHoverZoomImg(true);
-            }
-            clearTimeout(cursorHideTimeout);
-            if (!firstMouseMoveAfterCursorHide) {
-                hz.hzImg.css('cursor', 'pointer');
-                cursorHideTimeout = setTimeout(hideCursor, 500);
-            }
-            firstMouseMoveAfterCursorHide = false;
+        function showCursor() {
+            if (!hz.hzImg) return;
+            hz.hzImg.css('cursor', 'pointer');
+            hz.hzImg.css('pointer-events', 'none');
         }
 
         function cancelImageLoading() {
@@ -908,10 +1500,62 @@ var hoverZoom = {
             loading = false;
             hz.currentLink = null;
             clearTimeout(loadFullSizeImageTimeout);
-            hideHoverZoomImg();
+            closeHoverZoomImg();
+        }
+
+        function getTextSelected() {
+            // remove carriage returns
+            return window.getSelection().toString().replace(/\n/g, " "); // "&crarr;"
+        }
+
+        function getImgDetails(link) {
+            let details = {};
+            if (imgDetails.naturalWidth) details.dimensions = imgDetails.naturalWidth / options.zoomFactor + 'x' + imgDetails.naturalHeight / options.zoomFactor;
+            if (imgDetails.naturalWidth) details.ratio = getImgRatio(imgDetails.naturalWidth, imgDetails.naturalHeight);
+            let displayedWidth = imgFullSize.width() || imgFullSize[0].width;
+            if (imgDetails.naturalWidth) details.scale = Math.round(100.0 * displayedWidth / imgDetails.naturalWidth) + '%';
+            details.extension = getExtensionFromUrl(imgDetails.url, imgDetails.video, imgDetails.playlist);
+            details.host = imgDetails.host;
+            let filename = getDownloadFilename();
+            if (filename) details.filename = filename;
+            let duration = getDurationFromVideo();
+            if (duration) details.duration = duration.replace(/ /g, ':');
+
+            let additionaInfos = sessionStorage.getItem('hoverZoomAdditionalInfos');
+            if (additionaInfos) {
+                try {
+                    additionaInfos = JSON.parse(additionaInfos);
+                    let infos = additionaInfos[imgDetails.url];
+                    if (infos) {
+                        details.contentLength = infos.contentLength;
+                        details.lastModified = infos.lastModified;
+                    }
+                } catch {}
+            }
+
+            return details;
+        }
+
+        // try to display image's width/height as a "small" ratio (e.g: 4:3)
+        // if not possible then simply display a float number
+        function getImgRatio(w, h) {
+            if (w == 0|| h == 0) return '';
+            let redux = hz.reduceFraction(w, h);
+            let wRedux = redux[0];
+            let hRedux = redux[1];
+            if (wRedux == w || hRedux == h || wRedux > 20 || hRedux > 20) return (w/h).toFixed(2);
+            return wRedux + ':' + hRedux;
         }
 
         function prepareImgCaption(link) {
+
+            logger.enterFunc();
+            logger.info(link[0].outerHTML);
+
+            var title = "";
+            var alt = "";
+            var figcaption = "";
+            var textAround = "";
             var titledElement = null;
             if (link.attr('title')) {
                 titledElement = link;
@@ -925,11 +1569,11 @@ var hoverZoom = {
                 link.data().hoverZoomCaption = titledElement.attr('title');
             } else {
                 var alt = link.attr('alt') || link.find('[alt]').attr('alt');
-                if (alt && alt.length > 6 && !/^\d+$/.test(alt)) {
+                if (alt && !/^\d+$/.test(alt)) {
                     link.data().hoverZoomCaption = alt;
                 } else {
                     var ref = link.attr('ref') || link.find('[ref]').attr('ref');
-                    if (ref && ref.length > 6 && !/^\d+$/.test(ref)) {
+                    if (ref && !/^\d+$/.test(ref)) {
                         link.data().hoverZoomCaption = ref;
                     }
                 }
@@ -942,8 +1586,7 @@ var hoverZoom = {
             links.each(function () {
                 var link = $(this),
                     linkData = link.data();
-
-                if (!linkData.hoverZoomSrc && !linkData.hoverZoomGallerySrc) {
+                if (!linkData.hoverZoomSrc && !linkData.hoverZoomGallerySrc && !linkData.href && $.isEmptyObject(linkData.meta)) {
                     prepareImgLinksAsync(true);
                 } else {
                     // Skip if the image has the same URL as the thumbnail.
@@ -991,7 +1634,7 @@ var hoverZoom = {
                             return srcs.map(deepUnescape);
                         });
                         updateImageFromGallery(link);
-                    } else {
+                    } else if (linkData.hoverZoomSrc) {
                         linkData.hoverZoomSrc = linkData.hoverZoomSrc.map(deepUnescape);
                     }
 
@@ -1018,7 +1661,7 @@ var hoverZoom = {
             //$('.hoverZoomLink').removeClass('hoverZoomLink').removeData('hoverZoomSrc');
 
             for (var i = 0; i < hoverZoomPlugins.length; i++) {
-                if (!options.disabledPlugins.includes(hoverZoomPlugins[i].name.replace(/[^\w]/g, '').toLowerCase()))
+                if (!options.disabledPlugins.includes(hoverZoomPlugins[i].name.replace(/[^\w\-_]/g, '').toLowerCase()))
                     hoverZoomPlugins[i].prepareImgLinks(imgLinksPrepared);
             }
             prepareImgLinksTimeout = null;
@@ -1045,6 +1688,42 @@ var hoverZoom = {
             prepareDownscaledImagesDelay *= 2;
         }
 
+        function getHostname() {
+            return this.location.hostname;
+        }
+
+        function getHostname(href) {
+            if (!href) { return undefined; }
+
+            var url = new URL(href);
+            return url.hostname;
+        }
+
+        function getHref(img) {
+            if (img == undefined) { return undefined; }
+            var href = img.prop('href');
+
+            if (href == undefined) {
+                href = img.parents('[href]').prop('href');
+            }
+
+            // remove invalid hrefs
+            if (href && /mailto/.test(href.toLowerCase())) {
+                href = undefined;
+            }
+
+            // replace useless href (= img url) by something more usefull
+            if (href && href.match(regexImgUrl)) {
+                href = window.location.href;
+            }
+
+            // use location's href in last resort (not very specific)
+            if (!href) {
+                href = window.location.href;
+            }
+
+            return href;
+        }
         function prepareDownscaledImages() {
             // Excluded sites
             if (['www.facebook.com'].indexOf(location.host) > -1) {
@@ -1079,20 +1758,23 @@ var hoverZoom = {
             }).one('mouseover.hoverZoom', function () {
                     var img = $(this),
                         widthAttr = parseInt(this.getAttribute('width') || this.style.width || this.style.maxWidth || img.css('width') || img.css('max-width')),
-                        heightAttr = parseInt(this.getAttribute('height') || this.style.height || this.style.maxHeight || img.css('height') || img.css('max-height')),
-                        hzDownscaled = $('<img id="hzDownscaled" style="position: absolute; top: -10000px;">').appendTo(document.body);
+                        heightAttr = parseInt(this.getAttribute('height') || this.style.height || this.style.maxHeight || img.css('height') || img.css('max-height'));
 
                     // skip img if displayed size is above 300 x 300 px
                     if (widthAttr > 300 || heightAttr > 300) {
                         return;
                     }
 
+                    if (document.body.querySelector('#hzDownscaled') !== null)
+                        return;
+                    var hzDownscaled = $('<img id="hzDownscaled" style="position: absolute; top: -10000px;">').appendTo(document.body);
+
                     hzDownscaled.on('load',function () {
                         setTimeout(function () {
                             // skip img if displayed size * 1.8 > natural size
                             if (hzDownscaled.height() > heightAttr * 1.8 || hzDownscaled.width() > widthAttr * 1.8) {
                                 var srcs = img.data().hoverZoomSrc || [];
-                                srcs.unshift(img.attr('src'));
+                                srcs.push(img.attr('src'));
                                 img.data().hoverZoomSrc = srcs;
                                 img.addClass('hoverZoomLink');
                             }
@@ -1128,7 +1810,7 @@ var hoverZoom = {
         function applyOptions() {
             init();
             if (!options.extensionEnabled || isExcludedSite()) {
-                hideHoverZoomImg();
+                closeHoverZoomImg();
                 $(document).unbind('mousemove', documentMouseMove);
             }
         }
@@ -1145,15 +1827,17 @@ var hoverZoom = {
         }
 
         function isExcludedLink(link) {
-            let url = new URL(link)['hostname'];
+            let linkHostname = new URL(link)['hostname'];
             let excluded = !options.whiteListMode;
             for (let i = 0; i < options.excludedSites.length; i++) {
-                let es = new URL('http://' + options.excludedSites[i])['hostname'];
-                if (es && es.length <= url.length) {
-                    if (url.substr(url.length - es.length, es.length) === es) {
-                        return excluded;
-                    }
-                }
+
+                // check if excluded site is included in link hostname
+                // e.g:
+                // link hostname = www.tiktok.com
+                // excluded site = tiktok
+                // => link excluded
+                let es = options.excludedSites[i];
+                if (linkHostname.indexOf(es) != -1) return excluded;
             }
             return !excluded;
         }
@@ -1167,6 +1851,7 @@ var hoverZoom = {
             });
         }
 
+        // deals with messages sent by background.js
         function onMessage(message, sender, sendResponse) {
             if (message.action === 'optionsChanged') {
                 options = message.options;
@@ -1182,11 +1867,15 @@ var hoverZoom = {
                     insertedNode.getElementsByTagName('A').length > 0 ||
                     insertedNode.getElementsByTagName('IMG').length > 0) {
                     if (insertedNode.id !== 'hzImg' &&
-                        insertedNode.parentNode.id !== 'hzImg' &&
                         insertedNode.id !== 'hzDownscaled' &&
-                        insertedNode.id !== 'hzImgLoader') {
+                        insertedNode.id !== 'hzImgLoader' &&
+                        insertedNode.parentNode.id !== 'hzImg' &&
+                        insertedNode.parentNode.id !== 'hzImgContainer') {
                         prepareImgLinksAsync();
                     }
+
+                    bindJsaction();
+
                 } else if (insertedNode.nodeName === 'EMBED' || insertedNode.nodeName === 'OBJECT') {
                     fixFlash();
                 }
@@ -1215,17 +1904,47 @@ var hoverZoom = {
                 }
             });
 
-            $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).keydown(documentOnKeyDown).keyup(documentOnKeyUp).mouseleave(cancelImageLoading);
+            // needed when navigating galleries fullscreen
+            $(document).on('click', function() { prepareImgLinksAsync(); });
+
+            $(document).contextmenu(documentContextMenu);
+            $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).mouseleave(cancelImageLoading);
+            $(document).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
             if (options.galleriesMouseWheel) {
                 window.addEventListener('wheel', documentOnMouseWheel, {passive: false});
             }
             if (options.zoomVideos) {
-                $(document).on('visibilitychange', hideHoverZoomImg);
+                $(document).on('visibilitychange', closeHoverZoomImg);
             }
+
+            bindJsaction();
+        }
+
+        // jsaction hides binding performed at document level by HZ+ in bindEvents() function, so some extra bindings are needed
+        // note: jsaction is used by Google Maps (at least)
+        function bindJsaction() {
+            $('[jsaction*=mousemove]').each(function() {
+                //if (getEventListeners(this)['mousemove'] == undefined) // only works in Chrome console
+                if ($._data(this, 'events') == undefined || $._data(this, 'events')['mousemove'] == undefined)
+                    $(this).on('mousemove', documentMouseMove);
+            });
+
+            $('[jsaction*=keyup]').each(function() {
+                if ($._data(this, 'events') == undefined || $._data(this, 'events')['keyup'] == undefined)
+                    $(this).on('keyup', documentOnKeyUp);
+            });
         }
 
         function documentOnMouseWheel(event) {
-            if (imgFullSize) {
+            if (imageLocked) {
+                // Scale up or down locked image then clamp between 0.1x and 10x.
+                let step = zoomFactor < 2 ? 0.1 : 0.1 * Math.floor(zoomFactor);
+                zoomFactor = zoomFactor + (event.deltaY < 0 ? 1 : -1) * step;
+                zoomFactor = Math.max(Math.min(zoomFactor, 10), 0.1);
+                posImg();
+                panLockedImage();
+                event.preventDefault();
+            } else if (imgFullSize) {
                 var link = hz.currentLink, data = link.data();
                 if (data.hoverZoomGallerySrc && data.hoverZoomGallerySrc.length !== 1) {
                     event.preventDefault();
@@ -1253,6 +1972,21 @@ var hoverZoom = {
             if (event.target && ['INPUT','TEXTAREA','SELECT'].indexOf(event.target.tagName) > -1) {
                 return;
             }
+            // Toggle key is pressed down
+            if (event.which == options.toggleKey) {
+                options.extensionEnabled = !options.extensionEnabled;
+                if (! options.extensionEnabled) {
+                    // close zoomed image or video
+                    imageLocked = false;
+                    if (hz.hzImg) {
+                        stopMedias();
+                        hz.hzImg.hide();
+                    }
+                    if (imgFullSize) {
+                        return false;
+                    }
+                }
+            }
             // Action key (zoom image) is pressed down
             if (event.which == options.actionKey && !actionKeyDown) {
                 actionKeyDown = true;
@@ -1269,31 +2003,64 @@ var hoverZoom = {
                     return false;
                 }
             }
-            // Hide key (hide zoomed image) is pressed down
-            if (event.which == options.hideKey && !hideKeyDown) {
-                hideKeyDown = true;
+            // close key (close zoomed image) is pressed down
+            // => zoomed image is closed immediately
+            if (event.which == options.closeKey) {
+                imageLocked = false;
                 if (hz.hzImg) {
+                    stopMedias();
                     hz.hzImg.hide();
                 }
                 if (imgFullSize) {
                     return false;
                 }
             }
-            // The following keys are processed only if an image is displayed
+            // hide key (hide zoomed image) is pressed down
+            // => zoomed image remains hidden until key is released
+            if (event.which == options.hideKey && !hideKeyDown) {
+                hideKeyDown = true;
+                if (hz.hzImg) {
+                    pauseMedias();
+                    hz.hzImg.hide();
+                }
+                if (imgFullSize) {
+                    return false;
+                }
+            }
+            // the following keys are processed only if an image is displayed
             if (imgFullSize) {
                 // "Open image in a new window" key
                 if (event.which == options.openImageInWindowKey) {
-                    openImageInWindow();
+                    if (imgDetails.video) openVideoInWindow();
+                    else openImageInWindow();
                     return false;
                 }
                 // "Open image in a new tab" key
                 if (event.which == options.openImageInTabKey) {
-                    openImageInTab(event.shiftKey);
+                    if (imgDetails.video) openVideoInTab(event.shiftKey);
+                    else openImageInTab(event.shiftKey);
+                    return false;
+                }
+                // "Lock image" key
+                if (event.which == options.lockImageKey) {
+                    if (!imageLocked) lockImage();
                     return false;
                 }
                 // "Save image" key
                 if (event.which == options.saveImageKey) {
                     saveImage();
+                    return false;
+                }
+                // "Copy image" key
+                if (isChromiumBased) {
+                    if (event.which == options.copyImageKey) {
+                        copyImage();
+                        return false;
+                    }
+                }
+                // "Copy image url" key
+                if (event.which == options.copyImageUrlKey) {
+                    copyLink();
                     return false;
                 }
                 // Cancels event if an action key is held down (auto repeat may trigger additional events)
@@ -1304,14 +2071,21 @@ var hoverZoom = {
                 }
                 // "Previous image" key
                 if (event.which == options.prevImgKey) {
-                    rotateGalleryImg(-1);
-                    changeVideoPosition(-parseInt(options.videoPositionStep));
+                    var linkData = hz.currentLink.data();
+                    if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(-1);
+                    else changeVideoPosition(-parseInt(options.videoPositionStep));
                     return false;
                 }
                 // "Next image" key
                 if (event.which == options.nextImgKey) {
-                    rotateGalleryImg(1);
-                    changeVideoPosition(parseInt(options.videoPositionStep));
+                    var linkData = hz.currentLink.data();
+                    if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(1);
+                    else changeVideoPosition(parseInt(options.videoPositionStep));
+                    return false;
+                }
+                // "Flip image" key
+                if (event.which == options.flipImageKey) {
+                    flipImage();
                     return false;
                 }
             }
@@ -1328,7 +2102,7 @@ var hoverZoom = {
             // Action key (zoom image) is released
             if (event.which == options.actionKey) {
                 actionKeyDown = false;
-                hideHoverZoomImg();
+                closeHoverZoomImg();
             }
             // Full zoom key is released
             if (event.which == options.fullZoomKey) {
@@ -1340,6 +2114,7 @@ var hoverZoom = {
                 hideKeyDown = false;
                 if (imgFullSize) {
                     hz.hzImg.show();
+                    playMedias();
                 }
                 $(this).mousemove();
             }
@@ -1378,6 +2153,26 @@ var hoverZoom = {
                 });
         }
 
+        function getExtensionFromUrl(url, video, playlist) {
+            let fullurl = url;
+            // remove trailing / & trailing query
+            url = url.replace(/\/$/, '').split(/[\?!#&]/)[0];
+            // extract filename
+            let filename = url.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
+            let ext = (filename.lastIndexOf('.') == -1 ? '' : filename.substr(filename.lastIndexOf('.') + 1));
+            if (ext == '' || ext.length > 5) {
+                // try to guess correct extension
+                if (!video && !playlist) ext = 'jpg'; // default image extension
+                if (playlist) ext = 'm3u8'; // default playlist extension
+                if (video) {
+                    if (fullurl.indexOf('mp4') != -1) ext = 'mp4';
+                    else if (fullurl.indexOf('webm') != -1) ext = 'webm';
+                    else ext = 'video';
+                }
+            }
+            return ext;
+        }
+
         function getHostFromUrl(url) {
             var host = '';
             if (url.indexOf('://') > -1) {
@@ -1402,7 +2197,7 @@ var hoverZoom = {
         function openImageInWindow() {
             chrome.runtime.sendMessage({action:'getItem', id:'popupBorder'}, function (data) {
                 var createData,
-                    popupBorder = {width:16, height:38};
+                    popupBorder = {width:16, height:39};
 
                 if (data) {
                     try {
@@ -1412,27 +2207,115 @@ var hoverZoom = {
                     }
                 }
 
+                // If image bigger than screen, adjust window dimensions to match image's aspect ratio
+                var createDataWidth = imgDetails.naturalWidth + popupBorder.width;
+                var createDataHeight = imgDetails.naturalHeight + popupBorder.height;
+                if (createDataHeight > screen.availHeight) {
+                    let imgHeight = screen.availHeight - popupBorder.height;
+                    let imgWidth = Math.round(imgHeight * imgDetails.naturalWidth / imgDetails.naturalHeight);
+                    createDataWidth = imgWidth + popupBorder.width;
+                    createDataHeight = screen.availHeight;
+                } else if (createDataWidth > screen.availWidth) {
+                    let imgWidth = screen.availWidth - popupBorder.width;
+                    let imgHeight = Math.round(imgWidth * imgDetails.naturalHeight / imgDetails.naturalWidth);
+                    createDataWidth = screen.availWidth;
+                    createDataHeight = imgHeight + popupBorder.height;
+                }
+
+                // Center window vertically & horizontally
+                var createDataTop = Math.round(screen.availHeight / 2 - createDataHeight / 2);
+                var createDataLeft = Math.round(screen.availWidth / 2 - createDataWidth / 2);
+
                 createData = {
                     url:imgDetails.url,
-                    width:imgDetails.naturalWidth + popupBorder.width,
-                    height:imgDetails.naturalHeight + popupBorder.height,
+                    width:createDataWidth,
+                    height:createDataHeight,
+                    top:createDataTop,
+                    left:createDataLeft,
                     type:'popup',
                     incognito:chrome.extension.inIncognitoContext
                 };
 
-                // If image bigger than screen, adjust window dimensions to match image's aspect ratio
-                if (createData.height > screen.availHeight) {
-                    createData.height = screen.availHeight;
-                    createData.width = Math.round(popupBorder.width + (screen.availHeight - popupBorder.height) * imgDetails.naturalWidth / imgDetails.naturalHeight);
-                }
-                if (createData.width > screen.availWidth) {
-                    createData.width = screen.availWidth;
-                    createData.height = Math.round(popupBorder.height + (screen.availWidth - popupBorder.width) * imgDetails.naturalHeight / imgDetails.naturalWidth);
+                chrome.runtime.sendMessage({
+                    action:'openViewWindow',
+                    createData:createData
+                });
+            });
+        }
+
+        function openVideoInWindow() {
+
+            chrome.runtime.sendMessage({action:'getItem', id:'popupBorder'}, function (data) {
+                var createData,
+                    popupBorder = {width:16, height:39};
+
+                if (data) {
+                    try {
+                        popupBorder = JSON.parse(data);
+                    }
+                    catch (e) {}
                 }
 
-                // Center window
-                createData.top = Math.round(screen.availHeight / 2 - createData.height / 2);
-                createData.left = Math.round(screen.availWidth / 2 - createData.width / 2);
+                var body = '<body/>';
+                body = $(body);
+                body[0].style.margin = 0;
+                var video = '<video/>';
+                video = $(video);
+                video[0].style.position = 'absolute';
+                video[0].controls = true;
+                video[0].src = imgDetails.url;
+                video[0].setAttribute('onloadeddata', 'this.volume = ' + options.videoVolume + '; this.muted = ' + options.muteVideos + ';');
+                body.append(video);
+                var audio = null;
+                if (imgDetails.audioUrl) {
+                    // add audio source if not embedded in video
+                    audio = '<audio/>';
+                    audio = $(audio);
+                    audio[0].controls = true;
+                    audio[0].src =  imgDetails.audioUrl;
+                    audio[0].setAttribute('onloadeddata', 'this.volume = ' + options.videoVolume + '; this.muted = ' + options.muteVideos + ';');
+                    body.append(audio);
+                    // plug audio controls (play, pause...) in video
+                    video[0].setAttribute('onplay', 'document.querySelector(\'audio\').play()');
+                    video[0].setAttribute('onpause', 'document.querySelector(\'audio\').pause()');
+                    video[0].setAttribute('onseeked', 'document.querySelector(\'audio\').currentTime = this.currentTime');
+                    // hide audio controls after 2.5s (same as video controls)
+                    audio.controlsTimeout = undefined;
+                    body[0].setAttribute('onmousemove', 'var audio = document.querySelector("audio"); clearTimeout(audio.controlsTimeout); audio.style = "opacity : 1"; audio.controlsTimeout = setTimeout(function() { audio.style = "transition : all ease 1s; opacity : 0" }, 2500)');
+                }
+
+                // If image bigger than screen, adjust window dimensions to match image's aspect ratio
+                var createDataWidth = imgDetails.naturalWidth + popupBorder.width;
+                var createDataHeight = imgDetails.naturalHeight + popupBorder.height;
+                if (createDataHeight > screen.availHeight) {
+                    let videoHeight = screen.availHeight - popupBorder.height;
+                    let videoWidth = Math.round(videoHeight * imgDetails.naturalWidth / imgDetails.naturalHeight);
+                    video[0].height = videoHeight;
+                    video[0].width = videoWidth;
+                    createDataWidth = videoWidth + popupBorder.width;
+                    createDataHeight = screen.availHeight;
+                } else if (createDataWidth > screen.availWidth) {
+                    let videoWidth = screen.availWidth - popupBorder.width;
+                    let videoHeight = Math.round(videoWidth * imgDetails.naturalHeight / imgDetails.naturalWidth);
+                    video[0].height = videoHeight;
+                    video[0].width = videoWidth;
+                    createDataWidth = screen.availWidth;
+                    createDataHeight = videoHeight + popupBorder.height;
+                }
+
+                // Center window vertically & horizontally
+                var createDataTop = Math.round(screen.availHeight / 2 - createDataHeight / 2);
+                var createDataLeft = Math.round(screen.availWidth / 2 - createDataWidth / 2);
+
+                createData = {
+                    url:'data:text/html,' + body[0].outerHTML,
+                    width:createDataWidth,
+                    height:createDataHeight,
+                    top:createDataTop,
+                    left:createDataLeft,
+                    type:'popup',
+                    incognito:chrome.extension.inIncognitoContext
+                };
 
                 chrome.runtime.sendMessage({
                     action:'openViewWindow',
@@ -1451,36 +2334,441 @@ var hoverZoom = {
             });
         }
 
-        function downloadResource(url, filename) {
+        function openVideoInTab(background) {
+
+            var createData;
+
+            var body = '<body/>';
+            body = $(body);
+            body[0].style.backgroundColor = 'rgb(0,0,0)';
+
+            var video = '<video/>';
+            video = $(video);
+            video[0].style.position = 'absolute';
+            video[0].style.margin = 'auto';
+            video[0].style.top = '0px';
+            video[0].style.right = '0px';
+            video[0].style.bottom = '0px';
+            video[0].style.left = '0px';
+            video[0].style.maxHeight = '100%';
+            video[0].style.maxWidth = '100%';
+            video[0].controls = true;
+            video[0].src = imgDetails.url;
+            video[0].setAttribute('onloadeddata', 'this.volume = ' + options.videoVolume + '; this.muted = ' + options.muteVideos + ';');
+            body.append(video);
+            var audio = null;
+            if (imgDetails.audioUrl) {
+                // add audio source if not embedded in video
+                audio = '<audio/>';
+                audio = $(audio);
+                audio[0].controls = true;
+                audio[0].src =  imgDetails.audioUrl;
+                audio[0].setAttribute('onloadeddata', 'this.volume = ' + options.videoVolume + '; this.muted = ' + options.muteVideos + ';');
+                body.append(audio);
+                // plug audio controls (play, pause...) in video
+                video[0].setAttribute('onplay', 'document.querySelector(\'audio\').play()');
+                video[0].setAttribute('onpause', 'document.querySelector(\'audio\').pause()');
+                video[0].setAttribute('onseeked', 'document.querySelector(\'audio\').currentTime = this.currentTime');
+                // hide audio controls after 2.5s (same as video controls)
+                audio.controlsTimeout = undefined;
+                body[0].setAttribute('onmousemove', 'var audio = document.querySelector("audio"); clearTimeout(audio.controlsTimeout); audio.style = "opacity : 1"; audio.controlsTimeout = setTimeout(function() { audio.style = "transition : all ease 1s; opacity : 0" }, 2500)');
+            }
+
+            // If image bigger than screen, adjust window dimensions to match image's aspect ratio
+            var createDataWidth = imgDetails.naturalWidth;
+            var createDataHeight = imgDetails.naturalHeight;
+            if (createDataHeight > screen.availHeight) {
+                let videoHeight = screen.availHeight;
+                let videoWidth = Math.round(videoHeight * imgDetails.naturalWidth / imgDetails.naturalHeight);
+                video[0].height = videoHeight;
+                video[0].width = videoWidth;
+            } else if (createDataWidth > screen.availWidth) {
+                let videoWidth = screen.availWidth;
+                let videoHeight = Math.round(videoWidth * imgDetails.naturalHeight / imgDetails.naturalWidth);
+                video[0].height = videoHeight;
+                video[0].width = videoWidth;
+            }
+
+            createData = {
+                url:'data:text/html,' + body[0].outerHTML,
+                active:!background
+            };
+
+            chrome.runtime.sendMessage({
+                action:'openViewTab',
+                createData:createData
+            });
+        }
+
+        // get all headers from servers
+        function getAdditionalInfosFromServer(url) {
+
+            // check if additional infos already received
+            let additionaInfos = sessionStorage.getItem('hoverZoomAdditionalInfos');
+            if (additionaInfos) {
+                try {
+                    additionaInfos = JSON.parse(additionaInfos);
+                    let infos = additionaInfos[imgDetails.url];
+                    if (infos) return;
+                } catch {}
+            }
+
+            chrome.runtime.sendMessage({
+                action: 'ajaxGetHeaders',
+                url: imgDetails.url
+            }, function(response) {
+                if (response == null) return;
+                let infos = parseHeaders(response.headers);
+                if (!$.isEmptyObject(infos)) {
+                    // store infos
+                    let additionalInfos = sessionStorage.getItem('hoverZoomAdditionalInfos') || '{}';
+                    try {
+                        additionalInfos = JSON.parse(additionalInfos);
+                        if (!additionalInfos[response.url]) {
+                            additionalInfos[response.url] = infos;
+                            sessionStorage.setItem('hoverZoomAdditionalInfos', JSON.stringify(additionalInfos));
+                        }
+                    } catch {}
+                }
+                posImg();
+            } );
+        }
+
+        // extract content-Length & Last-Modified values from headers
+        function parseHeaders(headers) {
+            let infos = {}
+            let contentLength = headers.match(/content-length:(.*)/i);
+            if (contentLength) {
+                contentLength = contentLength[1].trim();
+                if (!isNaN(contentLength) && contentLength > 0) {
+                    contentLength /= 1024;
+                    if (contentLength < 1000) infos.contentLength = (contentLength).toFixed(0) + ' KB';
+                    else infos.contentLength = (contentLength / 1024).toFixed(1) + ' MB';
+                }
+            }
+            let lastModified = headers.match(/last-modified:(.*)/i);
+            if (lastModified && lastModified[1].indexOf('01 Jan 1970') == -1) infos.lastModified = lastModified[1].trim();
+            return infos;
+        }
+
+        //stackoverflow.com/questions/49474775/chrome-65-blocks-cross-origin-a-download-client-side-workaround-to-force-down
+        function forceDownload(blob, filename) {
+          var a = document.createElement('a');
+          a.download = filename;
+          a.href = blob;
+          a.click();
+        }
+
+        function downloadResource(url, filename, callback) {
+            cLog('download: ' + url);
             if (!filename) filename = url.split('\\').pop().split('/').pop();
 
             // prefix with download folder if needed
             if (options.downloadFolder) {
-
+                cLog('options.downloadFolder: ' + options.downloadFolder);
                 let downloadFolder = options.downloadFolder;
                 filename = downloadFolder + filename;
+                cLog('filename: ' + filename);
             }
 
             chrome.runtime.sendMessage({
                 action: 'downloadFile',
                 url: url,
-                filename: filename
-            });
+                filename: filename,
+                conflictAction: 'uniquify'
+            }, callback);
+        }
+
+        // 4 types of media can be saved to disk: image, video, audio, playlist
+        const downloadMedias = {
+            IMG : "IMG",
+            VIDEO : "VIDEO",
+            AUDIO : "AUDIO",
+            PLAYLIST : "PLAYLIST"
+        }
+
+        // return download filename without knowing type of download
+        function getDownloadFilename() {
+
+            let filename = getDownloadFilenameByMedia(downloadMedias.IMG);
+            if (filename) return filename;
+            filename = getDownloadFilenameByMedia(downloadMedias.VIDEO);
+            if (filename) return filename;
+            filename = getDownloadFilenameByMedia(downloadMedias.AUDIO);
+            if (filename) return filename;
+            filename = getDownloadFilenameByMedia(downloadMedias.PLAYLIST);
+            if (filename) return filename;
+            return '';
+        }
+
+        // return download filename according to type of download in param
+        function getDownloadFilenameByMedia(downloadMedia) {
+
+            let src, filename;
+
+            switch (downloadMedia) {
+                case downloadMedias.IMG:
+                    if (!hz.hzImg) return '';
+                    let img = hz.hzImg.find('img').get(0);
+                    if (!img) return '';
+                    src = img.src;
+                    // remove trailing / & trailing query
+                    src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
+                    // extract filename
+                    filename = src.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
+                    if (filename == '') filename = 'image';
+                    if (filename.indexOf('.') === -1) filename = filename + '.jpg';
+                    return filename;
+
+                case downloadMedias.VIDEO:
+                    if (!hz.hzImg) return '';
+                    let video = hz.hzImg.find('video').get(0);
+                    if (!video) return '';
+                    src = video.src;
+                    if (src.startsWith('blob:')) return '';
+                    // remove trailing / & trailing query
+                    src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
+                    // extract filename
+                    filename = src.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
+                    if (filename == '') filename = 'video';
+                    if (filename.indexOf('.') === -1) filename = filename + '.mp4';
+                    return filename;
+
+                case downloadMedias.AUDIO:
+                    if (!hz.hzImg) return '';
+                    let audio = hz.hzImg.find('audio').get(0);
+                    if (!audio) return '';
+                    src = audio.src;
+                    // remove trailing / & trailing query
+                    src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
+                    // extract filename
+                    filename = src.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
+                    if (filename == '') filename = 'audio';
+                    if (filename.indexOf('.') === -1) filename = filename + '.mp4';
+                    return filename;
+
+                case downloadMedias.PLAYLIST:
+                    if (!hz.hzImg) return '';
+                    if (!imgDetails.playlist) return '';
+                    src = imgDetails.url;
+                    // remove trailing / & trailing query
+                    src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
+                    // extract filename
+                    filename = src.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
+                    filename = 'playlist-' + filename;
+                    if (filename.indexOf('.') === -1) filename = filename + '.m3u8';
+                    return filename;
+            }
+            return '';
+        }
+
+        function lockImage() {
+            imageLocked = true;
+            displayFullSizeImage();
+        }
+
+        // alternately flip image or video vertically and horizontally
+        function flipImage() {
+            if (!imgFullSize) return;
+
+            let flip = '';
+            if (imgFullSize.css('transform') == 'matrix(1, 0, 0, 1, 0, 0)' || imgFullSize.css('transform') == 'none' || imgFullSize.css('transform') == '') {
+                imgFullSize.css('transform', 'matrix(-1, 0, 0, 1, 0, 0)'); // scaleX(-1)
+                flip = 'flipX';
+            }
+            else if (imgFullSize.css('transform') == 'matrix(-1, 0, 0, 1, 0, 0)') {
+                imgFullSize.css('transform', 'matrix(-1, 0, 0, -1, 0, 0)'); // scaleX(-1) scaleY(-1)
+                flip = 'flipXY';
+            }
+            else if (imgFullSize.css('transform') == 'matrix(-1, 0, 0, -1, 0, 0)') {
+                imgFullSize.css('transform', 'matrix(1, 0, 0, -1, 0, 0)'); // scaleX(-1) scaleY(-1) scaleX(-1)
+                flip = 'flipXYX';
+            }
+            else if (imgFullSize.css('transform') == 'matrix(1, 0, 0, -1, 0, 0)')
+                imgFullSize.css('transform', '');
+
+            if (options.ambilightEnabled)
+                updateAmbilight();
+
+            // flip timestamp on videos
+            if (imgFullSize.is('video') && options.videoTimestamp) {
+                $('#hzImgContainer').removeClass('flipX flipXY flipXYX');
+                $('#hzImgContainer').addClass(flip);
+                addTimestampTrack(imgFullSize[0]);
+            }
         }
 
         function saveImage() {
-            var filename = imgDetails.url.split('/').pop().split('?')[0];
-            if (filename == '') filename = 'image';
-            if (filename.indexOf('.') === -1)
-                filename = filename + '.jpg';
-            downloadResource(imgDetails.url, filename);
+            saveImg();
+            saveVideo();
+            saveAudio();
+            savePlaylist();
+        }
+
+        function copyLink() {
+            const url = imgDetails.url;
+            if (!url) return;
+
+            navigator.clipboard.writeText(url);
+        }
+
+        function copyImage() {
+            const url = imgDetails.url;
+            if(!url) return;
+
+            fetch(url)
+                .then(resp => resp.blob())
+                .then(blob => blob.arrayBuffer())
+                .then(buffer => {
+                    // Lie about the data type
+                    // Note: This does not work on FireFox
+                    const blob = new Blob([buffer], {'type': 'image/png'});
+                    const item = new ClipboardItem({'image/png': blob});
+                    navigator.clipboard.write([item]);
+                });
+
+        }
+
+        function saveImg() {
+            if (!hz.hzImg) return;
+            let img = hz.hzImg.find('img').get(0);
+            if (!img) return;
+            let src = img.src;
+            let filename = getDownloadFilenameByMedia(downloadMedias.IMG);
+            if (!filename) return;
+
+            if (options.addDownloadSize) {
+                // prefix with size [WxH]
+                let size = '[' + img.naturalWidth + 'x' + img.naturalHeight + ']';
+                filename = size + filename;
+            }
+            if (options.addDownloadOrigin) {
+                // prefix with origin
+                let origin = '[' + getOrigin() + ']';
+                filename = origin + filename;
+            }
+            downloadResource(src, filename);
+        }
+
+        function saveVideo() {
+            if (!hz.hzImg) return;
+            let video = hz.hzImg.find('video').get(0);
+            if (!video) return;
+            let src = video.src;
+            if (src.startsWith('blob:')) return;
+            let filename = getDownloadFilenameByMedia(downloadMedias.VIDEO);
+            if (!filename) return;
+
+            if (options.addDownloadSize) {
+                // prefix with size [WxH]
+                let size = '[' + video.videoWidth + 'x' + video.videoHeight + ']';
+                filename = size + filename;
+            }
+            if (options.addDownloadDuration) {
+                // prefix with duration [hh mm ss]
+                let duration = hz.secondsToHms(video.duration);
+                filename = (duration != '' ? '[' + duration + ']' : '') + filename;
+            }
+            if (options.addDownloadOrigin) {
+                // prefix with origin
+                let origin = '[' + getOrigin() + ']';
+                filename = origin + filename;
+            }
+            downloadResource(src, filename);
+        }
+
+        function saveAudio() {
+            if (!hz.hzImg) return;
+            let audio = hz.hzImg.find('audio').get(0);
+            if (!audio) return;
+            let src = audio.src;
+            let filename = getDownloadFilenameByMedia(downloadMedias.AUDIO);
+            if (!filename) return;
+
+            if (options.addDownloadDuration) {
+                // prefix with duration [hh mm ss]
+                let duration = hz.secondsToHms(audio.duration);
+                filename = (duration != '' ? '[' + duration + ']' : '') + filename;
+            }
+            if (options.addDownloadOrigin) {
+                // prefix with origin
+                let origin = '[' + getOrigin() + ']';
+                filename = origin + filename;
+            }
+            downloadResource(src, filename);
+        }
+
+        // save the *** URL *** of playlist so user can load it in a video player such as VLC
+        // the playlist itself is pretty useless
+        function savePlaylist() {
+            if (!hz.hzImg) return;
+            let video = hz.hzImg.find('video').get(0);
+            if (!video) return;
+            let filename = getDownloadFilenameByMedia(downloadMedias.PLAYLIST);
+            if (!filename) return;
+
+            if (options.addDownloadSize) {
+                // prefix with size [WxH]
+                let size = '[' + video.videoWidth + 'x' + video.videoHeight + ']';
+                filename = size + filename;
+            }
+            if (options.addDownloadDuration) {
+                // prefix with duration [hh mm ss]
+                let duration = hz.secondsToHms(video.duration);
+                filename = (duration != '' ? '[' + duration + ']' : '') + filename;
+            }
+            if (options.addDownloadOrigin) {
+                // prefix with origin
+                let origin = '[' + getOrigin() + ']';
+                filename = origin + filename;
+            }
+
+            // prefix with download folder if needed
+            if (options.downloadFolder) {
+                let downloadFolder = options.downloadFolder;
+                filename = downloadFolder + filename;
+            }
+
+            // download KO: This function must be called during a user gesture => debugger must be closed
+            var urlBlob = URL.createObjectURL( new Blob([imgDetails.url], {type: 'text/plain'}) );
+            chrome.runtime.sendMessage({
+                action: 'downloadFile',
+                url: urlBlob,
+                filename: filename,
+                conflictAction: 'uniquify' //'overwrite'
+            }, function() {
+                try {
+                    URL.revokeObjectURL(urlBlob);
+                } catch {}
+            });
+        }
+
+        function getDurationFromVideo() {
+            if (!hz.hzImg) return;
+            let video = hz.hzImg.find('video').get(0);
+            if (!video) return;
+            let src = video.src;
+            return hz.secondsToHms(video.duration);
+        }
+
+        function getDurationFromAudio() {
+            if (!hz.hzImg) return;
+            let audio = hz.hzImg.find('audio').get(0);
+            if (!audio) return;
+            let src = audio.src;
+            return hz.secondsToHms(audio.duration);
+        }
+
+        // return hostname with forbidden characters replaced by '_'
+        function getOrigin() {
+            return window.location.hostname.replace(regexForbiddenChars, '_');
         }
 
         function rotateGalleryImg(rot) {
             cLog('rotateGalleryImg(' + rot + ')');
             var link = hz.currentLink, data = link.data();
-            if (!data.hoverZoomGallerySrc) {
-                return;
+            if (!data.hoverZoomGallerySrc || data.hoverZoomGallerySrc.length === 1) {
+                return; // no gallery to rotate or gallery with only one image
             }
 
             var l = data.hoverZoomGallerySrc.length;
@@ -1491,6 +2779,8 @@ var hoverZoom = {
             loading = true;
             hzGallery.text('.../' + data.hoverZoomGallerySrc.length);
 
+            removeMedias();
+
             loadNextGalleryImage();
             preloadGalleryImage((data.hoverZoomGalleryIndex + rot + l) % l);
         }
@@ -1498,7 +2788,8 @@ var hoverZoom = {
         function loadNextGalleryImage() {
             clearTimeout(loadFullSizeImageTimeout);
             imgDetails.url = hz.currentLink.data().hoverZoomSrc[hz.currentLink.data().hoverZoomSrcIndex];
-            imgFullSize.on('load', nextGalleryImageOnLoad).on('error', imgFullSizeOnError).attr('src', imgDetails.url);
+            loadFullSizeImage();
+            getAdditionalInfosFromServer(imgDetails.url);
         }
 
         function nextGalleryImageOnLoad() {
@@ -1511,9 +2802,12 @@ var hoverZoom = {
                 if (data.hoverZoomGallerySrc.length > 0) {
                     hzGallery.text((data.hoverZoomGalleryIndex + 1) + '/' + data.hoverZoomGallerySrc.length);
                 }
-                if (options.captionLocation != "none" && !options.ambilightEnabled) {
-                    $(hzCaption).text(data.hoverZoomCaption);
+
+                if (!options.ambilightEnabled) {
+                    displayCaptionMiscellaneousDetails();
                 }
+
+                posImg();
             }
         }
 
@@ -1540,13 +2834,19 @@ var hoverZoom = {
                 return;
             }
 
+            frameBackgroundColor(options.frameBackgroundColor);
+            frameThickness(options.frameThickness);
+            fontSize(options.fontSize);
+
             webSiteExcluded = null;
-            body100pct = (body.css('position') != 'static') ||
-                (body.css('padding-left') == '0px' && body.css('padding-right') == '0px' && body.css('margin-left') == '0px' && body.css('margin-right') == '0px');
+            body100pct = (body.css('position') != 'static') || (body.css('padding-left') == '0px' && body.css('padding-right') == '0px' && body.css('margin-left') == '0px' && body.css('margin-right') == '0px');
             hz.pageGenerator = $('meta[name="generator"]').attr('content');
             prepareImgLinks();
             bindEvents();
             fixFlash();
+
+            debug = options.debug;
+
         }
 
         chrome.runtime.onMessage.addListener(onMessage);
@@ -1581,8 +2881,11 @@ var hoverZoom = {
             } else {
                 link = _this;
             }
+            if (!link[0]) {
+                return;
+            }
             url = hoverZoom.getThumbUrl(this);
-            if (!url || typeof link.data() === 'undefined') {
+            if (!url) {
                 return;
             }
             thumbUrl = url;
@@ -1593,15 +2896,16 @@ var hoverZoom = {
             } else {
                 url = url.replace(search, replace);
             }
-            url = unescape(url);
+
             if (thumbUrl == url) {
                 return;
             }
+            url = unescape(url);
             var data = link.data().hoverZoomSrc;
             if (Object.prototype.toString.call(data) === '[object Array]') {
                 // avoid duplicates
                 if (data.indexOf(url) === -1) {
-                    data.unshift(url);
+                    data.unshift(url); // 1st position
                 }
             } else {
                 data = [url];
@@ -1613,14 +2917,31 @@ var hoverZoom = {
 
     // Extract a thumbnail url from an element, whether it be a link,
     // an image or a element with a background image.
+    // If image and backgroundImage are both present: choose image
     getThumbUrl:function (el) {
         var compStyle = (el && el.nodeType == 1) ? getComputedStyle(el) : false,
             backgroundImage = compStyle ? compStyle.backgroundImage : 'none';
+
+        var imageSrc = '';
+        var backgroundImageSrc = '';
+
         if (backgroundImage.indexOf("url") != -1) {
-            return backgroundImage.replace(/.*url\s*\(\s*(.*)\s*\).*/i, '$1').replace(/"/g,'');
-        } else {
-            return el.src || el.href;
+            if (hoverZoom.isEmbeddedImg(backgroundImage)) backgroundImageSrc = ''; // discard embedded images
+            else backgroundImageSrc = backgroundImage.replace(/.*url\s*\(\s*(.*)\s*\).*/i, '$1').replace(/"/g,'');
         }
+
+        if (hoverZoom.isEmbeddedImg(el.src)) imageSrc = ''; // discard embedded images
+        else imageSrc = el.src;
+
+        return imageSrc || backgroundImageSrc || el.href;
+    },
+
+    // Embedded image url look like:  "data:image/png;base64,Base64 encoded string of the image"
+    // sample: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+    isEmbeddedImg:function (url) {
+        if (!url) return false;
+        if (url.indexOf('data:image') === -1 && url.indexOf('base64') === -1) return false;
+        return true;
     },
 
     // Simulates a mousemove event to force a zoom call
@@ -1656,15 +2977,29 @@ var hoverZoom = {
         }
     },
 
-    // create and display the loading image container
-
+    // handle the loading image spinner
+    // its color depends on loading staus:
+    // - green: loading started
+    // - orange: img skipped (reason depends on Options settings: image already big enough, etc)
+    // - red: an error occured (displayed in console)
     displayImgLoader:function (status, position) {
+
+        // orange & red spinners are optional
+        if (options.displayImageLoader == false && (status == 'skipped' || status == 'error')) return;
 
         // check that loader exists
         if (hoverZoom.hzImgLoader == null) {
             hoverZoom.hzImgLoader = $('<div id="hzImgLoader"><img src="' + chrome.extension.getURL('images/loading.gif') + '" style="opacity: 0.8; padding: 0; margin: 0" /></div>');
             hoverZoom.hzImgLoader.width('auto').height('auto');
             hoverZoom.hzImgLoader.css(hoverZoom.hzImgLoaderCss);
+            if (position) hoverZoom.hzImgLoader.css({top:position.top, left:position.left});
+            hoverZoom.hzImgLoader.appendTo(document.body);
+        } else {
+            // adjust position
+            if (position == undefined) {
+                position = hoverZoom.hzImgLoader.position(); // reuse position of loader
+            }
+            hoverZoom.hzImgLoader.css({top:position.top, left:position.left});
         }
 
         // check loading status
@@ -1702,17 +3037,23 @@ var hoverZoom = {
                 chrome.runtime.sendMessage({action:'preloadProgress', value:preloadIndex, max:links.length});
             } else {
                 var hoverZoomSrcIndex = link.data().hoverZoomSrcIndex || 0;
-                $('<img src="' + link.data().hoverZoomSrc[hoverZoomSrcIndex] + '">').on('load',function () {
-                    link.data().hoverZoomPreloaded = true;
-                    setTimeout(preloadNextImage, preloadDelay);
-                    chrome.runtime.sendMessage({action:'preloadProgress', value:preloadIndex, max:links.length});
-                }).on('error', function () {
-                        if (hoverZoomSrcIndex < link.data().hoverZoomSrc.length - 1) {
-                            link.data().hoverZoomSrcIndex++;
-                            preloadIndex--;
-                        }
+                var nextSrc = link.data().hoverZoomSrc ? link.data().hoverZoomSrc[hoverZoomSrcIndex] : '';
+                if (nextSrc)
+                    $('<img src="' + nextSrc + '">').on('load', function () {
+                        link.data().hoverZoomPreloaded = true;
                         setTimeout(preloadNextImage, preloadDelay);
-                    });
+                        chrome.runtime.sendMessage({action:'preloadProgress', value:preloadIndex, max:links.length});
+                    }).on('error', function () {
+                            if (hoverZoomSrcIndex < link.data().hoverZoomSrc.length - 1) {
+                                link.data().hoverZoomSrcIndex++;
+                                preloadIndex--;
+                            } else {
+                                // all attempts to pre-load img have failed and there are no more src to try,
+                                // so tag img as preloaded and move to next img
+                                link.data().hoverZoomPreloaded = true;
+                            }
+                            setTimeout(preloadNextImage, preloadDelay);
+                        });
             }
         }
 
@@ -1742,10 +3083,11 @@ var hoverZoom = {
             link.data().hoverZoomSrc = [src];
         }
         link.addClass('hoverZoomLink');
+        link.addClass('hoverZoomLinkFromPlugIn');
         hoverZoom.displayPicFromElement(link);
     },
 
-    prepareFromDocument:function (link, url, getSrc) {
+    prepareFromDocument:function (link, url, getSrc, isAsync = false) {
         url = url.replace('http:', location.protocol);
         chrome.runtime.sendMessage({action:'ajaxRequest', url: url, method: 'GET'}, function(data) {
             var doc = document.implementation.createHTMLDocument();
@@ -1754,16 +3096,137 @@ var hoverZoom = {
             doc.close();
             var httpRefresh = doc.querySelector('meta[http-equiv="refresh"][content]');
             if (httpRefresh) {
-                var redirUrl = httpRefresh.content.substr(httpRefresh.content.toLowerCase().indexOf('url=')+4);
+                var redirUrl = httpRefresh.content.substr(httpRefresh.content.toLowerCase().indexOf('url=') + 4);
                 if (redirUrl) {
                     redirUrl = redirUrl.replace('http:', location.protocol);
-                    hoverZoom.prepareFromDocument(link, redirUrl, getSrc);
+                    hoverZoom.prepareFromDocument(link, redirUrl, getSrc, isAsync);
                 }
             }
-            var src = getSrc(doc);
+
+            var handleSrc = function (src) {
             if (src)
                 hoverZoom.prepareLink(link, src);
+            };
+
+            if (isAsync) {
+                getSrc(doc, handleSrc);
+            } else {
+                var src = getSrc(doc);
+                handleSrc(src);
+            }
         });
+    },
+
+    getFullUrl:function (url) {
+        url = url.trim();
+        if (url.indexOf('http:') !== 0 && url.indexOf('https:') !== 0 && url.indexOf('file:') !== 0 && url.indexOf('blob:http:') !== 0 && url.indexOf('blob:https:') !== 0) {
+            if (url.indexOf('//') !== 0) {
+                if (url.indexOf('/') === 0) {
+                    // image has absolute path (starts with '/')
+                    url = url.substr(1);
+                }
+                else {
+                    // image has relative path (doesn't start with '/')
+                    var path = window.location.pathname;
+                    // use pathname iff valid
+                    if (path.startsWith('/') && path.endsWith('/')) {
+                        //path = path.substr(0, path.lastIndexOf('/') + 1);
+                        url = path + url;
+                    }
+                }
+                // replace // by /
+                url = window.location.host + '/' + url;
+                url = url.replace(/\/\//g, '\/');
+                url = '//' + url;
+            }
+            url = window.location.protocol + url;
+        }
+        return url;
+    },
+
+
+    // https://dev.to/alexparra/js-seconds-to-hh-mm-ss-22o6
+    // * Convert seconds to HH MM SS
+    // * If seconds exceeds 24 hours, hours will be greater than 24 (30 05 10)
+    // *
+    // * @param {number} seconds
+    // * @returns {string}
+    secondsToHms:function (seconds) {
+        if (isNaN(seconds)) return '';
+        const SECONDS_PER_DAY = 86400;
+        const HOURS_PER_DAY = 24;
+        const days = Math.floor(seconds / SECONDS_PER_DAY);
+        const remainderSeconds = seconds % SECONDS_PER_DAY;
+        const hms = new Date(remainderSeconds * 1000).toISOString().substring(11, 19);
+        return hms.replace(/^(\d+)/, h => `${Number(h) + days * HOURS_PER_DAY}`.padStart(2, '0')).replace(/:/g, ' ');
+    },
+
+    // https://css-tricks.com/converting-color-spaces-in-javascript/
+    hexToHSL:function (H) {
+        // Convert hex to RGB first
+        let r = 0, g = 0, b = 0;
+        if (H.length == 4) {
+            r = "0x" + H[1] + H[1];
+            g = "0x" + H[2] + H[2];
+            b = "0x" + H[3] + H[3];
+        } else if (H.length == 7) {
+            r = "0x" + H[1] + H[2];
+            g = "0x" + H[3] + H[4];
+            b = "0x" + H[5] + H[6];
+        }
+        // Then to HSL
+        r /= 255;
+        g /= 255;
+        b /= 255;
+        let cmin = Math.min(r,g,b),
+            cmax = Math.max(r,g,b),
+            delta = cmax - cmin,
+            h = 0,
+            s = 0,
+            l = 0;
+
+        if (delta == 0)
+            h = 0;
+        else if (cmax == r)
+            h = ((g - b) / delta) % 6;
+        else if (cmax == g)
+            h = (b - r) / delta + 2;
+        else
+            h = (r - g) / delta + 4;
+
+        h = Math.round(h * 60);
+
+        if (h < 0)
+            h += 360;
+
+        l = (cmax + cmin) / 2;
+        s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+        s = +(s * 100).toFixed(1);
+        l = +(l * 100).toFixed(1);
+
+        let hsl = {};
+        hsl.h = h;
+        hsl.s = s;
+        hsl.l = l;
+        return hsl;
+    },
+
+    // Reduce a fraction by finding the Greatest Common Divisor and dividing by it.
+    reduceFraction:function (numerator, denominator) {
+        var gcd = function gcd (a, b) {
+            return b ? gcd(b, a%b) : a;
+            };
+        gcd = gcd(numerator,denominator);
+        return [numerator/gcd, denominator/gcd];
+    },
+
+    getUrlScheme:function (url) {
+        let scheme = '';
+        try {
+            let urlTmp = new URL(url);
+            scheme = urlTmp.protocol;
+        } catch {}
+        return scheme;
     },
 
     cLog:function (msg) {
@@ -1780,6 +3243,138 @@ var hoverZoom = {
 
         cTimeEnd(msg);
     },
+
+    // Find key(s) in JSON object and return corresponding value(s) and path(s)
+    // If key not found then return []
+    // Search is NOT case-sensitive
+    // https://gist.github.com/killants/569c4af5f2983e340512916e15a48ac0
+    getKeysInJsonObject:function (jsonObj, searchKey, isRegex, maxDeepLevel, currDeepLevel) {
+
+        var bShowInfo = false;
+
+        maxDeepLevel = ( maxDeepLevel || maxDeepLevel == 0 ) ? maxDeepLevel : 100;
+        currDeepLevel = currDeepLevel ? currDeepLevel : 1 ;
+        isRegex = isRegex ? isRegex : false;
+
+        // check RegEx validity if needed
+        var re;
+        if (isRegex) {
+            try {
+                re = new RegExp(searchKey);
+            } catch (e) {
+                cLog(e);
+                return [];
+            }
+        }
+
+        if ( currDeepLevel > maxDeepLevel ) {
+            return [];
+        } else {
+
+            var keys = [];
+
+            for ( var curr in jsonObj ) {
+                var currElem = jsonObj[curr];
+
+                if ( currDeepLevel == 1 && bShowInfo ) { cLog("getKeysInJsonObject : Looking property \"" + curr + "\" ") }
+
+                if ( isRegex ? re.test(curr) : curr.toLowerCase() === searchKey.toLowerCase() ){
+                    var r = {};
+                    r.key = curr;
+                    r.value = currElem;
+                    r.path = '["' + curr + '"]';
+                    r.depth = currDeepLevel;
+                    keys.push( r );
+                }
+
+                if ( typeof currElem == "object" ) { // object is "object" and "array" is also in the eyes of "typeof"
+                    // search again :D
+                    var deepKeys = hoverZoom.getKeysInJsonObject( currElem, searchKey, isRegex, maxDeepLevel, currDeepLevel + 1 );
+
+                    for ( var e = 0; e < deepKeys.length; e++ ) {
+                        // update path backwards
+                        deepKeys[e].path = '["' + curr + '"]' + deepKeys[e].path;
+                        keys.push( deepKeys[e] );
+                    }
+                }
+            }
+            return keys;
+        }
+    },
+
+    // Find value(s) in JSON object and return corresponding key(s) and path(s)
+    // If value not found then return []
+    // Search is NOT case-sensitive
+    // ref: https://gist.github.com/killants/569c4af5f2983e340512916e15a48ac0
+    getValuesInJsonObject:function (jsonObj, searchValue, isRegex, isPartialMatch, isFirstMatchOnly, maxDeepLevel, currDeepLevel) {
+
+        var bShowInfo = false;
+
+        maxDeepLevel = ( maxDeepLevel || maxDeepLevel == 0 ) ? maxDeepLevel : 100;
+        currDeepLevel = currDeepLevel ? currDeepLevel : 1 ;
+        isRegex = isRegex ? isRegex : false;
+
+        // check RegEx validity if needed
+        var re;
+        if ( isRegex ) {
+            try {
+                re = new RegExp(searchValue);
+            } catch (e) {
+                cLog(e);
+                return [];
+            }
+        } else {
+            searchValue = searchValue.toString().toLowerCase();
+        }
+
+        if ( currDeepLevel > maxDeepLevel ) {
+            return [];
+        } else {
+
+            var keys = [];
+
+            for ( var curr in jsonObj ) {
+                var currElem = jsonObj[curr];
+
+                if ( currDeepLevel == 1 && bShowInfo ) { cLog("getValuesInJsonObject : Looking property \"" + curr + "\" ") }
+
+                if ( typeof currElem == "undefined" ) continue;
+
+                if ( typeof currElem == "object" ) { // object is "object" and "array" is also in the eyes of "typeof"
+                    // search again :D
+                    var deepKeys = hoverZoom.getValuesInJsonObject( currElem, searchValue, isRegex, isPartialMatch, isFirstMatchOnly, maxDeepLevel, currDeepLevel + 1 );
+                    for ( var e = 0; e < deepKeys.length; e++ ) {
+                        // update path backwards
+                        deepKeys[e].path = '["' + curr + '"]' + deepKeys[e].path;
+                        keys.push( deepKeys[e] );
+                    }
+                } else {
+
+                    if ( isRegex ? re.test(currElem) : ( isPartialMatch ? currElem.toString().toLowerCase().indexOf(searchValue) != -1 : currElem.toString().toLowerCase() === searchValue ) ){
+
+                        var r = {};
+                        r.key = curr;
+                        r.value = currElem;
+                        r.path = '["' + curr + '"]';
+                        r.depth = currDeepLevel;
+                        keys.push( r );
+                        if (isFirstMatchOnly) return keys;
+                    }
+                }
+            }
+            return keys;
+        }
+    },
+
+    // Return JSON object corresponding to path, without using the Evil eval
+    // path syntax: [key1][key2][key3]...
+    getJsonObjectFromPath:function (jsonObj, path) {
+        if (!path || path.length < 4) return jsonObj;
+        const keys = path.substr(2, path.length - 4).split('"]["');
+        let result = jsonObj;
+        keys.forEach(key => result = result[key]);
+        return result;
+    }
 };
 
 hoverZoom.loadHoverZoom();

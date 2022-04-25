@@ -266,41 +266,6 @@ class EdgeContextMenusBridge {
         }, "contextMenus.update");
     }
 }
-class EdgeCookiesBridge {
-    get(details, callback) {
-        bridgeLog.DoActionAndLog(() => {
-            myBrowser.cookies.get(details, callback);
-        }, "cookies.get");
-    }
-    getAll(details, callback) {
-        bridgeLog.DoActionAndLog(() => {
-            myBrowser.cookies.getAll(details, callback);
-        }, "cookies.getAll");
-    }
-    remove(details, callback) {
-        bridgeLog.DoActionAndLog(() => {
-            if (typeof callback !== "undefined" && typeof callback !== "null") {
-                myBrowser.cookies.remove(details, callback);
-            }
-            else {
-                myBrowser.cookies.remove(details);
-            }
-        }, "cookies.remove");
-    }
-    set(details, callback) {
-        bridgeLog.DoActionAndLog(() => {
-            if (typeof callback !== "undefined" && typeof callback !== "null") {
-                myBrowser.cookies.set(details, callback);
-            }
-            else {
-                myBrowser.cookies.set(details);
-            }
-        }, "cookies.set");
-    }
-}
-class EdgeChromeCookiesBridge extends EdgeCookiesBridge {
-    get onChanged() { bridgeLog.LogUnavailbleApi("cookies.onChanged"); return bridgeHelper.fakeEvent; }
-}
 class EdgeExtensionBridge {
     getBackgroundPage() {
         return bridgeLog.DoActionAndLog(() => {
@@ -827,7 +792,6 @@ class EdgeBackgroundBridge {
         this.app = new EdgeChromeAppBridge();
         this.browserAction = typeof browser.browserAction !== "undefined" ? new EdgeChromeBrowserActionBridge() : undefined;
         this.contextMenus = typeof browser.contextMenus !== "undefined" ? new EdgeContextMenusBridge() : undefined;
-        this.cookies = typeof browser.cookies !== "undefined" ? new EdgeChromeCookiesBridge() : undefined;
         this.extension = typeof browser.extension !== "undefined" ? new EdgeChromeExtensionBridge() : undefined;
         this.history = typeof browser.history !== "undefined" ? new EdgeHistoryBridge() : undefined;
         this.i18n = typeof browser.i18n !== "undefined" ? new EdgeI18nBridge() : undefined;

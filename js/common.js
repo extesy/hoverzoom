@@ -20,6 +20,8 @@ var factorySettings = {
     picturesOpacity : 1,
     showWhileLoading : true,
     mouseUnderlap : true,
+    hideMouseCursor : false,
+    hideMouseCursorDelay : 500,
     filterNSFW : false,
     enableGalleries : true,
     ambilightEnabled : false,
@@ -28,7 +30,8 @@ var factorySettings = {
     disabledPlugins : [],
     centerImages : false,
     frameBackgroundColor: "#ffffff",
-    displayImageLoader: true,
+    frameThickness: 4,
+    displayImageLoader: false,
     enlargementThresholdEnabled : true,
     enlargementThreshold : 2,
     displayedSizeThresholdEnabled : true,
@@ -36,17 +39,30 @@ var factorySettings = {
     zoomedSizeThresholdEnabled : true,
     zoomedSizeThreshold : 100,
     downloadFolder : '',
+    addDownloadOrigin : false,
+    addDownloadSize : false,
+    addDownloadDuration : false,
     useSeparateTabOrWindowForUnloadableUrlsEnabled: false,
     useSeparateTabOrWindowForUnloadableUrls: 'window',
     captionLocation : 'below',
+    detailsLocation : 'none',
+    fontSize : 11,
+    fontOutline : false,
     actionKey : 0,
+    toggleKey : 69,
     fullZoomKey : 90,
+    copyImageKey: 67,
+    copyImageUrlKey: 85,
     hideKey : 88,
     openImageInWindowKey : 87,
     openImageInTabKey : 84,
+    lockImageKey : 76,
     saveImageKey : 83,
     prevImgKey : 37,
-    nextImgKey : 39
+    nextImgKey : 39,
+    flipImageKey : 70,
+    closeKey : 27,
+    debug : false
 }
 
 // Load options from factory settings (= as if extension has just been installed from webstore)
@@ -84,6 +100,8 @@ function loadOptions() {
     options.picturesOpacity = options.hasOwnProperty('picturesOpacity') ? options.picturesOpacity : factorySettings.picturesOpacity;
     options.showWhileLoading = options.hasOwnProperty('showWhileLoading') ? options.showWhileLoading : factorySettings.showWhileLoading;
     options.mouseUnderlap = options.hasOwnProperty('mouseUnderlap') ? options.mouseUnderlap : factorySettings.mouseUnderlap;
+    options.hideMouseCursor = options.hasOwnProperty('hideMouseCursor') ? options.hideMouseCursor : factorySettings.hideMouseCursor;
+    options.hideMouseCursorDelay = options.hasOwnProperty('hideMouseCursorDelay') ? options.hideMouseCursorDelay : factorySettings.hideMouseCursorDelay;
     options.filterNSFW = options.hasOwnProperty('filterNSFW') ? options.filterNSFW : factorySettings.filterNSFW;
     options.enableGalleries = options.hasOwnProperty('enableGalleries') ? options.enableGalleries : factorySettings.enableGalleries;
     options.ambilightEnabled = options.hasOwnProperty('ambilightEnabled') ? options.ambilightEnabled : factorySettings.ambilightEnabled;
@@ -92,6 +110,7 @@ function loadOptions() {
     options.disabledPlugins = options.hasOwnProperty('disabledPlugins') ? options.disabledPlugins : factorySettings.disabledPlugins;
     options.centerImages = options.hasOwnProperty('centerImages') ? options.centerImages : factorySettings.centerImages;
     options.frameBackgroundColor = options.hasOwnProperty('frameBackgroundColor') ? options.frameBackgroundColor : factorySettings.frameBackgroundColor;
+    options.frameThickness = options.hasOwnProperty('frameThickness') ? options.frameThickness : factorySettings.frameThickness;
     options.displayImageLoader = options.hasOwnProperty('displayImageLoader') ? options.displayImageLoader : factorySettings.displayImageLoader;
     options.enlargementThresholdEnabled = options.hasOwnProperty('enlargementThresholdEnabled') ? options.enlargementThresholdEnabled : factorySettings.enlargementThresholdEnabled;
     options.enlargementThreshold = options.hasOwnProperty('enlargementThreshold') ? options.enlargementThreshold : factorySettings.enlargementThreshold;
@@ -100,6 +119,9 @@ function loadOptions() {
     options.zoomedSizeThresholdEnabled = options.hasOwnProperty('zoomedSizeThresholdEnabled') ? options.zoomedSizeThresholdEnabled : factorySettings.zoomedSizeThresholdEnabled;
     options.zoomedSizeThreshold = options.hasOwnProperty('zoomedSizeThreshold') ? options.zoomedSizeThreshold : factorySettings.zoomedSizeThreshold;
     options.downloadFolder = options.hasOwnProperty('downloadFolder') ? options.downloadFolder : factorySettings.downloadFolder;
+    options.addDownloadOrigin = options.hasOwnProperty('addDownloadOrigin') ? options.addDownloadOrigin : factorySettings.addDownloadOrigin;
+    options.addDownloadSize = options.hasOwnProperty('addDownloadSize') ? options.addDownloadSize : factorySettings.addDownloadSize;
+    options.addDownloadDuration = options.hasOwnProperty('addDownloadDuration') ? options.addDownloadDuration : factorySettings.addDownloadDuration;
     options.useSeparateTabOrWindowForUnloadableUrlsEnabled = options.hasOwnProperty('useSeparateTabOrWindowForUnloadableUrlsEnabled') ? options.useSeparateTabOrWindowForUnloadableUrlsEnabled : factorySettings.useSeparateTabOrWindowForUnloadableUrlsEnabled;
     options.useSeparateTabOrWindowForUnloadableUrls = options.hasOwnProperty('useSeparateTabOrWindowForUnloadableUrls') ? options.useSeparateTabOrWindowForUnloadableUrls : factorySettings.useSeparateTabOrWindowForUnloadableUrls;
 
@@ -107,15 +129,28 @@ function loadOptions() {
     var showCaptions = options.hasOwnProperty('showCaptions') ? options.showCaptions : true;
     options.captionLocation = options.hasOwnProperty('captionLocation') ? options.captionLocation : (showCaptions ? factorySettings.captionLocation : 'none');
 
+    options.detailsLocation = options.hasOwnProperty('detailsLocation') ? options.detailsLocation : factorySettings.detailsLocation;
+    options.fontSize = options.hasOwnProperty('fontSize') ? options.fontSize : factorySettings.fontSize;
+    options.fontOutline = options.hasOwnProperty('fontOutline') ? options.fontOutline : factorySettings.fontOutline;
+
     // Action keys
     options.actionKey = options.hasOwnProperty('actionKey') ? options.actionKey : factorySettings.actionKey;
+    options.toggleKey = options.hasOwnProperty('toggleKey') ? options.toggleKey : factorySettings.toggleKey;
     options.fullZoomKey = options.hasOwnProperty('fullZoomKey') ? options.fullZoomKey : factorySettings.fullZoomKey;
+    options.copyImageKey = options.hasOwnProperty('copyImageKey') ? options.copyImageKey : factorySettings.copyImageKey;
+    options.copyImageUrlKey = options.hasOwnProperty('copyImageUrlKey') ? options.copyImageUrlKey : factorySettings.copyImageUrlKey;
     options.hideKey = options.hasOwnProperty('hideKey') ? options.hideKey : factorySettings.hideKey;
     options.openImageInWindowKey = options.hasOwnProperty('openImageInWindowKey') ? options.openImageInWindowKey : factorySettings.openImageInWindowKey;
     options.openImageInTabKey = options.hasOwnProperty('openImageInTabKey') ? options.openImageInTabKey : factorySettings.openImageInTabKey;
+    options.lockImageKey = options.hasOwnProperty('lockImageKey') ? options.lockImageKey : factorySettings.lockImageKey;
     options.saveImageKey = options.hasOwnProperty('saveImageKey') ? options.saveImageKey : factorySettings.saveImageKey;
     options.prevImgKey = options.hasOwnProperty('prevImgKey') ? options.prevImgKey : factorySettings.prevImgKey;
     options.nextImgKey = options.hasOwnProperty('nextImgKey') ? options.nextImgKey : factorySettings.nextImgKey;
+    options.flipImageKey = options.hasOwnProperty('flipImageKey') ? options.flipImageKey : factorySettings.flipImageKey;
+    options.closeKey = options.hasOwnProperty('closeKey') ? options.closeKey : factorySettings.closeKey;
+
+    // debug
+    options.debug = options.hasOwnProperty('debug') ? options.debug : factorySettings.debug;
 
     localStorage.options = JSON.stringify(options);
 
@@ -141,23 +176,19 @@ function sendOptions(options) {
     chrome.runtime.sendMessage(request);
 }
 
-// Return true is the url is part of an excluded site
-function isExcludedSite(url) {
-    var excluded = !options.whiteListMode;
-    var siteAddress = url.substr(url.indexOf('://') + 3);
-    if (siteAddress.substr(0, 4) == 'www.') {
-        siteAddress = siteAddress.substr(4);
-    }
-    for (var i = 0; i < options.excludedSites.length; i++) {
-        var es = options.excludedSites[i];
-        if (es.substr(0, 4) == 'www.') {
-            es = es.substr(4);
-        }
-        if (es && es.length <= siteAddress.length) {
-            if (siteAddress.substr(0, es.length) == es) {
-                return excluded;
-            }
-        }
+// Return true if the url is part of an excluded site
+function isExcludedSite(link) {
+    let linkHostname = new URL(link)['hostname'];
+    let excluded = !options.whiteListMode;
+    for (let i = 0; i < options.excludedSites.length; i++) {
+   
+        // check if excluded site is included in link hostname
+        // e.g:
+        // link hostname = www.tiktok.com
+        // excluded site = tiktok
+        // => link excluded
+        let es = options.excludedSites[i];
+        if (linkHostname.indexOf(es) != -1) return excluded;
     }
     return !excluded;
 }

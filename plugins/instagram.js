@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Instagram',
-    version:'0.3',
+    version:'0.4',
     prepareImgLinks:function (callback) {
         var res = [];
         var sharedData = null;
@@ -239,15 +239,14 @@ hoverZoomPlugins.push({
                     }
                 } else {
                     data = JSON.parse(dataFromSessionStorage);
-                    fullsizeUrl = (data.display_url ? data.display_url : data.graphql.shortcode_media.display_url);
+                    fullsizeUrl = (data.display_url ? data.display_url : (data.graphql && data.graphql.shortcode_media ? data.graphql.shortcode_media.display_url : ''));
                     cLog('photo fullsizeUrl (from sessionStorage):' + fullsizeUrl);
                 }
 
                 if (fullsizeUrl != undefined) {
                     if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
                     if (link.data().hoverZoomSrc.indexOf(fullsizeUrl) == -1) {
-                        link.data().hoverZoomSrc.push(fullsizeUrl);
-                        link.data().hoverZoomSrc.reverse();
+                        link.data().hoverZoomSrc.unshift(fullsizeUrl);
                     }
                     link.addClass('hoverZoomLink');
                     callback(link);
@@ -270,14 +269,13 @@ hoverZoomPlugins.push({
                         // store whole response in sessionStorage
                         sessionStorage.setItem(shortcode, response);
 
-                        fullsizeUrl = data.graphql.shortcode_media.display_url;
+                        if (data.graphql && data.graphql.shortcode_media) fullsizeUrl = data.graphql.shortcode_media.display_url;
                         cLog('photo fullsizeUrl (from API call):' + fullsizeUrl);
 
                         if (fullsizeUrl != undefined) {
                             if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
                             if (link.data().hoverZoomSrc.indexOf(fullsizeUrl) == -1) {
-                                link.data().hoverZoomSrc.push(fullsizeUrl);
-                                link.data().hoverZoomSrc.reverse();
+                                link.data().hoverZoomSrc.unshift(fullsizeUrl);
                             }
                             link.addClass('hoverZoomLink');
                             callback(link);

@@ -1,50 +1,55 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../css/gumby.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <style type="text/css">
+        /* max size allowed for default popup: 800w x 600h */
         body {
-            width: 400px;
+            height: 600px;
         }
     </style>
     <script src="../js/libs/modernizr-2.7.1.js"></script>
 </head>
 <body>
-    <div class="pretty container">
-        <div class="row">
-            <form>
-                <fieldset>
-                    <legend data-i18n="extName"></legend>
-                    <ul>
-                        <li class="field">
-                            <label class="checkbox" for="chkExtensionDisabled">
-                                <input type="checkbox" id="chkExtensionDisabled"><span></span>
-                                <div id="lblDisable" style="display:inline" data-i18n="popDisableForAllSites"></div>
-                            </label>
-                        </li>
-                        <li class="field">
-                            <label class="checkbox" for="chkExcludeSite">
-                                <input type="checkbox" id="chkExcludeSite"><span></span>
-                                <div id="lblToggle" style="display:inline" data-i18n="popAllowPerSiteToggle"></div>
-                            </label>
-                        </li>
-                    </ul>
-                    <p><a href="#" id="aPreload" style="display: none" data-i18n="popPreloadImages"></a></p>
-                    <p id="lblPreloading" style="display: none"><span id="spanPreloading" data-i18n="popPreloadingImages"></span> <progress id="prgPreloading"></progress></p>
-                </fieldset>
-            </form>
+    <div class="pretty container popup noscrollbars">
+        <div class="header">
+            <div><img src="../images/icon48.png"></div>
+            <h5 data-i18n="optTitle"></h5>
         </div>
-        <div id="footer" class="row">
-            <div class="twelve columns text-right">
-                <a id="aMoreOptions" href="options.html" target="_blank" data-i18n="popMoreOptions"></a>
-            </div>
+        <div class="field">
+            <label class="checkbox" for="chkExcludeSite">
+                <input type="checkbox" id="chkExcludeSite"><span></span>
+                <div style="display:inline-flex">
+                    <div id="lblToggle"></div><div>&nbsp</div><div id="lblSite"></div>
+                </div>
+            </label>
+        </div>
+        <div>
+            <section>
+                <div class="tab-content active">
+                    <table id="tableActionKeys"></table>
+                </div>
+            </section>
+        </div>
+        <div class="buttons">
+            <div class="small success btn icon-left entypo icon-floppy"><a href="#" id="btnSave" data-i18n="optButtonSave"></a></div>
+            <div class="small warning btn icon-left entypo icon-cancel"><a href="#" id="btnCancel" data-i18n="optButtonCancel"></a></div>
+            <div class="small info btn icon-left entypo icon-arrows-ccw"><a href="#" id="btnReset" data-i18n="optButtonReset"></a></div>
+        </div>
+        <div id="messages" class="row">
+            <div id="msgtxt" class="alert" style="opacity:0">placeholder</div>
+        </div>
+        <div class="footer">
+            <a id="aMoreOptions" href="options.html" target="_blank" data-i18n="popMoreOptions"></a>
         </div>
     </div>
     <script src="../js/libs/backgroundScriptsAPIBridge.js"></script>
     <script src="../js/libs/jquery-3.2.1.js"></script>
     <script src="../js/libs/gumby.js"></script>
+    <script src="../js/libs/spectrum.js"></script>
+    <script src="../js/tools.js"></script>
     <script src="../js/plugins.js"></script>
     <script src="../js/common.js"></script>
     <script src="../js/popup.js"></script>

@@ -11,16 +11,12 @@
         "message": "모든 즐겨찾기 사이트(페이스북, 아마존 등) 의 이미지/비디오를 확대해서 보여줍니다. 확대하려는 이미지 위에 마우스를 올려 놓으세요.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
-    "extUpdated": {
-        "message": "호버 줌+ 가 업데이트 되었습니다.",
-        "description": "Extension update notification"
-    },
     "popDisableForAllSites": {
         "message": "모든 사이트에서 사용안함",
         "description": "[popup] Disable the extension"
     },
     "popAllowPerSiteToggle": {
-        "message": "Allow per-site extension configuration",
+        "message": "사이트별 확장 프로그램 허용",
         "description": "[popup] Allow per-site extension configuration"
     },
     "popDisableForSite": {
@@ -40,19 +36,27 @@
         "description": "[popup] Preloading zoomed images"
     },
     "popMoreOptions": {
-        "message": "옵션 더 보기",
+        "message": "설정 더보기",
         "description": "[popup] More options"
     },
     "optTitle": {
-        "message": "호버 줌+ 옵션",
+        "message": "호버 줌+ 설정",
         "description": "[options] Page title"
+    },
+    "optButtonDisableAllPlugins": {
+        "message": "모두 사용 안 함",
+        "description": "[options] disable all plugins button label"
+    },
+    "optButtonEnableAllPlugins": {
+        "message": "모두 사용",
+        "description": "[options] enable all plugins button label"
     },
     "optButtonSave": {
         "message": "저장",
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
-        "message": "Cancel",
+        "message": "취소",
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
@@ -62,6 +66,14 @@
     "optSaved": {
         "message": "저장 완료. 일부 설정은 재시작이 필요합니다.",
         "description": "[options] Notification after saving options"
+    },
+    "optCancel": {
+        "message": "변경 사항을 적용하지 않았습니다.",
+        "description": "[options] Notification after cancelling modification(s) to options"
+    },
+    "optReset": {
+        "message": "설정이 초기 상태로 초기화됩니다. 저장하여 적용하십시오.",
+        "description": "[options] Notification after resetting options to factory settings"
     },
     "optPageGeneral": {
         "message": "기본",
@@ -111,13 +123,49 @@
         "message": "비활성화",
         "description": "[options] Caption location option to disable captions"
     },
+    "optDetailsLocation": {
+        "message": "상세 정보 위치:",
+        "description": "[options] Adjust the position of details"
+    },
+    "optDetailsLocationTooltip": {
+        "message": "(크기, 형식 등) 상세 정보를 해당 이미지의 위/아래에 표시, 혹은 삭제",
+        "description": "[options] Tooltip for adjusting the position of details"
+    },
+    "optDetailsLocationAbove": {
+        "message": "위",
+        "description": "[options] Details location option to put details above the image"
+    },
+    "optDetailsLocationBelow": {
+        "message": "아래",
+        "description": "[options] Details location option to put details below the image"
+    },
+    "optDetailsLocationNone": {
+        "message": "사용 안 함",
+        "description": "[options] Details location option to disable details"
+    },
+    "optFontOutline": {
+        "message": "글꼴 외곽선",
+        "description": "[options] Outline option"
+    },
+    "optFontOutlineTooltip": {
+        "message": "활성화 시 흰 글꼴에 얇고 검은 테두리를 가진 글씨로 자막과 상세 정보를 표시",
+        "description": "[options] Tooltip for outline option"
+    },
     "optMouseUnderlap": {
         "message": "마우스 커서 아래의 확대 이미지를 확장",
         "description": "[options] Extend zoomed images below the mouse cursor option"
     },
     "optMouseUnderlapTooltip": {
-        "message": "If unchecked, zoomed images will be resized dynamically",
+        "message": "선택하지 않은 경우 확대한 사진의 크기가 동적으로 조정됨",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
+    },
+    "optHideMouseCursor": {
+        "message": "마우스 커서 숨김 시간:",
+        "description": "[options] Hide mouse cursor option"
+    },
+    "optHideMouseCursorTooltip": {
+        "message": "특정 시간 후 마우스 커서를 숨깁니다",
+        "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optPageActionEnabled": {
         "message": "주소창의 아이콘 보기",
@@ -128,11 +176,11 @@
         "description": "[options] Tooltip for show icon in address bar option"
     },
     "optShowWhileLoading": {
-        "message": "로딩 중 확대 된 사진 보기",
+        "message": "로딩 중 확대된 사진 보기",
         "description": "[options] Show zoomed pictures while loading option"
     },
     "optShowWhileLoadingTooltip": {
-        "message": "이미지 로드가 완료되기 전에 확대 된 이미지가 보여집니다.",
+        "message": "이미지 로드가 완료되기 전에 확대된 이미지가 보여집니다.",
         "description": "[options] Tooltip for show zoomed pictures while loading option"
     },
     "optShowHighRes": {
@@ -152,11 +200,11 @@
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
     "optDisableMouseWheelForVideo": {
-        "message": "Don't use mousewheel to navigate within video (action keys will still work)",
+        "message": "동영상 탐색 시 마우스 휠 사용 안 함 (활성화 키는 그대로 동작)",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optDisableMouseWheelForVideoTooltip": {
-        "message": "Scroll through albums but don't jump forward/backward in videos",
+        "message": "사진 전환 기능은 켜고 동영상 내 이동 기능은 끄기",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
@@ -180,11 +228,11 @@
         "description": "[options] Tooltip for changing video position option"
     },
     "optMuteVideos": {
-        "message": "확대 된 동영상 음소거",
+        "message": "확대된 동영상 음소거",
         "description": "[options] Mute zoomed videos option"
     },
     "optMuteVideosTooltip": {
-        "message": "확대 된 동영상의 소리 끄기",
+        "message": "확대된 동영상의 소리 끄기",
         "description": "[options] Tooltip for mute zoomed videos option"
     },
     "optVideoTimestamp": {
@@ -192,7 +240,7 @@
         "description": "[options] Enable timestamp / video length on videos"
     },
     "optVideoTimestampTooltip": {
-        "message": "Enable timestamp / video length on videos",
+        "message": "타임스탬프 / 동영상 길이 표시",
         "description": "[options] Tooltip for video length countdown on videos"
     },
     "optVideoVolume": {
@@ -212,19 +260,19 @@
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Create a subtle glow effect similar to Philips Ambilight technology",
+        "message": "필립스 주변광 기술과 유사한 효과 생성",
         "description": "[options] Tooltip for enable ambient light behind images option"
     },
     "optAmbilightHaloSize": {
-        "message": "Size of halo :",
+        "message": "주변광 크기:",
         "description": "[options] Size of halo option"
     },
     "optAmbilightHaloSizeUnitName": {
-        "message": "pixels",
-        "description": "[options] Unit name (pixel) for halo size"
+        "message": "%",
+        "description": "[options] Unit name (percentage) for halo size"
     },
     "optAmbilightHaloSizeTooltip": {
-        "message": "Size of halo around zoomed image (0% : no halo)",
+        "message": "확대한 사진 주변의 주변광 크기 (0%: 주변광 없음)",
         "description": "[options] Tooltip for size of halo"
     },
     "optAmbilightBackgroundOpacity": {
@@ -236,32 +284,56 @@
         "description": "[options] Unit name (percentage) for background opacity"
     },
     "optAmbilightBackgroundOpacityTooltip": {
-        "message": "0% : transparent, 100% : black",
+        "message": "0%: 투명, 100%: 검정",
         "description": "[options] Tooltip for background opacity"
     },
     "optCenterImages": {
-        "message": "Center images",
+        "message": "사진 가운데 배치",
         "description": "[options] Center images in the middle of the page option"
     },
     "optCenterImagesTooltip": {
-        "message": "Center images as opposed to having them follow the cursor",
+        "message": "사진이 커서를 따라 이동하도록 하는 대신 중앙에 배치",
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optFrameBackgroundColor": {
-        "message": "Frame background color:",
+        "message": "액자 배경색:",
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
-        "message": "Background color for the frame the image appears in",
+        "message": "사진이 뜨는 액자의 배경색",
         "description": "[options] Tooltip for frame background color option"
     },
     "optFrameBackgroundColorChooseText": {
-        "message": "Select",
+        "message": "선택",
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
-        "message": "Cancel",
+        "message": "취소",
         "description": "[options] Frame background color button - Cancel"
+    },
+    "optFrameThickness": {
+        "message": "외곽선 두께:",
+        "description": "[options] Frame thickness option"
+    },
+    "optFrameThicknessTooltip": {
+        "message": "사진이 뜨는 액자 테두리의 두께 (0으로 설정하면 테두리 없음)",
+        "description": "[options] Tooltip for frame thickness option"
+    },
+    "optFrameThicknessUnitName": {
+        "message": "픽셀",
+        "description": "[options] Unit name (pixel) for frame thickness"
+    },
+    "optFontSize": {
+        "message": "글꼴 크기:",
+        "description": "[options] Font size option"
+    },
+    "optFontSizeTooltip": {
+        "message": "자막과 상세 정보 표시에 쓰이는 글씨의 크기",
+        "description": "[options] Tooltip for font size option"
+    },
+    "optFontSizeUnitName": {
+        "message": "픽셀",
+        "description": "[options] Unit name (pixel) for font size"
     },
     "optSectionDelays": {
         "message": "딜레이",
@@ -276,7 +348,7 @@
         "description": "[options] Delay before displaying a video option"
     },
     "optFadeDuration": {
-        "message": "Fading animation duration:",
+        "message": "페이드 애니메이션 길이:",
         "description": "[options] Fading animation duration option"
     },
     "optDurationUnitName": {
@@ -288,7 +360,7 @@
         "description": "[options] Page title for plugin options"
     },
     "optPlugins": {
-        "message": "Enable/disable specific plugins",
+        "message": "특정 플러그인 켜기/끄기",
         "description": "[options] Section which contains checkboxes for disabling plugins"
     },
     "optPageSites": {
@@ -296,27 +368,27 @@
         "description": "[options] Page title for site options"
     },
     "optSectionSitesEnabled": {
-        "message": "URLs for which Hover Zoom+ must be enabled",
+        "message": "호버 줌+가 켜져야만 하는 페이지의 URL",
         "description": "[options] Page section for enabling extension for specific sites"
     },
     "optSectionSitesDisabled": {
-        "message": "URLs for which Hover Zoom+ must be disabled",
+        "message": "호버 줌+가 꺼져야만 하는 페이지의 URL",
         "description": "[options] Page section for enabling extension for specific sites"
     },
     "optWhitelistMode": {
-        "message": "Whitelist mode",
+        "message": "화이트리스트 모드",
         "description": "[options] Whitelist mode checkbox"
     },
     "optWhitelistModeTooltip": {
-        "message": "Only enable Hover Zoom+ for the sites listed below",
+        "message": "아래 목록의 사이트에서만 호버 줌+가 켜짐",
         "description": "[options] Tooltip for whitelist mode checkbox"
     },
     "optSitePlaceholder": {
-        "message": "Examples: facebook.com, google.com/reader",
+        "message": "예: facebook.com, google.com/reader",
         "description": "[options] Placeholder for a site url input box"
     },
     "optSiteDisclaimer": {
-        "message": "Be aware that domain filters can overlap. Example: if you have filtered \"picasaweb.google.com\" and \"google.com\", removing \"picasaweb.google.com\" will not reactivate Picasa Web Albums, as it will still be excluded by the \"google.com\" filter.",
+        "message": "도메인 필터가 중첩될 수 있다는 것에 유의하세요. 예: 만약 \"picasaweb.google.com\"과 \"google.com\"을 필터링을 통해 제외한 다음, \"picasaweb.google.com\"을 필터링 항목에서 제거해도, 여전히 \"google.com\" 필터에 의하여 Picasa 웹 앨범의 제외가 풀리지 않습니다.",
         "description": "[options] Disclaimer on the sites option page"
     },
     "optButtonAddSite": {
@@ -332,16 +404,8 @@
         "description": "[options] Page title for advanced options"
     },
     "optSectionAdvanced": {
-        "message": "고급 옵션",
+        "message": "고급 설정",
         "description": "[options] Page section for advanced options"
-    },
-    "optUpdateNotifications": {
-        "message": "업데이트 알림 표시",
-        "description": "[options] Show update notifications option"
-    },
-    "optShowLastUpdateNotification": {
-        "message": "(마지막 알림 표시)",
-        "description": "[options] Show last update notification"
     },
     "optAddToHistory": {
         "message": "확인한 사진을 브라우저 히스토리에 추가",
@@ -352,7 +416,7 @@
         "description": "[options] Exclude NSFW images (Reddit only) option"
     },
     "optAlwaysPreload": {
-        "message": "확대 된 이미지 자동으로 미리 읽기",
+        "message": "확대된 이미지 자동으로 미리 읽기",
         "description": "[options] Automatically preload zoomed images option"
     },
     "optEnableGalleries": {
@@ -360,43 +424,95 @@
         "description": "[options] Enable albums support option"
     },
     "optPicturesOpacity": {
-        "message": "확대 된 이미지의 투명도:",
+        "message": "확대된 이미지의 투명도:",
         "description": "[options] Zoomed pictures opacity option"
     },
     "optOpacityUnitName": {
         "message": "퍼센트",
         "description": "[options] Unit name (percentage) for opacity option"
     },
+    "optDisplayImageLoaderTooltip": {
+        "message": "사진을 불러오는 동안 로딩 아이콘을 표시합니다(초록: 로딩, 빨강: 오류). 빨간색 로딩 아이콘을 띄울지는 선택할 수 있습니다.",
+        "description": "[options] Tooltip for display image loader option"
+    },
+    "optDisplayImageLoader": {
+        "message": "사진 불러오기에 실패할 시 붉은 로딩 아이콘 표시",
+        "description": "[options] Display image loader option"
+    },
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
-        "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
+        "message": "HTTP 사진을 불러오는 것을 막는 구글 이미지 등의 HTTPS 사이트에서 유용합니다",
         "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrls": {
-        "message": "Try to open unloadable urls in separate:",
+        "message": "불러올 수 없는 URL을 별도로 열도록 시도:",
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
-        "message": "Tab",
+        "message": "탭",
         "description": "[options] Use separate tab for unloadable urls option"
     },
     "optUseSeparateWindowForUnloadableUrls": {
-        "message": "Window",
+        "message": "창",
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
-        "message": "Subfolder(s) will be created if needed",
+        "message": "필요한 경우 하위 폴더가 생성될 수 있음",
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
-        "message": "Example: animals/cats",
+        "message": "예시: 동물/고양이",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images to folder: Downloads/",
+        "message": "폴더에 사진 및 동영상 저장하기: Downloads/",
         "description": "[options] Download folder option"
     },
+    "optRenameDownloadsTooltip": {
+        "message": "파일을 보다 쉽게 관리할 수 있도록 출처, 크기, 기간을 파일 이름 앞에 붙입니다",
+        "description": "[options] Tooltip for rename downloads option"
+    },
+    "optRenameDownloads": {
+        "message": "저장한 사진과 동영상의 파일 이름에 문자 추가:",
+        "description": "[options] Rename downloads option"
+    },
+    "optAddDownloadOriginTooltip": {
+        "message": "출처 추가 (예: www.deviantart.com)",
+        "description": "[options] Tooltip for add download origin option"
+    },
+    "optAddDownloadOrigin": {
+        "message": "출처",
+        "description": "[options] Add download origin option"
+    },
+    "optAddDownloadSizeTooltip": {
+        "message": "픽셀 단위의 크기(너비x높이) 추가 (예: 1024x750)",
+        "description": "[options] Tooltip for add download size option"
+    },
+    "optAddDownloadSize": {
+        "message": "크기",
+        "description": "[options] Add download size option"
+    },
+    "optAddDownloadDurationTooltip": {
+        "message": "동영상 길이(시간 분 초) 추가 (예: 00 16 35)",
+        "description": "[options] Tooltip for add download duration option"
+    },
+    "optAddDownloadDuration": {
+        "message": "길이",
+        "description": "[options] Add download duration option"
+    },
+    "optSectionTroubleshooting": {
+        "message": "문제 해결",
+        "description": "[options] Page section for troubleshooting"
+    },
+    "optEnableDebugTooltip": {
+        "message": "브라우저 콘솔에 디버그 메시지를 표시합니다 (콘솔 열기: F12)",
+        "description": "[options] Tooltip for enable debug option"
+    },
+    "optEnableDebug": {
+        "message": "디버그 활성화",
+        "description": "[options] Enable debug option"
+    },
     "optPixelsUnitName": {
-        "message": "pixels",
+        "message": "픽셀",
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
@@ -404,15 +520,31 @@
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "If a key is set, Hover Zoom+ will be active only when this key is held down.",
+        "message": "키가 설정되면 Hover Zoom+는 해당 키가 눌렸을 때만 활성화됩니다.",
+        "description": "[options] Action key description"
+    },
+    "optToggleKeyTitle": {
+        "message": "호버 줌+ 토글",
+        "description": "[options] Action key title"
+    },
+    "optToggleKeyDescription": {
+        "message": "호버 줌+ 활성화/비활성화",
+        "description": "[options] Action key description"
+    },
+    "optCloseKeyTitle": {
+        "message": "이미지 닫기",
+        "description": "[options] Action key title"
+    },
+    "optCloseKeyDescription": {
+        "message": "이 키를 누르면 확대한 이미지나 동영상을 닫습니다.",
         "description": "[options] Action key description"
     },
     "optHideKeyTitle": {
-        "message": "호버 줌+ 비활성화",
+        "message": "이미지 숨김",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Holding this key down hides the zoomed picture. Use it when the picture hides elements that are also displayed on mouseover.",
+        "message": "이 키를 누르고 있으면 확대한 사진이나 동영상이 숨겨집니다. 사진이 다른 마우스 오버 요소를 가리는 경우 사용하십시오.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -420,7 +552,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Press this key to open the image you are currently viewing in a new window. Press this key again to close the window.",
+        "message": "이 키를 누르면 현재 보는 사진이나 동영상을 새 창에서 엽니다. 키를 다시 누르면 창이 닫힙니다.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
@@ -428,7 +560,15 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Press this key to open the image you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
+        "message": "이 키를 누르면 현재 보는 사진이나 동영상을 새 탭에서 엽니다. 키를 다시 누르면 탭이 닫힙니다. Shift 키를 누른 채로 이 키를 누르면 백그라운드 탭으로 사진을 엽니다.",
+        "description": "[options] Action key description"
+    },
+    "optLockImageKeyTitle": {
+        "message": "화면에 사진 잠금",
+        "description": "[options] Action key title"
+    },
+    "optLockImageKeyDescription": {
+        "message": "이 키를 누르면 사진이나 동영상을 페이지의 중앙에 고정하여, 확대하고 이동할 수 있도록 해 줍니다. 닫기 키를 누르거나 사진 바깥을 클릭하여 고정을 해제할 수 있습니다.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -436,7 +576,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Press this key to save the image you are currently viewing.",
+        "message": "이 키를 누르면 현재 보고 있는 사진이나 동영상을 저장합니다.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
@@ -444,7 +584,23 @@
         "description": "[options] Action key title"
     },
     "optFullZoomKeyDescription": {
-        "message": "When this key is held down, the picture is displayed using all available space. Useful for high resolution pictures only.",
+        "message": "이 키를 누르고 있으면, 사진이 최대한 공간을 차지하며 표시됩니다. 고화질 사진에만 유용합니다.",
+        "description": "[options] Action key description"
+    },
+    "optCopyImageKeyTitle": {
+        "message": "클립보드로 사진 복사하기",
+        "description": "[options] Action key title"
+    },
+    "optCopyImageKeyDescription": {
+        "message": "이 키를 누르면 사진을 클립보드로 복사합니다.",
+        "description": "[options] Action key description"
+    },
+    "optCopyImageUrlKeyTitle": {
+        "message": "클립보드로 사진 URL 복사하기",
+        "description": "[options] Action key title"
+    },
+    "optCopyImageUrlKeyDescription": {
+        "message": "이 키를 누르면 사진이나 동영상의 URL을 클립보드로 복사합니다.",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
@@ -452,7 +608,7 @@
         "description": "[options] Action key title"
     },
     "optPrevImgKeyDescription": {
-        "message": "Press this key to view the previous image in a gallery.",
+        "message": "이 키를 누르면 갤러리의 이전 사진을 봅니다.",
         "description": "[options] Action key description"
     },
     "optNextImgKeyTitle": {
@@ -460,19 +616,35 @@
         "description": "[options] Action key title"
     },
     "optNextImgKeyDescription": {
-        "message": "Press this key to view the next image in a gallery.",
+        "message": "이 키를 누르면 갤러리의 다음 사진을 봅니다.",
+        "description": "[options] Action key description"
+    },
+    "optFlipImageKeyTitle": {
+        "message": "이미지 대칭",
+        "description": "[options] Action key title"
+    },
+    "optFlipImageKeyDescription": {
+        "message": "이 키를 누르면 사진이 가로, 세로 교대로 뒤집힙니다. 반전된 사진이나 동영상 속 글씨나 로고를 읽을 때 유용합니다.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
         "message": "소스 코드",
         "description": "[options] Source code link in page footer"
     },
+    "optFooterChangelog": {
+        "message": "변경 내역",
+        "description": "[options] Changelog link in page footer"
+    },
     "optFooterReportIssue": {
         "message": "오류 보고",
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 - © 2014-2020 Oleg Anashkin",
+        "message": "버전 $1 (최근 업데이트: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
+    },
+    "msgClickPageToPlayVideo": {
+        "message": "페이지의 아무 곳이나 클릭한 뒤 다시 마우스를 올리세요",
+        "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }

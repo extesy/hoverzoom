@@ -11,10 +11,6 @@
         "message": "Zumiranje slika/ videa na svim vašim omiljenim stranicama (Facebook, Amazon itd.). Postavite pokazivač iznad slike za povećanje.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
-    "extUpdated": {
-        "message": "Hover Zoom+ je ažuriran",
-        "description": "Extension update notification"
-    },
     "popDisableForAllSites": {
         "message": "Onemogući za sve stranice",
         "description": "[popup] Disable the extension"
@@ -47,12 +43,20 @@
         "message": "Hover Zoom+ Opcije",
         "description": "[options] Page title"
     },
+    "optButtonDisableAllPlugins": {
+        "message": "Disable all",
+        "description": "[options] disable all plugins button label"
+    },
+    "optButtonEnableAllPlugins": {
+        "message": "Enable all",
+        "description": "[options] enable all plugins button label"
+    },
     "optButtonSave": {
         "message": "Spremi",
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
-        "message": "Cancel",
+        "message": "Odustani",
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
@@ -62,6 +66,14 @@
     "optSaved": {
         "message": "Postavke spremljene. Možda ćete morati osvježiti stranicu.",
         "description": "[options] Notification after saving options"
+    },
+    "optCancel": {
+        "message": "Modification(s) cancelled.",
+        "description": "[options] Notification after cancelling modification(s) to options"
+    },
+    "optReset": {
+        "message": "Options reset to factory settings, save to apply.",
+        "description": "[options] Notification after resetting options to factory settings"
     },
     "optPageGeneral": {
         "message": "Općenito",
@@ -111,6 +123,34 @@
         "message": "Nigdje",
         "description": "[options] Caption location option to disable captions"
     },
+    "optDetailsLocation": {
+        "message": "Details position:",
+        "description": "[options] Adjust the position of details"
+    },
+    "optDetailsLocationTooltip": {
+        "message": "View details (size, format...) above/below the image, or not at all",
+        "description": "[options] Tooltip for adjusting the position of details"
+    },
+    "optDetailsLocationAbove": {
+        "message": "Above",
+        "description": "[options] Details location option to put details above the image"
+    },
+    "optDetailsLocationBelow": {
+        "message": "Below",
+        "description": "[options] Details location option to put details below the image"
+    },
+    "optDetailsLocationNone": {
+        "message": "None",
+        "description": "[options] Details location option to disable details"
+    },
+    "optFontOutline": {
+        "message": "Font outline",
+        "description": "[options] Outline option"
+    },
+    "optFontOutlineTooltip": {
+        "message": "If checked: use white font + thin black border for caption & details",
+        "description": "[options] Tooltip for outline option"
+    },
     "optMouseUnderlap": {
         "message": "Povećati zumirane slike ispod pokazivača miša",
         "description": "[options] Extend zoomed images below the mouse cursor option"
@@ -118,6 +158,14 @@
     "optMouseUnderlapTooltip": {
         "message": "Ako nije označeno, zumirane slike se dinamički prilagođavaju",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
+    },
+    "optHideMouseCursor": {
+        "message": "Hide mouse cursor after:",
+        "description": "[options] Hide mouse cursor option"
+    },
+    "optHideMouseCursorTooltip": {
+        "message": "If checked, mouse cursor will be hidden after delay",
+        "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optPageActionEnabled": {
         "message": "Prikaži ikonu u adresnoj traci",
@@ -172,7 +220,7 @@
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
-        "message": "sec",
+        "message": "sek",
         "description": "[options] Unit name (seconds) for changing video position option"
     },
     "optVideoPositionStepTooltip": {
@@ -212,23 +260,23 @@
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Create a subtle glow effect similar to Philips Ambilight technology",
+        "message": "Stvori lagani sjajni efekt sličan Philips Ambilight tehnologiji",
         "description": "[options] Tooltip for enable ambient light behind images option"
     },
     "optAmbilightHaloSize": {
-        "message": "Size of halo :",
+        "message": "Veličina sjajnog efekta:",
         "description": "[options] Size of halo option"
     },
     "optAmbilightHaloSizeUnitName": {
-        "message": "pixels",
-        "description": "[options] Unit name (pixel) for halo size"
+        "message": "%",
+        "description": "[options] Unit name (percentage) for halo size"
     },
     "optAmbilightHaloSizeTooltip": {
-        "message": "Size of halo around zoomed image (0% : no halo)",
+        "message": "Veličina sjajnog efekta oko povećane slike (0%: bez efekta)",
         "description": "[options] Tooltip for size of halo"
     },
     "optAmbilightBackgroundOpacity": {
-        "message": "Background opacity :",
+        "message": "Prozirnost pozadine:",
         "description": "[options] Background opacity option"
     },
     "optAmbilightBackgroundOpacityUnitName": {
@@ -236,7 +284,7 @@
         "description": "[options] Unit name (percentage) for background opacity"
     },
     "optAmbilightBackgroundOpacityTooltip": {
-        "message": "0% : transparent, 100% : black",
+        "message": "0%: prozirno, 100%: crno",
         "description": "[options] Tooltip for background opacity"
     },
     "optCenterImages": {
@@ -248,20 +296,44 @@
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optFrameBackgroundColor": {
-        "message": "Frame background color:",
+        "message": "Boja pozadinskog okvira:",
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
-        "message": "Background color for the frame the image appears in",
+        "message": "Boja pozadine za okvir u kojem se slika pojavi",
         "description": "[options] Tooltip for frame background color option"
     },
     "optFrameBackgroundColorChooseText": {
-        "message": "Select",
+        "message": "Odaberi",
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
-        "message": "Cancel",
+        "message": "Odustani",
         "description": "[options] Frame background color button - Cancel"
+    },
+    "optFrameThickness": {
+        "message": "Frame thickness:",
+        "description": "[options] Frame thickness option"
+    },
+    "optFrameThicknessTooltip": {
+        "message": "Thickness of border for the frame the image appears in (0 : no frame)",
+        "description": "[options] Tooltip for frame thickness option"
+    },
+    "optFrameThicknessUnitName": {
+        "message": "pixels",
+        "description": "[options] Unit name (pixel) for frame thickness"
+    },
+    "optFontSize": {
+        "message": "Font size:",
+        "description": "[options] Font size option"
+    },
+    "optFontSizeTooltip": {
+        "message": "Size of font used for captions & details",
+        "description": "[options] Tooltip for font size option"
+    },
+    "optFontSizeUnitName": {
+        "message": "pixels",
+        "description": "[options] Unit name (pixel) for font size"
     },
     "optSectionDelays": {
         "message": "Odgoda",
@@ -335,14 +407,6 @@
         "message": "Napredne postavke",
         "description": "[options] Page section for advanced options"
     },
-    "optUpdateNotifications": {
-        "message": "Prikaži obavijesti o ažuriranju",
-        "description": "[options] Show update notifications option"
-    },
-    "optShowLastUpdateNotification": {
-        "message": "(prikaži posljednju obavijest)",
-        "description": "[options] Show last update notification"
-    },
     "optAddToHistory": {
         "message": "Dodati pogledane slike u povijest preglednika",
         "description": "[options] Add viewed pictures to the browser's history option"
@@ -367,36 +431,88 @@
         "message": "%",
         "description": "[options] Unit name (percentage) for opacity option"
     },
+    "optDisplayImageLoaderTooltip": {
+        "message": "Prikaži animaciju dok se slika učitava (zeleno:učitavanje, crveno:pogreška). Crvena animacija je opcionalna.",
+        "description": "[options] Tooltip for display image loader option"
+    },
+    "optDisplayImageLoader": {
+        "message": "Prikaži crvenu animaciju kada učitavanje slike nije uspjelo",
+        "description": "[options] Display image loader option"
+    },
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
-        "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
+        "message": "Korisno za HTTPS stranice kao što je Google Slike koje sprječava učitavanje HTTP slika",
         "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrls": {
-        "message": "Try to open unloadable urls in separate:",
+        "message": "Pokušaj otvoriti url koji se ne može učitati u:",
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
-        "message": "Tab",
+        "message": "Kartica",
         "description": "[options] Use separate tab for unloadable urls option"
     },
     "optUseSeparateWindowForUnloadableUrls": {
-        "message": "Window",
+        "message": "Prozor",
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
-        "message": "Subfolder(s) will be created if needed",
+        "message": "Podmape će biti stvorene ako je potrebno",
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
-        "message": "Example: animals/cats",
+        "message": "Primjer: životinje/mačke",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images to folder: Downloads/",
+        "message": "Spremi slike i videozapise u mapu: Preuzimanja/",
         "description": "[options] Download folder option"
     },
+    "optRenameDownloadsTooltip": {
+        "message": "Dodaj kao prefiks u ime preuzimanja izvor, veličinu i/ili trajanje za lakše upravljanje",
+        "description": "[options] Tooltip for rename downloads option"
+    },
+    "optRenameDownloads": {
+        "message": "Preimenuj slike i videozapise dodajući:",
+        "description": "[options] Rename downloads option"
+    },
+    "optAddDownloadOriginTooltip": {
+        "message": "Dodaj izvor (npr. www.deviantart.com)",
+        "description": "[options] Tooltip for add download origin option"
+    },
+    "optAddDownloadOrigin": {
+        "message": "izvor",
+        "description": "[options] Add download origin option"
+    },
+    "optAddDownloadSizeTooltip": {
+        "message": "Dodaj dimenzije (VxŠ) u pikselima (npr. 1024x750)",
+        "description": "[options] Tooltip for add download size option"
+    },
+    "optAddDownloadSize": {
+        "message": "veličina",
+        "description": "[options] Add download size option"
+    },
+    "optAddDownloadDurationTooltip": {
+        "message": "Dodaj trajanje (hh mm ss) videa (npr. 00 16 35)",
+        "description": "[options] Tooltip for add download duration option"
+    },
+    "optAddDownloadDuration": {
+        "message": "trajanje",
+        "description": "[options] Add download duration option"
+    },
+    "optSectionTroubleshooting": {
+        "message": "Troubleshooting",
+        "description": "[options] Page section for troubleshooting"
+    },
+    "optEnableDebugTooltip": {
+        "message": "Display debug messages in browser's console (to open console: press F12)",
+        "description": "[options] Tooltip for enable debug option"
+    },
+    "optEnableDebug": {
+        "message": "Enable debug",
+        "description": "[options] Enable debug option"
+    },
     "optPixelsUnitName": {
-        "message": "pixels",
+        "message": "piksela",
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
@@ -407,12 +523,28 @@
         "message": "Ako je tipka postavljena, Hover Zoom+ će biti aktiviran samo kada je tipka pritisnuta.",
         "description": "[options] Action key description"
     },
+    "optToggleKeyTitle": {
+        "message": "Toggle HoverZoom+",
+        "description": "[options] Action key title"
+    },
+    "optToggleKeyDescription": {
+        "message": "Enable/disable HoverZoom+",
+        "description": "[options] Action key description"
+    },
+    "optCloseKeyTitle": {
+        "message": "Close image",
+        "description": "[options] Action key title"
+    },
+    "optCloseKeyDescription": {
+        "message": "Press this key to close zoomed image or video.",
+        "description": "[options] Action key description"
+    },
     "optHideKeyTitle": {
-        "message": "Onemogućiti Hover Zoom+",
+        "message": "Hide image",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Držite ovu tipku pritisnutu da bi sakrili zumiranu sliku. Koristite kada slika skriva elemente koji se također prikazuju prelaskom miša.",
+        "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -420,7 +552,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Pritisnite ovu tipku da biste otvorili sliku koju trenutno gledate u novom prozoru. Pritisnite ovu tipku ponovo da bi ste zatvorili prozor.",
+        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
@@ -428,7 +560,15 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Pritisnite ovu tipku da biste otvorili sliku koju trenutno gledate u novoj kartici. Pritisnite ovu tipku ponovno da biste zatvorili karticu. Shift+tipka otvara sliku u pozadini.",
+        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
+        "description": "[options] Action key description"
+    },
+    "optLockImageKeyTitle": {
+        "message": "Lock image on screen",
+        "description": "[options] Action key title"
+    },
+    "optLockImageKeyDescription": {
+        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -436,7 +576,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Pritisnite ovu tipku da biste spremili sliku koju trenutno gledate.",
+        "message": "Press this key to save the image or video you are currently viewing.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
@@ -445,6 +585,22 @@
     },
     "optFullZoomKeyDescription": {
         "message": "Kada je ova tipka pritisnuta, slika se prikazuje uz korištenje svog dostupnog prostora. Samo korisno za slike visoke rezolucije.",
+        "description": "[options] Action key description"
+    },
+    "optCopyImageKeyTitle": {
+        "message": "Copy image to clipboard",
+        "description": "[options] Action key title"
+    },
+    "optCopyImageKeyDescription": {
+        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "description": "[options] Action key description"
+    },
+    "optCopyImageUrlKeyTitle": {
+        "message": "Copy image URL to clipboard",
+        "description": "[options] Action key title"
+    },
+    "optCopyImageUrlKeyDescription": {
+        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
@@ -463,16 +619,32 @@
         "message": "Pritisnite ovu tipku da biste pogledali sljedeću sliku u galeriji.",
         "description": "[options] Action key description"
     },
+    "optFlipImageKeyTitle": {
+        "message": "Flip image",
+        "description": "[options] Action key title"
+    },
+    "optFlipImageKeyDescription": {
+        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Izvorni kod",
         "description": "[options] Source code link in page footer"
+    },
+    "optFooterChangelog": {
+        "message": "Changelog",
+        "description": "[options] Changelog link in page footer"
     },
     "optFooterReportIssue": {
         "message": "Prijavi grešku",
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Verzija $1 - © 2014-2016 Oleg Anashkin",
+        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
+    },
+    "msgClickPageToPlayVideo": {
+        "message": "Click anywhere on the page then hover again",
+        "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     }
 }

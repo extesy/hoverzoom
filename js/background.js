@@ -5,20 +5,27 @@ function ajaxRequest(request, callback) {
 
     var xhr = new XMLHttpRequest();
     var response = request.response;
+    var method = request.method;
+    var url = request.url;
     xhr.onreadystatechange = function () {
+
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
-                if (response === 'URL') {
-                    callback(xhr.responseURL);
-                }
-                else {
-                    callback(xhr.responseText);
+                if (method == 'HEAD') {
+                    callback({url:url, headers:xhr.getAllResponseHeaders()});
+                } else {
+                    if (response === 'URL') {
+                        callback(xhr.responseURL);
+                    } else {
+                        callback(xhr.responseText);
+                    }
                 }
             } else {
                 callback(null);
             }
         }
     }
+
     xhr.open(request.method, request.url, true);
     for (var i in request.headers) {
         xhr.setRequestHeader(request.headers[i].header, request.headers[i].value);
@@ -33,21 +40,24 @@ function onMessage(message, sender, callback) {
                 permissions: ['downloads']
             }, function (granted) {
                 if (granted) {
-                    chrome.downloads.download({url: message.url, filename: message.filename});
+                    chrome.downloads.download({url: message.url, filename: message.filename, conflictAction: message.conflictAction, saveAs: false});
                     return true;
                 } else {
                     return false;
                 }
             });
         case 'ajaxGet':
-            ajaxRequest({url:message.url, response:message.response, method:'GET'}, callback);
+            ajaxRequest({url:message.url, response:message.response, method:'GET', headers:message.headers}, callback);
+            return true;
+        case 'ajaxGetHeaders':
+            ajaxRequest({url:message.url, response:message.response, method:'HEAD'}, callback);
             return true;
         case 'ajaxRequest':
             ajaxRequest(message, callback);
             return true;
         case 'showPageAction':
             // Firefox url is located at sender.url, copy sender.url to sender.tab.url
-            if (!sender.tab.url && sender.url) 
+            if (!sender.tab.url && sender.url)
                 sender.tab.url = sender.url
             showPageAction(sender.tab);
             callback();
@@ -131,5 +141,27 @@ function init() {
     // Bind events
     chrome.runtime.onMessage.addListener(onMessage);
 }
+
+// Store HZ+ dates of installation & last update
+chrome.runtime.onInstalled.addListener((details) => {
+
+    const reason = details.reason;
+    let d = new Date();
+    let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+
+    switch (reason) {
+        case 'install':
+            localStorage['HoverZoomInstallation'] = d.toLocaleDateString(undefined, options);
+            break;
+        case 'update':
+            localStorage['HoverZoomLastUpdate'] = d.toLocaleDateString(undefined, options);
+            break;
+        case 'chrome_update':
+        case 'shared_module_update':
+        default:
+            // Other install events within the browser
+            break;
+    }
+})
 
 init();

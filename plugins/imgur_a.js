@@ -1,9 +1,10 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'Imgur',
-    version:'1.2',
+    name:'Imgur_a',
+    version:'1.4',
     prepareImgLinks:function (callback) {
 
+        var name = this.name;
         var res = [];
 
         function createUrls(hash) {
@@ -21,7 +22,14 @@ hoverZoomPlugins.push({
 
         function prepareImgLink() {
             var link = $(this), data = link.data(), href = link.attr('href');
-            if (data.hoverZoomSrc || data.hoverZoomGallerySrc) {
+            
+            // special case for Google Docs
+            if (window.location.host == 'docs.google.com') {
+                data.hoverZoomSrc = [href];
+                data.hoverZoomCaption = href;
+                res.push(link);
+                return;
+            } else if (data.hoverZoomSrc || data.hoverZoomGallerySrc) {
                 return;
             }
 
@@ -29,9 +37,11 @@ hoverZoomPlugins.push({
             if (-1 !== href.indexOf('i.stack.imgur.com')) {
                 data.hoverZoomSrc = [href.replace('http:', window.location.protocol)];
                 res.push(link);
-
                 return;
             }
+
+            // strip query parameters
+            href = href.split("?")[0];
 
             if (options.zoomVideos && (href.substr(-3) == 'gif' || href.substr(-4) == 'gifv')) {
                 data.hoverZoomSrc = [href.replace(/\.gifv?/, '.mp4'), href.replace(/\.gifv?/, '.webm'), href];
@@ -88,7 +98,7 @@ hoverZoomPlugins.push({
                                                 data.hoverZoomGalleryIndex = index;
                                         }
                                     });
-                                    callback($([link]), this.name);
+                                    callback($([link]), name);
                                 }
                             }).fail(function(jqXHR) {
                                 if (jqXHR.status === 429) {
@@ -125,7 +135,7 @@ hoverZoomPlugins.push({
             // extract url from style
             // ex: backgroundImage = url("http://site.net/image.png")
             var backgroundImage = this.style.backgroundImage;
-            if (backgroundImage.indexOf("url") != -1 && backgroundImage.indexOf("imgur") != -1) {
+            if (backgroundImage.indexOf("url") !== -1 && backgroundImage.indexOf("imgur") !== -1) {
                 var reUrl = /.*url\s*\(\s*(.*)\s*\).*/i
                 backgroundImage = backgroundImage.replace(reUrl, '$1');
                 // remove leading & trailing quotes
@@ -134,10 +144,10 @@ hoverZoomPlugins.push({
                 //ex: "//i.imgur.com/N8hBuw7b.jpg"
                 var reThumb = /(.*imgur.*\/.*)b\./i
                 var fullsizeUrl = backgroundImageUrl.replace(reThumb, '$1.').replace('_d.', '.');
-                if (fullsizeUrl != backgroundImageUrl) {
+                if (fullsizeUrl !== backgroundImageUrl) {
                     var link = $(this);
-                    if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
-                    if (link.data().hoverZoomSrc.indexOf(fullsizeUrl) == -1) {
+                    if (link.data().hoverZoomSrc === undefined) { link.data().hoverZoomSrc = [] }
+                    if (link.data().hoverZoomSrc.indexOf(fullsizeUrl) === -1) {
                         link.data().hoverZoomSrc.unshift(fullsizeUrl);
                         res.push(link);
                     }
@@ -146,19 +156,19 @@ hoverZoomPlugins.push({
         });
 
         hoverZoom.urlReplace(res,
-            'img[src]',
+            'img[src*="imgur"]',
             '_d.',
             '.'
         );
 
         hoverZoom.urlReplace(res,
-            'img[src]',
+            'img[src*="imgur"]',
             /\?s=.*/,
             ''
         );
 
         if (res.length) {
-            callback($(res), this.name);
+            callback($(res), name);
         }
     }
 

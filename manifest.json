@@ -1,7 +1,7 @@
 {
     "name": "__MSG_extName__",
     "short_name": "__MSG_extShortName__",
-    "version": "1.0.165",
+    "version": "1.0.190",
     "description": "__MSG_extDescription__",
     "homepage_url": "https://github.com/extesy/hoverzoom/",
     "author": "Oleg Anashkin",
@@ -50,47 +50,67 @@
     ],
     "content_scripts": [
         {
-            "js": [ "js/libs/jquery-3.2.1.js", "js/libs/contentScriptsAPIBridge.js", "js/tools.js", "js/plugins.js", "plugins/default.js", "js/hoverzoom.js"],
+            "js": [
+                "js/libs/jquery-3.2.1.js",
+                "js/libs/contentScriptsAPIBridge.js",
+                "js/tools.js",
+                "js/plugins.js",
+                "plugins/default.js",
+                "js/hoverzoom.js",
+                "js/hls.js"
+            ],
             "matches": ["<all_urls>"],
             "all_frames": true
         },
         {
             "js": [
-                "plugins/imgur_a.js",
-                "plugins/flickr_a.js",
-                "plugins/tumblr_a.js",
+                "plugins/alicdn_a.js",
+                "plugins/aws_a.js",
+                "plugins/bing_a.js",
                 "plugins/blogspot_a.js",
-                "plugins/imageshack_a.js",
-                "plugins/mediawiki_a.js",
-                "plugins/wordpress_a.js",
-                "plugins/vbulletin_a.js",
-                "plugins/photoshop_a.js",
-                "plugins/instagram_a.js",
-                "plugins/deviantart_a.js",
-                "plugins/youtube_a.js",
-                "plugins/gravatar_a.js",
-                "plugins/gallery_a.js",
-                "plugins/ipboard_a.js",
-                "plugins/streamable_a.js",
-                "plugins/vine_a.js",
-                "plugins/twitter_a.js",
+                "plugins/chan_a.js",
                 "plugins/clippituser_a.js",
                 "plugins/cloudapp_a.js",
+                "plugins/cloudfront_a.js",
+                "plugins/cloudinary_a.js",
+                "plugins/deviantart_a.js",
+                "plugins/ebay_a.js",
+                "plugins/facebook_a.js",
+                "plugins/flickr_a.js",
+                "plugins/gallery_a.js",
                 "plugins/google_a.js",
-                "plugins/bing_a.js",
-                "plugins/facebook_a.js"
+                "plugins/gravatar_a.js",
+                "plugins/imagebam_a.js",
+                "plugins/imageshack_a.js",
+                "plugins/imgflip_a.js",
+                "plugins/imgur_a.js",
+                "plugins/instagram_a.js",
+                "plugins/ipboard_a.js",
+                "plugins/mediawiki_a.js",
+                "plugins/medium_a.js",
+                "plugins/photoshop_a.js",
+                "plugins/squarespace_a.js",
+                "plugins/streamable_a.js",
+                "plugins/tiktok_a.js",
+                "plugins/tumblr_a.js",
+                "plugins/twitch_a.js",
+                "plugins/twitter_a.js",
+                "plugins/vbulletin_a.js",
+                "plugins/vine_a.js",
+                "plugins/wordpress_a.js",
+                "plugins/youtube_a.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
         },
         {
             "js": ["plugins/facebook.js"],
-            "matches": ["*://*.facebook.com/*"],
-            "all_frames": true
+            "matches": ["*://*.facebook.com/*"]
         },
         {
             "js": ["plugins/flickr.js"],
-            "matches": ["*://*.flickr.com/*"]
+            "matches": ["*://*.flickr.com/*",
+                "*://*.flickr.net/*"]
         },
         {
             "js": ["plugins/yahoo.js"],
@@ -104,223 +124,220 @@
         {
             "js": ["plugins/google.js"],
             "matches": [
-                "*://*.google.com/*",
                 "*://*.google.ad/*",
                 "*://*.google.ae/*",
-                "*://*.google.com.af/*",
-                "*://*.google.com.ag/*",
-                "*://*.google.com.ai/*",
                 "*://*.google.am/*",
-                "*://*.google.it.ao/*",
-                "*://*.google.com.ar/*",
                 "*://*.google.as/*",
                 "*://*.google.at/*",
-                "*://*.google.com.au/*",
                 "*://*.google.az/*",
                 "*://*.google.ba/*",
-                "*://*.google.com.bd/*",
                 "*://*.google.be/*",
                 "*://*.google.bg/*",
-                "*://*.google.com.bh/*",
                 "*://*.google.bi/*",
                 "*://*.google.bj/*",
-                "*://*.google.com.bn/*",
-                "*://*.google.com.bo/*",
-                "*://*.google.com.br/*",
                 "*://*.google.bs/*",
-                "*://*.google.co.bw/*",
-                "*://*.google.com.by/*",
-                "*://*.google.com.bz/*",
                 "*://*.google.ca/*",
+                "*://*.google.cat/*",
                 "*://*.google.cd/*",
                 "*://*.google.cf/*",
                 "*://*.google.cg/*",
                 "*://*.google.ch/*",
                 "*://*.google.ci/*",
-                "*://*.google.co.ck/*",
                 "*://*.google.cl/*",
                 "*://*.google.cn/*",
-                "*://*.google.com.co/*",
+                "*://*.google.co.bw/*",
+                "*://*.google.co.ck/*",
                 "*://*.google.co.cr/*",
+                "*://*.google.co.id/*",
+                "*://*.google.co.il/*",
+                "*://*.google.co.in/*",
+                "*://*.google.co.jp/*",
+                "*://*.google.co.ke/*",
+                "*://*.google.co.kr/*",
+                "*://*.google.co.ls/*",
+                "*://*.google.co.ma/*",
+                "*://*.google.co.mz/*",
+                "*://*.google.co.nz/*",
+                "*://*.google.co.th/*",
+                "*://*.google.co.tz/*",
+                "*://*.google.co.ug/*",
+                "*://*.google.co.uk/*",
+                "*://*.google.co.uz/*",
+                "*://*.google.co.ve/*",
+                "*://*.google.co.vi/*",
+                "*://*.google.co.za/*",
+                "*://*.google.co.zm/*",
+                "*://*.google.co.zw/*",
+                "*://*.google.com.af/*",
+                "*://*.google.com.ag/*",
+                "*://*.google.com.ai/*",
+                "*://*.google.com.ar/*",
+                "*://*.google.com.au/*",
+                "*://*.google.com.bd/*",
+                "*://*.google.com.bh/*",
+                "*://*.google.com.bn/*",
+                "*://*.google.com.bo/*",
+                "*://*.google.com.br/*",
+                "*://*.google.com.by/*",
+                "*://*.google.com.bz/*",
+                "*://*.google.com.co/*",
                 "*://*.google.com.cu/*",
                 "*://*.google.com.cy/*",
+                "*://*.google.com.do/*",
+                "*://*.google.com.ec/*",
+                "*://*.google.com.eg/*",
+                "*://*.google.com.et/*",
+                "*://*.google.com.fj/*",
+                "*://*.google.com.gh/*",
+                "*://*.google.com.gi/*",
+                "*://*.google.com.gt/*",
+                "*://*.google.com.hk/*",
+                "*://*.google.com.jm/*",
+                "*://*.google.com.kh/*",
+                "*://*.google.com.kw/*",
+                "*://*.google.com.lb/*",
+                "*://*.google.com.ly/*",
+                "*://*.google.com.mt/*",
+                "*://*.google.com.mx/*",
+                "*://*.google.com.my/*",
+                "*://*.google.com.na/*",
+                "*://*.google.com.nf/*",
+                "*://*.google.com.ng/*",
+                "*://*.google.com.ni/*",
+                "*://*.google.com.np/*",
+                "*://*.google.com.om/*",
+                "*://*.google.com.pa/*",
+                "*://*.google.com.pe/*",
+                "*://*.google.com.ph/*",
+                "*://*.google.com.pk/*",
+                "*://*.google.com.pr/*",
+                "*://*.google.com.py/*",
+                "*://*.google.com.qa/*",
+                "*://*.google.com.sa/*",
+                "*://*.google.com.sb/*",
+                "*://*.google.com.sg/*",
+                "*://*.google.com.sl/*",
+                "*://*.google.com.sv/*",
+                "*://*.google.com.tj/*",
+                "*://*.google.com.tr/*",
+                "*://*.google.com.tw/*",
+                "*://*.google.com.ua/*",
+                "*://*.google.com.uy/*",
+                "*://*.google.com.vc/*",
+                "*://*.google.com.vn/*",
+                "*://*.google.com/*",
                 "*://*.google.cz/*",
                 "*://*.google.de/*",
                 "*://*.google.dj/*",
                 "*://*.google.dk/*",
                 "*://*.google.dm/*",
-                "*://*.google.com.do/*",
                 "*://*.google.dz/*",
-                "*://*.google.com.ec/*",
                 "*://*.google.ee/*",
-                "*://*.google.com.eg/*",
                 "*://*.google.es/*",
-                "*://*.google.com.et/*",
                 "*://*.google.fi/*",
-                "*://*.google.com.fj/*",
                 "*://*.google.fm/*",
                 "*://*.google.fr/*",
                 "*://*.google.ga/*",
                 "*://*.google.ge/*",
                 "*://*.google.gg/*",
-                "*://*.google.com.gh/*",
-                "*://*.google.com.gi/*",
                 "*://*.google.gl/*",
                 "*://*.google.gm/*",
                 "*://*.google.gp/*",
                 "*://*.google.gr/*",
-                "*://*.google.com.gt/*",
                 "*://*.google.gy/*",
-                "*://*.google.com.hk/*",
                 "*://*.google.hn/*",
                 "*://*.google.hr/*",
                 "*://*.google.ht/*",
                 "*://*.google.hu/*",
-                "*://*.google.co.id/*",
                 "*://*.google.ie/*",
-                "*://*.google.co.il/*",
                 "*://*.google.im/*",
-                "*://*.google.co.in/*",
-                "*://*.google.co.in/*",
                 "*://*.google.is/*",
-                "*://*.google.is/*",
-                "*://*.google.it/*",
+                "*://*.google.it.ao/*",
                 "*://*.google.it/*",
                 "*://*.google.je/*",
-                "*://*.google.com.jm/*",
                 "*://*.google.jo/*",
-                "*://*.google.co.jp/*",
-                "*://*.google.co.ke/*",
-                "*://*.google.com.kh/*",
-                "*://*.google.ki/*",
                 "*://*.google.kg/*",
-                "*://*.google.co.kr/*",
-                "*://*.google.com.kw/*",
+                "*://*.google.ki/*",
                 "*://*.google.kz/*",
                 "*://*.google.la/*",
-                "*://*.google.com.lb/*",
                 "*://*.google.li/*",
                 "*://*.google.lk/*",
-                "*://*.google.co.ls/*",
                 "*://*.google.lt/*",
                 "*://*.google.lu/*",
                 "*://*.google.lv/*",
-                "*://*.google.com.ly/*",
-                "*://*.google.co.ma/*",
                 "*://*.google.md/*",
                 "*://*.google.me/*",
                 "*://*.google.mg/*",
                 "*://*.google.mk/*",
                 "*://*.google.mn/*",
                 "*://*.google.ms/*",
-                "*://*.google.com.mt/*",
                 "*://*.google.mu/*",
                 "*://*.google.mv/*",
                 "*://*.google.mw/*",
-                "*://*.google.com.mx/*",
-                "*://*.google.com.my/*",
-                "*://*.google.co.mz/*",
-                "*://*.google.com.na/*",
-                "*://*.google.com.nf/*",
-                "*://*.google.com.ng/*",
-                "*://*.google.com.ni/*",
                 "*://*.google.nl/*",
                 "*://*.google.no/*",
-                "*://*.google.com.np/*",
                 "*://*.google.nr/*",
                 "*://*.google.nu/*",
-                "*://*.google.co.nz/*",
-                "*://*.google.com.om/*",
-                "*://*.google.com.pa/*",
-                "*://*.google.com.pe/*",
-                "*://*.google.com.ph/*",
-                "*://*.google.com.pk/*",
                 "*://*.google.pl/*",
                 "*://*.google.pn/*",
-                "*://*.google.com.pr/*",
                 "*://*.google.ps/*",
                 "*://*.google.pt/*",
-                "*://*.google.com.py/*",
-                "*://*.google.com.qa/*",
                 "*://*.google.ro/*",
+                "*://*.google.rs/*",
                 "*://*.google.ru/*",
                 "*://*.google.rw/*",
-                "*://*.google.com.sa/*",
-                "*://*.google.com.sb/*",
                 "*://*.google.sc/*",
                 "*://*.google.se/*",
-                "*://*.google.com.sg/*",
                 "*://*.google.sh/*",
                 "*://*.google.si/*",
                 "*://*.google.sk/*",
-                "*://*.google.com.sl/*",
-                "*://*.google.sn/*",
                 "*://*.google.sm/*",
+                "*://*.google.sn/*",
                 "*://*.google.st/*",
-                "*://*.google.com.sv/*",
                 "*://*.google.td/*",
                 "*://*.google.tg/*",
-                "*://*.google.co.th/*",
-                "*://*.google.com.tj/*",
                 "*://*.google.tk/*",
                 "*://*.google.tl/*",
                 "*://*.google.tm/*",
                 "*://*.google.to/*",
-                "*://*.google.com.tr/*",
                 "*://*.google.tt/*",
-                "*://*.google.com.tw/*",
-                "*://*.google.co.tz/*",
-                "*://*.google.com.ua/*",
-                "*://*.google.co.ug/*",
-                "*://*.google.co.uk/*",
-                "*://*.google.com.uy/*",
-                "*://*.google.co.uz/*",
-                "*://*.google.com.vc/*",
-                "*://*.google.co.ve/*",
                 "*://*.google.vg/*",
-                "*://*.google.co.vi/*",
-                "*://*.google.com.vn/*",
                 "*://*.google.vu/*",
-                "*://*.google.ws/*",
-                "*://*.google.rs/*",
-                "*://*.google.co.za/*",
-                "*://*.google.co.zm/*",
-                "*://*.google.co.zw/*",
-                "*://*.google.cat/*"
+                "*://*.google.ws/*"
             ]
         },
         {
             "js": ["plugins/opendesktop.js"],
             "matches": [
-                "*://opendesktop.org/*",
-                "*://kde-apps.org/*",
-                "*://gtk-apps.org/*",
-                "*://cli-apps.org/*",
-                "*://qt-apps.org/*",
-                "*://java-apps.org/*",
-                "*://eyeos-apps.org/*",
-                "*://wine-apps.org/*",
-                "*://server-apps.org/*",
-                "*://kde-look.org/*",
-                "*://gnome-look.org/*",
-                "*://xfce-look.org/*",
-                "*://box-look.org/*",
-                "*://e17-stuff.org/*",
                 "*://beryl-themes.org/*",
+                "*://blenderstuff.org/*",
+                "*://box-look.org/*",
+                "*://cli-apps.org/*",
                 "*://compiz-themes.org/*",
-                "*://ede-look.org/*",
                 "*://debian-art.org/*",
+                "*://e17-stuff.org/*",
+                "*://ede-look.org/*",
+                "*://eyeos-apps.org/*",
                 "*://gentoo-art.org/*",
-                "*://suse-art.org/*",
-                "*://ubuntu-art.org/*",
+                "*://gimpstuff.org/*",
+                "*://gnome-look.org/*",
+                "*://gtk-apps.org/*",
+                "*://inkscapestuff.org/*",
+                "*://java-apps.org/*",
+                "*://kde-apps.org/*",
+                "*://kde-files.org/*",
+                "*://kde-look.org/*",
                 "*://kubuntu-art.org/*",
                 "*://linuxmint-art.org/*",
                 "*://mandriva-art.org/*",
-                "*://kde-files.org/*",
-                "*://gimpstuff.org/*",
-                "*://inkscapestuff.org/*",
+                "*://opendesktop.org/*",
+                "*://qt-apps.org/*",
                 "*://scribusstuff.org/*",
-                "*://blenderstuff.org/*"
+                "*://server-apps.org/*",
+                "*://suse-art.org/*",
+                "*://ubuntu-art.org/*",
+                "*://wine-apps.org/*",
+                "*://xfce-look.org/*"
             ]
         },
         {
@@ -369,8 +386,7 @@
                 "*://*.amazon.in/*",
                 "*://*.amazon.it/*",
                 "*://*.amazon.nl/*",
-                "*://*.amazon.sg/*",
-                "*://*.gizmodo.jp/*"
+                "*://*.amazon.sg/*"
             ]
         },
         {
@@ -388,25 +404,25 @@
         {
             "js": ["plugins/ebay.js"],
             "matches": [
-                "*://*.ebay.com/*",
-                "*://*.ebay.de/*",
-                "*://*.ebay.com.au/*",
                 "*://*.ebay.at/*",
                 "*://*.ebay.be/*",
+                "*://*.ebay.ch/*",
+                "*://*.ebay.co.th/*",
+                "*://*.ebay.co.uk/*",
+                "*://*.ebay.com.au/*",
+                "*://*.ebay.com.hk/*",
+                "*://*.ebay.com.my/*",
+                "*://*.ebay.com.sg/*",
+                "*://*.ebay.com/*",
+                "*://*.ebay.de/*",
                 "*://*.ebay.es/*",
                 "*://*.ebay.fr/*",
-                "*://*.ebay.com.hk/*",
-                "*://*.ebay.in/*",
                 "*://*.ebay.ie/*",
+                "*://*.ebay.in/*",
                 "*://*.ebay.it/*",
-                "*://*.ebay.com.my/*",
                 "*://*.ebay.nl/*",
                 "*://*.ebay.ph/*",
-                "*://*.ebay.pl/*",
-                "*://*.ebay.co.uk/*",
-                "*://*.ebay.com.sg/*",
-                "*://*.ebay.ch/*",
-                "*://*.ebay.co.th/*"
+                "*://*.ebay.pl/*"
             ]
         },
         {
@@ -459,22 +475,21 @@
             "js": ["plugins/lastfm.js"],
             "matches": [
                 "*://*.last.fm/*",
-                "*://*.lastfm.fr/*",
+                "*://*.lastfm.com.br/*",
+                "*://*.lastfm.com.tr/*",
                 "*://*.lastfm.de/*",
                 "*://*.lastfm.es/*",
+                "*://*.lastfm.fr/*",
                 "*://*.lastfm.it/*",
                 "*://*.lastfm.jp/*",
                 "*://*.lastfm.pl/*",
-                "*://*.lastfm.com.br/*",
                 "*://*.lastfm.ru/*",
-                "*://*.lastfm.se/*",
-                "*://*.lastfm.com.tr/*"
+                "*://*.lastfm.se/*"
             ]
         },
         {
             "js": ["plugins/musicme.js"],
-            "matches": ["*://*.musicme.com/*"],
-            "all_frames": true
+            "matches": ["*://*.musicme.com/*"]
         },
         {
             "js": ["plugins/tinypic.js"],
@@ -529,18 +544,18 @@
         {
             "js": ["plugins/gawker.js"],
             "matches": [
-                "*://*.gawker.com/*",
-                "*://*.kotaku.com/*",
-                "*://*.io9.com/*",
-                "*://*.lifehacker.com/*",
-                "*://*.gizmodo.com/*",
-                "*://*.gizmodo.jp/*",
-                "*://*.gizmodo.de/*",
-                "*://*.gizmodo.com.au/*",
-                "*://*.gizmodo.pl/*",
                 "*://*.deadspin.com/*",
+                "*://*.gawker.com/*",
+                "*://*.gizmodo.com.au/*",
+                "*://*.gizmodo.com/*",
+                "*://*.gizmodo.de/*",
+                "*://*.gizmodo.jp/*",
+                "*://*.gizmodo.pl/*",
+                "*://*.io9.com/*",
+                "*://*.jalopnik.com/*",
                 "*://*.jezebel.com/*",
-                "*://*.jalopnik.com/*"
+                "*://*.kotaku.com/*",
+                "*://*.lifehacker.com/*"
             ]
         },
         {
@@ -578,8 +593,13 @@
             "matches": ["*://*.reddit.com/*"]
         },
         {
-            "js": ["plugins/pixiv.js"],
-            "matches": ["*://*.pixiv.net/*"]
+            "js": ["plugins/pixiv.js", "js/hls.js"],
+            "matches": [
+                "*://*.fanbox.cc/*",
+                "*://*.pixiv.net/*",
+                "*://*.pixivision.net/*",
+                "*://*.vroid.com/*"
+            ]
         },
         {
             "js": ["plugins/rakuten.js"],
@@ -595,8 +615,9 @@
         {
             "js": ["plugins/blogcdn.js"],
             "matches": [
-                "*://*.joystiq.com/*",
                 "*://*.engadget.com/*",
+                "*://*.joystiq.com/*",
+                "*://*.switched.com/*",
                 "*://*.tuaw.com/*"
             ]
         },
@@ -695,23 +716,23 @@
         {
             "matches": ["*://*.reddit.com/*"],
             "js": [
-                "plugins/reddit.js",
-                "plugins/livememe.js",
-                "plugins/memegenerator.js",
-                "plugins/slutcapades.js",
-                "plugins/memefive.js",
+                "plugins/clips.twitch.js",
                 "plugins/gfycat.js",
-                "plugins/pornbot.js",
-                "plugins/redgifs.js",
+                "plugins/livememe.js",
                 "plugins/memedad.js",
-                "plugins/clips.twitch.js"
+                "plugins/memefive.js",
+                "plugins/memegenerator.js",
+                "plugins/pornbot.js",
+                "plugins/reddit.js",
+                "plugins/redgifs.js",
+                "plugins/slutcapades.js"
             ]
         },
         {
             "js": ["plugins/quickmeme.js"],
             "matches": [
-                "*://*.reddit.com/*",
-                "*://*.feedly.com/*"
+                "*://*.feedly.com/*",
+                "*://*.reddit.com/*"
             ]
         },
         {
@@ -732,13 +753,14 @@
         },
         {
             "js": ["plugins/zing_vn.js"],
-            "matches": ["*://*.zing.vn/*"],
-            "all_frames": true
+            "matches": ["*://*.zing.vn/*"]
         },
         {
             "js": ["plugins/rootmusic.js"],
-            "matches": ["*://*.rootmusic.com/fb/*"],
-            "all_frames": true
+            "matches": [
+                "*://*.bandpage.com/*",
+                "*://*.rootmusic.com/fb/*"
+            ]
         },
         {
             "js": ["plugins/liveshare.js"],
@@ -751,10 +773,6 @@
         {
             "js": ["plugins/funnyjunk.js"],
             "matches": ["*://*.funnyjunk.com/*"]
-        },
-        {
-            "js": ["plugins/sky_it.js"],
-            "matches": ["*://*.sky.it/*"]
         },
         {
             "js": ["plugins/blogo_it.js"],
@@ -802,32 +820,34 @@
         },
         {
             "js": ["plugins/yelp.js"],
-            "matches": ["*://*.yelp.com/*",
-                        "*://*.yelp.com.au/*",
-                        "*://*.yelp.be/*",
-                        "*://*.yelp.ca/*",
-                        "*://*.yelp.co.cz/*",
-                        "*://*.yelp.de/*",
-                        "*://*.yelp.dk/*",
-                        "*://*.yelp.es/*",
-                        "*://*.yelp.fr/*",
-                        "*://*.yelp.in/*",
-                        "*://*.yelp.ie/*",
-                        "*://*.yelp.it/*",
-                        "*://*.yelp.nl/*",
-                        "*://*.yelp.co.nz/*",
-                        "*://*.yelp.no/*",
-                        "*://*.yelp.at/*",
-                        "*://*.yelp.ru/*",
-                        "*://*.yelp.com.pl/*",
-                        "*://*.yelp.pt/*",
-                        "*://*.yelp.ch/*",
-                        "*://*.yelp.fi/*",
-                        "*://*.yelp.se/*",
-                        "*://*.yelp.ae/*",
-                        "*://*.yelp.co.uk/*",
-                        "*://*.yelp.cn/*",
-                        "*://*.yelp.co.jp/*"]
+            "matches": [
+                "*://*.yelp.ae/*",
+                "*://*.yelp.at/*",
+                "*://*.yelp.be/*",
+                "*://*.yelp.ca/*",
+                "*://*.yelp.ch/*",
+                "*://*.yelp.cn/*",
+                "*://*.yelp.co.cz/*",
+                "*://*.yelp.co.jp/*",
+                "*://*.yelp.co.nz/*",
+                "*://*.yelp.co.uk/*",
+                "*://*.yelp.com.au/*",
+                "*://*.yelp.com.pl/*",
+                "*://*.yelp.com/*",
+                "*://*.yelp.de/*",
+                "*://*.yelp.dk/*",
+                "*://*.yelp.es/*",
+                "*://*.yelp.fi/*",
+                "*://*.yelp.fr/*",
+                "*://*.yelp.ie/*",
+                "*://*.yelp.in/*",
+                "*://*.yelp.it/*",
+                "*://*.yelp.nl/*",
+                "*://*.yelp.no/*",
+                "*://*.yelp.pt/*",
+                "*://*.yelp.ru/*",
+                "*://*.yelp.se/*"
+            ]
         },
         {
             "js": ["plugins/hwzone_il.js"],
@@ -842,8 +862,7 @@
             "matches": [
                 "*://*.spinchat.com/*",
                 "*://*.spin.de/*"
-            ],
-            "all_frames": true
+            ]
         },
         {
             "js": ["plugins/etsy.js"],
@@ -859,28 +878,29 @@
         },
         {
             "js": ["plugins/pinterest.js"],
-            "matches": ["*://*.pinterest.com/*",
-                        "*://*.pinterest.com.au/*",
-                        "*://*.pinterest.com.mx/*",
-                        "*://*.pinterest.ca/*",
-                        "*://*.pinterest.co.in/*",
-                        "*://*.pinterest.co.kr/*",
-                        "*://*.pinterest.co.nz/*",
-                        "*://*.pinterest.co.uk/*",
-                        "*://*.pinterest.ch/*",
-                        "*://*.pinterest.cz/*",
-                        "*://*.pinterest.de/*",
-                        "*://*.pinterest.dk/*",
-                        "*://*.pinterest.es/*",
-                        "*://*.pinterest.fi/*",
-                        "*://*.pinterest.fr/*",
-                        "*://*.pinterest.ie/*",
-                        "*://*.pinterest.it/*",
-                        "*://*.pinterest.jp/*",
-                        "*://*.pinterest.nl/*",
-                        "*://*.pinterest.pt/*",
-                        "*://*.pinterest.ru/*",
-                        "*://*.pinterest.se/*"
+            "matches": [
+                "*://*.pinterest.ca/*",
+                "*://*.pinterest.ch/*",
+                "*://*.pinterest.co.in/*",
+                "*://*.pinterest.co.kr/*",
+                "*://*.pinterest.co.nz/*",
+                "*://*.pinterest.co.uk/*",
+                "*://*.pinterest.com.au/*",
+                "*://*.pinterest.com.mx/*",
+                "*://*.pinterest.com/*",
+                "*://*.pinterest.cz/*",
+                "*://*.pinterest.de/*",
+                "*://*.pinterest.dk/*",
+                "*://*.pinterest.es/*",
+                "*://*.pinterest.fi/*",
+                "*://*.pinterest.fr/*",
+                "*://*.pinterest.ie/*",
+                "*://*.pinterest.it/*",
+                "*://*.pinterest.jp/*",
+                "*://*.pinterest.nl/*",
+                "*://*.pinterest.pt/*",
+                "*://*.pinterest.ru/*",
+                "*://*.pinterest.se/*"
             ]
         },
         {
@@ -897,8 +917,7 @@
         },
         {
             "js": ["plugins/gmail.js"],
-            "matches": ["*://mail.google.com/*"],
-            "all_frames": true
+            "matches": ["*://mail.google.com/*"]
         },
         {
             "js": ["plugins/8tracks.js"],
@@ -915,9 +934,9 @@
         {
             "js": ["plugins/diaspora.js"],
             "matches": [
+                "*://*.diasp.eu/*",
                 "*://*.diasp.org/*",
-                "*://*.joindiaspora.com/*",
-                "*://*.diasp.eu/*"
+                "*://*.joindiaspora.com/*"
             ]
         },
         {
@@ -933,13 +952,18 @@
         },
         {
             "js": ["plugins/boardgamegeek.js"],
-            "matches": ["*://*.boardgamegeek.com/*", "*://*.rpggeek.com/*", "*://*.videogamegeek.com/*"]
+            "matches": [
+                "*://*.boardgamegeek.com/*",
+                "*://*.rpggeek.com/*",
+                "*://*.videogamegeek.com/*"
+            ]
         },
         {
             "js": ["plugins/e621.js"],
             "matches": [
                 "*://*.e621.net/*",
-                "*://*.e926.net/*"
+                "*://*.e926.net/*",
+                "*://danbooru.donmai.us/*"
             ]
         },
         {
@@ -982,8 +1006,8 @@
         {
             "js": ["plugins/newegg.js"],
             "matches": [
-                "*://*.newegg.com/*",
                 "*://*.newegg.ca/*",
+                "*://*.newegg.com/*",
                 "*://*.newegg.com.cn/*"
             ]
         },
@@ -1060,55 +1084,56 @@
         },
         {
             "js": ["plugins/yandex.js"],
-            "matches": ["*://*.yandex.net/*",
-                        "*://*.yandex.com/*",
-                        "*://*.yandex.com.ar/*",
-                        "*://*.yandex.com.au/*",
-                        "*://*.yandex.com.br/*",
-                        "*://*.yandex.com.eg/*",
-                        "*://*.yandex.com.gr/*",
-                        "*://*.yandex.com.hk/*",
-                        "*://*.yandex.com.mx/*",
-                        "*://*.yandex.com.my/*",
-                        "*://*.yandex.com.pe/*",
-                        "*://*.yandex.com.ph/*",
-                        "*://*.yandex.com.sg/*",
-                        "*://*.yandex.com.tr/*",
-                        "*://*.yandex.com.tw/*",
-                        "*://*.yandex.com.ve/*",
-                        "*://*.yandex.com.vn/*",
-                        "*://*.yandex.co.hu/*",
-                        "*://*.yandex.co.id/*",
-                        "*://*.yandex.co.il/*",
-                        "*://*.yandex.co.kr/*",
-                        "*://*.yandex.co.nz/*",
-                        "*://*.yandex.co.uk/*",
-                        "*://*.yandex.co.za/*",
-                        "*://*.yandex.at/*",
-                        "*://*.yandex.au/*",
-                        "*://*.yandex.be/*",
-                        "*://*.yandex.ca/*",
-                        "*://*.yandex.ch/*",
-                        "*://*.yandex.cl/*",
-                        "*://*.yandex.cn/*",
-                        "*://*.yandex.co/*",
-                        "*://*.yandex.cz/*",
-                        "*://*.yandex.de/*",
-                        "*://*.yandex.dk/*",
-                        "*://*.yandex.es/*",
-                        "*://*.yandex.fi/*",
-                        "*://*.yandex.fr/*",
-                        "*://*.yandex.ie/*",
-                        "*://*.yandex.in/*",
-                        "*://*.yandex.it/*",
-                        "*://*.yandex.jp/*",
-                        "*://*.yandex.nl/*",
-                        "*://*.yandex.pt/*",
-                        "*://*.yandex.rs/*",
-                        "*://*.yandex.ru/*",
-                        "*://*.yandex.se/*",
-                        "*://*.yandex.sk/*",
-                        "*://*.yandex.ua/*"
+            "matches": [
+                "*://*.yandex.at/*",
+                "*://*.yandex.au/*",
+                "*://*.yandex.be/*",
+                "*://*.yandex.ca/*",
+                "*://*.yandex.ch/*",
+                "*://*.yandex.cl/*",
+                "*://*.yandex.cn/*",
+                "*://*.yandex.co.hu/*",
+                "*://*.yandex.co.id/*",
+                "*://*.yandex.co.il/*",
+                "*://*.yandex.co.kr/*",
+                "*://*.yandex.co.nz/*",
+                "*://*.yandex.co.uk/*",
+                "*://*.yandex.co.za/*",
+                "*://*.yandex.co/*",
+                "*://*.yandex.com.ar/*",
+                "*://*.yandex.com.au/*",
+                "*://*.yandex.com.br/*",
+                "*://*.yandex.com.eg/*",
+                "*://*.yandex.com.gr/*",
+                "*://*.yandex.com.hk/*",
+                "*://*.yandex.com.mx/*",
+                "*://*.yandex.com.my/*",
+                "*://*.yandex.com.pe/*",
+                "*://*.yandex.com.ph/*",
+                "*://*.yandex.com.sg/*",
+                "*://*.yandex.com.tr/*",
+                "*://*.yandex.com.tw/*",
+                "*://*.yandex.com.ve/*",
+                "*://*.yandex.com.vn/*",
+                "*://*.yandex.com/*",
+                "*://*.yandex.cz/*",
+                "*://*.yandex.de/*",
+                "*://*.yandex.dk/*",
+                "*://*.yandex.es/*",
+                "*://*.yandex.fi/*",
+                "*://*.yandex.fr/*",
+                "*://*.yandex.ie/*",
+                "*://*.yandex.in/*",
+                "*://*.yandex.it/*",
+                "*://*.yandex.jp/*",
+                "*://*.yandex.net/*",
+                "*://*.yandex.nl/*",
+                "*://*.yandex.pt/*",
+                "*://*.yandex.rs/*",
+                "*://*.yandex.ru/*",
+                "*://*.yandex.se/*",
+                "*://*.yandex.sk/*",
+                "*://*.yandex.ua/*"
             ]
         },
         {
@@ -1120,82 +1145,27 @@
             "matches": ["*://miiverse.nintendo.net/*"]
         },
         {
-            "matches": ["*://*.fetlife.com/*"],
             "js": ["plugins/fetlife.js"],
-            "run_at": "document_start"
+            "matches": ["*://*.fetlife.com/*"]
         },
         {
-            "matches": ["*://*.kinkondemand.com/*",
-                        "*://*.behindkink.com/*",
-                        "*://*.kink.com/*",
-                        "*://*.kinkclassic.com/*",
-                        "*://*.kinkarchive.com/*",
-                        "*://*.kinklive.com/*",
-                        "*://*.animatedkink.com/*",
-                        "*://*.boundgangbangs.com/*",
-                        "*://*.devicebondage.com/*",
-                        "*://*.divinebitches.com/*",
-                        "*://*.dungeonsex.com/*",
-                        "*://*.electrosluts.com/*",
-                        "*://*.everythingbutt.com/*",
-                        "*://*.footworship.com/*",
-                        "*://*.fuckingmachines.com/*",
-                        "*://*.hardcoregangbang.com/*",
-                        "*://*.hogtied.com/*",
-                        "*://*.3dkink.com/*",
-                        "*://*.kinkuniversity.com/*",
-                        "*://*.meninpain.com/*",
-                        "*://*.publicdisgrace.com/*",
-                        "*://*.sadisticrope.com/*",
-                        "*://*.sexandsubmission.com/*",
-                        "*://*.thetrainingofo.com/*",
-                        "*://*.theupperfloor.com/*",
-                        "*://*.tspussyhunters.com/*",
-                        "*://*.tsseduction.com/*",
-                        "*://*.ultimatesurrender.com/*",
-                        "*://*.waterbondage.com/*",
-                        "*://*.whippedass.com/*",
-                        "*://*.wiredpussy.com/*",
-                        "*://*.kinkmen.com/*",
-                        "*://*.30minutesoftorment.com/*",
-                        "*://*.boundgods.com/*",
-                        "*://*.boundinpublic.com/*",
-                        "*://*.buttmachineboys.com/*",
-                        "*://*.kinkmenarchive.com/*",
-                        "*://*.menonedge.com/*",
-                        "*://*.nakedkombat.com/*"],
-            "js": ["plugins/kink.js"],
-            "run_at": "document_start"
-        },
-        {
-            "matches": ["*://*.kenmarcus.com/*"],
             "js": ["plugins/kenmarcus.js"],
-            "run_at": "document_start"
+            "matches": ["*://*.kenmarcus.com/*"]
         },
         {
-            "matches": ["*://*.zenfolio.com/*",
-                        "*://*.goodgirlbadgirlboudoir.com/*"],
             "js": ["plugins/zenfolio.js"],
-            "run_at": "document_start"
+            "matches": ["*://*.zenfolio.com/*"]
         },
         {
-            "matches": ["*://*.escapistmagazine.com/*"],
             "js": ["plugins/escapistmagazine.js"],
-            "run_at": "document_start"
+            "matches": ["*://*.escapistmagazine.com/*"]
         },
         {
             "js": ["plugins/dirty.js"],
-            "matches": ["*://*.d3.ru/*",
-                        "*://*.dirty.ru/*"]
-        },
-        {
-            "matches": ["*://*.sexuallybroken.com/*",
-                        "*://*.hardtied.com/*",
-                        "*://*.infernalrestraints.com/*",
-                        "*://*.topgrl.com/*",
-                        "*://*.realtimebondage.com/*"],
-            "js": ["plugins/intersecinteractive.js"],
-            "run_at": "document_start"
+            "matches": [
+                "*://*.d3.ru/*",
+                "*://*.dirty.ru/*"
+            ]
         },
         {
             "js": ["plugins/slickdeals.js"],
@@ -1235,8 +1205,10 @@
         },
         {
             "js": ["plugins/visualart.js"],
-            "matches": ["*://*.visualart.me/*",
-                        "*://*.visualart.ro/*"]
+            "matches": [
+                "*://*.visualart.me/*",
+                "*://*.visualart.ro/*"
+            ]
         },
         {
             "js": ["plugins/photo_net.js"],
@@ -1244,31 +1216,34 @@
         },
         {
             "js": ["plugins/gettyimages.js"],
-            "matches": ["*://*.gettyimages.com/*",
-                        "*://*.gettyimages.com.au/*",
-                        "*://*.gettyimages.be/*",
-                        "*://*.gettyimages.ca/*",
-                        "*://*.gettyimages.co.cz/*",
-                        "*://*.gettyimages.dk/*",
-                        "*://*.gettyimages.es/*",
-                        "*://*.gettyimages.fr/*",
-                        "*://*.gettyimages.in/*",
-                        "*://*.gettyimages.ie/*",
-                        "*://*.gettyimages.it/*",
-                        "*://*.gettyimages.nl/*",
-                        "*://*.gettyimages.co.nz/*",
-                        "*://*.gettyimages.no/*",
-                        "*://*.gettyimages.at/*",
-                        "*://*.gettyimages.ru/*",
-                        "*://*.gettyimages.com.pl/*",
-                        "*://*.gettyimages.pt/*",
-                        "*://*.gettyimages.ch/*",
-                        "*://*.gettyimages.fi/*",
-                        "*://*.gettyimages.se/*",
-                        "*://*.gettyimages.ae/*",
-                        "*://*.gettyimages.co.uk/*",
-                        "*://*.gettyimages.cn/*",
-                        "*://*.gettyimages.co.jp/*"]
+            "matches": [
+                "*://*.gettyimages.ae/*",
+                "*://*.gettyimages.at/*",
+                "*://*.gettyimages.be/*",
+                "*://*.gettyimages.ca/*",
+                "*://*.gettyimages.ch/*",
+                "*://*.gettyimages.cn/*",
+                "*://*.gettyimages.co.cz/*",
+                "*://*.gettyimages.co.jp/*",
+                "*://*.gettyimages.co.nz/*",
+                "*://*.gettyimages.co.uk/*",
+                "*://*.gettyimages.com.au/*",
+                "*://*.gettyimages.com.pl/*",
+                "*://*.gettyimages.com/*",
+                "*://*.gettyimages.de/*",
+                "*://*.gettyimages.dk/*",
+                "*://*.gettyimages.es/*",
+                "*://*.gettyimages.fi/*",
+                "*://*.gettyimages.fr/*",
+                "*://*.gettyimages.ie/*",
+                "*://*.gettyimages.in/*",
+                "*://*.gettyimages.it/*",
+                "*://*.gettyimages.nl/*",
+                "*://*.gettyimages.no/*",
+                "*://*.gettyimages.pt/*",
+                "*://*.gettyimages.ru/*",
+                "*://*.gettyimages.se/*"
+            ]
         },
         {
             "js": ["plugins/pixabay.js"],
@@ -1328,7 +1303,10 @@
         },
         {
             "js": ["plugins/stocksnap.js"],
-            "matches": ["*://*.stocksnap.io/*"]
+            "matches": [
+                "*://*.stocksnap.io/*",
+                "*://*.stocksnap.com/*"
+            ]
         },
         {
             "js": ["plugins/pexels.js"],
@@ -1364,7 +1342,12 @@
         },
         {
             "js": ["plugins/safebooru.js"],
-            "matches": ["*://*.safebooru.org/*"]
+            "matches": [
+                "*://*.booru.org/*",
+                "*://*.gelbooru.com/*",
+                "*://*.safebooru.org/*",
+                "*://*.xbooru.com/*"
+            ]
         },
         {
             "js": ["plugins/depositphotos.js"],
@@ -1372,74 +1355,75 @@
         },
         {
             "js": ["plugins/airbnb.js"],
-            "matches": ["*://*.airbnb.com/*",
-                        "*://*.airbnb.com.ar/*",
-                        "*://*.airbnb.com.au/*",
-                        "*://*.airbnb.com.bo/*",
-                        "*://*.airbnb.com.br/*",
-                        "*://*.airbnb.com.bz/*",
-                        "*://*.airbnb.com.co/*",
-                        "*://*.airbnb.com.ec/*",
-                        "*://*.airbnb.com.ee/*",
-                        "*://*.airbnb.com.gt/*",
-                        "*://*.airbnb.com.hk/*",
-                        "*://*.airbnb.com.hn/*",
-                        "*://*.airbnb.com.mt/*",
-                        "*://*.airbnb.com.my/*",
-                        "*://*.airbnb.com.ni/*",
-                        "*://*.airbnb.com.pa/*",
-                        "*://*.airbnb.com.pe/*",
-                        "*://*.airbnb.com.ph/*",
-                        "*://*.airbnb.com.py/*",
-                        "*://*.airbnb.com.ro/*",
-                        "*://*.airbnb.com.sg/*",
-                        "*://*.airbnb.com.sv/*",
-                        "*://*.airbnb.com.tr/*",
-                        "*://*.airbnb.com.tw/*",
-                        "*://*.airbnb.com.ua/*",
-                        "*://*.airbnb.co.cr/*",
-                        "*://*.airbnb.co.id/*",
-                        "*://*.airbnb.co.in/*",
-                        "*://*.airbnb.co.kr/*",
-                        "*://*.airbnb.co.nz/*",
-                        "*://*.airbnb.co.uk/*",
-                        "*://*.airbnb.co.ve/*",
-                        "*://*.airbnb.co.za/*",
-                        "*://*.airbnb.ae/*",
-                        "*://*.airbnb.am/*",
-                        "*://*.airbnb.at/*",
-                        "*://*.airbnb.az/*",
-                        "*://*.airbnb.ba/*",
-                        "*://*.airbnb.be/*",
-                        "*://*.airbnb.ca/*",
-                        "*://*.airbnb.cat/*",
-                        "*://*.airbnb.ch/*",
-                        "*://*.airbnb.cl/*",
-                        "*://*.airbnb.cn/*",
-                        "*://*.airbnb.cz/*",
-                        "*://*.airbnb.de/*",
-                        "*://*.airbnb.dk/*",
-                        "*://*.airbnb.es/*",
-                        "*://*.airbnb.fi/*",
-                        "*://*.airbnb.fr/*",
-                        "*://*.airbnb.gy/*",
-                        "*://*.airbnb.gr/*",
-                        "*://*.airbnb.hu/*",
-                        "*://*.airbnb.ie/*",
-                        "*://*.airbnb.is/*",
-                        "*://*.airbnb.it/*",
-                        "*://*.airbnb.jp/*",
-                        "*://*.airbnb.lt/*",
-                        "*://*.airbnb.lv/*",
-                        "*://*.airbnb.mx/*",
-                        "*://*.airbnb.nl/*",
-                        "*://*.airbnb.no/*",
-                        "*://*.airbnb.pl/*",
-                        "*://*.airbnb.pt/*",
-                        "*://*.airbnb.rs/*",
-                        "*://*.airbnb.ru/*",
-                        "*://*.airbnb.se/*",
-                        "*://*.airbnb.si/*"
+            "matches": [
+                "*://*.airbnb.ae/*",
+                "*://*.airbnb.am/*",
+                "*://*.airbnb.at/*",
+                "*://*.airbnb.az/*",
+                "*://*.airbnb.ba/*",
+                "*://*.airbnb.be/*",
+                "*://*.airbnb.ca/*",
+                "*://*.airbnb.cat/*",
+                "*://*.airbnb.ch/*",
+                "*://*.airbnb.cl/*",
+                "*://*.airbnb.cn/*",
+                "*://*.airbnb.co.cr/*",
+                "*://*.airbnb.co.id/*",
+                "*://*.airbnb.co.in/*",
+                "*://*.airbnb.co.kr/*",
+                "*://*.airbnb.co.nz/*",
+                "*://*.airbnb.co.uk/*",
+                "*://*.airbnb.co.ve/*",
+                "*://*.airbnb.co.za/*",
+                "*://*.airbnb.com.ar/*",
+                "*://*.airbnb.com.au/*",
+                "*://*.airbnb.com.bo/*",
+                "*://*.airbnb.com.br/*",
+                "*://*.airbnb.com.bz/*",
+                "*://*.airbnb.com.co/*",
+                "*://*.airbnb.com.ec/*",
+                "*://*.airbnb.com.ee/*",
+                "*://*.airbnb.com.gt/*",
+                "*://*.airbnb.com.hk/*",
+                "*://*.airbnb.com.hn/*",
+                "*://*.airbnb.com.mt/*",
+                "*://*.airbnb.com.my/*",
+                "*://*.airbnb.com.ni/*",
+                "*://*.airbnb.com.pa/*",
+                "*://*.airbnb.com.pe/*",
+                "*://*.airbnb.com.ph/*",
+                "*://*.airbnb.com.py/*",
+                "*://*.airbnb.com.ro/*",
+                "*://*.airbnb.com.sg/*",
+                "*://*.airbnb.com.sv/*",
+                "*://*.airbnb.com.tr/*",
+                "*://*.airbnb.com.tw/*",
+                "*://*.airbnb.com.ua/*",
+                "*://*.airbnb.com/*",
+                "*://*.airbnb.cz/*",
+                "*://*.airbnb.de/*",
+                "*://*.airbnb.dk/*",
+                "*://*.airbnb.es/*",
+                "*://*.airbnb.fi/*",
+                "*://*.airbnb.fr/*",
+                "*://*.airbnb.gr/*",
+                "*://*.airbnb.gy/*",
+                "*://*.airbnb.hu/*",
+                "*://*.airbnb.ie/*",
+                "*://*.airbnb.is/*",
+                "*://*.airbnb.it/*",
+                "*://*.airbnb.jp/*",
+                "*://*.airbnb.lt/*",
+                "*://*.airbnb.lv/*",
+                "*://*.airbnb.mx/*",
+                "*://*.airbnb.nl/*",
+                "*://*.airbnb.no/*",
+                "*://*.airbnb.pl/*",
+                "*://*.airbnb.pt/*",
+                "*://*.airbnb.rs/*",
+                "*://*.airbnb.ru/*",
+                "*://*.airbnb.se/*",
+                "*://*.airbnb.si/*"
             ]
         },
         {
@@ -1452,32 +1436,34 @@
         },
         {
             "js": ["plugins/avopix.js"],
-            "matches": ["*://*.avopix.com/*",
-                        "*://*.avopix.com.au/*",
-                        "*://*.avopix.be/*",
-                        "*://*.avopix.ca/*",
-                        "*://*.avopix.co.cz/*",
-                        "*://*.avopix.de/*",
-                        "*://*.avopix.dk/*",
-                        "*://*.avopix.es/*",
-                        "*://*.avopix.fr/*",
-                        "*://*.avopix.in/*",
-                        "*://*.avopix.ie/*",
-                        "*://*.avopix.it/*",
-                        "*://*.avopix.nl/*",
-                        "*://*.avopix.co.nz/*",
-                        "*://*.avopix.no/*",
-                        "*://*.avopix.at/*",
-                        "*://*.avopix.ru/*",
-                        "*://*.avopix.com.pl/*",
-                        "*://*.avopix.pt/*",
-                        "*://*.avopix.ch/*",
-                        "*://*.avopix.fi/*",
-                        "*://*.avopix.se/*",
-                        "*://*.avopix.ae/*",
-                        "*://*.avopix.co.uk/*",
-                        "*://*.avopix.cn/*",
-                        "*://*.avopix.co.jp/*"]
+            "matches": [
+                "*://*.avopix.ae/*",
+                "*://*.avopix.at/*",
+                "*://*.avopix.be/*",
+                "*://*.avopix.ca/*",
+                "*://*.avopix.ch/*",
+                "*://*.avopix.cn/*",
+                "*://*.avopix.co.cz/*",
+                "*://*.avopix.co.jp/*",
+                "*://*.avopix.co.nz/*",
+                "*://*.avopix.co.uk/*",
+                "*://*.avopix.com.au/*",
+                "*://*.avopix.com.pl/*",
+                "*://*.avopix.com/*",
+                "*://*.avopix.de/*",
+                "*://*.avopix.dk/*",
+                "*://*.avopix.es/*",
+                "*://*.avopix.fi/*",
+                "*://*.avopix.fr/*",
+                "*://*.avopix.ie/*",
+                "*://*.avopix.in/*",
+                "*://*.avopix.it/*",
+                "*://*.avopix.nl/*",
+                "*://*.avopix.no/*",
+                "*://*.avopix.pt/*",
+                "*://*.avopix.ru/*",
+                "*://*.avopix.se/*"
+            ]
         },
         {
             "js": ["plugins/bakashots.js"],
@@ -1492,7 +1478,7 @@
             "matches": ["*://*.fotki.com/*"]
         },
         {
-            "js": ["plugins/free_images.js"],
+            "js": ["plugins/free-images.js"],
             "matches": ["*://*.free-images.com/*"]
         },
         {
@@ -1505,8 +1491,10 @@
         },
         {
             "js": ["plugins/lostfilmtv.js"],
-            "matches": ["*://*.lostfilm.tv/*",
-                        "*://*.lostfilm.run/*"]
+            "matches": [
+                "*://*.lostfilm.run/*",
+                "*://*.lostfilm.tv/*"
+            ]
         },
         {
             "js": ["plugins/meetup.js"],
@@ -1550,16 +1538,18 @@
         },
         {
             "js": ["plugins/wireimage.js"],
-            "matches": ["*://*.wireimage.com/*",
-                        "*://*.wireimage.com.au/*",
-                        "*://*.wireimage.de/*",
-                        "*://*.wireimage.es/*",
-                        "*://*.wireimage.co.in/*",
-                        "*://*.wireimage.fr/*",
-                        "*://*.wireimage.it/*",
-                        "*://*.wireimage.jp/*",
-                        "*://*.wireimage.com.pt/*",
-                        "*://*.wireimage.se/*"]
+            "matches": [
+                "*://*.wireimage.co.in/*",
+                "*://*.wireimage.com.au/*",
+                "*://*.wireimage.com.pt/*",
+                "*://*.wireimage.com/*",
+                "*://*.wireimage.de/*",
+                "*://*.wireimage.es/*",
+                "*://*.wireimage.fr/*",
+                "*://*.wireimage.it/*",
+                "*://*.wireimage.jp/*",
+                "*://*.wireimage.se/*"
+            ]
         },
         {
             "js": ["plugins/wysp.js"],
@@ -1567,52 +1557,53 @@
         },
         {
             "js": ["plugins/tripadvisor.js"],
-            "matches": ["*://*.tripadvisor.com/*",
-                        "*://*.tripadvisor.com.ar/*",
-                        "*://*.tripadvisor.com.au/*",
-                        "*://*.tripadvisor.com.br/*",
-                        "*://*.tripadvisor.com.eg/*",
-                        "*://*.tripadvisor.com.gr/*",
-                        "*://*.tripadvisor.com.hk/*",
-                        "*://*.tripadvisor.com.mx/*",
-                        "*://*.tripadvisor.com.my/*",
-                        "*://*.tripadvisor.com.pe/*",
-                        "*://*.tripadvisor.com.ph/*",
-                        "*://*.tripadvisor.com.sg/*",
-                        "*://*.tripadvisor.com.tr/*",
-                        "*://*.tripadvisor.com.tw/*",
-                        "*://*.tripadvisor.com.ve/*",
-                        "*://*.tripadvisor.com.vn/*",
-                        "*://*.tripadvisor.co.hu/*",
-                        "*://*.tripadvisor.co.id/*",
-                        "*://*.tripadvisor.co.il/*",
-                        "*://*.tripadvisor.co.kr/*",
-                        "*://*.tripadvisor.co.nz/*",
-                        "*://*.tripadvisor.co.uk/*",
-                        "*://*.tripadvisor.co.za/*",
-                        "*://*.tripadvisor.at/*",
-                        "*://*.tripadvisor.be/*",
-                        "*://*.tripadvisor.ca/*",
-                        "*://*.tripadvisor.ch/*",
-                        "*://*.tripadvisor.cl/*",
-                        "*://*.tripadvisor.cn/*",
-                        "*://*.tripadvisor.co/*",
-                        "*://*.tripadvisor.cz/*",
-                        "*://*.tripadvisor.de/*",
-                        "*://*.tripadvisor.dk/*",
-                        "*://*.tripadvisor.es/*",
-                        "*://*.tripadvisor.fi/*",
-                        "*://*.tripadvisor.fr/*",
-                        "*://*.tripadvisor.ie/*",
-                        "*://*.tripadvisor.in/*",
-                        "*://*.tripadvisor.it/*",
-                        "*://*.tripadvisor.jp/*",
-                        "*://*.tripadvisor.nl/*",
-                        "*://*.tripadvisor.pt/*",
-                        "*://*.tripadvisor.rs/*",
-                        "*://*.tripadvisor.ru/*",
-                        "*://*.tripadvisor.se/*",
-                        "*://*.tripadvisor.sk/*"
+            "matches": [
+                "*://*.tripadvisor.at/*",
+                "*://*.tripadvisor.be/*",
+                "*://*.tripadvisor.ca/*",
+                "*://*.tripadvisor.ch/*",
+                "*://*.tripadvisor.cl/*",
+                "*://*.tripadvisor.cn/*",
+                "*://*.tripadvisor.co.hu/*",
+                "*://*.tripadvisor.co.id/*",
+                "*://*.tripadvisor.co.il/*",
+                "*://*.tripadvisor.co.kr/*",
+                "*://*.tripadvisor.co.nz/*",
+                "*://*.tripadvisor.co.uk/*",
+                "*://*.tripadvisor.co.za/*",
+                "*://*.tripadvisor.co/*",
+                "*://*.tripadvisor.com.ar/*",
+                "*://*.tripadvisor.com.au/*",
+                "*://*.tripadvisor.com.br/*",
+                "*://*.tripadvisor.com.eg/*",
+                "*://*.tripadvisor.com.gr/*",
+                "*://*.tripadvisor.com.hk/*",
+                "*://*.tripadvisor.com.mx/*",
+                "*://*.tripadvisor.com.my/*",
+                "*://*.tripadvisor.com.pe/*",
+                "*://*.tripadvisor.com.ph/*",
+                "*://*.tripadvisor.com.sg/*",
+                "*://*.tripadvisor.com.tr/*",
+                "*://*.tripadvisor.com.tw/*",
+                "*://*.tripadvisor.com.ve/*",
+                "*://*.tripadvisor.com.vn/*",
+                "*://*.tripadvisor.com/*",
+                "*://*.tripadvisor.cz/*",
+                "*://*.tripadvisor.de/*",
+                "*://*.tripadvisor.dk/*",
+                "*://*.tripadvisor.es/*",
+                "*://*.tripadvisor.fi/*",
+                "*://*.tripadvisor.fr/*",
+                "*://*.tripadvisor.ie/*",
+                "*://*.tripadvisor.in/*",
+                "*://*.tripadvisor.it/*",
+                "*://*.tripadvisor.jp/*",
+                "*://*.tripadvisor.nl/*",
+                "*://*.tripadvisor.pt/*",
+                "*://*.tripadvisor.rs/*",
+                "*://*.tripadvisor.ru/*",
+                "*://*.tripadvisor.se/*",
+                "*://*.tripadvisor.sk/*"
             ]
         },
         {
@@ -1634,6 +1625,203 @@
         {
             "js": ["plugins/goodreads.js"],
             "matches": ["*://*.goodreads.com/*"]
+        },
+        {
+            "js": ["plugins/pikwizard.js"],
+            "matches": ["*://*.pikwizard.com/*"]
+        },
+    	{
+            "js": ["plugins/thingiverse.js"],
+            "matches": ["*://*.thingiverse.com/*"]
+        },
+        {
+            "js": ["plugins/derpibooru.js"],
+            "matches": ["*://*.derpibooru.org/*"]
+        },
+        {
+            "js": ["plugins/aminus3.js"],
+            "matches": ["*://*.aminus3.com/*"]
+        },
+        {
+            "js": ["plugins/livememe.js"],
+            "matches": ["*://*.livememe.com/*"]
+        },
+        {
+            "js": ["plugins/8kun.js"],
+            "matches": [
+                "*://*.8ch.net/*",
+                "*://*.8kun.top/*"
+            ]
+        },
+        {
+            "js": ["plugins/giphy.js"],
+            "matches": ["*://*.giphy.com/*"]
+        },
+        {
+            "js": ["plugins/imageevent.js"],
+            "matches": ["*://*.imageevent.com/*"]
+        },
+        {
+            "js": ["plugins/aol.js"],
+            "matches": ["*://*.aol.com/*"]
+        },
+        {
+            "js": ["plugins/govdeals.js"],
+            "matches": ["*://*.govdeals.com/*"]
+        },
+        {
+            "js": ["plugins/minds.js"],
+            "matches": ["*://*.minds.com/*"]
+        },
+        {
+            "js": ["plugins/gitlab.js"],
+            "matches": ["*://*.gitlab.com/*"]
+        },
+        {
+            "js": ["plugins/phorio.js"],
+            "matches": ["*://*.phorio.com/*"]
+        },
+        {
+            "js": ["plugins/wallapop.js"],
+            "matches": ["*://*.wallapop.com/*"]
+        },
+        {
+            "js": ["plugins/gog.js"],
+            "matches": ["*://*.gog.com/*"]
+        },
+        {
+            "js": ["plugins/picclick.js"],
+            "matches": [
+                "*://*.picclick.at/*",
+                "*://*.picclick.be/*",
+                "*://*.picclick.ca/*",
+                "*://*.picclick.ch/*",
+                "*://*.picclick.co.uk/*",
+                "*://*.picclick.com.au/*",
+                "*://*.picclick.com/*",
+                "*://*.picclick.de/*",
+                "*://*.picclick.es/*",
+                "*://*.picclick.fr/*",
+                "*://*.picclick.ie/*",
+                "*://*.picclick.it/*",
+                "*://*.picclick.nl/*"
+            ]
+        },
+        {
+            "js": ["plugins/libraryofcongress.js"],
+            "matches": ["*://*.loc.gov/*"]
+        },
+        {
+            "js": ["plugins/duitang.js"],
+            "matches": ["*://*.duitang.com/*"]
+        },
+        {
+            "js": ["plugins/wdl.js"],
+            "matches": ["*://*.wdl.org/*"]
+        },
+        {
+            "js": ["plugins/hibid.js"],
+            "matches": ["*://*.hibid.com/*"]
+        },
+        {
+            "js": ["plugins/maxsold.js"],
+            "matches": ["*://*.maxsold.com/*"]
+        },
+        {
+            "js": ["plugins/myanimelist.js"],
+            "matches": ["*://*.myanimelist.net/*"]
+        },
+        {
+            "js": ["plugins/themoviedb.js"],
+            "matches": ["*://*.themoviedb.org/*"]
+        },
+        {
+            "js": ["plugins/twibooru.js"],
+            "matches": ["*://*.twibooru.org/*"]
+        },
+        {
+            "js": ["plugins/catawiki.js"],
+            "matches": ["*://*.catawiki.com/*"]
+        },
+        {
+            "js": ["plugins/qwant.js"],
+            "matches": ["*://*.qwant.com/*"]
+        },
+        {
+            "js": ["plugins/duckduckgo.js"],
+            "matches": ["*://*.duckduckgo.com/*"]
+        },
+        {
+            "js": ["plugins/sogou.js"],
+            "matches": [
+                "*://*.sogou.cn/*",
+                "*://*.sogou.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/googlesheets.js"],
+            "matches": ["*://docs.google.com/spreadsheets/*"]
+        },
+        {
+            "js": ["plugins/bilibili.js"],
+            "matches": [
+                "*://*.bilibili.com/*",
+                "*://*.bilibili.cn/*",
+                "*://*.biligame.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/naver.js"],
+            "matches": ["*://*.naver.com/*"]
+        },
+        {
+            "js": ["plugins/allegro.js"],
+            "matches": ["*://*.allegro.pl/*"]
+        },
+        {
+            "js": ["plugins/startpage.js"],
+            "matches": ["*://*.startpage.com/*"]
+        },
+        {
+            "js": ["plugins/redgifs.js"],
+            "matches": ["*://*.redgifs.com/*"]
+        },
+        {
+            "js": ["plugins/you.js"],
+            "matches": ["*://*.you.com/*"]
+        },
+        {
+            "js": ["plugins/wikifeet.js"],
+            "matches": [
+                "*://*.wikifeet.com/*",
+                "*://*.wikifeetx.com/*",
+                "*://*.mywikifeet.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/gfycat.js"],
+            "matches": ["*://*.gfycat.com/*"]
+        },
+        {
+            "js": ["plugins/tipeee.js"],
+            "matches": ["*://*.tipeee.com/*"]
+        },
+        {
+            "js": ["plugins/pic2me.js"],
+            "matches": ["*://*.pic2.me/*"]
+        },
+        {
+            "js": ["plugins/celebs-place.js"],
+            "matches": ["*://*.celebs-place.com/*"]
+        },
+        {
+            "js": ["plugins/viewbug.js"],
+            "matches": ["*://*.viewbug.com/*"],
+            "all_frames": true
+        },
+        {
+            "js": ["plugins/shein.js"],
+            "matches": ["*://*.shein.com/*"]
         }
    ]
 }

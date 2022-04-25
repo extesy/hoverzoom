@@ -1,6 +1,6 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 var hoverZoomPluginFlickerA = {
-    name:'Flickr',
+    name:'Flickr_a',
     version:'0.3',
     prepareImgLinks:function (callback) {
         var res = [];

@@ -6,7 +6,7 @@ hoverZoomPlugins.push({
         var res = [];   
         
         hoverZoom.urlReplace(res,
-            'img[src*="artsper"]',
+            'img[src]',
             ['_p.', '_s.', '_m.', '_f.', '_grid.'],
             ['_l.', '_l.', '_l.', '_l.', '_l.']
         );

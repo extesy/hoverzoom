@@ -9,6 +9,6 @@ hoverZoomPlugins.push({
             /^.*www.livememe.com\/(\w+).*$/,
             'http://www.livememe.com/$1.jpg'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

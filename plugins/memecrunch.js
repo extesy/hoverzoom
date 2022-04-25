@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Memecrunch',
-    version:'0.2',
+    version:'0.3',
     prepareImgLinks:function (callback) {
         var res = [];
 
@@ -14,11 +14,11 @@ hoverZoomPlugins.push({
         //sample url: http://thumbs9.memecrunch.com/meme/CBWLN/un-cumple-la-patgona-lucia-unas-47-primaveras/image.png?w=92
         // remove ?...
         hoverZoom.urlReplace(res,
-            'img[src]',
+            'img[src*="memecrunch.com/meme/"]',
             /\?.*/,
             ''
         );
 
-        callback($(res));
+        callback($(res), this.name);
     }
 });
