@@ -10,7 +10,19 @@ hoverZoomPlugins.push({
             var link = $(this),
                 gfyId = this.href.replace(/.*redgifs.com\/(..\/)?(watch\/)?(detail\/)?(\w+).*/, '$4');
 
-            $.get('https://api.redgifs.com/v1/gfycats/' + gfyId, function (data) {
+            var requestUrl = 'https://api.redgifs.com/v1/gfycats/' + gfyId;
+
+            chrome.runtime.sendMessage({action:'ajaxGet', url:requestUrl}, function (response) {
+                if (response == null) {
+                    return;
+                }
+
+                try {
+                    var data = JSON.parse(response);
+                } catch (e) {
+                    return;
+                }
+
                 if (data && data.gfyItem) {
                     link.data().hoverZoomSrc = [options.zoomVideos ? data.gfyItem.mp4Url : data.gfyItem.gifUrl]
                     callback(link, name);
