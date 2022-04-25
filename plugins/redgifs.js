@@ -13,12 +13,15 @@ hoverZoomPlugins.push({
             var requestUrl = 'https://api.redgifs.com/v1/gfycats/' + gfyId;
 
             chrome.runtime.sendMessage({action:'ajaxGet', url:requestUrl}, function (response) {
-                if (response == null) { return; }
+                if (response == null) {
+                    return;
+                }
 
                 try {
                     var data = JSON.parse(response);
-                } catch (e) { return; }
-
+                } catch (e) {
+                    return;
+                }
 
                 if (data && data.gfyItem) {
                     link.data().hoverZoomSrc = [options.zoomVideos ? data.gfyItem.mp4Url : data.gfyItem.gifUrl]
