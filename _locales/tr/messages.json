@@ -44,11 +44,11 @@
         "description": "[options] Page title"
     },
     "optButtonDisableAllPlugins": {
-        "message": "Disable all",
+        "message": "Tümünü etkisizleştir",
         "description": "[options] disable all plugins button label"
     },
     "optButtonEnableAllPlugins": {
-        "message": "Enable all",
+        "message": "Tümünü etkinleştir",
         "description": "[options] enable all plugins button label"
     },
     "optButtonSave": {
@@ -68,11 +68,11 @@
         "description": "[options] Notification after saving options"
     },
     "optCancel": {
-        "message": "Modification(s) cancelled.",
+        "message": "Değişiklik(ler) iptal edildi.",
         "description": "[options] Notification after cancelling modification(s) to options"
     },
     "optReset": {
-        "message": "Options reset to factory settings, save to apply.",
+        "message": "Ayarlar fabrika ayarlarına sııfrlandı, uygulamak için kaydedin.",
         "description": "[options] Notification after resetting options to factory settings"
     },
     "optPageGeneral": {
