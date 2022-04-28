@@ -1822,6 +1822,10 @@
         {
             "js": ["plugins/shein.js"],
             "matches": ["*://*.shein.com/*"]
+        },
+        {
+            "js": ["plugins/huaban.js"],
+            "matches": ["*://*.huaban.com/*"]
         }
    ]
 }
