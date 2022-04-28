@@ -64,7 +64,7 @@
         "description": "[options] Reset button label"
     },
     "optSaved": {
-        "message": "Seçenekler kaydedildi. Bazı ayarlar sayfanın yenilenmesini gerektirebilir.",
+        "message": "Seçenekler kaydedildi. Bazı ayarlar için sayfanın yenilenmesini gerektirebilir.",
         "description": "[options] Notification after saving options"
     },
     "optCancel": {
@@ -80,7 +80,7 @@
         "description": "[options] Page title for general options"
     },
     "optExtensionEnabled": {
-        "message": "Hover Zoom etkinleştir",
+        "message": "Hover Zoom'u etkinleştir",
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optSectionView": {
@@ -108,7 +108,7 @@
         "description": "[options] Adjust the position of the caption"
     },
     "optCaptionLocationTooltip": {
-        "message": "Resim yazısını görüntünün altında/yukarıda görüntüle ya da hiç görüntüleme",
+        "message": "Resim yazısını görüntünün üstünde/altında görüntüle ya da hiç görüntüleme",
         "description": "[options] Tooltip for adjusting the position of the caption"
     },
     "optCaptionLocationAbove": {
@@ -120,51 +120,51 @@
         "description": "[options] Caption location option to put captions below the image"
     },
     "optCaptionLocationNone": {
-        "message": "Hiç biri",
+        "message": "Hiçbiri",
         "description": "[options] Caption location option to disable captions"
     },
     "optDetailsLocation": {
-        "message": "Detaylı pozisyon:",
+        "message": "Detayların pozisyonu:",
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
-        "message": "View details (size, format...) above/below the image, or not at all",
+        "message": "Ayrıntıları görüntüle (boyut, biçim) resmin üstünde altında veya hiç bir yerinde",
         "description": "[options] Tooltip for adjusting the position of details"
     },
     "optDetailsLocationAbove": {
-        "message": "Above",
+        "message": "Yukarıda",
         "description": "[options] Details location option to put details above the image"
     },
     "optDetailsLocationBelow": {
-        "message": "Below",
+        "message": "Altında",
         "description": "[options] Details location option to put details below the image"
     },
     "optDetailsLocationNone": {
-        "message": "None",
+        "message": "Hiçbiri",
         "description": "[options] Details location option to disable details"
     },
     "optFontOutline": {
-        "message": "Font outline",
+        "message": "Yazı dış çizgisi",
         "description": "[options] Outline option"
     },
     "optFontOutlineTooltip": {
-        "message": "If checked: use white font + thin black border for caption & details",
+        "message": "İşaretliyse : beyaz yazı tipi + detaylar ve altyazı için ince siyah kenar kullan",
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
-        "message": "Yakınlaştırılmış resimleri fare tekerleğiyle genişlet",
+        "message": "Büyütülmüş resimleri fare imlecinin altına genişlet",
         "description": "[options] Extend zoomed images below the mouse cursor option"
     },
     "optMouseUnderlapTooltip": {
-        "message": "İşaretli değilse, yakınlaştırılmış resimler dinamik olarak yeniden boyutlandırılabilir olacak",
+        "message": "İşaretli değilse, yakınlaştırılmış resimler dinamik olarak yeniden boyutlanacak",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
     "optHideMouseCursor": {
-        "message": "Hide mouse cursor after:",
+        "message": "Fare imlecini şundan sonra gizle:",
         "description": "[options] Hide mouse cursor option"
     },
     "optHideMouseCursorTooltip": {
-        "message": "If checked, mouse cursor will be hidden after delay",
+        "message": "İşareliyse, fare imleci gecikmeden sonra gizlenecektir",
         "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optPageActionEnabled": {
@@ -172,7 +172,7 @@
         "description": "[options] Show icon in address bar option"
     },
     "optPageActionEnabledTooltip": {
-        "message": "Sadece yakınlaştırılabildiği zaman",
+        "message": "Sadece resim yakınlaştırabildiği zaman",
         "description": "[options] Tooltip for show icon in address bar option"
     },
     "optShowWhileLoading": {
@@ -204,7 +204,7 @@
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optDisableMouseWheelForVideoTooltip": {
-        "message": "Albümler arasında gezinin ama ileri/geri atlamayın",
+        "message": "Albümler arasında gezinin ama videoların içinde ileri/geri atlamayın",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
@@ -216,11 +216,11 @@
         "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
     },
     "optVideoPositionStep": {
-        "message": "Video pozisyonunu değiştirmek için önceki/sonraki eylem tuşlarını kullan",
+        "message": "Video pozisyonunu değiştirmek için önceki/sonraki(veya fare tekerleği) eylem tuşlarını kullan",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
-        "message": "sec",
+        "message": "sn",
         "description": "[options] Unit name (seconds) for changing video position option"
     },
     "optVideoPositionStepTooltip": {
@@ -228,7 +228,7 @@
         "description": "[options] Tooltip for changing video position option"
     },
     "optMuteVideos": {
-        "message": "Yakınlaştırılmış videoları sustur",
+        "message": "Yakınlaştırılmış videoları sessize al",
         "description": "[options] Mute zoomed videos option"
     },
     "optMuteVideosTooltip": {
@@ -260,11 +260,11 @@
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Create a subtle glow effect similar to Philips Ambilight technology",
+        "message": "Phillips Ambilight teknolojisine benzer bir ince parlama efekti oluşturun",
         "description": "[options] Tooltip for enable ambient light behind images option"
     },
     "optAmbilightHaloSize": {
-        "message": "Size of halo :",
+        "message": "Işık halkasının boyutu:",
         "description": "[options] Size of halo option"
     },
     "optAmbilightHaloSizeUnitName": {
@@ -272,7 +272,7 @@
         "description": "[options] Unit name (percentage) for halo size"
     },
     "optAmbilightHaloSizeTooltip": {
-        "message": "Size of halo around zoomed image (0% : no halo)",
+        "message": "Büyütülmüş resmin etrafında ki ışık halkasının boyutu(%0: ışık halkası yok)",
         "description": "[options] Tooltip for size of halo"
     },
     "optAmbilightBackgroundOpacity": {
@@ -284,7 +284,7 @@
         "description": "[options] Unit name (percentage) for background opacity"
     },
     "optAmbilightBackgroundOpacityTooltip": {
-        "message": "0% : transparent, 100% : black",
+        "message": "0% : saydam, 100% : siyah",
         "description": "[options] Tooltip for background opacity"
     },
     "optCenterImages": {
@@ -296,11 +296,11 @@
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optFrameBackgroundColor": {
-        "message": "Frame background color:",
+        "message": "Kart arka plan rengi:",
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
-        "message": "Background color for the frame the image appears in",
+        "message": "Resmin olduğu kartın arka plan rengi",
         "description": "[options] Tooltip for frame background color option"
     },
     "optFrameBackgroundColorChooseText": {
@@ -308,19 +308,19 @@
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
-        "message": "Cancel",
+        "message": "İptal",
         "description": "[options] Frame background color button - Cancel"
     },
     "optFrameThickness": {
-        "message": "Frame thickness:",
+        "message": "Kart kalınlığı:",
         "description": "[options] Frame thickness option"
     },
     "optFrameThicknessTooltip": {
-        "message": "Thickness of border for the frame the image appears in (0 : no frame)",
+        "message": "Resmin olduğu kartın sınırlarının kalınlığı (0: kart olmaz)",
         "description": "[options] Tooltip for frame thickness option"
     },
     "optFrameThicknessUnitName": {
-        "message": "pixels",
+        "message": "pikseller",
         "description": "[options] Unit name (pixel) for frame thickness"
     },
     "optFontSize": {
@@ -328,11 +328,11 @@
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
-        "message": "Size of font used for captions & details",
+        "message": "Başlık & ayrıntılar için kullanılan yazı tipinin boyutu",
         "description": "[options] Tooltip for font size option"
     },
     "optFontSizeUnitName": {
-        "message": "pixels",
+        "message": "pikseller",
         "description": "[options] Unit name (pixel) for font size"
     },
     "optSectionDelays": {
@@ -432,19 +432,19 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optDisplayImageLoaderTooltip": {
-        "message": "Display a little spinner as image is loading (green:loading, red:error). Red spinner is optional.",
+        "message": "Resim yüklenirken küçük bir dönen daire göster(yeşil: yükleniyor, kırmızı: hata).Kırmızı dönen daire isteğe bağlı.",
         "description": "[options] Tooltip for display image loader option"
     },
     "optDisplayImageLoader": {
-        "message": "Display a red spinner when image loading failed",
+        "message": "Resmin yüklenmesi başarısız olduğunda kırmızı dönen daire göster",
         "description": "[options] Display image loader option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
-        "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
+        "message": "HTTPS siteler için kullanışlıdır mesela Google Görseller HTTP resimlerin yüklenmesini engeller",
         "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrls": {
-        "message": "Try to open unloadable urls in separate:",
+        "message": "Yüklenemeyen url'leri ayrı açmaya çalış:",
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
@@ -456,7 +456,7 @@
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
-        "message": "Subfolder(s) will be created if needed",
+        "message": "Gerekliyse alt klasör(ler) oluşturalacak",
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
@@ -468,23 +468,23 @@
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Prefix original names of downloads with origin, size and/or duration for easier management",
+        "message": "Daha kolay yönetmek için, indirilenlerin kaynağını, boyutunu ve uzunluğunu orijinal isimlerine önek olarak ekle",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Rename saved images & videos by adding:",
+        "message": "Şunu eklereyek kayıtlı resimler & videoları yeniden adlandır:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
-        "message": "Add origin (e.g. www.deviantart.com)",
+        "message": "Kaynak ekle(Örn. www.deviantart.com)",
         "description": "[options] Tooltip for add download origin option"
     },
     "optAddDownloadOrigin": {
-        "message": "origin",
+        "message": "kaynak",
         "description": "[options] Add download origin option"
     },
     "optAddDownloadSizeTooltip": {
-        "message": "Add size (WxH) in pixels (e.g. 1024x750)",
+        "message": "Piksel olarak boyut ekle(GenişlikxYükseklik) (Örn. 1024x750)",
         "description": "[options] Tooltip for add download size option"
     },
     "optAddDownloadSize": {
@@ -492,7 +492,7 @@
         "description": "[options] Add download size option"
     },
     "optAddDownloadDurationTooltip": {
-        "message": "Add duration (hh mm ss) of video (e.g. 00 16 35)",
+        "message": "Videoya süresini ekle(ss dd ss) (Örn 00 16 35)",
         "description": "[options] Tooltip for add download duration option"
     },
     "optAddDownloadDuration": {
@@ -500,11 +500,11 @@
         "description": "[options] Add download duration option"
     },
     "optSectionTroubleshooting": {
-        "message": "Troubleshooting",
+        "message": "Hata ayıklama",
         "description": "[options] Page section for troubleshooting"
     },
     "optEnableDebugTooltip": {
-        "message": "Display debug messages in browser's console (to open console: press F12)",
+        "message": "Hata ayıklama mesajlarını tarayıcının konsolunda göster(konsolu açmak için: F12 bas)",
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
@@ -524,27 +524,27 @@
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
-        "message": "Toggle HoverZoom+",
+        "message": "Aç/kapat HoverZoom+",
         "description": "[options] Action key title"
     },
     "optToggleKeyDescription": {
-        "message": "Enable/disable HoverZoom+",
+        "message": "Etkinleştir/Devre dışı bırak HoverZoom+",
         "description": "[options] Action key description"
     },
     "optCloseKeyTitle": {
-        "message": "Close image",
+        "message": "Resmi kapat",
         "description": "[options] Action key title"
     },
     "optCloseKeyDescription": {
-        "message": "Press this key to close zoomed image or video.",
+        "message": "Büyütülmüş resmi veya videoyu kapatmak için bu tuşa bas.",
         "description": "[options] Action key description"
     },
     "optHideKeyTitle": {
-        "message": "Hide image",
+        "message": "Resmi gizle",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
+        "message": "Bu tuşa basılı tutmak yakınlaştırılmış resmi gizler. Yakınlaştırılan resim fareyi üzerine getirerek görüntülenen diğer şeylerin önüne geçtiğinde kullanın.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -552,7 +552,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
+        "message": "Görüntülemekte olduğunuz resmi veya videoyu yeni pencerede açmak için bu tuşa basın. Pencereyi kapatmak için tekrar aynı tuşa basın.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
@@ -560,15 +560,15 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
+        "message": "Görüntülemekte olduğunuz resmi veya videoyu yeni sekmede açmak için bu tuşa basın. Sekmeyi kapatmak için tekrar aynı tuşa basın. Shift+tuş resmi arkaplandaki bir sekmede açar.",
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
-        "message": "Lock image on screen",
+        "message": "Resmi ekranda kilitle",
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
+        "message": "Resmi veya videoyu ekranın merkezine kilitlemek için bu tuşa bas, sana etrafında gezme ve büyütme şansı tanır. Fotoğrafın kilidini kaldırmak için fotoğrafın dışında bir yere tıkla veya kapat tuşuna bas.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -576,7 +576,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Press this key to save the image or video you are currently viewing.",
+        "message": "Gördüğün resmi veya videoyu kaydetmek için bu tuşa bas.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
@@ -584,23 +584,23 @@
         "description": "[options] Action key title"
     },
     "optFullZoomKeyDescription": {
-        "message": "Bu tuşa basılı tutulduğunda, resmi tüm kullanılabilir alanı kullanarak gösterir. Sadece yüksek çözünürlüklü fotoğraflar için işe yarar.",
+        "message": "Bu tuşa basılı tutulduğunda, resmi tüm kullanılabilir alanı kullanarak gösterir. Sadece yüksek çözünürlüklü resimler için işe yarar.",
         "description": "[options] Action key description"
     },
     "optCopyImageKeyTitle": {
-        "message": "Copy image to clipboard",
+        "message": "Resimi panoya kopyala",
         "description": "[options] Action key title"
     },
     "optCopyImageKeyDescription": {
-        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "message": "Bu tuş basıldığında, resmin açıklaması panoya kopyalanır.",
         "description": "[options] Action key description"
     },
     "optCopyImageUrlKeyTitle": {
-        "message": "Copy image URL to clipboard",
+        "message": "Resmin URL'sini panoya kopyala",
         "description": "[options] Action key title"
     },
     "optCopyImageUrlKeyDescription": {
-        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
+        "message": "Bu tuş basıldığında, resmin veya videonun Url'si panoya kopyalanır.",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
@@ -620,7 +620,7 @@
         "description": "[options] Action key description"
     },
     "optFlipImageKeyTitle": {
-        "message": "Flip image",
+        "message": "Resmi çevir",
         "description": "[options] Action key title"
     },
     "optFlipImageKeyDescription": {
@@ -632,7 +632,7 @@
         "description": "[options] Source code link in page footer"
     },
     "optFooterChangelog": {
-        "message": "Değişiklikler",
+        "message": "Değişim kayıtları",
         "description": "[options] Changelog link in page footer"
     },
     "optFooterReportIssue": {
