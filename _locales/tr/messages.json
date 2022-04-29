@@ -72,7 +72,7 @@
         "description": "[options] Notification after cancelling modification(s) to options"
     },
     "optReset": {
-        "message": "Ayarlar fabrika ayarlarına sııfrlandı, uygulamak için kaydedin.",
+        "message": "Ayarlar fabrika ayarlarına sıfırlandı, uygulamak için kaydedin.",
         "description": "[options] Notification after resetting options to factory settings"
     },
     "optPageGeneral": {
