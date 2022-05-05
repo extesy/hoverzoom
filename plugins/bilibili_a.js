@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'bilibili',
-    version: '0.3',
+    version: '0.4',
     prepareImgLinks: function(callback) {
         var res = [];
 
@@ -269,7 +269,7 @@ hoverZoomPlugins.push({
         // sample: https://i2.hdslb.com/bfs/face/3be1bf9e5d555456278f696941bd267632df62e4.jpg@52w_52h.webp
         //      -> https://i2.hdslb.com/bfs/face/3be1bf9e5d555456278f696941bd267632df62e4.jpg
         hoverZoom.urlReplace(res,
-            'img[src]:not([src*="/archive/"]), [style*="url"]',
+            'img[src*="hdslb.com"]:not([src*="/archive/"])', //, [style*="url"]',
             /(.*)@.*/,
             '$1'
         );
