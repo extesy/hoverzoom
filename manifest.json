@@ -97,6 +97,7 @@
                 "plugins/twitch_a.js",
                 "plugins/twitter_a.js",
                 "plugins/vbulletin_a.js",
+                "plugins/vimeo_a.js",
                 "plugins/vine_a.js",
                 "plugins/wordpress_a.js",
                 "plugins/youtube_a.js"
@@ -697,10 +698,6 @@
         {
             "js": ["plugins/plurk.js"],
             "matches": ["*://*.plurk.com/*"]
-        },
-        {
-            "js": ["plugins/vimeo.js"],
-            "matches": ["*://*.vimeo.com/*"]
         },
         {
             "js": ["plugins/bebo.js"],
