@@ -66,6 +66,7 @@
             "js": [
                 "plugins/alicdn_a.js",
                 "plugins/aws_a.js",
+                "plugins/bilibili_a.js",
                 "plugins/bing_a.js",
                 "plugins/blogspot_a.js",
                 "plugins/chan_a.js",
@@ -1761,15 +1762,6 @@
         {
             "js": ["plugins/googlesheets.js"],
             "matches": ["*://docs.google.com/spreadsheets/*"]
-        },
-        {
-            "js": ["plugins/bilibili.js"],
-            "matches": [
-                "*://*.bilibili.com/*",
-                "*://*.bilibili.cn/*",
-                "*://*.biligame.com/*",
-                "*://*.bilibili.tv/*"
-            ]
         },
         {
             "js": ["plugins/naver.js"],
