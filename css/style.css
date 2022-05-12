@@ -30,7 +30,7 @@ input[type=range]::-webkit-slider-runnable-track {
 input[type=text].normal {
     height: 30px;
     text-align: left;
-    border-radius: 4px; 
+    border-radius: 4px;
     margin: 3px;
 }
 
@@ -109,3 +109,7 @@ label { margin: 3px; }
 div.modified, select.modified, span.modified, input[type=text].modified, input[type=range].modified { outline-color: orange; outline-style: solid; outline-width: medium; }
 
 span.added { outline-color: orange; outline-style: solid; outline-width: medium; padding-left: 3px; padding-right: 3px; border-radius: 4px; }
+
+/* FAQ */
+.faq.question { font-weight: bold }
+.faq.answer { display: flex; justify-content: flex-start; align-items: center; gap: 10px; }
