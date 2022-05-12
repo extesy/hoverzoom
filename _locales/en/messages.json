@@ -548,11 +548,11 @@
     "description": "[options] FAQ Save and reload page"
   },
   "optFAQ_Q3": {
-    "message": "I need HoverZoom4CherryPics to be active for some sites only.",
+    "message": "I need HoverZoom+ to be active for some sites only.",
     "description": "[options] FAQ Question 3"
   },
   "optFAQ_A3_1": {
-    "message": "E.g. to activate HoverZoom4CherryPics on DeviantArt.com & 1X.com:",
+    "message": "E.g. to activate HoverZoom+ on DeviantArt.com & 1X.com:",
     "description": "[options] FAQ Answer 3 part 1"
   },
   "optFAQ_A3_2": {
