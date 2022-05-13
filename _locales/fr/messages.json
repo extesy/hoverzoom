@@ -511,6 +511,70 @@
         "message": "Activer le débogage",
         "description": "[options] Enable debug option"
     },
+    "optPageFAQ": {
+        "message": "FAQ",
+        "description": "[options] Page title for FAQ"
+    },
+    "optSectionFAQ": {
+        "message": "Foire Aux Questions",
+        "description": "[options] Page section for Frequently Asked Questions"
+    },
+    "optFAQ_Q1": {
+        "message": "J'ai édité certaines options, mais je ne vois aucun changement.",
+        "description": "[options] FAQ Question 1"
+    },
+    "optFAQ_A1_1": {
+        "message": "Après l'édition, cliquer sur le bouton \"Sauvegarder\"",
+        "description": "[options] FAQ Answer 1 part 1"
+    },
+    "optFAQ_A1_2": {
+        "message": "en bas de la page Options",
+        "description": "[options] FAQ Answer 1 part 2"
+    },
+    "optFAQ_A1_3": {
+        "message": "Actualiser la page (F5)",
+        "description": "[options] FAQ Answer 1 part 3"
+    },
+    "optFAQ_Q2": {
+        "message": "Je veux cacher le curseur de la souris sur une image ou une vidéo zoomée.",
+        "description": "[options] FAQ Question 2"
+    },
+    "optFAQ_A2_1": {
+        "message": "Dans Options -> Général -> Délais activer \"Masquer le curseur de la souris\"",
+        "description": "[options] FAQ Answer 2 part 1"
+    },
+    "optFAQ_SaveAndReload": {
+        "message": "Enregistrer et recharger la page (F5)",
+        "description": "[options] FAQ Save and reload page"
+    },
+    "optFAQ_Q3": {
+        "message": "I need HoverZoom+ to be active for some sites only.",
+        "description": "[options] FAQ Question 3"
+    },
+    "optFAQ_A3_1": {
+        "message": "E.g. to activate HoverZoom+ on DeviantArt.com & 1X.com:",
+        "description": "[options] FAQ Answer 3 part 1"
+    },
+    "optFAQ_A3_2": {
+        "message": "Dans Options -> Sites, activer le mode \"Liste blanche\"",
+        "description": "[options] FAQ Answer 3 part 2"
+    },
+    "optFAQ_A3_3": {
+        "message": "Ajouter DeviantArt.com & 1X.com à la liste des URL (pas sensible à la casse)",
+        "description": "[options] FAQ Answer 3 part 3"
+    },
+    "optFAQ_Q4": {
+        "message": "Je veux zoomer une image ou une vidéo à sa taille d'origine, même si elle est plus grande que l'écran.",
+        "description": "[options] FAQ Question 4"
+    },
+    "optFAQ_A4_1": {
+        "message": "Survoler une image ou une vidéo puis la verrouiller sur l'écran (touche d'action par défaut: \"L\")",
+        "description": "[options] FAQ Answer 4 part 1"
+    },
+    "optFAQ_A4_2": {
+        "message": "L'image ou la vidéo est maintenant affichée en taille réelle. Il est possible de zoomer/dézoomer à l'aide de la molette.",
+        "description": "[options] FAQ Answer 4 part 2"
+    },
     "optPixelsUnitName": {
         "message": "pixels",
         "description": "[options] Unit name (pixels)"
