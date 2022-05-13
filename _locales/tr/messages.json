@@ -511,6 +511,70 @@
         "message": "Hata ayıklamayı ektinleştir",
         "description": "[options] Enable debug option"
     },
+    "optPageFAQ": {
+        "message": "FAQ",
+        "description": "[options] Page title for FAQ"
+    },
+    "optSectionFAQ": {
+        "message": "Frequently Asked Questions",
+        "description": "[options] Page section for Frequently Asked Questions"
+    },
+    "optFAQ_Q1": {
+        "message": "I edited some options, but i see no changes.",
+        "description": "[options] FAQ Question 1"
+    },
+    "optFAQ_A1_1": {
+        "message": "After edition, click \"Save\" button",
+        "description": "[options] FAQ Answer 1 part 1"
+    },
+    "optFAQ_A1_2": {
+        "message": "on bottom of Options page",
+        "description": "[options] FAQ Answer 1 part 2"
+    },
+    "optFAQ_A1_3": {
+        "message": "Reload the page (F5)",
+        "description": "[options] FAQ Answer 1 part 3"
+    },
+    "optFAQ_Q2": {
+        "message": "I want to hide the mouse cursor on zoomed image or video.",
+        "description": "[options] FAQ Question 2"
+    },
+    "optFAQ_A2_1": {
+        "message": "In Options -> General -> Delays, activate \"Hide mouse cursor\"",
+        "description": "[options] FAQ Answer 2 part 1"
+    },
+    "optFAQ_SaveAndReload": {
+        "message": "Save and reload the page (F5)",
+        "description": "[options] FAQ Save and reload page"
+    },
+    "optFAQ_Q3": {
+        "message": "I need HoverZoom+ to be active for some sites only.",
+        "description": "[options] FAQ Question 3"
+    },
+    "optFAQ_A3_1": {
+        "message": "E.g. to activate HoverZoom+ on DeviantArt.com & 1X.com:",
+        "description": "[options] FAQ Answer 3 part 1"
+    },
+    "optFAQ_A3_2": {
+        "message": "In Options -> Sites, activate \"Whitelist mode\"",
+        "description": "[options] FAQ Answer 3 part 2"
+    },
+    "optFAQ_A3_3": {
+        "message": "Add DeviantArt.com & 1X.com to list of URLs (not case-sensitive)",
+        "description": "[options] FAQ Answer 3 part 3"
+    },
+    "optFAQ_Q4": {
+        "message": "I want to zoom an image or video to its original size even if larger than screen.",
+        "description": "[options] FAQ Question 4"
+    },
+    "optFAQ_A4_1": {
+        "message": "Hover over an image or video then lock it on screen (default action key: \"L\")",
+        "description": "[options] FAQ Answer 4 part 1"
+    },
+    "optFAQ_A4_2": {
+        "message": "Image or video is now displayed fullsize. You can zoom in or out using mousewheel.",
+        "description": "[options] FAQ Answer 4 part 2"
+    },
     "optPixelsUnitName": {
         "message": "pikseller",
         "description": "[options] Unit name (pixels)"
