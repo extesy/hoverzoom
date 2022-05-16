@@ -1456,8 +1456,18 @@ var hoverZoom = {
 
                 removeMedias();
 
-                if (hz.currentLink && hoverZoomSrcIndex < hz.currentLink.data().hoverZoomSrc.length - 1) {
-                    // if the link has several possible sources, we try to load the next one
+                // if "abortOnFirstError" flag is set to true then:
+                // - do not try to load next possible source(s)
+                // - in case of gallery, do not try to display next images & remove them from list
+                if (hz.currentLink.data().abortOnFirstError) {
+                    console.info('[HoverZoom] Failed to load image: ' + imgDetails.url + '\nAborting.');
+                    if (hz.currentLink.data().hoverZoomGallerySrc && hz.currentLink.data().hoverZoomGallerySrc.length) {
+                        hz.currentLink.data().hoverZoomGallerySrc = hz.currentLink.data().hoverZoomGallerySrc.slice(0, hz.currentLink.data().hoverZoomGalleryIndex);
+                        hz.currentLink.data().hoverZoomGalleryIndex = 0;
+                        hz.currentLink.data().hoverZoomSrc = hz.currentLink.data().hoverZoomGallerySrc[0];
+                    }
+                } else if (hz.currentLink && hoverZoomSrcIndex < hz.currentLink.data().hoverZoomSrc.length - 1) {
+                    // if the link has several possible sources, try to load the next one
                     hoverZoomSrcIndex++;
                     hz.currentLink.data().hoverZoomSrcIndex = hoverZoomSrcIndex;
                     let nextSrc = hz.currentLink.data().hoverZoomSrc[hoverZoomSrcIndex];
@@ -1590,7 +1600,7 @@ var hoverZoom = {
                     prepareImgLinksAsync(true);
                 } else {
                     // Skip if the image has the same URL as the thumbnail.
-                    if (linkData.hoverZoomSrc) {
+                    if (linkData.hoverZoomSrc && linkData.hoverZoomSrc.length) {
                         var url = linkData.hoverZoomSrc[0],
                             skip = url === link.attr('src');
                         if (!skip) {
