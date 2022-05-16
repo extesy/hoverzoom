@@ -1816,6 +1816,10 @@
         {
             "js": ["plugins/huaban.js"],
             "matches": ["*://*.huaban.com/*"]
+        },
+        {
+            "js": ["plugins/bnf.js"],
+            "matches": ["*://*.bnf.fr/*"]
         }
    ]
 }
