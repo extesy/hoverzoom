@@ -512,27 +512,27 @@
         "description": "[options] Enable debug option"
     },
     "optPageFAQ": {
-        "message": "FAQ",
+        "message": "SSS",
         "description": "[options] Page title for FAQ"
     },
     "optSectionFAQ": {
-        "message": "Frequently Asked Questions",
+        "message": "Sıkça Sorulan Sorular",
         "description": "[options] Page section for Frequently Asked Questions"
     },
     "optFAQ_Q1": {
-        "message": "I edited some options, but i see no changes.",
+        "message": "Bazı ayarları değiştirdim fakat değişiklik görmüyorum.",
         "description": "[options] FAQ Question 1"
     },
     "optFAQ_A1_1": {
-        "message": "After edition, click \"Save\" button",
+        "message": "Değiştirdikten sonra kaydet tuşuna tıklayın",
         "description": "[options] FAQ Answer 1 part 1"
     },
     "optFAQ_A1_2": {
-        "message": "on bottom of Options page",
+        "message": "ayarlar sayfasının alt kısmında",
         "description": "[options] FAQ Answer 1 part 2"
     },
     "optFAQ_A1_3": {
-        "message": "Reload the page (F5)",
+        "message": "Sayfayı yeniden yükleyin (F5)",
         "description": "[options] FAQ Answer 1 part 3"
     },
     "optFAQ_Q2": {
