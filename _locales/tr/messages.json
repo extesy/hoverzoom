@@ -536,43 +536,43 @@
         "description": "[options] FAQ Answer 1 part 3"
     },
     "optFAQ_Q2": {
-        "message": "I want to hide the mouse cursor on zoomed image or video.",
+        "message": "Büyütülmüş fotoğraf veya videolarda fare imlecini gizlemek istiyorum.",
         "description": "[options] FAQ Question 2"
     },
     "optFAQ_A2_1": {
-        "message": "In Options -> General -> Delays, activate \"Hide mouse cursor\"",
+        "message": "Ayarlar -> Genel -> Gecikmeler,\"Fare imlecini gizle\" yi aktif hale getirin",
         "description": "[options] FAQ Answer 2 part 1"
     },
     "optFAQ_SaveAndReload": {
-        "message": "Save and reload the page (F5)",
+        "message": "Kaydet ve sayfayı yenile (F5)",
         "description": "[options] FAQ Save and reload page"
     },
     "optFAQ_Q3": {
-        "message": "I need HoverZoom+ to be active for some sites only.",
+        "message": "HoveZoom+'nın sadece bazı sitelerde aktif olmasına ihtiyacım var.",
         "description": "[options] FAQ Question 3"
     },
     "optFAQ_A3_1": {
-        "message": "E.g. to activate HoverZoom+ on DeviantArt.com & 1X.com:",
+        "message": "Örneğin HoverZoom+'yı DeviantArt.com & 1X.com'da aktif hale getir:",
         "description": "[options] FAQ Answer 3 part 1"
     },
     "optFAQ_A3_2": {
-        "message": "In Options -> Sites, activate \"Whitelist mode\"",
+        "message": "Ayarlar -> Siteler, \"Beyaz liste modu\" nu aktif hale getir",
         "description": "[options] FAQ Answer 3 part 2"
     },
     "optFAQ_A3_3": {
-        "message": "Add DeviantArt.com & 1X.com to list of URLs (not case-sensitive)",
+        "message": "DeviantArt.com & 1X.com'u URL listesine ekle (Küçük-büyük harf duyarlı değil)",
         "description": "[options] FAQ Answer 3 part 3"
     },
     "optFAQ_Q4": {
-        "message": "I want to zoom an image or video to its original size even if larger than screen.",
+        "message": "Ekrandan daha büyük olsa bile bir görüntüyü veya videoyu orijinal boyutuna yakınlaştırmak istiyorum.",
         "description": "[options] FAQ Question 4"
     },
     "optFAQ_A4_1": {
-        "message": "Hover over an image or video then lock it on screen (default action key: \"L\")",
+        "message": "Fareyle bir resmin veya videonun üzerine gelin ve ardından ekrana kilitleyin (Varsayılan aksiyon tuşu:\"L\")",
         "description": "[options] FAQ Answer 4 part 1"
     },
     "optFAQ_A4_2": {
-        "message": "Image or video is now displayed fullsize. You can zoom in or out using mousewheel.",
+        "message": "Resim veya video şuan tam boyutuyla gösteriliyor. Fare tekerleğini kullanarak büyütebilir veya küçültebilirsin.",
         "description": "[options] FAQ Answer 4 part 2"
     },
     "optPixelsUnitName": {
