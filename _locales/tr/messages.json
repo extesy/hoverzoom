@@ -411,6 +411,14 @@
         "message": "Görüntülenen resimleri tarayıcı geçmişine ekle",
         "description": "[options] Add viewed pictures to the browser's history option"
     },
+    "optAllowHeadersRewriteTooltip": {
+        "message": "Videolar gibi bir sitedeki içeriği başka bir sitede yakınlaştırıp oynatabilmek için kullanışlı",
+        "description": "[options] Tooltip for allow rewrite of headers for HTTP(S) request or response option"
+    },
+    "optAllowHeadersRewrite": {
+        "message": "İstek ve cevap HTTP(S) başlıklarını yeniden yazmaya izin ver",
+        "description": "[options] Allow rewrite of headers for HTTP(S) request or response option"
+    },
     "optFilterNSFW": {
         "message": "İş ortamına uygun olmayan resimleri dışla (sadece Reddit için)",
         "description": "[options] Exclude NSFW images (Reddit only) option"
