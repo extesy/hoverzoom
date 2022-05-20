@@ -37,7 +37,9 @@
     "optional_permissions": [
         "downloads",
         "history",
-        "tabs"
+        "tabs",
+        "webRequest",
+        "webRequestBlocking"
     ],
     "web_accessible_resources": [
         "images/loading.gif",
@@ -74,6 +76,7 @@
                 "plugins/cloudapp_a.js",
                 "plugins/cloudfront_a.js",
                 "plugins/cloudinary_a.js",
+                "plugins/dailymotion_a.js",
                 "plugins/deviantart_a.js",
                 "plugins/ebay_a.js",
                 "plugins/facebook_a.js",

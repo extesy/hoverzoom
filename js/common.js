@@ -11,6 +11,7 @@ var factorySettings = {
     galleriesMouseWheel : true,
     disableMouseWheelForVideo : false,
     addToHistory : false,
+    allowHeadersRewrite : false,
     alwaysPreload : false,
     displayDelay : 100,
     displayDelayVideo : 500,
@@ -91,6 +92,7 @@ function loadOptions() {
     options.galleriesMouseWheel = options.hasOwnProperty('galleriesMouseWheel') ? options.galleriesMouseWheel : factorySettings.galleriesMouseWheel;
     options.disableMouseWheelForVideo = options.hasOwnProperty('disableMouseWheelForVideo') ? options.disableMouseWheelForVideo : factorySettings.disableMouseWheelForVideo;
     options.addToHistory = options.hasOwnProperty('addToHistory') ? options.addToHistory : factorySettings.addToHistory;
+    options.allowHeadersRewrite = options.hasOwnProperty('allowHeadersRewrite') ? options.allowHeadersRewrite : factorySettings.allowHeadersRewrite;
     options.alwaysPreload = options.hasOwnProperty('alwaysPreload') ? options.alwaysPreload : factorySettings.alwaysPreload;
     options.displayDelay = options.hasOwnProperty('displayDelay') ? options.displayDelay : factorySettings.displayDelay;
     options.displayDelayVideo = options.hasOwnProperty('displayDelayVideo') ? options.displayDelayVideo : factorySettings.displayDelayVideo;
@@ -181,7 +183,7 @@ function isExcludedSite(link) {
     let linkHostname = new URL(link)['hostname'];
     let excluded = !options.whiteListMode;
     for (let i = 0; i < options.excludedSites.length; i++) {
-   
+
         // check if excluded site is included in link hostname
         // e.g:
         // link hostname = www.tiktok.com

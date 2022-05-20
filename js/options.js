@@ -120,6 +120,7 @@ function saveOptions() {
     });
 
     options.addToHistory = $('#chkAddToHistory')[0].checked;
+    options.allowHeadersRewrite = $('#chkAllowHeadersRewrite')[0].checked;
     options.filterNSFW = $('#chkFilterNSFW')[0].checked;
     options.alwaysPreload = $('#chkAlwaysPreload')[0].checked;
     options.enableGalleries = $('#chkEnableGalleries')[0].checked;
@@ -220,6 +221,7 @@ function restoreOptions(optionsFromFactorySettings) {
     });
 
     $('#chkAddToHistory').trigger(options.addToHistory ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkAllowHeadersRewrite').trigger(options.allowHeadersRewrite ? 'gumby.check' : 'gumby.uncheck');
     $('#chkFilterNSFW').trigger(options.filterNSFW ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAlwaysPreload').trigger(options.alwaysPreload ? 'gumby.check' : 'gumby.uncheck');
     $('#chkEnableGalleries').trigger(options.enableGalleries ? 'gumby.check' : 'gumby.uncheck');
@@ -362,6 +364,25 @@ function initAddToHistory() {
             $('#chkAddToHistory').parent().on('gumby.onChange', chkAddToHistoryModeOnChange);
         }
     });
+}
+
+function chkAllowHeadersRewriteOnChange() {
+    if ($('#chkAllowHeadersRewrite')[0].checked) {
+        chrome.permissions.contains({permissions: ['webRequest','webRequestBlocking']}, function (granted) { 
+            if (!granted) {
+                // ask user for permissions
+                chrome.permissions.request({permissions: ['webRequest','webRequestBlocking']}, function (granted) {
+                    if (!granted) {
+                        $('#chkAddToHistory').trigger('gumby.uncheck');
+                    }
+                });
+            }
+        });
+    }
+}
+
+function initAllowHeadersRewrite() {
+    $('#chkAllowHeadersRewrite').parent().on('gumby.onChange', chkAllowHeadersRewriteOnChange);
 }
 
 function percentageOnChange(val) {
@@ -558,6 +579,7 @@ $(function () {
     i18n();
     chkWhiteListModeOnChange();
     initAddToHistory();
+    initAllowHeadersRewrite();
     $("#version").text(chrome.i18n.getMessage("optFooterVersionCopyright", [chrome.runtime.getManifest().version, localStorage['HoverZoomLastUpdate'] ? localStorage['HoverZoomLastUpdate'] : localStorage['HoverZoomInstallation']]));
     $('#btnSave').click(function() { removeModifications(); saveOptions(); displayMsg(Saved); return false; }); // "return false" needed to prevent page scroll
     $('#btnCancel').click(function() { removeModifications(); restoreOptions(); displayMsg(Cancel); return false; });
