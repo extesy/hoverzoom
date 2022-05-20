@@ -411,6 +411,14 @@
         "message": "Tilføj sete billeder til browserens historik",
         "description": "[options] Add viewed pictures to the browser's history option"
     },
+    "optAllowHeadersRewriteTooltip": {
+        "message": "Useful to be able to zoom & play content from one site on another site, such as videos",
+        "description": "[options] Tooltip for allow rewrite of headers for HTTP(S) request or response option"
+    },
+    "optAllowHeadersRewrite": {
+        "message": "Allow rewrite of headers for HTTP(S) request or response",
+        "description": "[options] Allow rewrite of headers for HTTP(S) request or response option"
+    },
     "optFilterNSFW": {
         "message": "Udeluk NSFW-billeder (Reddit)",
         "description": "[options] Exclude NSFW images (Reddit only) option"
