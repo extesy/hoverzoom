@@ -187,7 +187,6 @@ chrome.runtime.onInstalled.addListener((details) => {
 // - store response's header(s) setting(s) = modification(s) to be applied to response's header(s) just after receiving response from server
 //   e.g: add/modify "Access-Control-Allow-Origin" header so browser allows content display
 function storeHeaderSettings(message) {
-    console.log('storeHeaderSettings ' + message.requestOrResponse);
     // check that:
     // - header(s) rewrite is allowed
     // and
@@ -196,7 +195,7 @@ function storeHeaderSettings(message) {
     chrome.permissions.contains({permissions: ['webRequest','webRequestBlocking']}, function (granted) {
         if (!granted) return;
     });
-    console.log('storeHeaderSettings ' + message.requestOrResponse + ' granted');
+
     let hoverZoomHeaderSettings = sessionStorage.getItem('HoverZoomHeaderSettings') || '{}';
     hoverZoomHeaderSettings = JSON.parse(hoverZoomHeaderSettings);
     let settings = (message.requestOrResponse == 'request' ? hoverZoomHeaderSettings.requetes || [] : hoverZoomHeaderSettings.responses || []);
@@ -210,34 +209,22 @@ function storeHeaderSettings(message) {
 
 // update request header(s) just before sending
 function updateRequestHeaders(e) {
-    console.log('updateRequestHeaders');
-    console.log(e);
-
     let settings = findHeaderSettings(e.url, "request");
     if (! settings) return;
 
     // check if update must be skipped because of initiator
-    if (settings.skipInitiator && e.initiator.indexOf(settings.skipInitiator) != -1) {
-        console.log('skip: initiator');
-        return;
-    }
+    if (settings.skipInitiator && e.initiator.indexOf(settings.skipInitiator) != -1) return;
 
     return { requestHeaders: updateHeaders(e.requestHeaders, settings) };
 }
 
 // update response header(s) just after receiving
 function updateResponseHeaders(e) {
-    console.log('updateResponseHeaders');
-    console.log(e);
-
     let settings = findHeaderSettings(e.url, "response");
     if (! settings) return;
 
     // check if update must be skipped because of initiator
-    if (settings.skipInitiator && e.initiator.indexOf(settings.skipInitiator) != -1) {
-        console.log('skip: initiator');
-        return;
-    }
+    if (settings.skipInitiator && e.initiator.indexOf(settings.skipInitiator) != -1) return;
 
     return { responseHeaders: updateHeaders(e.responseHeaders, settings) };
 }
@@ -248,10 +235,7 @@ function findHeaderSettings(url, requestOrResponse) {
     hoverZoomHeaderSettings = JSON.parse(hoverZoomHeaderSettings);
     let reqres = (requestOrResponse == 'request' ? hoverZoomHeaderSettings.requetes || [] : hoverZoomHeaderSettings.responses || []);
     let settings = reqres.find(s => url.indexOf(s.url) != -1);
-    if (! settings) {
-        console.log('skip: no settings');
-        return null; // no settings found for url
-    }
+    if (! settings) return null; // no settings found for url
     return settings;
 }
 
@@ -276,7 +260,6 @@ function updateHeaders(headers, settings) {
             else headers.push( { 'name':h.name, 'value':h.value } );
         }
     })
-    console.log(headers);
     return headers;
 }
 
@@ -286,9 +269,6 @@ function updateHeaders(headers, settings) {
 // so they can be edited on-the-fly to enable API calls from plug-ins
 // https://developer.chrome.com/docs/extensions/reference/webRequest/
 function addWebRequestListeners() {
-
-    console.log('addWebRequestListeners');
-
     if (! chrome.webRequest.onBeforeSendHeaders.hasListeners())
         chrome.webRequest.onBeforeSendHeaders.addListener(updateRequestHeaders, { urls : ["<all_urls>"] }, ["blocking", "requestHeaders", "extraHeaders"]);
     if (! chrome.webRequest.onHeadersReceived.hasListeners())
@@ -300,9 +280,6 @@ function addWebRequestListeners() {
 // - onHeadersReceived
 // also remove headers settings since they are not used anymore
 function removeWebRequestListeners() {
-
-    console.log('removeWebRequestListeners');
-
     if (chrome.webRequest.onBeforeSendHeaders.hasListeners())
         chrome.webRequest.onBeforeSendHeaders.removeListener(updateRequestHeaders);
     if (chrome.webRequest.onHeadersReceived.hasListeners())
