@@ -411,6 +411,14 @@
         "message": "将查看过的图片添加到浏览器的历史记录中",
         "description": "[options] Add viewed pictures to the browser's history option"
     },
+    "optAllowHeadersRewriteTooltip": {
+        "message": "Useful to be able to zoom & play content from one site on another site, such as videos",
+        "description": "[options] Tooltip for allow rewrite of headers for HTTP(S) request or response option"
+    },
+    "optAllowHeadersRewrite": {
+        "message": "Allow rewrite of headers for HTTP(S) request or response",
+        "description": "[options] Allow rewrite of headers for HTTP(S) request or response option"
+    },
     "optFilterNSFW": {
         "message": "排除工作场所不宜的图(仅适用于Reddit)",
         "description": "[options] Exclude NSFW images (Reddit only) option"
