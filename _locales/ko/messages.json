@@ -412,11 +412,11 @@
         "description": "[options] Add viewed pictures to the browser's history option"
     },
     "optAllowHeadersRewriteTooltip": {
-        "message": "Useful to be able to zoom & play content from one site on another site, such as videos",
+        "message": "한 사이트 내에서 타 사이트의 콘텐츠(동영상 등)를 확대하고 재생할 때 유용합니다",
         "description": "[options] Tooltip for allow rewrite of headers for HTTP(S) request or response option"
     },
     "optAllowHeadersRewrite": {
-        "message": "Allow rewrite of headers for HTTP(S) request or response",
+        "message": "HTTP(S) 요청 및 응답의 헤더 수정 허용",
         "description": "[options] Allow rewrite of headers for HTTP(S) request or response option"
     },
     "optFilterNSFW": {
@@ -524,11 +524,11 @@
         "description": "[options] Page title for FAQ"
     },
     "optSectionFAQ": {
-        "message": "Frequently Asked Questions",
+        "message": "자주 묻는 질문",
         "description": "[options] Page section for Frequently Asked Questions"
     },
     "optFAQ_Q1": {
-        "message": "I edited some options, but i see no changes.",
+        "message": "일부 옵션을 변경했으나 적용되지 않았습니다.",
         "description": "[options] FAQ Question 1"
     },
     "optFAQ_A1_1": {
