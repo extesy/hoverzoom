@@ -532,55 +532,55 @@
         "description": "[options] FAQ Question 1"
     },
     "optFAQ_A1_1": {
-        "message": "After edition, click \"Save\" button",
+        "message": "옵션 변경 후 \"저장\" 버튼을 누르세요.",
         "description": "[options] FAQ Answer 1 part 1"
     },
     "optFAQ_A1_2": {
-        "message": "on bottom of Options page",
+        "message": "설정 페이지의 하단에 있습니다",
         "description": "[options] FAQ Answer 1 part 2"
     },
     "optFAQ_A1_3": {
-        "message": "Reload the page (F5)",
+        "message": "페이지를 새로고치세요 (F5)",
         "description": "[options] FAQ Answer 1 part 3"
     },
     "optFAQ_Q2": {
-        "message": "I want to hide the mouse cursor on zoomed image or video.",
+        "message": "사진이나 동영상을 확대했을 때 마우스 커서를 숨기고 싶습니다.",
         "description": "[options] FAQ Question 2"
     },
     "optFAQ_A2_1": {
-        "message": "In Options -> General -> Delays, activate \"Hide mouse cursor\"",
+        "message": "옵션 -> 기본 -> 딜레이에서, \"마우스 커서 숨김\"을 켜세요",
         "description": "[options] FAQ Answer 2 part 1"
     },
     "optFAQ_SaveAndReload": {
-        "message": "Save and reload the page (F5)",
+        "message": "저장하고 페이지 새로고침 (F5)",
         "description": "[options] FAQ Save and reload page"
     },
     "optFAQ_Q3": {
-        "message": "I need HoverZoom+ to be active for some sites only.",
+        "message": "호버 줌+를 일부 사이트에서만 활성화하고 싶습니다.",
         "description": "[options] FAQ Question 3"
     },
     "optFAQ_A3_1": {
-        "message": "E.g. to activate HoverZoom+ on DeviantArt.com & 1X.com:",
+        "message": "예시. 호버 줌+를 DeviantArt.com 및 1X.com에서만 켜는 방법:",
         "description": "[options] FAQ Answer 3 part 1"
     },
     "optFAQ_A3_2": {
-        "message": "In Options -> Sites, activate \"Whitelist mode\"",
+        "message": "옵션 -> 사이트에서, \"화이트리스트 모드\"를 켜세요",
         "description": "[options] FAQ Answer 3 part 2"
     },
     "optFAQ_A3_3": {
-        "message": "Add DeviantArt.com & 1X.com to list of URLs (not case-sensitive)",
+        "message": "URL 목록에 DeviantArt.com 및 1X.com을 추가하세요 (대소문자 무관)",
         "description": "[options] FAQ Answer 3 part 3"
     },
     "optFAQ_Q4": {
-        "message": "I want to zoom an image or video to its original size even if larger than screen.",
+        "message": "원본 사진이나 동영상이 화면보다 크더라도 원본 크기로 확대하고 싶습니다.",
         "description": "[options] FAQ Question 4"
     },
     "optFAQ_A4_1": {
-        "message": "Hover over an image or video then lock it on screen (default action key: \"L\")",
+        "message": "사진이나 동영상에 마우스를 올리고 화면에 고정하세요 (기본 단축키: \"L\")",
         "description": "[options] FAQ Answer 4 part 1"
     },
     "optFAQ_A4_2": {
-        "message": "Image or video is now displayed fullsize. You can zoom in or out using mousewheel.",
+        "message": "사진이나 동영상이 원본 크기로 표시됩니다. 마우스 휠로 확대/축소할 수 있습니다.",
         "description": "[options] FAQ Answer 4 part 2"
     },
     "optPixelsUnitName": {
