@@ -1,12 +1,12 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push( {
     name: 'tiktok_a',
-    version: '1.0',
+    version: '1.1',
     prepareImgLinks: function(callback) {
         var name = this.name;
 
-        const token1 = 'window[\'SIGI_STATE\']={';
-        const token2 = '};window[\'SIGI_RETRY\']';
+        const token1 = 'SIGI_STATE';
+        const token2 = 'SIGI_RETRY';
 
         // load user page then extract user picture url
         // proceed with API call from background page
@@ -26,7 +26,9 @@ hoverZoomPlugins.push( {
                                             if (index1 == -1) { return; }
                                             let index2 = response.indexOf(token2, index1);
                                             if (index2 == -1) { return; }
-                                            let jsonData = response.substring(index1 + token1.length - 1, index2 + 1);
+                                            let index3 = response.indexOf('{', index1);
+                                            let index4 = response.lastIndexOf('}', index2);
+                                            let jsonData = response.substring(index3, index4 + 1);
                                             try {
                                                 let j = JSON.parse(jsonData);
                                                 let avatarUrl = j["UserModule"]["users"][userId]["avatarLarger"];
@@ -88,7 +90,9 @@ hoverZoomPlugins.push( {
                                             if (index1 == -1) { return; }
                                             let index2 = response.indexOf(token2, index1);
                                             if (index2 == -1) { return; }
-                                            let jsonData = response.substring(index1 + token1.length - 1, index2 + 1);
+                                            let index3 = response.indexOf('{', index1);
+                                            let index4 = response.lastIndexOf('}', index2);
+                                            let jsonData = response.substring(index3, index4 + 1);
                                             if (videoId == undefined) {
                                                 var m = jsonData.match(/"video":{"id":"(\d+)"/);
                                                 videoId = m[1];
@@ -111,9 +115,9 @@ hoverZoomPlugins.push( {
                                         });
         }
 
-        // videos ("vm" kind, as used on Reddit)
+        // videos ("vm" or "vt" kind, as used on Reddit)
         // sample: https://vm.tiktok.com/TTPdkHATKx/
-        $('a[href*="vm.tiktok.com/"]').on('mouseover', function() {
+        $('a[href*="vm.tiktok.com/"],a[href*="vt.tiktok.com/"]').on('mouseover', function() {
 
             var link = undefined;
             var href = undefined;
@@ -121,7 +125,7 @@ hoverZoomPlugins.push( {
             href = this.href;
             link = $(this);
 
-            const re = /vm.tiktok.com\/([^\/?]{1,})/;   // pseudo video id (e.g. TTPdkHATKx)
+            const re = /v[mt].tiktok.com\/([^\/?]{1,})/;   // pseudo video id (e.g. TTPdkHATKx)
             let m = href.match(re);
             if (m == undefined) return;
             let pseudoVideoId = m[1];
@@ -195,7 +199,9 @@ hoverZoomPlugins.push( {
                                             if (index1 == -1) { return; }
                                             let index2 = response.indexOf(token2, index1);
                                             if (index2 == -1) { return; }
-                                            let jsonData = response.substring(index1 + token1.length - 1, index2 + 1);
+                                            let index3 = response.indexOf('{', index1);
+                                            let index4 = response.lastIndexOf('}', index2);
+                                            let jsonData = response.substring(index3, index4 + 1);
                                             try {
                                                 let j = JSON.parse(jsonData);
                                                 let roomId = j["UserModule"]["users"][userId]["roomId"];
