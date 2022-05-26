@@ -11,6 +11,17 @@ hoverZoomPlugins.push({
       _this.data().hoverZoomCaption = _this.parent().find('a.title').text();
     });
 
+    $('a[href*="//external-preview.redd.it/"]').each(function () {
+      const post = $(this);
+      let href = post.attr('href');
+      if (href.indexOf('&amp') !== -1) {
+        href = href.replaceAll('&amp%3B', '&');
+        href = href.replaceAll('&amp;', '&');
+        post.attr('href', href);
+      }
+      post.data('hoverZoomSrc', [href]);
+    });
+
     $('a.outbound.thumbnail, a.outbound.title').one('mouseover', function () {
       var link = this;
       if (link.href.indexOf('reddit.com') !== -1) return;

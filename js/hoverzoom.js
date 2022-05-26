@@ -545,19 +545,20 @@ var hoverZoom = {
             return (contentOverflows && overflowShown) || (alwaysShowScroll);
         }
 
+        const videoExtensions = new Set(['3gpp', 'mp4', 'webm']);
+        const videoExtensionsWithGif = new Set(['3gpp', 'gif', 'gifv', 'mp4', 'webm']);
+
         function isVideoLink(url, includeGifs = false) {
             if (url.indexOf('.video') !== -1)
                 return true;
 
             if (url.lastIndexOf('?') > 0)
                 url = url.substring(0, url.lastIndexOf('?'));
-            const ext = url.substring(url.length - 4).toLowerCase();
+            const ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
 
-            return (includeGifs && (ext === '.gif' || ext === 'gifv'))
-                || ext === 'webm' || ext === '.mp4' || ext === '3gpp'
+            return (includeGifs ? videoExtensionsWithGif.has(ext) : videoExtensions.has(ext))
                 || url.indexOf('googlevideo.com/videoplayback') > 0
-                || url.indexOf('v.redd.it') > 0
-                || (url.indexOf('preview.redd.it') > 0 && ext !== '.jpg');
+                || url.indexOf('v.redd.it') > 0;
         }
 
         function isPlaylistLink(url) {
