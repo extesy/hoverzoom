@@ -72,7 +72,7 @@
         "description": "[options] Notification after cancelling modification(s) to options"
     },
     "optReset": {
-        "message": "Opções restauradas às definições de fábrica, guardar para aplicar.",
+        "message": "As opções serão restauradas com as predefinições de fábrica, clique em guardar para aplicar.",
         "description": "[options] Notification after resetting options to factory settings"
     },
     "optPageGeneral": {
@@ -100,7 +100,7 @@
         "description": "[options] Unit name (percentage) for zoomed images size option"
     },
     "optZoomFactorTooltip": {
-        "message": "Multiplique o tamanho das imagens ampliadas por este valor",
+        "message": "Multiplica o tamanho das imagens ampliadas por este valor",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optCaptionLocation": {
@@ -108,7 +108,7 @@
         "description": "[options] Adjust the position of the caption"
     },
     "optCaptionLocationTooltip": {
-        "message": "Ver a legenda acima/abaixo da imagem, ou nem por isso",
+        "message": "Ver a legenda acima/abaixo da imagem, ou de modo nenhum",
         "description": "[options] Tooltip for adjusting the position of the caption"
     },
     "optCaptionLocationAbove": {
@@ -128,7 +128,7 @@
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
-        "message": "Ver os detalhes (tamanho, formato...) acima/abaixo da imagem, ou nem por isso",
+        "message": "Ver os detalhes (tamanho, formato...) acima/abaixo da imagem, ou de modo nenhum",
         "description": "[options] Tooltip for adjusting the position of details"
     },
     "optDetailsLocationAbove": {
@@ -160,7 +160,7 @@
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
     "optHideMouseCursor": {
-        "message": "Esconda o ponteiro do rato depois:",
+        "message": "Esconder o ponteiro do rato depois de:",
         "description": "[options] Hide mouse cursor option"
     },
     "optHideMouseCursorTooltip": {
@@ -380,7 +380,7 @@
         "description": "[options] Whitelist mode checkbox"
     },
     "optWhitelistModeTooltip": {
-        "message": "Apenas ativar o Hover Zoom+ para os sites listados abaixo",
+        "message": "Apenas ativa o Hover Zoom+ para os sites listados abaixo",
         "description": "[options] Tooltip for whitelist mode checkbox"
     },
     "optSitePlaceholder": {
@@ -412,11 +412,11 @@
         "description": "[options] Add viewed pictures to the browser's history option"
     },
     "optAllowHeadersRewriteTooltip": {
-        "message": "Useful to be able to zoom & play content from one site on another site, such as videos",
+        "message": "Útil para ampliar e reproduzir conteúdo de um site, como vídeos, em outro site",
         "description": "[options] Tooltip for allow rewrite of headers for HTTP(S) request or response option"
     },
     "optAllowHeadersRewrite": {
-        "message": "Allow rewrite of headers for HTTP(S) request or response",
+        "message": "Permitir reescrever cabeçalhos de pedido ou resposta HTTP(S)",
         "description": "[options] Allow rewrite of headers for HTTP(S) request or response option"
     },
     "optFilterNSFW": {
@@ -480,7 +480,7 @@
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Renomeie imagens e vídeos guardados adicionando:",
+        "message": "Renomear imagens e vídeos guardados ao adicionar:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
@@ -512,7 +512,7 @@
         "description": "[options] Page section for troubleshooting"
     },
     "optEnableDebugTooltip": {
-        "message": "Mostrar mensagens de depuração na consola do navegador (para abrir a consola: pressione F12)",
+        "message": "Mostra as mensagens de depuração na consola do navegador (para abrir a consola: pressione F12)",
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
@@ -524,63 +524,63 @@
         "description": "[options] Page title for FAQ"
     },
     "optSectionFAQ": {
-        "message": "Frequently Asked Questions",
+        "message": "Perguntas Frequentes",
         "description": "[options] Page section for Frequently Asked Questions"
     },
     "optFAQ_Q1": {
-        "message": "I edited some options, but i see no changes.",
+        "message": "Editei algumas opções, mas não vejo alterações.",
         "description": "[options] FAQ Question 1"
     },
     "optFAQ_A1_1": {
-        "message": "After edition, click \"Save\" button",
+        "message": "Após a edição, clique no botão \"Guardar\"",
         "description": "[options] FAQ Answer 1 part 1"
     },
     "optFAQ_A1_2": {
-        "message": "on bottom of Options page",
+        "message": "na parte inferior da página Opções",
         "description": "[options] FAQ Answer 1 part 2"
     },
     "optFAQ_A1_3": {
-        "message": "Reload the page (F5)",
+        "message": "Recarregar a página (F5)",
         "description": "[options] FAQ Answer 1 part 3"
     },
     "optFAQ_Q2": {
-        "message": "I want to hide the mouse cursor on zoomed image or video.",
+        "message": "Quero esconder o ponteiro do rato numa imagem ou vídeo ampliado.",
         "description": "[options] FAQ Question 2"
     },
     "optFAQ_A2_1": {
-        "message": "In Options -> General -> Delays, activate \"Hide mouse cursor\"",
+        "message": "Em Opções -> Geral -> Atrasos (Delays), ative o \"Esconder o ponteiro do rato\"",
         "description": "[options] FAQ Answer 2 part 1"
     },
     "optFAQ_SaveAndReload": {
-        "message": "Save and reload the page (F5)",
+        "message": "Guardar e recarregar a página (F5)",
         "description": "[options] FAQ Save and reload page"
     },
     "optFAQ_Q3": {
-        "message": "I need HoverZoom+ to be active for some sites only.",
+        "message": "Preciso que o HoverZoom+ esteja ativo apenas para alguns sites.",
         "description": "[options] FAQ Question 3"
     },
     "optFAQ_A3_1": {
-        "message": "E.g. to activate HoverZoom+ on DeviantArt.com & 1X.com:",
+        "message": "Exemplo de como ativar o HoverZoom+ no DeviantArt.com e 1X.com:",
         "description": "[options] FAQ Answer 3 part 1"
     },
     "optFAQ_A3_2": {
-        "message": "In Options -> Sites, activate \"Whitelist mode\"",
+        "message": "Em Opções -> Sites, ative o \"Modo lista branca\"",
         "description": "[options] FAQ Answer 3 part 2"
     },
     "optFAQ_A3_3": {
-        "message": "Add DeviantArt.com & 1X.com to list of URLs (not case-sensitive)",
+        "message": "Adicione DeviantArt.com e 1X.com à lista de links (não é sensível a maiúsculas e minúsculas)",
         "description": "[options] FAQ Answer 3 part 3"
     },
     "optFAQ_Q4": {
-        "message": "I want to zoom an image or video to its original size even if larger than screen.",
+        "message": "Quero ampliar uma imagem ou vídeo para o seu tamanho original, mesmo que seja maior que o ecrã.",
         "description": "[options] FAQ Question 4"
     },
     "optFAQ_A4_1": {
-        "message": "Hover over an image or video then lock it on screen (default action key: \"L\")",
+        "message": "Passe o rato sobre uma imagem ou vídeo e, em seguida, bloqueie no ecrã (tecla de atalho padrão: \"L\")",
         "description": "[options] FAQ Answer 4 part 1"
     },
     "optFAQ_A4_2": {
-        "message": "Image or video is now displayed fullsize. You can zoom in or out using mousewheel.",
+        "message": "A imagem ou o vídeo são agora exibidos em tamanho real. Pode fazer ampliar/reduzir usando a roda do rato.",
         "description": "[options] FAQ Answer 4 part 2"
     },
     "optPixelsUnitName": {
@@ -616,11 +616,11 @@
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Ao pressionar esta tecla para baixo esconde a imagem ou vídeo ampliado. Utilize-a quando a imagem oculta elementos que também são exibidos ao passar o rato.",
+        "message": "Ao pressionar esta tecla para baixo esconde a imagem ou o vídeo ampliado. Utilize-a quando a imagem oculta elementos que também são exibidos ao passar o rato.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
-        "message": "Abrir a imagem numa nova janela",
+        "message": "Abrir imagem numa nova janela",
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
@@ -628,7 +628,7 @@
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
-        "message": "Abrir a imagem num novo separador",
+        "message": "Abrir imagem num novo separador",
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
@@ -636,7 +636,7 @@
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
-        "message": "Bloquear a imagem no ecrã",
+        "message": "Bloquear imagem no ecrã",
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
@@ -660,7 +660,7 @@
         "description": "[options] Action key description"
     },
     "optCopyImageKeyTitle": {
-        "message": "Copiar a imagem para a área de transferência",
+        "message": "Copiar imagem para a área de transferência",
         "description": "[options] Action key title"
     },
     "optCopyImageKeyDescription": {
@@ -668,7 +668,7 @@
         "description": "[options] Action key description"
     },
     "optCopyImageUrlKeyTitle": {
-        "message": "Copiar o link da imagem para a área de transferência",
+        "message": "Copiar link da imagem para a área de transferência",
         "description": "[options] Action key title"
     },
     "optCopyImageUrlKeyDescription": {
@@ -676,7 +676,7 @@
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
-        "message": "Ver a imagem anterior numa galeria",
+        "message": "Ver imagem anterior numa galeria",
         "description": "[options] Action key title"
     },
     "optPrevImgKeyDescription": {
