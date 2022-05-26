@@ -550,21 +550,23 @@ var hoverZoom = {
             return (contentOverflows && overflowShown) || (alwaysShowScroll);
         }
 
-        function isVideoLink(url, includeGifs) {
-
-            if (url.indexOf('.video') != -1) return true;
+        function isVideoLink(url, includeGifs = false) {
+            if (url.indexOf('.video') !== -1)
+                return true;
 
             if (url.lastIndexOf('?') > 0)
-                url = url.substr(0, url.lastIndexOf('?'));
-            var ext = url.substr(url.length - 4).toLowerCase();
-            includeGifs = includeGifs || false;
-            return (includeGifs && (ext == '.gif' || ext == 'gifv')) || ext == 'webm' || ext == '.mp4' || ext == '3gpp' || url.indexOf('googlevideo.com/videoplayback') > 0 || url.indexOf('v.redd.it') > 0 || url.indexOf('preview.redd.it') > 0;
+                url = url.substring(0, url.lastIndexOf('?'));
+            const ext = url.substring(url.length - 4).toLowerCase();
+
+            return (includeGifs && (ext === '.gif' || ext === 'gifv'))
+                || ext === 'webm' || ext === '.mp4' || ext === '3gpp'
+                || url.indexOf('googlevideo.com/videoplayback') > 0
+                || url.indexOf('v.redd.it') > 0
+                || (url.indexOf('preview.redd.it') > 0 && ext !== '.jpg');
         }
 
         function isPlaylistLink(url) {
-
-            if (url.indexOf('.m3u8') != -1) return true;
-            return false;
+            return url.indexOf('.m3u8') !== -1;
         }
 
         // some plug-ins append:
