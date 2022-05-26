@@ -12,11 +12,22 @@ hoverZoomPlugins.push({
         );
 
         $('body').on('mouseenter', 'img[src$=".thumb"]', function() {
-            var img = $(this);
-            var url = img.attr('src').replace(/\/\d+x\d+\//, '/').replace('.thumb', '.attach');
+            const img = $(this);
+            const url = img.attr('src').replace(/\/\d+x\d+\//, '/').replace('.thumb', '.attach');
             img.data().hoverZoomSrc = [url];
             img.addClass('hoverZoomLink');
             hoverZoom.displayPicFromElement(img);
+        });
+
+        $('body').on('mouseenter', 'a.bp-c-card_imageContainer', function() {
+            const self = $(this);
+            const img = self.find('img');
+            if (img.length === 1) {
+                const url = img.attr('src').replace(/\/\d+x\d+\//, '/').replace('.thumb', '.attach');
+                self.data().hoverZoomSrc = [url];
+                self.addClass('hoverZoomLink');
+                hoverZoom.displayPicFromElement(self);
+            }
         });
 
         callback($(res));

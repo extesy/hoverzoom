@@ -3,7 +3,7 @@ var hoverZoomPlugins = hoverZoomPlugins || [],
     regexSpecialChars = /[\r\n\t\v\f]/g,
     regexForbiddenChars = /[\\/:*?"<>|~]/g,
     debug = false,
-    logger = Logger(),
+    logger = new Logger(),
     hls = null; // https://github.com/video-dev/hls.js/
 
 function cLog(msg) {
@@ -30,26 +30,21 @@ function cTimeEnd(msg) {
     }
 }
 
-function getFuncName() {
-   return getFuncName.caller.name;
-}
-
 function Logger() {
     this.logger = {};
     if (debug) {
-
-        for (var m in console)
+        for (var m in console) {
             if (typeof console[m] == 'function')
                 this.logger[m] = console[m].bind(window.console);
+        }
 
         this.logger.enterFunc = function() { console.info('enter: ' + this.enterFunc.caller.name); }
         this.logger.leaveFunc = function() { console.info('leave: ' + this.leaveFunc.caller.name); }
-
     } else {
-
-        for (var m in console)
+        for (var m in console) {
             if (typeof console[m] == 'function')
-                this.logger[m] = function() {}
+                this.logger[m] = function () {}
+        }
 
         this.logger.enterFunc = function() {}
         this.logger.leaveFunc = function() {}
@@ -863,13 +858,12 @@ var hoverZoom = {
         var lastMousePosTop = -1, lastMousePosLeft = -1, cursorHideTimeout = 0;
 
         function documentMouseMove(event) {
-
             if (!options.extensionEnabled || fullZoomKeyDown || isExcludedSite() || wnd.height() < 30 || wnd.width() < 30) {
                 return;
             }
 
             // check that mouse really moved
-            if (lastMousePosTop != mousePos.top || lastMousePosLeft != mousePos.left) {
+            if (lastMousePosTop !== mousePos.top || lastMousePosLeft !== mousePos.left) {
                 lastMousePosTop = mousePos.top;
                 lastMousePosLeft = mousePos.left;
 
@@ -942,7 +936,6 @@ var hoverZoom = {
                             /*let height = undefined;
                             let width = undefined;
                             let imgDim = hz.getImageDimensions(src, width, height);*/
-
 
                             imgDetails.displayedWidth = links.width();
                             imgDetails.displayedHeight = links.height();
@@ -1560,14 +1553,9 @@ var hoverZoom = {
         }
 
         function prepareImgCaption(link) {
-
             logger.enterFunc();
             logger.info(link[0].outerHTML);
 
-            var title = "";
-            var alt = "";
-            var figcaption = "";
-            var textAround = "";
             var titledElement = null;
             if (link.attr('title')) {
                 titledElement = link;
