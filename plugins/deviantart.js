@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'deviantART',
-    version:'0.4',
+    version:'0.5',
     prepareImgLinks:function (callback) {
 
         var res = [];
@@ -184,8 +184,10 @@ hoverZoomPlugins.push({
             idxJsonBegin = dataFromScript.indexOf('JSON.parse(', idxInitialState);
             idxJsonEnd = dataFromScript.indexOf(');', idxJsonBegin);
             json2parse = dataFromScript.substring(dataFromScript.indexOf('(', idxJsonBegin) + 2, idxJsonEnd - 1);
-
-            j = JSON.parse(JSON.parse('"' + json2parse + '"'));
+            var j = {};
+            try {
+                j = JSON.parse(JSON.parse('"' + json2parse + '"'));
+            } catch(e) { }
             return j;
         };
 
@@ -220,13 +222,14 @@ hoverZoomPlugins.push({
             });
 
             url = media.value.baseUri;
-            if (/<prettyName>/.test(c)) url += '/' + c.replace('<prettyName>', prettyName);
-            url = url.replace(/\/$/, '');
-            if (token) url += '?token=' + token;
-            else if (token2) url += '?token=' + token2;
-            // improve quality
-            url = url.replace(/q_[0-9]{1,2}/,'q_100');
-
+            if (url) {
+                if (/<prettyName>/.test(c)) url += (c.startsWith('/') ? '' : '/') + c.replace('<prettyName>', prettyName);
+                url = url.replace(/\/$/, '');
+                if (token) url += '?token=' + token;
+                else if (token2) url += '?token=' + token2;
+                // improve quality
+                url = url.replace(/q_[0-9]{1,2}/,'q_100');
+            }
             return url;
         }
 
