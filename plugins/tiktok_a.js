@@ -8,6 +8,23 @@ hoverZoomPlugins.push( {
         const token1 = 'SIGI_STATE';
         const token2 = 'SIGI_RETRY';
 
+        function getVideo(videoId, jsonData, link) {
+            try {
+                let j = JSON.parse(jsonData);
+                let audioUrl = j["itemInfo"] ? j["itemInfo"]["itemStruct"]["music"]["playUrl"] : j["ItemModule"][videoId]["music"]["playUrl"];
+                if (audioUrl) audioUrl += '.audiomuted'; // there is already a soundtrack in video, this one is only for download
+                let videoUrl =  j["itemInfo"] ? j["itemInfo"]["itemStruct"]["video"]["playAddr"] : j["ItemModule"][videoId]["video"]["playAddr"];
+                if (videoUrl) videoUrl += '.video';
+                if (videoUrl) {
+                    let urlVideoAudio;
+                    urlVideoAudio = (audioUrl ? videoUrl + "_" + audioUrl : videoUrl);
+                    link.data().hoverZoomTikTokVideoUrl = urlVideoAudio;
+                    link.data().hoverZoomSrc = [urlVideoAudio];
+                    callback(link, name);
+                    hoverZoom.displayPicFromElement(link);
+                }
+            } catch {}
+        }
         // load user page then extract user picture url
         // proceed with API call from background page
         function getUserPictureFromPage(userUrl, userId, link) {
@@ -97,21 +114,7 @@ hoverZoomPlugins.push( {
                                                 var m = jsonData.match(/"video":{"id":"(\d+)"/);
                                                 videoId = m[1];
                                             }
-                                            try {
-                                                let j = JSON.parse(jsonData);
-                                                let audioUrl = j["ItemModule"][videoId]["music"]["playUrl"];
-                                                if (audioUrl) audioUrl += '.audiomuted'; // there is already a soundtrack in video, this one is only for separate download
-                                                let videoUrl = j["ItemModule"][videoId]["video"]["playAddr"];
-                                                if (videoUrl) videoUrl += '.video';
-                                                if (videoUrl) {
-                                                    let urlVideoAudio;
-                                                    urlVideoAudio = (audioUrl ? videoUrl + "_" + audioUrl : videoUrl);
-                                                    link.data().hoverZoomTikTokVideoUrl = urlVideoAudio;
-                                                    link.data().hoverZoomSrc = [urlVideoAudio];
-                                                    callback(link, name);
-                                                    hoverZoom.displayPicFromElement(link);
-                                                }
-                                            } catch {}
+                                            getVideo(videoId, jsonData, link);
                                         });
         }
 
@@ -260,6 +263,43 @@ hoverZoomPlugins.push( {
             // clean previous result
             link.data().hoverZoomSrc = [];
             getLiveFromPage(href, userId, link);
+        })
+
+        // direct API call with video id
+        // sample: https://www.tiktok.com/api/img/?itemId=7064678143478566190&location=0&aid=1988
+        $('a[href*="itemId"]').filter(function() { return (/www.tiktok.com\/.*\/\?itemId=\d+/.test($(this).prop('href'))) }).on('mouseover', function() {
+
+            var link = undefined;
+            var href = undefined;
+
+            href = this.href;
+            link = $(this);
+
+            const re1 = /www.tiktok.com\/.*\/\?itemId=(\d+)/;   // video id (e.g. 7064678143478566190)
+            let m = href.match(re1);
+            if (m == undefined) return;
+            let videoId = m[1];
+
+            // resuse previous result
+            if (link.data().hoverZoomTikTokVideoId == videoId) {
+                if (link.data().hoverZoomTikTokVideoUrl) link.data().hoverZoomSrc = [link.data().hoverZoomTikTokVideoUrl];
+                return;
+            }
+
+            link.data().hoverZoomTikTokVideoId = videoId;
+            link.data().hoverZoomTikTokVideoUrl = undefined;
+
+            // clean previous result
+            link.data().hoverZoomSrc = [];
+
+            chrome.runtime.sendMessage({action:'ajaxRequest',
+                                        method:'GET',
+                                        url:'https://www.tiktok.com/api/item/detail/?itemId=' + videoId,
+                                        headers:[{"header":"Content-Type","value":"application/json"}]},
+
+                                        function (response) {
+                                            getVideo(videoId, response, link);
+                                        })
         })
 
     }
