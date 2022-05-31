@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push( {
     name: 'tiktok_a',
-    version: '1.1',
+    version: '1.2',
     prepareImgLinks: function(callback) {
         var name = this.name;
 
@@ -13,7 +13,9 @@ hoverZoomPlugins.push( {
                 let j = JSON.parse(jsonData);
                 let audioUrl = j["itemInfo"] ? j["itemInfo"]["itemStruct"]["music"]["playUrl"] : j["ItemModule"][videoId]["music"]["playUrl"];
                 if (audioUrl) audioUrl += '.audiomuted'; // there is already a soundtrack in video, this one is only for download
-                let videoUrl =  j["itemInfo"] ? j["itemInfo"]["itemStruct"]["video"]["playAddr"] : j["ItemModule"][videoId]["video"]["playAddr"];
+                let videoUrlPlay = j["itemInfo"] ? j["itemInfo"]["itemStruct"]["video"]["playAddr"] : j["ItemModule"][videoId]["video"]["playAddr"];
+                let videoUrlDownload = j["itemInfo"] ? j["itemInfo"]["itemStruct"]["video"]["downloadAddr"] : j["ItemModule"][videoId]["video"]["downloadAddr"];
+                let videoUrl = (videoUrlDownload ? videoUrlDownload : videoUrlPlay);
                 if (videoUrl) videoUrl += '.video';
                 if (videoUrl) {
                     let urlVideoAudio;

@@ -1823,6 +1823,10 @@
         {
             "js": ["plugins/bnf.js"],
             "matches": ["*://*.bnf.fr/*"]
+        },
+        {
+            "js": ["plugins/tiktok.js"],
+            "matches": ["*://*.tiktok.com/*"]
         }
    ]
 }
