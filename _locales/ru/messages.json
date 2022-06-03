@@ -718,5 +718,9 @@
     "msgClickPageToPlayVideo": {
         "message": "Кликните в любом месте на странице и наведите снова",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
+    },
+    "msgClickPageToActivateActionKeys": {
+        "message": "click anywhere on the page to activate action keys",
+        "description": "Action keys are active only if page is focused"
     }
 }
