@@ -127,8 +127,9 @@ var hoverZoom = {
             titledElements = null,
             body100pct = true,
             linkRect = null;
-        /*panning = true,
-         panningThumb = null;*/
+            noFocusMsgAlreadyDisplayed = false;
+            /*panning = true,
+            panningThumb = null;*/
 
         var imgDetails = {
                 url:'',
@@ -186,13 +187,41 @@ var hoverZoom = {
                 'padding':'0',
                 'transition':'opacity ease 1s'
             },
-            videoErrorMsgCss = {
+            msgCss = {
                 'font':'menu',
-                'font-size':'xxx-large',
                 'font-weight':'bold',
                 'color':'white',
                 'text-shadow':'1px 1px 0px black, -1px 1px 0px black, 1px -1px 0px black, -1px -1px 0px black',
-                'text-align':'center'
+                'text-align':'center',
+                'text-overflow':'clip',
+                'overflow':'hidden',
+                'overflow-wrap':'break-word',
+                'width':'100%',
+                'position':'absolute',
+                'margin':'5px',
+                'padding':'5px'
+            },
+            msgTextCss = {
+                'margin':'5px',
+                'padding':'5px'
+            },
+            msgFontSizeXXXLCss = {
+                'font-size':'xxx-large'
+            },
+            msgFontSizeXXLCss = {
+                'font-size':'xx-large'
+            },
+            msgFontSizeXLCss = {
+                'font-size':'x-large'
+            },
+            msgFontSizeLCss = {
+                'font-size':'large'
+            },
+            msgFontSizeMCss = {
+                'font-size':'medium'
+            },
+            msgFontSizeXSCss = {
+                'font-size':'x-small'
             },
             hzCaptionCss = {
                 'opacity':'1',
@@ -763,16 +792,16 @@ var hoverZoom = {
         }
 
         function pauseMedia(selector) {
-            console.log('pauseMedia selector=' + selector);
+            cLog('pauseMedia selector=' + selector);
             if (!hz.hzImg) return;
             var el = hz.hzImg.find(selector).get(0);
             if (el) {
                 if (selector == 'audio') {
-                    console.log('pause audio');
+                    cLog('pause audio');
                     el.pause();
                 }
                 if (selector == 'video') {
-                    console.log('pause video');
+                    cLog('pause video');
                     el.pause();
                 }
             }
@@ -784,23 +813,23 @@ var hoverZoom = {
         }
 
         function playMedia(selector) {
-            console.log('playMedia selector=' + selector);
+            cLog('playMedia selector=' + selector);
             if (!hz.hzImg) return;
             var el = hz.hzImg.find(selector).get(0);
             if (el) {
                 if (selector == 'audio') {
-                    console.log('play audio');
+                    cLog('play audio');
                     el.play();
                 }
                 if (selector == 'video') {
-                    console.log('play video');
+                    cLog('play video');
                     el.play();
                 }
             }
         }
+
         function closeHoverZoomImg(now) {
             cLog('closeHoverZoomImg(' + now + ')');
-
             if (hz.hzImgLoader) { hz.hzImgLoader.remove(); hz.hzImgLoader = null; }
             if ((!now && !imgFullSize) || !hz.hzImg || fullZoomKeyDown || imageLocked) {
                 return;
@@ -982,6 +1011,22 @@ var hoverZoom = {
             }
         }
 
+        // select correct font size for msg depending on img or video width
+        function getMsgFontSize() {
+            let w = 0;
+            let img = hz.hzImg.find('img').get(0);
+            if (img) w = $(img).width()
+            let video = hz.hzImg.find('video').get(0);
+            if (video) w = $(video).width();
+
+            if (w > 500) return msgFontSizeXXXLCss;
+            if (w > 400) return msgFontSizeXXLCss;
+            if (w > 300) return msgFontSizeXLCss;
+            if (w > 200) return msgFontSizeLCss;
+            if (w > 100) return msgFontSizeMCss;
+            return msgFontSizeXSCss;
+        }
+
         function loadFullSizeImage() {
             cLog('loadFullSizeImage');
             // If no image is currently displayed...
@@ -1028,11 +1073,9 @@ var hoverZoom = {
                             }).catch(error => {
                                 if (error.name === "NotAllowedError") {
                                     // NotAllowedError: play() failed because the user didn't interact with the document first. https://goo.gl/xX8pDD
-                                    cLog("Play not allowed: " + error);
-                                    let videoMsgDiv = $('<div/>');
-                                    $('<p/>').text(chrome.i18n.getMessage("msgClickPageToPlayVideo")).css(videoErrorMsgCss).addClass('blinkWarning').appendTo(videoMsgDiv);
                                     $(hz.hzImg.hzImgContainer).css(hz.hzImgContainerCss);
-                                    $(videoMsgDiv).css({'width':'100%','position':'absolute'}).appendTo(hz.hzImg.hzImgContainer);
+                                    cLog("Play not allowed: " + error);
+                                    displayMsg("msgClickPageToPlayVideo");
                                     video.removeAttribute('poster');
                                 } else {
                                     cLog("Play error: " + error);
@@ -1120,11 +1163,9 @@ var hoverZoom = {
                             }).catch(error => {
                                 if (error.name === "NotAllowedError") {
                                     // NotAllowedError: play() failed because the user didn't interact with the document first. https://goo.gl/xX8pDD
-                                    cLog("Play not allowed: " + error);
-                                    let videoMsgDiv = $('<div/>');
-                                    $('<p/>').text(chrome.i18n.getMessage("msgClickPageToPlayVideo")).css(videoErrorMsgCss).addClass('blinkWarning').appendTo(videoMsgDiv);
                                     $(hz.hzImg.hzImgContainer).css(hz.hzImgContainerCss);
-                                    $(videoMsgDiv).css({'width':'100%','position':'absolute'}).appendTo(hz.hzImg.hzImgContainer);
+                                    cLog("Play not allowed: " + error);
+                                    displayMsg("msgClickPageToPlayVideo");
                                     video.removeAttribute('poster');
                                 } else {
                                     cLog("Play error: " + error);
@@ -1208,8 +1249,18 @@ var hoverZoom = {
             linkRect.right = linkRect.left + elem.width();
         }
 
+        function displayMsg(msgId) {
+            $('#hzMsg').remove(); // remove previous msg
+            let fontSizeCss = getMsgFontSize();
+            let msgDiv = $('<div/>', {id:'hzMsg'}).css(msgCss).css(fontSizeCss);
+            $('<p/>').text(chrome.i18n.getMessage(msgId)).addClass('blinkWarning').css(msgTextCss).appendTo(msgDiv);
+            $(msgDiv).appendTo(hz.hzImg.hzImgContainer);
+        }
+
         function displayFullSizeImage() {
             cLog('displayFullSizeImage');
+            // check focus
+            let focus = document.hasFocus();
 
             if (hz.hzImgLoader) { hz.hzImgLoader.remove(); hz.hzImgLoader = null; }
 
@@ -1253,6 +1304,11 @@ var hoverZoom = {
 
             hz.hzImg.hzImgContainer = $('<div id="hzImgContainer"/>').css(hz.hzImgContainerCss).appendTo(hz.hzImg);
             imgFullSize.css(imgFullSizeCss).appendTo(hz.hzImg.hzImgContainer);
+            // when page looses focus all action keys become inactive
+            if (!focus && !noFocusMsgAlreadyDisplayed) {
+                displayMsg("msgClickPageToActivateActionKeys");
+                noFocusMsgAlreadyDisplayed = true; // display msg only once so user is warned but not disturbed too much (user might not use action keys at all btw!)
+            }
 
             // display video controls
             if (imageLocked) {
