@@ -396,7 +396,7 @@
         "description": "[options] Button for adding a site on sites option page"
     },
     "optPageActionKeys": {
-        "message": "Teclas de ação",
+        "message": "Teclas de atalho",
         "description": "[options] Page title for action key options"
     },
     "optPageAdvanced": {
@@ -720,7 +720,7 @@
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     },
     "msgClickPageToActivateActionKeys": {
-        "message": "click anywhere on the page to activate action keys",
+        "message": "clique em qualquer lugar da página para ativar as teclas de atalho",
         "description": "Action keys are active only if page is focused"
     }
 }
