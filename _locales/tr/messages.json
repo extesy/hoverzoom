@@ -720,7 +720,7 @@
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     },
     "msgClickPageToActivateActionKeys": {
-        "message": "click anywhere on the page to activate action keys",
+        "message": "aksiyon tuşlarını aktif hale getirmek için sayfada herhangi bir yere tıklayın",
         "description": "Action keys are active only if page is focused"
     }
 }
