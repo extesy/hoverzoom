@@ -616,7 +616,7 @@
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Ao pressionar esta tecla para baixo esconde a imagem ou o vídeo ampliado. Utilize-a quando a imagem oculta elementos que também são exibidos ao passar o rato.",
+        "message": "Pressione esta tecla para esconder a imagem ou o vídeo ampliado. Utilize-a quando a imagem oculta elementos que também são exibidos ao passar o rato.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -718,5 +718,9 @@
     "msgClickPageToPlayVideo": {
         "message": "Clique em qualquer lugar na página e passe o rato novamente",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
+    },
+    "msgClickPageToActivateActionKeys": {
+        "message": "Clique em qualquer lugar na página para ativar as teclas de atalho",
+        "description": "Action keys are active only if page is focused"
     }
 }

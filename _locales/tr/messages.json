@@ -718,5 +718,9 @@
     "msgClickPageToPlayVideo": {
         "message": "Sayfada herhangi bir yeri tıklayın ve ardından tekrar fareyle üzerine gelin",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
+    },
+    "msgClickPageToActivateActionKeys": {
+        "message": "aksiyon tuşlarını aktif hale getirmek için sayfada herhangi bir yere tıklayın",
+        "description": "Action keys are active only if page is focused"
     }
 }

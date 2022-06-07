@@ -718,5 +718,9 @@
     "msgClickPageToPlayVideo": {
         "message": "페이지의 아무 곳이나 클릭한 뒤 다시 마우스를 올리세요",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
+    },
+    "msgClickPageToActivateActionKeys": {
+        "message": "페이지의 아무 곳이나 클릭하여 단축키를 활성화하세요",
+        "description": "Action keys are active only if page is focused"
     }
 }
