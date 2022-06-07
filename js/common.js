@@ -25,6 +25,7 @@ var factorySettings = {
     hideMouseCursorDelay : 500,
     filterNSFW : false,
     enableGalleries : true,
+    enableNoFocusMsg: true,
     ambilightEnabled : false,
     ambilightHaloSize : 0.1,
     ambilightBackgroundOpacity : 0.9,
@@ -106,6 +107,7 @@ function loadOptions() {
     options.hideMouseCursorDelay = options.hasOwnProperty('hideMouseCursorDelay') ? options.hideMouseCursorDelay : factorySettings.hideMouseCursorDelay;
     options.filterNSFW = options.hasOwnProperty('filterNSFW') ? options.filterNSFW : factorySettings.filterNSFW;
     options.enableGalleries = options.hasOwnProperty('enableGalleries') ? options.enableGalleries : factorySettings.enableGalleries;
+    options.enableNoFocusMsg = options.hasOwnProperty('enableNoFocusMsg') ? options.enableNoFocusMsg : factorySettings.enableNoFocusMsg;
     options.ambilightEnabled = options.hasOwnProperty('ambilightEnabled') ? options.ambilightEnabled : factorySettings.ambilightEnabled;
     options.ambilightHaloSize = options.hasOwnProperty('ambilightHaloSize') ? options.ambilightHaloSize : factorySettings.ambilightHaloSize;
     options.ambilightBackgroundOpacity = options.hasOwnProperty('ambilightBackgroundOpacity') ? options.ambilightBackgroundOpacity : factorySettings.ambilightBackgroundOpacity;
