@@ -431,6 +431,10 @@
         "message": "فعال کردن پشتیبانی از آلبوم",
         "description": "[options] Enable albums support option"
     },
+    "optEnableNoFocusMsg": {
+        "message": "Enable Action Keys focus overlay message",
+        "description": "[options] Enable Action Keys focus overlay message option"
+    },
     "optPicturesOpacity": {
         "message": "شفافیت بزرگنمایی تصاویر:",
         "description": "[options] Zoomed pictures opacity option"
