@@ -1305,7 +1305,7 @@ var hoverZoom = {
             hz.hzImg.hzImgContainer = $('<div id="hzImgContainer"/>').css(hz.hzImgContainerCss).appendTo(hz.hzImg);
             imgFullSize.css(imgFullSizeCss).appendTo(hz.hzImg.hzImgContainer);
             // when page looses focus all action keys become inactive
-            if (!focus && !noFocusMsgAlreadyDisplayed) {
+            if (options.enableNoFocusMsg && !focus && !noFocusMsgAlreadyDisplayed) {
                 displayMsg("msgClickPageToActivateActionKeys");
                 noFocusMsgAlreadyDisplayed = true; // display msg only once so user is warned but not disturbed too much (user might not use action keys at all btw!)
             }
