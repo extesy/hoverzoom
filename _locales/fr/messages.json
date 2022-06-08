@@ -431,6 +431,10 @@
         "message": "Activer la prise en charge des albums",
         "description": "[options] Enable albums support option"
     },
+    "optEnableNoFocusMsg": {
+        "message": "Enable Action Keys focus overlay message",
+        "description": "[options] Enable Action Keys focus overlay message option"
+    },
     "optPicturesOpacity": {
         "message": "Opacité des images zoomées :",
         "description": "[options] Zoomed pictures opacity option"
