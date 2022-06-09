@@ -25,7 +25,7 @@ var factorySettings = {
     hideMouseCursorDelay : 500,
     filterNSFW : false,
     enableGalleries : true,
-    enableNoFocusMsg: true,
+    enableNoFocusMsg: false,
     ambilightEnabled : false,
     ambilightHaloSize : 0.1,
     ambilightBackgroundOpacity : 0.9,
