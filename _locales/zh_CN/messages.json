@@ -431,6 +431,10 @@
         "message": "启用对相册的支持",
         "description": "[options] Enable albums support option"
     },
+    "optEnableNoFocusMsg": {
+        "message": "Enable Action Keys focus overlay message",
+        "description": "[options] Enable Action Keys focus overlay message option"
+    },
     "optPicturesOpacity": {
         "message": "放大图片的透明度",
         "description": "[options] Zoomed pictures opacity option"

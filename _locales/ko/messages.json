@@ -431,6 +431,10 @@
         "message": "앨범 지원 활성화",
         "description": "[options] Enable albums support option"
     },
+    "optEnableNoFocusMsg": {
+        "message": "Enable Action Keys focus overlay message",
+        "description": "[options] Enable Action Keys focus overlay message option"
+    },
     "optPicturesOpacity": {
         "message": "확대된 이미지의 투명도:",
         "description": "[options] Zoomed pictures opacity option"
