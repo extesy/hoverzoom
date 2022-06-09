@@ -1,6 +1,19 @@
 # Changelog
 
-## [1.0.192](https://github.com/extesy/hoverzoom/tree/1.0.192) (2022-06-06)
+## [1.0.193](https://github.com/extesy/hoverzoom/tree/1.0.193) (2022-06-09)
+
+[Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.192...1.0.193)
+
+**Closed issues:**
+
+- hoverzoom no longer works on pixiv.com [\#408](https://github.com/extesy/hoverzoom/issues/408)
+
+**Merged pull requests:**
+
+- New Crowdin updates [\#944](https://github.com/extesy/hoverzoom/pull/944) ([extesy](https://github.com/extesy))
+- Add an option to Advanced options tab to toggle NoFocus message visibility [\#943](https://github.com/extesy/hoverzoom/pull/943) ([ablankenship10](https://github.com/ablankenship10))
+
+## [1.0.192](https://github.com/extesy/hoverzoom/tree/1.0.192) (2022-06-07)
 
 [Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.191...1.0.192)
 
@@ -99,6 +112,7 @@
 **Implemented enhancements:**
 
 - Fix for: \#881 [\#882](https://github.com/extesy/hoverzoom/pull/882) ([GrosPoulet](https://github.com/GrosPoulet))
+- Rework of Action keys [\#877](https://github.com/extesy/hoverzoom/pull/877) ([GrosPoulet](https://github.com/GrosPoulet))
 
 **Merged pull requests:**
 
@@ -112,7 +126,6 @@
 
 **Implemented enhancements:**
 
-- Rework of Action keys [\#877](https://github.com/extesy/hoverzoom/pull/877) ([GrosPoulet](https://github.com/GrosPoulet))
 - Various fixes related to videos [\#875](https://github.com/extesy/hoverzoom/pull/875) ([GrosPoulet](https://github.com/GrosPoulet))
 
 **Fixed bugs:**
@@ -502,7 +515,6 @@
 - New plugin request: Minds.com [\#430](https://github.com/extesy/hoverzoom/issues/430)
 - pixabay.com problem [\#339](https://github.com/extesy/hoverzoom/issues/339)
 - New plugin request: Danbooru.donmai.us [\#251](https://github.com/extesy/hoverzoom/issues/251)
-- ebay Kleinanzeigen please [\#53](https://github.com/extesy/hoverzoom/issues/53)
 
 **Merged pull requests:**
 
@@ -650,6 +662,7 @@
 
 **Merged pull requests:**
 
+- New colors for image loader + fix on urls normalization [\#643](https://github.com/extesy/hoverzoom/pull/643) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix CORS downloads [\#641](https://github.com/extesy/hoverzoom/pull/641) ([fhadiel](https://github.com/fhadiel))
 - Fix firefox not showing page action icon [\#640](https://github.com/extesy/hoverzoom/pull/640) ([fhadiel](https://github.com/fhadiel))
 - New Crowdin updates [\#635](https://github.com/extesy/hoverzoom/pull/635) ([extesy](https://github.com/extesy))
@@ -664,7 +677,6 @@
 
 **Merged pull requests:**
 
-- New colors for image loader + fix on urls normalization [\#643](https://github.com/extesy/hoverzoom/pull/643) ([GrosPoulet](https://github.com/GrosPoulet))
 - Improvement for Facebook plug-in [\#636](https://github.com/extesy/hoverzoom/pull/636) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix e621/e926 unreliable image hovering [\#630](https://github.com/extesy/hoverzoom/pull/630) ([pinnae](https://github.com/pinnae))
 - Cosmetic changes: better display of zoomed images [\#629](https://github.com/extesy/hoverzoom/pull/629) ([GrosPoulet](https://github.com/GrosPoulet))
