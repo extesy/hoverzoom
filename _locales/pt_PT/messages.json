@@ -432,7 +432,7 @@
         "description": "[options] Enable albums support option"
     },
     "optEnableNoFocusMsg": {
-        "message": "Enable Action Keys focus overlay message",
+        "message": "Ativar a mensagem de sobreposição das Teclas de Atalho",
         "description": "[options] Enable Action Keys focus overlay message option"
     },
     "optPicturesOpacity": {
