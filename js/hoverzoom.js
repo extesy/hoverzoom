@@ -174,7 +174,8 @@ var hoverZoom = {
                 'background-size':'100% 100%',
                 'background-position':'center',
                 'background-repeat':'no-repeat',
-                'box-shadow':'1px 1px 5px rgba(0, 0, 0, 0.5), -1px 1px 5px rgba(0, 0, 0, 0.5), 1px -1px 5px rgba(0, 0, 0, 0.5), -1px -1px 5px rgba(0, 0, 0, 0.5)' // cast shadow in every direction
+                'box-shadow':'1px 1px 5px rgba(0, 0, 0, 0.5), -1px 1px 5px rgba(0, 0, 0, 0.5), 1px -1px 5px rgba(0, 0, 0, 0.5), -1px -1px 5px rgba(0, 0, 0, 0.5)', // cast shadow in every direction
+                'outline-style':'none'
             },
             audioFullSizeCss = {
                 'opacity':'0',
@@ -185,7 +186,8 @@ var hoverZoom = {
                 'max-width':'90%',
                 'margin':'0',
                 'padding':'0',
-                'transition':'opacity ease 1s'
+                'transition':'opacity ease 1s',
+                'outline-style':'none'
             },
             msgCss = {
                 'font':'menu',
@@ -574,8 +576,8 @@ var hoverZoom = {
             return (contentOverflows && overflowShown) || (alwaysShowScroll);
         }
 
-        const videoExtensions = new Set(['3gpp', 'mp4', 'webm']);
-        const videoExtensionsWithGif = new Set(['3gpp', 'gif', 'gifv', 'mp4', 'webm']);
+        const videoExtensions = new Set(['3gpp', 'm4v', 'mkv', 'mp4', 'ogv', 'webm']);
+        const videoExtensionsWithGif = new Set(['3gpp', 'gif', 'gifv', 'm4v', 'mkv', 'mp4', 'ogv', 'webm']);
 
         function isVideoLink(url, includeGifs = false) {
             if (url.indexOf('.video') !== -1)
@@ -1054,6 +1056,8 @@ var hoverZoom = {
                     video.muted = options.muteVideos;
                     video.volume = options.videoVolume;
                     video.src = imgDetails.url;
+                    // MKV
+                    if (video.src.indexOf('.mkv') != -1) video.type = 'video/mp4';
                     imgFullSize = $(video).appendTo(hz.hzImg);
 
                     video.addEventListener('error', imgFullSizeOnError);
