@@ -1920,26 +1920,53 @@ var hoverZoom = {
             }
         }
 
+        // TODO: Remove after validating that windowOnDOMMutation works properly
         function windowOnDOMNodeInserted(event) {
             var insertedNode = event.target;
             if (insertedNode && insertedNode.nodeType === Node.ELEMENT_NODE) {
-                if (insertedNode.nodeName === 'A' ||
-                    insertedNode.nodeName === 'IMG' ||
-                    insertedNode.getElementsByTagName('A').length > 0 ||
-                    insertedNode.getElementsByTagName('IMG').length > 0) {
-                    if (insertedNode.id !== 'hzImg' &&
-                        insertedNode.id !== 'hzDownscaled' &&
-                        insertedNode.id !== 'hzImgLoader' &&
-                        insertedNode.parentNode.id !== 'hzImg' &&
-                        insertedNode.parentNode.id !== 'hzImgContainer') {
-                        prepareImgLinksAsync();
+                onNodeInserted(insertedNode);
+            }
+        }
+
+        const observer = new MutationObserver(windowOnDOMMutation);
+
+        function bindObserver() {
+            //wnd.bind('DOMNodeInserted', windowOnDOMNodeInserted);
+            observer.observe(document.body, { childList: true, subtree: true });
+        }
+
+        function unbindObserver() {
+            //wnd.unbind('DOMNodeInserted', windowOnDOMNodeInserted);
+            observer.disconnect();
+        }
+
+        function windowOnDOMMutation(mutations, observer) {
+            for (const mutation of mutations) {
+                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                    for (const insertedNode of mutation.addedNodes) {
+                        if (insertedNode.nodeType === 1) // ELEMENT_NODE
+                            onNodeInserted(insertedNode);
                     }
-
-                    bindJsaction();
-
-                } else if (insertedNode.nodeName === 'EMBED' || insertedNode.nodeName === 'OBJECT') {
-                    fixFlash();
                 }
+            }
+        }
+
+        function onNodeInserted(insertedNode) {
+            if (insertedNode.nodeName === 'A' ||
+                insertedNode.nodeName === 'IMG' ||
+                insertedNode.getElementsByTagName('A').length > 0 ||
+                insertedNode.getElementsByTagName('IMG').length > 0) {
+                if (insertedNode.id !== 'hzImg' &&
+                    insertedNode.id !== 'hzDownscaled' &&
+                    insertedNode.id !== 'hzImgLoader' &&
+                    (insertedNode.parentNode === null ||
+                       (insertedNode.parentNode.id !== 'hzImg' &&
+                        insertedNode.parentNode.id !== 'hzImgContainer'))) {
+                    prepareImgLinksAsync();
+                }
+                bindJsaction();
+            } else if (insertedNode.nodeName === 'EMBED' || insertedNode.nodeName === 'OBJECT') {
+                fixFlash();
             }
         }
 
@@ -1950,7 +1977,8 @@ var hoverZoom = {
         var lastScrollTop = 0;
         var deltaMin = 1000;
         function bindEvents() {
-            wnd.bind('DOMNodeInserted', windowOnDOMNodeInserted).on('load',windowOnLoad).scroll(cancelImageLoading).blur(cancelImageLoading);
+            bindObserver();
+            wnd.on('load',windowOnLoad).scroll(cancelImageLoading).blur(cancelImageLoading);
 
             // to deal with lazy loading : prepare imgs links when user scrolls down more than deltaMin pixels, even if no node inserted
             // for instance, on TripAdvisor:
@@ -2181,6 +2209,7 @@ var hoverZoom = {
             }
         }
 
+        // TODO: Flash is basically dead. Should this be deleted?
         function fixFlash() {
             if (flashFixDomains.indexOf(location.host) == -1) {
                 return;
@@ -2194,9 +2223,9 @@ var hoverZoom = {
                 }
                 var embed = this.cloneNode(true);
                 embed.setAttribute('wmode', 'opaque');
-                wnd.unbind('DOMNodeInserted', windowOnDOMNodeInserted);
+                unbindObserver();
                 $(this).replaceWith(embed);
-                wnd.bind('DOMNodeInserted', windowOnDOMNodeInserted);
+                bindObserver();
             });
             var wmodeFilter = function () {
                 return this.name.toLowerCase() == 'wmode';
@@ -2208,9 +2237,9 @@ var hoverZoom = {
                     var object = this.cloneNode(true);
                     $(object).children('param').filter(wmodeFilter).remove();
                     $('<param name="wmode" value="opaque">').appendTo(object);
-                    wnd.unbind('DOMNodeInserted', windowOnDOMNodeInserted);
+                    unbindObserver();
                     $(this).replaceWith(object);
-                    wnd.bind('DOMNodeInserted', windowOnDOMNodeInserted);
+                    bindObserver();
                 });
         }
 
