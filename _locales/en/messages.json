@@ -640,19 +640,19 @@
     "description": "[options] Unit name (pixels)"
   },
   "optActionKeyTitle": {
-    "message": "Activate HoverZoom4CherryPics",
+    "message": "Activate HoverZoom+",
     "description": "[options] Action key title"
   },
   "optActionKeyDescription": {
-    "message": "If a key is set, HoverZoom4CherryPics will be active only when this key is held down.",
+    "message": "If a key is set, HoverZoom4+ will be active only when this key is held down.",
     "description": "[options] Action key description"
   },
   "optToggleKeyTitle": {
-    "message": "Toggle HoverZoom4CherryPics",
+    "message": "Toggle HoverZoom+",
     "description": "[options] Action key title"
   },
   "optToggleKeyDescription": {
-    "message": "Enable/disable HoverZoom4CherryPics",
+    "message": "Enable/disable HoverZoom+",
     "description": "[options] Action key description"
   },
   "optCloseKeyTitle": {
@@ -764,7 +764,7 @@
     "description": "[options] Report a bug link in page footer"
   },
   "optFooterVersionCopyright": {
-    "message": "Version $1 (last update: $2) - © 2014-2022 CherryPics",
+    "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
     "description": "[options] Copyright and version number in page footer"
   },
   "msgClickPageToPlayVideo": {
