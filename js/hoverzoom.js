@@ -2051,10 +2051,13 @@ var hoverZoom = {
             if (event.target && ['INPUT','TEXTAREA','SELECT'].indexOf(event.target.tagName) > -1) {
                 return;
             }
+
+            const keyCode = event.which;
+
             // Toggle key is pressed down
-            if (event.which == options.toggleKey) {
+            if (keyCode === options.toggleKey) {
                 options.extensionEnabled = !options.extensionEnabled;
-                if (! options.extensionEnabled) {
+                if (!options.extensionEnabled) {
                     // close zoomed image or video
                     imageLocked = false;
                     if (hz.hzImg) {
@@ -2066,25 +2069,28 @@ var hoverZoom = {
                     }
                 }
             }
+
             // Action key (zoom image) is pressed down
-            if (event.which == options.actionKey && !actionKeyDown) {
+            if (keyCode === options.actionKey && !actionKeyDown) {
                 actionKeyDown = true;
                 $(this).mousemove();
                 if (loading || imgFullSize) {
                     return false;
                 }
             }
+
             // Full zoom key is pressed down
-            if (event.which == options.fullZoomKey && !fullZoomKeyDown) {
+            if (keyCode === options.fullZoomKey && !fullZoomKeyDown) {
                 fullZoomKeyDown = true;
                 posImg();
                 if (imgFullSize) {
                     return false;
                 }
             }
+
             // close key (close zoomed image) is pressed down
             // => zoomed image is closed immediately
-            if (event.which == options.closeKey) {
+            if (keyCode === options.closeKey) {
                 imageLocked = false;
                 if (hz.hzImg) {
                     stopMedias();
@@ -2094,9 +2100,10 @@ var hoverZoom = {
                     return false;
                 }
             }
+
             // hide key (hide zoomed image) is pressed down
             // => zoomed image remains hidden until key is released
-            if (event.which == options.hideKey && !hideKeyDown) {
+            if (keyCode === options.hideKey && !hideKeyDown) {
                 hideKeyDown = true;
                 if (hz.hzImg) {
                     pauseMedias();
@@ -2106,10 +2113,56 @@ var hoverZoom = {
                     return false;
                 }
             }
+
+            // the following keys are processed only if an image is displayed
+            if (imgFullSize) {
+                // Cancels event if an action key is held down (auto-repeat may trigger additional events)
+                if (keyCode === options.actionKey ||
+                    keyCode === options.fullZoomKey ||
+                    keyCode === options.hideKey) {
+                    return false;
+                }
+                // "Lock image" key
+                if (keyCode === options.lockImageKey) {
+                    if (!imageLocked) lockImage();
+                    return false;
+                }
+                // "Copy image" key
+                if (isChromiumBased) {
+                    if (keyCode === options.copyImageKey) {
+                        copyImage();
+                        return false;
+                    }
+                }
+                // "Copy image url" key
+                if (keyCode === options.copyImageUrlKey) {
+                    copyLink();
+                    return false;
+                }
+                // "Previous image" key
+                if (keyCode === options.prevImgKey) {
+                    var linkData = hz.currentLink.data();
+                    if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(-1);
+                    else changeVideoPosition(-parseInt(options.videoPositionStep));
+                    return false;
+                }
+                // "Next image" key
+                if (keyCode === options.nextImgKey) {
+                    var linkData = hz.currentLink.data();
+                    if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(1);
+                    else changeVideoPosition(parseInt(options.videoPositionStep));
+                    return false;
+                }
+                // "Flip image" key
+                if (keyCode === options.flipImageKey) {
+                    flipImage();
+                    return false;
+                }
+            }
         }
 
         function changeVideoPosition(amount) {
-            var video = hz.hzImg.find('video').get(0);
+            const video = hz.hzImg.find('video').get(0);
             if (video && video.currentTime) {
                 video.currentTime = Math.max(video.currentTime + amount, 0);
             }
@@ -2117,17 +2170,17 @@ var hoverZoom = {
 
         function documentOnKeyUp(event) {
             // Action key (zoom image) is released
-            if (event.which == options.actionKey) {
+            if (event.which === options.actionKey) {
                 actionKeyDown = false;
                 closeHoverZoomImg();
             }
             // Full zoom key is released
-            if (event.which == options.fullZoomKey) {
+            if (event.which === options.fullZoomKey) {
                 fullZoomKeyDown = false;
                 $(this).mousemove();
             }
             // Hide key is released
-            if (event.which == options.hideKey) {
+            if (event.which === options.hideKey) {
                 hideKeyDown = false;
                 if (imgFullSize) {
                     hz.hzImg.show();
@@ -2162,51 +2215,9 @@ var hoverZoom = {
                     else openImageInTab(event.shiftKey);
                     return false;
                 }
-                // "Lock image" key
-                if (keyCode === options.lockImageKey) {
-                    if (!imageLocked) lockImage();
-                    return false;
-                }
                 // "Save image" key
                 if (keyCode === options.saveImageKey) {
                     saveImage();
-                    return false;
-                }
-                // "Copy image" key
-                if (isChromiumBased) {
-                    if (keyCode === options.copyImageKey) {
-                        copyImage();
-                        return false;
-                    }
-                }
-                // "Copy image url" key
-                if (keyCode === options.copyImageUrlKey) {
-                    copyLink();
-                    return false;
-                }
-                // Cancels event if an action key is held down (auto-repeat may trigger additional events)
-                if (keyCode === options.actionKey ||
-                    keyCode === options.fullZoomKey ||
-                    keyCode === options.hideKey) {
-                    return false;
-                }
-                // "Previous image" key
-                if (keyCode === options.prevImgKey) {
-                    var linkData = hz.currentLink.data();
-                    if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(-1);
-                    else changeVideoPosition(-parseInt(options.videoPositionStep));
-                    return false;
-                }
-                // "Next image" key
-                if (keyCode === options.nextImgKey) {
-                    var linkData = hz.currentLink.data();
-                    if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(1);
-                    else changeVideoPosition(parseInt(options.videoPositionStep));
-                    return false;
-                }
-                // "Flip image" key
-                if (keyCode === options.flipImageKey) {
-                    flipImage();
                     return false;
                 }
             }
