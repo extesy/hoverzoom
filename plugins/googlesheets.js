@@ -1,15 +1,20 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'GoogleSheets',
-    version:'0.1',
+    version:'0.2',
     prepareImgLinks: function (callback) {
-        var res = [];
-
         $('a[href]').one('mouseover', function() {
-            let link = $(this);
-            link.data().hoverZoomSrc = [this.href];
-            callback(link, this.name);
-            hoverZoom.displayPicFromElement(link);
+            let link = $(this), href = link.attr('href');
+
+            if (link.attr('href').indexOf('//drive.google.com/') !== -1) {
+                href = link.closest('#docs-link-bubble').find('img').attr('src');
+            }
+
+            if (href && href.indexOf('//drive.google.com/') === -1) {
+                link.data().hoverZoomSrc = [href];
+                link.addClass('hoverZoomLink');
+                hoverZoom.displayPicFromElement(link);
+            }
         });
     }
 });
