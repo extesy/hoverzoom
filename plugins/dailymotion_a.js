@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push( {
     name: 'dailymotion_a',
-    version: '1.1',
+    version: '1.2',
     prepareImgLinks: function(callback) {
         var name = this.name;
 
@@ -115,15 +115,21 @@ hoverZoomPlugins.push( {
 
         // videos
         // sample: https://www.dailymotion.com/video/x8994nm
-        $('a[href*="/video/"]').filter(function() { return (/dailymotion\.com(\/embed)?\/video\//.test($(this).prop('href'))) }).on('mouseover', function() {
+        //         https://dai.ly/x4v3maz
+        $('a[href*="/video/"], a[href*="dai.ly/"]').filter(function() { return ( (/dailymotion\.com(\/embed)?\/video\//.test($(this).prop('href'))) || (/dai\.ly\//.test($(this).prop('href')))) }).on('mouseover', function() {
+
             var link = undefined;
             var href = undefined;
 
             href = this.href;
             link = $(this);
 
-            const re = /dailymotion\.com(?:\/embed)?\/video\/([^\/\?]{1,})/;   // video id (e.g. x8994nm)
-            m = href.match(re);
+            const re1 = /dailymotion\.com(?:\/embed)?\/video\/([^\/\?]{1,})/;   // video id (e.g. x8994nm)
+            var m = href.match(re1);
+            if (m == undefined) {
+                const re2 = /dai\.ly\/(.*)/;   // video id (e.g. x4v3maz)
+                m = href.match(re2);
+            }
             if (m == undefined) return;
             let videoId = m[1];
 
