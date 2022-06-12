@@ -855,10 +855,6 @@
             "matches": ["*://*.hwzone.co.il/*"]
         },
         {
-            "js": ["plugins/googleplus.js"],
-            "matches": ["*://plus.google.com/*"]
-        },
-        {
             "js": ["plugins/spinchat.js"],
             "matches": [
                 "*://*.spinchat.com/*",
