@@ -1508,7 +1508,7 @@ var hoverZoom = {
         function imgFullSizeOnError() {
 
             if (imgDetails.url === $(this).prop('src') || imgDetails.url === unescape($(this).prop('src'))) {
-                let hoverZoomSrcIndex = hz.currentLink ? hz.currentLink.data().hoverZoomSrcIndex : 0;
+                let hoverZoomSrcIndex = hz.currentLink ? (hz.currentLink.data().hoverZoomSrcIndex || 0) : 0;
 
                 removeMedias();
 
@@ -2967,8 +2967,7 @@ var hoverZoom = {
                 }
             });
         });
-        config = {attributes: true, childList: true, characterData: true};
-        obs.observe(target, config);
+        obs.observe(target, {attributes: true, childList: true, characterData: true});
     },
 
     // __________________________________________________________________
