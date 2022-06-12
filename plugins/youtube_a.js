@@ -2,39 +2,13 @@
 hoverZoomPlugins.push({
     name:'YouTube',
     prepareImgLinks:function (callback) {
-        var res = [],
-            repl = 'http://i1.ytimg.com/vi/$1/0.jpg';
-
-        function decodeQueryString(queryString) {
-            if (!queryString) return {}
-            var keyValPairs = queryString.split("&"), params = {};
-            for (var i = 0; i < keyValPairs.length; i++) {
-                var key = decodeURIComponent(keyValPairs[i].split("=")[0]);
-                params[key] = decodeURIComponent(keyValPairs[i].split("=")[1] || "");
-            }
-            return params;
-        }
-
-        function decodeStreamMap(url_encoded_fmt_stream_map) {
-            if (!url_encoded_fmt_stream_map) return {}
-            var streams = url_encoded_fmt_stream_map.split(","), sources = {};
-            for (var i = 0; i < streams.length; i++) {
-                var stream = decodeQueryString(streams[i]);
-                var type = stream.type.split(";")[0];
-                var quality = stream.quality.split(",")[0];
-                stream.original_url = stream.url;
-                stream.url = "" + stream.url + "&signature=" + stream.sig;
-                sources["" + type + " " + quality] = stream;
-            }
-            return sources;
-        }
+        var res = [];
 
         function getSource(sources, type, quality) {
             var lowest = null, exact = null;
-            for (var key in sources) {
-                var source = sources[key];
-                if (source.type.match(type)) {
-                    if (source.quality.match(quality)) {
+            for (var source of sources) {
+                if (source.mimeType.indexOf(type) !== -1) {
+                    if (source.quality.indexOf(quality) !== -1) {
                         exact = source;
                     } else {
                         lowest = source;
@@ -60,19 +34,20 @@ hoverZoomPlugins.push({
                 }
             }
 
-            chrome.runtime.sendMessage({action: 'ajaxGet', url: location.protocol + "//www.youtube.com/get_video_info?video_id=" + id, method: 'GET'}, function (video_info) {
+            chrome.runtime.sendMessage({action:'ajaxGet', url: 'https://www.youtube.com/watch?v=' + id}, function(data) {
                 link.removeClass('hoverZoomLoading');
-                var video = decodeQueryString(video_info);
-                if (video.status === "fail") {
-                    cLog(video.reason);
-                    return;
-                }
-                var sources = decodeStreamMap(video.url_encoded_fmt_stream_map);
-                var src = getSource(sources, "webm", "hd720") || getSource(sources, "mp4", "hd720");
-                if (src) {
-                    link.data().hoverZoomSrc = [start ? src.url + '#t=' + start : src.url];
-                    link.addClass('hoverZoomLink');
-                    hoverZoom.displayPicFromElement(link);
+                const match = data.match(/ytInitialPlayerResponse\s*=\s*(\{.+?\})\s*;/);
+                if (match && match.length >= 2) {
+                    const json = JSON.parse(match[1]);
+                    const formats = json.streamingData.formats;
+//                    const adaptiveFormats = json.streamingData.adaptiveFormats;
+                    let src = getSource(formats, "mp4", "hd1080") || getSource(formats, "webm", "hd1080");
+//                        || getSource(adaptiveFormats, "webm", "hd720") || getSource(adaptiveFormats, "mp4", "hd720");
+                    if (src && src.url) {
+                        link.data().hoverZoomSrc = [start ? src.url + '#t=' + start : src.url];
+                        link.addClass('hoverZoomLink');
+                        hoverZoom.displayPicFromElement(link);
+                    }
                 }
             });
         }
@@ -83,25 +58,17 @@ hoverZoomPlugins.push({
             prepareVideoPreview(link, match[1]);
         });
 
+        $('a[href*="youtube.com/shorts/"]').one('mouseenter', function () {
+            var link = $(this), match = this.href.match(/^.*\/shorts\/([\w-]+).*$/);
+            if (!match || match.length < 2) return;
+            prepareVideoPreview(link, match[1]);
+        });
+
         $('a[href*="youtube.com/watch"]').one('mouseenter', function () {
             var link = $(this), match = this.href.match(/^.*v=([\w-]+).*$/);
             if (!match || match.length < 2) return;
             prepareVideoPreview(link, match[1]);
         });
-
-        // $('a[href*="youtu.be/"] img').each(function () {
-        //     var link = $(parentNodeName(this, 'a')),
-        //         img = $(this);
-        //     img.data().hoverZoomSrc = [link.attr('href').replace(/^.*youtu.be\/([\w-]+).*$/, repl)];
-        //     res.push(img);
-        // });
-
-        // $('a[href*="youtube.com/watch"] img').each(function () {
-        //     var link = $(parentNodeName(this, 'a')),
-        //         img = $(this);
-        //     img.data().hoverZoomSrc = [link.attr('href').replace(/^.*v=([\w-]+).*$/, repl)];
-        //     res.push(img);
-        // });
 
         hoverZoom.urlReplace(res,
             'img[src*="ytimg.com/vi/"], img[src*="ytimg.com/vi_webp/"]',

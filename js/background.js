@@ -2,16 +2,15 @@
 
 // Performs an ajax request
 function ajaxRequest(request, callback) {
-
     var xhr = new XMLHttpRequest();
     var response = request.response;
     var method = request.method;
     var url = request.url;
-    xhr.onreadystatechange = function () {
 
-        if (xhr.readyState == 4) {
-            if (xhr.status == 200) {
-                if (method == 'HEAD') {
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                if (method === 'HEAD') {
                     callback({url:url, headers:xhr.getAllResponseHeaders()});
                 } else {
                     if (response === 'URL') {
