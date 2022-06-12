@@ -6,6 +6,7 @@ hoverZoomPlugins.push({
             repl = 'http://i1.ytimg.com/vi/$1/0.jpg';
 
         function decodeQueryString(queryString) {
+            if (!queryString) return {}
             var keyValPairs = queryString.split("&"), params = {};
             for (var i = 0; i < keyValPairs.length; i++) {
                 var key = decodeURIComponent(keyValPairs[i].split("=")[0]);
@@ -15,6 +16,7 @@ hoverZoomPlugins.push({
         }
 
         function decodeStreamMap(url_encoded_fmt_stream_map) {
+            if (!url_encoded_fmt_stream_map) return {}
             var streams = url_encoded_fmt_stream_map.split(","), sources = {};
             for (var i = 0; i < streams.length; i++) {
                 var stream = decodeQueryString(streams[i]);
