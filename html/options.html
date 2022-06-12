@@ -356,12 +356,14 @@
                                         <div style="display:inline" data-i18n="optEnableGalleries"></div>
                                     </label>
                                 </li>
-                                <li class="field">
-                                  <label class="checkbox" for="chkEnableNoFocusMsg">
-                                      <input type="checkbox" id="chkEnableNoFocusMsg"><span></span>
-                                      <div style="display:inline" data-i18n="optEnableNoFocusMsg"></div>
-                                  </label>
-                                </li>
+                                <div class="ttip" data-i18n-tooltip="optEnableNoFocusMsgTooltip">
+                                    <li class="field">
+                                      <label class="checkbox" for="chkEnableNoFocusMsg">
+                                          <input type="checkbox" id="chkEnableNoFocusMsg"><span></span>
+                                          <div style="display:inline" data-i18n="optEnableNoFocusMsg"></div>
+                                      </label>
+                                    </li>
+                                </div>
                                 <li class="append field">
                                     <label class="inline" for="txtPicturesOpacity">
                                         <div style="display:inline" data-i18n="optPicturesOpacity"></div>
@@ -430,6 +432,23 @@
                                 </div>
                             </ul>
                         </fieldset>
+                        <fieldset>
+                            <legend data-i18n="optSectionSupportedFormats"></legend>
+                            <ul>
+                                <li class="field">
+                                    <div class="formats">
+                                        <div data-i18n="optSupportedImageFormats"></div>
+                                        <div>bmp gif gifv ico jpeg jpg png svg webp xbm</div>
+                                    </div>
+                                </li>
+                                <li class="field">
+                                    <div class="formats">
+                                        <div data-i18n="optSupportedVideoFormats"></div>
+                                        <div>3gpp m4v mkv mp4 ogv webm</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </fieldset>
                     </form>
                 </div>
                 <div class="tab-content">
@@ -440,14 +459,14 @@
                                 <div data-i18n="optFAQ_Q1" class="faq question"></div>
                                 <ol>
                                     <li style="list-style-type:decimal">
-                                        <div class="faq answer"">
+                                        <div class="faq answer">
                                             <div data-i18n="optFAQ_A1_1"></div>
                                             <img src="../images/faq1.png" style="height:35px"/>
                                             <div data-i18n="optFAQ_A1_2"></div>
                                         </div>
                                     </li>
                                     <li style="list-style-type:decimal">
-                                        <div class="faq answer"">
+                                        <div class="faq answer">
                                             <div data-i18n="optFAQ_A1_3"></div>
                                         </div>
                                     </li>
@@ -455,13 +474,13 @@
                                 <div data-i18n="optFAQ_Q2" class="faq question"/></div>
                                 <ol>
                                     <li style="list-style-type:decimal">
-                                        <div class="faq answer"">
+                                        <div class="faq answer">
                                             <div data-i18n="optFAQ_A2_1"></div>
                                             <img src="../images/faq2.png" style="height:35px"/>
                                         </div>
                                     </li>
                                     <li style="list-style-type:decimal">
-                                        <div class="faq answer"">
+                                        <div class="faq answer">
                                             <div data-i18n="optFAQ_SaveAndReload"></div>
                                         </div>
                                     </li>
@@ -470,19 +489,19 @@
                                 <div data-i18n="optFAQ_A3_1"></div>
                                 <ol>
                                     <li style="list-style-type:decimal">
-                                        <div class="faq answer"">
+                                        <div class="faq answer">
                                             <div data-i18n="optFAQ_A3_2"></div>
-                                            <img src="../images/faq3.png" style="height:30px"/>
+                                            <img src="../images/faq3a.png" style="height:30px"/>
                                         </div>
                                     </li>
                                     <li style="list-style-type:decimal">
-                                        <div class="faq answer"">
+                                        <div class="faq answer">
                                             <div data-i18n="optFAQ_A3_3"></div>
-                                            <img src="../images/faq4.png" style="height:40px"/>
+                                            <img src="../images/faq3b.png" style="height:40px"/>
                                         </div>
                                     </li>
                                     <li style="list-style-type:decimal">
-                                        <div class="faq answer"">
+                                        <div class="faq answer">
                                             <div data-i18n="optFAQ_SaveAndReload"></div>
                                         </div>
                                     </li>
@@ -490,13 +509,36 @@
                                 <div data-i18n="optFAQ_Q4" class="faq question"></div>
                                 <ol>
                                     <li style="list-style-type:decimal">
-                                        <div class="faq answer"">
+                                        <div class="faq answer">
                                             <div data-i18n="optFAQ_A4_1"></div>
                                         </div>
                                     </li>
                                     <li style="list-style-type:decimal">
-                                        <div class="faq answer"">
+                                        <div class="faq answer">
                                             <div data-i18n="optFAQ_A4_2"></div>
+                                        </div>
+                                    </li>
+                                </ol>
+                                <div data-i18n="optFAQ_Q5" class="faq question"></div>
+                                <div data-i18n="optFAQ_A5_1"></div>
+                                <div data-i18n="optFAQ_A5_2"></div>
+                                <div class="faq answer">
+                                    <div data-i18n="optFAQ_A5_3"></div>
+                                    <img src="../images/faq5.png" style="height:35px"/>
+                                </div>
+                                <div data-i18n="optFAQ_Q6" class="faq question"></div>
+                                <div data-i18n="optFAQ_A6_1"></div>
+                                <div data-i18n="optFAQ_A6_2"></div>
+                                <ol>
+                                    <li style="list-style-type:decimal">
+                                        <div class="faq answer">
+                                            <div data-i18n="optFAQ_A6_3"></div>
+                                            <img src="../images/faq6.png" style="height:35px"/>
+                                        </div>
+                                    </li>
+                                    <li style="list-style-type:decimal">
+                                        <div class="faq answer">
+                                            <div data-i18n="optFAQ_SaveAndReload"></div>
                                         </div>
                                     </li>
                                 </ol>

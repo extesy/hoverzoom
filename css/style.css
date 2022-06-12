@@ -111,5 +111,5 @@ div.modified, select.modified, span.modified, input[type=text].modified, input[t
 span.added { outline-color: orange; outline-style: solid; outline-width: medium; padding-left: 3px; padding-right: 3px; border-radius: 4px; }
 
 /* FAQ */
-.faq.question { font-weight: bold }
-.faq.answer { display: flex; justify-content: flex-start; align-items: center; gap: 10px; }
+.faq.question { font-weight: bold; margin-top: 10px; }
+.faq.answer, .formats { display: flex; justify-content: flex-start; align-items: center; gap: 10px; }

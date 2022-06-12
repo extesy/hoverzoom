@@ -84,8 +84,8 @@
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optSectionView": {
-        "message": "View",
-        "description": "[options] Page section for view options"
+        "message": "Viewer",
+        "description": "[options] Page section for viewer options"
     },
     "optSectionVideo": {
         "message": "Video",
@@ -208,12 +208,12 @@
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
-        "message": "Zoom videos (WebM, MP4)",
-        "description": "[options] Zoom videos (WebM, MP4) option"
+    	"message": "Zoom videos",
+    	"description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Zoom videos (WebM, MP4)",
-        "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
+   	 "message": "Supported formats: 3gpp m4v mkv mp4 ogv webm",
+   	 "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
         "message": "Use prev/next action keys (or mousewheel) to change video position by",
@@ -435,6 +435,10 @@
       "message": "Enable Action Keys focus overlay message",
       "description": "[options] Enable Action Keys focus overlay message option"
     },
+    "optEnableNoFocusMsgTooltip": {
+      "message": "Sometimes Action Keys seem to be broken, this usually happens when page has lost focus. If option is checked, a warning message will be displayed (only once).",
+      "description": "[options] Tooltip for enable Action Keys focus overlay message option"
+    },
     "optPicturesOpacity": {
         "message": "Zoomed pictures opacity:",
         "description": "[options] Zoomed pictures opacity option"
@@ -523,6 +527,18 @@
         "message": "Enable debug",
         "description": "[options] Enable debug option"
     },
+  "optSectionSupportedFormats": {
+    "message": "Supported formats",
+    "description": "[options] Page section for supported formats"
+  },
+  "optSupportedImageFormats": {
+    "message": "Images :",
+    "description": "[options] Page section for supported image formats"
+  },
+  "optSupportedVideoFormats": {
+    "message": "Video :",
+    "description": "[options] Page section for supported video formats"
+  },
   "optPageFAQ": {
     "message": "FAQ",
     "description": "[options] Page title for FAQ"
@@ -587,144 +603,176 @@
     "message": "Image or video is now displayed fullsize. You can zoom in or out using mousewheel.",
     "description": "[options] FAQ Answer 4 part 2"
   },
-    "optPixelsUnitName": {
-        "message": "pixels",
-        "description": "[options] Unit name (pixels)"
-    },
-    "optActionKeyTitle": {
-        "message": "Activate Hover Zoom+",
-        "description": "[options] Action key title"
-    },
-    "optActionKeyDescription": {
-        "message": "If a key is set, Hover Zoom+ will be active only when this key is held down.",
-        "description": "[options] Action key description"
-    },
-    "optToggleKeyTitle": {
-    	"message": "Toggle HoverZoom+",
-    	"description": "[options] Action key title"
-    },
-    "optToggleKeyDescription": {
-    	"message": "Enable/disable HoverZoom+",
-    	"description": "[options] Action key description"
-    },
-    "optCloseKeyTitle": {
-    	"message": "Close image",
-    	"description": "[options] Action key title"
-    },
-    "optCloseKeyDescription": {
-    	"message": "Press this key to close zoomed image or video.",
-    	"description": "[options] Action key description"
-    },
-    "optHideKeyTitle": {
-        "message": "Hide image",
-        "description": "[options] Action key title"
-    },
-    "optHideKeyDescription": {
-        "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
-        "description": "[options] Action key description"
-    },
-    "optOpenImageInWindowKeyTitle": {
-        "message": "Open image in a new window",
-        "description": "[options] Action key title"
-    },
-    "optOpenImageInWindowKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
-        "description": "[options] Action key description"
-    },
-    "optOpenImageInTabKeyTitle": {
-        "message": "Open image in a new tab",
-        "description": "[options] Action key title"
-    },
-    "optOpenImageInTabKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
-        "description": "[options] Action key description"
-    },
-    "optLockImageKeyTitle": {
-        "message": "Lock image on screen",
-        "description": "[options] Action key title"
-    },
-    "optLockImageKeyDescription": {
-        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
-        "description": "[options] Action key description"
-    },
-    "optSaveImageKeyTitle": {
-        "message": "Save image",
-        "description": "[options] Action key title"
-    },
-    "optSaveImageKeyDescription": {
-        "message": "Press this key to save the image or video you are currently viewing.",
-        "description": "[options] Action key description"
-    },
-    "optFullZoomKeyTitle": {
-        "message": "Activate full zoom",
-        "description": "[options] Action key title"
-    },
-    "optFullZoomKeyDescription": {
-        "message": "When this key is held down, the picture is displayed using all available space. Useful for high resolution pictures only.",
-        "description": "[options] Action key description"
-    },
-    "optCopyImageKeyTitle": {
-        "message": "Copy image to clipboard",
-        "description": "[options] Action key title"
-    },
-    "optCopyImageKeyDescription": {
-        "message": "When this key is pressed, the image is copied into the clipboard.",
-        "description": "[options] Action key description"
-    },
-    "optCopyImageUrlKeyTitle": {
-        "message": "Copy image URL to clipboard",
-        "description": "[options] Action key title"
-    },
-    "optCopyImageUrlKeyDescription": {
-        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
-        "description": "[options] Action key description"
-    },
-    "optPrevImgKeyTitle": {
-        "message": "View previous image in a gallery",
-        "description": "[options] Action key title"
-    },
-    "optPrevImgKeyDescription": {
-        "message": "Press this key to view the previous image in a gallery.",
-        "description": "[options] Action key description"
-    },
-    "optNextImgKeyTitle": {
-        "message": "View next image in a gallery",
-        "description": "[options] Action key title"
-    },
-    "optNextImgKeyDescription": {
-        "message": "Press this key to view the next image in a gallery.",
-        "description": "[options] Action key description"
-    },
-    "optFlipImageKeyTitle": {
-      "message": "Flip image",
-      "description": "[options] Action key title"
-    },
-    "optFlipImageKeyDescription": {
-      "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
-      "description": "[options] Action key description"
-    },
-    "optFooterSourceCode": {
-        "message": "Source code",
-        "description": "[options] Source code link in page footer"
-    },
-    "optFooterChangelog": {
-        "message": "Changelog",
-        "description": "[options] Changelog link in page footer"
-    },
-    "optFooterReportIssue": {
-        "message": "Report a bug",
-        "description": "[options] Report a bug link in page footer"
-    },
-    "optFooterVersionCopyright": {
-        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
-        "description": "[options] Copyright and version number in page footer"
-    },
-    "msgClickPageToPlayVideo": {
-        "message": "Click anywhere on the page then hover again",
-        "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
-    },
-    "msgClickPageToActivateActionKeys": {
-        "message": "click anywhere on the page to activate action keys",
-        "description": "Action keys are active only if page is focused"
-    }
+  "optFAQ_Q5": {
+    "message": "Action keys do not work!",
+    "description": "[options] FAQ Question 5"
+  },
+  "optFAQ_A5_1": {
+    "message": "Sometimes action keys seem to be broken, this usually happens when page has lost focus.",
+    "description": "[options] FAQ Answer 5 part 1"
+  },
+  "optFAQ_A5_2": {
+    "message": "Just click anywhere on page to regain focus.",
+    "description": "[options] FAQ Answer 5 part 2"
+  },
+  "optFAQ_A5_3": {
+    "message": "In Options -> Advanced, you can activate \"Enable Action Keys focus overlay message\", so you'll get a warning message when focus is lost.",
+    "description": "[options] FAQ Answer 5 part 3"
+  },
+  "optFAQ_Q6": {
+    "message": "Some videos do not play when opened from sites other than original ones.",
+    "description": "[options] FAQ Question 6"
+  },
+  "optFAQ_A6_1": {
+    "message": "e.g: Dailymotion videos play in dailymotion.com, but not in Google search results.",
+    "description": "[options] FAQ Answer 6 part 1"
+  },
+  "optFAQ_A6_2": {
+    "message": "This is due to CORS restrictions, to lift them:",
+    "description": "[options] FAQ Answer 6 part 2"
+  },
+  "optFAQ_A6_3": {
+    "message": "In Options -> Advanced, activate \"Allow rewrite of headers for HTTP(S) request or response\"",
+    "description": "[options] FAQ Answer 6 part 3"
+  },
+  "optPixelsUnitName": {
+    "message": "pixels",
+    "description": "[options] Unit name (pixels)"
+  },
+  "optActionKeyTitle": {
+    "message": "Activate HoverZoom4CherryPics",
+    "description": "[options] Action key title"
+  },
+  "optActionKeyDescription": {
+    "message": "If a key is set, HoverZoom4CherryPics will be active only when this key is held down.",
+    "description": "[options] Action key description"
+  },
+  "optToggleKeyTitle": {
+    "message": "Toggle HoverZoom4CherryPics",
+    "description": "[options] Action key title"
+  },
+  "optToggleKeyDescription": {
+    "message": "Enable/disable HoverZoom4CherryPics",
+    "description": "[options] Action key description"
+  },
+  "optCloseKeyTitle": {
+    "message": "Close image",
+    "description": "[options] Action key title"
+  },
+  "optCloseKeyDescription": {
+    "message": "Press this key to close zoomed image or video.",
+    "description": "[options] Action key description"
+  },
+  "optHideKeyTitle": {
+    "message": "Hide image",
+    "description": "[options] Action key title"
+  },
+  "optHideKeyDescription": {
+    "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
+    "description": "[options] Action key description"
+  },
+  "optOpenImageInWindowKeyTitle": {
+    "message": "Open image in a new window",
+    "description": "[options] Action key title"
+  },
+  "optOpenImageInWindowKeyDescription": {
+    "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
+    "description": "[options] Action key description"
+  },
+  "optOpenImageInTabKeyTitle": {
+    "message": "Open image in a new tab",
+    "description": "[options] Action key title"
+  },
+  "optOpenImageInTabKeyDescription": {
+    "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
+    "description": "[options] Action key description"
+  },
+  "optLockImageKeyTitle": {
+    "message": "Lock image on screen",
+    "description": "[options] Action key title"
+  },
+  "optLockImageKeyDescription": {
+    "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
+    "description": "[options] Action key description"
+  },
+  "optSaveImageKeyTitle": {
+    "message": "Save image",
+    "description": "[options] Action key title"
+  },
+  "optSaveImageKeyDescription": {
+    "message": "Press this key to save the image or video you are currently viewing.",
+    "description": "[options] Action key description"
+  },
+  "optFullZoomKeyTitle": {
+    "message": "Activate full zoom",
+    "description": "[options] Action key title"
+  },
+  "optFullZoomKeyDescription": {
+    "message": "When this key is held down, the picture is displayed using all available space. Useful for high resolution pictures only.",
+    "description": "[options] Action key description"
+  },
+  "optCopyImageKeyTitle": {
+    "message": "Copy image to clipboard",
+    "description": "[options] Action key title"
+  },
+  "optCopyImageKeyDescription": {
+    "message": "When this key is pressed, the image is copied into the clipboard.",
+    "description": "[options] Action key description"
+  },
+  "optCopyImageUrlKeyTitle": {
+    "message": "Copy image URL to clipboard",
+    "description": "[options] Action key title"
+  },
+  "optCopyImageUrlKeyDescription": {
+    "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
+    "description": "[options] Action key description"
+  },
+  "optPrevImgKeyTitle": {
+    "message": "View previous image in a gallery",
+    "description": "[options] Action key title"
+  },
+  "optPrevImgKeyDescription": {
+    "message": "Press this key to view the previous image in a gallery.",
+    "description": "[options] Action key description"
+  },
+  "optNextImgKeyTitle": {
+    "message": "View next image in a gallery",
+    "description": "[options] Action key title"
+  },
+  "optNextImgKeyDescription": {
+    "message": "Press this key to view the next image in a gallery.",
+    "description": "[options] Action key description"
+  },
+  "optFlipImageKeyTitle": {
+    "message": "Flip image",
+    "description": "[options] Action key title"
+  },
+  "optFlipImageKeyDescription": {
+    "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+    "description": "[options] Action key description"
+  },
+  "optFooterSourceCode": {
+    "message": "Source code",
+    "description": "[options] Source code link in page footer"
+  },
+  "optFooterChangelog": {
+     "message": "Changelog",
+     "description": "[options] Changelog link in page footer"
+  },
+  "optFooterReportIssue": {
+    "message": "Report a bug",
+    "description": "[options] Report a bug link in page footer"
+  },
+  "optFooterVersionCopyright": {
+    "message": "Version $1 (last update: $2) - © 2014-2022 CherryPics",
+    "description": "[options] Copyright and version number in page footer"
+  },
+  "msgClickPageToPlayVideo": {
+    "message": "click anywhere on the page then hover again",
+    "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
+  },
+  "msgClickPageToActivateActionKeys": {
+    "message": "click anywhere on the page to activate Action Keys",
+    "description": "Action keys are active only if page is focused"
+  }
 }
