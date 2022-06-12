@@ -1920,23 +1920,13 @@ var hoverZoom = {
             }
         }
 
-        // TODO: Remove after validating that windowOnDOMMutation works properly
-        function windowOnDOMNodeInserted(event) {
-            var insertedNode = event.target;
-            if (insertedNode && insertedNode.nodeType === Node.ELEMENT_NODE) {
-                onNodeInserted(insertedNode);
-            }
-        }
-
         const observer = new MutationObserver(windowOnDOMMutation);
 
         function bindObserver() {
-            //wnd.bind('DOMNodeInserted', windowOnDOMNodeInserted);
             observer.observe(document.body, { childList: true, subtree: true });
         }
 
         function unbindObserver() {
-            //wnd.unbind('DOMNodeInserted', windowOnDOMNodeInserted);
             observer.disconnect();
         }
 
