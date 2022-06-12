@@ -10,6 +10,7 @@ var factorySettings = {
     showHighRes : true,
     galleriesMouseWheel : true,
     disableMouseWheelForVideo : false,
+    enableDownloads : false,
     addToHistory : false,
     allowHeadersRewrite : false,
     alwaysPreload : false,
@@ -92,8 +93,12 @@ function loadOptions() {
     options.showHighRes = options.hasOwnProperty('showHighRes') ? options.showHighRes : factorySettings.showHighRes;
     options.galleriesMouseWheel = options.hasOwnProperty('galleriesMouseWheel') ? options.galleriesMouseWheel : factorySettings.galleriesMouseWheel;
     options.disableMouseWheelForVideo = options.hasOwnProperty('disableMouseWheelForVideo') ? options.disableMouseWheelForVideo : factorySettings.disableMouseWheelForVideo;
+
+    // These options are directly associated with browser permissions. Changing pemissions manually will make them out of sync.
+    options.enableDownloads = options.hasOwnProperty('enableDownloads') ? options.enableDownloads : factorySettings.enableDownloads;
     options.addToHistory = options.hasOwnProperty('addToHistory') ? options.addToHistory : factorySettings.addToHistory;
     options.allowHeadersRewrite = options.hasOwnProperty('allowHeadersRewrite') ? options.allowHeadersRewrite : factorySettings.allowHeadersRewrite;
+
     options.alwaysPreload = options.hasOwnProperty('alwaysPreload') ? options.alwaysPreload : factorySettings.alwaysPreload;
     options.displayDelay = options.hasOwnProperty('displayDelay') ? options.displayDelay : factorySettings.displayDelay;
     options.displayDelayVideo = options.hasOwnProperty('displayDelayVideo') ? options.displayDelayVideo : factorySettings.displayDelayVideo;

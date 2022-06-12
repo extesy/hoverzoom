@@ -35,16 +35,21 @@ function ajaxRequest(request, callback) {
 function onMessage(message, sender, callback) {
     switch (message.action) {
         case 'downloadFile':
-            chrome.permissions.request({
-                permissions: ['downloads']
-            }, function (granted) {
-                if (granted) {
-                    chrome.downloads.download({url: message.url, filename: message.filename, conflictAction: message.conflictAction, saveAs: false});
-                    return true;
-                } else {
-                    return false;
-                }
-            });
+            if (options.enableDownloads) {
+                chrome.downloads.download({url: message.url, filename: message.filename, conflictAction: message.conflictAction});
+                return true;
+            } else {
+                chrome.permissions.request({
+                    permissions: ['downloads']
+                }, function (granted) {
+                    if (granted) {
+                        chrome.downloads.download({url: message.url, filename: message.filename, conflictAction: message.conflictAction});
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+            }
         case 'ajaxGet':
             ajaxRequest({url:message.url, response:message.response, method:'GET', headers:message.headers}, callback);
             return true;
@@ -149,6 +154,8 @@ function init() {
 
 // Add or remove web request listeners
 function manageHeadersRewrite() {
+    if (!chrome.webRequest) return; // not supported on Firefox
+
     if (options.allowHeadersRewrite) {
         // check that permissions are granted, otherwise remove listeners
         chrome.permissions.contains({permissions: ['webRequest','webRequestBlocking']}, function (granted) {
@@ -268,9 +275,9 @@ function updateHeaders(headers, settings) {
 // so they can be edited on-the-fly to enable API calls from plug-ins
 // https://developer.chrome.com/docs/extensions/reference/webRequest/
 function addWebRequestListeners() {
-    if (! chrome.webRequest.onBeforeSendHeaders.hasListeners())
+    if (!chrome.webRequest.onBeforeSendHeaders.hasListeners())
         chrome.webRequest.onBeforeSendHeaders.addListener(updateRequestHeaders, { urls : ["<all_urls>"] }, ["blocking", "requestHeaders", "extraHeaders"]);
-    if (! chrome.webRequest.onHeadersReceived.hasListeners())
+    if (!chrome.webRequest.onHeadersReceived.hasListeners())
         chrome.webRequest.onHeadersReceived.addListener(updateResponseHeaders, { urls : ["<all_urls>"] }, ["blocking", "responseHeaders", "extraHeaders"]);
 }
 

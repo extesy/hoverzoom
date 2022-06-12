@@ -1998,7 +1998,7 @@ var hoverZoom = {
 
             $(document).contextmenu(documentContextMenu);
             $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).mouseleave(cancelImageLoading);
-            $(document).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
+            $(document).keydown(documentOnKeyDown).keyup(documentOnKeyUp).keypress(documentOnKeyPress);
             if (options.galleriesMouseWheel) {
                 window.addEventListener('wheel', documentOnMouseWheel, {passive: false});
             }
@@ -2116,68 +2116,6 @@ var hoverZoom = {
                     return false;
                 }
             }
-            // the following keys are processed only if an image is displayed
-            if (imgFullSize) {
-                // "Open image in a new window" key
-                if (event.which == options.openImageInWindowKey) {
-                    if (imgDetails.video) openVideoInWindow();
-                    else openImageInWindow();
-                    return false;
-                }
-                // "Open image in a new tab" key
-                if (event.which == options.openImageInTabKey) {
-                    if (imgDetails.video) openVideoInTab(event.shiftKey);
-                    else openImageInTab(event.shiftKey);
-                    return false;
-                }
-                // "Lock image" key
-                if (event.which == options.lockImageKey) {
-                    if (!imageLocked) lockImage();
-                    return false;
-                }
-                // "Save image" key
-                if (event.which == options.saveImageKey) {
-                    saveImage();
-                    return false;
-                }
-                // "Copy image" key
-                if (isChromiumBased) {
-                    if (event.which == options.copyImageKey) {
-                        copyImage();
-                        return false;
-                    }
-                }
-                // "Copy image url" key
-                if (event.which == options.copyImageUrlKey) {
-                    copyLink();
-                    return false;
-                }
-                // Cancels event if an action key is held down (auto repeat may trigger additional events)
-                if (event.which == options.actionKey ||
-                    event.which == options.fullZoomKey ||
-                    event.which == options.hideKey) {
-                    return false;
-                }
-                // "Previous image" key
-                if (event.which == options.prevImgKey) {
-                    var linkData = hz.currentLink.data();
-                    if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(-1);
-                    else changeVideoPosition(-parseInt(options.videoPositionStep));
-                    return false;
-                }
-                // "Next image" key
-                if (event.which == options.nextImgKey) {
-                    var linkData = hz.currentLink.data();
-                    if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(1);
-                    else changeVideoPosition(parseInt(options.videoPositionStep));
-                    return false;
-                }
-                // "Flip image" key
-                if (event.which == options.flipImageKey) {
-                    flipImage();
-                    return false;
-                }
-            }
         }
 
         function changeVideoPosition(amount) {
@@ -2206,6 +2144,81 @@ var hoverZoom = {
                     playMedias();
                 }
                 $(this).mousemove();
+            }
+        }
+
+        function documentOnKeyPress(event) {
+            event = event.originalEvent;
+            // Skips if an input controlled is focused
+            if (event.target && ['INPUT','TEXTAREA','SELECT'].indexOf(event.target.tagName) > -1) {
+                return;
+            }
+
+            let keyCode = event.which;
+            if (keyCode >= 97 && keyCode <= 122) // Translate lowercase key codes into uppercase key codes
+                keyCode = keyCode - 32;
+
+            // the following keys are processed only if an image is displayed
+            if (imgFullSize) {
+                // "Open image in a new window" key
+                if (keyCode === options.openImageInWindowKey) {
+                    if (imgDetails.video) openVideoInWindow();
+                    else openImageInWindow();
+                    return false;
+                }
+                // "Open image in a new tab" key
+                if (keyCode === options.openImageInTabKey) {
+                    if (imgDetails.video) openVideoInTab(event.shiftKey);
+                    else openImageInTab(event.shiftKey);
+                    return false;
+                }
+                // "Lock image" key
+                if (keyCode === options.lockImageKey) {
+                    if (!imageLocked) lockImage();
+                    return false;
+                }
+                // "Save image" key
+                if (keyCode === options.saveImageKey) {
+                    saveImage();
+                    return false;
+                }
+                // "Copy image" key
+                if (isChromiumBased) {
+                    if (keyCode === options.copyImageKey) {
+                        copyImage();
+                        return false;
+                    }
+                }
+                // "Copy image url" key
+                if (keyCode === options.copyImageUrlKey) {
+                    copyLink();
+                    return false;
+                }
+                // Cancels event if an action key is held down (auto-repeat may trigger additional events)
+                if (keyCode === options.actionKey ||
+                    keyCode === options.fullZoomKey ||
+                    keyCode === options.hideKey) {
+                    return false;
+                }
+                // "Previous image" key
+                if (keyCode === options.prevImgKey) {
+                    var linkData = hz.currentLink.data();
+                    if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(-1);
+                    else changeVideoPosition(-parseInt(options.videoPositionStep));
+                    return false;
+                }
+                // "Next image" key
+                if (keyCode === options.nextImgKey) {
+                    var linkData = hz.currentLink.data();
+                    if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(1);
+                    else changeVideoPosition(parseInt(options.videoPositionStep));
+                    return false;
+                }
+                // "Flip image" key
+                if (keyCode === options.flipImageKey) {
+                    flipImage();
+                    return false;
+                }
             }
         }
 
