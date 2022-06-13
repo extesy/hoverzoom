@@ -84,8 +84,8 @@
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optSectionView": {
-        "message": "Toon",
-        "description": "[options] Page section for view options"
+        "message": "Viewer",
+        "description": "[options] Page section for viewer options"
     },
     "optSectionVideo": {
         "message": "Video",
@@ -208,12 +208,12 @@
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
-        "message": "Zoom video's (WebM, MP4)",
-        "description": "[options] Zoom videos (WebM, MP4) option"
+        "message": "Zoom videos",
+        "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Zoom video's (WebM, MP4)",
-        "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
+        "message": "Supported formats: 3gpp m4v mkv mp4 ogv webm",
+        "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
         "message": "Gebruikt \"prev\" / \"next\" actietoetsen (of muiswiel) om de video positie te veranderen",
@@ -407,6 +407,10 @@
         "message": "Geavanceerde opties",
         "description": "[options] Page section for advanced options"
     },
+    "optEnableDownloads": {
+        "message": "Allow downloading images using an action key",
+        "description": "[options] Grant browser permission to allow file downloading using an action key"
+    },
     "optAddToHistory": {
         "message": "Voeg bekeken afbeeldingen toe aan de browsergeschiedenis",
         "description": "[options] Add viewed pictures to the browser's history option"
@@ -434,6 +438,10 @@
     "optEnableNoFocusMsg": {
         "message": "Enable Action Keys focus overlay message",
         "description": "[options] Enable Action Keys focus overlay message option"
+    },
+    "optEnableNoFocusMsgTooltip": {
+        "message": "Sometimes Action Keys seem to be broken, this usually happens when page has lost focus. If option is checked, a warning message will be displayed (only once).",
+        "description": "[options] Tooltip for enable Action Keys focus overlay message option"
     },
     "optPicturesOpacity": {
         "message": "Ingezoomde afbeeldingen doorzichtigheid:",
@@ -520,8 +528,20 @@
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
-        "message": "Enable debug",
+        "message": "Enable debug logging",
         "description": "[options] Enable debug option"
+    },
+    "optSectionSupportedFormats": {
+        "message": "Supported formats",
+        "description": "[options] Page section for supported formats"
+    },
+    "optSupportedImageFormats": {
+        "message": "Images :",
+        "description": "[options] Page section for supported image formats"
+    },
+    "optSupportedVideoFormats": {
+        "message": "Video :",
+        "description": "[options] Page section for supported video formats"
     },
     "optPageFAQ": {
         "message": "FAQ",
@@ -587,16 +607,48 @@
         "message": "Image or video is now displayed fullsize. You can zoom in or out using mousewheel.",
         "description": "[options] FAQ Answer 4 part 2"
     },
+    "optFAQ_Q5": {
+        "message": "Action keys do not work!",
+        "description": "[options] FAQ Question 5"
+    },
+    "optFAQ_A5_1": {
+        "message": "Sometimes action keys seem to be broken, this usually happens when page has lost focus.",
+        "description": "[options] FAQ Answer 5 part 1"
+    },
+    "optFAQ_A5_2": {
+        "message": "Just click anywhere on page to regain focus.",
+        "description": "[options] FAQ Answer 5 part 2"
+    },
+    "optFAQ_A5_3": {
+        "message": "In Options -> Advanced, you can activate \"Enable Action Keys focus overlay message\", so you'll get a warning message when focus is lost.",
+        "description": "[options] FAQ Answer 5 part 3"
+    },
+    "optFAQ_Q6": {
+        "message": "Some videos do not play when opened from sites other than original ones.",
+        "description": "[options] FAQ Question 6"
+    },
+    "optFAQ_A6_1": {
+        "message": "e.g: Dailymotion videos play in dailymotion.com, but not in Google search results.",
+        "description": "[options] FAQ Answer 6 part 1"
+    },
+    "optFAQ_A6_2": {
+        "message": "This is due to CORS restrictions, to lift them:",
+        "description": "[options] FAQ Answer 6 part 2"
+    },
+    "optFAQ_A6_3": {
+        "message": "In Options -> Advanced, activate \"Allow rewrite of headers for HTTP(S) request or response\"",
+        "description": "[options] FAQ Answer 6 part 3"
+    },
     "optPixelsUnitName": {
         "message": "pixels",
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
-        "message": "Hover Zoom+ inschakelen",
+        "message": "Activate HoverZoom+",
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "Als een toets is ingesteld, Hover Zoom+ zal alleen werken wanneer die toets ingedrukt is.",
+        "message": "If a key is set, HoverZoom4+ will be active only when this key is held down.",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
@@ -720,11 +772,11 @@
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "Click anywhere on the page then hover again",
+        "message": "click anywhere on the page then hover again",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     },
     "msgClickPageToActivateActionKeys": {
-        "message": "click anywhere on the page to activate action keys",
+        "message": "click anywhere on the page to activate Action Keys",
         "description": "Action keys are active only if page is focused"
     }
 }
