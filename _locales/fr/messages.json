@@ -84,8 +84,8 @@
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optSectionView": {
-        "message": "Voir",
-        "description": "[options] Page section for view options"
+        "message": "Visionneuse",
+        "description": "[options] Page section for viewer options"
     },
     "optSectionVideo": {
         "message": "Vidéos",
@@ -208,12 +208,12 @@
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
-        "message": "Zoomer les vidéos (WebM, MP4)",
-        "description": "[options] Zoom videos (WebM, MP4) option"
+        "message": "Zoomer les vidéos",
+        "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Zoomer les vidéos (WebM, MP4)",
-        "description": "[options] Tooltip for zoom videos (WebM, MP4) option"
+        "message": "Formats supportés : 3gpp m4v mkv mp4 webm ogv",
+        "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
         "message": "Utiliser les touches d'action précédent/suivant (ou la molette) pour changer la position de",
@@ -407,6 +407,10 @@
         "message": "Options avancées",
         "description": "[options] Page section for advanced options"
     },
+    "optEnableDownloads": {
+        "message": "Allow downloading images using an action key",
+        "description": "[options] Grant browser permission to allow file downloading using an action key"
+    },
     "optAddToHistory": {
         "message": "Ajouter les images regardées à l'historique",
         "description": "[options] Add viewed pictures to the browser's history option"
@@ -434,6 +438,10 @@
     "optEnableNoFocusMsg": {
         "message": "Enable Action Keys focus overlay message",
         "description": "[options] Enable Action Keys focus overlay message option"
+    },
+    "optEnableNoFocusMsgTooltip": {
+        "message": "Parfois, les touches d'action semblent cassées, ce qui se produit généralement lorsque la page a perdu le focus. Si l'option est cochée, un message d'avertissement sera affiché (une seule fois).",
+        "description": "[options] Tooltip for enable Action Keys focus overlay message option"
     },
     "optPicturesOpacity": {
         "message": "Opacité des images zoomées :",
@@ -520,8 +528,20 @@
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
-        "message": "Activer le débogage",
+        "message": "Enable debug logging",
         "description": "[options] Enable debug option"
+    },
+    "optSectionSupportedFormats": {
+        "message": "Formats supportés",
+        "description": "[options] Page section for supported formats"
+    },
+    "optSupportedImageFormats": {
+        "message": "Images :",
+        "description": "[options] Page section for supported image formats"
+    },
+    "optSupportedVideoFormats": {
+        "message": "Vidéo :",
+        "description": "[options] Page section for supported video formats"
     },
     "optPageFAQ": {
         "message": "FAQ",
@@ -587,24 +607,56 @@
         "message": "L'image ou la vidéo est maintenant affichée en taille réelle. Il est possible de zoomer/dézoomer à l'aide de la molette.",
         "description": "[options] FAQ Answer 4 part 2"
     },
+    "optFAQ_Q5": {
+        "message": "Les touches d'action ne fonctionnent pas !",
+        "description": "[options] FAQ Question 5"
+    },
+    "optFAQ_A5_1": {
+        "message": "Parfois, les touches d'action semblent cassées, ce qui se produit généralement lorsque la page a perdu le focus.",
+        "description": "[options] FAQ Answer 5 part 1"
+    },
+    "optFAQ_A5_2": {
+        "message": "Il suffit de cliquer n'importe où sur la page pour récupérer le focus.",
+        "description": "[options] FAQ Answer 5 part 2"
+    },
+    "optFAQ_A5_3": {
+        "message": "Dans Options -> Avancé, vous pouvez activer \"Activer le message d'affichage des touches d'action\", ainsi vous recevrez un message d'avertissement lorsque le focus est perdu.",
+        "description": "[options] FAQ Answer 5 part 3"
+    },
+    "optFAQ_Q6": {
+        "message": "Certaines vidéos ne sont pas lues lorsqu'elles sont ouvertes à partir de sites autres que les originaux.",
+        "description": "[options] FAQ Question 6"
+    },
+    "optFAQ_A6_1": {
+        "message": "Par exemple, les vidéos de Dailymotion sont lues sur dailymotion.com, mais pas dans les résultats de recherche de Google.",
+        "description": "[options] FAQ Answer 6 part 1"
+    },
+    "optFAQ_A6_2": {
+        "message": "Ceci est dû aux restrictions CORS, pour les lever :",
+        "description": "[options] FAQ Answer 6 part 2"
+    },
+    "optFAQ_A6_3": {
+        "message": "Dans Options -> Avancé, activez \"Autoriser la réécriture des en-têtes HTTP(S) pour la requête ou la réponse\"",
+        "description": "[options] FAQ Answer 6 part 3"
+    },
     "optPixelsUnitName": {
         "message": "pixels",
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
-        "message": "Activer Hover Zoom+",
+        "message": "Activate HoverZoom+",
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "Si une touche est définie, Hover Zoom+ ne sera actif que lorsque cette touche est maintenue enfoncée.",
+        "message": "If a key is set, HoverZoom4+ will be active only when this key is held down.",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
-        "message": "Activer/désactiver HoverZoom+",
+        "message": "Toggle HoverZoom+",
         "description": "[options] Action key title"
     },
     "optToggleKeyDescription": {
-        "message": "Activer/désactiver HoverZoom+",
+        "message": "Enable/disable HoverZoom+",
         "description": "[options] Action key description"
     },
     "optCloseKeyTitle": {
@@ -716,15 +768,15 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 (dernière mise à jour : $2) - © 2014-2022 Oleg Anashkin",
+        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "Cliquez n'importe où sur la page puis survolez à nouveau",
+        "message": "cliquez n'importe où sur la page puis survolez à nouveau",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     },
     "msgClickPageToActivateActionKeys": {
-        "message": "click anywhere on the page to activate action keys",
+        "message": "cliquez n'importe où sur la page pour activer les touches d'action",
         "description": "Action keys are active only if page is focused"
     }
 }
