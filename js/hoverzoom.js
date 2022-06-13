@@ -1642,7 +1642,11 @@ var hoverZoom = {
         }
 
         // Callback function called by plugins after they finished preparing the links
-        function imgLinksPrepared(links) {
+        function imgLinksPrepared(links, name) {
+            if (links.length > 0) {
+                cLog(name);
+                cLog(links);
+            }
             var showPageAction = false;
             links.each(function () {
                 var link = $(this),
