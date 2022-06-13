@@ -40,9 +40,24 @@ hoverZoomPlugins.push({
                 if (match && match.length >= 2) {
                     const json = JSON.parse(match[1]);
                     const formats = json.streamingData.formats;
-//                    const adaptiveFormats = json.streamingData.adaptiveFormats;
-                    let src = getSource(formats, "mp4", "hd1080") || getSource(formats, "webm", "hd1080");
-//                        || getSource(adaptiveFormats, "webm", "hd720") || getSource(adaptiveFormats, "mp4", "hd720");
+                    const adaptiveFormats = json.streamingData.adaptiveFormats;
+                    let src = getSource(formats, "mp4", "hd1080") || getSource(formats, "webm", "hd1080")
+                        || getSource(adaptiveFormats, "webm", "hd720") || getSource(adaptiveFormats, "mp4", "hd720");
+                    // TODO: Figure out how to decode youtube signature for embedded players
+                    // if (!src.url && src.signatureCipher) {
+                    //     let parts = src.signatureCipher.split('&');
+                    //     let sig = null;
+                    //     for (const part of parts) {
+                    //         console.log(part);
+                    //         let sides = part.split('=');
+                    //         if (sides[0] === 's') {
+                    //             sig = decodeURIComponent(sides[1]);
+                    //         }
+                    //         if (sides[0] === 'url') {
+                    //             src.url = decodeURIComponent(sides[1]);
+                    //         }
+                    //     }
+                    // }
                     if (src && src.url) {
                         link.data().hoverZoomSrc = [start ? src.url + '#t=' + start : src.url];
                         link.addClass('hoverZoomLink');
