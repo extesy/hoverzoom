@@ -84,7 +84,7 @@
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optSectionView": {
-        "message": "Viewer",
+        "message": "Visualizador",
         "description": "[options] Page section for viewer options"
     },
     "optSectionVideo": {
@@ -208,11 +208,11 @@
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
-        "message": "Zoom videos",
+        "message": "Ampliar vídeos",
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Supported formats: 3gpp m4v mkv mp4 ogv webm",
+        "message": "Formatos suportados: 3gpp m4v mkv mp4 ogv webm",
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
@@ -408,7 +408,7 @@
         "description": "[options] Page section for advanced options"
     },
     "optEnableDownloads": {
-        "message": "Allow downloading images using an action key",
+        "message": "Permitir descarregar imagens via tecla de atalho",
         "description": "[options] Grant browser permission to allow file downloading using an action key"
     },
     "optAddToHistory": {
@@ -440,7 +440,7 @@
         "description": "[options] Enable Action Keys focus overlay message option"
     },
     "optEnableNoFocusMsgTooltip": {
-        "message": "Sometimes Action Keys seem to be broken, this usually happens when page has lost focus. If option is checked, a warning message will be displayed (only once).",
+        "message": "Às vezes, as Teclas de Atalho aprentam estar inoperacionais, isto costuma acontecer quando a página perdeu o foco. Se a opção estiver ativada, será apresentada uma mensagem de aviso (apenas uma vez).",
         "description": "[options] Tooltip for enable Action Keys focus overlay message option"
     },
     "optPicturesOpacity": {
@@ -528,19 +528,19 @@
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
-        "message": "Enable debug logging",
+        "message": "Ativar registo (log) de depuração",
         "description": "[options] Enable debug option"
     },
     "optSectionSupportedFormats": {
-        "message": "Supported formats",
+        "message": "Formatos suportados",
         "description": "[options] Page section for supported formats"
     },
     "optSupportedImageFormats": {
-        "message": "Images :",
+        "message": "Imagens :",
         "description": "[options] Page section for supported image formats"
     },
     "optSupportedVideoFormats": {
-        "message": "Video :",
+        "message": "Vídeos :",
         "description": "[options] Page section for supported video formats"
     },
     "optPageFAQ": {
@@ -608,35 +608,35 @@
         "description": "[options] FAQ Answer 4 part 2"
     },
     "optFAQ_Q5": {
-        "message": "Action keys do not work!",
+        "message": "As teclas de atalho não funcionam!",
         "description": "[options] FAQ Question 5"
     },
     "optFAQ_A5_1": {
-        "message": "Sometimes action keys seem to be broken, this usually happens when page has lost focus.",
+        "message": "Às vezes, as teclas de atalho aprentam estar inoperacionais, isto costuma acontecer quando a página perdeu o foco.",
         "description": "[options] FAQ Answer 5 part 1"
     },
     "optFAQ_A5_2": {
-        "message": "Just click anywhere on page to regain focus.",
+        "message": "Basta clicar em qualquer lugar da página para recuperar o foco.",
         "description": "[options] FAQ Answer 5 part 2"
     },
     "optFAQ_A5_3": {
-        "message": "In Options -> Advanced, you can activate \"Enable Action Keys focus overlay message\", so you'll get a warning message when focus is lost.",
+        "message": "Em Opções -> Opções Avançadas, ative \"Ativar a mensagem de sobreposição das Teclas de Atalho\", para que receba uma mensagem de aviso quando o foco estiver perdido.",
         "description": "[options] FAQ Answer 5 part 3"
     },
     "optFAQ_Q6": {
-        "message": "Some videos do not play when opened from sites other than original ones.",
+        "message": "Alguns vídeos não são reproduzidos quando abertos a partir de sites que não os originais.",
         "description": "[options] FAQ Question 6"
     },
     "optFAQ_A6_1": {
-        "message": "e.g: Dailymotion videos play in dailymotion.com, but not in Google search results.",
+        "message": "ex.: Os vídeos do Dailymotion são reproduzidos em dailymotion.com, mas não nos resultados de pesquisa do Google.",
         "description": "[options] FAQ Answer 6 part 1"
     },
     "optFAQ_A6_2": {
-        "message": "This is due to CORS restrictions, to lift them:",
+        "message": "Isto deve-se às restrições do CORS, para resolver:",
         "description": "[options] FAQ Answer 6 part 2"
     },
     "optFAQ_A6_3": {
-        "message": "In Options -> Advanced, activate \"Allow rewrite of headers for HTTP(S) request or response\"",
+        "message": "Em Opções -> Opções Avançadas, ative \"Permitir reescrever cabeçalhos de pedido ou resposta HTTP(S)\"",
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optPixelsUnitName": {
@@ -644,19 +644,19 @@
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
-        "message": "Activate HoverZoom+",
+        "message": "Ativar HoverZoom+",
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "If a key is set, HoverZoom4+ will be active only when this key is held down.",
+        "message": "Se uma tecla estiver definida, o HoverZoom4+ só estará ativo quando esta tecla for pressionada.",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
-        "message": "Toggle HoverZoom+",
+        "message": "Ativar/desativar HoverZoom+",
         "description": "[options] Action key title"
     },
     "optToggleKeyDescription": {
-        "message": "Enable/disable HoverZoom+",
+        "message": "Pressione esta tecla para ativar/desativar o HoverZoom+",
         "description": "[options] Action key description"
     },
     "optCloseKeyTitle": {
@@ -768,15 +768,15 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
+        "message": "Versão $1 (última atualização: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click anywhere on the page then hover again",
+        "message": "clique em qualquer lugar na página e passe o rato novamente",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     },
     "msgClickPageToActivateActionKeys": {
-        "message": "click anywhere on the page to activate Action Keys",
+        "message": "clique em qualquer lugar na página para ativar as Teclas de Atalho",
         "description": "Action keys are active only if page is focused"
     }
 }
