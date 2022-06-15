@@ -84,7 +84,7 @@
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optSectionView": {
-        "message": "Viewer",
+        "message": "보기",
         "description": "[options] Page section for viewer options"
     },
     "optSectionVideo": {
@@ -208,11 +208,11 @@
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
-        "message": "Zoom videos",
+        "message": "동영상 확대",
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Supported formats: 3gpp m4v mkv mp4 ogv webm",
+        "message": "지원 형식: 3gpp m4v mkv mp4 ogv webm",
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
@@ -408,7 +408,7 @@
         "description": "[options] Page section for advanced options"
     },
     "optEnableDownloads": {
-        "message": "Allow downloading images using an action key",
+        "message": "단축키로 사진을 다운로드하도록 허용",
         "description": "[options] Grant browser permission to allow file downloading using an action key"
     },
     "optAddToHistory": {
@@ -436,11 +436,11 @@
         "description": "[options] Enable albums support option"
     },
     "optEnableNoFocusMsg": {
-        "message": "Enable Action Keys focus overlay message",
+        "message": "포커스 유도 메시지 사용",
         "description": "[options] Enable Action Keys focus overlay message option"
     },
     "optEnableNoFocusMsgTooltip": {
-        "message": "Sometimes Action Keys seem to be broken, this usually happens when page has lost focus. If option is checked, a warning message will be displayed (only once).",
+        "message": "가끔 단축키가 작동하지 않을 때가 있는데, 페이지에 포커스를 두지 않은 경우 주로 발생합니다. 이 설정을 이용하면, 경고 메시지를 (한 번만) 표시합니다.",
         "description": "[options] Tooltip for enable Action Keys focus overlay message option"
     },
     "optPicturesOpacity": {
@@ -528,19 +528,19 @@
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
-        "message": "Enable debug logging",
+        "message": "디버그 로깅 사용",
         "description": "[options] Enable debug option"
     },
     "optSectionSupportedFormats": {
-        "message": "Supported formats",
+        "message": "지원 형식",
         "description": "[options] Page section for supported formats"
     },
     "optSupportedImageFormats": {
-        "message": "Images :",
+        "message": "사진 :",
         "description": "[options] Page section for supported image formats"
     },
     "optSupportedVideoFormats": {
-        "message": "Video :",
+        "message": "동영상 :",
         "description": "[options] Page section for supported video formats"
     },
     "optPageFAQ": {
@@ -608,35 +608,35 @@
         "description": "[options] FAQ Answer 4 part 2"
     },
     "optFAQ_Q5": {
-        "message": "Action keys do not work!",
+        "message": "단축키가 작동하지 않습니다!",
         "description": "[options] FAQ Question 5"
     },
     "optFAQ_A5_1": {
-        "message": "Sometimes action keys seem to be broken, this usually happens when page has lost focus.",
+        "message": "가끔 단축키가 작동하지 않을 때가 있는데, 페이지에 포커스를 두지 않은 경우 주로 발생합니다.",
         "description": "[options] FAQ Answer 5 part 1"
     },
     "optFAQ_A5_2": {
-        "message": "Just click anywhere on page to regain focus.",
+        "message": "페이지에 포커스를 두려면 페이지의 아무 곳이나 클릭하세요.",
         "description": "[options] FAQ Answer 5 part 2"
     },
     "optFAQ_A5_3": {
-        "message": "In Options -> Advanced, you can activate \"Enable Action Keys focus overlay message\", so you'll get a warning message when focus is lost.",
+        "message": "옵션 -> 고급에서 \"포커스 유도 메시지 사용\" 설정을 켤 수 있으며, 켰다면 페이지에 포커스를 두지 않은 경우 경고 메시지를 받게 됩니다.",
         "description": "[options] FAQ Answer 5 part 3"
     },
     "optFAQ_Q6": {
-        "message": "Some videos do not play when opened from sites other than original ones.",
+        "message": "일부 동영상을 원본 사이트가 아닌 다른 사이트에서 여는 경우 재생되지 않습니다.",
         "description": "[options] FAQ Question 6"
     },
     "optFAQ_A6_1": {
-        "message": "e.g: Dailymotion videos play in dailymotion.com, but not in Google search results.",
+        "message": "예: 데일리모션 동영상이 daliymotion.com에서는 재생되지만, Google 검색 결과에서는 재생되지 않음.",
         "description": "[options] FAQ Answer 6 part 1"
     },
     "optFAQ_A6_2": {
-        "message": "This is due to CORS restrictions, to lift them:",
+        "message": "이는 CORS 제한 때문인데, 다음과 같이 해결하면 됩니다.",
         "description": "[options] FAQ Answer 6 part 2"
     },
     "optFAQ_A6_3": {
-        "message": "In Options -> Advanced, activate \"Allow rewrite of headers for HTTP(S) request or response\"",
+        "message": "옵션 -> 고급에서 \"HTTP(S) 요청 및 응답의 헤더 수정 허용\" 설정을 켜세요",
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optPixelsUnitName": {
@@ -644,19 +644,19 @@
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
-        "message": "Activate HoverZoom+",
+        "message": "호버 줌+ 활성화",
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "If a key is set, HoverZoom4+ will be active only when this key is held down.",
+        "message": "키가 설정되면 호버 줌+는 해당 키가 눌렸을 때만 활성화됩니다.",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
-        "message": "Toggle HoverZoom+",
+        "message": "호버 줌+ 토글",
         "description": "[options] Action key title"
     },
     "optToggleKeyDescription": {
-        "message": "Enable/disable HoverZoom+",
+        "message": "호버 줌+ 활성화/비활성화",
         "description": "[options] Action key description"
     },
     "optCloseKeyTitle": {
@@ -768,15 +768,15 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
+        "message": "버전 $1 (최근 업데이트: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click anywhere on the page then hover again",
+        "message": "페이지의 아무 곳이나 클릭한 뒤 다시 마우스를 올리세요",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     },
     "msgClickPageToActivateActionKeys": {
-        "message": "click anywhere on the page to activate Action Keys",
+        "message": "페이지의 아무 곳이나 클릭하여 단축키를 활성화하세요",
         "description": "Action keys are active only if page is focused"
     }
 }
