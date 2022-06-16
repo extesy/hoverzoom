@@ -598,7 +598,7 @@
             "matches": ["*://*.reddit.com/*"]
         },
         {
-            "js": ["plugins/pixiv.js", "js/hls.js"],
+            "js": ["plugins/pixiv.js"],
             "matches": [
                 "*://*.fanbox.cc/*",
                 "*://*.pixiv.net/*",

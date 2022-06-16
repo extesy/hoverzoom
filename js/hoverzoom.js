@@ -773,14 +773,14 @@ var hoverZoom = {
             if (!hz.hzImg) return;
             var el = hz.hzImg.find(selector).get(0);
             if (el) {
-                if (selector == 'audio') {
+                if (selector === 'audio') {
                     el.pause();
                     el.src = '';
                 }
-                if (selector == 'video') {
+                if (selector === 'video') {
                     if (hls) {
                         hls.detachMedia();
-                        hls.destroy(); // free ressources
+                        hls.destroy(); // free resources
                     }
                     el.pause();
                     el.src = '';
@@ -994,7 +994,7 @@ var hoverZoom = {
         function documentContextMenu(event) {
             // If it's been less than 300ms since right click, lock image and prevent context menu.
             var lockElapsed = event.timeStamp - lockImageClickTime;
-            if (imgFullSize && !imageLocked && options.lockImageKey == -1 & lockElapsed < 300) {
+            if (imgFullSize && !imageLocked && options.lockImageKey === -1 && lockElapsed < 300) {
                 lockImage();
                 event.preventDefault();
             }
@@ -1002,10 +1002,10 @@ var hoverZoom = {
 
         function documentMouseDown(event) {
             // Right click pressed and lockImageKey is set to special value for right click (-1).
-            if (imgFullSize && !imageLocked && options.lockImageKey == -1 && event.button == 2) {
+            if (imgFullSize && !imageLocked && options.lockImageKey === -1 && event.button === 2) {
                 lockImageClickTime = event.timeStamp;
-            } else if (imgFullSize && event.target != hz.hzImg[0] && event.target != imgFullSize[0]) {
-                if (imageLocked && event.button == 0) {
+            } else if (imgFullSize && event.target !== hz.hzImg[0] && event.target !== imgFullSize[0]) {
+                if (imageLocked && event.button === 0) {
                     imageLocked = false;
                 }
                 cancelImageLoading();
@@ -1057,7 +1057,7 @@ var hoverZoom = {
                     video.volume = options.videoVolume;
                     video.src = imgDetails.url;
                     // MKV
-                    if (video.src.indexOf('.mkv') != -1) video.type = 'video/mp4';
+                    if (video.src.indexOf('.mkv') !== -1) video.type = 'video/mp4';
                     imgFullSize = $(video).appendTo(hz.hzImg);
 
                     video.addEventListener('error', imgFullSizeOnError);
@@ -1137,17 +1137,11 @@ var hoverZoom = {
                     video.volume = options.videoVolume;
                     imgFullSize = $(video).appendTo(hz.hzImg);
                     hls = new Hls({
-                        //debug: true,
+                        debug: debug,
                     });
 
                     hls.loadSource(imgDetails.url);
                     hls.attachMedia(video);
-
-                    // MANIFEST_LOADED
-                    // MANIFEST_PARSED
-                    // MEDIA_ATTACHED
-                    // MEDIA_DETACHED
-                    // ERROR
 
                     video.addEventListener('error', imgFullSizeOnError);
                     video.addEventListener('loadedmetadata', function() {
@@ -1363,7 +1357,7 @@ var hoverZoom = {
                     }
                 }
                 lowResSrc = lowResSrc || 'noimage';
-                if (loading && lowResSrc.indexOf('noimage') == -1) {
+                if (loading && lowResSrc.indexOf('noimage') === -1) {
                     var ext = imgDetails.url.substr(imgDetails.url.length - 3).toLowerCase();
                     if (ext != 'gif' && ext != 'svg' && ext != 'png') {
                         var imgRatio = imgFullSize.width() / imgFullSize.height(),
@@ -1903,7 +1897,7 @@ var hoverZoom = {
                 // excluded site = tiktok
                 // => link excluded
                 let es = options.excludedSites[i];
-                if (linkHostname.indexOf(es) != -1) return excluded;
+                if (linkHostname.indexOf(es) !== -1) return excluded;
             }
             return !excluded;
         }
@@ -2230,7 +2224,7 @@ var hoverZoom = {
 
         // TODO: Flash is basically dead. Should this be deleted?
         function fixFlash() {
-            if (flashFixDomains.indexOf(location.host) == -1) {
+            if (flashFixDomains.indexOf(location.host) === -1) {
                 return;
             }
             if (isExcludedSite() || window == window.top && $('.hoverZoomLink').length == 0) {
@@ -2268,14 +2262,14 @@ var hoverZoom = {
             url = url.replace(/\/$/, '').split(/[\?!#&]/)[0];
             // extract filename
             let filename = url.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
-            let ext = (filename.lastIndexOf('.') == -1 ? '' : filename.substr(filename.lastIndexOf('.') + 1));
+            let ext = (filename.lastIndexOf('.') === -1 ? '' : filename.substr(filename.lastIndexOf('.') + 1));
             if (ext == '' || ext.length > 5) {
                 // try to guess correct extension
                 if (!video && !playlist) ext = 'jpg'; // default image extension
                 if (playlist) ext = 'm3u8'; // default playlist extension
                 if (video) {
-                    if (fullurl.indexOf('mp4') != -1) ext = 'mp4';
-                    else if (fullurl.indexOf('webm') != -1) ext = 'webm';
+                    if (fullurl.indexOf('mp4') !== -1) ext = 'mp4';
+                    else if (fullurl.indexOf('webm') !== -1) ext = 'webm';
                     else ext = 'video';
                 }
             }
@@ -2556,7 +2550,7 @@ var hoverZoom = {
                 }
             }
             let lastModified = headers.match(/last-modified:(.*)/i);
-            if (lastModified && lastModified[1].indexOf('01 Jan 1970') == -1) infos.lastModified = lastModified[1].trim();
+            if (lastModified && lastModified[1].indexOf('01 Jan 1970') === -1) infos.lastModified = lastModified[1].trim();
             return infos;
         }
 
@@ -3032,7 +3026,7 @@ var hoverZoom = {
         var imageSrc = '';
         var backgroundImageSrc = '';
 
-        if (backgroundImage.indexOf("url") != -1) {
+        if (backgroundImage.indexOf("url") !== -1) {
             if (hoverZoom.isEmbeddedImg(backgroundImage)) backgroundImageSrc = ''; // discard embedded images
             else backgroundImageSrc = backgroundImage.replace(/.*url\s*\(\s*(.*)\s*\).*/i, '$1').replace(/"/g,'');
         }
@@ -3092,7 +3086,7 @@ var hoverZoom = {
     displayImgLoader:function (status, position) {
 
         // orange & red spinners are optional
-        if (options.displayImageLoader == false && (status == 'skipped' || status == 'error')) return;
+        if (options.displayImageLoader === false && (status === 'skipped' || status === 'error')) return;
 
         // check that loader exists
         if (hoverZoom.hzImgLoader == null) {
@@ -3103,33 +3097,32 @@ var hoverZoom = {
             hoverZoom.hzImgLoader.appendTo(document.body);
         } else {
             // adjust position
-            if (position == undefined) {
+            if (position === undefined) {
                 position = hoverZoom.hzImgLoader.position(); // reuse position of loader
             }
             hoverZoom.hzImgLoader.css({top:position.top, left:position.left});
         }
 
         // check loading status
-        if (status == 'loading') {
+        if (status === 'loading') {
             hoverZoom.hzImgLoader[0].classList = 'imgLoading';
             hoverZoom.hzImgLoader.css(hoverZoom.hzImgLoadingCss);
         }
-        if (status == 'skipped') {
+        if (status === 'skipped') {
             hoverZoom.hzImgLoader[0].classList = 'imgSkipped';
             hoverZoom.hzImgLoader.css(hoverZoom.hzImgSkippedCss);
         }
-        if (status == 'error') {
+        if (status === 'error') {
             hoverZoom.hzImgLoader[0].classList = 'imgError';
             hoverZoom.hzImgLoader.css(hoverZoom.hzImgErrorCss);
         }
 
-        if ($('#hzImgLoader').length == 0) hoverZoom.hzImgLoader.appendTo(document.body);
+        if ($('#hzImgLoader').length === 0) hoverZoom.hzImgLoader.appendTo(document.body);
         if (position) hoverZoom.hzImgLoader.css({top:position.top, left:position.left});
     },
 
     // Preloads zoomed images
     preloadImages:function () {
-
         var links = $('.hoverZoomLink'),
             preloadIndex = 0,
             preloadDelay = 200;
@@ -3169,7 +3162,7 @@ var hoverZoom = {
 
     prepareOEmbedLink:function (link, apiEndpoint, linkUrl) {
         if (!linkUrl) {
-            linkUrl = getThumbUrl(link);
+            linkUrl = hoverZoom.getThumbUrl(link);
         }
         link = $(link);
         $.getJSON(apiEndpoint + linkUrl, function (data) {
@@ -3457,7 +3450,7 @@ var hoverZoom = {
                     }
                 } else {
 
-                    if ( isRegex ? re.test(currElem) : ( isPartialMatch ? currElem.toString().toLowerCase().indexOf(searchValue) != -1 : currElem.toString().toLowerCase() === searchValue ) ){
+                    if ( isRegex ? re.test(currElem) : ( isPartialMatch ? currElem.toString().toLowerCase().indexOf(searchValue) !== -1 : currElem.toString().toLowerCase() === searchValue ) ){
 
                         var r = {};
                         r.key = curr;
