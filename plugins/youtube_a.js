@@ -91,6 +91,18 @@ hoverZoomPlugins.push({
             let videoId = m[1];
             cLog('videoId=' + videoId);
 
+            let match = href.match(/[\?&]t=([\dhm]+)/);
+            let start = match && match.length >= 2 ? match[1] : null;
+            if (start && start.indexOf('m') !== -1) {
+                const parts = start.split('m');
+                if (parts.length === 2) {
+                    const parts2 = start.split('h');
+                    if (parts2.length === 2)
+                        parts[0] = parseInt(parts2[0]) * 60 + parseInt(parts2[1]);
+                    start = parseInt(parts[0]) * 60 + parseInt(parts[1] || 0);
+                }
+            }
+
             // resuse previous result
             if (link.data().hoverZoomYouTubeApiVideoId === videoId) {
                 if (link.data().hoverZoomYouTubeApiVideoUrl)
@@ -107,49 +119,49 @@ hoverZoomPlugins.push({
             link.data().hoverZoomSrc = [];
 
             // proceed with API call from background page
-            chrome.runtime.sendMessage({action: 'ajaxRequest',
-                                        method: 'POST',
-                                        url: "https://www.youtube.com/youtubei/v1/player?key=" + INNERTUBE_API_KEY,
-                                        headers: [{"header": "Content-Type", "value": "application/json"}],
-                                        data: "{\"videoId\":\"" + videoId + "\",\"context\":{\"client\":{\"clientName\":\"" + INNERTUBE_CLIENT_NAME + "\",\"clientVersion\":\"" + INNERTUBE_CLIENT_VERSION + "\"}}}"},
-                                        function (response) {
+            chrome.runtime.sendMessage({
+                    action: 'ajaxRequest',
+                    method: 'POST',
+                    url: "https://www.youtube.com/youtubei/v1/player?key=" + INNERTUBE_API_KEY,
+                    headers: [{"header": "Content-Type", "value": "application/json"}],
+                    data: "{\"videoId\":\"" + videoId + "\",\"context\":{\"client\":{\"clientName\":\"" + INNERTUBE_CLIENT_NAME + "\",\"clientVersion\":\"" + INNERTUBE_CLIENT_VERSION + "\"}}}"
+                },
+                function (response) {
+                    if (response == null) return;
 
-                                            if (response == null) return;
+                    try {
+                        let j = JSON.parse(response);
+                        cLog(j);
 
-                                            try {
-                                                let j = JSON.parse(response);
-                                                cLog(j);
+                        // check if sources are ciphered
+                        if (j["streamingData"]["adaptiveFormats"][0].signatureCipher) {
+                            cLog(videoId + ' : sources are encrypted');
+                            return;
+                        }
 
-                                                // check if sources are ciphered
-                                                if (j["streamingData"]["adaptiveFormats"][0].signatureCipher) {
-                                                    cLog(videoId + ' : sources are encrypted');
-                                                    return;
-                                                }
+                        // find the best video source (= largest width)
+                        let widths = j["streamingData"]["adaptiveFormats"].map(f => (f.width ? f.width : -1));
+                        let widthMax = Math.max(...widths);
+                        let bestVideo = j["streamingData"]["adaptiveFormats"].find(f => f.width === widthMax);
+                        cLog(videoId + " bestVideo: " + widthMax + " " + bestVideo.url);
+                        let urlVideo = bestVideo.url + (start ? '#t=' + start : '') + ".video";
 
-                                                // find the best video source (= largest width)
-                                                let widths = j["streamingData"]["adaptiveFormats"].map(f => (f.width ? f.width : -1));
-                                                let widthMax = Math.max(...widths);
-                                                let bestVideo = j["streamingData"]["adaptiveFormats"].find(f => f.width === widthMax);
-                                                cLog(videoId + " bestVideo: " + widthMax + " " + bestVideo.url);
-                                                let urlVideo = bestVideo.url + ".video";
+                        // find best audio source (= largest bitrate)
+                        let bitrates = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("audio/mp4") !== -1).map(f => f.bitrate);
+                        let bitrateMax = Math.max(...bitrates);
+                        let bestAudio = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("audio/mp4") !== -1).find(f => f.bitrate === bitrateMax);
+                        cLog(videoId + " bestAudio: " + bitrateMax + " " + bestAudio.url);
+                        let urlAudio = bestAudio.url + (start ? '#t=' + start : '') + ".audio";
 
-                                                // find best audio source (= largest bitrate)
-                                                let bitrates = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("audio/mp4") !== -1).map(f => f.bitrate);
-                                                let bitrateMax = Math.max(...bitrates);
-                                                let bestAudio = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("audio/mp4") !== -1).find(f => f.bitrate === bitrateMax);
-                                                cLog(videoId + " bestAudio: " + bitrateMax + " " + bestAudio.url);
-                                                let urlAudio = bestAudio.url + ".audio";
+                        let urlVideoAudio = urlVideo + "_" + urlAudio;
+                        link.data().hoverZoomYouTubeApiVideoUrl = urlVideoAudio;
+                        link.data().hoverZoomSrc = [urlVideoAudio];
 
-                                                let urlVideoAudio = urlVideo + "_" + urlAudio;
-                                                link.data().hoverZoomYouTubeApiVideoUrl = urlVideoAudio;
-                                                link.data().hoverZoomSrc = [urlVideoAudio];
-
-                                                callback(link, name);
-                                                hoverZoom.displayPicFromElement(link);
-
-                                            } catch {}
-                                        });
+                        callback(link, name);
+                        hoverZoom.displayPicFromElement(link);
+                    } catch {
+                    }
+                });
         })
-
     }
 });
