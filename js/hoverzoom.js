@@ -1643,10 +1643,17 @@ var hoverZoom = {
 
         // Callback function called by plugins after they finished preparing the links
         function imgLinksPrepared(links, name) {
+            // If the extension is disabled or the site is excluded, we only need to know
+            // whether the page action needs to be shown or not.
+            if (!options.extensionEnabled || isExcludedSite()) {
+                return;
+            }
+
             if (links.length > 0) {
                 cLog(name);
                 cLog(links);
             }
+
             var showPageAction = false;
             links.each(function () {
                 var link = $(this),
@@ -1677,12 +1684,6 @@ var hoverZoom = {
                     link.find('.hoverZoomLink').removeClass('hoverZoomLink');*/
 
                     showPageAction = true;
-
-                    // If the extension is disabled or the site is excluded, we only need to know
-                    // whether the page action needs to be shown or not.
-                    if (!options.extensionEnabled || isExcludedSite()) {
-                        return;
-                    }
 
                     link.addClass('hoverZoomLink');
 
@@ -2938,7 +2939,7 @@ var hoverZoom = {
         }
 
         function init() {
-            if (!window.innerHeight || !window.innerWidth) {
+            if (!window.innerHeight || !window.innerWidth || !options.extensionEnabled || isExcludedSite()) {
                 return;
             }
 
@@ -2954,7 +2955,6 @@ var hoverZoom = {
             fixFlash();
 
             debug = options.debug;
-
         }
 
         chrome.runtime.onMessage.addListener(onMessage);
