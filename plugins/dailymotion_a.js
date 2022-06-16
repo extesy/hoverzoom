@@ -1,22 +1,24 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push( {
     name: 'dailymotion_a',
-    version: '1.2',
+    version: '1.3',
     prepareImgLinks: function(callback) {
         var name = this.name;
 
-        // if header(s) rewrite is allowed store settings defined above
+        // if header(s) rewrite is allowed store headers settings that will be used for rewrite
         if (options.allowHeadersRewrite) {
             chrome.runtime.sendMessage({action:"storeHeaderSettings",
-                                        requestOrResponse:"request",
-                                        skipInitiator:"dailymotion",
-                                        url:"dailymotion.com",
-                                        headers:[{name:"referer", value:"https://www.dailymotion.com/", typeOfUpdate:"add"}]});
-            chrome.runtime.sendMessage({action:"storeHeaderSettings",
-                                        requestOrResponse:"response",
-                                        skipInitiator:"dailymotion",
-                                        url:"dailymotion.com",
-                                        headers:[{name:"Access-Control-Allow-Origin", value:"*", typeOfUpdate:"add"}]});
+                                        plugin:name,
+                                        settings:
+                                            [{"type":"request",
+                                            "skipInitiator":"dailymotion",
+                                            "url":"dailymotion.com",
+                                            "headers":[{"name":"referer", "value":"https://www.dailymotion.com/", "typeOfUpdate":"add"}]},
+                                            {"type":"response",
+                                            "skipInitiator":"dailymotion",
+                                            "url":"dailymotion.com",
+                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
+                                        });
         }
 
         // users
