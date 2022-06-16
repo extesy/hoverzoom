@@ -126,7 +126,7 @@ function onMessage(message, sender, callback) {
             break;
         case 'storeHeaderSettings':
             storeHeaderSettings(message);
-            break;
+            return true;
     }
 }
 
@@ -202,14 +202,14 @@ function storeHeaderSettings(message) {
         if (!granted) return;
     });
 
-    let hoverZoomHeaderSettings = sessionStorage.getItem('HoverZoomHeaderSettings') || '{}';
+    let hoverZoomHeaderSettings = sessionStorage.getItem('HoverZoomHeaderSettings') || '[]';
     hoverZoomHeaderSettings = JSON.parse(hoverZoomHeaderSettings);
-    let settings = (message.requestOrResponse == 'request' ? hoverZoomHeaderSettings.requetes || [] : hoverZoomHeaderSettings.responses || []);
-    let index = settings.findIndex(s => s.url == message.url);
-    if (index != -1) settings.splice(index, 1); // remove old settings
-    settings.push({ url:message.url, skipInitiator:message.skipInitiator, headers:message.headers }); // add new settings
-    if (message.requestOrResponse == 'request') hoverZoomHeaderSettings.requetes = settings;
-    else hoverZoomHeaderSettings.responses = settings;
+    let index = hoverZoomHeaderSettings.findIndex(s => s.plugin == message.plugin);
+    if (index != -1) hoverZoomHeaderSettings.splice(index, 1); // remove old settings
+    var s = {};
+    s.plugin = message.plugin;
+    s.settings = message.settings;
+    hoverZoomHeaderSettings.push(s);
     sessionStorage.setItem('HoverZoomHeaderSettings', JSON.stringify(hoverZoomHeaderSettings));
 }
 
@@ -237,10 +237,12 @@ function updateResponseHeaders(e) {
 
 // find header(s) setting(s) associated with url that triggered the listener
 function findHeaderSettings(url, requestOrResponse) {
-    let hoverZoomHeaderSettings = sessionStorage.getItem('HoverZoomHeaderSettings') || '{}';
+    let hoverZoomHeaderSettings = sessionStorage.getItem('HoverZoomHeaderSettings') || '[]';
     hoverZoomHeaderSettings = JSON.parse(hoverZoomHeaderSettings);
-    let reqres = (requestOrResponse == 'request' ? hoverZoomHeaderSettings.requetes || [] : hoverZoomHeaderSettings.responses || []);
-    let settings = reqres.find(s => url.indexOf(s.url) != -1);
+
+    let settings = [];
+    hoverZoomHeaderSettings.forEach(s => s.settings.forEach(s2 => settings.push(s2)));
+    settings = settings.find(s => s.type == requestOrResponse && url.indexOf(s.url) != -1);
     if (! settings) return null; // no settings found for url
     return settings;
 }

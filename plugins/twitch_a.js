@@ -1,11 +1,27 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'twitch_a',
-    version:'2.2',
+    version:'2.3',
     prepareImgLinks:function (callback) {
 
         var res = [];
         var name = this.name;
+
+        // if header(s) rewrite is allowed store headers settings that will be used for rewrite
+        if (options.allowHeadersRewrite) {
+             chrome.runtime.sendMessage({action:"storeHeaderSettings",
+                                        plugin:name,
+                                        settings:
+                                            [{"type":"response",
+                                            "skipInitiator":"twitch",
+                                            "url":"cloudfront.net",
+                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]},
+                                            {"type":"response",
+                                            "skipInitiator":"twitch",
+                                            "url":"usher.ttvnw.net",
+                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
+                                        });
+        }
 
         hoverZoom.urlReplace(res,
             'img[src*="profile_image"]',

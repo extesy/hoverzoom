@@ -29,6 +29,8 @@ hoverZoomPlugins.push({
         // sample: https://vimeo.com/693687508
         // channels
         // sample: https://vimeo.com/channels/staffpicks/702642924?autoplay=1
+        // groups
+        // sample: https://vimeo.com/groups/motion/videos/712080074
         $('a[href]').filter(function() { return (/vimeo\.com\/.*?\d+/.test($(this).prop('href'))) }).on('mouseover', function() {
 
             var link = undefined;

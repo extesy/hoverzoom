@@ -1,102 +1,155 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'YouTube',
+    name:'youtube_a',
+    version:'2.0',
     prepareImgLinks:function (callback) {
-        var res = [];
+        var name = this.name;
 
-        function getSource(sources, type, quality) {
-            var lowest = null, exact = null;
-            for (var source of sources) {
-                if (source.mimeType.indexOf(type) !== -1) {
-                    if (source.quality.indexOf(quality) !== -1) {
-                        exact = source;
-                    } else {
-                        lowest = source;
-                    }
-                }
+        const INNERTUBE_API_URL = "https://www.youtube.com/youtubei/v1/player?key=";
+
+        const tok_INNERTUBE_CLIENT_VERSION = "INNERTUBE_CLIENT_VERSION";
+        const tok_INNERTUBE_CLIENT_NAME = "INNERTUBE_CLIENT_NAME";
+        const tok_INNERTUBE_API_KEY = "INNERTUBE_API_KEY";
+
+        var INNERTUBE_CLIENT_VERSION = "2.20211221.00.00";
+        var INNERTUBE_CLIENT_NAME = "WEB";
+        var INNERTUBE_API_KEY = "AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8";
+
+        function findParams() {
+            let innerHtml = document.documentElement.innerHTML;
+            let pos_INNERTUBE_CLIENT_VERSION = innerHtml.indexOf("INNERTUBE_CLIENT_VERSION");
+            if (pos_INNERTUBE_CLIENT_VERSION > -1) {
+                let firstquoteIndex = pos_INNERTUBE_CLIENT_VERSION + tok_INNERTUBE_CLIENT_VERSION.length + 2;
+                let lastquoteIndex = innerHtml.indexOf('"', firstquoteIndex + 1);
+                INNERTUBE_CLIENT_VERSION = innerHtml.substring(firstquoteIndex + 1, lastquoteIndex);
             }
-            return exact || lowest;
+            let pos_INNERTUBE_CLIENT_NAME = innerHtml.indexOf("INNERTUBE_CLIENT_NAME");
+            if (pos_INNERTUBE_CLIENT_NAME > -1) {
+                let firstquoteIndex = pos_INNERTUBE_CLIENT_NAME + tok_INNERTUBE_CLIENT_NAME.length + 2;
+                let lastquoteIndex = innerHtml.indexOf('"', firstquoteIndex + 1);
+                INNERTUBE_CLIENT_NAME = innerHtml.substring(firstquoteIndex + 1, lastquoteIndex);
+            }
+            let pos_INNERTUBE_API_KEY = innerHtml.indexOf("INNERTUBE_API_KEY");
+            if (pos_INNERTUBE_API_KEY > -1) {
+                let firstquoteIndex = pos_INNERTUBE_API_KEY + tok_INNERTUBE_API_KEY.length + 2;
+                let lastquoteIndex = innerHtml.indexOf('"', firstquoteIndex + 1);
+                INNERTUBE_API_KEY = innerHtml.substring(firstquoteIndex + 1, lastquoteIndex);
+            }
         }
 
-        function prepareVideoPreview(link, id) {
-            if (link.hasClass('hoverZoomLoading') || link.hasClass('hoverZoomLink') || link.hasClass('ytp-title-link')) return;
-            link.addClass('hoverZoomLoading');
-
-            var match = link.attr('href').match(/[\?&]t=([\dhm]+)/);
-            var start = match && match.length >= 2 ? match[1] : null;
-            if (start && start.indexOf('m') !== -1) {
-                var parts = start.split('m');
-                if (parts.length == 2) {
-                    var parts2 = start.split('h');
-                    if (parts2.length == 2)
-                        parts[0] = parseInt(parts2[0]) * 60 + parseInt(parts2[1]);
-                    start = parseInt(parts[0]) * 60 + parseInt(parts[1] || 0);
-                }
-            }
-
-            chrome.runtime.sendMessage({action:'ajaxGet', url: 'https://www.youtube.com/watch?v=' + id}, function(data) {
-                link.removeClass('hoverZoomLoading');
-                const match = data.match(/ytInitialPlayerResponse\s*=\s*(\{.+?\})\s*;/);
-                if (match && match.length >= 2) {
-                    const json = JSON.parse(match[1]);
-                    const formats = json.streamingData.formats;
-                    const adaptiveFormats = json.streamingData.adaptiveFormats;
-                    let src = getSource(formats, "mp4", "hd1080") || getSource(formats, "webm", "hd1080")
-                        || getSource(adaptiveFormats, "webm", "hd720") || getSource(adaptiveFormats, "mp4", "hd720");
-                    // TODO: Figure out how to decode youtube signature for embedded players
-                    // if (!src.url && src.signatureCipher) {
-                    //     let parts = src.signatureCipher.split('&');
-                    //     let sig = null;
-                    //     for (const part of parts) {
-                    //         console.log(part);
-                    //         let sides = part.split('=');
-                    //         if (sides[0] === 's') {
-                    //             sig = decodeURIComponent(sides[1]);
-                    //         }
-                    //         if (sides[0] === 'url') {
-                    //             src.url = decodeURIComponent(sides[1]);
-                    //         }
-                    //     }
-                    // }
-                    if (src && src.url) {
-                        link.data().hoverZoomSrc = [start ? src.url + '#t=' + start : src.url];
-                        link.addClass('hoverZoomLink');
-                        hoverZoom.displayPicFromElement(link);
-                    }
-                }
-            });
+        function updateStorage(videoId, data2store) {
+            let HZ_YouTube_data = sessionStorage.getItem('HZ_YouTube_data') || '{}';
+            HZ_YouTube_data = JSON.parse(HZ_YouTube_data);
+            HZ_YouTube_data[videoId] = data2store;
+            sessionStorage.setItem('HZ_YouTube_data', JSON.stringify(HZ_YouTube_data));
         }
 
-        $('a[href*="youtu.be/"]').one('mouseenter', function () {
-            var link = $(this), match = this.href.match(/^.*youtu.be\/([\w-]+).*$/);
-            if (!match || match.length < 2) return;
-            prepareVideoPreview(link, match[1]);
-        });
+        // if header(s) rewrite is allowed store headers settings that will be used for rewrite
+        if (options.allowHeadersRewrite) {
+            chrome.runtime.sendMessage({action:"storeHeaderSettings",
+                                        plugin:name,
+                                        settings:
+                                            [{"type":"request",
+                                            "skipInitiator":"",
+                                            "url":"youtube.com/youtubei/v1/player?key=",
+                                            "headers":[{"name":"origin", "value":"https://music.youtube.com", "typeOfUpdate":"add"}]},
+                                            {"type":"response",
+                                            "skipInitiator":"",
+                                            "url":"youtube.com/youtubei/v1/player?key=",
+                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]},
+                                            {"type":"response",
+                                            "skipInitiator":"",
+                                            "url":"googlevideo.com/videoplayback/id/",
+                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
+                                        });
+        }
 
-        $('a[href*="youtube.com/shorts/"]').one('mouseenter', function () {
-            var link = $(this), match = this.href.match(/^.*\/shorts\/([\w-]+).*$/);
-            if (!match || match.length < 2) return;
-            prepareVideoPreview(link, match[1]);
-        });
+        findParams();
 
-        $('a[href*="youtube.com/watch"]').one('mouseenter', function () {
-            var link = $(this), match = this.href.match(/^.*v=([\w-]+).*$/);
-            if (!match || match.length < 2) return;
-            prepareVideoPreview(link, match[1]);
-        });
+        $('a[href*="/watch?v="],a[href*="youtu.be"],div[ourl*="/watch?v="],div[ourl*="youtu.be"]').on('mouseover', function() {
 
-        hoverZoom.urlReplace(res,
-            'img[src*="ytimg.com/vi/"], img[src*="ytimg.com/vi_webp/"]',
-            /\/([1-9]|default|hqdefault|mqdefault)\.(jpg|webp)/,
-            '/0.$2'
-        );
+            var link = undefined;
+            var href = undefined;
 
-        $('a img[data-thumb*="ytimg.com/vi/"]').each(function () {
-            var img = $(this);
-            img.data().hoverZoomSrc = [this.getAttribute('data-thumb').replace(/\/([1-9]|default|hqdefault|mqdefault)\.jpg/, '/0.jpg')];
-            res.push(img);
-        });
+            if ($(this).is('a')) {
+                href = this.href;
+                link = $(this);
+            }
+            if ($(this).is('div')) {
+                href = $(this).attr('ourl'); // Bing
+                link = $(this); // link = $(this).parent('a')[0]; link = $(link);
+            }
 
-        callback($(res));
+            cLog('href=' + href);
+
+            const re1 = /\/watch\?v=([^&]{1,})/;   // sample: https://www.youtube.com/watch?v=NaOiA15Rz5k
+            const re2 = /\/youtu.be\/([^&]{1,})/;  // sample: https://youtu.be/qXlQbj0PgDo
+            let m = href.match(re1);
+            if (m == undefined) m = href.match(re2);
+            if (m == undefined) return;
+            var videoId = m[1];
+            cLog('videoId=' + videoId);
+
+            // resuse previous result
+            if (link.data().hoverZoomYouTubeApiVideoId == videoId) {
+                if (link.data().hoverZoomYouTubeApiVideoUrl) link.data().hoverZoomSrc = [link.data().hoverZoomYouTubeApiVideoUrl];
+                return;
+            }
+
+            link.data().hoverZoomYouTubeApiVideoId = videoId;
+            link.data().hoverZoomYouTubeApiVideoUrl = undefined;
+
+            cLog('videoId: ' + videoId + ' proceed with API call');
+
+            // clean previous result
+            link.data().hoverZoomSrc = [];
+
+            // proceed with API call from background page
+            chrome.runtime.sendMessage({action:'ajaxRequest',
+                                        method:'POST',
+                                        url:"https://www.youtube.com/youtubei/v1/player?key=" + INNERTUBE_API_KEY,
+                                        headers:[{"header":"Content-Type","value":"application/json"}],
+                                        data: "{\"videoId\":\"" + videoId + "\",\"context\":{\"client\":{\"clientName\":\"" + INNERTUBE_CLIENT_NAME + "\",\"clientVersion\":\"" + INNERTUBE_CLIENT_VERSION + "\"}}}"},
+                                        function (response) {
+
+                                            if (response == null) { return; }
+
+                                            try {
+                                                let j = JSON.parse(response);
+                                                cLog(j);
+
+                                                // check if sources are ciphered
+                                                if (j["streamingData"]["adaptiveFormats"][0].signatureCipher) {
+                                                    cLog(videoId + ' : sources are ciphered');
+                                                    return;
+                                                }
+
+                                                // find best video source (= largest width)
+                                                let widths = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("video/mp4") != -1 && f.quality == "hd720").map(f => f.width);
+                                                //let widths = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("video/webm") != -1 && f.quality == "hd720").map(f => f.width);
+                                                let widthMax = Math.max(...widths);
+                                                let bestVideo = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("video/mp4") != -1 && f.quality == "hd720").find(f => f.width == widthMax);
+                                                //let bestVideo = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("video/webm") != -1 && f.quality == "hd720").find(f => f.width == widthMax);
+                                                cLog(videoId + " bestVideo: " + widthMax + " " + bestVideo.url);
+                                                let urlVideo = bestVideo.url + ".video";
+
+                                                // find best audio source (= largest bitrate)
+                                                let bitrates = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("audio/mp4") != -1).map(f => f.bitrate);
+                                                let bitrateMax = Math.max(...bitrates);
+                                                let bestAudio = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("audio/mp4") != -1).find(f => f.bitrate == bitrateMax);
+                                                cLog(videoId + " bestAudio: " + bitrateMax + " " + bestAudio.url);
+                                                let urlAudio = bestAudio.url + ".audio";
+
+                                                let urlVideoAudio = urlVideo + "_" + urlAudio;
+                                                link.data().hoverZoomYouTubeApiVideoUrl = urlVideoAudio;
+                                                link.data().hoverZoomSrc = [urlVideoAudio];
+
+                                                callback(link, name);
+                                                hoverZoom.displayPicFromElement(link);
+
+                                            } catch {}
+                                        });
+        })
+
     }
 });
