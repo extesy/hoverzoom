@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'youtube_a',
-    version:'2.0',
+    version:'2.1',
     prepareImgLinks:function (callback) {
         var name = this.name;
 
@@ -83,7 +83,7 @@ hoverZoomPlugins.push({
             cLog('href=' + href);
 
             const re1 = /\/watch\?v=([^&]{1,})/;   // sample: https://www.youtube.com/watch?v=NaOiA15Rz5k
-            const re2 = /\/youtu.be\/([^&]{1,})/;  // sample: https://youtu.be/qXlQbj0PgDo
+            const re2 = /\/youtu.be\/([^?]{1,})/;  // sample: https://youtu.be/qXlQbj0PgDo https://youtu.be/qORYO0atB6g?t=28
             let m = href.match(re1);
             if (m == undefined) m = href.match(re2);
             if (m == undefined) return;
@@ -125,11 +125,9 @@ hoverZoomPlugins.push({
                                                 }
 
                                                 // find best video source (= largest width)
-                                                let widths = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("video/mp4") != -1 && f.quality == "hd720").map(f => f.width);
-                                                //let widths = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("video/webm") != -1 && f.quality == "hd720").map(f => f.width);
+                                                let widths = j["streamingData"]["adaptiveFormats"].map(f => (f.width ? f.width : -1));
                                                 let widthMax = Math.max(...widths);
-                                                let bestVideo = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("video/mp4") != -1 && f.quality == "hd720").find(f => f.width == widthMax);
-                                                //let bestVideo = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("video/webm") != -1 && f.quality == "hd720").find(f => f.width == widthMax);
+                                                let bestVideo = j["streamingData"]["adaptiveFormats"].find(f => f.width == widthMax);
                                                 cLog(videoId + " bestVideo: " + widthMax + " " + bestVideo.url);
                                                 let urlVideo = bestVideo.url + ".video";
 
