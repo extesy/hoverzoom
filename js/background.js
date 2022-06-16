@@ -159,16 +159,23 @@ function manageHeadersRewrite() {
     if (options.allowHeadersRewrite) {
         // check that permissions are granted, otherwise remove listeners
         chrome.permissions.contains({permissions: ['webRequest','webRequestBlocking']}, function (granted) {
-            if (granted) addWebRequestListeners();
-            if (!granted) removeWebRequestListeners();
+            if (granted)
+                addWebRequestListeners()
+            else
+                removeWebRequestListeners();
         });
     } else {
-        removeWebRequestListeners();
+        chrome.permissions.remove({permissions: ['webRequest','webRequestBlocking']}, function (removed) {
+            if (removed)
+                removeWebRequestListeners();
+            else
+                addWebRequestListeners();
+        });
     }
 }
+
 // Store HZ+ dates of installation & last update
 chrome.runtime.onInstalled.addListener((details) => {
-
     const reason = details.reason;
     let d = new Date();
     let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
@@ -197,29 +204,32 @@ function storeHeaderSettings(message) {
     // - header(s) rewrite is allowed
     // and
     // - permissions are granted
-    if (!options.allowHeadersRewrite) return;
-    chrome.permissions.contains({permissions: ['webRequest','webRequestBlocking']}, function (granted) {
-        if (!granted) return;
-    });
+    if (!options.allowHeadersRewrite) {
+        return;
+    }
 
-    let hoverZoomHeaderSettings = sessionStorage.getItem('HoverZoomHeaderSettings') || '[]';
-    hoverZoomHeaderSettings = JSON.parse(hoverZoomHeaderSettings);
-    let index = hoverZoomHeaderSettings.findIndex(s => s.plugin == message.plugin);
-    if (index != -1) hoverZoomHeaderSettings.splice(index, 1); // remove old settings
-    var s = {};
-    s.plugin = message.plugin;
-    s.settings = message.settings;
-    hoverZoomHeaderSettings.push(s);
-    sessionStorage.setItem('HoverZoomHeaderSettings', JSON.stringify(hoverZoomHeaderSettings));
+    chrome.permissions.contains({permissions: ['webRequest','webRequestBlocking']}, function (granted) {
+        if (granted) {
+            let hoverZoomHeaderSettings = sessionStorage.getItem('HoverZoomHeaderSettings') || '[]';
+            hoverZoomHeaderSettings = JSON.parse(hoverZoomHeaderSettings);
+            let index = hoverZoomHeaderSettings.findIndex(s => s.plugin === message.plugin);
+            if (index !== -1) hoverZoomHeaderSettings.splice(index, 1); // remove old settings
+            let s = {};
+            s.plugin = message.plugin;
+            s.settings = message.settings;
+            hoverZoomHeaderSettings.push(s);
+            sessionStorage.setItem('HoverZoomHeaderSettings', JSON.stringify(hoverZoomHeaderSettings));
+        }
+    });
 }
 
 // update request header(s) just before sending
 function updateRequestHeaders(e) {
     let settings = findHeaderSettings(e.url, "request");
-    if (! settings) return;
+    if (!settings) return;
 
     // check if update must be skipped because of initiator
-    if (settings.skipInitiator && e.initiator.indexOf(settings.skipInitiator) != -1) return;
+    if (settings.skipInitiator && e.initiator.indexOf(settings.skipInitiator) !== -1) return;
 
     return { requestHeaders: updateHeaders(e.requestHeaders, settings) };
 }
@@ -227,10 +237,10 @@ function updateRequestHeaders(e) {
 // update response header(s) just after receiving
 function updateResponseHeaders(e) {
     let settings = findHeaderSettings(e.url, "response");
-    if (! settings) return;
+    if (!settings) return;
 
     // check if update must be skipped because of initiator
-    if (settings.skipInitiator && e.initiator.indexOf(settings.skipInitiator) != -1) return;
+    if (settings.skipInitiator && e.initiator.indexOf(settings.skipInitiator) !== -1) return;
 
     return { responseHeaders: updateHeaders(e.responseHeaders, settings) };
 }
@@ -242,7 +252,7 @@ function findHeaderSettings(url, requestOrResponse) {
 
     let settings = [];
     hoverZoomHeaderSettings.forEach(s => s.settings.forEach(s2 => settings.push(s2)));
-    settings = settings.find(s => s.type == requestOrResponse && url.indexOf(s.url) != -1);
+    settings = settings.find(s => s.type === requestOrResponse && url.indexOf(s.url) !== -1);
     if (! settings) return null; // no settings found for url
     return settings;
 }
@@ -254,17 +264,17 @@ function updateHeaders(headers, settings) {
         // - 'remove':  remove header
         // - 'replace': replace header, if header does not exist then do nothing
         // - 'add':     add header, if header already exists then replace it
-        if (h.typeOfUpdate == 'remove') {
-            let index = headers.findIndex(rh => rh.name.toLowerCase() == h.name.toLowerCase());
-            if (index != -1) headers.splice(index, 1);
+        if (h.typeOfUpdate === 'remove') {
+            let index = headers.findIndex(rh => rh.name.toLowerCase() === h.name.toLowerCase());
+            if (index !== -1) headers.splice(index, 1);
         }
-        if (h.typeOfUpdate == 'replace') {
-            let index = headers.findIndex(rh => rh.name.toLowerCase() == h.name.toLowerCase());
-            if (index != -1) headers[index] = { 'name':h.name, 'value':h.value };
+        if (h.typeOfUpdate === 'replace') {
+            let index = headers.findIndex(rh => rh.name.toLowerCase() === h.name.toLowerCase());
+            if (index !== -1) headers[index] = { 'name':h.name, 'value':h.value };
         }
-        if (h.typeOfUpdate == 'add') {
-            let index = headers.findIndex(rh => rh.name.toLowerCase() == h.name.toLowerCase());
-            if (index != -1) headers[index] = { 'name':h.name, 'value':h.value };
+        if (h.typeOfUpdate === 'add') {
+            let index = headers.findIndex(rh => rh.name.toLowerCase() === h.name.toLowerCase());
+            if (index !== -1) headers[index] = { 'name':h.name, 'value':h.value };
             else headers.push( { 'name':h.name, 'value':h.value } );
         }
     })

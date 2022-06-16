@@ -37,39 +37,38 @@ hoverZoomPlugins.push({
             }
         }
 
-        function updateStorage(videoId, data2store) {
-            let HZ_YouTube_data = sessionStorage.getItem('HZ_YouTube_data') || '{}';
-            HZ_YouTube_data = JSON.parse(HZ_YouTube_data);
-            HZ_YouTube_data[videoId] = data2store;
-            sessionStorage.setItem('HZ_YouTube_data', JSON.stringify(HZ_YouTube_data));
-        }
-
         // if header(s) rewrite is allowed store headers settings that will be used for rewrite
         if (options.allowHeadersRewrite) {
-            chrome.runtime.sendMessage({action:"storeHeaderSettings",
-                                        plugin:name,
-                                        settings:
-                                            [{"type":"request",
-                                            "skipInitiator":"",
-                                            "url":"youtube.com/youtubei/v1/player?key=",
-                                            "headers":[{"name":"origin", "value":"https://music.youtube.com", "typeOfUpdate":"add"}]},
-                                            {"type":"response",
-                                            "skipInitiator":"",
-                                            "url":"youtube.com/youtubei/v1/player?key=",
-                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]},
-                                            {"type":"response",
-                                            "skipInitiator":"",
-                                            "url":"googlevideo.com/videoplayback/id/",
-                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
-                                        });
+            chrome.runtime.sendMessage({
+                action: "storeHeaderSettings",
+                plugin: name,
+                settings:
+                    [{
+                        "type": "request",
+                        "skipInitiator": "",
+                        "url": "youtube.com/youtubei/v1/player?key=",
+                        "headers": [{"name": "origin", "value": "https://music.youtube.com", "typeOfUpdate": "add"}]
+                    },
+                    {
+                        "type": "response",
+                        "skipInitiator": "",
+                        "url": "youtube.com/youtubei/v1/player?key=",
+                        "headers": [{"name": "Access-Control-Allow-Origin", "value": "*", "typeOfUpdate": "add"}]
+                    },
+                    {
+                        "type": "response",
+                        "skipInitiator": "",
+                        "url": "googlevideo.com/videoplayback/id/",
+                        "headers": [{"name": "Access-Control-Allow-Origin", "value": "*", "typeOfUpdate": "add"}]
+                    }]
+            });
         }
 
         findParams();
 
         $('a[href*="/watch?v="],a[href*="youtu.be"],div[ourl*="/watch?v="],div[ourl*="youtu.be"]').on('mouseover', function() {
-
-            var link = undefined;
-            var href = undefined;
+            let link = undefined;
+            let href = undefined;
 
             if ($(this).is('a')) {
                 href = this.href;
@@ -79,20 +78,23 @@ hoverZoomPlugins.push({
                 href = $(this).attr('ourl'); // Bing
                 link = $(this); // link = $(this).parent('a')[0]; link = $(link);
             }
+            if (!href || !link)
+                return;
 
             cLog('href=' + href);
 
             const re1 = /\/watch\?v=([^&]{1,})/;   // sample: https://www.youtube.com/watch?v=NaOiA15Rz5k
             const re2 = /\/youtu.be\/([^?]{1,})/;  // sample: https://youtu.be/qXlQbj0PgDo https://youtu.be/qORYO0atB6g?t=28
             let m = href.match(re1);
-            if (m == undefined) m = href.match(re2);
-            if (m == undefined) return;
-            var videoId = m[1];
+            if (!m) m = href.match(re2);
+            if (!m) return;
+            let videoId = m[1];
             cLog('videoId=' + videoId);
 
             // resuse previous result
-            if (link.data().hoverZoomYouTubeApiVideoId == videoId) {
-                if (link.data().hoverZoomYouTubeApiVideoUrl) link.data().hoverZoomSrc = [link.data().hoverZoomYouTubeApiVideoUrl];
+            if (link.data().hoverZoomYouTubeApiVideoId === videoId) {
+                if (link.data().hoverZoomYouTubeApiVideoUrl)
+                    link.data().hoverZoomSrc = [link.data().hoverZoomYouTubeApiVideoUrl];
                 return;
             }
 
@@ -105,14 +107,14 @@ hoverZoomPlugins.push({
             link.data().hoverZoomSrc = [];
 
             // proceed with API call from background page
-            chrome.runtime.sendMessage({action:'ajaxRequest',
-                                        method:'POST',
-                                        url:"https://www.youtube.com/youtubei/v1/player?key=" + INNERTUBE_API_KEY,
-                                        headers:[{"header":"Content-Type","value":"application/json"}],
+            chrome.runtime.sendMessage({action: 'ajaxRequest',
+                                        method: 'POST',
+                                        url: "https://www.youtube.com/youtubei/v1/player?key=" + INNERTUBE_API_KEY,
+                                        headers: [{"header": "Content-Type", "value": "application/json"}],
                                         data: "{\"videoId\":\"" + videoId + "\",\"context\":{\"client\":{\"clientName\":\"" + INNERTUBE_CLIENT_NAME + "\",\"clientVersion\":\"" + INNERTUBE_CLIENT_VERSION + "\"}}}"},
                                         function (response) {
 
-                                            if (response == null) { return; }
+                                            if (response == null) return;
 
                                             try {
                                                 let j = JSON.parse(response);
@@ -120,21 +122,21 @@ hoverZoomPlugins.push({
 
                                                 // check if sources are ciphered
                                                 if (j["streamingData"]["adaptiveFormats"][0].signatureCipher) {
-                                                    cLog(videoId + ' : sources are ciphered');
+                                                    cLog(videoId + ' : sources are encrypted');
                                                     return;
                                                 }
 
-                                                // find best video source (= largest width)
+                                                // find the best video source (= largest width)
                                                 let widths = j["streamingData"]["adaptiveFormats"].map(f => (f.width ? f.width : -1));
                                                 let widthMax = Math.max(...widths);
-                                                let bestVideo = j["streamingData"]["adaptiveFormats"].find(f => f.width == widthMax);
+                                                let bestVideo = j["streamingData"]["adaptiveFormats"].find(f => f.width === widthMax);
                                                 cLog(videoId + " bestVideo: " + widthMax + " " + bestVideo.url);
                                                 let urlVideo = bestVideo.url + ".video";
 
                                                 // find best audio source (= largest bitrate)
-                                                let bitrates = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("audio/mp4") != -1).map(f => f.bitrate);
+                                                let bitrates = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("audio/mp4") !== -1).map(f => f.bitrate);
                                                 let bitrateMax = Math.max(...bitrates);
-                                                let bestAudio = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("audio/mp4") != -1).find(f => f.bitrate == bitrateMax);
+                                                let bestAudio = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("audio/mp4") !== -1).find(f => f.bitrate === bitrateMax);
                                                 cLog(videoId + " bestAudio: " + bitrateMax + " " + bestAudio.url);
                                                 let urlAudio = bestAudio.url + ".audio";
 
