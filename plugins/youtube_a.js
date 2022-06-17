@@ -1,10 +1,11 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'youtube_a',
-    version: '2.1',
+    version: '2.2',
 
     prepareImgLinks:function (callback) {
         const name = this.name;
+        var res = [];
 
         let INNERTUBE_API_URL = "https://www.youtube.com/youtubei/v1/player?key=";
         let INNERTUBE_CLIENT_VERSION = "2.20211221.00.00";
@@ -62,7 +63,7 @@ hoverZoomPlugins.push({
             });
         }
 
-        $('a[href*="/watch?v="], a[href*="youtu.be"], div[ourl*="/watch?v="], div[ourl*="youtu.be"]').on('mouseover', function() {
+        $('a[href*="/watch?v="], a[href*="/shorts/"], a[href*="youtu.be"], div[ourl*="/watch?v="], div[ourl*="/shorts/"], div[ourl*="youtu.be"]').on('mouseover', function() {
             let link = $(this), href;
 
             if (link.is('a')) {
@@ -76,10 +77,14 @@ hoverZoomPlugins.push({
 
             const re1 = /\/watch\?v=([^&]{1,})/;   // sample: https://www.youtube.com/watch?v=NaOiA15Rz5k
             const re2 = /\/youtu.be\/([^?]{1,})/;  // sample: https://youtu.be/qXlQbj0PgDo https://youtu.be/qORYO0atB6g?t=28
+            const re3 = /\/shorts\/([^?]{1,})/;   // sample: https://www.youtube.com/shorts/gmkUDjwRX98
             let m = href.match(re1);
-            if (!m) m = href.match(re2);
-            if (!m) return;
-            let videoId = m[1];
+            if (m == undefined)
+                m = href.match(re2);
+             if (m == undefined)
+                m = href.match(re3);
+            if (m == undefined) return;
+            var videoId = m[1];
             cLog(`videoId: ${videoId}`);
 
             let match = href.match(/[\?&]t=([\dhm]+)/);
@@ -152,5 +157,19 @@ hoverZoomPlugins.push({
                     }
                 });
         })
+
+        hoverZoom.urlReplace(res,
+            'img[src*="ytimg.com/vi/"], img[src*="ytimg.com/vi_webp/"]',
+            /\/([1-9]|default|hqdefault|mqdefault)\.(jpg|webp)/,
+            '/0.$2'
+        );
+
+        $('a img[data-thumb*="ytimg.com/vi/"]').each(function () {
+            var img = $(this);
+            img.data().hoverZoomSrc = [this.getAttribute('data-thumb').replace(/\/([1-9]|default|hqdefault|mqdefault)\.jpg/, '/0.jpg')];
+            res.push(img);
+        });
+
+        callback($(res));
     }
 });
