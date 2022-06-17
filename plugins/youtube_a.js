@@ -16,7 +16,7 @@ hoverZoomPlugins.push({
         const tok_INNERTUBE_API_KEY = "INNERTUBE_API_KEY";
 
         let innerHtml = document.documentElement.innerHTML;
-        let pos_INNERTUBE_CLIENT_VERSION = innerHtml.indexOf(tok_INNERTUBE_API_KEY);
+        let pos_INNERTUBE_CLIENT_VERSION = innerHtml.indexOf(tok_INNERTUBE_CLIENT_VERSION);
         if (pos_INNERTUBE_CLIENT_VERSION > -1) {
             let firstquoteIndex = pos_INNERTUBE_CLIENT_VERSION + tok_INNERTUBE_CLIENT_VERSION.length + 2;
             let lastquoteIndex = innerHtml.indexOf('"', firstquoteIndex + 1);
