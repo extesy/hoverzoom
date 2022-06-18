@@ -847,20 +847,10 @@ var hoverZoom = {
                 now = true;
             }
             hz.hzImg.stop(true, true).fadeOut(now ? 0 : options.fadeDuration, function () {
-                stopMedias();
+                removeMedias();
                 hzCaptionMiscellaneous = null;
                 hzDetails = null;
                 hz.hzImg.empty();
-                if (imgFullSize) {
-                    imgFullSize.remove();
-                    imgFullSize = null;
-                    imageLocked = false;
-                }
-                if (audioFullSize) {
-                    audioFullSize.remove();
-                    audioFullSize = null;
-                    imageLocked = false;
-                }
             });
         }
 
@@ -1047,7 +1037,7 @@ var hoverZoom = {
                         return;
                     }
 
-                    var video = document.createElement('video');
+                    const video = document.createElement('video');
                     video.style.width = 0;
                     video.style.height = 0;
                     video.controls = imageLocked;
@@ -1089,13 +1079,13 @@ var hoverZoom = {
                     });
 
                     if (imgDetails.audioUrl) {
-                        var audio = document.createElement('audio');
+                        const audio = document.createElement('audio');
                         audio.controls = imageLocked;
                         audio.autoplay = false;
                         audio.muted = (imgDetails.audioMuted ? true : options.muteVideos);
                         audio.volume = options.videoVolume;
                         audio.src = imgDetails.audioUrl;
-                        audioFullSize= $(audio).appendTo(hz.hzImg);
+                        audioFullSize = $(audio).appendTo(hz.hzImg);
 
                         // synchronize audio controls with video controls
                         video.addEventListener('play', function() {
@@ -1127,7 +1117,7 @@ var hoverZoom = {
                         return;
                     }
 
-                    var video = document.createElement('video');
+                    const video = document.createElement('video');
                     video.style.width = 0;
                     video.style.height = 0;
                     video.controls = imageLocked;
@@ -2015,13 +2005,13 @@ var hoverZoom = {
 
         function documentOnMouseWheel(event) {
             if (imageLocked) {
+                event.preventDefault();
                 // Scale up or down locked image then clamp between 0.1x and 10x.
                 let step = zoomFactor < 2 ? 0.1 : 0.1 * Math.floor(zoomFactor);
                 zoomFactor = zoomFactor + (event.deltaY < 0 ? 1 : -1) * step;
                 zoomFactor = Math.max(Math.min(zoomFactor, 10), 0.1);
                 posImg();
                 panLockedImage();
-                event.preventDefault();
             } else if (imgFullSize) {
                 var link = hz.currentLink, data = link.data();
                 if (data.hoverZoomGallerySrc && data.hoverZoomGallerySrc.length !== 1) {
