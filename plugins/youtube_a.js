@@ -44,13 +44,13 @@ hoverZoomPlugins.push({
                 settings:
                     [{
                         "type": "request",
-                        "skipInitiator": "",
+                        "skipInitiator": "youtube",
                         "url": "youtube.com/youtubei/v1/player?key=",
                         "headers": [{"name": "origin", "value": "https://music.youtube.com", "typeOfUpdate": "add"}]
                     },
                     {
                         "type": "response",
-                        "skipInitiator": "",
+                        "skipInitiator": "youtube",
                         "url": "youtube.com/youtubei/v1/player?key=",
                         "headers": [{"name": "Access-Control-Allow-Origin", "value": "*", "typeOfUpdate": "add"}]
                     },
