@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name: 'bilibili',
-    version: '0.4',
+    name: 'bilibili_a',
+    version: '0.5',
     prepareImgLinks: function(callback) {
         var res = [];
 
@@ -200,8 +200,9 @@ hoverZoomPlugins.push({
         });
 
         // bilibili.tv : series
-        // sample: https://www.bilibili.tv/th/play/1046192/11165556
-        $('a[href*="/play/"]').filter(function() { return (/bilibili\.tv\/.*\/play\/\d+\/\d+/.test($(this).prop('href'))) }).on('mouseover', function() {
+        // samples: https://www.bilibili.tv/th/play/1046192/11165556
+        //          https://www.bilibili.tv/play/35087
+        $('a[href*="/play/"]').filter(function() { return (/bilibili\.tv.*\/play\/\d+\/\d+/.test($(this).prop('href'))) }).on('mouseover', function() {
 
             var link = undefined;
             var href = undefined;
@@ -209,7 +210,7 @@ hoverZoomPlugins.push({
             href = this.href;
             link = $(this);
 
-            const re = /bilibili\.tv\/.*\/play\/\d+\/(\d+)/;   // episode id (e.g. 11165556)
+            const re = /bilibili\.tv.*\/play\/\d+\/(\d+)/;   // episode id (e.g. 11165556)
             m = href.match(re);
             if (m == undefined) return;
             let episodeId = m[1];
@@ -233,8 +234,9 @@ hoverZoomPlugins.push({
         });
 
         // bilibili.tv : videos
-        // sample: https://www.bilibili.tv/en/video/2010871582?bstar_from=bstar-web.homepage.ugc.all
-        $('a[href*="/video/"]').filter(function() { return (/bilibili\.tv\/.*\/video\/\d+/.test($(this).prop('href'))) }).on('mouseover', function() {
+        // samples: https://www.bilibili.tv/en/video/2010871582?bstar_from=bstar-web.homepage.ugc.all
+        //          https://www.bilibili.tv/video/2049517221
+        $('a[href*="/video/"]').filter(function() { return (/bilibili\.tv.*\/video\/\d+/.test($(this).prop('href'))) }).on('mouseover', function() {
 
             var link = undefined;
             var href = undefined;
@@ -242,7 +244,7 @@ hoverZoomPlugins.push({
             href = this.href;
             link = $(this);
 
-            const re = /bilibili\.tv\/.*\/video\/(\d+)/;   // video id (e.g. 2010871582)
+            const re = /bilibili\.tv.*\/video\/(\d+)/;   // video id (e.g. 2010871582)
             m = href.match(re);
             if (m == undefined) return;
             let videoId = m[1];
@@ -268,8 +270,10 @@ hoverZoomPlugins.push({
         // zoom every image but video stills
         // sample: https://i2.hdslb.com/bfs/face/3be1bf9e5d555456278f696941bd267632df62e4.jpg@52w_52h.webp
         //      -> https://i2.hdslb.com/bfs/face/3be1bf9e5d555456278f696941bd267632df62e4.jpg
+        //         https://pic.bstarstatic.com/face/2b2f580d79875dfeca1ad2902d96073f2698f3bd.jpg@80w_80h_1e_1c_1f.webp
+        //      -> https://pic.bstarstatic.com/face/2b2f580d79875dfeca1ad2902d96073f2698f3bd.jpg
         hoverZoom.urlReplace(res,
-            'img[src*="hdslb.com"]:not([src*="/archive/"])', //, [style*="url"]',
+            'img[src*="hdslb.com"]:not([src*="/archive/"]), img[src*="pic.bstarstatic.com"]', //, [style*="url"]',
             /(.*)@.*/,
             '$1'
         );
