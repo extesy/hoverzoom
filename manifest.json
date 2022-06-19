@@ -723,10 +723,8 @@
                 "plugins/memedad.js",
                 "plugins/memefive.js",
                 "plugins/memegenerator.js",
-                "plugins/pornbot.js",
                 "plugins/reddit.js",
-                "plugins/redgifs.js",
-                "plugins/slutcapades.js"
+                "plugins/redgifs.js"
             ]
         },
         {
@@ -983,10 +981,6 @@
         {
             "js": ["plugins/zinio.js"],
             "matches": ["*://*.zinio.com/*"]
-        },
-        {
-            "js": ["plugins/posterrevolution.js"],
-            "matches": ["*://*.posterrevolution.com/*"]
         },
         {
             "js": ["plugins/dribbble.js"],
@@ -1512,10 +1506,6 @@
         {
             "js": ["plugins/photo-forum.js"],
             "matches": ["*://*.photo-forum.net/*"]
-        },
-        {
-            "js": ["plugins/photographysites.js"],
-            "matches": ["*://*.photographysites.com/*"]
         },
         {
             "js": ["plugins/photopost.js"],

@@ -3,14 +3,14 @@ hoverZoomPlugins.push({
     name: 'Default',
     version:'0.5',
     prepareImgLinks: function (callback) {
-        var res = [];
+        const res = [];
         const reVideos = /\/[^:]+\.(?:3gpp|m4v|mkv|mp4|ogv|webm)(?:[\?#].*)?(?:\/)?$/i
         const reImages = /\/[^:]+\.(?:bmp|gifv?|ico|jpe?g|png|svg|webp|xbm)(?:[\?#].*)?(?:\/)?$/i
         const rePlaylists = /\/[^:]+\.(?:m3u8)(?:[\?#].*)?(?:\/)?$/i
         $('a[href]').filter(function () {
             if (typeof(this.href) != 'string')
 			    return false;
-            if (this.href.substr(0, 10).toLowerCase() == 'data:image')
+            if (this.href.substr(0, 10).toLowerCase() === 'data:image')
                 return false;
             if (this.href.match(reImages))
                 return true;
@@ -20,10 +20,10 @@ hoverZoomPlugins.push({
                 return true;
             return false;
         }).each(function () {
-            var _this = $(this), data = _this.data();
+            const _this = $(this), data = _this.data();
             if (!data.hoverZoomSrc) {
-                var src = this.href;
-                if (!options.zoomVideos || ((src.indexOf('imgur.com') == -1 || src.indexOf('slimgur.com') != -1) && src.indexOf('gfycat.com') == -1 && src.indexOf('pornbot.net') == -1)) {
+                const src = this.href;
+                if (!options.zoomVideos || ((src.indexOf('imgur.com') === -1 || src.indexOf('slimgur.com') !== -1) && src.indexOf('gfycat.com') === -1)) {
                     data.hoverZoomSrc = [src];
                     res.push(_this);
                 }
