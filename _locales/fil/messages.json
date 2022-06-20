@@ -8,7 +8,7 @@
         "description": "Short extension name"
     },
     "extDescription": {
-        "message": "I-zoom ng imahe/video sa lahat ng paborito mong website (Facebook, Amazon, etc). I-hover lang ang mouse sa imahe para palakihin ito.",
+        "message": "Mag-zoom ng imahe/video sa lahat ng paborito mong website (Facebook, Amazon, etc). Hover lang ang mouse sa imahe para palakihin ito.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
     "popDisableForAllSites": {
@@ -28,7 +28,7 @@
         "description": "[popup] Enables the extension for a specific site"
     },
     "popPreloadImages": {
-        "message": "I-preload ang mga naka-zoom na mga larawan",
+        "message": "I-preload ang mga naka-zoom na mga imahe",
         "description": "[popup] Preload zoomed images"
     },
     "popPreloadingImages": {
@@ -108,7 +108,7 @@
         "description": "[options] Adjust the position of the caption"
     },
     "optCaptionLocationTooltip": {
-        "message": "Tingnan ang caption sa itaas/ibaba ng imahe, o hindi talagasa lahat",
+        "message": "Tingnan ang caption sa itaas/ibaba ng imahe, o hindi sa lahat",
         "description": "[options] Tooltip for adjusting the position of the caption"
     },
     "optCaptionLocationAbove": {
@@ -128,7 +128,7 @@
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
-        "message": "Mga deltalye sa pagtanaw (laki, format...) sa itaas/ibaba ng larawan, o hindi sa lahat",
+        "message": "Mga deltalye sa pagtanaw (laki, format...) sa itaas/ibaba ng imahe, o hindi sa lahat",
         "description": "[options] Tooltip for adjusting the position of details"
     },
     "optDetailsLocationAbove": {
@@ -152,11 +152,11 @@
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
-        "message": "Palawakin ang mga naka-zoom na larawan sa ibaba ng cursor ng mouse",
+        "message": "Palawakin ang mga naka-zoom na imahe sa ibaba ng cursor ng mouse",
         "description": "[options] Extend zoomed images below the mouse cursor option"
     },
     "optMouseUnderlapTooltip": {
-        "message": "Kung alisan ng check, ang mga naka-zoom na larawan ay babaguhin nang pabago-bago",
+        "message": "Kung alisan ng check, ang mga naka-zoom na imahe ay babaguhin nang pabago-bago",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
     "optHideMouseCursor": {
@@ -216,7 +216,7 @@
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
-        "message": "Gamitin ang prev/next action keys (o mousewheel) para baguhin ang posisyon ng video sa pamamagitan ng",
+        "message": "Gamitin ang prev/nex na mga action key (o mousewheel) para baguhin ang posisyon ng video sa pamamagitan ng",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
@@ -256,7 +256,7 @@
         "description": "[options] Tooltip for audio volume for unmuted videos option"
     },
     "optEnableAmbilight": {
-        "message": "I-enable ang ambient light sa likod ng mga larawan",
+        "message": "I-enable ang ambient light sa likod ng mga imahe",
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
@@ -296,59 +296,59 @@
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optFrameBackgroundColor": {
-        "message": "Frame background color:",
+        "message": "Kulay ng background ng frame:",
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
-        "message": "Background color for the frame the image appears in",
+        "message": "Kulay ng background para sa frame kung saan lumalabas ang imahe",
         "description": "[options] Tooltip for frame background color option"
     },
     "optFrameBackgroundColorChooseText": {
-        "message": "Select",
+        "message": "Piliin",
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
-        "message": "Cancel",
+        "message": "Kanselahin",
         "description": "[options] Frame background color button - Cancel"
     },
     "optFrameThickness": {
-        "message": "Frame thickness:",
+        "message": "Kapal ng frame:",
         "description": "[options] Frame thickness option"
     },
     "optFrameThicknessTooltip": {
-        "message": "Thickness of border for the frame the image appears in (0 : no frame)",
+        "message": "Kapal ng border para sa frame kung saan lumalabas ang imahe (0 : walang frame)",
         "description": "[options] Tooltip for frame thickness option"
     },
     "optFrameThicknessUnitName": {
-        "message": "pixels",
+        "message": "mga pixel",
         "description": "[options] Unit name (pixel) for frame thickness"
     },
     "optFontSize": {
-        "message": "Font size:",
+        "message": "Laki ng font:",
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
-        "message": "Size of font used for captions & details",
+        "message": "Laki ng font na ginamit para sa mga caption at mga detalye",
         "description": "[options] Tooltip for font size option"
     },
     "optFontSizeUnitName": {
-        "message": "pixels",
+        "message": "mga pixel",
         "description": "[options] Unit name (pixel) for font size"
     },
     "optSectionDelays": {
-        "message": "Delays",
+        "message": "Mga delay",
         "description": "[options] Page section for delay options"
     },
     "optDisplayDelay": {
-        "message": "Delay before displaying a picture:",
+        "message": "Delay bago magpakita ng imahe:",
         "description": "[options] Delay before displaying a picture option"
     },
     "optDisplayDelayVideo": {
-        "message": "Delay before displaying a video:",
+        "message": "Delay bago magpakita ng video:",
         "description": "[options] Delay before displaying a video option"
     },
     "optFadeDuration": {
-        "message": "Fading animation duration:",
+        "message": "Tagal ng pakupas na animation:",
         "description": "[options] Fading animation duration option"
     },
     "optDurationUnitName": {
@@ -356,23 +356,23 @@
         "description": "[options] Short form of \"second\" for delay duration"
     },
     "optPagePlugins": {
-        "message": "Plugins",
+        "message": "Mga plugin",
         "description": "[options] Page title for plugin options"
     },
     "optPlugins": {
-        "message": "Enable/disable specific plugins",
+        "message": "I-enable/i-disable ng mga partikular na plugin",
         "description": "[options] Section which contains checkboxes for disabling plugins"
     },
     "optPageSites": {
-        "message": "Sites",
+        "message": "Mga site",
         "description": "[options] Page title for site options"
     },
     "optSectionSitesEnabled": {
-        "message": "URLs for which Hover Zoom+ must be enabled",
+        "message": "Mga URL kung saan ang Hover Zoom+ ay dapat naka-enable",
         "description": "[options] Page section for enabling extension for specific sites"
     },
     "optSectionSitesDisabled": {
-        "message": "URLs for which Hover Zoom+ must be disabled",
+        "message": "Mga URL kung saan ang Hover Zoom+ ay dapat naka-disable",
         "description": "[options] Page section for enabling extension for specific sites"
     },
     "optWhitelistMode": {
@@ -380,23 +380,23 @@
         "description": "[options] Whitelist mode checkbox"
     },
     "optWhitelistModeTooltip": {
-        "message": "Only enable Hover Zoom+ for the sites listed below",
+        "message": "I-enable lang ang Hover Zoom+ para sa mga site na nakalista sa ibaba",
         "description": "[options] Tooltip for whitelist mode checkbox"
     },
     "optSitePlaceholder": {
-        "message": "Examples: facebook.com, google.com/reader",
+        "message": "Mga halimbawa: facebook.com, google.com/reader",
         "description": "[options] Placeholder for a site url input box"
     },
     "optSiteDisclaimer": {
-        "message": "Be aware that domain filters can overlap. Example: if you have filtered \"picasaweb.google.com\" and \"google.com\", removing \"picasaweb.google.com\" will not reactivate Picasa Web Albums, as it will still be excluded by the \"google.com\" filter.",
+        "message": "Magkaroon ng kamalayan na ang mga filter ng domain ay maaaring mag-overlap. Halimbawa: kung na-filter mo ang \"picasaweb.google.com\" at \"google.com\", ang pag-alis ng \"picasaweb.google.com\" ay hindi muling isasaaktibo ang Picasa Web Albums, dahil ibubukod pa rin ito ng \"google.com\" na filter.",
         "description": "[options] Disclaimer on the sites option page"
     },
     "optButtonAddSite": {
-        "message": "Add",
+        "message": "Magdagdag",
         "description": "[options] Button for adding a site on sites option page"
     },
     "optPageActionKeys": {
-        "message": "Action keys",
+        "message": "Mga action key",
         "description": "[options] Page title for action key options"
     },
     "optPageAdvanced": {
@@ -404,47 +404,47 @@
         "description": "[options] Page title for advanced options"
     },
     "optSectionAdvanced": {
-        "message": "Advanced options",
+        "message": "Mga advanced na opsyon",
         "description": "[options] Page section for advanced options"
     },
     "optEnableDownloads": {
-        "message": "Allow downloading images using an action key",
+        "message": "Payagan ang pag-download ng mga imahe gamit ang isang action key",
         "description": "[options] Grant browser permission to allow file downloading using an action key"
     },
     "optAddToHistory": {
-        "message": "Add viewed pictures to the browser's history",
+        "message": "Magdagdag ng mga tiningnang imahe sa kasaysayan ng browser",
         "description": "[options] Add viewed pictures to the browser's history option"
     },
     "optAllowHeadersRewriteTooltip": {
-        "message": "Useful to be able to zoom & play content from one site on another site, such as videos",
+        "message": "Kapaki-pakinabang upang makapag-zoom at makapag-play ng nilalaman mula sa isang site sa isa pang site, gaya ng mga video",
         "description": "[options] Tooltip for allow rewrite of headers for HTTP(S) request or response option"
     },
     "optAllowHeadersRewrite": {
-        "message": "Allow rewrite of headers for HTTP(S) request or response",
+        "message": "Payagan ang muling pagsulat ng mga header para sa HTTP(S) na request o response",
         "description": "[options] Allow rewrite of headers for HTTP(S) request or response option"
     },
     "optFilterNSFW": {
-        "message": "Exclude NSFW images (Reddit only)",
+        "message": "Ibukod ang mga imaheng NSFW (Reddit lang)",
         "description": "[options] Exclude NSFW images (Reddit only) option"
     },
     "optAlwaysPreload": {
-        "message": "Automatically preload zoomed images",
+        "message": "Awtomatikong i-preload ang mga naka-zoom na imahe",
         "description": "[options] Automatically preload zoomed images option"
     },
     "optEnableGalleries": {
-        "message": "Enable albums support",
+        "message": "I-enable ang suporta sa mga album",
         "description": "[options] Enable albums support option"
     },
     "optEnableNoFocusMsg": {
-        "message": "Enable Action Keys focus overlay message",
+        "message": "I-enable ang focus overlay na mensahe ng mga action key",
         "description": "[options] Enable Action Keys focus overlay message option"
     },
     "optEnableNoFocusMsgTooltip": {
-        "message": "Sometimes Action Keys seem to be broken, this usually happens when page has lost focus. If option is checked, a warning message will be displayed (only once).",
+        "message": "Minsan ang mga Action Key ay parang sira, ito ay kadalasang nangyayari kapag ang pahina ay nawalan ng focus. Kung ang opsyon ay may check, isang mensahe ng babala ay ipapakita (isang beses lamang).",
         "description": "[options] Tooltip for enable Action Keys focus overlay message option"
     },
     "optPicturesOpacity": {
-        "message": "Zoomed pictures opacity:",
+        "message": "Opacity ng mga naka-zoom na imahe:",
         "description": "[options] Zoomed pictures opacity option"
     },
     "optOpacityUnitName": {
@@ -452,19 +452,19 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optDisplayImageLoaderTooltip": {
-        "message": "Display a little spinner as image is loading (green:loading, red:error). Red spinner is optional.",
+        "message": "Magpakita ng maliit na spinner habang naglo-load ang imahe (berde:loading, pula:error). Ang pulang spinner ay opsyonal.",
         "description": "[options] Tooltip for display image loader option"
     },
     "optDisplayImageLoader": {
-        "message": "Display a red spinner when image loading failed",
+        "message": "Magpakita ng pulang spinner kapag nabigo ang paglo-load ng imahe",
         "description": "[options] Display image loader option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
-        "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
+        "message": "Kapaki-pakinabang para sa mga HTTPS na site tulad ng Google Images na pumipigil sa pag-load ng mga HTTP na imahe",
         "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrls": {
-        "message": "Try to open unloadable urls in separate:",
+        "message": "Subukang buksan ang mga hindi mai-load na mga url nang magkahiwalay:",
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
@@ -476,23 +476,23 @@
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
-        "message": "Subfolder(s) will be created if needed",
+        "message": "Ang (mga) subfolder ay gagawin kung kinakailangan",
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
-        "message": "Example: animals/cats",
+        "message": "Halimbawa: mga hayop/mga pusa",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images & videos to folder: Downloads/",
+        "message": "I-save ang mga imahe at mga video sa folder: Downloads/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Prefix original names of downloads with origin, size and/or duration for easier management",
+        "message": "Prefix ng mga orihinal na pangalan ng mga download na may pinanggalingan, laki at/o tagal para sa mas madaling pamamahala",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Rename saved images & videos by adding:",
+        "message": "Palitan ang pangalan ng mga naka-save na imahe at mga video sa pamamagitan ng pagdaragdag ng:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
@@ -576,183 +576,183 @@
         "description": "[options] FAQ Answer 2 part 1"
     },
     "optFAQ_SaveAndReload": {
-        "message": "Save and reload the page (F5)",
+        "message": "I-save at i-reload ang pahina (F5)",
         "description": "[options] FAQ Save and reload page"
     },
     "optFAQ_Q3": {
-        "message": "I need HoverZoom+ to be active for some sites only.",
+        "message": "Kailangan ko ang HoverZoom+ upang maging aktibo para sa ilang mga site lamang.",
         "description": "[options] FAQ Question 3"
     },
     "optFAQ_A3_1": {
-        "message": "E.g. to activate HoverZoom+ on DeviantArt.com & 1X.com:",
+        "message": "E.g. upang i-activate ang HoverZoom+ sa DeviantArt.com & 1X.com:",
         "description": "[options] FAQ Answer 3 part 1"
     },
     "optFAQ_A3_2": {
-        "message": "In Options -> Sites, activate \"Whitelist mode\"",
+        "message": "Sa Mga opsyon-> Mga site, i-activate ang \"Whitelist mode\"",
         "description": "[options] FAQ Answer 3 part 2"
     },
     "optFAQ_A3_3": {
-        "message": "Add DeviantArt.com & 1X.com to list of URLs (not case-sensitive)",
+        "message": "Idagdag ang DeviantArt.com at 1X.com sa listahan ng mga URL (hindi case-sensitive)",
         "description": "[options] FAQ Answer 3 part 3"
     },
     "optFAQ_Q4": {
-        "message": "I want to zoom an image or video to its original size even if larger than screen.",
+        "message": "Gusto kong i-zoom ang isang imahe o video sa orihinal na laki nito kahit na mas malaki kaysa sa screen.",
         "description": "[options] FAQ Question 4"
     },
     "optFAQ_A4_1": {
-        "message": "Hover over an image or video then lock it on screen (default action key: \"L\")",
+        "message": "Mag-hover sa isang imahe o video pagkatapos ay i-lock ito sa screen (default na action key: \"L\")",
         "description": "[options] FAQ Answer 4 part 1"
     },
     "optFAQ_A4_2": {
-        "message": "Image or video is now displayed fullsize. You can zoom in or out using mousewheel.",
+        "message": "Ang imahe o video ay ipinapakita na ngayon nang buong laki. Maaari kang mag-zoom in o out gamit ang mousewheel.",
         "description": "[options] FAQ Answer 4 part 2"
     },
     "optFAQ_Q5": {
-        "message": "Action keys do not work!",
+        "message": "Hindi gumagana ang mga action key!",
         "description": "[options] FAQ Question 5"
     },
     "optFAQ_A5_1": {
-        "message": "Sometimes action keys seem to be broken, this usually happens when page has lost focus.",
+        "message": "Minsan ang mga action key ay parang sira, ito ay kadalasang nangyayari kapag ang pahina ay nawalan ng focus.",
         "description": "[options] FAQ Answer 5 part 1"
     },
     "optFAQ_A5_2": {
-        "message": "Just click anywhere on page to regain focus.",
+        "message": "I-click lang kahit saan sa pahina upang maibalik ang focus.",
         "description": "[options] FAQ Answer 5 part 2"
     },
     "optFAQ_A5_3": {
-        "message": "In Options -> Advanced, you can activate \"Enable Action Keys focus overlay message\", so you'll get a warning message when focus is lost.",
+        "message": "Sa Mga opsyon -> Advanced, maaari mong i-activate ang \"I-enable ang focus overlay na mensahe ng mga action key\", para makakuha ka ng babala kapag nawala ang focus.",
         "description": "[options] FAQ Answer 5 part 3"
     },
     "optFAQ_Q6": {
-        "message": "Some videos do not play when opened from sites other than original ones.",
+        "message": "Ang ilang mga video ay hindi nagpe-play kapag binuksan mula sa mga site maliban sa mga orihinal.",
         "description": "[options] FAQ Question 6"
     },
     "optFAQ_A6_1": {
-        "message": "e.g: Dailymotion videos play in dailymotion.com, but not in Google search results.",
+        "message": "e.g: Mga Dailymotion na video na nagpe-play sa dailymotion.com, ngunit hindi sa mga resulta ng paghahanap sa Google.",
         "description": "[options] FAQ Answer 6 part 1"
     },
     "optFAQ_A6_2": {
-        "message": "This is due to CORS restrictions, to lift them:",
+        "message": "Ito ay dahil sa mga paghihigpit ng CORS, para iangat ang mga ito:",
         "description": "[options] FAQ Answer 6 part 2"
     },
     "optFAQ_A6_3": {
-        "message": "In Options -> Advanced, activate \"Allow rewrite of headers for HTTP(S) request or response\"",
+        "message": "Sa Mga opsyon -> Advanced, i-activate ang \"Payagan ang muling pagsulat ng mga header para sa HTTP(S) na request o response\"",
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optPixelsUnitName": {
-        "message": "pixels",
+        "message": "mga pixel",
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
-        "message": "Activate HoverZoom+",
+        "message": "I-activate ang HoverZoom+",
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "If a key is set, HoverZoom4+ will be active only when this key is held down.",
+        "message": "Kung nakatakda ang isang key, magiging aktibo lamang ang HoverZoom4+ kapag pinindot ang key na ito.",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
-        "message": "Toggle HoverZoom+",
+        "message": "I-toggle ang HoverZoom+",
         "description": "[options] Action key title"
     },
     "optToggleKeyDescription": {
-        "message": "Enable/disable HoverZoom+",
+        "message": "I-enable/i-disable ang HoverZoom+",
         "description": "[options] Action key description"
     },
     "optCloseKeyTitle": {
-        "message": "Close image",
+        "message": "Isara ang imahe",
         "description": "[options] Action key title"
     },
     "optCloseKeyDescription": {
-        "message": "Press this key to close zoomed image or video.",
+        "message": "Pindutin ang key na ito upang isara ang naka-zoom na imahe o video.",
         "description": "[options] Action key description"
     },
     "optHideKeyTitle": {
-        "message": "Hide image",
+        "message": "Itago ang imahe",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
+        "message": "Ang pagpindot sa key na ito ay nagtatago ng naka-zoom na imahe o video. Gamitin ito kapag ang imahe ay nagtatago ng mga elemento na ipinapakita din sa mouseover.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
-        "message": "Open image in a new window",
+        "message": "Buksan ang imahe sa isang bagong window",
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
+        "message": "Pindutin ang key na ito upang buksan ang imahe o video na kasalukuyan mong tinitingnan sa isang bagong window. Pindutin muli ang key na ito upang isara ang window.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
-        "message": "Open image in a new tab",
+        "message": "Buksan ang imahe sa isang bagong tab",
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
+        "message": "Pindutin ang key na ito upang buksan ang imahe o video na kasalukuyan mong tinitingnan sa isang bagong window. Pindutin muli ang key na ito upang isara ang tab. Binubuksan ng Shift+key ang imahe sa isang background tab.",
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
-        "message": "Lock image on screen",
+        "message": "I-lock ang imahe sa screen",
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
+        "message": "Pindutin ang key na ito upang i-lock ang imahe o video sa gitna ng pahina, na nagbibigay-daan sa iyong pag-zoom at pag-pan sa paligid. Pindutin ang close key o mag-click sa labas ng imahe para i-unlock.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
-        "message": "Save image",
+        "message": "I-save ang imahe",
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Press this key to save the image or video you are currently viewing.",
+        "message": "Pindutin ang key na ito para i-save ang imahe o video na kasalukuyan mong tinitingnan.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
-        "message": "Activate full zoom",
+        "message": "I-activate ang full zoom",
         "description": "[options] Action key title"
     },
     "optFullZoomKeyDescription": {
-        "message": "When this key is held down, the picture is displayed using all available space. Useful for high resolution pictures only.",
+        "message": "Kapag pinindot ang key na ito, ipapakita ang imahe gamit ang lahat ng available na espasyo. Kapaki-pakinabang para sa mga imaheng may mataas na resolution lamang.",
         "description": "[options] Action key description"
     },
     "optCopyImageKeyTitle": {
-        "message": "Copy image to clipboard",
+        "message": "Kopyahin ang imahe sa clipboard",
         "description": "[options] Action key title"
     },
     "optCopyImageKeyDescription": {
-        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "message": "Kapag pinindot ang key na ito, ang imahe ay makokopya sa clipboard.",
         "description": "[options] Action key description"
     },
     "optCopyImageUrlKeyTitle": {
-        "message": "Copy image URL to clipboard",
+        "message": "Kopyahin ang URL ng imahe sa clipboard",
         "description": "[options] Action key title"
     },
     "optCopyImageUrlKeyDescription": {
-        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
+        "message": "Kapag pinindot ang key na ito, ang URL ng imahe o video ay makokopya sa clipboard.",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
-        "message": "View previous image in a gallery",
+        "message": "Tingnan ang nakaraang imahe sa isang gallery",
         "description": "[options] Action key title"
     },
     "optPrevImgKeyDescription": {
-        "message": "Press this key to view the previous image in a gallery.",
+        "message": "Pindutin ang key na ito upang tingnan ang nakaraang imahe sa isang gallery.",
         "description": "[options] Action key description"
     },
     "optNextImgKeyTitle": {
-        "message": "View next image in a gallery",
+        "message": "Tingnan ang susunod na imahe sa isang gallery",
         "description": "[options] Action key title"
     },
     "optNextImgKeyDescription": {
-        "message": "Press this key to view the next image in a gallery.",
+        "message": "Pindutin ang key na ito upang tingnan ang susunod na imahe sa isang gallery.",
         "description": "[options] Action key description"
     },
     "optFlipImageKeyTitle": {
-        "message": "Flip image",
+        "message": "I-flip ang imahe",
         "description": "[options] Action key title"
     },
     "optFlipImageKeyDescription": {
-        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+        "message": "Pindutin ang key na ito upang salit-salit na i-flip ang imahe nang patayo at pahalang. Madaling gamitin para sa pagbabasa ng mga text at logo sa mga naka-mirror na imahe o mga video.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
@@ -764,19 +764,19 @@
         "description": "[options] Changelog link in page footer"
     },
     "optFooterReportIssue": {
-        "message": "Report a bug",
+        "message": "Mag-ulat ng bug",
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
+        "message": "Bersyon $1 (huling update: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click anywhere on the page then hover again",
+        "message": "mag-click sa kahit saan sa pahina at mag-hover muli",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     },
     "msgClickPageToActivateActionKeys": {
-        "message": "click anywhere on the page to activate Action Keys",
+        "message": "mag-click kahit saan sa pahina para i-activate ang mga Action Key",
         "description": "Action keys are active only if page is focused"
     }
 }
