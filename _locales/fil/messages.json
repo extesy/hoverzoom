@@ -24,7 +24,7 @@
         "description": "[popup] Disables the extension for a specific site"
     },
     "popEnableForSite": {
-        "message": "I-enablesa halagang $1",
+        "message": "I-enable sa halagang $1",
         "description": "[popup] Enables the extension for a specific site"
     },
     "popPreloadImages": {
