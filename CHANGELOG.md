@@ -1,5 +1,53 @@
 # Changelog
 
+## [1.0.194](https://github.com/extesy/hoverzoom/tree/1.0.194) (2022-06-27)
+
+[Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.193...1.0.194)
+
+**Implemented enhancements:**
+
+- Improvements for plug-in: bilibili\_a [\#966](https://github.com/extesy/hoverzoom/pull/966) ([GrosPoulet](https://github.com/GrosPoulet))
+- Cosmetic changes \(list of supported formats\) [\#962](https://github.com/extesy/hoverzoom/pull/962) ([GrosPoulet](https://github.com/GrosPoulet))
+- Fix for plug-in: YouTube\_a \(shorts + imgs\) [\#959](https://github.com/extesy/hoverzoom/pull/959) ([GrosPoulet](https://github.com/GrosPoulet))
+- Fix for plug-ins: dailymotion\_a, twitch\_a, youtube\_a [\#956](https://github.com/extesy/hoverzoom/pull/956) ([GrosPoulet](https://github.com/GrosPoulet))
+- Fix for plug-in: dailymotion\_a [\#950](https://github.com/extesy/hoverzoom/pull/950) ([GrosPoulet](https://github.com/GrosPoulet))
+- New FAQ items + list of supported formats \(images & videos\) [\#949](https://github.com/extesy/hoverzoom/pull/949) ([GrosPoulet](https://github.com/GrosPoulet))
+- Enhancement for videos [\#947](https://github.com/extesy/hoverzoom/pull/947) ([GrosPoulet](https://github.com/GrosPoulet))
+
+**Fixed bugs:**
+
+- Save Image hotkey is not working on firefox [\#939](https://github.com/extesy/hoverzoom/issues/939)
+- Mouse wheel zooming on locked "v.redd.it" video [\#923](https://github.com/extesy/hoverzoom/issues/923)
+- disable on site shadertoy.com → still freeze the site display. [\#902](https://github.com/extesy/hoverzoom/issues/902)
+- Shortcuts suddenly don't work anymore, out of nowhere [\#732](https://github.com/extesy/hoverzoom/issues/732)
+- fix for plug-in: YouTube\_a [\#965](https://github.com/extesy/hoverzoom/pull/965) ([GrosPoulet](https://github.com/GrosPoulet))
+- Fix for plug-in: YouTube\_a [\#958](https://github.com/extesy/hoverzoom/pull/958) ([GrosPoulet](https://github.com/GrosPoulet))
+- Fix for plug-in: YouTube\_a [\#957](https://github.com/extesy/hoverzoom/pull/957) ([GrosPoulet](https://github.com/GrosPoulet))
+
+**Closed issues:**
+
+- "Save images & videos to folder" does not work, nor does "Rename saved images & videos" [\#969](https://github.com/extesy/hoverzoom/issues/969)
+- Viewing Images stored in Google Drive doesn't work [\#948](https://github.com/extesy/hoverzoom/issues/948)
+- Добавь Бэкап настроек, и по нажатию по расширению чтобы было, вкл увеличивало по наведению и выключенно, только по кнопке шифт [\#946](https://github.com/extesy/hoverzoom/issues/946)
+- Can't load images from preview.redd.it [\#924](https://github.com/extesy/hoverzoom/issues/924)
+- Issue with Wallhaven.cc [\#918](https://github.com/extesy/hoverzoom/issues/918)
+- Mouse wheel do not work on imgur album [\#872](https://github.com/extesy/hoverzoom/issues/872)
+- Action keys not working in firefox latest [\#862](https://github.com/extesy/hoverzoom/issues/862)
+- YouTube Support broken [\#855](https://github.com/extesy/hoverzoom/issues/855)
+- Youtube previews don't work on reddit [\#454](https://github.com/extesy/hoverzoom/issues/454)
+- Youtube Link Shows a White Empty Box [\#407](https://github.com/extesy/hoverzoom/issues/407)
+
+**Merged pull requests:**
+
+- New Crowdin updates [\#967](https://github.com/extesy/hoverzoom/pull/967) ([extesy](https://github.com/extesy))
+- New Crowdin updates [\#964](https://github.com/extesy/hoverzoom/pull/964) ([extesy](https://github.com/extesy))
+- Support for playlists \(M3U8\) [\#961](https://github.com/extesy/hoverzoom/pull/961) ([GrosPoulet](https://github.com/GrosPoulet))
+- New Crowdin updates [\#955](https://github.com/extesy/hoverzoom/pull/955) ([extesy](https://github.com/extesy))
+- New Crowdin updates [\#954](https://github.com/extesy/hoverzoom/pull/954) ([extesy](https://github.com/extesy))
+- New Crowdin updates [\#952](https://github.com/extesy/hoverzoom/pull/952) ([extesy](https://github.com/extesy))
+- Fix typos [\#951](https://github.com/extesy/hoverzoom/pull/951) ([GrosPoulet](https://github.com/GrosPoulet))
+- New Crowdin updates [\#945](https://github.com/extesy/hoverzoom/pull/945) ([extesy](https://github.com/extesy))
+
 ## [1.0.193](https://github.com/extesy/hoverzoom/tree/1.0.193) (2022-06-09)
 
 [Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.192...1.0.193)
@@ -54,7 +102,6 @@
 
 **Closed issues:**
 
-- Can't load images from preview.redd.it [\#924](https://github.com/extesy/hoverzoom/issues/924)
 - Add support for :  https://www.huaban.com [\#913](https://github.com/extesy/hoverzoom/issues/913)
 - The Extension is not working on Slickdeals [\#911](https://github.com/extesy/hoverzoom/issues/911)
 - redgifs.com links on reddit no longer working [\#910](https://github.com/extesy/hoverzoom/issues/910)
@@ -484,6 +531,7 @@
 - New Crowdin updates [\#701](https://github.com/extesy/hoverzoom/pull/701) ([extesy](https://github.com/extesy))
 - New Crowdin updates [\#700](https://github.com/extesy/hoverzoom/pull/700) ([extesy](https://github.com/extesy))
 - New Crowdin updates [\#699](https://github.com/extesy/hoverzoom/pull/699) ([extesy](https://github.com/extesy))
+- New Crowdin updates [\#697](https://github.com/extesy/hoverzoom/pull/697) ([extesy](https://github.com/extesy))
 
 ## [1.0.171](https://github.com/extesy/hoverzoom/tree/1.0.171) (2021-03-07)
 
@@ -495,7 +543,6 @@
 
 **Merged pull requests:**
 
-- New Crowdin updates [\#697](https://github.com/extesy/hoverzoom/pull/697) ([extesy](https://github.com/extesy))
 - New plug-in: picclick [\#696](https://github.com/extesy/hoverzoom/pull/696) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in: Wallapop + some plug-ins fixes [\#694](https://github.com/extesy/hoverzoom/pull/694) ([GrosPoulet](https://github.com/GrosPoulet))
 
@@ -515,6 +562,7 @@
 - New plugin request: Minds.com [\#430](https://github.com/extesy/hoverzoom/issues/430)
 - pixabay.com problem [\#339](https://github.com/extesy/hoverzoom/issues/339)
 - New plugin request: Danbooru.donmai.us [\#251](https://github.com/extesy/hoverzoom/issues/251)
+- ebay Kleinanzeigen please [\#53](https://github.com/extesy/hoverzoom/issues/53)
 
 **Merged pull requests:**
 
