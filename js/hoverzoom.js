@@ -583,6 +583,7 @@ var hoverZoom = {
             if (url.indexOf('.video') !== -1)
                 return true;
 
+            url = url.replace('.gif?format=mp4', '.mp4?'); // Fixes reddit preview links, these are mp4 masquerading as
             if (url.lastIndexOf('?') > 0)
                 url = url.substring(0, url.lastIndexOf('?'));
             const ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
