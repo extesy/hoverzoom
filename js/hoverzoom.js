@@ -56,9 +56,9 @@ var hoverZoom = {
 
     options:{},
     currentLink:null,
-    hzImg:null,
-    hzImgLoader:null,
-    hzImgCss:{
+    hzViewer:null,
+    hzLoader:null,
+    hzViewerCss:{
         'background':'none',
         'line-height':'0px',
         'overflow':'hidden',
@@ -67,7 +67,7 @@ var hoverZoom = {
         'z-index':2147483647,
         'transform':''
     },
-    hzImgLoaderCss:{
+    hzLoaderCss:{
         'background':'none',
         'border-style':'solid',
         'border-width':'4px',
@@ -80,21 +80,21 @@ var hoverZoom = {
         'border-radius':'4px',
         'box-shadow':'0px 1px 3px rgba(0, 0, 0, 0.4)'
     },
-    hzImgContainerCss:{
+    hzContainerCss:{
         'position':'relative',
         'display':'flex',
         'align-items':'center',
         'justify-content':'center'
     },
-    hzImgLoadingCss:{ // green
+    hzViewerLoadingCss:{ // green
         'border-color':'#e1ffbf',
         'background-color':'#e1ffbf'
     },
-    hzImgSkippedCss:{ // orange
+    hzViewerSkippedCss:{ // orange
         'border-color':'#ffdfbf',
         'background-color':'#ffdfbf'
     },
-    hzImgErrorCss:{ // red
+    hzViewerErrorCss:{ // red
         'border-color':'#ffbfbf',
         'background-color':'#ffbfbf'
     },
@@ -119,7 +119,7 @@ var hoverZoom = {
             actionKeyDown = false,
             fullZoomKeyDown = false,
             hideKeyDown = false,
-            imageLocked = false,
+            viewerLocked = false,
             lockImageClickTime = 0,
             zoomFactor = 1,
             pageActionShown = false,
@@ -343,7 +343,7 @@ var hoverZoom = {
         ];
 
         // calculate optimal image position and size
-        function posImg(position) {
+        function posViewer(position) {
 
             imgSkipped = false
             imgError = false;
@@ -393,7 +393,7 @@ var hoverZoom = {
                 // this is looped 10x max just in case something goes wrong, to avoid freezing the process
                 let i = 0;
 
-                while (!imageLocked && hz.hzImg.height() > wndHeight - statusBarHeight - scrollBarHeight && i++ < 10) {
+                while (!viewerLocked && hz.hzViewer.height() > wndHeight - statusBarHeight - scrollBarHeight && i++ < 10) {
                     imgFullSize.height(wndHeight - padding - statusBarHeight - scrollBarHeight - (hzAbove ? hzAbove.height() : 0) - (hzBelow ? hzBelow.height() : 0)).width('auto');
                 }
 
@@ -444,7 +444,7 @@ var hoverZoom = {
                 position.left -= offset;
             }
 
-            if ($('#hzImgLoader.imgLoading')[0] != undefined) {
+            if ($('#hzLoader.imgLoading')[0] != undefined) {
                 hz.displayImgLoader('loading', position);
                 return;
             } else {
@@ -453,8 +453,8 @@ var hoverZoom = {
                 loading = false;
 
                 imgFullSize.width('auto').height('auto');
-                hz.hzImg.width('auto').height('auto');
-                //hz.hzImg.css('visibility', 'visible');
+                hz.hzViewer.width('auto').height('auto');
+                //hz.hzViewer.css('visibility', 'visible');
 
                 // image natural dimensions
 
@@ -466,8 +466,8 @@ var hoverZoom = {
                 }
 
                 // width adjustment
-                var fullZoom = options.mouseUnderlap || fullZoomKeyDown || imageLocked;
-                if (imageLocked) {
+                var fullZoom = options.mouseUnderlap || fullZoomKeyDown || viewerLocked;
+                if (viewerLocked) {
                     imgFullSize.width(imgDetails.naturalWidth * zoomFactor);
                 } else if (fullZoom) {
                     imgFullSize.width(Math.min(imgDetails.naturalWidth * zoomFactor, wndWidth - padding - 2 * scrollBarWidth));
@@ -482,30 +482,30 @@ var hoverZoom = {
                 }
 
                 // height adjustment
-                if (!imageLocked && hz.hzImg.height() > wndHeight - padding - statusBarHeight - scrollBarHeight) {
+                if (!viewerLocked && hz.hzViewer.height() > wndHeight - padding - statusBarHeight - scrollBarHeight) {
                     imgFullSize.height(wndHeight - padding - statusBarHeight - scrollBarHeight).width('auto');
                 }
 
                 adjustCaptionMiscellaneousDetails();
 
-                position.top -= hz.hzImg.height() / 2;
+                position.top -= hz.hzViewer.height() / 2;
 
                 // display image on the left side if the mouse is on the right
                 if (!displayOnRight) {
-                    position.left -= hz.hzImg.width() + padding;
+                    position.left -= hz.hzViewer.width() + padding;
                 }
 
                 // horizontal position adjustment if full zoom
                 if (fullZoom) {
                     if (displayOnRight) {
-                        position.left = Math.min(position.left, wndScrollLeft + wndWidth - hz.hzImg.width() - padding - 2 * scrollBarWidth);
+                        position.left = Math.min(position.left, wndScrollLeft + wndWidth - hz.hzViewer.width() - padding - 2 * scrollBarWidth);
                     } else {
                         position.left = Math.max(position.left, wndScrollLeft);
                     }
                 }
 
                 // vertical position adjustments
-                var maxTop = wndScrollTop + wndHeight - hz.hzImg.height() - padding - statusBarHeight - scrollBarHeight;
+                var maxTop = wndScrollTop + wndHeight - hz.hzViewer.height() - padding - statusBarHeight - scrollBarHeight;
                 if (position.top > maxTop) {
                     position.top = maxTop;
                 }
@@ -523,10 +523,10 @@ var hoverZoom = {
                 }
             }
 
-            if (options.centerImages || imageLocked) {
-                hz.hzImg.css('top', (wndHeight / 2 - hz.hzImg.height() / 2 - padding / 2 - statusBarHeight / 2 - scrollBarHeight / 2) + 'px');
-                hz.hzImg.css('left', (wndWidth / 2 - hz.hzImg.width() / 2 - padding / 2 - scrollBarWidth / 2) + 'px');
-                hz.hzImg.css('position', 'fixed');
+            if (options.centerImages || viewerLocked) {
+                hz.hzViewer.css('top', (wndHeight / 2 - hz.hzViewer.height() / 2 - padding / 2 - statusBarHeight / 2 - scrollBarHeight / 2) + 'px');
+                hz.hzViewer.css('left', (wndWidth / 2 - hz.hzViewer.width() / 2 - padding / 2 - scrollBarWidth / 2) + 'px');
+                hz.hzViewer.css('position', 'fixed');
             } else {
                 // this fixes positioning when the body's width is not 100%
                 if (body100pct) {
@@ -543,7 +543,7 @@ var hoverZoom = {
                     position.left = wndScrollLeft + 0.5 * padding;
                 }
 
-                hz.hzImg.css({top:Math.round(position.top), left:Math.round(position.left)});
+                hz.hzViewer.css({top:Math.round(position.top), left:Math.round(position.left)});
             }
         }
 
@@ -556,7 +556,7 @@ var hoverZoom = {
             var ratioY = 1 - (2 * event.clientY / window.innerHeight);
             var dx = widthOffset > 0 ? ratioX * (widthOffset + 50) : 0;
             var dy = heightOffset > 0 ? ratioY * (heightOffset + 50) : 0;
-            hz.hzImg.css('transform', `translate(${dx}px, ${dy}px)`);
+            hz.hzViewer.css('transform', `translate(${dx}px, ${dy}px)`);
         }
 
         // adapted from: https://gist.github.com/numee/1e7a19cd26113323f1ae
@@ -616,8 +616,8 @@ var hoverZoom = {
         }
 
         function updateAmbilight() {
-            if (!hz.hzImg) return;
-            var canvas = hz.hzImg.find('canvas')[0];
+            if (!hz.hzViewer) return;
+            var canvas = hz.hzViewer.find('canvas')[0];
             if (!canvas || !imgFullSize) return;
 
             var isVideo = isVideoLink(imgDetails.url, true);
@@ -671,8 +671,8 @@ var hoverZoom = {
 
         function posWhileLoading() {
             if (loading) {
-                posImg();
-                if ($('#hzImgLoader.imgLoading')[0] != undefined && imgFullSize && imgFullSize.height() > 0) {
+                posViewer();
+                if ($('#hzLoader.imgLoading')[0] != undefined && imgFullSize && imgFullSize.height() > 0) {
                     displayFullSizeImage();
                 } else {
                     setTimeout(posWhileLoading, 100);
@@ -755,13 +755,13 @@ var hoverZoom = {
             if (imgFullSize) {
                 imgFullSize.remove();
                 imgFullSize = null;
-                imageLocked = false;
+                viewerLocked = false;
             }
 
             if (audioFullSize) {
                 audioFullSize.remove();
                 audioFullSize = null;
-                imageLocked = false;
+                viewerLocked = false;
             }
         }
 
@@ -771,8 +771,8 @@ var hoverZoom = {
         }
 
         function stopMedia(selector) {
-            if (!hz.hzImg) return;
-            var el = hz.hzImg.find(selector).get(0);
+            if (!hz.hzViewer) return;
+            var el = hz.hzViewer.find(selector).get(0);
             if (el) {
                 if (selector === 'audio') {
                     el.pause();
@@ -796,8 +796,8 @@ var hoverZoom = {
 
         function pauseMedia(selector) {
             cLog('pauseMedia selector=' + selector);
-            if (!hz.hzImg) return;
-            var el = hz.hzImg.find(selector).get(0);
+            if (!hz.hzViewer) return;
+            var el = hz.hzViewer.find(selector).get(0);
             if (el) {
                 if (selector == 'audio') {
                     cLog('pause audio');
@@ -817,8 +817,8 @@ var hoverZoom = {
 
         function playMedia(selector) {
             cLog('playMedia selector=' + selector);
-            if (!hz.hzImg) return;
-            var el = hz.hzImg.find(selector).get(0);
+            if (!hz.hzViewer) return;
+            var el = hz.hzViewer.find(selector).get(0);
             if (el) {
                 if (selector == 'audio') {
                     cLog('play audio');
@@ -833,8 +833,8 @@ var hoverZoom = {
 
         function closeHoverZoomImg(now) {
             cLog('closeHoverZoomImg(' + now + ')');
-            if (hz.hzImgLoader) { hz.hzImgLoader.remove(); hz.hzImgLoader = null; }
-            if ((!now && !imgFullSize) || !hz.hzImg || fullZoomKeyDown || imageLocked) {
+            if (hz.hzLoader) { hz.hzLoader.remove(); hz.hzLoader = null; }
+            if ((!now && !imgFullSize) || !hz.hzViewer || fullZoomKeyDown || viewerLocked) {
                 return;
             }
 
@@ -847,11 +847,11 @@ var hoverZoom = {
             if (loading) {
                 now = true;
             }
-            hz.hzImg.stop(true, true).fadeOut(now ? 0 : options.fadeDuration, function () {
+            hz.hzViewer.stop(true, true).fadeOut(now ? 0 : options.fadeDuration, function () {
                 removeMedias();
                 hzCaptionMiscellaneous = null;
                 hzDetails = null;
-                hz.hzImg.empty();
+                hz.hzViewer.empty();
             });
         }
 
@@ -890,14 +890,14 @@ var hoverZoom = {
                 lastMousePosTop = mousePos.top;
                 lastMousePosLeft = mousePos.left;
 
-                if (imageLocked) {
+                if (viewerLocked) {
                     // Don't hide cursor on locked image & allow clicking.
-                    if (hz.hzImg) { hz.hzImg.css('cursor', 'pointer'); hz.hzImg.css('pointer-events', 'auto'); }
+                    if (hz.hzViewer) { hz.hzViewer.css('cursor', 'pointer'); hz.hzViewer.css('pointer-events', 'auto'); }
                     if (imgFullSize) panLockedImage();
                     return;
                 }
 
-                if (hz.hzImg && imgFullSize) {
+                if (hz.hzViewer && imgFullSize) {
                     showCursor();
 
                     if (options.hideMouseCursor) {
@@ -927,7 +927,7 @@ var hoverZoom = {
 
             if (options.mouseUnderlap && target.length && mousePos && linkRect &&
                 (imgFullSize && imgFullSize.length && target[0] == imgFullSize[0] ||
-                    hz.hzImg && hz.hzImg.length && target[0] == hz.hzImg[0])) {
+                    hz.hzViewer && hz.hzViewer.length && target[0] == hz.hzViewer[0])) {
                 if (mousePos.top > linkRect.top && mousePos.top < linkRect.bottom && mousePos.left > linkRect.left && mousePos.left < linkRect.right) {
                     return;
                 }
@@ -974,18 +974,18 @@ var hoverZoom = {
                             loading = true;
                         }
                     } else {
-                        posImg();
+                        posViewer();
                     }
                 }
             } else if (hz.currentLink) {
-                cancelImageLoading();
+                cancelSourceLoading();
             }
         }
 
         function documentContextMenu(event) {
             // If it's been less than 300ms since right click, lock image and prevent context menu.
             var lockElapsed = event.timeStamp - lockImageClickTime;
-            if (imgFullSize && !imageLocked && options.lockImageKey === -1 && lockElapsed < 300) {
+            if (imgFullSize && !viewerLocked && options.lockImageKey === -1 && lockElapsed < 300) {
                 lockImage();
                 event.preventDefault();
             }
@@ -993,13 +993,13 @@ var hoverZoom = {
 
         function documentMouseDown(event) {
             // Right click pressed and lockImageKey is set to special value for right click (-1).
-            if (imgFullSize && !imageLocked && options.lockImageKey === -1 && event.button === 2) {
+            if (imgFullSize && !viewerLocked && options.lockImageKey === -1 && event.button === 2) {
                 lockImageClickTime = event.timeStamp;
-            } else if (imgFullSize && event.target !== hz.hzImg[0] && event.target !== imgFullSize[0]) {
-                if (imageLocked && event.button === 0) {
-                    imageLocked = false;
+            } else if (imgFullSize && event.target !== hz.hzViewer[0] && event.target !== imgFullSize[0]) {
+                if (viewerLocked && event.button === 0) {
+                    viewerLocked = false;
                 }
-                cancelImageLoading();
+                cancelSourceLoading();
                 restoreTitles();
             }
         }
@@ -1007,9 +1007,9 @@ var hoverZoom = {
         // select correct font size for msg depending on img or video width
         function getMsgFontSize() {
             let w = 0;
-            let img = hz.hzImg.find('img').get(0);
+            let img = hz.hzViewer.find('img').get(0);
             if (img) w = $(img).width()
-            let video = hz.hzImg.find('video').get(0);
+            let video = hz.hzViewer.find('video').get(0);
             if (video) w = $(video).width();
 
             if (w > 500) return msgFontSizeXXXLCss;
@@ -1025,7 +1025,7 @@ var hoverZoom = {
             // If no image is currently displayed...
             if (!imgFullSize) {
                 hz.displayImgLoader('loading');
-                hz.createHzImg(!hideKeyDown);
+                hz.createHzViewer(!hideKeyDown);
                 zoomFactor = parseInt(options.zoomFactor);
 
                 imgDetails.video = isVideoLink(imgDetails.url);
@@ -1034,14 +1034,14 @@ var hoverZoom = {
                     getVideoAudioFromUrl();
 
                     if (!options.zoomVideos) {
-                        cancelImageLoading();
+                        cancelSourceLoading();
                         return;
                     }
 
                     const video = document.createElement('video');
                     video.style.width = 0;
                     video.style.height = 0;
-                    video.controls = imageLocked;
+                    video.controls = viewerLocked;
                     video.loop = true;
                     video.autoplay = true;
                     video.muted = options.muteVideos;
@@ -1049,11 +1049,11 @@ var hoverZoom = {
                     video.src = imgDetails.url;
                     // MKV
                     if (video.src.indexOf('.mkv') !== -1) video.type = 'video/mp4';
-                    imgFullSize = $(video).appendTo(hz.hzImg);
+                    imgFullSize = $(video).appendTo(hz.hzViewer);
 
                     video.addEventListener('error', imgFullSizeOnError);
                     video.addEventListener('loadedmetadata', function() {
-                        posImg();
+                        posViewer();
                         if (options.videoTimestamp) {
                             addTimestampTrack(video);
                         }
@@ -1068,7 +1068,7 @@ var hoverZoom = {
                             }).catch(error => {
                                 if (error.name === "NotAllowedError") {
                                     // NotAllowedError: play() failed because the user didn't interact with the document first. https://goo.gl/xX8pDD
-                                    $(hz.hzImg.hzImgContainer).css(hz.hzImgContainerCss);
+                                    $(hz.hzViewer.hzContainer).css(hz.hzContainerCss);
                                     cLog("Play not allowed: " + error);
                                     displayMsg("msgClickPageToPlayVideo");
                                     video.removeAttribute('poster');
@@ -1081,12 +1081,12 @@ var hoverZoom = {
 
                     if (imgDetails.audioUrl) {
                         const audio = document.createElement('audio');
-                        audio.controls = imageLocked;
+                        audio.controls = viewerLocked;
                         audio.autoplay = false;
                         audio.muted = (imgDetails.audioMuted ? true : options.muteVideos);
                         audio.volume = options.videoVolume;
                         audio.src = imgDetails.audioUrl;
-                        audioFullSize = $(audio).appendTo(hz.hzImg);
+                        audioFullSize = $(audio).appendTo(hz.hzViewer);
 
                         // synchronize audio controls with video controls
                         video.addEventListener('play', function() {
@@ -1114,19 +1114,19 @@ var hoverZoom = {
                     // this is needed for browsers that do not support natively playlists, such as Chrome
 
                     if (!options.zoomVideos) {
-                        cancelImageLoading();
+                        cancelSourceLoading();
                         return;
                     }
 
                     const video = document.createElement('video');
                     video.style.width = 0;
                     video.style.height = 0;
-                    video.controls = imageLocked;
+                    video.controls = viewerLocked;
                     video.loop = true;
                     video.autoplay = true;
                     video.muted = options.muteVideos;
                     video.volume = options.videoVolume;
-                    imgFullSize = $(video).appendTo(hz.hzImg);
+                    imgFullSize = $(video).appendTo(hz.hzViewer);
                     hls = new Hls({
                         debug: debug,
                     });
@@ -1136,7 +1136,7 @@ var hoverZoom = {
 
                     video.addEventListener('error', imgFullSizeOnError);
                     video.addEventListener('loadedmetadata', function() {
-                        posImg();
+                        posViewer();
                         if (options.videoTimestamp) {
                             addTimestampTrack(video);
                         }
@@ -1152,7 +1152,7 @@ var hoverZoom = {
                             }).catch(error => {
                                 if (error.name === "NotAllowedError") {
                                     // NotAllowedError: play() failed because the user didn't interact with the document first. https://goo.gl/xX8pDD
-                                    $(hz.hzImg.hzImgContainer).css(hz.hzImgContainerCss);
+                                    $(hz.hzViewer.hzContainer).css(hz.hzContainerCss);
                                     cLog("Play not allowed: " + error);
                                     displayMsg("msgClickPageToPlayVideo");
                                     video.removeAttribute('poster');
@@ -1163,8 +1163,8 @@ var hoverZoom = {
                         }
                     });
                 } else {
-                    hz.hzImg.hzImgContainer = $('<div id="hzImgContainer"/>').css(hz.hzImgContainerCss).appendTo(hz.hzImg);
-                    imgFullSize = $('<img style="border: none" />').appendTo(hz.hzImg.hzImgContainer).on('load', imgFullSizeOnLoad).on('error', imgFullSizeOnError).attr('src', imgDetails.url);
+                    hz.hzViewer.hzContainer = $('<div id="hzContainer"/>').css(hz.hzContainerCss).appendTo(hz.hzViewer);
+                    imgFullSize = $('<img style="border: none" />').appendTo(hz.hzViewer.hzContainer).on('load', imgFullSizeOnLoad).on('error', imgFullSizeOnError).attr('src', imgDetails.url);
                     // Note for Chrome: if image is loaded from cache then 'load' event is never fired
                 }
 
@@ -1176,9 +1176,9 @@ var hoverZoom = {
                 if (options.showWhileLoading && !imgDetails.video) {
                     posWhileLoading();
                 }
-                posImg();
+                posViewer();
             }
-            posImg();
+            posViewer();
         }
 
         function addTimestampTrack(video){
@@ -1243,7 +1243,7 @@ var hoverZoom = {
             let fontSizeCss = getMsgFontSize();
             let msgDiv = $('<div/>', {id:'hzMsg'}).css(msgCss).css(fontSizeCss);
             $('<p/>').text(chrome.i18n.getMessage(msgId)).addClass('blinkWarning').css(msgTextCss).appendTo(msgDiv);
-            $(msgDiv).appendTo(hz.hzImg.hzImgContainer);
+            $(msgDiv).appendTo(hz.hzViewer.hzContainer);
         }
 
         function displayFullSizeImage() {
@@ -1251,13 +1251,13 @@ var hoverZoom = {
             // check focus
             let focus = document.hasFocus();
 
-            if (hz.hzImgLoader) { hz.hzImgLoader.remove(); hz.hzImgLoader = null; }
+            if (hz.hzLoader) { hz.hzLoader.remove(); hz.hzLoader = null; }
 
-            hz.hzImg.stop(true, true);
-            hz.hzImg.offset({top:-9000, left:-9000}); // hides the image while making it available for size calculations
-            hz.hzImg.empty();
+            hz.hzViewer.stop(true, true);
+            hz.hzViewer.offset({top:-9000, left:-9000}); // hides the image while making it available for size calculations
+            hz.hzViewer.empty();
 
-            hz.hzImg.css('visibility', 'visible');
+            hz.hzViewer.css('visibility', 'visible');
 
             if (options.ambilightEnabled) {
 
@@ -1267,10 +1267,10 @@ var hoverZoom = {
                 imgFullSizeCss.borderStyle = 'none';
                 imgFullSizeCss.borderWidth = 'none';
 
-                hz.hzImg.css('overflow', 'visible');
-                hz.hzImg.css('border', '0px');
-                hz.hzImg.css('padding', '10px');
-                hz.hzImg.css('box-shadow', 'none');
+                hz.hzViewer.css('overflow', 'visible');
+                hz.hzViewer.css('border', '0px');
+                hz.hzViewer.css('padding', '10px');
+                hz.hzViewer.css('box-shadow', 'none');
                 var background = $('<div/>');
                 $(background).css('width', 20 * screen.availWidth) // background canvas must be very large in case of zooming
                              .css('height', 20 * screen.availHeight)
@@ -1281,18 +1281,18 @@ var hoverZoom = {
                              .css('pointer-events', 'none')
                              .css('background-color', 'black')
                              .css('opacity', options.ambilightBackgroundOpacity);
-                background.appendTo(hz.hzImg);
+                background.appendTo(hz.hzViewer);
 
                 var canvas = $('<canvas/>');
                 $(canvas).css('position', 'absolute')
                          .css('z-index', -1)
                          .css('pointer-events', 'none')
                          .css('opacity', 1);
-                canvas.appendTo(hz.hzImg);
+                canvas.appendTo(hz.hzViewer);
             }
 
-            hz.hzImg.hzImgContainer = $('<div id="hzImgContainer"/>').css(hz.hzImgContainerCss).appendTo(hz.hzImg);
-            imgFullSize.css(imgFullSizeCss).appendTo(hz.hzImg.hzImgContainer);
+            hz.hzViewer.hzContainer = $('<div id="hzContainer"/>').css(hz.hzContainerCss).appendTo(hz.hzViewer);
+            imgFullSize.css(imgFullSizeCss).appendTo(hz.hzViewer.hzContainer);
             // when page looses focus all action keys become inactive
             if (options.enableNoFocusMsg && !focus && !noFocusMsgAlreadyDisplayed) {
                 displayMsg("msgClickPageToActivateActionKeys");
@@ -1300,14 +1300,14 @@ var hoverZoom = {
             }
 
             // display video controls
-            if (imageLocked) {
-                let v = hz.hzImg.find('video')[0];
+            if (viewerLocked) {
+                let v = hz.hzViewer.find('video')[0];
                 if (v) v.controls = true;
             }
 
             if (audioFullSize) {
                 // display audio controls
-                if (imageLocked) {
+                if (viewerLocked) {
                     audioFullSize[0].controls = true;
 
                     audioFullSize.hover(function() {
@@ -1326,7 +1326,7 @@ var hoverZoom = {
                         audioFullSize[0].style.opacity = 0;
                     });
                 }
-                audioFullSize.css(audioFullSizeCss).appendTo(hz.hzImg.hzImgContainer);
+                audioFullSize.css(audioFullSizeCss).appendTo(hz.hzViewer.hzContainer);
             }
 
             if (hz.currentLink) {
@@ -1361,11 +1361,11 @@ var hoverZoom = {
                     imgThumb = null;
                 }
 
-                //hz.hzImg.css('cursor', 'pointer');
+                //hz.hzViewer.css('cursor', 'pointer');
 
-                if (imageLocked) {
+                if (viewerLocked) {
                     // Allow clicking on locked image.
-                    hz.hzImg.css('pointer-events', 'auto');
+                    hz.hzViewer.css('pointer-events', 'auto');
                 }
 
                 initLinkRect(imgThumb || hz.currentLink);
@@ -1378,7 +1378,7 @@ var hoverZoom = {
 
                 if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) {
                     var info = (linkData.hoverZoomGalleryIndex + 1) + '/' + linkData.hoverZoomGallerySrc.length;
-                    hzGallery = $('<div/>', {id:'hzGallery', text:info}).css(hzGalleryInfoCss).prependTo(hz.hzImg.hzImgContainer);
+                    hzGallery = $('<div/>', {id:'hzGallery', text:info}).css(hzGalleryInfoCss).prependTo(hz.hzViewer.hzContainer);
                     if (linkData.hoverZoomGalleryIndex == 0 && linkData.hoverZoomGallerySrc.length > 1) {
                         preloadGalleryImage(1);
                     }
@@ -1386,11 +1386,11 @@ var hoverZoom = {
             }
 
             if (!skipFadeIn && !hideKeyDown) {
-                hz.hzImg.hide().fadeTo(options.fadeDuration, options.picturesOpacity);
+                hz.hzViewer.hide().fadeTo(options.fadeDuration, options.picturesOpacity);
             }
 
             // The image size is not yet available in the onload so I have to delay the positioning
-            setTimeout(posImg, options.showWhileLoading ? 0 : 10);
+            setTimeout(posViewer, options.showWhileLoading ? 0 : 10);
 
             if (options.addToHistory && !chrome.extension.inIncognitoContext) {
                 chrome.runtime.sendMessage({action:'addUrlToHistory', url:imgDetails.url});
@@ -1404,8 +1404,8 @@ var hoverZoom = {
 
             $('#hzAbove').remove();
             $('#hzBelow').remove();
-            hzAbove = $('<div/>', {id:'hzAbove'}).css(hzAboveCss).prependTo(hz.hzImg);
-            hzBelow = $('<div/>', {id:'hzBelow'}).css(hzBelowCss).appendTo(hz.hzImg);
+            hzAbove = $('<div/>', {id:'hzAbove'}).css(hzAboveCss).prependTo(hz.hzViewer);
+            hzBelow = $('<div/>', {id:'hzBelow'}).css(hzBelowCss).appendTo(hz.hzViewer);
 
             if (options.detailsLocation != "none") displayDetails();
             if (options.captionLocation != "none") displayCaptionMiscellaneous();
@@ -1535,19 +1535,19 @@ var hoverZoom = {
         }
 
         function hideCursor() {
-            if (!hz.hzImg) return;
-            hz.hzImg.css('cursor', 'none');
-            hz.hzImg.css('pointer-events', 'auto');
+            if (!hz.hzViewer) return;
+            hz.hzViewer.css('cursor', 'none');
+            hz.hzViewer.css('pointer-events', 'auto');
         }
 
         function showCursor() {
-            if (!hz.hzImg) return;
-            hz.hzImg.css('cursor', 'pointer');
-            hz.hzImg.css('pointer-events', 'none');
+            if (!hz.hzViewer) return;
+            hz.hzViewer.css('cursor', 'pointer');
+            hz.hzViewer.css('pointer-events', 'none');
         }
 
-        function cancelImageLoading() {
-            cLog('cancelImageLoading');
+        function cancelSourceLoading() {
+            cLog('cancelSourceLoading');
             loading = false;
             hz.currentLink = null;
             clearTimeout(loadFullSizeImageTimeout);
@@ -1936,12 +1936,12 @@ var hoverZoom = {
                 insertedNode.nodeName === 'IMG' ||
                 insertedNode.getElementsByTagName('A').length > 0 ||
                 insertedNode.getElementsByTagName('IMG').length > 0) {
-                if (insertedNode.id !== 'hzImg' &&
+                if (insertedNode.id !== 'hzViewer' &&
                     insertedNode.id !== 'hzDownscaled' &&
-                    insertedNode.id !== 'hzImgLoader' &&
+                    insertedNode.id !== 'hzLoader' &&
                     (insertedNode.parentNode === null ||
-                       (insertedNode.parentNode.id !== 'hzImg' &&
-                        insertedNode.parentNode.id !== 'hzImgContainer'))) {
+                       (insertedNode.parentNode.id !== 'hzViewer' &&
+                        insertedNode.parentNode.id !== 'hzContainer'))) {
                     prepareImgLinksAsync();
                 }
                 bindJsaction();
@@ -1958,7 +1958,7 @@ var hoverZoom = {
         var deltaMin = 1000;
         function bindEvents() {
             bindObserver();
-            wnd.on('load',windowOnLoad).scroll(cancelImageLoading).blur(cancelImageLoading);
+            wnd.on('load',windowOnLoad).scroll(cancelSourceLoading).blur(cancelSourceLoading);
 
             // to deal with lazy loading : prepare imgs links when user scrolls down more than deltaMin pixels, even if no node inserted
             // for instance, on TripAdvisor:
@@ -1977,7 +1977,7 @@ var hoverZoom = {
             $(document).on('click', function() { prepareImgLinksAsync(); });
 
             $(document).contextmenu(documentContextMenu);
-            $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).mouseleave(cancelImageLoading);
+            $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).mouseleave(cancelSourceLoading);
             $(document).keydown(documentOnKeyDown).keyup(documentOnKeyUp).keypress(documentOnKeyPress);
             if (options.galleriesMouseWheel) {
                 window.addEventListener('wheel', documentOnMouseWheel, {passive: false});
@@ -2005,13 +2005,13 @@ var hoverZoom = {
         }
 
         function documentOnMouseWheel(event) {
-            if (imageLocked) {
+            if (viewerLocked) {
                 event.preventDefault();
                 // Scale up or down locked image then clamp between 0.1x and 10x.
                 let step = zoomFactor < 2 ? 0.1 : 0.1 * Math.floor(zoomFactor);
                 zoomFactor = zoomFactor + (event.deltaY < 0 ? 1 : -1) * step;
                 zoomFactor = Math.max(Math.min(zoomFactor, 10), 0.1);
-                posImg();
+                posViewer();
                 panLockedImage();
             } else if (imgFullSize) {
                 var link = hz.currentLink, data = link.data();
@@ -2023,7 +2023,7 @@ var hoverZoom = {
                         rotateGalleryImg(1);
                     }
                 } else {
-                    var video = hz.hzImg.find('video').get(0);
+                    var video = hz.hzViewer.find('video').get(0);
                     if (video && !options.disableMouseWheelForVideo) {
                         event.preventDefault();
                         if (event.deltaY < 0) {
@@ -2049,10 +2049,10 @@ var hoverZoom = {
                 options.extensionEnabled = !options.extensionEnabled;
                 if (!options.extensionEnabled) {
                     // close zoomed image or video
-                    imageLocked = false;
-                    if (hz.hzImg) {
+                    viewerLocked = false;
+                    if (hz.hzViewer) {
                         stopMedias();
-                        hz.hzImg.hide();
+                        hz.hzViewer.hide();
                     }
                     if (imgFullSize) {
                         return false;
@@ -2072,7 +2072,7 @@ var hoverZoom = {
             // Full zoom key is pressed down
             if (keyCode === options.fullZoomKey && !fullZoomKeyDown) {
                 fullZoomKeyDown = true;
-                posImg();
+                posViewer();
                 if (imgFullSize) {
                     return false;
                 }
@@ -2081,10 +2081,10 @@ var hoverZoom = {
             // close key (close zoomed image) is pressed down
             // => zoomed image is closed immediately
             if (keyCode === options.closeKey) {
-                imageLocked = false;
-                if (hz.hzImg) {
+                viewerLocked = false;
+                if (hz.hzViewer) {
                     stopMedias();
-                    hz.hzImg.hide();
+                    hz.hzViewer.hide();
                 }
                 if (imgFullSize) {
                     return false;
@@ -2095,9 +2095,9 @@ var hoverZoom = {
             // => zoomed image remains hidden until key is released
             if (keyCode === options.hideKey && !hideKeyDown) {
                 hideKeyDown = true;
-                if (hz.hzImg) {
+                if (hz.hzViewer) {
                     pauseMedias();
-                    hz.hzImg.hide();
+                    hz.hzViewer.hide();
                 }
                 if (imgFullSize) {
                     return false;
@@ -2114,7 +2114,7 @@ var hoverZoom = {
                 }
                 // "Lock image" key
                 if (keyCode === options.lockImageKey) {
-                    if (!imageLocked) lockImage();
+                    if (!viewerLocked) lockImage();
                     return false;
                 }
                 // "Copy image" key
@@ -2152,7 +2152,7 @@ var hoverZoom = {
         }
 
         function changeVideoPosition(amount) {
-            const video = hz.hzImg.find('video').get(0);
+            const video = hz.hzViewer.find('video').get(0);
             if (video && video.currentTime) {
                 video.currentTime = Math.max(video.currentTime + amount, 0);
             }
@@ -2173,7 +2173,7 @@ var hoverZoom = {
             if (event.which === options.hideKey) {
                 hideKeyDown = false;
                 if (imgFullSize) {
-                    hz.hzImg.show();
+                    hz.hzViewer.show();
                     playMedias();
                 }
                 $(this).mousemove();
@@ -2524,7 +2524,7 @@ var hoverZoom = {
                         }
                     } catch {}
                 }
-                posImg();
+                posViewer();
             } );
         }
 
@@ -2602,8 +2602,8 @@ var hoverZoom = {
 
             switch (downloadMedia) {
                 case downloadMedias.IMG:
-                    if (!hz.hzImg) return '';
-                    let img = hz.hzImg.find('img').get(0);
+                    if (!hz.hzViewer) return '';
+                    let img = hz.hzViewer.find('img').get(0);
                     if (!img) return '';
                     src = img.src;
                     // remove trailing / & trailing query
@@ -2615,8 +2615,8 @@ var hoverZoom = {
                     return filename;
 
                 case downloadMedias.VIDEO:
-                    if (!hz.hzImg) return '';
-                    let video = hz.hzImg.find('video').get(0);
+                    if (!hz.hzViewer) return '';
+                    let video = hz.hzViewer.find('video').get(0);
                     if (!video) return '';
                     src = video.src;
                     if (src.startsWith('blob:')) return '';
@@ -2629,8 +2629,8 @@ var hoverZoom = {
                     return filename;
 
                 case downloadMedias.AUDIO:
-                    if (!hz.hzImg) return '';
-                    let audio = hz.hzImg.find('audio').get(0);
+                    if (!hz.hzViewer) return '';
+                    let audio = hz.hzViewer.find('audio').get(0);
                     if (!audio) return '';
                     src = audio.src;
                     // remove trailing / & trailing query
@@ -2642,7 +2642,7 @@ var hoverZoom = {
                     return filename;
 
                 case downloadMedias.PLAYLIST:
-                    if (!hz.hzImg) return '';
+                    if (!hz.hzViewer) return '';
                     if (!imgDetails.playlist) return '';
                     src = imgDetails.url;
                     // remove trailing / & trailing query
@@ -2657,7 +2657,7 @@ var hoverZoom = {
         }
 
         function lockImage() {
-            imageLocked = true;
+            viewerLocked = true;
             displayFullSizeImage();
         }
 
@@ -2686,8 +2686,8 @@ var hoverZoom = {
 
             // flip timestamp on videos
             if (imgFullSize.is('video') && options.videoTimestamp) {
-                $('#hzImgContainer').removeClass('flipX flipXY flipXYX');
-                $('#hzImgContainer').addClass(flip);
+                $('#hzContainer').removeClass('flipX flipXY flipXYX');
+                $('#hzContainer').addClass(flip);
                 addTimestampTrack(imgFullSize[0]);
             }
         }
@@ -2724,8 +2724,8 @@ var hoverZoom = {
         }
 
         function saveImg() {
-            if (!hz.hzImg) return;
-            let img = hz.hzImg.find('img').get(0);
+            if (!hz.hzViewer) return;
+            let img = hz.hzViewer.find('img').get(0);
             if (!img) return;
             let src = img.src;
             let filename = getDownloadFilenameByMedia(downloadMedias.IMG);
@@ -2745,8 +2745,8 @@ var hoverZoom = {
         }
 
         function saveVideo() {
-            if (!hz.hzImg) return;
-            let video = hz.hzImg.find('video').get(0);
+            if (!hz.hzViewer) return;
+            let video = hz.hzViewer.find('video').get(0);
             if (!video) return;
             let src = video.src;
             if (src.startsWith('blob:')) return;
@@ -2772,8 +2772,8 @@ var hoverZoom = {
         }
 
         function saveAudio() {
-            if (!hz.hzImg) return;
-            let audio = hz.hzImg.find('audio').get(0);
+            if (!hz.hzViewer) return;
+            let audio = hz.hzViewer.find('audio').get(0);
             if (!audio) return;
             let src = audio.src;
             let filename = getDownloadFilenameByMedia(downloadMedias.AUDIO);
@@ -2795,8 +2795,8 @@ var hoverZoom = {
         // save the *** URL *** of playlist so user can load it in a video player such as VLC
         // the playlist itself is pretty useless
         function savePlaylist() {
-            if (!hz.hzImg) return;
-            let video = hz.hzImg.find('video').get(0);
+            if (!hz.hzViewer) return;
+            let video = hz.hzViewer.find('video').get(0);
             if (!video) return;
             let filename = getDownloadFilenameByMedia(downloadMedias.PLAYLIST);
             if (!filename) return;
@@ -2838,16 +2838,16 @@ var hoverZoom = {
         }
 
         function getDurationFromVideo() {
-            if (!hz.hzImg) return;
-            let video = hz.hzImg.find('video').get(0);
+            if (!hz.hzViewer) return;
+            let video = hz.hzViewer.find('video').get(0);
             if (!video) return;
             let src = video.src;
             return hz.secondsToHms(video.duration);
         }
 
         function getDurationFromAudio() {
-            if (!hz.hzImg) return;
-            let audio = hz.hzImg.find('audio').get(0);
+            if (!hz.hzViewer) return;
+            let audio = hz.hzViewer.find('audio').get(0);
             if (!audio) return;
             let src = audio.src;
             return hz.secondsToHms(audio.duration);
@@ -2890,7 +2890,7 @@ var hoverZoom = {
             cLog('nextGalleryImageOnLoad');
             if (loading) {
                 loading = false;
-                posImg();
+                posViewer();
 
                 data = hz.currentLink.data();
                 if (data.hoverZoomGallerySrc.length > 0) {
@@ -2901,7 +2901,7 @@ var hoverZoom = {
                     displayCaptionMiscellaneousDetails();
                 }
 
-                posImg();
+                posViewer();
             }
         }
 
@@ -2950,8 +2950,8 @@ var hoverZoom = {
         var obs = new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
                 if (mutation.removedNodes.length > 0) {
-                    if (mutation.removedNodes[0].querySelector('#hzImg')) {
-                        hoverZoom.hzImg = false;
+                    if (mutation.removedNodes[0].querySelector('#hzViewer')) {
+                        hoverZoom.hzViewer = false;
                     }
                 }
             });
@@ -3045,12 +3045,12 @@ var hoverZoom = {
     },
 
     // Create and displays the zoomed image container
-    createHzImg:function (displayNow) {
-        if (!hoverZoom.hzImg) {
-            hoverZoom.hzImg = $('<div id="hzImg"></div>').appendTo(document.body);
+    createHzViewer:function (displayNow) {
+        if (!hoverZoom.hzViewer) {
+            hoverZoom.hzViewer = $('<div id="hzViewer"></div>').appendTo(document.body);
 
             // If the user clicks the image, this simulates a click underneath
-            hoverZoom.hzImg.click(function (event) {
+            hoverZoom.hzViewer.click(function (event) {
                 if (hoverZoom.currentLink && hoverZoom.currentLink.length) {
                     var simEvent = document.createEvent('MouseEvents');
                     simEvent.initMouseEvent('click', event.bubbles, event.cancelable, event.view, event.detail,
@@ -3061,11 +3061,11 @@ var hoverZoom = {
             });
 
         }
-        hoverZoom.hzImg.css(hoverZoom.hzImgCss);
-        hoverZoom.hzImg.empty();
-        hoverZoom.hzImg.css('visibility', 'hidden');
+        hoverZoom.hzViewer.css(hoverZoom.hzViewerCss);
+        hoverZoom.hzViewer.empty();
+        hoverZoom.hzViewer.css('visibility', 'hidden');
         if (displayNow) {
-            hoverZoom.hzImg.stop(true, true).fadeTo(options.fadeDuration, options.picturesOpacity);
+            hoverZoom.hzViewer.stop(true, true).fadeTo(options.fadeDuration, options.picturesOpacity);
         }
     },
 
@@ -3080,36 +3080,36 @@ var hoverZoom = {
         if (options.displayImageLoader === false && (status === 'skipped' || status === 'error')) return;
 
         // check that loader exists
-        if (hoverZoom.hzImgLoader == null) {
-            hoverZoom.hzImgLoader = $('<div id="hzImgLoader"><img src="' + chrome.extension.getURL('images/loading.gif') + '" style="opacity: 0.8; padding: 0; margin: 0" /></div>');
-            hoverZoom.hzImgLoader.width('auto').height('auto');
-            hoverZoom.hzImgLoader.css(hoverZoom.hzImgLoaderCss);
-            if (position) hoverZoom.hzImgLoader.css({top:position.top, left:position.left});
-            hoverZoom.hzImgLoader.appendTo(document.body);
+        if (hoverZoom.hzLoader == null) {
+            hoverZoom.hzLoader = $('<div id="hzLoader"><img src="' + chrome.extension.getURL('images/loading.gif') + '" style="opacity: 0.8; padding: 0; margin: 0" /></div>');
+            hoverZoom.hzLoader.width('auto').height('auto');
+            hoverZoom.hzLoader.css(hoverZoom.hzLoaderCss);
+            if (position) hoverZoom.hzLoader.css({top:position.top, left:position.left});
+            hoverZoom.hzLoader.appendTo(document.body);
         } else {
             // adjust position
             if (position === undefined) {
-                position = hoverZoom.hzImgLoader.position(); // reuse position of loader
+                position = hoverZoom.hzLoader.position(); // reuse position of loader
             }
-            hoverZoom.hzImgLoader.css({top:position.top, left:position.left});
+            hoverZoom.hzLoader.css({top:position.top, left:position.left});
         }
 
         // check loading status
         if (status === 'loading') {
-            hoverZoom.hzImgLoader[0].classList = 'imgLoading';
-            hoverZoom.hzImgLoader.css(hoverZoom.hzImgLoadingCss);
+            hoverZoom.hzLoader[0].classList = 'imgLoading';
+            hoverZoom.hzLoader.css(hoverZoom.hzViewerLoadingCss);
         }
         if (status === 'skipped') {
-            hoverZoom.hzImgLoader[0].classList = 'imgSkipped';
-            hoverZoom.hzImgLoader.css(hoverZoom.hzImgSkippedCss);
+            hoverZoom.hzLoader[0].classList = 'imgSkipped';
+            hoverZoom.hzLoader.css(hoverZoom.hzViewerSkippedCss);
         }
         if (status === 'error') {
-            hoverZoom.hzImgLoader[0].classList = 'imgError';
-            hoverZoom.hzImgLoader.css(hoverZoom.hzImgErrorCss);
+            hoverZoom.hzLoader[0].classList = 'imgError';
+            hoverZoom.hzLoader.css(hoverZoom.hzViewerErrorCss);
         }
 
-        if ($('#hzImgLoader').length === 0) hoverZoom.hzImgLoader.appendTo(document.body);
-        if (position) hoverZoom.hzImgLoader.css({top:position.top, left:position.left});
+        if ($('#hzLoader').length === 0) hoverZoom.hzLoader.appendTo(document.body);
+        if (position) hoverZoom.hzLoader.css({top:position.top, left:position.left});
     },
 
     // Preloads zoomed images
