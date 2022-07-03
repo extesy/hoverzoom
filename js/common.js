@@ -6,6 +6,8 @@ var factorySettings = {
     muteVideos : false,
     videoTimestamp : false,
     videoVolume : 0.25,
+    playAudio : false,
+    audioVolume : 0.25,
     pageActionEnabled : true,
     showHighRes : true,
     galleriesMouseWheel : true,
@@ -89,6 +91,8 @@ function loadOptions() {
     options.muteVideos = options.hasOwnProperty('muteVideos') ? options.muteVideos : factorySettings.muteVideos;
     options.videoTimestamp = options.hasOwnProperty('videoTimestamp') ? options.videoTimestamp : factorySettings.videoTimestamp;
     options.videoVolume = options.hasOwnProperty('videoVolume') ? options.videoVolume : factorySettings.videoVolume;
+    options.playAudio = options.hasOwnProperty('playAudio') ? options.playAudio : factorySettings.playAudio;
+    options.audioVolume = options.hasOwnProperty('audioVolume') ? options.audioVolume : factorySettings.audioVolume;
     options.pageActionEnabled = options.hasOwnProperty('pageActionEnabled') ? options.pageActionEnabled : factorySettings.pageActionEnabled;
     options.showHighRes = options.hasOwnProperty('showHighRes') ? options.showHighRes : factorySettings.showHighRes;
     options.galleriesMouseWheel = options.hasOwnProperty('galleriesMouseWheel') ? options.galleriesMouseWheel : factorySettings.galleriesMouseWheel;
