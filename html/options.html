@@ -248,6 +248,28 @@
                             </ul>
                         </fieldset>
                         <fieldset>
+                            <legend data-i18n="optSectionAudio"></legend>
+                            <ul>
+                                <div class="ttip" data-i18n-tooltip="optPlayAudioTooltip">
+                                    <li class="field">
+                                        <label class="checkbox" for="chkPlayAudio">
+                                            <input type="checkbox" id="chkPlayAudio"><span></span>
+                                            <div style="display:inline" data-i18n="optPlayAudio"></div>
+                                        </label>
+                                    </li>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optAudioVolumeTooltip">
+                                    <li class="append field">
+                                        <label class="inline" for="txtAudioVolume">
+                                            <div style="display:inline" data-i18n="optAudioVolume"></div>
+                                            <input class="xnarrow input" type="range" name="points" min="0" max="100" step="1" id="rngAudioVolume">
+                                            <input class="xnarrow text input" type="text" id="txtAudioVolume"><span class="adjoined xnarrow" data-i18n="optAudioVolumeUnitName"></span>
+                                        </label>
+                                    </li>
+                                </div>
+                            </ul>
+                        </fieldset>
+                        <fieldset>
                             <legend data-i18n="optSectionDelays"></legend>
                             <ul>
                                 <li class="append field">
@@ -448,6 +470,8 @@
                                         <div class="btn default badge format"><a href="https://wikipedia.org/wiki/GIF" target="_blank" rel="noopener noreferrer">GIF</a></div>
                                         <div class="btn default badge format"><a href="https://wikipedia.org/wiki/GIF#Animation_formats" target="_blank" rel="noopener noreferrer">GIFV</a></div>
                                         <div class="btn default badge format"><a href="https://wikipedia.org/wiki/ICO_(file_format)" target="_blank" rel="noopener noreferrer">ICO</a></div>
+                                        <div class="btn default badge format"><a href="https://wikipedia.org/wiki/JPEG_File_Interchange_Format" target="_blank" rel="noopener noreferrer">JFIF</a></div>
+                                        <div class="btn default badge format"><a href="https://wikipedia.org/wiki/JPEG" target="_blank" rel="noopener noreferrer">JPE</a></div>
                                         <div class="btn default badge format"><a href="https://wikipedia.org/wiki/JPEG" target="_blank" rel="noopener noreferrer">JPEG</a></div>
                                         <div class="btn default badge format"><a href="https://wikipedia.org/wiki/JPG" target="_blank" rel="noopener noreferrer">JPG</a></div>
                                         <div class="btn default badge format"><a href="https://wikipedia.org/wiki/Portable_Network_Graphics" target="_blank" rel="noopener noreferrer">PNG</a></div>
@@ -465,6 +489,18 @@
                                         <div class="btn default badge format"><a href="https://wikipedia.org/wiki/MPEG-4_Part_14" target="_blank" rel="noopener noreferrer">MP4</a></div>
                                         <div class="btn default badge format"><a href="https://wikipedia.org/wiki/Theora" target="_blank" rel="noopener noreferrer">OGV</a></div>
                                         <div class="btn default badge format"><a href="https://wikipedia.org/wiki/WebM" target="_blank" rel="noopener noreferrer">WEBM</a></div>
+                                    </div>
+                                </li>
+                                <li class="field">
+                                    <div class="formats">
+                                        <div data-i18n="optSupportedAudioFormats"></div>
+                                        <div class="btn default badge format"><a href="https://wikipedia.org/wiki/FLAC" target="_blank" rel="noopener noreferrer">FLAC</a></div>
+                                        <div class="btn default badge format"><a href="https://wikipedia.org/wiki/MPEG-4_Part_14" target="_blank" rel="noopener noreferrer">M4A</a></div>
+                                        <div class="btn default badge format"><a href="https://wikipedia.org/wiki/MP3" target="_blank" rel="noopener noreferrer">MP3</a></div>
+                                        <div class="btn default badge format"><a href="https://wikipedia.org/wiki/Ogg" target="_blank" rel="noopener noreferrer">OGA</a></div>
+                                        <div class="btn default badge format"><a href="https://wikipedia.org/wiki/Ogg" target="_blank" rel="noopener noreferrer">OGG</a></div>
+                                        <div class="btn default badge format"><a href="https://wikipedia.org/wiki/Opus_(audio_format)" target="_blank" rel="noopener noreferrer">OPUS</a></div>
+                                        <div class="btn default badge format"><a href="https://wikipedia.org/wiki/WAV" target="_blank" rel="noopener noreferrer">WAV</a></div>
                                     </div>
                                 </li>
                             </ul>

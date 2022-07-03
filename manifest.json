@@ -43,6 +43,7 @@
     ],
     "web_accessible_resources": [
         "images/loading.gif",
+        "images/spectrogram.png",
         "js/libs/gumby.js",
         "js/libs/jquery-3.2.1.js",
         "js/libs/jquery.mobile.custom.js",

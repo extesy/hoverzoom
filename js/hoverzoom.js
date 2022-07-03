@@ -110,7 +110,7 @@ var hoverZoom = {
             hzDetails = null,
             hzGallery = null,
             imgFullSize = null,
-            audioFullSize = null,
+            audioControls = null,
             imgThumb = null,
             mousePos = {},
             loading = false,
@@ -120,7 +120,7 @@ var hoverZoom = {
             fullZoomKeyDown = false,
             hideKeyDown = false,
             viewerLocked = false,
-            lockImageClickTime = 0,
+            lockViewerClickTime = 0,
             zoomFactor = 1,
             pageActionShown = false,
             skipFadeIn = false,
@@ -131,7 +131,7 @@ var hoverZoom = {
             /*panning = true,
             panningThumb = null;*/
 
-        var imgDetails = {
+        var srcDetails = {
                 url:'',
                 audioUrl:'',
                 audioMuted:false,
@@ -142,6 +142,7 @@ var hoverZoom = {
                 displayedWidth:0,
                 video:false,
                 playlist:false,
+                audio:false,
                 contentLength:0,
                 lastModified:''
             };
@@ -177,7 +178,7 @@ var hoverZoom = {
                 'box-shadow':'1px 1px 5px rgba(0, 0, 0, 0.5), -1px 1px 5px rgba(0, 0, 0, 0.5), 1px -1px 5px rgba(0, 0, 0, 0.5), -1px -1px 5px rgba(0, 0, 0, 0.5)', // cast shadow in every direction
                 'outline-style':'none'
             },
-            audioFullSizeCss = {
+            audioControlsWithVideoCss = {
                 'opacity':'0',
                 'position':'absolute',
                 'left':'0',
@@ -187,6 +188,17 @@ var hoverZoom = {
                 'margin':'0',
                 'padding':'0',
                 'transition':'opacity ease 1s',
+                'outline-style':'none'
+            },
+            audioControlsCss = {
+                'opacity':'1',
+                'position':'absolute',
+                'left':'0',
+                'top':'0',
+                'max-height':'20%',
+                'max-width':'90%',
+                'margin':'0',
+                'padding':'0',
                 'outline-style':'none'
             },
             msgCss = {
@@ -342,7 +354,7 @@ var hoverZoom = {
             'www.redditmedia.com'
         ];
 
-        // calculate optimal image position and size
+        // calculate optimal viewer position and size
         function posViewer(position) {
 
             imgSkipped = false
@@ -458,25 +470,25 @@ var hoverZoom = {
 
                 // image natural dimensions
 
-                imgDetails.naturalWidth = (imgFullSize[0].naturalWidth ? imgFullSize[0].naturalWidth : imgFullSize.width());
-                imgDetails.naturalHeight = (imgFullSize[0].naturalHeight ? imgFullSize[0].naturalHeight : imgFullSize.height());
+                srcDetails.naturalWidth = (imgFullSize[0].naturalWidth ? imgFullSize[0].naturalWidth : imgFullSize.width());
+                srcDetails.naturalHeight = (imgFullSize[0].naturalHeight ? imgFullSize[0].naturalHeight : imgFullSize.height());
 
-                if (!imgDetails.naturalWidth || !imgDetails.naturalHeight) {
+                if (!srcDetails.naturalWidth || !srcDetails.naturalHeight) {
                     return;
                 }
 
                 // width adjustment
                 var fullZoom = options.mouseUnderlap || fullZoomKeyDown || viewerLocked;
                 if (viewerLocked) {
-                    imgFullSize.width(imgDetails.naturalWidth * zoomFactor);
+                    imgFullSize.width(srcDetails.naturalWidth * zoomFactor);
                 } else if (fullZoom) {
-                    imgFullSize.width(Math.min(imgDetails.naturalWidth * zoomFactor, wndWidth - padding - 2 * scrollBarWidth));
+                    imgFullSize.width(Math.min(srcDetails.naturalWidth * zoomFactor, wndWidth - padding - 2 * scrollBarWidth));
                 } else if (displayOnRight) {
-                    if (imgDetails.naturalWidth * zoomFactor + padding > wndWidth - position.left) {
+                    if (srcDetails.naturalWidth * zoomFactor + padding > wndWidth - position.left) {
                         imgFullSize.width(wndWidth - position.left - padding + wndScrollLeft);
                     }
                 } else {
-                    if (imgDetails.naturalWidth * zoomFactor + padding > position.left) {
+                    if (srcDetails.naturalWidth * zoomFactor + padding > position.left) {
                         imgFullSize.width(position.left - padding - wndScrollLeft);
                     }
                 }
@@ -490,7 +502,7 @@ var hoverZoom = {
 
                 position.top -= hz.hzViewer.height() / 2;
 
-                // display image on the left side if the mouse is on the right
+                // display viewer on the left side if the mouse is on the right
                 if (!displayOnRight) {
                     position.left -= hz.hzViewer.width() + padding;
                 }
@@ -517,7 +529,7 @@ var hoverZoom = {
                     updateAmbilight();
                 } else {
                     // in case of images with transparent background add a background color
-                    let ext = getExtensionFromUrl(imgDetails.url, imgDetails.video, imgDetails.playlist);
+                    let ext = getExtensionFromUrl(srcDetails.url, srcDetails.video, srcDetails.playlist, srcDetails.audio);
                     if (ext == 'gif' || ext == 'svg' || ext == 'png')
                         imgFullSize.css('background-color', options.frameBackgroundColor);
                 }
@@ -533,12 +545,12 @@ var hoverZoom = {
                     position.left -= (wndWidth - bodyWidth) / 2;
                 }
 
-                // check that image is not too much on the left side
+                // check that viewer is not too much on the left side
                 if (position.left < wndScrollLeft + 0.5 * padding) {
                     position.left = wndScrollLeft + 0.5 * padding;
                 }
 
-                // check that image is not too much on the right side
+                // check that viewer is not too much on the right side
                 if (position.left + imgFullSize.width() + 2 * padding > wndScrollLeft + wndWidth) {
                     position.left = wndScrollLeft + 0.5 * padding;
                 }
@@ -547,7 +559,7 @@ var hoverZoom = {
             }
         }
 
-        function panLockedImage() {
+        function panLockedViewer() {
             var width = imgFullSize[0].width || imgFullSize[0].videoWidth * zoomFactor;
             var height = imgFullSize[0].height || imgFullSize[0].videoHeight * zoomFactor;
             var widthOffset = (width - window.innerWidth) / 2;
@@ -578,6 +590,7 @@ var hoverZoom = {
 
         const videoExtensions = new Set(['3gpp', 'm4v', 'mkv', 'mp4', 'ogv', 'webm']);
         const videoExtensionsWithGif = new Set(['3gpp', 'gif', 'gifv', 'm4v', 'mkv', 'mp4', 'ogv', 'webm']);
+        const audioExtensions = new Set(['flac', 'm4a', 'mp3', 'oga', 'ogg', 'opus', 'wav']);
 
         function isVideoLink(url, includeGifs = false) {
             if (url.indexOf('.video') !== -1)
@@ -597,22 +610,29 @@ var hoverZoom = {
             return url.indexOf('.m3u8') !== -1;
         }
 
+        function isAudioLink(url) {
+            if (url.lastIndexOf('?') > 0)
+                url = url.substring(0, url.lastIndexOf('?'));
+            const ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+            return audioExtensions.has(ext);
+        }
+
         // some plug-ins append:
         // .video to video streams so url =  videourl.video
         // .audio to audio streams so url = audiourl.audio
         // if both urls are present then url = videourl.video_audiourl.audio
         function getVideoAudioFromUrl() {
-            var videourl = imgDetails.url.split('.video')[0];
-            var audiourl = imgDetails.url.split('.video')[1] || '';
+            var videourl = srcDetails.url.split('.video')[0];
+            var audiourl = srcDetails.url.split('.video')[1] || '';
             if (audiourl.endsWith('.audio')) {
-                imgDetails.audioUrl = audiourl.replace(/^_/, '').replace('.audio', '');
-                imgDetails.audioMuted = false;
+                srcDetails.audioUrl = audiourl.replace(/^_/, '').replace('.audio', '');
+                srcDetails.audioMuted = false;
             }
             if (audiourl.endsWith('.audiomuted')) {
-                imgDetails.audioUrl = audiourl.replace(/^_/, '').replace('.audiomuted', '');
-                imgDetails.audioMuted = true;  // in case of video with audio track embeded + distinct audio track: mute distinct audio track
+                srcDetails.audioUrl = audiourl.replace(/^_/, '').replace('.audiomuted', '');
+                srcDetails.audioMuted = true;  // in case of video with audio track embeded + distinct audio track: mute distinct audio track
             }
-            imgDetails.url = videourl;
+            srcDetails.url = videourl;
         }
 
         function updateAmbilight() {
@@ -620,7 +640,7 @@ var hoverZoom = {
             var canvas = hz.hzViewer.find('canvas')[0];
             if (!canvas || !imgFullSize) return;
 
-            var isVideo = isVideoLink(imgDetails.url, true);
+            var isVideo = isVideoLink(srcDetails.url, true);
 
             if (!(isVideo || (imgFullSize.get(0).complete && imgFullSize.get(0).naturalWidth))) {
                 window.setTimeout(updateAmbilight, 20);
@@ -730,7 +750,7 @@ var hoverZoom = {
         // set border thickness in pixel(s)
         function frameThickness(thickness) {
             imgFullSizeCss.borderWidth = imgFullSizeCss.borderRadius = thickness + 'px';
-            audioFullSizeCss.margin = thickness + 'px';
+            audioControlsCss.margin = audioControlsWithVideoCss.margin = thickness + 'px';
         }
 
         // set font size in pixel(s)
@@ -758,9 +778,9 @@ var hoverZoom = {
                 viewerLocked = false;
             }
 
-            if (audioFullSize) {
-                audioFullSize.remove();
-                audioFullSize = null;
+            if (audioControls) {
+                audioControls.remove();
+                audioControls = null;
                 viewerLocked = false;
             }
         }
@@ -831,7 +851,7 @@ var hoverZoom = {
             }
         }
 
-        function closeHoverZoomImg(now) {
+        function closeHoverZoomViewer(now) {
             cLog('closeHoverZoomImg(' + now + ')');
             if (hz.hzLoader) { hz.hzLoader.remove(); hz.hzLoader = null; }
             if ((!now && !imgFullSize) || !hz.hzViewer || fullZoomKeyDown || viewerLocked) {
@@ -891,9 +911,9 @@ var hoverZoom = {
                 lastMousePosLeft = mousePos.left;
 
                 if (viewerLocked) {
-                    // Don't hide cursor on locked image & allow clicking.
+                    // Don't hide cursor on locked viewer & allow clicking.
                     if (hz.hzViewer) { hz.hzViewer.css('cursor', 'pointer'); hz.hzViewer.css('pointer-events', 'auto'); }
-                    if (imgFullSize) panLockedImage();
+                    if (imgFullSize) panLockedViewer();
                     return;
                 }
 
@@ -939,9 +959,9 @@ var hoverZoom = {
                     links.data().hoverZoomSrc[hoverZoomSrcIndex] &&
                     typeof(links.data().hoverZoomSrc[hoverZoomSrcIndex]) !== 'undefined') {
                     // Happens when the mouse goes from an image to another without hovering the page background
-                    if (imgDetails.url && links.data().hoverZoomSrc[hoverZoomSrcIndex] !== imgDetails.url) {
-                        cLog("hiding because " + links.data().hoverZoomSrc[hoverZoomSrcIndex] + " !== " + imgDetails.url);
-                        closeHoverZoomImg();
+                    if (srcDetails.url && links.data().hoverZoomSrc[hoverZoomSrcIndex] !== srcDetails.url) {
+                        cLog("hiding because " + links.data().hoverZoomSrc[hoverZoomSrcIndex] + " !== " + srcDetails.url);
+                        closeHoverZoomViewer();
                     }
 
                     removeTitles(target);
@@ -960,15 +980,15 @@ var hoverZoom = {
                             let width = undefined;
                             let imgDim = hz.getImageDimensions(src, width, height);*/
 
-                            imgDetails.displayedWidth = links.width();
-                            imgDetails.displayedHeight = links.height();
+                            srcDetails.displayedWidth = links.width();
+                            srcDetails.displayedHeight = links.height();
 
-                            imgDetails.url = src;
-                            imgDetails.audioUrl = audioSrc;
+                            srcDetails.url = src;
+                            srcDetails.audioUrl = audioSrc;
                             clearTimeout(loadFullSizeImageTimeout);
 
                             // if the action key has been pressed over an image, no delay is applied
-                            var delay = actionKeyDown || explicitCall ? 0 : (isVideoLink(imgDetails.url) ? options.displayDelayVideo : options.displayDelay);
+                            var delay = actionKeyDown || explicitCall ? 0 : (isVideoLink(srcDetails.url) ? options.displayDelayVideo : options.displayDelay);
                             loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
 
                             loading = true;
@@ -983,10 +1003,10 @@ var hoverZoom = {
         }
 
         function documentContextMenu(event) {
-            // If it's been less than 300ms since right click, lock image and prevent context menu.
-            var lockElapsed = event.timeStamp - lockImageClickTime;
+            // If it's been less than 300ms since right click, lock viewer and prevent context menu.
+            var lockElapsed = event.timeStamp - lockViewerClickTime;
             if (imgFullSize && !viewerLocked && options.lockImageKey === -1 && lockElapsed < 300) {
-                lockImage();
+                lockViewer();
                 event.preventDefault();
             }
         }
@@ -994,7 +1014,7 @@ var hoverZoom = {
         function documentMouseDown(event) {
             // Right click pressed and lockImageKey is set to special value for right click (-1).
             if (imgFullSize && !viewerLocked && options.lockImageKey === -1 && event.button === 2) {
-                lockImageClickTime = event.timeStamp;
+                lockViewerClickTime = event.timeStamp;
             } else if (imgFullSize && event.target !== hz.hzViewer[0] && event.target !== imgFullSize[0]) {
                 if (viewerLocked && event.button === 0) {
                     viewerLocked = false;
@@ -1028,9 +1048,11 @@ var hoverZoom = {
                 hz.createHzViewer(!hideKeyDown);
                 zoomFactor = parseInt(options.zoomFactor);
 
-                imgDetails.video = isVideoLink(imgDetails.url);
-                imgDetails.playlist = isPlaylistLink(imgDetails.url);
-                if (imgDetails.video) {
+                srcDetails.video = isVideoLink(srcDetails.url);
+                srcDetails.playlist = isPlaylistLink(srcDetails.url);
+                srcDetails.audio = isAudioLink(srcDetails.url);
+
+                if (srcDetails.video) {
                     getVideoAudioFromUrl();
 
                     if (!options.zoomVideos) {
@@ -1046,12 +1068,12 @@ var hoverZoom = {
                     video.autoplay = true;
                     video.muted = options.muteVideos;
                     video.volume = options.videoVolume;
-                    video.src = imgDetails.url;
+                    video.src = srcDetails.url;
                     // MKV
                     if (video.src.indexOf('.mkv') !== -1) video.type = 'video/mp4';
                     imgFullSize = $(video).appendTo(hz.hzViewer);
 
-                    video.addEventListener('error', imgFullSizeOnError);
+                    video.addEventListener('error', srcFullSizeOnError);
                     video.addEventListener('loadedmetadata', function() {
                         posViewer();
                         if (options.videoTimestamp) {
@@ -1059,7 +1081,7 @@ var hoverZoom = {
                         }
                     });
                     video.addEventListener('loadeddata', function() {
-                        imgFullSizeOnLoad();
+                        srcFullSizeOnLoad();
                         let startPlayPromise = video.play();
                         if (startPlayPromise !== undefined) {
                             startPlayPromise.then(() => {
@@ -1079,14 +1101,14 @@ var hoverZoom = {
                         }
                     });
 
-                    if (imgDetails.audioUrl) {
+                    if (srcDetails.audioUrl) {
                         const audio = document.createElement('audio');
                         audio.controls = viewerLocked;
                         audio.autoplay = false;
-                        audio.muted = (imgDetails.audioMuted ? true : options.muteVideos);
+                        audio.muted = (srcDetails.audioMuted ? true : options.muteVideos);
                         audio.volume = options.videoVolume;
-                        audio.src = imgDetails.audioUrl;
-                        audioFullSize = $(audio).appendTo(hz.hzViewer);
+                        audio.src = srcDetails.audioUrl;
+                        audioControls = $(audio).appendTo(hz.hzViewer);
 
                         // synchronize audio controls with video controls
                         video.addEventListener('play', function() {
@@ -1109,7 +1131,51 @@ var hoverZoom = {
                     }
 
                     video.load();
-                } else if (imgDetails.playlist) {
+                } else if (srcDetails.audio) {
+
+                    if (!options.playAudio) {
+                        cancelSourceLoading();
+                        return;
+                    }
+
+                    var src = (srcDetails.audioUrl ? srcDetails.audioUrl : srcDetails.url);
+
+                    // audio controls are displayed on top of an image provided by extension: 'images/spectrogram.png'
+                    srcDetails.url = chrome.extension.getURL('images/spectrogram.png');
+                    srcDetails.audioUrl = src;
+
+                    imgFullSize = $('<img style="border: none" />').appendTo(hz.hzViewer).attr('src', srcDetails.url).addClass('hzPlaceholder');
+
+                    var audio = document.createElement('audio');
+                    audio.controls = true; // controls always visible even if not locked
+                    audio.autoplay = true;
+                    audio.volume = options.audioVolume;
+                    audio.src = src;
+                    audioControls = $(audio).appendTo(hz.hzViewer);
+
+                    audio.addEventListener('error', srcFullSizeOnError);
+                    audio.addEventListener('loadedmetadata', function() {
+                        posViewer();
+                    });
+                    audio.addEventListener('loadeddata', function() {
+                        let startPlayPromise = audio.play();
+                        if (startPlayPromise !== undefined) {
+                            startPlayPromise.then(() => {
+                                cLog("play started");
+                            }).catch(error => {
+                                if (error.name === "NotAllowedError") {
+                                    // NotAllowedError: play() failed because the user didn't interact with the document first. https://goo.gl/xX8pDD
+                                    $(hz.hzViewer.hzContainer).css(hz.hzContainerCss);
+                                    cLog("Play not allowed: " + error);
+                                    displayMsg("msgClickPageToPlayVideo");
+                                } else {
+                                    cLog("Play error: " + error);
+                                }
+                            });
+                        }
+                    });
+                    audio.load();
+                } else if (srcDetails.playlist) {
                     // instantiate a specific player (= HLS) for playlists (= M3U8 files)
                     // this is needed for browsers that do not support natively playlists, such as Chrome
 
@@ -1131,10 +1197,10 @@ var hoverZoom = {
                         debug: debug,
                     });
 
-                    hls.loadSource(imgDetails.url);
+                    hls.loadSource(srcDetails.url);
                     hls.attachMedia(video);
 
-                    video.addEventListener('error', imgFullSizeOnError);
+                    video.addEventListener('error', srcFullSizeOnError);
                     video.addEventListener('loadedmetadata', function() {
                         posViewer();
                         if (options.videoTimestamp) {
@@ -1164,16 +1230,17 @@ var hoverZoom = {
                     });
                 } else {
                     hz.hzViewer.hzContainer = $('<div id="hzContainer"/>').css(hz.hzContainerCss).appendTo(hz.hzViewer);
-                    imgFullSize = $('<img style="border: none" />').appendTo(hz.hzViewer.hzContainer).on('load', imgFullSizeOnLoad).on('error', imgFullSizeOnError).attr('src', imgDetails.url);
+                    imgFullSize = $('<img style="border: none" />').appendTo(hz.hzViewer.hzContainer).on('load', srcFullSizeOnLoad).on('error', srcFullSizeOnError).attr('src', srcDetails.url);
                     // Note for Chrome: if image is loaded from cache then 'load' event is never fired
                 }
 
-                imgDetails.host = getHostFromUrl(imgDetails.url);
-                getAdditionalInfosFromServer(imgDetails.url);
+                // if video comes with distinct url for audio then get additonal infos for video url only
+                srcDetails.host = getHostFromUrl(srcDetails.audio ? srcDetails.audioUrl : srcDetails.url);
+                getAdditionalInfosFromServer(srcDetails.audio ? srcDetails.audioUrl : srcDetails.url);
 
                 skipFadeIn = false;
                 imgFullSize.css(progressCss);
-                if (options.showWhileLoading && !imgDetails.video) {
+                if (options.showWhileLoading && !srcDetails.video) {
                     posWhileLoading();
                 }
                 posViewer();
@@ -1223,10 +1290,10 @@ var hoverZoom = {
             track.mode = "showing";
         }
 
-        function imgFullSizeOnLoad() {
+        function srcFullSizeOnLoad() {
             logger.enterFunc();
             // only the last hovered link gets displayed
-            if (imgDetails.url == $(imgFullSize).prop('src')) {
+            if (srcDetails.url == $(imgFullSize).prop('src')) {
                 loading = false;
                 displayFullSizeImage();
             }
@@ -1299,34 +1366,42 @@ var hoverZoom = {
                 noFocusMsgAlreadyDisplayed = true; // display msg only once so user is warned but not disturbed too much (user might not use action keys at all btw!)
             }
 
-            // display video controls
-            if (viewerLocked) {
-                let v = hz.hzViewer.find('video')[0];
-                if (v) v.controls = true;
-            }
-
-            if (audioFullSize) {
-                // display audio controls
+            // in case of video:
+            // - display video controls only when video is locked
+            // - display also audio controls if needed (distinct sources for audio & video)
+            let video = hz.hzViewer.find('video')[0];
+            if (video) {
+                let audio = null;
+                if (audioControls)
+                    audio = audioControls[0];
+                if (audio)
+                    $(audio).css(audioControlsWithVideoCss).appendTo(hz.hzViewer.hzContainer);
                 if (viewerLocked) {
-                    audioFullSize[0].controls = true;
+                    video.controls = true;
+                    if (audio) {
+                        audio.controls = true;
 
-                    audioFullSize.hover(function() {
-                        clearTimeout(audioFullSize[0].controlsTimeout);
-                        audioFullSize[0].style.opacity = 1;
-                    });
+                        $(audio).hover(function() {
+                            clearTimeout(audio.controlsTimeout);
+                            audio.style.opacity = 1;
+                        });
 
-                    imgFullSize.mousemove(function() {
-                        clearTimeout(audioFullSize[0].controlsTimeout);
-                        audioFullSize[0].style.opacity = 1;
-                        audioFullSize[0].controlsTimeout = setTimeout(function() { audioFullSize[0].style.opacity = 0 }, 2500);
-                    });
+                        imgFullSize.mousemove(function() {
+                            clearTimeout(audio.controlsTimeout);
+                            audio.style.opacity = 1;
+                            audio.controlsTimeout = setTimeout(function() { audio.style.opacity = 0 }, 2500);
+                        });
 
-                    imgFullSize.mouseleave(function() {
-                        clearTimeout(audioFullSize[0].controlsTimeout);
-                        audioFullSize[0].style.opacity = 0;
-                    });
+                        imgFullSize.mouseleave(function() {
+                            clearTimeout(audio.controlsTimeout);
+                            audio.style.opacity = 0;
+                        });
+                    }
                 }
-                audioFullSize.css(audioFullSizeCss).appendTo(hz.hzViewer.hzContainer);
+            } else {
+                // audio controls alone
+                if (audioControls)
+                    audioControls.css(audioControlsCss).appendTo(hz.hzViewer.hzContainer);
             }
 
             if (hz.currentLink) {
@@ -1349,7 +1424,7 @@ var hoverZoom = {
                 }
                 lowResSrc = lowResSrc || 'noimage';
                 if (loading && lowResSrc.indexOf('noimage') === -1) {
-                    var ext = imgDetails.url.substr(imgDetails.url.length - 3).toLowerCase();
+                    var ext = srcDetails.url.substr(srcDetails.url.length - 3).toLowerCase();
                     if (ext != 'gif' && ext != 'svg' && ext != 'png') {
                         var imgRatio = imgFullSize.width() / imgFullSize.height(),
                             thumbRatio = imgThumb.width() / imgThumb.height();
@@ -1393,10 +1468,10 @@ var hoverZoom = {
             setTimeout(posViewer, options.showWhileLoading ? 0 : 10);
 
             if (options.addToHistory && !chrome.extension.inIncognitoContext) {
-                chrome.runtime.sendMessage({action:'addUrlToHistory', url:imgDetails.url});
+                chrome.runtime.sendMessage({action:'addUrlToHistory', url:srcDetails.url});
                 // #881: add link url to history if available, this is needed to turn hovered links purple
                 let linkUrl = hz.currentLink.prop('href');
-                if (linkUrl && linkUrl != imgDetails.url) chrome.runtime.sendMessage({action:'addUrlToHistory', url:linkUrl});
+                if (linkUrl && linkUrl != srcDetails.url) chrome.runtime.sendMessage({action:'addUrlToHistory', url:linkUrl});
             }
         }
 
@@ -1434,7 +1509,7 @@ var hoverZoom = {
         }
 
         function displayDetails() {
-            let details = getImgDetails(hz.currentLink);
+            let details = getSrcDetails(hz.currentLink);
             if (details) {
                 if (options.detailsLocation === "above")
                     if (hzAbove.find('#hzDetails').length == 0)
@@ -1490,9 +1565,9 @@ var hoverZoom = {
             }
         }
 
-        function imgFullSizeOnError() {
+        function srcFullSizeOnError() {
 
-            if (imgDetails.url === $(this).prop('src') || imgDetails.url === unescape($(this).prop('src'))) {
+            if (srcDetails.url === $(this).prop('src') || srcDetails.url === unescape($(this).prop('src'))) {
                 let hoverZoomSrcIndex = hz.currentLink ? (hz.currentLink.data().hoverZoomSrcIndex || 0) : 0;
 
                 removeMedias();
@@ -1501,7 +1576,7 @@ var hoverZoom = {
                 // - do not try to load next possible source(s)
                 // - in case of gallery, do not try to display next images & remove them from list
                 if (hz.currentLink.data().abortOnFirstError) {
-                    console.info('[HoverZoom] Failed to load image: ' + imgDetails.url + '\nAborting.');
+                    console.info('[HoverZoom] Failed to load source: ' + srcDetails.url + '\nAborting.');
                     if (hz.currentLink.data().hoverZoomGallerySrc && hz.currentLink.data().hoverZoomGallerySrc.length) {
                         hz.currentLink.data().hoverZoomGallerySrc = hz.currentLink.data().hoverZoomGallerySrc.slice(0, hz.currentLink.data().hoverZoomGalleryIndex);
                         hz.currentLink.data().hoverZoomGalleryIndex = 0;
@@ -1512,8 +1587,8 @@ var hoverZoom = {
                     hoverZoomSrcIndex++;
                     hz.currentLink.data().hoverZoomSrcIndex = hoverZoomSrcIndex;
                     let nextSrc = hz.currentLink.data().hoverZoomSrc[hoverZoomSrcIndex];
-                    console.info('[HoverZoom] Failed to load image: ' + imgDetails.url + '\nTrying next one: ' + nextSrc);
-                    imgDetails.url = nextSrc;
+                    console.info('[HoverZoom] Failed to load source: ' + srcDetails.url + '\nTrying next one: ' + nextSrc);
+                    srcDetails.url = nextSrc;
                     clearTimeout(loadFullSizeImageTimeout);
                     loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, 100);
                 } else {
@@ -1521,14 +1596,14 @@ var hoverZoom = {
                     loading = false;
                     if (options.useSeparateTabOrWindowForUnloadableUrlsEnabled) {
                         // last attempt to display image in separate tab or window
-                        console.info('[HoverZoom] Failed to load image: ' + imgDetails.url + ' in current window.\nTrying to load image in separate window or tab...');
+                        console.info('[HoverZoom] Failed to load source: ' + srcDetails.url + ' in current window.\nTrying to load source in separate window or tab...');
                         if (options.useSeparateTabOrWindowForUnloadableUrls == 'window') {
                             openImageInWindow();
                         } else if (options.useSeparateTabOrWindowForUnloadableUrls == 'tab') {
                             openImageInTab(true); // do not focus tab
                         }
                     } else {
-                        console.warn('[HoverZoom] Failed to load image: ' + imgDetails.url);
+                        console.warn('[HoverZoom] Failed to load source: ' + srcDetails.url);
                     }
                 }
             }
@@ -1551,7 +1626,7 @@ var hoverZoom = {
             loading = false;
             hz.currentLink = null;
             clearTimeout(loadFullSizeImageTimeout);
-            closeHoverZoomImg();
+            closeHoverZoomViewer();
         }
 
         function getTextSelected() {
@@ -1559,24 +1634,27 @@ var hoverZoom = {
             return window.getSelection().toString().replace(/\n/g, " "); // "&crarr;"
         }
 
-        function getImgDetails(link) {
+        function getSrcDetails(link) {
             let details = {};
-            if (imgDetails.naturalWidth) details.dimensions = imgDetails.naturalWidth / options.zoomFactor + 'x' + imgDetails.naturalHeight / options.zoomFactor;
-            if (imgDetails.naturalWidth) details.ratio = getImgRatio(imgDetails.naturalWidth, imgDetails.naturalHeight);
-            let displayedWidth = imgFullSize.width() || imgFullSize[0].width;
-            if (imgDetails.naturalWidth) details.scale = Math.round(100.0 * displayedWidth / imgDetails.naturalWidth) + '%';
-            details.extension = getExtensionFromUrl(imgDetails.url, imgDetails.video, imgDetails.playlist);
-            details.host = imgDetails.host;
+            if (!srcDetails.audio) {
+                if (srcDetails.naturalWidth) details.dimensions = srcDetails.naturalWidth / options.zoomFactor + 'x' + srcDetails.naturalHeight / options.zoomFactor;
+                if (srcDetails.naturalWidth) details.ratio = getImgRatio(srcDetails.naturalWidth, srcDetails.naturalHeight);
+                let displayedWidth = imgFullSize.width() || imgFullSize[0].width;
+                if (srcDetails.naturalWidth) details.scale = Math.round(100.0 * displayedWidth / srcDetails.naturalWidth) + '%';
+            }
+
+            details.extension = getExtensionFromUrl(srcDetails.audio ? srcDetails.audioUrl : srcDetails.url, srcDetails.video, srcDetails.playlist, srcDetails.audio);
+            details.host = srcDetails.host;
             let filename = getDownloadFilename();
             if (filename) details.filename = filename;
-            let duration = getDurationFromVideo();
+            let duration = (srcDetails.audio ? getDurationFromAudio() : getDurationFromVideo());
             if (duration) details.duration = duration.replace(/ /g, ':');
 
             let additionaInfos = sessionStorage.getItem('hoverZoomAdditionalInfos');
             if (additionaInfos) {
                 try {
                     additionaInfos = JSON.parse(additionaInfos);
-                    let infos = additionaInfos[imgDetails.url];
+                    let infos = additionaInfos[srcDetails.audio ? srcDetails.audioUrl : srcDetails.url];
                     if (infos) {
                         details.contentLength = infos.contentLength;
                         details.lastModified = infos.lastModified;
@@ -1861,7 +1939,7 @@ var hoverZoom = {
         function applyOptions() {
             init();
             if (!options.extensionEnabled || isExcludedSite()) {
-                closeHoverZoomImg();
+                closeHoverZoomViewer();
                 $(document).unbind('mousemove', documentMouseMove);
             }
         }
@@ -1983,7 +2061,7 @@ var hoverZoom = {
                 window.addEventListener('wheel', documentOnMouseWheel, {passive: false});
             }
             if (options.zoomVideos) {
-                $(document).on('visibilitychange', closeHoverZoomImg);
+                $(document).on('visibilitychange', closeHoverZoomViewer);
             }
 
             bindJsaction();
@@ -2007,12 +2085,12 @@ var hoverZoom = {
         function documentOnMouseWheel(event) {
             if (viewerLocked) {
                 event.preventDefault();
-                // Scale up or down locked image then clamp between 0.1x and 10x.
+                // Scale up or down locked viewer then clamp between 0.1x and 10x.
                 let step = zoomFactor < 2 ? 0.1 : 0.1 * Math.floor(zoomFactor);
                 zoomFactor = zoomFactor + (event.deltaY < 0 ? 1 : -1) * step;
                 zoomFactor = Math.max(Math.min(zoomFactor, 10), 0.1);
                 posViewer();
-                panLockedImage();
+                panLockedViewer();
             } else if (imgFullSize) {
                 var link = hz.currentLink, data = link.data();
                 if (data.hoverZoomGallerySrc && data.hoverZoomGallerySrc.length !== 1) {
@@ -2162,7 +2240,7 @@ var hoverZoom = {
             // Action key (zoom image) is released
             if (event.which === options.actionKey) {
                 actionKeyDown = false;
-                closeHoverZoomImg();
+                closeHoverZoomViewer();
             }
             // Full zoom key is released
             if (event.which === options.fullZoomKey) {
@@ -2195,13 +2273,15 @@ var hoverZoom = {
             if (imgFullSize) {
                 // "Open image in a new window" key
                 if (keyCode === options.openImageInWindowKey) {
-                    if (imgDetails.video) openVideoInWindow();
+                    if (srcDetails.video) openVideoInWindow();
+                    else if (srcDetails.audio) openAudioInWindow();
                     else openImageInWindow();
                     return false;
                 }
                 // "Open image in a new tab" key
                 if (keyCode === options.openImageInTabKey) {
-                    if (imgDetails.video) openVideoInTab(event.shiftKey);
+                    if (srcDetails.video) openVideoInTab(event.shiftKey);
+                    else if (srcDetails.audio) openAudioInTab();
                     else openImageInTab(event.shiftKey);
                     return false;
                 }
@@ -2247,7 +2327,7 @@ var hoverZoom = {
                 });
         }
 
-        function getExtensionFromUrl(url, video, playlist) {
+        function getExtensionFromUrl(url, video, playlist, audio) {
             let fullurl = url;
             // remove trailing / & trailing query
             url = url.replace(/\/$/, '').split(/[\?!#&]/)[0];
@@ -2256,12 +2336,15 @@ var hoverZoom = {
             let ext = (filename.lastIndexOf('.') === -1 ? '' : filename.substr(filename.lastIndexOf('.') + 1));
             if (ext == '' || ext.length > 5) {
                 // try to guess correct extension
-                if (!video && !playlist) ext = 'jpg'; // default image extension
+                if (!video && !playlist && !audio) ext = 'jpg'; // default image extension
                 if (playlist) ext = 'm3u8'; // default playlist extension
                 if (video) {
                     if (fullurl.indexOf('mp4') !== -1) ext = 'mp4';
                     else if (fullurl.indexOf('webm') !== -1) ext = 'webm';
                     else ext = 'video';
+                }
+                if (audio) {
+                    ext = 'mp3';
                 }
             }
             return ext;
@@ -2290,8 +2373,7 @@ var hoverZoom = {
 
         function openImageInWindow() {
             chrome.runtime.sendMessage({action:'getItem', id:'popupBorder'}, function (data) {
-                var createData,
-                    popupBorder = {width:16, height:39};
+                let popupBorder = {width:16, height:39};
 
                 if (data) {
                     try {
@@ -2302,26 +2384,75 @@ var hoverZoom = {
                 }
 
                 // If image bigger than screen, adjust window dimensions to match image's aspect ratio
-                var createDataWidth = imgDetails.naturalWidth + popupBorder.width;
-                var createDataHeight = imgDetails.naturalHeight + popupBorder.height;
+                let createDataWidth = srcDetails.naturalWidth + popupBorder.width;
+                let createDataHeight = srcDetails.naturalHeight + popupBorder.height;
                 if (createDataHeight > screen.availHeight) {
                     let imgHeight = screen.availHeight - popupBorder.height;
-                    let imgWidth = Math.round(imgHeight * imgDetails.naturalWidth / imgDetails.naturalHeight);
+                    let imgWidth = Math.round(imgHeight * srcDetails.naturalWidth / srcDetails.naturalHeight);
                     createDataWidth = imgWidth + popupBorder.width;
                     createDataHeight = screen.availHeight;
                 } else if (createDataWidth > screen.availWidth) {
                     let imgWidth = screen.availWidth - popupBorder.width;
-                    let imgHeight = Math.round(imgWidth * imgDetails.naturalHeight / imgDetails.naturalWidth);
+                    let imgHeight = Math.round(imgWidth * srcDetails.naturalHeight / srcDetails.naturalWidth);
                     createDataWidth = screen.availWidth;
                     createDataHeight = imgHeight + popupBorder.height;
                 }
 
                 // Center window vertically & horizontally
-                var createDataTop = Math.round(screen.availHeight / 2 - createDataHeight / 2);
-                var createDataLeft = Math.round(screen.availWidth / 2 - createDataWidth / 2);
+                let createDataTop = Math.round(screen.availHeight / 2 - createDataHeight / 2);
+                let createDataLeft = Math.round(screen.availWidth / 2 - createDataWidth / 2);
 
-                createData = {
-                    url:imgDetails.url,
+                let createData = {
+                    url:srcDetails.url,
+                    width:createDataWidth,
+                    height:createDataHeight,
+                    top:createDataTop,
+                    left:createDataLeft,
+                    type:'popup',
+                    incognito:chrome.extension.inIncognitoContext
+                };
+
+                chrome.runtime.sendMessage({
+                    action:'openViewWindow',
+                    createData:createData
+                });
+            });
+        }
+
+        function openAudioInWindow() {
+            chrome.runtime.sendMessage({action:'getItem', id:'popupBorder'}, function (data) {
+                let popupBorder = {width:16, height:39};
+
+                if (data) {
+                    try {
+                        popupBorder = JSON.parse(data);
+                    }
+                    catch (e) {}
+                }
+
+                let body = '<body/>';
+                body = $(body);
+                body[0].style.margin = 0;
+                body[0].style.backgroundImage = 'url(' + chrome.extension.getURL('images/spectrogram.png') + ')';
+
+                let audio = '<audio/>';
+                audio = $(audio);
+                audio[0].controls = true;
+                audio[0].src = srcDetails.audioUrl;
+                audio[0].setAttribute('onloadeddata', 'this.volume = ' + options.audioVolume + ';');
+                audio.css(audioControlsCss);
+                body.append(audio);
+
+                let imgDim = hz.getImageDimensions(chrome.extension.getURL('images/spectrogram.png'));
+                let createDataWidth = imgDim.width + popupBorder.width;
+                let createDataHeight = imgDim.height + popupBorder.height;
+
+                // Center window vertically & horizontally
+                let createDataTop = Math.round(screen.availHeight / 2 - createDataHeight / 2);
+                let createDataLeft = Math.round(screen.availWidth / 2 - createDataWidth / 2);
+
+                let createData = {
+                    url:'data:text/html,' + body[0].outerHTML,
                     width:createDataWidth,
                     height:createDataHeight,
                     top:createDataTop,
@@ -2338,10 +2469,8 @@ var hoverZoom = {
         }
 
         function openVideoInWindow() {
-
             chrome.runtime.sendMessage({action:'getItem', id:'popupBorder'}, function (data) {
-                var createData,
-                    popupBorder = {width:16, height:39};
+                var popupBorder = {width:16, height:39};
 
                 if (data) {
                     try {
@@ -2350,23 +2479,23 @@ var hoverZoom = {
                     catch (e) {}
                 }
 
-                var body = '<body/>';
+                let body = '<body/>';
                 body = $(body);
                 body[0].style.margin = 0;
-                var video = '<video/>';
+                let video = '<video/>';
                 video = $(video);
                 video[0].style.position = 'absolute';
                 video[0].controls = true;
-                video[0].src = imgDetails.url;
+                video[0].src = srcDetails.url;
                 video[0].setAttribute('onloadeddata', 'this.volume = ' + options.videoVolume + '; this.muted = ' + options.muteVideos + ';');
                 body.append(video);
-                var audio = null;
-                if (imgDetails.audioUrl) {
+
+                if (srcDetails.audioUrl) {
                     // add audio source if not embedded in video
-                    audio = '<audio/>';
+                    let audio = '<audio/>';
                     audio = $(audio);
                     audio[0].controls = true;
-                    audio[0].src =  imgDetails.audioUrl;
+                    audio[0].src = srcDetails.audioUrl;
                     audio[0].setAttribute('onloadeddata', 'this.volume = ' + options.videoVolume + '; this.muted = ' + options.muteVideos + ';');
                     body.append(audio);
                     // plug audio controls (play, pause...) in video
@@ -2379,18 +2508,18 @@ var hoverZoom = {
                 }
 
                 // If image bigger than screen, adjust window dimensions to match image's aspect ratio
-                var createDataWidth = imgDetails.naturalWidth + popupBorder.width;
-                var createDataHeight = imgDetails.naturalHeight + popupBorder.height;
+                let createDataWidth = srcDetails.naturalWidth + popupBorder.width;
+                let createDataHeight = srcDetails.naturalHeight + popupBorder.height;
                 if (createDataHeight > screen.availHeight) {
                     let videoHeight = screen.availHeight - popupBorder.height;
-                    let videoWidth = Math.round(videoHeight * imgDetails.naturalWidth / imgDetails.naturalHeight);
+                    let videoWidth = Math.round(videoHeight * srcDetails.naturalWidth / srcDetails.naturalHeight);
                     video[0].height = videoHeight;
                     video[0].width = videoWidth;
                     createDataWidth = videoWidth + popupBorder.width;
                     createDataHeight = screen.availHeight;
                 } else if (createDataWidth > screen.availWidth) {
                     let videoWidth = screen.availWidth - popupBorder.width;
-                    let videoHeight = Math.round(videoWidth * imgDetails.naturalHeight / imgDetails.naturalWidth);
+                    let videoHeight = Math.round(videoWidth * srcDetails.naturalHeight / srcDetails.naturalWidth);
                     video[0].height = videoHeight;
                     video[0].width = videoWidth;
                     createDataWidth = screen.availWidth;
@@ -2398,10 +2527,10 @@ var hoverZoom = {
                 }
 
                 // Center window vertically & horizontally
-                var createDataTop = Math.round(screen.availHeight / 2 - createDataHeight / 2);
-                var createDataLeft = Math.round(screen.availWidth / 2 - createDataWidth / 2);
+                let createDataTop = Math.round(screen.availHeight / 2 - createDataHeight / 2);
+                let createDataLeft = Math.round(screen.availWidth / 2 - createDataWidth / 2);
 
-                createData = {
+                let createData = {
                     url:'data:text/html,' + body[0].outerHTML,
                     width:createDataWidth,
                     height:createDataHeight,
@@ -2422,21 +2551,41 @@ var hoverZoom = {
             chrome.runtime.sendMessage({
                 action: 'openViewTab',
                 createData: {
-                    url:imgDetails.url,
+                    url:srcDetails.url,
                     active:!background
                 }
             });
         }
 
-        function openVideoInTab(background) {
-
-            var createData;
-
-            var body = '<body/>';
+        function openAudioInTab(background) {
+            let body = '<body/>';
             body = $(body);
             body[0].style.backgroundColor = 'rgb(0,0,0)';
 
-            var video = '<video/>';
+            let audio = '<audio/>';
+            audio = $(audio);
+            audio[0].controls = true;
+            audio[0].src = srcDetails.audioUrl;
+            audio[0].setAttribute('onloadeddata', 'this.volume = ' + options.audioVolume + ';');
+            body.append(audio);
+
+            let createData = {
+                url:'data:text/html,' + body[0].outerHTML,
+                active:!background
+            };
+
+            chrome.runtime.sendMessage({
+                action:'openViewTab',
+                createData:createData
+            });
+        }
+
+        function openVideoInTab(background) {
+            let body = '<body/>';
+            body = $(body);
+            body[0].style.backgroundColor = 'rgb(0,0,0)';
+
+            let video = '<video/>';
             video = $(video);
             video[0].style.position = 'absolute';
             video[0].style.margin = 'auto';
@@ -2447,16 +2596,16 @@ var hoverZoom = {
             video[0].style.maxHeight = '100%';
             video[0].style.maxWidth = '100%';
             video[0].controls = true;
-            video[0].src = imgDetails.url;
+            video[0].src = srcDetails.url;
             video[0].setAttribute('onloadeddata', 'this.volume = ' + options.videoVolume + '; this.muted = ' + options.muteVideos + ';');
             body.append(video);
-            var audio = null;
-            if (imgDetails.audioUrl) {
+
+            if (srcDetails.audioUrl) {
                 // add audio source if not embedded in video
                 audio = '<audio/>';
                 audio = $(audio);
                 audio[0].controls = true;
-                audio[0].src =  imgDetails.audioUrl;
+                audio[0].src = srcDetails.audioUrl;
                 audio[0].setAttribute('onloadeddata', 'this.volume = ' + options.videoVolume + '; this.muted = ' + options.muteVideos + ';');
                 body.append(audio);
                 // plug audio controls (play, pause...) in video
@@ -2469,21 +2618,21 @@ var hoverZoom = {
             }
 
             // If image bigger than screen, adjust window dimensions to match image's aspect ratio
-            var createDataWidth = imgDetails.naturalWidth;
-            var createDataHeight = imgDetails.naturalHeight;
+            let createDataWidth = srcDetails.naturalWidth;
+            let createDataHeight = srcDetails.naturalHeight;
             if (createDataHeight > screen.availHeight) {
                 let videoHeight = screen.availHeight;
-                let videoWidth = Math.round(videoHeight * imgDetails.naturalWidth / imgDetails.naturalHeight);
+                let videoWidth = Math.round(videoHeight * srcDetails.naturalWidth / srcDetails.naturalHeight);
                 video[0].height = videoHeight;
                 video[0].width = videoWidth;
             } else if (createDataWidth > screen.availWidth) {
                 let videoWidth = screen.availWidth;
-                let videoHeight = Math.round(videoWidth * imgDetails.naturalHeight / imgDetails.naturalWidth);
+                let videoHeight = Math.round(videoWidth * srcDetails.naturalHeight / srcDetails.naturalWidth);
                 video[0].height = videoHeight;
                 video[0].width = videoWidth;
             }
 
-            createData = {
+            let createData = {
                 url:'data:text/html,' + body[0].outerHTML,
                 active:!background
             };
@@ -2502,14 +2651,14 @@ var hoverZoom = {
             if (additionaInfos) {
                 try {
                     additionaInfos = JSON.parse(additionaInfos);
-                    let infos = additionaInfos[imgDetails.url];
+                    let infos = additionaInfos[url];
                     if (infos) return;
                 } catch {}
             }
 
             chrome.runtime.sendMessage({
                 action: 'ajaxGetHeaders',
-                url: imgDetails.url
+                url: url
             }, function(response) {
                 if (response == null) return;
                 let infos = parseHeaders(response.headers);
@@ -2599,11 +2748,10 @@ var hoverZoom = {
         function getDownloadFilenameByMedia(downloadMedia) {
 
             let src, filename;
-
             switch (downloadMedia) {
                 case downloadMedias.IMG:
                     if (!hz.hzViewer) return '';
-                    let img = hz.hzViewer.find('img').get(0);
+                    let img = hz.hzViewer.find('img:not(.hzPlaceholder)').get(0);
                     if (!img) return '';
                     src = img.src;
                     // remove trailing / & trailing query
@@ -2643,8 +2791,8 @@ var hoverZoom = {
 
                 case downloadMedias.PLAYLIST:
                     if (!hz.hzViewer) return '';
-                    if (!imgDetails.playlist) return '';
-                    src = imgDetails.url;
+                    if (!srcDetails.playlist) return '';
+                    src = srcDetails.url;
                     // remove trailing / & trailing query
                     src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
                     // extract filename
@@ -2656,7 +2804,7 @@ var hoverZoom = {
             return '';
         }
 
-        function lockImage() {
+        function lockViewer() {
             viewerLocked = true;
             displayFullSizeImage();
         }
@@ -2700,14 +2848,13 @@ var hoverZoom = {
         }
 
         function copyLink() {
-            const url = imgDetails.url;
+            const url = (srcDetails.audio ? srcDetails.audioUrl : srcDetails.url);
             if (!url) return;
-
             navigator.clipboard.writeText(url);
         }
 
         function copyImage() {
-            const url = imgDetails.url;
+            const url = srcDetails.url;
             if(!url) return;
 
             fetch(url)
@@ -2824,7 +2971,7 @@ var hoverZoom = {
             }
 
             // download KO: This function must be called during a user gesture => debugger must be closed
-            var urlBlob = URL.createObjectURL( new Blob([imgDetails.url], {type: 'text/plain'}) );
+            var urlBlob = URL.createObjectURL( new Blob([srcDetails.url], {type: 'text/plain'}) );
             chrome.runtime.sendMessage({
                 action: 'downloadFile',
                 url: urlBlob,
@@ -2881,9 +3028,9 @@ var hoverZoom = {
 
         function loadNextGalleryImage() {
             clearTimeout(loadFullSizeImageTimeout);
-            imgDetails.url = hz.currentLink.data().hoverZoomSrc[hz.currentLink.data().hoverZoomSrcIndex];
+            srcDetails.url = hz.currentLink.data().hoverZoomSrc[hz.currentLink.data().hoverZoomSrcIndex];
             loadFullSizeImage();
-            getAdditionalInfosFromServer(imgDetails.url);
+            getAdditionalInfosFromServer(srcDetails.url);
         }
 
         function nextGalleryImageOnLoad() {
@@ -3221,7 +3368,6 @@ var hoverZoom = {
                     var path = window.location.pathname;
                     // use pathname iff valid
                     if (path.startsWith('/') && path.endsWith('/')) {
-                        //path = path.substr(0, path.lastIndexOf('/') + 1);
                         url = path + url;
                     }
                 }
@@ -3235,6 +3381,15 @@ var hoverZoom = {
         return url;
     },
 
+    // https://github.com/carlosascari/chrome-cache-reader/blob/master/index.js
+    getImageDimensions:function (url, width, height) {
+        let img = new Image;
+        img.src = url;
+        let imgDim = {};
+        imgDim.width = img.width;
+        imgDim.height = img.height;
+        return imgDim;
+    },
 
     // https://dev.to/alexparra/js-seconds-to-hh-mm-ss-22o6
     // * Convert seconds to HH MM SS

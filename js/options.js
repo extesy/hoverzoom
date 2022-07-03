@@ -84,6 +84,8 @@ function saveOptions() {
     options.muteVideos = $('#chkMuteVideos')[0].checked;
     options.videoTimestamp = $('#chkVideoTimestamp')[0].checked;
     options.videoVolume = $('#txtVideoVolume')[0].value / 100;
+    options.playAudio = $('#chkPlayAudio')[0].checked;
+    options.audioVolume = $('#txtAudioVolume')[0].value / 100;
     options.mouseUnderlap = $('#chkMouseUnderlap')[0].checked;
     options.pageActionEnabled = $('#chkPageActionEnabled')[0].checked;
     options.showWhileLoading = $('#chkShowWhileLoading')[0].checked;
@@ -173,6 +175,9 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#chkVideoTimestamp').trigger(options.videoTimestamp ? 'gumby.check' : 'gumby.uncheck');
     $('#rngVideoVolume').val(parseInt(options.videoVolume * 100));
     $('#txtVideoVolume').val(parseInt(options.videoVolume * 100));
+    $('#chkPlayAudio').trigger(options.playAudio ? 'gumby.check' : 'gumby.uncheck');
+    $('#rngAudioVolume').val(parseInt(options.audioVolume * 100));
+    $('#txtAudioVolume').val(parseInt(options.audioVolume * 100));
     $('#chkMouseUnderlap').trigger(options.mouseUnderlap ? 'gumby.check' : 'gumby.uncheck');
     $('#chkPageActionEnabled').trigger(options.pageActionEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#chkShowWhileLoading').trigger(options.showWhileLoading ? 'gumby.check' : 'gumby.uncheck');
@@ -537,6 +542,15 @@ function updateRngVideoVolume() {
     $('#rngVideoVolume').val(this.value);
 }
 
+function updateTxtAudioVolume() {
+    $('#txtAudioVolume')[0].value = this.value;
+}
+
+function updateRngAudioVolume() {
+    this.value = percentageOnChange(this.value);
+    $('#rngAudioVolume').val(this.value);
+}
+
 function onMessage(message, sender, callback) {
     switch (message.action) {
         case 'optionsChanged':
@@ -640,6 +654,8 @@ $(function () {
     $('#txtPicturesOpacity').change(percentageOnChange);
     $('#rngVideoVolume').on('input change', updateTxtVideoVolume);
     $('#txtVideoVolume').change(updateRngVideoVolume);
+    $('#rngAudioVolume').on('input change', updateTxtAudioVolume);
+    $('#txtAudioVolume').change(updateRngAudioVolume);
     $('#chkAmbilightEnabled').parent().on('gumby.onChange', updateDivAmbilight);
     $('#rngAmbilightHaloSize').on('input change', updateTxtAmbilightHaloSize);
     $('#txtAmbilightHaloSize').change(updateRngAmbilightHaloSize);
