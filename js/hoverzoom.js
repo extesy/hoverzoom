@@ -960,7 +960,7 @@ var hoverZoom = {
                     // Happens when the mouse goes from an image to another without hovering the page background
                     if (srcDetails.url && links.data().hoverZoomSrc[hoverZoomSrcIndex] !== srcDetails.url) {
                         cLog(`hiding because ${links.data().hoverZoomSrc[hoverZoomSrcIndex]} !== ${srcDetails.url}`);
-                        closeHoverZoomImg();
+                        closeHoverZoomViewer();
                     }
 
                     removeTitles(target);
