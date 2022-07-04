@@ -76,18 +76,19 @@ hoverZoomPlugins.push({
             cLog(`href: ${href}`);
 
             const re1 = /\/watch\?v=([^&]{1,})/;   // sample: https://www.youtube.com/watch?v=NaOiA15Rz5k
-            const re2 = /\/youtu.be\/([^?]{1,})/;  // sample: https://youtu.be/qXlQbj0PgDo https://youtu.be/qORYO0atB6g?t=28
-            const re3 = /\/shorts\/([^?]{1,})/;   // sample: https://www.youtube.com/shorts/gmkUDjwRX98
+            const re2 = /\/youtu.be\/([^?&]{1,})/;  // sample: https://youtu.be/qXlQbj0PgDo https://youtu.be/qORYO0atB6g?t=28
+            const re3 = /\/shorts\/([^?&]{1,})/;   // sample: https://www.youtube.com/shorts/gmkUDjwRX98
             let m = href.match(re1);
-            if (m == undefined)
+            if (!m)
                 m = href.match(re2);
-             if (m == undefined)
+             if (!m)
                 m = href.match(re3);
-            if (m == undefined) return;
-            var videoId = m[1];
+            if (!m)
+                return;
+            const videoId = m[1];
             cLog(`videoId: ${videoId}`);
 
-            let match = href.match(/[\?&]t=([\dhm]+)/);
+            let match = href.match(/[?&]t=([\dhm]+)/);
             let start = match && match.length >= 2 ? match[1] : null;
             if (start && start.indexOf('m') !== -1) {
                 const parts = start.split('m');
@@ -99,14 +100,17 @@ hoverZoomPlugins.push({
                 }
             }
 
-            // resuse previous result
+            // reuse previous result
             if (link.data().hoverZoomYouTubeApiVideoId === videoId) {
+                if (link.data().hoverZoomYouTubeApiAudioUrl)
+                    link.data().hoverZoomAudioSrc = [link.data().hoverZoomYouTubeApiAudioUrl];
                 if (link.data().hoverZoomYouTubeApiVideoUrl)
                     link.data().hoverZoomSrc = [link.data().hoverZoomYouTubeApiVideoUrl];
                 return;
             }
 
             link.data().hoverZoomYouTubeApiVideoId = videoId;
+            link.data().hoverZoomYouTubeApiAudioUrl = undefined;
             link.data().hoverZoomYouTubeApiVideoUrl = undefined;
 
             cLog(`videoId: ${videoId} proceed with API call`);
@@ -137,18 +141,19 @@ hoverZoomPlugins.push({
                         let widthMax = Math.max(...widths);
                         let bestVideo = j["streamingData"]["adaptiveFormats"].find(f => f.width === widthMax);
                         cLog(`${videoId} bestVideo: ${widthMax} ${bestVideo.url}`);
-                        let urlVideo = bestVideo.url + (start ? '#t=' + start : '') + ".video";
+                        let urlVideo = bestVideo.url + (start ? '#t=' + start : '');
 
                         // find best audio source (= largest bitrate)
                         let bitrates = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("audio/mp4") !== -1).map(f => f.bitrate);
                         let bitrateMax = Math.max(...bitrates);
                         let bestAudio = j["streamingData"]["adaptiveFormats"].filter(f => f.mimeType.indexOf("audio/mp4") !== -1).find(f => f.bitrate === bitrateMax);
                         cLog(`${videoId} bestAudio: ${bitrateMax} ${bestAudio.url}`);
-                        let urlAudio = bestAudio.url + (start ? '#t=' + start : '') + ".audio";
+                        let urlAudio = bestAudio.url + (start ? '#t=' + start : '');
 
-                        let urlVideoAudio = urlVideo + "_" + urlAudio;
-                        link.data().hoverZoomYouTubeApiVideoUrl = urlVideoAudio;
-                        link.data().hoverZoomSrc = [urlVideoAudio];
+                        link.data().hoverZoomYouTubeApiAudioUrl = urlAudio;
+                        link.data().hoverZoomYouTubeApiVideoUrl = urlVideo;
+                        link.data().hoverZoomAudioSrc = [urlAudio];
+                        link.data().hoverZoomSrc = [urlVideo];
 
                         callback(link, name);
                         hoverZoom.displayPicFromElement(link);

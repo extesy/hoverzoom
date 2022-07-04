@@ -618,18 +618,17 @@ var hoverZoom = {
         }
 
         // some plug-ins append:
-        // .video to video streams so url =  videourl.video
+        // .video to video streams so url = videourl.video
         // .audio to audio streams so url = audiourl.audio
         // if both urls are present then url = videourl.video_audiourl.audio
         function getVideoAudioFromUrl() {
-            var videourl = srcDetails.url.split('.video')[0];
-            var audiourl = srcDetails.url.split('.video')[1] || '';
+            const videourl = srcDetails.url.split('.video')[0];
+            const audiourl = srcDetails.url.split('.video')[1] || '';
             if (audiourl.endsWith('.audio')) {
-                srcDetails.audioUrl = audiourl.replace(/^_/, '').replace('.audio', '');
+                srcDetails.audioUrl = audiourl.substring(1, audiourl.length-6);
                 srcDetails.audioMuted = false;
-            }
-            if (audiourl.endsWith('.audiomuted')) {
-                srcDetails.audioUrl = audiourl.replace(/^_/, '').replace('.audiomuted', '');
+            } else if (audiourl.endsWith('.audiomuted')) {
+                srcDetails.audioUrl = audiourl.substring(1, audiourl.length-11);
                 srcDetails.audioMuted = true;  // in case of video with audio track embeded + distinct audio track: mute distinct audio track
             }
             srcDetails.url = videourl;
@@ -933,7 +932,7 @@ var hoverZoom = {
             // Test if the action key was pressed without moving the mouse
                 explicitCall = typeof(event.pageY) === 'undefined';
 
-            // If so, the MouseMove event was triggered programmaticaly and we don't have details
+            // If so, the MouseMove event was triggered programmaticaly, and we don't have details
             // about the mouse position and the event target, so we use the last saved ones.
             if (explicitCall) {
                 links = hz.currentLink;
@@ -946,8 +945,8 @@ var hoverZoom = {
             }
 
             if (options.mouseUnderlap && target.length && mousePos && linkRect &&
-                (imgFullSize && imgFullSize.length && target[0] == imgFullSize[0] ||
-                    hz.hzViewer && hz.hzViewer.length && target[0] == hz.hzViewer[0])) {
+                (imgFullSize && imgFullSize.length && target[0] === imgFullSize[0] ||
+                    hz.hzViewer && hz.hzViewer.length && target[0] === hz.hzViewer[0])) {
                 if (mousePos.top > linkRect.top && mousePos.top < linkRect.bottom && mousePos.left > linkRect.left && mousePos.left < linkRect.right) {
                     return;
                 }
@@ -960,8 +959,8 @@ var hoverZoom = {
                     typeof(links.data().hoverZoomSrc[hoverZoomSrcIndex]) !== 'undefined') {
                     // Happens when the mouse goes from an image to another without hovering the page background
                     if (srcDetails.url && links.data().hoverZoomSrc[hoverZoomSrcIndex] !== srcDetails.url) {
-                        cLog("hiding because " + links.data().hoverZoomSrc[hoverZoomSrcIndex] + " !== " + srcDetails.url);
-                        closeHoverZoomViewer();
+                        cLog(`hiding because ${links.data().hoverZoomSrc[hoverZoomSrcIndex]} !== ${srcDetails.url}`);
+                        closeHoverZoomImg();
                     }
 
                     removeTitles(target);
@@ -971,9 +970,8 @@ var hoverZoom = {
                         hz.currentLink = links;
 
                         if (links.data().hoverZoomSrc && (!options.actionKey || actionKeyDown)) {
-
-                            var src = hoverZoom.getFullUrl(links.data().hoverZoomSrc[hoverZoomSrcIndex]);
-                            var audioSrc = (links.data().hoverZoomAudioSrc ? hoverZoom.getFullUrl(links.data().hoverZoomAudioSrc[hoverZoomSrcIndex]) : undefined);
+                            const src = hoverZoom.getFullUrl(links.data().hoverZoomSrc[hoverZoomSrcIndex]);
+                            const audioSrc = links.data().hoverZoomAudioSrc ? hoverZoom.getFullUrl(links.data().hoverZoomAudioSrc[hoverZoomSrcIndex]) : undefined;
 
                             // only works after img has been loaded
                             /*let height = undefined;
@@ -988,7 +986,7 @@ var hoverZoom = {
                             clearTimeout(loadFullSizeImageTimeout);
 
                             // if the action key has been pressed over an image, no delay is applied
-                            var delay = actionKeyDown || explicitCall ? 0 : (isVideoLink(srcDetails.url) ? options.displayDelayVideo : options.displayDelay);
+                            const delay = actionKeyDown || explicitCall ? 0 : (isVideoLink(srcDetails.url) ? options.displayDelayVideo : options.displayDelay);
                             loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
 
                             loading = true;
@@ -1424,7 +1422,7 @@ var hoverZoom = {
                 }
                 lowResSrc = lowResSrc || 'noimage';
                 if (loading && lowResSrc.indexOf('noimage') === -1) {
-                    var ext = srcDetails.url.substr(srcDetails.url.length - 3).toLowerCase();
+                    var ext = srcDetails.url.substring(srcDetails.url.length - 3).toLowerCase();
                     if (ext != 'gif' && ext != 'svg' && ext != 'png') {
                         var imgRatio = imgFullSize.width() / imgFullSize.height(),
                             thumbRatio = imgThumb.width() / imgThumb.height();
