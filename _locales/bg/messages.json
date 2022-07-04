@@ -91,6 +91,10 @@
         "message": "Видео",
         "description": "[options] Page section for video options"
     },
+    "optSectionAudio": {
+        "message": "Audio",
+        "description": "[options] Page section for audio options"
+    },
     "optZoomFactor": {
         "message": "Уголемяване на приближени изображения от този коефициент:",
         "description": "[options] Adjust the size of zoomed images option"
@@ -254,6 +258,26 @@
     "optVideoVolumeTooltip": {
         "message": "Ако звукът на видеото не е напълно изключен, то задайте силата на звука до тази стойност (0-100)",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
+    },
+    "optPlayAudio": {
+        "message": "Play audio sources such as MP3",
+        "description": "[options] Play audio option"
+    },
+    "optPlayAudioTooltip": {
+        "message": "Supported formats: flac m4a mp3 oga ogg opus wav",
+        "description": "[options] Tooltip for play audio option"
+    },
+    "optAudioVolume": {
+        "message": "Audio volume:",
+        "description": "[options] Audio volume option"
+    },
+    "optAudioVolumeUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (percentage) for audio volume option"
+    },
+    "optAudioVolumeTooltip": {
+        "message": "Set the volume to this percentage (0-100)",
+        "description": "[options] Tooltip for audio volume option"
     },
     "optEnableAmbilight": {
         "message": "Включване на обкръжаваща светлина зад изображенията",
@@ -542,6 +566,10 @@
     "optSupportedVideoFormats": {
         "message": "Video :",
         "description": "[options] Page section for supported video formats"
+    },
+    "optSupportedAudioFormats": {
+        "message": "Audio :",
+        "description": "[options] Page section for supported audio formats"
     },
     "optPageFAQ": {
         "message": "FAQ",
