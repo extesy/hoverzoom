@@ -132,12 +132,12 @@ hoverZoomPlugins.push({
 
                         // check if sources are ciphered
                         if (j["streamingData"]["adaptiveFormats"][0].signatureCipher) {
-                            cLog(`${videoId} : sources are encrypted`);
+                            cLog(`${videoId}: sources are encrypted`);
                             return;
                         }
 
-                        // find the best video source (= largest width)
-                        let widths = j["streamingData"]["adaptiveFormats"].map(f => (f.width ? f.width : -1));
+                        // find the best video source: largest width, capped to 1600px
+                        let widths = j["streamingData"]["adaptiveFormats"].filter(f => f.width <= 1600).map(f => f.width ? f.width : -1);
                         let widthMax = Math.max(...widths);
                         let bestVideo = j["streamingData"]["adaptiveFormats"].find(f => f.width === widthMax);
                         cLog(`${videoId} bestVideo: ${widthMax} ${bestVideo.url}`);

@@ -7,7 +7,7 @@ var hoverZoomPlugins = hoverZoomPlugins || [],
     hls = null; // https://github.com/video-dev/hls.js/
 
 function cLog(msg) {
-    if (debug) {
+    if (debug && msg) {
         console.log(msg);
     }
 }
