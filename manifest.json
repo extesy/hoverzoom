@@ -1814,6 +1814,10 @@
         {
             "js": ["plugins/tiktok.js"],
             "matches": ["*://*.tiktok.com/*"]
+        },
+        {
+            "js": ["plugins/unlimphotos.js"],
+            "matches": ["*://*.unlimphotos.com/*"]
         }
    ]
 }
