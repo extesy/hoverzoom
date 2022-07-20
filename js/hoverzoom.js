@@ -205,7 +205,7 @@ var hoverZoom = {
                 'font':'menu',
                 'font-weight':'bold',
                 'color':'white',
-                'text-shadow':'1px 1px 0px black, -1px 1px 0px black, 1px -1px 0px black, -1px -1px 0px black',
+                'text-shadow':'1px 1px 2px black, -1px 1px 2px black, 1px -1px 2px black, -1px -1px 2px black',
                 'text-align':'center',
                 'text-overflow':'clip',
                 'overflow':'hidden',
@@ -311,7 +311,7 @@ var hoverZoom = {
                 'font-size':'14px',
                 'font-weight':'bold',
                 'color':'white',
-                'text-shadow':'1px 1px 0px black, -1px 1px 0px black, 1px -1px 0px black, -1px -1px 0px black',
+                'text-shadow':'1px 1px 2px black, -1px 1px 2px black, 1px -1px 2px black, -1px -1px 2px black',
                 'text-align':'center',
                 'overflow':'hidden',
                 'vertical-align':'top',
@@ -2190,7 +2190,7 @@ var hoverZoom = {
                 }
                 // "Lock image" key
                 if (keyCode === options.lockImageKey) {
-                    if (!viewerLocked) lockImage();
+                    if (!viewerLocked) lockViewer();
                     return false;
                 }
                 // "Copy image" key
@@ -2600,7 +2600,7 @@ var hoverZoom = {
 
             if (srcDetails.audioUrl) {
                 // add audio source if not embedded in video
-                audio = '<audio/>';
+                let audio = '<audio/>';
                 audio = $(audio);
                 audio[0].controls = true;
                 audio[0].src = srcDetails.audioUrl;
