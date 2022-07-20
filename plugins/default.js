@@ -1,11 +1,11 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'Default',
-    version:'0.5',
+    version:'0.6',
     prepareImgLinks: function (callback) {
         const res = [];
         const reVideos = /\/[^:]+\.(?:3gpp|m4v|mkv|mp4|ogv|webm)(?:[\?#].*)?(?:\/)?$/i
-        const reImages = /\/[^:]+\.(?:bmp|gifv?|ico|jfif|jpe|jpe?g|png|svg|webp|xbm)(?:[\?#].*)?(?:\/)?$/i
+        const reImages = /\/[^:]+\.(?:avif|bmp|gifv?|ico|jfif|jpe|jpe?g|png|svg|webp|xbm)(?:[\?#].*)?(?:\/)?$/i
         const rePlaylists = /\/[^:]+\.(?:m3u8)(?:[\?#].*)?(?:\/)?$/i
         const reAudios = /\/[^:]+\.(?:flac|m4a|mp3|oga|ogg|opus|wav)(?:[\?#].*)?(?:\/)?$/i
         $('a[href]').filter(function () {
