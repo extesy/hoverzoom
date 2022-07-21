@@ -735,7 +735,7 @@ var hoverZoom = {
             if (options.fontOutline) {
                 // outline text: white font + thin black border
                 hzCaptionCss.color = hzMiscellaneousCss.color = hzDetailCss.color = 'white';
-                hzCaptionCss.textShadow = hzMiscellaneousCss.textShadow = hzDetailCss.textShadow = '1px 1px 0px black, -1px 1px 0px black, 1px -1px 0px black, -1px -1px 0px black';
+                hzCaptionCss.textShadow = hzMiscellaneousCss.textShadow = hzDetailCss.textShadow = '1px 1px 1px black, -1px 1px 1px black, 1px -1px 1px black, -1px -1px 1px black';
                 return;
             }
 
