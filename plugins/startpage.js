@@ -1,12 +1,12 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'startpage',
-    version:'0.1',
+    version:'0.2',
     prepareImgLinks:function (callback) {
 
         var name = this.name;
         var res = [];
-        var jsonToken1 = 'UIStartpage.App,';
+        var jsonToken1 = 'UIStartpage.AppSerp,';
         var jsonToken2 = '}),';
         var spJson = undefined;
         var spData = extractJsonFromDoc();
