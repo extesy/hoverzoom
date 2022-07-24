@@ -92,7 +92,7 @@
         "description": "[options] Page section for video options"
     },
     "optSectionAudio": {
-        "message": "Audio",
+        "message": "Sonido",
         "description": "[options] Page section for audio options"
     },
     "optZoomFactor": {
@@ -212,7 +212,7 @@
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
-        "message": "Zoom videos",
+        "message": "Ampliar videos",
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
@@ -432,7 +432,7 @@
         "description": "[options] Page section for advanced options"
     },
     "optEnableDownloads": {
-        "message": "Allow downloading images using an action key",
+        "message": "Permitir la descarga de imágenes usando una tecla de acción",
         "description": "[options] Grant browser permission to allow file downloading using an action key"
     },
     "optAddToHistory": {
@@ -440,11 +440,11 @@
         "description": "[options] Add viewed pictures to the browser's history option"
     },
     "optAllowHeadersRewriteTooltip": {
-        "message": "Useful to be able to zoom & play content from one site on another site, such as videos",
+        "message": "Útil para poder ampliar y reproducir el contenido de un sitio en otro, como los vídeos",
         "description": "[options] Tooltip for allow rewrite of headers for HTTP(S) request or response option"
     },
     "optAllowHeadersRewrite": {
-        "message": "Allow rewrite of headers for HTTP(S) request or response",
+        "message": "Permitir la reescritura de encabezados para solicitudes o respuestas HTTP(S)",
         "description": "[options] Allow rewrite of headers for HTTP(S) request or response option"
     },
     "optFilterNSFW": {
@@ -464,7 +464,7 @@
         "description": "[options] Enable Action Keys focus overlay message option"
     },
     "optEnableNoFocusMsgTooltip": {
-        "message": "Sometimes Action Keys seem to be broken, this usually happens when page has lost focus. If option is checked, a warning message will be displayed (only once).",
+        "message": "A veces las teclas de acción parecen estar rotas, esto suele ocurrir cuando la página pierde el foco. Si la opción está marcada, se mostrará un mensaje de advertencia (solo una vez).",
         "description": "[options] Tooltip for enable Action Keys focus overlay message option"
     },
     "optPicturesOpacity": {
@@ -552,11 +552,11 @@
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
-        "message": "Enable debug logging",
+        "message": "Habilitar el registro de depuración",
         "description": "[options] Enable debug option"
     },
     "optSectionSupportedFormats": {
-        "message": "Supported formats",
+        "message": "Formatos soportados",
         "description": "[options] Page section for supported formats"
     },
     "optSupportedImageFormats": {
@@ -568,7 +568,7 @@
         "description": "[options] Page section for supported video formats"
     },
     "optSupportedAudioFormats": {
-        "message": "Audio :",
+        "message": "Sonido :",
         "description": "[options] Page section for supported audio formats"
     },
     "optPageFAQ": {
@@ -608,11 +608,11 @@
         "description": "[options] FAQ Save and reload page"
     },
     "optFAQ_Q3": {
-        "message": "I need HoverZoom+ to be active for some sites only.",
+        "message": "Necesito que HoverZoom+ solo esté activo para algunos sitios.",
         "description": "[options] FAQ Question 3"
     },
     "optFAQ_A3_1": {
-        "message": "E.g. to activate HoverZoom+ on DeviantArt.com & 1X.com:",
+        "message": "Por ejemplo, para activar HoverZoom+ en DeviantArt.com y 1X.com:",
         "description": "[options] FAQ Answer 3 part 1"
     },
     "optFAQ_A3_2": {
@@ -640,11 +640,11 @@
         "description": "[options] FAQ Question 5"
     },
     "optFAQ_A5_1": {
-        "message": "Sometimes action keys seem to be broken, this usually happens when page has lost focus.",
+        "message": "A veces las teclas de acción parecen estar rotas, esto suele ocurrir cuando la página pierde el foco.",
         "description": "[options] FAQ Answer 5 part 1"
     },
     "optFAQ_A5_2": {
-        "message": "Just click anywhere on page to regain focus.",
+        "message": "Basta con hacer clic en cualquier parte de la página para recuperar el enfoque.",
         "description": "[options] FAQ Answer 5 part 2"
     },
     "optFAQ_A5_3": {
@@ -652,19 +652,19 @@
         "description": "[options] FAQ Answer 5 part 3"
     },
     "optFAQ_Q6": {
-        "message": "Some videos do not play when opened from sites other than original ones.",
+        "message": "Algunos vídeos no se reproducen cuando se abren desde sitios que no son los originales.",
         "description": "[options] FAQ Question 6"
     },
     "optFAQ_A6_1": {
-        "message": "e.g: Dailymotion videos play in dailymotion.com, but not in Google search results.",
+        "message": "Por ejemplo Los vídeos de Dailymotion se reproducen en dailymotion.com, pero no en los resultados de búsqueda de Google.",
         "description": "[options] FAQ Answer 6 part 1"
     },
     "optFAQ_A6_2": {
-        "message": "This is due to CORS restrictions, to lift them:",
+        "message": "Esto se debe a las restricciones de CORS, para levantarlas:",
         "description": "[options] FAQ Answer 6 part 2"
     },
     "optFAQ_A6_3": {
-        "message": "In Options -> Advanced, activate \"Allow rewrite of headers for HTTP(S) request or response\"",
+        "message": "En Opciones -> Avanzadas, active \"Permitir la reescritura de encabezados para solicitudes o respuestas HTTP(S)\"",
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optPixelsUnitName": {
@@ -672,7 +672,7 @@
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
-        "message": "Activate HoverZoom+",
+        "message": "Activar HoverZoom+",
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
@@ -680,11 +680,11 @@
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
-        "message": "Toggle HoverZoom+",
+        "message": "Activar/desactivar HoverZoom+",
         "description": "[options] Action key title"
     },
     "optToggleKeyDescription": {
-        "message": "Enable/disable HoverZoom+",
+        "message": "Activar/desactivar HoverZoom+",
         "description": "[options] Action key description"
     },
     "optCloseKeyTitle": {
@@ -800,11 +800,11 @@
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click anywhere on the page then hover again",
+        "message": "clic en cualquier parte de la página y vuelva a pasar el ratón por encima",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     },
     "msgClickPageToActivateActionKeys": {
-        "message": "click anywhere on the page to activate Action Keys",
+        "message": "clic en cualquier parte de la página para activar las teclas de acción",
         "description": "Action keys are active only if page is focused"
     }
 }
