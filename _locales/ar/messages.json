@@ -44,11 +44,11 @@
         "description": "[options] Page title"
     },
     "optButtonDisableAllPlugins": {
-        "message": "Disable all",
+        "message": "تعطيل كل الإضافات",
         "description": "[options] disable all plugins button label"
     },
     "optButtonEnableAllPlugins": {
-        "message": "Enable all",
+        "message": "تفعيل كل الإضافات",
         "description": "[options] enable all plugins button label"
     },
     "optButtonSave": {
@@ -56,7 +56,7 @@
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
-        "message": "Cancel",
+        "message": "الغاء",
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
