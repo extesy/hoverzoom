@@ -86,6 +86,7 @@
                 "plugins/google_a.js",
                 "plugins/gravatar_a.js",
                 "plugins/imagebam_a.js",
+                "plugins/imagefap_a.js",
                 "plugins/imageshack_a.js",
                 "plugins/imgflip_a.js",
                 "plugins/imgur_a.js",
@@ -680,10 +681,6 @@
         {
             "js": ["plugins/panoramio.js"],
             "matches": ["*://*.panoramio.com/*"]
-        },
-        {
-            "js": ["plugins/imagefap.js"],
-            "matches": ["*://*.imagefap.com/*"]
         },
         {
             "js": ["plugins/oxd_in.js"],
