@@ -84,7 +84,7 @@
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optSectionView": {
-        "message": "Viewer",
+        "message": "Visualizador",
         "description": "[options] Page section for viewer options"
     },
     "optSectionVideo": {
@@ -92,7 +92,7 @@
         "description": "[options] Page section for video options"
     },
     "optSectionAudio": {
-        "message": "Audio",
+        "message": "Áudio",
         "description": "[options] Page section for audio options"
     },
     "optZoomFactor": {
@@ -212,11 +212,11 @@
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
-        "message": "Zoom videos",
+        "message": "Ampliar vídeos",
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Supported formats: 3gpp m4v mkv mp4 ogv webm",
+        "message": "Formatos suportados: 3gpp, m4v, mkv, mp4, ogv, webm",
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
@@ -260,15 +260,15 @@
         "description": "[options] Tooltip for audio volume for unmuted videos option"
     },
     "optPlayAudio": {
-        "message": "Play audio sources such as MP3",
+        "message": "Reproduzir fontes de áudio como MP3",
         "description": "[options] Play audio option"
     },
     "optPlayAudioTooltip": {
-        "message": "Supported formats: flac m4a mp3 oga ogg opus wav",
+        "message": "Formatos suportados: flac, m4a, mp3, oga, opus, wav",
         "description": "[options] Tooltip for play audio option"
     },
     "optAudioVolume": {
-        "message": "Audio volume:",
+        "message": "Volume do áudio:",
         "description": "[options] Audio volume option"
     },
     "optAudioVolumeUnitName": {
@@ -276,7 +276,7 @@
         "description": "[options] Unit name (percentage) for audio volume option"
     },
     "optAudioVolumeTooltip": {
-        "message": "Set the volume to this percentage (0-100)",
+        "message": "Definir o volume para esta porcentagem (0-100)",
         "description": "[options] Tooltip for audio volume option"
     },
     "optEnableAmbilight": {
@@ -432,7 +432,7 @@
         "description": "[options] Page section for advanced options"
     },
     "optEnableDownloads": {
-        "message": "Allow downloading images using an action key",
+        "message": "Permitir baixar imagens utilizando uma tecla de atalho",
         "description": "[options] Grant browser permission to allow file downloading using an action key"
     },
     "optAddToHistory": {
@@ -672,19 +672,19 @@
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
-        "message": "Activate HoverZoom+",
+        "message": "Ativa Hover Zoom+",
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "If a key is set, HoverZoom4+ will be active only when this key is held down.",
+        "message": "Se uma tecla for definida, HoverZoom+ ativará apenas quando e enquanto esta tecla estiver sendo pressionada.",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
-        "message": "Toggle HoverZoom+",
+        "message": "Alternar HoverZoom+",
         "description": "[options] Action key title"
     },
     "optToggleKeyDescription": {
-        "message": "Enable/disable HoverZoom+",
+        "message": "Ativar/desativar HoverZoom+",
         "description": "[options] Action key description"
     },
     "optCloseKeyTitle": {
@@ -796,7 +796,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
+        "message": "Versão $1 (última atualização: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
