@@ -676,7 +676,7 @@
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "إذا تم تعيين مفتاح ما، لن يعمل HoverZoom+ الا حين الضغط على الزر.",
+        "message": "If a key is set, HoverZoom+ will be active only when this key is held down.",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
