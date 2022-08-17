@@ -676,7 +676,7 @@
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "If a key is set, HoverZoom+ will be active only when this key is held down.",
+        "message": "키가 설정되면 호버 줌+는 해당 키가 눌렸을 때만 활성화됩니다.",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
