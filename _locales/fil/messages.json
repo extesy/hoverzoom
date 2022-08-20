@@ -676,7 +676,7 @@
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "Kung nakatakda ang isang key, magiging aktibo lamang ang HoverZoom4+ kapag pinindot ang key na ito.",
+        "message": "Kung nakatakda ang isang key, magiging aktibo lang ang HoverZoom+ kapag pinipigilan ang key na ito.",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
