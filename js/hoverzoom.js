@@ -198,7 +198,7 @@ var hoverZoom = {
                 'max-height':'20%',
                 'max-width':'90%',
                 'margin':'0',
-                'padding':'0',
+                'padding':'1',
                 'outline-style':'none'
             },
             msgCss = {
@@ -463,6 +463,7 @@ var hoverZoom = {
 
                 // img fully loaded
                 loading = false;
+                imgFullSize.css({'background-image':''}); // remove background image displayed during loading
 
                 imgFullSize.width('auto').height('auto');
                 hz.hzViewer.width('auto').height('auto');
@@ -528,7 +529,7 @@ var hoverZoom = {
                 if (options.ambilightEnabled) {
                     updateAmbilight();
                 } else {
-                    // in case of images with transparent background add a background color
+                    // in case of images with transparent background add background color = frame color
                     let ext = getExtensionFromUrl(srcDetails.url, srcDetails.video, srcDetails.playlist, srcDetails.audio);
                     if (ext == 'gif' || ext == 'svg' || ext == 'png')
                         imgFullSize.css('background-color', options.frameBackgroundColor);
@@ -748,6 +749,10 @@ var hoverZoom = {
 
         // set border thickness in pixel(s)
         function frameThickness(thickness) {
+            // add 1px padding to hide a void that may occur between img & border
+            if (thickness == "0") imgFullSizeCss.padding = '0px';
+            else imgFullSizeCss.padding = '1px';
+
             imgFullSizeCss.borderWidth = imgFullSizeCss.borderRadius = thickness + 'px';
             audioControlsCss.margin = audioControlsWithVideoCss.margin = thickness + 'px';
         }
@@ -1426,13 +1431,14 @@ var hoverZoom = {
                     if (ext != 'gif' && ext != 'svg' && ext != 'png') {
                         var imgRatio = imgFullSize.width() / imgFullSize.height(),
                             thumbRatio = imgThumb.width() / imgThumb.height();
-                        // The thumbnail is used as a background only if its width/height ratio is similar to the image
-                        if (Math.abs(imgRatio - thumbRatio) < 0.1)
-                            imgFullSize.css({'background-image':'url(' + lowResSrc + ')'});
+
+                        imgFullSize.css({'background-image':'url(' + lowResSrc + ')'});
                     }
                 } else {
                     imgThumb = null;
                 }
+                // set background color = frame color
+                if (!options.ambilightEnabled && options.frameThickness != "0") imgFullSize.css('background-color', options.frameBackgroundColor);
 
                 //hz.hzViewer.css('cursor', 'pointer');
 
@@ -2084,9 +2090,11 @@ var hoverZoom = {
             if (viewerLocked) {
                 event.preventDefault();
                 // Scale up or down locked viewer then clamp between 0.1x and 10x.
-                let step = zoomFactor < 2 ? 0.1 : 0.1 * Math.floor(zoomFactor);
+                // For large imgs (= width or height > 1000px), a smaller step is needed
+                let stepInit = 0.1 / (1.0 + Math.floor(Math.max(srcDetails.naturalWidth, srcDetails.naturalHeight) / 1000.0));
+                let step = zoomFactor < 2 ? stepInit : stepInit * Math.floor(zoomFactor);
                 zoomFactor = zoomFactor + (event.deltaY < 0 ? 1 : -1) * step;
-                zoomFactor = Math.max(Math.min(zoomFactor, 10), 0.1);
+                zoomFactor = Math.max(Math.min(zoomFactor, 10), stepInit);
                 posViewer();
                 panLockedViewer();
             } else if (imgFullSize) {
@@ -2190,7 +2198,22 @@ var hoverZoom = {
                 }
                 // "Lock image" key
                 if (keyCode === options.lockImageKey) {
-                    if (!viewerLocked) lockViewer();
+                    if (!viewerLocked) {
+                        let width = imgFullSize.width() || imgFullSize[0].width;
+                        zoomFactorFit = width / srcDetails.naturalWidth;
+                        lockViewer();
+                    }
+                    else {
+                        if (zoomFactor > 1.1 * zoomFactorFit || zoomFactor < 0.9 * zoomFactorFit) {
+                            // restore zoom factor such as img or video fits screen size
+                            zoomFactor = zoomFactorFit || parseInt(options.zoomFactor);
+                        } else {
+                            // zoom factor = default
+                            zoomFactor = parseInt(options.zoomFactor);
+                        }
+                        posViewer();
+                        panLockedViewer();
+                    }
                     return false;
                 }
                 // "Copy image" key
@@ -3189,7 +3212,7 @@ var hoverZoom = {
         }
     },
 
-    // Create and displays the zoomed image container
+    // Create and displays the zoomed image or video viewer
     createHzViewer:function (displayNow) {
         if (!hoverZoom.hzViewer) {
             hoverZoom.hzViewer = $('<div id="hzViewer"></div>').appendTo(document.body);
