@@ -1336,7 +1336,8 @@
                 "*://*.booru.org/*",
                 "*://*.gelbooru.com/*",
                 "*://*.safebooru.org/*",
-                "*://*.xbooru.com/*"
+                "*://*.xbooru.com/*",
+                "*://mspabooru.com/*"
             ]
         },
         {
