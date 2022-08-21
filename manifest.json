@@ -1335,6 +1335,7 @@
             "matches": [
                 "*://*.booru.org/*",
                 "*://*.gelbooru.com/*",
+                "*://*.mspabooru.com/*",
                 "*://*.safebooru.org/*",
                 "*://*.xbooru.com/*"
             ]
