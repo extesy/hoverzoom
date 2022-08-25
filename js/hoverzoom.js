@@ -450,6 +450,9 @@ var hoverZoom = {
                 }
             }
 
+            if ($(hzAbove).height() == 0) hz.hzViewer.css({'padding-top':`${padding}px`});
+            if ($(hzBelow).height() == 0) hz.hzViewer.css({'padding-bottom':`${padding}px`});
+
             if (displayOnRight) {
                 position.left += offset;
             } else {

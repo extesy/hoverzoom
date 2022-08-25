@@ -1821,6 +1821,11 @@
         {
             "js": ["plugins/eksisozluk.js"],
             "matches": ["*://*.eksisozluk.com/*"]
+        },
+        {
+            "js": ["plugins/moddb.js"],
+            "matches": ["*://*.moddb.com/*",
+                        "*://*.indiedb.com/*"]
         }
    ]
 }
