@@ -1826,6 +1826,10 @@
             "js": ["plugins/moddb.js"],
             "matches": ["*://*.moddb.com/*",
                         "*://*.indiedb.com/*"]
+        },
+        {
+            "js": ["plugins/motherless.js"],
+            "matches": ["*://*.motherless.com/*"]
         }
    ]
 }
