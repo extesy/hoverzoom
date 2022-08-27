@@ -1832,6 +1832,10 @@
         {
             "js": ["plugins/motherless.js"],
             "matches": ["*://*.motherless.com/*"]
+        },
+        {
+            "js": ["plugins/tnaflix.js"],
+            "matches": ["*://*.tnaflix.com/*"]
         }
    ]
 }
