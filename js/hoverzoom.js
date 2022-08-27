@@ -1644,7 +1644,7 @@ var hoverZoom = {
         function getSrcDetails(link) {
             let details = {};
             if (!srcDetails.audio) {
-                if (srcDetails.naturalWidth) details.dimensions = srcDetails.naturalWidth / options.zoomFactor + 'x' + srcDetails.naturalHeight / options.zoomFactor;
+                if (srcDetails.naturalWidth) details.dimensions = Math.round(srcDetails.naturalWidth / parseInt(options.zoomFactor)) + 'x' + Math.round(srcDetails.naturalHeight / parseInt(options.zoomFactor));
                 if (srcDetails.naturalWidth) details.ratio = getImgRatio(srcDetails.naturalWidth, srcDetails.naturalHeight);
                 let displayedWidth = imgFullSize.width() || imgFullSize[0].width;
                 if (srcDetails.naturalWidth) details.scale = Math.round(100.0 * displayedWidth / srcDetails.naturalWidth) + '%';
