@@ -97,6 +97,7 @@
                 "plugins/niconico_a.js",
                 "plugins/photoshop_a.js",
                 "plugins/screencast_a.js",
+                "plugins/sendvid_a.js",
                 "plugins/squarespace_a.js",
                 "plugins/streamable_a.js",
                 "plugins/tiktok_a.js",
