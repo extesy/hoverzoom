@@ -1836,6 +1836,22 @@
         {
             "js": ["plugins/tnaflix.js"],
             "matches": ["*://*.tnaflix.com/*"]
+        },
+        {
+            "js": ["plugins/2gis.js"],
+            "matches": ["*://*.2gis.com/*",
+                        "*://*.2gis.ae/*",
+                        "*://*.2gis.az/*",
+                        "*://*.2gis.cl/*",
+                        "*://*.2gis.cz/*",
+                        "*://*.2gis.kg/*",
+                        "*://*.2gis.kz/*",
+                        "*://*.2gis.ru/*",
+                        "*://*.2gis.uz/*",
+                        "*://*.urbi-bh.com/*",
+                        "*://*.urbi-kw.com/*",
+                        "*://*.urbi-qa.com/*",
+                        "*://*.urbi-sa.com/*"]
         }
    ]
 }
