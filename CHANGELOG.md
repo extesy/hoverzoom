@@ -1,6 +1,38 @@
 # Changelog
 
-## [1.0.195](https://github.com/extesy/hoverzoom/tree/1.0.195) (2022-07-29)
+## [1.0.196](https://github.com/extesy/hoverzoom/tree/1.0.196) (2022-08-27)
+
+[Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.195...1.0.196)
+
+**Implemented enhancements:**
+
+- May be a long way down the road, but any plan for Firefox support? [\#80](https://github.com/extesy/hoverzoom/issues/80)
+- Various enhancements [\#1004](https://github.com/extesy/hoverzoom/pull/1004) ([GrosPoulet](https://github.com/GrosPoulet))
+
+**Closed issues:**
+
+- Add support for : moddb.com [\#1003](https://github.com/extesy/hoverzoom/issues/1003)
+- When will they add a backup of the settings? Backup and Export [\#990](https://github.com/extesy/hoverzoom/issues/990)
+- Firefox release [\#273](https://github.com/extesy/hoverzoom/issues/273)
+
+**Merged pull requests:**
+
+- New plug-in for: TnAflix.com [\#1014](https://github.com/extesy/hoverzoom/pull/1014) ([GrosPoulet](https://github.com/GrosPoulet))
+- New plug-in for: sendvid.com \(videos hosting\) [\#1013](https://github.com/extesy/hoverzoom/pull/1013) ([GrosPoulet](https://github.com/GrosPoulet))
+- New plug-in: screencast.com [\#1012](https://github.com/extesy/hoverzoom/pull/1012) ([GrosPoulet](https://github.com/GrosPoulet))
+- New plug-in for: motherless.com [\#1011](https://github.com/extesy/hoverzoom/pull/1011) ([GrosPoulet](https://github.com/GrosPoulet))
+- New plug-in for: moddb.com \(\#1003\) [\#1010](https://github.com/extesy/hoverzoom/pull/1010) ([GrosPoulet](https://github.com/GrosPoulet))
+- Remove source mapping comment from hls.js [\#1006](https://github.com/extesy/hoverzoom/pull/1006) ([hailwood](https://github.com/hailwood))
+- Add mspabooru.com [\#1005](https://github.com/extesy/hoverzoom/pull/1005) ([dawidsowa](https://github.com/dawidsowa))
+- New plug-in for: niconico [\#1002](https://github.com/extesy/hoverzoom/pull/1002) ([GrosPoulet](https://github.com/GrosPoulet))
+- New Crowdin updates [\#1001](https://github.com/extesy/hoverzoom/pull/1001) ([extesy](https://github.com/extesy))
+- New Crowdin updates [\#1000](https://github.com/extesy/hoverzoom/pull/1000) ([extesy](https://github.com/extesy))
+- New Crowdin updates [\#999](https://github.com/extesy/hoverzoom/pull/999) ([extesy](https://github.com/extesy))
+- New Crowdin updates [\#998](https://github.com/extesy/hoverzoom/pull/998) ([extesy](https://github.com/extesy))
+- New plug-in for: Imagefap [\#991](https://github.com/extesy/hoverzoom/pull/991) ([GrosPoulet](https://github.com/GrosPoulet))
+- New Crowdin updates [\#989](https://github.com/extesy/hoverzoom/pull/989) ([extesy](https://github.com/extesy))
+
+## [1.0.195](https://github.com/extesy/hoverzoom/tree/1.0.195) (2022-07-30)
 
 [Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.194...1.0.195)
 
@@ -511,7 +543,6 @@
 
 - Fix img elements title's not being removed [\#739](https://github.com/extesy/hoverzoom/pull/739) ([Mattwmaster58](https://github.com/Mattwmaster58))
 - New Crowdin updates [\#738](https://github.com/extesy/hoverzoom/pull/738) ([extesy](https://github.com/extesy))
-- New Crowdin updates [\#735](https://github.com/extesy/hoverzoom/pull/735) ([extesy](https://github.com/extesy))
 - Fix for plug-in : instagram.js [\#733](https://github.com/extesy/hoverzoom/pull/733) ([GrosPoulet](https://github.com/GrosPoulet))
 - New Crowdin updates [\#729](https://github.com/extesy/hoverzoom/pull/729) ([extesy](https://github.com/extesy))
 
@@ -534,6 +565,7 @@
 
 **Merged pull requests:**
 
+- New Crowdin updates [\#735](https://github.com/extesy/hoverzoom/pull/735) ([extesy](https://github.com/extesy))
 - New Crowdin updates [\#725](https://github.com/extesy/hoverzoom/pull/725) ([extesy](https://github.com/extesy))
 - New plug-ins: Hibid & Maxsold [\#723](https://github.com/extesy/hoverzoom/pull/723) ([GrosPoulet](https://github.com/GrosPoulet))
 - New Crowdin updates [\#716](https://github.com/extesy/hoverzoom/pull/716) ([extesy](https://github.com/extesy))
@@ -561,6 +593,10 @@
 
 [Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.171...1.0.172)
 
+**Implemented enhancements:**
+
+- Fix for Options'plug-ins list + new plug-in: Cloudfront [\#698](https://github.com/extesy/hoverzoom/pull/698) ([GrosPoulet](https://github.com/GrosPoulet))
+
 **Merged pull requests:**
 
 - New Crowdin updates [\#701](https://github.com/extesy/hoverzoom/pull/701) ([extesy](https://github.com/extesy))
@@ -571,10 +607,6 @@
 
 [Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.170...1.0.171)
 
-**Implemented enhancements:**
-
-- Fix for Options'plug-ins list + new plug-in: Cloudfront [\#698](https://github.com/extesy/hoverzoom/pull/698) ([GrosPoulet](https://github.com/GrosPoulet))
-
 **Merged pull requests:**
 
 - New Crowdin updates [\#697](https://github.com/extesy/hoverzoom/pull/697) ([extesy](https://github.com/extesy))
@@ -584,10 +616,6 @@
 ## [1.0.170](https://github.com/extesy/hoverzoom/tree/1.0.170) (2021-02-23)
 
 [Full Changelog](https://github.com/extesy/hoverzoom/compare/1.0.169...1.0.170)
-
-**Implemented enhancements:**
-
-- Fix for plug-in: furaffinity + new plug-ins + manifest update [\#689](https://github.com/extesy/hoverzoom/pull/689) ([GrosPoulet](https://github.com/GrosPoulet))
 
 **Closed issues:**
 
@@ -604,7 +632,6 @@
 - New plug-ins: 4chan \(& others "chan"\), 8kun, Phorio [\#692](https://github.com/extesy/hoverzoom/pull/692) ([GrosPoulet](https://github.com/GrosPoulet))
 - Remove debug logging [\#691](https://github.com/extesy/hoverzoom/pull/691) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-ins for: gitlab & cloudinary [\#690](https://github.com/extesy/hoverzoom/pull/690) ([GrosPoulet](https://github.com/GrosPoulet))
-- New Crowdin updates [\#683](https://github.com/extesy/hoverzoom/pull/683) ([extesy](https://github.com/extesy))
 
 ## [1.0.169](https://github.com/extesy/hoverzoom/tree/1.0.169) (2021-02-13)
 
@@ -612,6 +639,7 @@
 
 **Implemented enhancements:**
 
+- Fix for plug-in: furaffinity + new plug-ins + manifest update [\#689](https://github.com/extesy/hoverzoom/pull/689) ([GrosPoulet](https://github.com/GrosPoulet))
 - Plug-ins enhancements + 1 new plug-in: Medium\_a [\#682](https://github.com/extesy/hoverzoom/pull/682) ([GrosPoulet](https://github.com/GrosPoulet))
 
 **Closed issues:**
@@ -625,6 +653,7 @@
 - Fix for plug-in: Imgur [\#686](https://github.com/extesy/hoverzoom/pull/686) ([GrosPoulet](https://github.com/GrosPoulet))
 - Update linkedin.js [\#685](https://github.com/extesy/hoverzoom/pull/685) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix for plug-in: LinkedIn [\#684](https://github.com/extesy/hoverzoom/pull/684) ([GrosPoulet](https://github.com/GrosPoulet))
+- New Crowdin updates [\#683](https://github.com/extesy/hoverzoom/pull/683) ([extesy](https://github.com/extesy))
 - New Crowdin updates [\#681](https://github.com/extesy/hoverzoom/pull/681) ([extesy](https://github.com/extesy))
 
 ## [1.0.168](https://github.com/extesy/hoverzoom/tree/1.0.168) (2021-02-06)
@@ -675,7 +704,6 @@
 - New Crowdin updates [\#666](https://github.com/extesy/hoverzoom/pull/666) ([extesy](https://github.com/extesy))
 - New Crowdin updates [\#665](https://github.com/extesy/hoverzoom/pull/665) ([extesy](https://github.com/extesy))
 - Merge remote-tracking branch 'upstream/master' [\#663](https://github.com/extesy/hoverzoom/pull/663) ([GrosPoulet](https://github.com/GrosPoulet))
-- Fix for plug-in : Wordpress [\#658](https://github.com/extesy/hoverzoom/pull/658) ([GrosPoulet](https://github.com/GrosPoulet))
 
 ## [1.0.165](https://github.com/extesy/hoverzoom/tree/1.0.165) (2021-01-22)
 
@@ -686,10 +714,6 @@
 - Hovering over a redgifs.com link won't open video or when it opens no animation is shown [\#661](https://github.com/extesy/hoverzoom/issues/661)
 - Inconsistencies and Nozooms in Yahoo, Google, Tumbr, and \*Pinterest\* [\#349](https://github.com/extesy/hoverzoom/issues/349)
 - Stopped Working on tumblr Blogs [\#112](https://github.com/extesy/hoverzoom/issues/112)
-
-**Merged pull requests:**
-
-- Update manifest for Pinterest plug-in [\#660](https://github.com/extesy/hoverzoom/pull/660) ([GrosPoulet](https://github.com/GrosPoulet))
 
 ## [1.0.164](https://github.com/extesy/hoverzoom/tree/1.0.164) (2021-01-20)
 
@@ -711,6 +735,8 @@
 
 **Merged pull requests:**
 
+- Update manifest for Pinterest plug-in [\#660](https://github.com/extesy/hoverzoom/pull/660) ([GrosPoulet](https://github.com/GrosPoulet))
+- Fix for plug-in : Wordpress [\#658](https://github.com/extesy/hoverzoom/pull/658) ([GrosPoulet](https://github.com/GrosPoulet))
 - New Crowdin updates [\#657](https://github.com/extesy/hoverzoom/pull/657) ([extesy](https://github.com/extesy))
 - Fix for plug-in : LeBonCoin [\#653](https://github.com/extesy/hoverzoom/pull/653) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix for plug-in : Bing [\#652](https://github.com/extesy/hoverzoom/pull/652) ([GrosPoulet](https://github.com/GrosPoulet))
@@ -795,7 +821,6 @@
 - New plug-in : JoeMonster [\#615](https://github.com/extesy/hoverzoom/pull/615) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in : FreeRangeStock [\#614](https://github.com/extesy/hoverzoom/pull/614) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in : Tripadvisor [\#613](https://github.com/extesy/hoverzoom/pull/613) ([GrosPoulet](https://github.com/GrosPoulet))
-- Update for plug-in : wysp.ws [\#608](https://github.com/extesy/hoverzoom/pull/608) ([GrosPoulet](https://github.com/GrosPoulet))
 
 ## [1.0.156](https://github.com/extesy/hoverzoom/tree/1.0.156) (2020-09-14)
 
@@ -807,6 +832,7 @@
 - Fix for plug-in : Yelp [\#611](https://github.com/extesy/hoverzoom/pull/611) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in : Bing\_a.js + fix for Yahoo plug-in [\#610](https://github.com/extesy/hoverzoom/pull/610) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix for plug-in : google\_a.js [\#609](https://github.com/extesy/hoverzoom/pull/609) ([GrosPoulet](https://github.com/GrosPoulet))
+- Update for plug-in : wysp.ws [\#608](https://github.com/extesy/hoverzoom/pull/608) ([GrosPoulet](https://github.com/GrosPoulet))
 - Update for plug-in : Wordpress [\#607](https://github.com/extesy/hoverzoom/pull/607) ([GrosPoulet](https://github.com/GrosPoulet))
 
 ## [1.0.155](https://github.com/extesy/hoverzoom/tree/1.0.155) (2020-09-11)
