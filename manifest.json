@@ -108,6 +108,7 @@
                 "plugins/vimeo_a.js",
                 "plugins/vine_a.js",
                 "plugins/wordpress_a.js",
+                "plugins/xhamster_a.js",
                 "plugins/youtube_a.js"
             ],
             "matches": ["<all_urls>"],

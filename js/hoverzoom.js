@@ -1572,7 +1572,9 @@ var hoverZoom = {
             }
         }
 
-        function srcFullSizeOnError() {
+        function srcFullSizeOnError(e) {
+
+            var tryAgainWithCustomHeaders = options.allowHeadersRewrite;
 
             if (srcDetails.url === $(this).prop('src') || srcDetails.url === unescape($(this).prop('src'))) {
                 let hoverZoomSrcIndex = hz.currentLink ? (hz.currentLink.data().hoverZoomSrcIndex || 0) : 0;
@@ -1589,6 +1591,13 @@ var hoverZoom = {
                         hz.currentLink.data().hoverZoomGalleryIndex = 0;
                         hz.currentLink.data().hoverZoomSrc = hz.currentLink.data().hoverZoomGallerySrc[0];
                     }
+                } else if (tryAgainWithCustomHeaders && hz.currentLink && hz.currentLink.data().tryAgainWithCustomHeadersUrl != srcDetails.url) {
+                    // try again to load image using custom HTTP(S) headers for request and/or response
+                    console.info('[HoverZoom] Failed to load source: ' + srcDetails.url + '\nTrying again with custom headers...');
+                    hz.currentLink.data().tryAgainWithCustomHeadersUrl = srcDetails.url;
+                    var url = srcDetails.url.replaceAll(' ', '%20');
+                    var referer = hz.currentLink.data().hoverZoomCustomReferer || url;
+                    loadWithCustomHeaders(url, referer, function() { clearTimeout(loadFullSizeImageTimeout); loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, 100); });
                 } else if (hz.currentLink && hoverZoomSrcIndex < hz.currentLink.data().hoverZoomSrc.length - 1) {
                     // if the link has several possible sources, try to load the next one
                     hoverZoomSrcIndex++;
@@ -1614,6 +1623,28 @@ var hoverZoom = {
                     }
                 }
             }
+        }
+
+        // rewrite HTTP(S) headers for url in parameter:
+        // - request:  "referer" = referer
+        // - response:  "Access-Control-Allow-Origin" = "*"
+        // then try to load url through callback
+        function loadWithCustomHeaders(url, referer, callback) {
+            // to deal with redirections: do not use full url for matching but only pathname + search
+            try {
+                const newUrl = new URL(url);
+                url = newUrl.pathname + newUrl.search;
+            } catch {}
+            chrome.runtime.sendMessage({action:"storeHeaderSettings",
+                                                plugin:"custom",
+                                                settings:
+                                                    [{"type":"request",
+                                                    "url":url,
+                                                    "headers":[{"name":"referer", "value":referer, "typeOfUpdate":"add"}]},
+                                                    {"type":"response",
+                                                    "url":url,
+                                                    "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
+                                                }, callback());
         }
 
         function hideCursor() {
