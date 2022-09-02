@@ -160,7 +160,7 @@ function manageHeadersRewrite() {
         // check that permissions are granted, otherwise remove listeners
         chrome.permissions.contains({permissions: ['webRequest','webRequestBlocking']}, function (granted) {
             if (granted)
-                addWebRequestListeners()
+                addWebRequestListeners();
             else
                 removeWebRequestListeners();
         });
@@ -240,7 +240,7 @@ function updateResponseHeaders(e) {
     if (!settings) return;
 
     // check if update must be skipped because of initiator
-    if (settings.skipInitiator && e.initiator.indexOf(settings.skipInitiator) !== -1) return;
+    if (settings.skipInitiator && e.initiator && e.initiator.indexOf(settings.skipInitiator) !== -1) return;
 
     return { responseHeaders: updateHeaders(e.responseHeaders, settings) };
 }
