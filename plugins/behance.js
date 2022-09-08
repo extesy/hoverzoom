@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'behance.net',
-    version:'1.0',
+    version:'1.1',
     prepareImgLinks:function (callback) {
 
         var res = [];
@@ -29,6 +29,21 @@ hoverZoomPlugins.push({
             /\/(user|team)\/.*?\//,
             '/$1/source/'
         );
+
+        // videos
+        // sample url: https://www.behance.net/videos/b23f1aaf-b5cb-4104-b91e-4f4523010fd5/Let-s-make-webcomics?tracking_source=to_replay&from_row=Illustration
+        // =>     mp4: https://livestream-videos-prod.s3-us-west-2.amazonaws.com/master-stream-b23f1aaf-b5cb-4104-b91e-4f4523010fd5.mp4
+        $('a[href*="/videos/"]:not(.hoverZoomMouseover)').filter(function() { return (/to_replay/.test($(this).prop('href'))) }).addClass('hoverZoomMouseover').one('mouseover', function() {
+            var link = $(this);
+            const re = /\/videos\/(.*?-.*?-.*?-.*?-.*?)\//;   // extract video id (e.g. b23f1aaf-b5cb-4104-b91e-4f4523010fd5)
+            var m = this.href.match(re);
+            if (m == undefined) return;
+            let videoId = m[1];
+            var videoUrl = 'https://livestream-videos-prod.s3-us-west-2.amazonaws.com/master-stream-' + videoId + '.mp4';
+            link.data().hoverZoomSrc = [videoUrl];
+            callback(link, name);
+            hoverZoom.displayPicFromElement(link);
+        });
 
         callback($(res), this.name);
     }
