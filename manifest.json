@@ -109,7 +109,8 @@
                 "plugins/vine_a.js",
                 "plugins/wordpress_a.js",
                 "plugins/xhamster_a.js",
-                "plugins/youtube_a.js"
+                "plugins/youtube_a.js",
+                "plugins/rule34video_a.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
@@ -1853,6 +1854,10 @@
                         "*://*.urbi-kw.com/*",
                         "*://*.urbi-qa.com/*",
                         "*://*.urbi-sa.com/*"]
+        },
+        {
+            "js": ["plugins/rule34.js"],
+            "matches": ["*://*.rule34.xxx/*"]
         }
    ]
 }
