@@ -332,7 +332,7 @@
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
-        "message": "Cancel",
+        "message": "Скасувати",
         "description": "[options] Frame background color button - Cancel"
     },
     "optFrameThickness": {
