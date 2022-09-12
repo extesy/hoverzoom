@@ -136,15 +136,15 @@
         "description": "[options] Tooltip for adjusting the position of details"
     },
     "optDetailsLocationAbove": {
-        "message": "Above",
+        "message": "Iznad",
         "description": "[options] Details location option to put details above the image"
     },
     "optDetailsLocationBelow": {
-        "message": "Below",
+        "message": "Ispod",
         "description": "[options] Details location option to put details below the image"
     },
     "optDetailsLocationNone": {
-        "message": "None",
+        "message": "Nigdje",
         "description": "[options] Details location option to disable details"
     },
     "optFontOutline": {
@@ -344,7 +344,7 @@
         "description": "[options] Tooltip for frame thickness option"
     },
     "optFrameThicknessUnitName": {
-        "message": "pixels",
+        "message": "piksela",
         "description": "[options] Unit name (pixel) for frame thickness"
     },
     "optFontSize": {
@@ -356,7 +356,7 @@
         "description": "[options] Tooltip for font size option"
     },
     "optFontSizeUnitName": {
-        "message": "pixels",
+        "message": "piksela",
         "description": "[options] Unit name (pixel) for font size"
     },
     "optSectionDelays": {
