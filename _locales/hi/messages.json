@@ -332,7 +332,7 @@
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
-        "message": "Cancel",
+        "message": "रद्द करें",
         "description": "[options] Frame background color button - Cancel"
     },
     "optFrameThickness": {
