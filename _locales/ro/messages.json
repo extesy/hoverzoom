@@ -84,7 +84,7 @@
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optSectionView": {
-        "message": "Viewer",
+        "message": "Vizualizator",
         "description": "[options] Page section for viewer options"
     },
     "optSectionVideo": {
@@ -212,11 +212,11 @@
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
-        "message": "Zoom videos",
+        "message": "Videoclipuri cu zoom",
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Supported formats: 3gpp m4v mkv mp4 ogv webm",
+        "message": "Formate acceptate: 3gpp m4v mkv mkv mp4 ogv webm",
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
@@ -260,15 +260,15 @@
         "description": "[options] Tooltip for audio volume for unmuted videos option"
     },
     "optPlayAudio": {
-        "message": "Play audio sources such as MP3",
+        "message": "Redă surse audio, cum ar fi MP3",
         "description": "[options] Play audio option"
     },
     "optPlayAudioTooltip": {
-        "message": "Supported formats: flac m4a mp3 oga ogg opus wav",
+        "message": "Formate acceptate: flac m4a mp3 oga ogg opus wav",
         "description": "[options] Tooltip for play audio option"
     },
     "optAudioVolume": {
-        "message": "Audio volume:",
+        "message": "Volumul audio:",
         "description": "[options] Audio volume option"
     },
     "optAudioVolumeUnitName": {
@@ -276,7 +276,7 @@
         "description": "[options] Unit name (percentage) for audio volume option"
     },
     "optAudioVolumeTooltip": {
-        "message": "Set the volume to this percentage (0-100)",
+        "message": "Setați volumul la acest procent (0-100)",
         "description": "[options] Tooltip for audio volume option"
     },
     "optEnableAmbilight": {
@@ -432,7 +432,7 @@
         "description": "[options] Page section for advanced options"
     },
     "optEnableDownloads": {
-        "message": "Allow downloading images using an action key",
+        "message": "Permiteți descărcarea imaginilor utilizând o tastă de acțiune",
         "description": "[options] Grant browser permission to allow file downloading using an action key"
     },
     "optAddToHistory": {
@@ -440,11 +440,11 @@
         "description": "[options] Add viewed pictures to the browser's history option"
     },
     "optAllowHeadersRewriteTooltip": {
-        "message": "Useful to be able to zoom & play content from one site on another site, such as videos",
+        "message": "Util pentru a putea mări și reda conținut de pe un site pe un alt site, cum ar fi videoclipurile.",
         "description": "[options] Tooltip for allow rewrite of headers for HTTP(S) request or response option"
     },
     "optAllowHeadersRewrite": {
-        "message": "Allow rewrite of headers for HTTP(S) request or response",
+        "message": "Permite rescrierea antetelor pentru solicitarea sau răspunsul HTTP(S)",
         "description": "[options] Allow rewrite of headers for HTTP(S) request or response option"
     },
     "optFilterNSFW": {
@@ -460,11 +460,11 @@
         "description": "[options] Enable albums support option"
     },
     "optEnableNoFocusMsg": {
-        "message": "Enable Action Keys focus overlay message",
+        "message": "Activați mesajul de suprapunere a focalizării tastelor de acțiune",
         "description": "[options] Enable Action Keys focus overlay message option"
     },
     "optEnableNoFocusMsgTooltip": {
-        "message": "Sometimes Action Keys seem to be broken, this usually happens when page has lost focus. If option is checked, a warning message will be displayed (only once).",
+        "message": "Uneori, tastele de acțiune par să fie întrerupte, ceea ce se întâmplă de obicei atunci când pagina a pierdut focalizarea. Dacă opțiunea este bifată, va fi afișat un mesaj de avertizare (o singură dată).",
         "description": "[options] Tooltip for enable Action Keys focus overlay message option"
     },
     "optPicturesOpacity": {
@@ -552,15 +552,15 @@
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
-        "message": "Enable debug logging",
+        "message": "Activați jurnalizarea de depanare",
         "description": "[options] Enable debug option"
     },
     "optSectionSupportedFormats": {
-        "message": "Supported formats",
+        "message": "Formate acceptate",
         "description": "[options] Page section for supported formats"
     },
     "optSupportedImageFormats": {
-        "message": "Images :",
+        "message": "Imagini :",
         "description": "[options] Page section for supported image formats"
     },
     "optSupportedVideoFormats": {
@@ -576,95 +576,95 @@
         "description": "[options] Page title for FAQ"
     },
     "optSectionFAQ": {
-        "message": "Frequently Asked Questions",
+        "message": "Întrebări frecvente",
         "description": "[options] Page section for Frequently Asked Questions"
     },
     "optFAQ_Q1": {
-        "message": "I edited some options, but i see no changes.",
+        "message": "Am editat câteva opțiuni, dar nu văd nicio schimbare.",
         "description": "[options] FAQ Question 1"
     },
     "optFAQ_A1_1": {
-        "message": "After edition, click \"Save\" button",
+        "message": "După editare, faceți clic pe butonul \"Save\"",
         "description": "[options] FAQ Answer 1 part 1"
     },
     "optFAQ_A1_2": {
-        "message": "on bottom of Options page",
+        "message": "în partea de jos a paginii Opțiuni",
         "description": "[options] FAQ Answer 1 part 2"
     },
     "optFAQ_A1_3": {
-        "message": "Reload the page (F5)",
+        "message": "Reîncărcați pagina (F5)",
         "description": "[options] FAQ Answer 1 part 3"
     },
     "optFAQ_Q2": {
-        "message": "I want to hide the mouse cursor on zoomed image or video.",
+        "message": "Vreau să ascund cursorul mouse-ului pe o imagine sau un videoclip cu zoom.",
         "description": "[options] FAQ Question 2"
     },
     "optFAQ_A2_1": {
-        "message": "In Options -> General -> Delays, activate \"Hide mouse cursor\"",
+        "message": "În Opțiuni -> General -> Întârzieri, activați \"Ascundeți cursorul mouse-ului\".",
         "description": "[options] FAQ Answer 2 part 1"
     },
     "optFAQ_SaveAndReload": {
-        "message": "Save and reload the page (F5)",
+        "message": "Salvați și reîncărcați pagina (F5)",
         "description": "[options] FAQ Save and reload page"
     },
     "optFAQ_Q3": {
-        "message": "I need HoverZoom+ to be active for some sites only.",
+        "message": "Am nevoie ca HoverZoom+ să fie activ doar pentru anumite site-uri.",
         "description": "[options] FAQ Question 3"
     },
     "optFAQ_A3_1": {
-        "message": "E.g. to activate HoverZoom+ on DeviantArt.com & 1X.com:",
+        "message": "De exemplu, pentru a activa HoverZoom+ pe DeviantArt.com & 1X.com:",
         "description": "[options] FAQ Answer 3 part 1"
     },
     "optFAQ_A3_2": {
-        "message": "In Options -> Sites, activate \"Whitelist mode\"",
+        "message": "În Opțiuni -> Site-uri, activați \"Modul listă albă\".",
         "description": "[options] FAQ Answer 3 part 2"
     },
     "optFAQ_A3_3": {
-        "message": "Add DeviantArt.com & 1X.com to list of URLs (not case-sensitive)",
+        "message": "Adăugați DeviantArt.com & 1X.com la lista de URL-uri (nu ține cont de majuscule și minuscule)",
         "description": "[options] FAQ Answer 3 part 3"
     },
     "optFAQ_Q4": {
-        "message": "I want to zoom an image or video to its original size even if larger than screen.",
+        "message": "Vreau să măresc o imagine sau un videoclip la dimensiunea sa originală, chiar dacă este mai mare decât ecranul.",
         "description": "[options] FAQ Question 4"
     },
     "optFAQ_A4_1": {
-        "message": "Hover over an image or video then lock it on screen (default action key: \"L\")",
+        "message": "Treceți peste o imagine sau un videoclip, apoi blocați-l pe ecran (tasta de acțiune implicită: \"L\")",
         "description": "[options] FAQ Answer 4 part 1"
     },
     "optFAQ_A4_2": {
-        "message": "Image or video is now displayed fullsize. You can zoom in or out using mousewheel.",
+        "message": "Imaginea sau videoclipul este acum afișată la dimensiune completă. Puteți mări sau micșora imaginea cu ajutorul rotiței mouse-ului.",
         "description": "[options] FAQ Answer 4 part 2"
     },
     "optFAQ_Q5": {
-        "message": "Action keys do not work!",
+        "message": "Tastele de acțiune nu funcționează!",
         "description": "[options] FAQ Question 5"
     },
     "optFAQ_A5_1": {
-        "message": "Sometimes action keys seem to be broken, this usually happens when page has lost focus.",
+        "message": "Uneori, tastele de acțiune par să fie întrerupte, ceea ce se întâmplă de obicei atunci când pagina a pierdut focalizarea.",
         "description": "[options] FAQ Answer 5 part 1"
     },
     "optFAQ_A5_2": {
-        "message": "Just click anywhere on page to regain focus.",
+        "message": "Trebuie doar să faceți clic oriunde pe pagină pentru a vă recăpăta concentrarea.",
         "description": "[options] FAQ Answer 5 part 2"
     },
     "optFAQ_A5_3": {
-        "message": "In Options -> Advanced, you can activate \"Enable Action Keys focus overlay message\", so you'll get a warning message when focus is lost.",
+        "message": "În Opțiuni -> Avansat, puteți activa \"Enable Action Keys focus overlay message\" (Activează mesajul de suprapunere a focalizării tastelor de acțiune), astfel încât veți primi un mesaj de avertizare atunci când se pierde focalizarea.",
         "description": "[options] FAQ Answer 5 part 3"
     },
     "optFAQ_Q6": {
-        "message": "Some videos do not play when opened from sites other than original ones.",
+        "message": "Unele clipuri video nu sunt redate atunci când sunt deschise de pe alte site-uri decât cele originale.",
         "description": "[options] FAQ Question 6"
     },
     "optFAQ_A6_1": {
-        "message": "e.g: Dailymotion videos play in dailymotion.com, but not in Google search results.",
+        "message": "De exemplu: videoclipurile Dailymotion sunt redate în dailymotion.com, dar nu și în rezultatele căutării Google.",
         "description": "[options] FAQ Answer 6 part 1"
     },
     "optFAQ_A6_2": {
-        "message": "This is due to CORS restrictions, to lift them:",
+        "message": "Acest lucru se datorează restricțiilor CORS, pentru a le ridica:",
         "description": "[options] FAQ Answer 6 part 2"
     },
     "optFAQ_A6_3": {
-        "message": "In Options -> Advanced, activate \"Allow rewrite of headers for HTTP(S) request or response\"",
+        "message": "În Options -> Advanced, activați \"Allow rewrite of headers for HTTP(S) request or response\" (Permiteți rescrierea antetelor pentru solicitări sau răspunsuri HTTP(S)).",
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optPixelsUnitName": {
@@ -672,35 +672,35 @@
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
-        "message": "Activate HoverZoom+",
+        "message": "Activați HoverZoom+",
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "If a key is set, HoverZoom+ will be active only when this key is held down.",
+        "message": "Dacă este setată o tastă, HoverZoom+ va fi activă numai atunci când această tastă este ținută apăsată.",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
-        "message": "Toggle HoverZoom+",
+        "message": "Comutați HoverZoom+",
         "description": "[options] Action key title"
     },
     "optToggleKeyDescription": {
-        "message": "Enable/disable HoverZoom+",
+        "message": "Activează/dezactivează HoverZoom+",
         "description": "[options] Action key description"
     },
     "optCloseKeyTitle": {
-        "message": "Close image",
+        "message": "Închideți imaginea",
         "description": "[options] Action key title"
     },
     "optCloseKeyDescription": {
-        "message": "Press this key to close zoomed image or video.",
+        "message": "Apăsați această tastă pentru a închide imaginea sau videoclipul cu zoom.",
         "description": "[options] Action key description"
     },
     "optHideKeyTitle": {
-        "message": "Hide image",
+        "message": "Ascunde imaginea",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
+        "message": "Dacă țineți apăsată această tastă, se ascunde imaginea sau videoclipul cu zoom. Utilizați-o atunci când imaginea ascunde elemente care sunt afișate și la trecerea mouse-ului.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -708,7 +708,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
+        "message": "Apăsați această tastă pentru a deschide imaginea sau videoclipul pe care îl vizualizați în prezent într-o fereastră nouă. Apăsați din nou această tastă pentru a închide fereastra.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
@@ -716,7 +716,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
+        "message": "Apăsați această tastă pentru a deschide imaginea sau videoclipul pe care îl vizualizați în prezent într-o filă nouă. Apăsați din nou această tastă pentru a închide fila. Tasta Shift+ deschide imaginea într-o filă din fundal.",
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
@@ -724,7 +724,7 @@
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
+        "message": "Apăsați această tastă pentru a bloca imaginea sau videoclipul în centrul paginii, permițându-vă să faceți zoom și să vă deplasați. Apăsați tasta de închidere sau faceți clic în afara imaginii pentru a o debloca.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -732,7 +732,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Press this key to save the image or video you are currently viewing.",
+        "message": "Apăsați această tastă pentru a salva imaginea sau videoclipul pe care îl vizualizați în prezent.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
@@ -796,15 +796,15 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
+        "message": "Versiunea $1 (ultima actualizare: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click anywhere on the page then hover again",
+        "message": "dă click oriunde pe pagină și mută cursorul înapoi",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     },
     "msgClickPageToActivateActionKeys": {
-        "message": "click anywhere on the page to activate Action Keys",
+        "message": "faceți clic oriunde pe pagină pentru a activa cheile de acțiune",
         "description": "Action keys are active only if page is focused"
     }
 }

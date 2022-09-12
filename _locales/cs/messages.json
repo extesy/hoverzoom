@@ -12,71 +12,71 @@
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
     "popDisableForAllSites": {
-        "message": "Disable for all sites",
+        "message": "Zakázat pro všechny weby",
         "description": "[popup] Disable the extension"
     },
     "popAllowPerSiteToggle": {
-        "message": "Allow per-site extension configuration",
+        "message": "Povolení konfigurace rozšíření pro jednotlivé lokality",
         "description": "[popup] Allow per-site extension configuration"
     },
     "popDisableForSite": {
-        "message": "Disable for $1",
+        "message": "Zakázat za 1 USD",
         "description": "[popup] Disables the extension for a specific site"
     },
     "popEnableForSite": {
-        "message": "Enable for $1",
+        "message": "Povolit za 1 USD",
         "description": "[popup] Enables the extension for a specific site"
     },
     "popPreloadImages": {
-        "message": "Preload zoomed images",
+        "message": "Přednačítání zvětšených obrázků",
         "description": "[popup] Preload zoomed images"
     },
     "popPreloadingImages": {
-        "message": "Preloading...",
+        "message": "Předkládání...",
         "description": "[popup] Preloading zoomed images"
     },
     "popMoreOptions": {
-        "message": "More options",
+        "message": "Další možnosti",
         "description": "[popup] More options"
     },
     "optTitle": {
-        "message": "Hover Zoom+ Options",
+        "message": "Možnosti přiblížení pomocí myši",
         "description": "[options] Page title"
     },
     "optButtonDisableAllPlugins": {
-        "message": "Disable all",
+        "message": "Zakázat všechny",
         "description": "[options] disable all plugins button label"
     },
     "optButtonEnableAllPlugins": {
-        "message": "Enable all",
+        "message": "Povolit všechny",
         "description": "[options] enable all plugins button label"
     },
     "optButtonSave": {
-        "message": "Save",
+        "message": "Uložit",
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
-        "message": "Cancel",
+        "message": "Zrušit",
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
-        "message": "Reset",
+        "message": "Obnovení",
         "description": "[options] Reset button label"
     },
     "optSaved": {
-        "message": "Options saved. Some settings might need a page refresh.",
+        "message": "Uložené možnosti. Některá nastavení mohou vyžadovat obnovení stránky.",
         "description": "[options] Notification after saving options"
     },
     "optCancel": {
-        "message": "Modification(s) cancelled.",
+        "message": "Zrušené změny.",
         "description": "[options] Notification after cancelling modification(s) to options"
     },
     "optReset": {
-        "message": "Options reset to factory settings, save to apply.",
+        "message": "Možnosti obnovení továrního nastavení, uložení pro použití.",
         "description": "[options] Notification after resetting options to factory settings"
     },
     "optPageGeneral": {
-        "message": "General",
+        "message": "Obecné",
         "description": "[options] Page title for general options"
     },
     "optExtensionEnabled": {
@@ -84,7 +84,7 @@
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optSectionView": {
-        "message": "Viewer",
+        "message": "Prohlížeč",
         "description": "[options] Page section for viewer options"
     },
     "optSectionVideo": {
@@ -96,7 +96,7 @@
         "description": "[options] Page section for audio options"
     },
     "optZoomFactor": {
-        "message": "Enlarge zoomed images by this factor:",
+        "message": "Zvětšení zvětšených obrázků o tento faktor:",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optZoomFactorUnitName": {
@@ -104,95 +104,95 @@
         "description": "[options] Unit name (percentage) for zoomed images size option"
     },
     "optZoomFactorTooltip": {
-        "message": "Multiply the size of zoomed images by this amount",
+        "message": "Vynásobte velikost zvětšených obrázků touto hodnotou.",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optCaptionLocation": {
-        "message": "Caption position:",
+        "message": "Pozice titulku:",
         "description": "[options] Adjust the position of the caption"
     },
     "optCaptionLocationTooltip": {
-        "message": "View the caption above/below the image, or not at all",
+        "message": "Zobrazení popisku nad/pod obrázkem nebo vůbec ne",
         "description": "[options] Tooltip for adjusting the position of the caption"
     },
     "optCaptionLocationAbove": {
-        "message": "Above",
+        "message": "Nad stránkami",
         "description": "[options] Caption location option to put captions above the image"
     },
     "optCaptionLocationBelow": {
-        "message": "Below",
+        "message": "Níže",
         "description": "[options] Caption location option to put captions below the image"
     },
     "optCaptionLocationNone": {
-        "message": "None",
+        "message": "Žádné",
         "description": "[options] Caption location option to disable captions"
     },
     "optDetailsLocation": {
-        "message": "Details position:",
+        "message": "Podrobné informace o pozici:",
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
-        "message": "View details (size, format...) above/below the image, or not at all",
+        "message": "Zobrazit podrobnosti (velikost, formát...) nad/pod obrázkem nebo vůbec.",
         "description": "[options] Tooltip for adjusting the position of details"
     },
     "optDetailsLocationAbove": {
-        "message": "Above",
+        "message": "Nad stránkami",
         "description": "[options] Details location option to put details above the image"
     },
     "optDetailsLocationBelow": {
-        "message": "Below",
+        "message": "Níže",
         "description": "[options] Details location option to put details below the image"
     },
     "optDetailsLocationNone": {
-        "message": "None",
+        "message": "Žádné",
         "description": "[options] Details location option to disable details"
     },
     "optFontOutline": {
-        "message": "Font outline",
+        "message": "Obrys písma",
         "description": "[options] Outline option"
     },
     "optFontOutlineTooltip": {
-        "message": "If checked: use white font + thin black border for caption & details",
+        "message": "Pokud je zaškrtnuto: použijte bílé písmo + tenký černý rámeček pro titulek a detaily.",
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
-        "message": "Extend zoomed images below the mouse cursor",
+        "message": "Rozšíření zvětšených obrázků pod kurzor myši",
         "description": "[options] Extend zoomed images below the mouse cursor option"
     },
     "optMouseUnderlapTooltip": {
-        "message": "If unchecked, zoomed images will be resized dynamically",
+        "message": "Pokud není zaškrtnuto, velikost zvětšených obrázků se změní dynamicky.",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
     "optHideMouseCursor": {
-        "message": "Hide mouse cursor after:",
+        "message": "Skrýt kurzor myši po:",
         "description": "[options] Hide mouse cursor option"
     },
     "optHideMouseCursorTooltip": {
-        "message": "If checked, mouse cursor will be hidden after delay",
+        "message": "Pokud je zaškrtnuto, kurzor myši se po zpoždění skryje.",
         "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optPageActionEnabled": {
-        "message": "Show icon in address bar",
+        "message": "Zobrazení ikony v adresním řádku",
         "description": "[options] Show icon in address bar option"
     },
     "optPageActionEnabledTooltip": {
-        "message": "Only when images can be zoomed",
+        "message": "Pouze pokud lze snímky zvětšit",
         "description": "[options] Tooltip for show icon in address bar option"
     },
     "optShowWhileLoading": {
-        "message": "Show zoomed pictures while loading",
+        "message": "Zobrazení zvětšených obrázků při načítání",
         "description": "[options] Show zoomed pictures while loading option"
     },
     "optShowWhileLoadingTooltip": {
-        "message": "Zoomed image will be displayed before it is fully loaded",
+        "message": "Zvětšený obrázek se zobrazí před jeho úplným načtením.",
         "description": "[options] Tooltip for show zoomed pictures while loading option"
     },
     "optShowHighRes": {
-        "message": "Show high resolution pictures when available",
+        "message": "Zobrazení obrázků s vysokým rozlišením, pokud jsou k dispozici",
         "description": "[options] Show high resolution pictures when available option"
     },
     "optShowHighResTooltip": {
-        "message": "Pictures may take more time to load",
+        "message": "Načítání obrázků může trvat déle",
         "description": "[options] Tooltip for show high resolution pictures when available option"
     },
     "optGalleriesMouseWheel": {
@@ -200,27 +200,27 @@
         "description": "[options] Use mousewheel to navigate albums option"
     },
     "optGalleriesMouseWheelTooltip": {
-        "message": "Navigate album with the mouse wheel",
+        "message": "Navigace v albu pomocí kolečka myši",
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
     "optDisableMouseWheelForVideo": {
-        "message": "Don't use mousewheel to navigate within video (action keys will still work)",
+        "message": "Nepoužívejte kolečko myši k navigaci ve videu (akční klávesy budou stále fungovat).",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optDisableMouseWheelForVideoTooltip": {
-        "message": "Scroll through albums but don't jump forward/backward in videos",
+        "message": "Posouvání alb, ale nepřeskakování dopředu/dozadu ve videích",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
-        "message": "Zoom videos",
+        "message": "Videa se zoomem",
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Supported formats: 3gpp m4v mkv mp4 ogv webm",
+        "message": "Podporované formáty: 3gpp m4v mkv mp4 ogv webm",
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
-        "message": "Use prev/next action keys (or mousewheel) to change video position by",
+        "message": "Pomocí akčních kláves prev/next (nebo kolečka myši) můžete měnit pozici videa pomocí",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
@@ -228,27 +228,27 @@
         "description": "[options] Unit name (seconds) for changing video position option"
     },
     "optVideoPositionStepTooltip": {
-        "message": "Skip video back or forth for this amount of seconds",
+        "message": "Přeskočit video tam nebo zpět o tento počet sekund.",
         "description": "[options] Tooltip for changing video position option"
     },
     "optMuteVideos": {
-        "message": "Mute zoomed videos",
+        "message": "Ztlumení zvětšených videí",
         "description": "[options] Mute zoomed videos option"
     },
     "optMuteVideosTooltip": {
-        "message": "Disable sound in zoomed videos",
+        "message": "Vypnutí zvuku ve videích se zoomem",
         "description": "[options] Tooltip for mute zoomed videos option"
     },
     "optVideoTimestamp": {
-        "message": "Show timestamp on videos",
+        "message": "Zobrazení časového razítka na videích",
         "description": "[options] Enable timestamp / video length on videos"
     },
     "optVideoTimestampTooltip": {
-        "message": "Enable timestamp / video length on videos",
+        "message": "Povolení časové značky / délky videa na videích",
         "description": "[options] Tooltip for video length countdown on videos"
     },
     "optVideoVolume": {
-        "message": "Audio volume for unmuted videos:",
+        "message": "Hlasitost zvuku u neztlumených videí:",
         "description": "[options] Audio volume for unmuted videos option"
     },
     "optVideoVolumeUnitName": {
@@ -256,19 +256,19 @@
         "description": "[options] Unit name (percentage) for video volume option"
     },
     "optVideoVolumeTooltip": {
-        "message": "If the video is not completely muted, set the volume to this percentage (0-100)",
+        "message": "Pokud video není zcela ztlumeno, nastavte hlasitost na toto procento (0-100).",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
     },
     "optPlayAudio": {
-        "message": "Play audio sources such as MP3",
+        "message": "Přehrávání zdrojů zvuku, například MP3",
         "description": "[options] Play audio option"
     },
     "optPlayAudioTooltip": {
-        "message": "Supported formats: flac m4a mp3 oga ogg opus wav",
+        "message": "Podporované formáty: flac m4a mp3 oga ogg opus wav",
         "description": "[options] Tooltip for play audio option"
     },
     "optAudioVolume": {
-        "message": "Audio volume:",
+        "message": "Hlasitost zvuku:",
         "description": "[options] Audio volume option"
     },
     "optAudioVolumeUnitName": {
@@ -276,19 +276,19 @@
         "description": "[options] Unit name (percentage) for audio volume option"
     },
     "optAudioVolumeTooltip": {
-        "message": "Set the volume to this percentage (0-100)",
+        "message": "Nastavení hlasitosti na toto procento (0-100)",
         "description": "[options] Tooltip for audio volume option"
     },
     "optEnableAmbilight": {
-        "message": "Enable ambient light behind images",
+        "message": "Povolení okolního světla za snímky",
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Create a subtle glow effect similar to Philips Ambilight technology",
+        "message": "Vytváří jemný zářivý efekt podobný technologii Philips Ambilight.",
         "description": "[options] Tooltip for enable ambient light behind images option"
     },
     "optAmbilightHaloSize": {
-        "message": "Size of halo :",
+        "message": "Velikost svatozáře :",
         "description": "[options] Size of halo option"
     },
     "optAmbilightHaloSizeUnitName": {
@@ -296,11 +296,11 @@
         "description": "[options] Unit name (percentage) for halo size"
     },
     "optAmbilightHaloSizeTooltip": {
-        "message": "Size of halo around zoomed image (0% : no halo)",
+        "message": "Velikost svatozáře kolem zvětšeného obrázku (0% : bez svatozáře)",
         "description": "[options] Tooltip for size of halo"
     },
     "optAmbilightBackgroundOpacity": {
-        "message": "Background opacity :",
+        "message": "Neprůhlednost pozadí :",
         "description": "[options] Background opacity option"
     },
     "optAmbilightBackgroundOpacityUnitName": {
@@ -308,71 +308,71 @@
         "description": "[options] Unit name (percentage) for background opacity"
     },
     "optAmbilightBackgroundOpacityTooltip": {
-        "message": "0% : transparent, 100% : black",
+        "message": "0 % : průhledný, 100 % : černý",
         "description": "[options] Tooltip for background opacity"
     },
     "optCenterImages": {
-        "message": "Center images",
+        "message": "Obrázky uprostřed",
         "description": "[options] Center images in the middle of the page option"
     },
     "optCenterImagesTooltip": {
-        "message": "Center images as opposed to having them follow the cursor",
+        "message": "Vystředění obrázků namísto jejich následování kurzorem",
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optFrameBackgroundColor": {
-        "message": "Frame background color:",
+        "message": "Barva pozadí rámu:",
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
-        "message": "Background color for the frame the image appears in",
+        "message": "Barva pozadí rámečku, ve kterém se obrázek zobrazuje.",
         "description": "[options] Tooltip for frame background color option"
     },
     "optFrameBackgroundColorChooseText": {
-        "message": "Select",
+        "message": "Vyberte",
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
-        "message": "Cancel",
+        "message": "Zrušit",
         "description": "[options] Frame background color button - Cancel"
     },
     "optFrameThickness": {
-        "message": "Frame thickness:",
+        "message": "Tloušťka rámu:",
         "description": "[options] Frame thickness option"
     },
     "optFrameThicknessTooltip": {
-        "message": "Thickness of border for the frame the image appears in (0 : no frame)",
+        "message": "Tloušťka rámečku, v němž se obrázek zobrazuje (0 : bez rámečku)",
         "description": "[options] Tooltip for frame thickness option"
     },
     "optFrameThicknessUnitName": {
-        "message": "pixels",
+        "message": "pixely",
         "description": "[options] Unit name (pixel) for frame thickness"
     },
     "optFontSize": {
-        "message": "Font size:",
+        "message": "Velikost písma:",
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
-        "message": "Size of font used for captions & details",
+        "message": "Velikost písma použitého pro nadpisy a podrobnosti",
         "description": "[options] Tooltip for font size option"
     },
     "optFontSizeUnitName": {
-        "message": "pixels",
+        "message": "pixely",
         "description": "[options] Unit name (pixel) for font size"
     },
     "optSectionDelays": {
-        "message": "Delays",
+        "message": "Zpoždění",
         "description": "[options] Page section for delay options"
     },
     "optDisplayDelay": {
-        "message": "Delay before displaying a picture:",
+        "message": "Zpoždění před zobrazením obrázku:",
         "description": "[options] Delay before displaying a picture option"
     },
     "optDisplayDelayVideo": {
-        "message": "Delay before displaying a video:",
+        "message": "Zpoždění před zobrazením videa:",
         "description": "[options] Delay before displaying a video option"
     },
     "optFadeDuration": {
-        "message": "Fading animation duration:",
+        "message": "Délka trvání blednoucí animace:",
         "description": "[options] Fading animation duration option"
     },
     "optDurationUnitName": {
@@ -380,95 +380,95 @@
         "description": "[options] Short form of \"second\" for delay duration"
     },
     "optPagePlugins": {
-        "message": "Plugins",
+        "message": "Zásuvné moduly",
         "description": "[options] Page title for plugin options"
     },
     "optPlugins": {
-        "message": "Enable/disable specific plugins",
+        "message": "Povolení/zakázání konkrétních zásuvných modulů",
         "description": "[options] Section which contains checkboxes for disabling plugins"
     },
     "optPageSites": {
-        "message": "Sites",
+        "message": "Stránky",
         "description": "[options] Page title for site options"
     },
     "optSectionSitesEnabled": {
-        "message": "URLs for which Hover Zoom+ must be enabled",
+        "message": "Adresy URL, pro které musí být povolena funkce Hover Zoom+",
         "description": "[options] Page section for enabling extension for specific sites"
     },
     "optSectionSitesDisabled": {
-        "message": "URLs for which Hover Zoom+ must be disabled",
+        "message": "Adresy URL, pro které musí být funkce Hover Zoom+ zakázána",
         "description": "[options] Page section for enabling extension for specific sites"
     },
     "optWhitelistMode": {
-        "message": "Whitelist mode",
+        "message": "Režim bílé listiny",
         "description": "[options] Whitelist mode checkbox"
     },
     "optWhitelistModeTooltip": {
-        "message": "Only enable Hover Zoom+ for the sites listed below",
+        "message": "Funkci Hover Zoom+ povolte pouze pro níže uvedené weby.",
         "description": "[options] Tooltip for whitelist mode checkbox"
     },
     "optSitePlaceholder": {
-        "message": "Examples: facebook.com, google.com/reader",
+        "message": "Příklady: facebook.com, google.com/reader",
         "description": "[options] Placeholder for a site url input box"
     },
     "optSiteDisclaimer": {
-        "message": "Be aware that domain filters can overlap. Example: if you have filtered \"picasaweb.google.com\" and \"google.com\", removing \"picasaweb.google.com\" will not reactivate Picasa Web Albums, as it will still be excluded by the \"google.com\" filter.",
+        "message": "Uvědomte si, že filtry domén se mohou překrývat. Příklad: Pokud jste filtrovali \"picasaweb.google.com\" a \"google.com\", odstraněním \"picasaweb.google.com\" se Webová alba Picasa znovu neaktivují, protože budou stále vyloučena filtrem \"google.com\".",
         "description": "[options] Disclaimer on the sites option page"
     },
     "optButtonAddSite": {
-        "message": "Add",
+        "message": "Přidat",
         "description": "[options] Button for adding a site on sites option page"
     },
     "optPageActionKeys": {
-        "message": "Action keys",
+        "message": "Akční klávesy",
         "description": "[options] Page title for action key options"
     },
     "optPageAdvanced": {
-        "message": "Advanced",
+        "message": "Pokročilé",
         "description": "[options] Page title for advanced options"
     },
     "optSectionAdvanced": {
-        "message": "Advanced options",
+        "message": "Rozšířené možnosti",
         "description": "[options] Page section for advanced options"
     },
     "optEnableDownloads": {
-        "message": "Allow downloading images using an action key",
+        "message": "Povolení stahování obrázků pomocí akční klávesy",
         "description": "[options] Grant browser permission to allow file downloading using an action key"
     },
     "optAddToHistory": {
-        "message": "Add viewed pictures to the browser's history",
+        "message": "Přidání prohlížených obrázků do historie prohlížeče",
         "description": "[options] Add viewed pictures to the browser's history option"
     },
     "optAllowHeadersRewriteTooltip": {
-        "message": "Useful to be able to zoom & play content from one site on another site, such as videos",
+        "message": "Užitečná možnost zvětšovat a přehrávat obsah z jednoho webu na jiném webu, například videa.",
         "description": "[options] Tooltip for allow rewrite of headers for HTTP(S) request or response option"
     },
     "optAllowHeadersRewrite": {
-        "message": "Allow rewrite of headers for HTTP(S) request or response",
+        "message": "Povolení přepisu hlaviček pro požadavek nebo odpověď HTTP(S)",
         "description": "[options] Allow rewrite of headers for HTTP(S) request or response option"
     },
     "optFilterNSFW": {
-        "message": "Exclude NSFW images (Reddit only)",
+        "message": "Vyloučení NSFW obrázků (pouze Reddit)",
         "description": "[options] Exclude NSFW images (Reddit only) option"
     },
     "optAlwaysPreload": {
-        "message": "Automatically preload zoomed images",
+        "message": "Automatické přednačítání zvětšených obrázků",
         "description": "[options] Automatically preload zoomed images option"
     },
     "optEnableGalleries": {
-        "message": "Enable albums support",
+        "message": "Povolení podpory alb",
         "description": "[options] Enable albums support option"
     },
     "optEnableNoFocusMsg": {
-        "message": "Enable Action Keys focus overlay message",
+        "message": "Povolení překryvné zprávy zaměření akčních kláves",
         "description": "[options] Enable Action Keys focus overlay message option"
     },
     "optEnableNoFocusMsgTooltip": {
-        "message": "Sometimes Action Keys seem to be broken, this usually happens when page has lost focus. If option is checked, a warning message will be displayed (only once).",
+        "message": "Někdy se zdá, že jsou akční klávesy nefunkční, což se obvykle stává, když stránka ztratí zaostření. Pokud je tato možnost zaškrtnuta, zobrazí se varovná zpráva (pouze jednou).",
         "description": "[options] Tooltip for enable Action Keys focus overlay message option"
     },
     "optPicturesOpacity": {
-        "message": "Zoomed pictures opacity:",
+        "message": "Neprůhlednost zvětšených obrázků:",
         "description": "[options] Zoomed pictures opacity option"
     },
     "optOpacityUnitName": {
@@ -476,91 +476,91 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optDisplayImageLoaderTooltip": {
-        "message": "Display a little spinner as image is loading (green:loading, red:error). Red spinner is optional.",
+        "message": "Zobrazení malého spinneru při načítání obrázku (zelená:načítání, červená:chyba). Červený spinner je volitelný.",
         "description": "[options] Tooltip for display image loader option"
     },
     "optDisplayImageLoader": {
-        "message": "Display a red spinner when image loading failed",
+        "message": "Zobrazení červeného spinneru při neúspěšném načítání obrázku",
         "description": "[options] Display image loader option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
-        "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
+        "message": "Užitečné pro weby HTTPS, jako jsou Obrázky Google, které brání načítání obrázků HTTP.",
         "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrls": {
-        "message": "Try to open unloadable urls in separate:",
+        "message": "Zkuste otevřít nenačítatelné adresy URL v samostatném okně:",
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
-        "message": "Tab",
+        "message": "Karta",
         "description": "[options] Use separate tab for unloadable urls option"
     },
     "optUseSeparateWindowForUnloadableUrls": {
-        "message": "Window",
+        "message": "Okno",
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
-        "message": "Subfolder(s) will be created if needed",
+        "message": "V případě potřeby budou vytvořeny podsložky.",
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
-        "message": "Example: animals/cats",
+        "message": "Příklad: zvířata/kočky",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images & videos to folder: Downloads/",
+        "message": "Uložení obrázků a videí do složky: Stahování/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Prefix original names of downloads with origin, size and/or duration for easier management",
+        "message": "Předpona původních názvů stahovaných souborů s původem, velikostí a/nebo dobou trvání pro snadnější správu.",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Rename saved images & videos by adding:",
+        "message": "Přejmenujte uložené obrázky a videa přidáním:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
-        "message": "Add origin (e.g. www.deviantart.com)",
+        "message": "Přidejte původ (např. www.deviantart.com).",
         "description": "[options] Tooltip for add download origin option"
     },
     "optAddDownloadOrigin": {
-        "message": "origin",
+        "message": "původ",
         "description": "[options] Add download origin option"
     },
     "optAddDownloadSizeTooltip": {
-        "message": "Add size (WxH) in pixels (e.g. 1024x750)",
+        "message": "Přidejte velikost (ŠxV) v pixelech (např. 1024x750)",
         "description": "[options] Tooltip for add download size option"
     },
     "optAddDownloadSize": {
-        "message": "size",
+        "message": "velikost",
         "description": "[options] Add download size option"
     },
     "optAddDownloadDurationTooltip": {
-        "message": "Add duration (hh mm ss) of video (e.g. 00 16 35)",
+        "message": "Přidejte dobu trvání videa (hh mm ss) (např. 00 16 35).",
         "description": "[options] Tooltip for add download duration option"
     },
     "optAddDownloadDuration": {
-        "message": "duration",
+        "message": "trvání",
         "description": "[options] Add download duration option"
     },
     "optSectionTroubleshooting": {
-        "message": "Troubleshooting",
+        "message": "Řešení problémů",
         "description": "[options] Page section for troubleshooting"
     },
     "optEnableDebugTooltip": {
-        "message": "Display debug messages in browser's console (to open console: press F12)",
+        "message": "Zobrazení ladicích zpráv v konzoli prohlížeče (pro otevření konzole: stiskněte F12)",
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
-        "message": "Enable debug logging",
+        "message": "Povolení protokolování ladění",
         "description": "[options] Enable debug option"
     },
     "optSectionSupportedFormats": {
-        "message": "Supported formats",
+        "message": "Podporované formáty",
         "description": "[options] Page section for supported formats"
     },
     "optSupportedImageFormats": {
-        "message": "Images :",
+        "message": "Obrázky :",
         "description": "[options] Page section for supported image formats"
     },
     "optSupportedVideoFormats": {
@@ -568,243 +568,243 @@
         "description": "[options] Page section for supported video formats"
     },
     "optSupportedAudioFormats": {
-        "message": "Audio :",
+        "message": "Zvuk :",
         "description": "[options] Page section for supported audio formats"
     },
     "optPageFAQ": {
-        "message": "FAQ",
+        "message": "ČASTO KLADENÉ DOTAZY",
         "description": "[options] Page title for FAQ"
     },
     "optSectionFAQ": {
-        "message": "Frequently Asked Questions",
+        "message": "Často kladené otázky",
         "description": "[options] Page section for Frequently Asked Questions"
     },
     "optFAQ_Q1": {
-        "message": "I edited some options, but i see no changes.",
+        "message": "Upravil jsem některé možnosti, ale nevidím žádné změny.",
         "description": "[options] FAQ Question 1"
     },
     "optFAQ_A1_1": {
-        "message": "After edition, click \"Save\" button",
+        "message": "Po úpravě klikněte na tlačítko \"Uložit\".",
         "description": "[options] FAQ Answer 1 part 1"
     },
     "optFAQ_A1_2": {
-        "message": "on bottom of Options page",
+        "message": "v dolní části stránky s možnostmi",
         "description": "[options] FAQ Answer 1 part 2"
     },
     "optFAQ_A1_3": {
-        "message": "Reload the page (F5)",
+        "message": "Znovu načíst stránku (F5)",
         "description": "[options] FAQ Answer 1 part 3"
     },
     "optFAQ_Q2": {
-        "message": "I want to hide the mouse cursor on zoomed image or video.",
+        "message": "Chci skrýt kurzor myši na zvětšeném obrázku nebo videu.",
         "description": "[options] FAQ Question 2"
     },
     "optFAQ_A2_1": {
-        "message": "In Options -> General -> Delays, activate \"Hide mouse cursor\"",
+        "message": "V Možnostech -> Obecné -> Zpoždění aktivujte možnost \"Skrýt kurzor myši\".",
         "description": "[options] FAQ Answer 2 part 1"
     },
     "optFAQ_SaveAndReload": {
-        "message": "Save and reload the page (F5)",
+        "message": "Uložit a znovu načíst stránku (F5)",
         "description": "[options] FAQ Save and reload page"
     },
     "optFAQ_Q3": {
-        "message": "I need HoverZoom+ to be active for some sites only.",
+        "message": "Potřebuji, aby byl HoverZoom+ aktivní pouze pro některé stránky.",
         "description": "[options] FAQ Question 3"
     },
     "optFAQ_A3_1": {
-        "message": "E.g. to activate HoverZoom+ on DeviantArt.com & 1X.com:",
+        "message": "Např. pro aktivaci funkce HoverZoom+ na stránkách DeviantArt.com a 1X.com:",
         "description": "[options] FAQ Answer 3 part 1"
     },
     "optFAQ_A3_2": {
-        "message": "In Options -> Sites, activate \"Whitelist mode\"",
+        "message": "V Možnostech -> Weby aktivujte \"Režim bílé listiny\".",
         "description": "[options] FAQ Answer 3 part 2"
     },
     "optFAQ_A3_3": {
-        "message": "Add DeviantArt.com & 1X.com to list of URLs (not case-sensitive)",
+        "message": "Přidání DeviantArt.com a 1X.com do seznamu adres URL (nerozlišuje se velikost písmen)",
         "description": "[options] FAQ Answer 3 part 3"
     },
     "optFAQ_Q4": {
-        "message": "I want to zoom an image or video to its original size even if larger than screen.",
+        "message": "Chci zvětšit obrázek nebo video na původní velikost, i když je větší než obrazovka.",
         "description": "[options] FAQ Question 4"
     },
     "optFAQ_A4_1": {
-        "message": "Hover over an image or video then lock it on screen (default action key: \"L\")",
+        "message": "Najeďte na obrázek nebo video a zamkněte je na obrazovce (výchozí akční klávesa: \"L\").",
         "description": "[options] FAQ Answer 4 part 1"
     },
     "optFAQ_A4_2": {
-        "message": "Image or video is now displayed fullsize. You can zoom in or out using mousewheel.",
+        "message": "Obrázek nebo video se nyní zobrazí v plné velikosti. Pomocí kolečka myši můžete obraz zvětšovat nebo zmenšovat.",
         "description": "[options] FAQ Answer 4 part 2"
     },
     "optFAQ_Q5": {
-        "message": "Action keys do not work!",
+        "message": "Akční klávesy nefungují!",
         "description": "[options] FAQ Question 5"
     },
     "optFAQ_A5_1": {
-        "message": "Sometimes action keys seem to be broken, this usually happens when page has lost focus.",
+        "message": "Někdy se zdá, že jsou akční klávesy nefunkční, což se obvykle stává, když stránka ztratí zaostření.",
         "description": "[options] FAQ Answer 5 part 1"
     },
     "optFAQ_A5_2": {
-        "message": "Just click anywhere on page to regain focus.",
+        "message": "Pro obnovení zaostření stačí kliknout kdekoli na stránce.",
         "description": "[options] FAQ Answer 5 part 2"
     },
     "optFAQ_A5_3": {
-        "message": "In Options -> Advanced, you can activate \"Enable Action Keys focus overlay message\", so you'll get a warning message when focus is lost.",
+        "message": "V nabídce Možnosti -> Rozšířené můžete aktivovat možnost \"Povolit překryvnou zprávu o zaostření akčních kláves\", takže se při ztrátě zaostření zobrazí varovná zpráva.",
         "description": "[options] FAQ Answer 5 part 3"
     },
     "optFAQ_Q6": {
-        "message": "Some videos do not play when opened from sites other than original ones.",
+        "message": "Některá videa se při otevření z jiných než původních stránek nepřehrávají.",
         "description": "[options] FAQ Question 6"
     },
     "optFAQ_A6_1": {
-        "message": "e.g: Dailymotion videos play in dailymotion.com, but not in Google search results.",
+        "message": "Např: videa z Dailymotion se přehrávají na webu dailymotion.com, ale ne ve výsledcích vyhledávání Google.",
         "description": "[options] FAQ Answer 6 part 1"
     },
     "optFAQ_A6_2": {
-        "message": "This is due to CORS restrictions, to lift them:",
+        "message": "Důvodem jsou omezení CORS, která je třeba zrušit:",
         "description": "[options] FAQ Answer 6 part 2"
     },
     "optFAQ_A6_3": {
-        "message": "In Options -> Advanced, activate \"Allow rewrite of headers for HTTP(S) request or response\"",
+        "message": "V části Možnosti -> Rozšířené aktivujte možnost \"Povolit přepisování hlaviček pro požadavky nebo odpovědi HTTP(S)\".",
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optPixelsUnitName": {
-        "message": "pixels",
+        "message": "pixely",
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
-        "message": "Activate HoverZoom+",
+        "message": "Aktivace funkce HoverZoom+",
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "If a key is set, HoverZoom+ will be active only when this key is held down.",
+        "message": "Pokud je nastavena klávesa, bude funkce HoverZoom+ aktivní pouze při jejím stisknutí.",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
-        "message": "Toggle HoverZoom+",
+        "message": "Přepnutí funkce HoverZoom+",
         "description": "[options] Action key title"
     },
     "optToggleKeyDescription": {
-        "message": "Enable/disable HoverZoom+",
+        "message": "Povolení/zakázání funkce HoverZoom+",
         "description": "[options] Action key description"
     },
     "optCloseKeyTitle": {
-        "message": "Close image",
+        "message": "Zavřít obrázek",
         "description": "[options] Action key title"
     },
     "optCloseKeyDescription": {
-        "message": "Press this key to close zoomed image or video.",
+        "message": "Stisknutím této klávesy zavřete zvětšený obrázek nebo video.",
         "description": "[options] Action key description"
     },
     "optHideKeyTitle": {
-        "message": "Hide image",
+        "message": "Skrýt obrázek",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
+        "message": "Podržením této klávesy se zvětšený obrázek nebo video skryje. Použijte ji, pokud obrázek skrývá prvky, které se zobrazí i při najetí myší.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
-        "message": "Open image in a new window",
+        "message": "Otevřít obrázek v novém okně",
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
+        "message": "Stisknutím této klávesy otevřete právě prohlížený obrázek nebo video v novém okně. Opětovným stisknutím této klávesy okno zavřete.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
-        "message": "Open image in a new tab",
+        "message": "Otevřít obrázek na nové kartě",
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
+        "message": "Stisknutím této klávesy otevřete právě prohlížený obrázek nebo video na nové kartě. Opětovným stisknutím této klávesy kartu zavřete. Klávesa Shift+ otevře obrázek na kartě na pozadí.",
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
-        "message": "Lock image on screen",
+        "message": "Zámek obrazu na obrazovce",
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
+        "message": "Stisknutím této klávesy uzamknete obrázek nebo video ve středu stránky a můžete je přibližovat a posouvat. Stisknutím klávesy zavřít nebo kliknutím mimo obrázek jej odemknete.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
-        "message": "Save image",
+        "message": "Uložit obrázek",
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Press this key to save the image or video you are currently viewing.",
+        "message": "Stisknutím tohoto tlačítka uložíte právě prohlížený obrázek nebo video.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
-        "message": "Activate full zoom",
+        "message": "Aktivace plného přiblížení",
         "description": "[options] Action key title"
     },
     "optFullZoomKeyDescription": {
-        "message": "When this key is held down, the picture is displayed using all available space. Useful for high resolution pictures only.",
+        "message": "Když je toto tlačítko stisknuté, obrázek se zobrazí s využitím veškerého dostupného prostoru. Používá se pouze pro obrázky s vysokým rozlišením.",
         "description": "[options] Action key description"
     },
     "optCopyImageKeyTitle": {
-        "message": "Copy image to clipboard",
+        "message": "Kopírování obrázku do schránky",
         "description": "[options] Action key title"
     },
     "optCopyImageKeyDescription": {
-        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "message": "Po stisknutí této klávesy se obrázek zkopíruje do schránky.",
         "description": "[options] Action key description"
     },
     "optCopyImageUrlKeyTitle": {
-        "message": "Copy image URL to clipboard",
+        "message": "Kopírování adresy URL obrázku do schránky",
         "description": "[options] Action key title"
     },
     "optCopyImageUrlKeyDescription": {
-        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
+        "message": "Po stisknutí této klávesy se adresa URL obrázku nebo videa zkopíruje do schránky.",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
-        "message": "View previous image in a gallery",
+        "message": "Zobrazit předchozí obrázek v galerii",
         "description": "[options] Action key title"
     },
     "optPrevImgKeyDescription": {
-        "message": "Press this key to view the previous image in a gallery.",
+        "message": "Stisknutím tohoto tlačítka zobrazíte předchozí snímek v galerii.",
         "description": "[options] Action key description"
     },
     "optNextImgKeyTitle": {
-        "message": "View next image in a gallery",
+        "message": "Zobrazit další obrázek v galerii",
         "description": "[options] Action key title"
     },
     "optNextImgKeyDescription": {
-        "message": "Press this key to view the next image in a gallery.",
+        "message": "Stisknutím této klávesy zobrazíte další obrázek v galerii.",
         "description": "[options] Action key description"
     },
     "optFlipImageKeyTitle": {
-        "message": "Flip image",
+        "message": "Převrácení obrázku",
         "description": "[options] Action key title"
     },
     "optFlipImageKeyDescription": {
-        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+        "message": "Stisknutím tohoto tlačítka střídavě obracíte obraz svisle a vodorovně. Hodí se pro čtení textů a log v zrcadlově otočených obrázcích nebo videích.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
-        "message": "Source code",
+        "message": "Zdrojový kód",
         "description": "[options] Source code link in page footer"
     },
     "optFooterChangelog": {
-        "message": "Changelog",
+        "message": "Seznam změn",
         "description": "[options] Changelog link in page footer"
     },
     "optFooterReportIssue": {
-        "message": "Report a bug",
+        "message": "Nahlásit chybu",
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
+        "message": "Verze $1 (poslední aktualizace: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click anywhere on the page then hover again",
+        "message": "klikněte kdekoli na stránce a pak znovu najeďte myší.",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     },
     "msgClickPageToActivateActionKeys": {
-        "message": "click anywhere on the page to activate Action Keys",
+        "message": "kliknutím kdekoli na stránce aktivujete akční klávesy.",
         "description": "Action keys are active only if page is focused"
     }
 }

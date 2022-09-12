@@ -144,7 +144,7 @@
         "description": "[options] Details location option to put details below the image"
     },
     "optDetailsLocationNone": {
-        "message": "None",
+        "message": "Ingen",
         "description": "[options] Details location option to disable details"
     },
     "optFontOutline": {

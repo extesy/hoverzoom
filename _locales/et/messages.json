@@ -12,43 +12,43 @@
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
     "popDisableForAllSites": {
-        "message": "Disable for all sites",
+        "message": "Kõigi saitide jaoks välja lülitada",
         "description": "[popup] Disable the extension"
     },
     "popAllowPerSiteToggle": {
-        "message": "Allow per-site extension configuration",
+        "message": "Saate lubada saitide kaupa laienduste konfigureerimist",
         "description": "[popup] Allow per-site extension configuration"
     },
     "popDisableForSite": {
-        "message": "Disable for $1",
+        "message": "Lülita välja 1 dollari eest",
         "description": "[popup] Disables the extension for a specific site"
     },
     "popEnableForSite": {
-        "message": "Enable for $1",
+        "message": "Lubage 1 dollari eest",
         "description": "[popup] Enables the extension for a specific site"
     },
     "popPreloadImages": {
-        "message": "Preload zoomed images",
+        "message": "Suumitud piltide eellaadimine",
         "description": "[popup] Preload zoomed images"
     },
     "popPreloadingImages": {
-        "message": "Preloading...",
+        "message": "Eellaadimine...",
         "description": "[popup] Preloading zoomed images"
     },
     "popMoreOptions": {
-        "message": "More options",
+        "message": "Rohkem võimalusi",
         "description": "[popup] More options"
     },
     "optTitle": {
-        "message": "Hover Zoom+ Options",
+        "message": "Hover Zoom+ Valikud",
         "description": "[options] Page title"
     },
     "optButtonDisableAllPlugins": {
-        "message": "Disable all",
+        "message": "Lülita kõik välja",
         "description": "[options] disable all plugins button label"
     },
     "optButtonEnableAllPlugins": {
-        "message": "Enable all",
+        "message": "Võimaldage kõik",
         "description": "[options] enable all plugins button label"
     },
     "optButtonSave": {
@@ -56,7 +56,7 @@
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
-        "message": "Cancel",
+        "message": "Tühista",
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
@@ -64,15 +64,15 @@
         "description": "[options] Reset button label"
     },
     "optSaved": {
-        "message": "Options saved. Some settings might need a page refresh.",
+        "message": "Salvestatud valikud. Mõned seaded võivad vajada lehekülje värskendamist.",
         "description": "[options] Notification after saving options"
     },
     "optCancel": {
-        "message": "Modification(s) cancelled.",
+        "message": "Muudatus(ed) tühistatud.",
         "description": "[options] Notification after cancelling modification(s) to options"
     },
     "optReset": {
-        "message": "Options reset to factory settings, save to apply.",
+        "message": "Valikud lähtestage tehaseseadetele, salvestage, et rakendada.",
         "description": "[options] Notification after resetting options to factory settings"
     },
     "optPageGeneral": {
@@ -80,11 +80,11 @@
         "description": "[options] Page title for general options"
     },
     "optExtensionEnabled": {
-        "message": "Enable Hover Zoom",
+        "message": "Hover Zoomi lubamine",
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optSectionView": {
-        "message": "Viewer",
+        "message": "Vaataja",
         "description": "[options] Page section for viewer options"
     },
     "optSectionVideo": {
@@ -96,7 +96,7 @@
         "description": "[options] Page section for audio options"
     },
     "optZoomFactor": {
-        "message": "Enlarge zoomed images by this factor:",
+        "message": "Suurendage suumitud pilte selle teguri võrra:",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optZoomFactorUnitName": {
@@ -104,27 +104,27 @@
         "description": "[options] Unit name (percentage) for zoomed images size option"
     },
     "optZoomFactorTooltip": {
-        "message": "Multiply the size of zoomed images by this amount",
+        "message": "Suurendatud piltide suurus korrutatakse selle summaga.",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optCaptionLocation": {
-        "message": "Caption position:",
+        "message": "Pealkirja positsioon:",
         "description": "[options] Adjust the position of the caption"
     },
     "optCaptionLocationTooltip": {
-        "message": "View the caption above/below the image, or not at all",
+        "message": "Vaadake pildi all/üles või üldse mitte.",
         "description": "[options] Tooltip for adjusting the position of the caption"
     },
     "optCaptionLocationAbove": {
-        "message": "Above",
+        "message": "Üleval",
         "description": "[options] Caption location option to put captions above the image"
     },
     "optCaptionLocationBelow": {
-        "message": "Below",
+        "message": "Allpool",
         "description": "[options] Caption location option to put captions below the image"
     },
     "optCaptionLocationNone": {
-        "message": "None",
+        "message": "Puudub",
         "description": "[options] Caption location option to disable captions"
     },
     "optDetailsLocation": {
@@ -132,95 +132,95 @@
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
-        "message": "View details (size, format...) above/below the image, or not at all",
+        "message": "Vaata üksikasju (suurus, formaat...) pildi kohal/allpool või üldse mitte.",
         "description": "[options] Tooltip for adjusting the position of details"
     },
     "optDetailsLocationAbove": {
-        "message": "Above",
+        "message": "Üleval",
         "description": "[options] Details location option to put details above the image"
     },
     "optDetailsLocationBelow": {
-        "message": "Below",
+        "message": "Allpool",
         "description": "[options] Details location option to put details below the image"
     },
     "optDetailsLocationNone": {
-        "message": "None",
+        "message": "Puudub",
         "description": "[options] Details location option to disable details"
     },
     "optFontOutline": {
-        "message": "Font outline",
+        "message": "Kirjatüübi kontuur",
         "description": "[options] Outline option"
     },
     "optFontOutlineTooltip": {
-        "message": "If checked: use white font + thin black border for caption & details",
+        "message": "Kui märgitud: kasuta valget kirjastiili + õhukest musta piirjooni pealkirja ja üksikasjade jaoks.",
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
-        "message": "Extend zoomed images below the mouse cursor",
+        "message": "Suurendatud piltide laiendamine hiirekursori alla",
         "description": "[options] Extend zoomed images below the mouse cursor option"
     },
     "optMouseUnderlapTooltip": {
-        "message": "If unchecked, zoomed images will be resized dynamically",
+        "message": "Kui see ei ole märgitud, muudetakse suumitud piltide suurust dünaamiliselt.",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
     "optHideMouseCursor": {
-        "message": "Hide mouse cursor after:",
+        "message": "Peida hiirekursor pärast:",
         "description": "[options] Hide mouse cursor option"
     },
     "optHideMouseCursorTooltip": {
-        "message": "If checked, mouse cursor will be hidden after delay",
+        "message": "Kui see on märgitud, peidetakse hiirekursor pärast viivitust.",
         "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optPageActionEnabled": {
-        "message": "Show icon in address bar",
+        "message": "Näita ikooni aadressiribal",
         "description": "[options] Show icon in address bar option"
     },
     "optPageActionEnabledTooltip": {
-        "message": "Only when images can be zoomed",
+        "message": "Ainult siis, kui pilte saab suurendada",
         "description": "[options] Tooltip for show icon in address bar option"
     },
     "optShowWhileLoading": {
-        "message": "Show zoomed pictures while loading",
+        "message": "Suurendatud piltide kuvamine laadimise ajal",
         "description": "[options] Show zoomed pictures while loading option"
     },
     "optShowWhileLoadingTooltip": {
-        "message": "Zoomed image will be displayed before it is fully loaded",
+        "message": "Suurendatud pilt kuvatakse enne selle täielikku laadimist.",
         "description": "[options] Tooltip for show zoomed pictures while loading option"
     },
     "optShowHighRes": {
-        "message": "Show high resolution pictures when available",
+        "message": "Näita kõrge resolutsiooniga pilte, kui need on saadaval",
         "description": "[options] Show high resolution pictures when available option"
     },
     "optShowHighResTooltip": {
-        "message": "Pictures may take more time to load",
+        "message": "Piltide laadimine võib võtta rohkem aega",
         "description": "[options] Tooltip for show high resolution pictures when available option"
     },
     "optGalleriesMouseWheel": {
-        "message": "Use mousewheel to navigate albums",
+        "message": "Kasutage albumites navigeerimiseks hiireratast",
         "description": "[options] Use mousewheel to navigate albums option"
     },
     "optGalleriesMouseWheelTooltip": {
-        "message": "Navigate album with the mouse wheel",
+        "message": "Navigeeri albumis hiirerattaga",
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
     "optDisableMouseWheelForVideo": {
-        "message": "Don't use mousewheel to navigate within video (action keys will still work)",
+        "message": "Ärge kasutage hiireratast video sees navigeerimiseks (tegevusnupud toimivad endiselt).",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optDisableMouseWheelForVideoTooltip": {
-        "message": "Scroll through albums but don't jump forward/backward in videos",
+        "message": "Sirvi läbi albumite, kuid ära hüppa videotes edasi/tagasi",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
-        "message": "Zoom videos",
+        "message": "Zoomi videod",
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Supported formats: 3gpp m4v mkv mp4 ogv webm",
+        "message": "Toetatud formaadid: m4v mkv mp4 ogv webm: 3gpp m4v mkv mp4 ogv webm",
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
-        "message": "Use prev/next action keys (or mousewheel) to change video position by",
+        "message": "Videopositsiooni muutmiseks kasutage eelmine/järgmine tegevusnuppu (või hiireratast).",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
@@ -228,27 +228,27 @@
         "description": "[options] Unit name (seconds) for changing video position option"
     },
     "optVideoPositionStepTooltip": {
-        "message": "Skip video back or forth for this amount of seconds",
+        "message": "Skip video edasi või tagasi selle arvu sekundite jooksul",
         "description": "[options] Tooltip for changing video position option"
     },
     "optMuteVideos": {
-        "message": "Mute zoomed videos",
+        "message": "Muteeritud videod",
         "description": "[options] Mute zoomed videos option"
     },
     "optMuteVideosTooltip": {
-        "message": "Disable sound in zoomed videos",
+        "message": "Suumitud videote heli väljalülitamine",
         "description": "[options] Tooltip for mute zoomed videos option"
     },
     "optVideoTimestamp": {
-        "message": "Show timestamp on videos",
+        "message": "Videote ajatempli kuvamine",
         "description": "[options] Enable timestamp / video length on videos"
     },
     "optVideoTimestampTooltip": {
-        "message": "Enable timestamp / video length on videos",
+        "message": "Ajatempli / video pikkuse lubamine videote puhul",
         "description": "[options] Tooltip for video length countdown on videos"
     },
     "optVideoVolume": {
-        "message": "Audio volume for unmuted videos:",
+        "message": "Helitugevus summutamata videote puhul:",
         "description": "[options] Audio volume for unmuted videos option"
     },
     "optVideoVolumeUnitName": {
@@ -256,19 +256,19 @@
         "description": "[options] Unit name (percentage) for video volume option"
     },
     "optVideoVolumeTooltip": {
-        "message": "If the video is not completely muted, set the volume to this percentage (0-100)",
+        "message": "Kui video ei ole täielikult vaigistatud, seadistage helitugevus sellele protsendile (0-100).",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
     },
     "optPlayAudio": {
-        "message": "Play audio sources such as MP3",
+        "message": "Mängib heliallikaid, näiteks MP3",
         "description": "[options] Play audio option"
     },
     "optPlayAudioTooltip": {
-        "message": "Supported formats: flac m4a mp3 oga ogg opus wav",
+        "message": "Toetatud formaadid: oga ogg opus wav: flac m4a mp3 oga ogg opus wav",
         "description": "[options] Tooltip for play audio option"
     },
     "optAudioVolume": {
-        "message": "Audio volume:",
+        "message": "Helitugevus:",
         "description": "[options] Audio volume option"
     },
     "optAudioVolumeUnitName": {
@@ -276,19 +276,19 @@
         "description": "[options] Unit name (percentage) for audio volume option"
     },
     "optAudioVolumeTooltip": {
-        "message": "Set the volume to this percentage (0-100)",
+        "message": "Seadistage helitugevus sellele protsendile (0-100).",
         "description": "[options] Tooltip for audio volume option"
     },
     "optEnableAmbilight": {
-        "message": "Enable ambient light behind images",
+        "message": "Võimaldab ümbritseva valguse kuvade taga",
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Create a subtle glow effect similar to Philips Ambilight technology",
+        "message": "Loo peene helendava efekti, mis sarnaneb Philipsi Ambilight tehnoloogiale",
         "description": "[options] Tooltip for enable ambient light behind images option"
     },
     "optAmbilightHaloSize": {
-        "message": "Size of halo :",
+        "message": "Halo suurus :",
         "description": "[options] Size of halo option"
     },
     "optAmbilightHaloSizeUnitName": {
@@ -296,11 +296,11 @@
         "description": "[options] Unit name (percentage) for halo size"
     },
     "optAmbilightHaloSizeTooltip": {
-        "message": "Size of halo around zoomed image (0% : no halo)",
+        "message": "Halo suurus ümber suumitud pildi (0% : halo puudub)",
         "description": "[options] Tooltip for size of halo"
     },
     "optAmbilightBackgroundOpacity": {
-        "message": "Background opacity :",
+        "message": "Tausta läbipaistmatus :",
         "description": "[options] Background opacity option"
     },
     "optAmbilightBackgroundOpacityUnitName": {
@@ -308,71 +308,71 @@
         "description": "[options] Unit name (percentage) for background opacity"
     },
     "optAmbilightBackgroundOpacityTooltip": {
-        "message": "0% : transparent, 100% : black",
+        "message": "0% : läbipaistev, 100% : must",
         "description": "[options] Tooltip for background opacity"
     },
     "optCenterImages": {
-        "message": "Center images",
+        "message": "Keskuse pildid",
         "description": "[options] Center images in the middle of the page option"
     },
     "optCenterImagesTooltip": {
-        "message": "Center images as opposed to having them follow the cursor",
+        "message": "Piltide tsentreerimine, selle asemel, et need järgiksid kursorit",
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optFrameBackgroundColor": {
-        "message": "Frame background color:",
+        "message": "Raami taustavärv:",
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
-        "message": "Background color for the frame the image appears in",
+        "message": "Taustavärv, milles kujutis kuvatakse.",
         "description": "[options] Tooltip for frame background color option"
     },
     "optFrameBackgroundColorChooseText": {
-        "message": "Select",
+        "message": "Valige",
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
-        "message": "Cancel",
+        "message": "Tühista",
         "description": "[options] Frame background color button - Cancel"
     },
     "optFrameThickness": {
-        "message": "Frame thickness:",
+        "message": "Raami paksus:",
         "description": "[options] Frame thickness option"
     },
     "optFrameThicknessTooltip": {
-        "message": "Thickness of border for the frame the image appears in (0 : no frame)",
+        "message": "Raami paksus, milles kujutis kuvatakse (0 : raam puudub).",
         "description": "[options] Tooltip for frame thickness option"
     },
     "optFrameThicknessUnitName": {
-        "message": "pixels",
+        "message": "pikslid",
         "description": "[options] Unit name (pixel) for frame thickness"
     },
     "optFontSize": {
-        "message": "Font size:",
+        "message": "Kirjasuurus:",
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
-        "message": "Size of font used for captions & details",
+        "message": "Pealkirjade ja üksikasjade jaoks kasutatava kirjastiili suurus",
         "description": "[options] Tooltip for font size option"
     },
     "optFontSizeUnitName": {
-        "message": "pixels",
+        "message": "pikslid",
         "description": "[options] Unit name (pixel) for font size"
     },
     "optSectionDelays": {
-        "message": "Delays",
+        "message": "Viivitused",
         "description": "[options] Page section for delay options"
     },
     "optDisplayDelay": {
-        "message": "Delay before displaying a picture:",
+        "message": "Viivitus enne pildi kuvamist:",
         "description": "[options] Delay before displaying a picture option"
     },
     "optDisplayDelayVideo": {
-        "message": "Delay before displaying a video:",
+        "message": "Viivitus enne video kuvamist:",
         "description": "[options] Delay before displaying a video option"
     },
     "optFadeDuration": {
-        "message": "Fading animation duration:",
+        "message": "Animatsiooni kestus:",
         "description": "[options] Fading animation duration option"
     },
     "optDurationUnitName": {
@@ -384,35 +384,35 @@
         "description": "[options] Page title for plugin options"
     },
     "optPlugins": {
-        "message": "Enable/disable specific plugins",
+        "message": "Konkreetsete pluginate sisse/välja lülitamine",
         "description": "[options] Section which contains checkboxes for disabling plugins"
     },
     "optPageSites": {
-        "message": "Sites",
+        "message": "Saidid",
         "description": "[options] Page title for site options"
     },
     "optSectionSitesEnabled": {
-        "message": "URLs for which Hover Zoom+ must be enabled",
+        "message": "URL-d, mille puhul peab olema lubatud Hover Zoom+",
         "description": "[options] Page section for enabling extension for specific sites"
     },
     "optSectionSitesDisabled": {
-        "message": "URLs for which Hover Zoom+ must be disabled",
+        "message": "URL-d, mille puhul tuleb Hover Zoom+ keelata",
         "description": "[options] Page section for enabling extension for specific sites"
     },
     "optWhitelistMode": {
-        "message": "Whitelist mode",
+        "message": "Valge nimekirja režiim",
         "description": "[options] Whitelist mode checkbox"
     },
     "optWhitelistModeTooltip": {
-        "message": "Only enable Hover Zoom+ for the sites listed below",
+        "message": "Lubage Hover Zoom+ ainult allpool loetletud saitide puhul",
         "description": "[options] Tooltip for whitelist mode checkbox"
     },
     "optSitePlaceholder": {
-        "message": "Examples: facebook.com, google.com/reader",
+        "message": "Näited: facebook.com, google.com/reader",
         "description": "[options] Placeholder for a site url input box"
     },
     "optSiteDisclaimer": {
-        "message": "Be aware that domain filters can overlap. Example: if you have filtered \"picasaweb.google.com\" and \"google.com\", removing \"picasaweb.google.com\" will not reactivate Picasa Web Albums, as it will still be excluded by the \"google.com\" filter.",
+        "message": "Olge teadlik, et domeenifiltrid võivad kattuda. Näide: kui olete filtreerinud \"picasaweb.google.com\" ja \"google.com\", siis \"picasaweb.google.com\" eemaldamine ei aktiveeri Picasa veebialbumeid uuesti, kuna \"google.com\" filter jätab selle endiselt välja.",
         "description": "[options] Disclaimer on the sites option page"
     },
     "optButtonAddSite": {
@@ -424,35 +424,35 @@
         "description": "[options] Page title for action key options"
     },
     "optPageAdvanced": {
-        "message": "Advanced",
+        "message": "Täiustatud",
         "description": "[options] Page title for advanced options"
     },
     "optSectionAdvanced": {
-        "message": "Advanced options",
+        "message": "Täiustatud valikud",
         "description": "[options] Page section for advanced options"
     },
     "optEnableDownloads": {
-        "message": "Allow downloading images using an action key",
+        "message": "Luba piltide allalaadimine tegevusklahvi abil",
         "description": "[options] Grant browser permission to allow file downloading using an action key"
     },
     "optAddToHistory": {
-        "message": "Add viewed pictures to the browser's history",
+        "message": "Lisada vaadatud pildid brauseri ajalukku",
         "description": "[options] Add viewed pictures to the browser's history option"
     },
     "optAllowHeadersRewriteTooltip": {
-        "message": "Useful to be able to zoom & play content from one site on another site, such as videos",
+        "message": "Kasulik, et ühe saidi sisu, näiteks videod, oleks võimalik suurendada ja mängida teisel saidil.",
         "description": "[options] Tooltip for allow rewrite of headers for HTTP(S) request or response option"
     },
     "optAllowHeadersRewrite": {
-        "message": "Allow rewrite of headers for HTTP(S) request or response",
+        "message": "Lubab HTTP(S) päringu või vastuse päiste ümberkirjutamist",
         "description": "[options] Allow rewrite of headers for HTTP(S) request or response option"
     },
     "optFilterNSFW": {
-        "message": "Exclude NSFW images (Reddit only)",
+        "message": "Välja arvatud NSFW-pildid (ainult Reddit)",
         "description": "[options] Exclude NSFW images (Reddit only) option"
     },
     "optAlwaysPreload": {
-        "message": "Automatically preload zoomed images",
+        "message": "Automaatselt eellaadige suumitud pilte",
         "description": "[options] Automatically preload zoomed images option"
     },
     "optEnableGalleries": {
@@ -460,15 +460,15 @@
         "description": "[options] Enable albums support option"
     },
     "optEnableNoFocusMsg": {
-        "message": "Enable Action Keys focus overlay message",
+        "message": "Tegevusklahvide fookuse pealekandmise sõnumi lubamine",
         "description": "[options] Enable Action Keys focus overlay message option"
     },
     "optEnableNoFocusMsgTooltip": {
-        "message": "Sometimes Action Keys seem to be broken, this usually happens when page has lost focus. If option is checked, a warning message will be displayed (only once).",
+        "message": "Mõnikord tunduvad Action Keys olevat katki, see juhtub tavaliselt siis, kui lehekülg on kaotanud fookuse. Kui valik on märgitud, kuvatakse hoiatusteade (ainult üks kord).",
         "description": "[options] Tooltip for enable Action Keys focus overlay message option"
     },
     "optPicturesOpacity": {
-        "message": "Zoomed pictures opacity:",
+        "message": "Suumitud piltide läbipaistmatus:",
         "description": "[options] Zoomed pictures opacity option"
     },
     "optOpacityUnitName": {
@@ -476,19 +476,19 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optDisplayImageLoaderTooltip": {
-        "message": "Display a little spinner as image is loading (green:loading, red:error). Red spinner is optional.",
+        "message": "Näita väikest spinnerit, kui pilt laaditakse (roheline: laadimine, punane: viga). Punane spinner on valikuline.",
         "description": "[options] Tooltip for display image loader option"
     },
     "optDisplayImageLoader": {
-        "message": "Display a red spinner when image loading failed",
+        "message": "Punase spinneri kuvamine, kui pildi laadimine ebaõnnestus",
         "description": "[options] Display image loader option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
-        "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
+        "message": "Kasulik HTTPS-saitidele, nagu Google Images, mis takistavad HTTP-piltide laadimist.",
         "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrls": {
-        "message": "Try to open unloadable urls in separate:",
+        "message": "Proovige avada laadimata urlid eraldi:",
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
@@ -496,71 +496,71 @@
         "description": "[options] Use separate tab for unloadable urls option"
     },
     "optUseSeparateWindowForUnloadableUrls": {
-        "message": "Window",
+        "message": "Aken",
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
-        "message": "Subfolder(s) will be created if needed",
+        "message": "Vajaduse korral luuakse alamkaust(ad).",
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
-        "message": "Example: animals/cats",
+        "message": "Näide: loomad/kassid",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images & videos to folder: Downloads/",
+        "message": "Salvesta pildid ja videod kausta: Allalaadimised/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Prefix original names of downloads with origin, size and/or duration for easier management",
+        "message": "Haldamise lihtsustamiseks võib allalaadimiste originaalnimedele lisada päritolu, suuruse ja/või kestuse.",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Rename saved images & videos by adding:",
+        "message": "Salvestatud piltide ja videote ümbernimetamine, lisades:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
-        "message": "Add origin (e.g. www.deviantart.com)",
+        "message": "Lisage päritolu (nt www.deviantart.com).",
         "description": "[options] Tooltip for add download origin option"
     },
     "optAddDownloadOrigin": {
-        "message": "origin",
+        "message": "päritolu",
         "description": "[options] Add download origin option"
     },
     "optAddDownloadSizeTooltip": {
-        "message": "Add size (WxH) in pixels (e.g. 1024x750)",
+        "message": "Lisa suurus (laiusxkõrgus) pikslites (nt 1024x750).",
         "description": "[options] Tooltip for add download size option"
     },
     "optAddDownloadSize": {
-        "message": "size",
+        "message": "suurus",
         "description": "[options] Add download size option"
     },
     "optAddDownloadDurationTooltip": {
-        "message": "Add duration (hh mm ss) of video (e.g. 00 16 35)",
+        "message": "Lisa video kestus (th mm ss) (nt 00 16 35)",
         "description": "[options] Tooltip for add download duration option"
     },
     "optAddDownloadDuration": {
-        "message": "duration",
+        "message": "kestus",
         "description": "[options] Add download duration option"
     },
     "optSectionTroubleshooting": {
-        "message": "Troubleshooting",
+        "message": "Veaotsing",
         "description": "[options] Page section for troubleshooting"
     },
     "optEnableDebugTooltip": {
-        "message": "Display debug messages in browser's console (to open console: press F12)",
+        "message": "Näita veateateid brauseri konsoolis (konsooli avamiseks: vajutage F12)",
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
-        "message": "Enable debug logging",
+        "message": "Lubage vigade logimine",
         "description": "[options] Enable debug option"
     },
     "optSectionSupportedFormats": {
-        "message": "Supported formats",
+        "message": "Toetatud vormingud",
         "description": "[options] Page section for supported formats"
     },
     "optSupportedImageFormats": {
-        "message": "Images :",
+        "message": "Pildid :",
         "description": "[options] Page section for supported image formats"
     },
     "optSupportedVideoFormats": {
@@ -572,207 +572,207 @@
         "description": "[options] Page section for supported audio formats"
     },
     "optPageFAQ": {
-        "message": "FAQ",
+        "message": "KKK",
         "description": "[options] Page title for FAQ"
     },
     "optSectionFAQ": {
-        "message": "Frequently Asked Questions",
+        "message": "Korduma kippuvad küsimused",
         "description": "[options] Page section for Frequently Asked Questions"
     },
     "optFAQ_Q1": {
-        "message": "I edited some options, but i see no changes.",
+        "message": "Ma toimetasin mõned valikud, kuid ma ei näe mingeid muudatusi.",
         "description": "[options] FAQ Question 1"
     },
     "optFAQ_A1_1": {
-        "message": "After edition, click \"Save\" button",
+        "message": "Pärast redaktsiooni vajutage nuppu \"Salvesta\".",
         "description": "[options] FAQ Answer 1 part 1"
     },
     "optFAQ_A1_2": {
-        "message": "on bottom of Options page",
+        "message": "valikute lehe allosas",
         "description": "[options] FAQ Answer 1 part 2"
     },
     "optFAQ_A1_3": {
-        "message": "Reload the page (F5)",
+        "message": "Laadige leht uuesti (F5)",
         "description": "[options] FAQ Answer 1 part 3"
     },
     "optFAQ_Q2": {
-        "message": "I want to hide the mouse cursor on zoomed image or video.",
+        "message": "Ma tahan hiirekursorit suumitud pildi või video puhul peita.",
         "description": "[options] FAQ Question 2"
     },
     "optFAQ_A2_1": {
-        "message": "In Options -> General -> Delays, activate \"Hide mouse cursor\"",
+        "message": "Aktiveerige jaotises Valikud -> Üldine -> Viivitused \"Hiirekursori peitmine\".",
         "description": "[options] FAQ Answer 2 part 1"
     },
     "optFAQ_SaveAndReload": {
-        "message": "Save and reload the page (F5)",
+        "message": "Salvesta ja lae leht uuesti (F5)",
         "description": "[options] FAQ Save and reload page"
     },
     "optFAQ_Q3": {
-        "message": "I need HoverZoom+ to be active for some sites only.",
+        "message": "Mul on vaja, et HoverZoom+ oleks aktiivne ainult mõnede saitide puhul.",
         "description": "[options] FAQ Question 3"
     },
     "optFAQ_A3_1": {
-        "message": "E.g. to activate HoverZoom+ on DeviantArt.com & 1X.com:",
+        "message": "Näiteks HoverZoom+ aktiveerimiseks DeviantArt.com ja 1X.com:",
         "description": "[options] FAQ Answer 3 part 1"
     },
     "optFAQ_A3_2": {
-        "message": "In Options -> Sites, activate \"Whitelist mode\"",
+        "message": "Aktiveerige jaotises Valikud -> Saidid \"Valge nimekirja režiim\".",
         "description": "[options] FAQ Answer 3 part 2"
     },
     "optFAQ_A3_3": {
-        "message": "Add DeviantArt.com & 1X.com to list of URLs (not case-sensitive)",
+        "message": "Lisage DeviantArt.com & 1X.com URL-ide nimekirja (ei sõltu suur- ja väiketähtedest).",
         "description": "[options] FAQ Answer 3 part 3"
     },
     "optFAQ_Q4": {
-        "message": "I want to zoom an image or video to its original size even if larger than screen.",
+        "message": "Ma tahan pilti või videot suurendada algsesse suurusesse, isegi kui see on suurem kui ekraanil.",
         "description": "[options] FAQ Question 4"
     },
     "optFAQ_A4_1": {
-        "message": "Hover over an image or video then lock it on screen (default action key: \"L\")",
+        "message": "Liigutage hiirega pildi või video kohale ja lukustage see ekraanil (vaikimisi tegevusklahv: \"L\").",
         "description": "[options] FAQ Answer 4 part 1"
     },
     "optFAQ_A4_2": {
-        "message": "Image or video is now displayed fullsize. You can zoom in or out using mousewheel.",
+        "message": "Pilt või video kuvatakse nüüd täissuuruses. Saate hiireratta abil suurendada või vähendada.",
         "description": "[options] FAQ Answer 4 part 2"
     },
     "optFAQ_Q5": {
-        "message": "Action keys do not work!",
+        "message": "Tegevusklahvid ei tööta!",
         "description": "[options] FAQ Question 5"
     },
     "optFAQ_A5_1": {
-        "message": "Sometimes action keys seem to be broken, this usually happens when page has lost focus.",
+        "message": "Mõnikord tunduvad tegevusklahvid olevat katki, see juhtub tavaliselt siis, kui leht on kaotanud fookuse.",
         "description": "[options] FAQ Answer 5 part 1"
     },
     "optFAQ_A5_2": {
-        "message": "Just click anywhere on page to regain focus.",
+        "message": "Fookuse taastamiseks klõpsake lihtsalt kuskil lehel.",
         "description": "[options] FAQ Answer 5 part 2"
     },
     "optFAQ_A5_3": {
-        "message": "In Options -> Advanced, you can activate \"Enable Action Keys focus overlay message\", so you'll get a warning message when focus is lost.",
+        "message": "Valikutes -> Täiustatud saate aktiveerida \"Aktiveeri tegevuslahtrite fookuse ülekandmise sõnum\", nii et saate hoiatussõnumi, kui fookus kaob.",
         "description": "[options] FAQ Answer 5 part 3"
     },
     "optFAQ_Q6": {
-        "message": "Some videos do not play when opened from sites other than original ones.",
+        "message": "Mõned videod ei mängi, kui need avatakse muudelt kui algsetelt saitidelt.",
         "description": "[options] FAQ Question 6"
     },
     "optFAQ_A6_1": {
-        "message": "e.g: Dailymotion videos play in dailymotion.com, but not in Google search results.",
+        "message": "nt: Dailymotion videod mängivad dailymotion.com, kuid mitte Google'i otsingutulemustes.",
         "description": "[options] FAQ Answer 6 part 1"
     },
     "optFAQ_A6_2": {
-        "message": "This is due to CORS restrictions, to lift them:",
+        "message": "See on tingitud CORSi piirangutest, et neid tühistada:",
         "description": "[options] FAQ Answer 6 part 2"
     },
     "optFAQ_A6_3": {
-        "message": "In Options -> Advanced, activate \"Allow rewrite of headers for HTTP(S) request or response\"",
+        "message": "Aktiveeri jaotises Valikud -> Täiustatud, aktiveeri \"Luba pealkirjade ümberkirjutamine HTTP(S) päringu või vastuse jaoks\".",
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optPixelsUnitName": {
-        "message": "pixels",
+        "message": "pikslid",
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
-        "message": "Activate HoverZoom+",
+        "message": "HoverZoom+ aktiveerimine",
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "If a key is set, HoverZoom+ will be active only when this key is held down.",
+        "message": "Kui klahv on määratud, on HoverZoom+ aktiivne ainult siis, kui seda klahvi hoitakse all.",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
-        "message": "Toggle HoverZoom+",
+        "message": "HoverZoom+ lülitamine",
         "description": "[options] Action key title"
     },
     "optToggleKeyDescription": {
-        "message": "Enable/disable HoverZoom+",
+        "message": "HoverZoom+ sisse/välja lülitamine",
         "description": "[options] Action key description"
     },
     "optCloseKeyTitle": {
-        "message": "Close image",
+        "message": "Pildi sulgemine",
         "description": "[options] Action key title"
     },
     "optCloseKeyDescription": {
-        "message": "Press this key to close zoomed image or video.",
+        "message": "Vajutage seda klahvi suumitud pildi või video sulgemiseks.",
         "description": "[options] Action key description"
     },
     "optHideKeyTitle": {
-        "message": "Hide image",
+        "message": "Peida pilt",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
+        "message": "Selle klahvi all hoidmine peidab suumitud pildi või video. Kasutage seda, kui pilt peidab elemendid, mis kuvatakse ka hiirega üleviimisel.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
-        "message": "Open image in a new window",
+        "message": "Avage pilt uues aknas",
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
+        "message": "Vajutage seda klahvi, et avada hetkel vaadatav pilt või video uues aknas. Akna sulgemiseks vajutage seda klahvi uuesti.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
-        "message": "Open image in a new tab",
+        "message": "Avage pilt uues vahekaardis",
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
+        "message": "Vajutage seda klahvi, et avada praegu vaadatav pilt või video uuel vahekaardil. Vajutage seda klahvi uuesti, et sulgeda vahekaart. Shift+klahvi avab pildi taustaväravas.",
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
-        "message": "Lock image on screen",
+        "message": "Lukustage pilt ekraanil",
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
+        "message": "Vajutage seda klahvi, et lukustada pilt või video lehekülje keskel, võimaldades teil suumida ja liigutada. Lukustuse avamiseks vajutage sulgemisklahvi või klõpsake väljaspool pilti.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
-        "message": "Save image",
+        "message": "Salvesta pilt",
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Press this key to save the image or video you are currently viewing.",
+        "message": "Vajutage seda klahvi, et salvestada hetkel vaadatav pilt või video.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
-        "message": "Activate full zoom",
+        "message": "Täieliku suumi aktiveerimine",
         "description": "[options] Action key title"
     },
     "optFullZoomKeyDescription": {
-        "message": "When this key is held down, the picture is displayed using all available space. Useful for high resolution pictures only.",
+        "message": "Kui seda klahvi hoitakse all, kuvatakse pilt, kasutades kogu olemasolevat ruumi. Kasulik ainult suure eraldusvõimega piltide puhul.",
         "description": "[options] Action key description"
     },
     "optCopyImageKeyTitle": {
-        "message": "Copy image to clipboard",
+        "message": "Kopeeri pilt lõikelauale",
         "description": "[options] Action key title"
     },
     "optCopyImageKeyDescription": {
-        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "message": "Kui seda klahvi vajutatakse, kopeeritakse pilt lõikelauale.",
         "description": "[options] Action key description"
     },
     "optCopyImageUrlKeyTitle": {
-        "message": "Copy image URL to clipboard",
+        "message": "Kopeeri pildi URL aadress lõikelauale",
         "description": "[options] Action key title"
     },
     "optCopyImageUrlKeyDescription": {
-        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
+        "message": "Kui seda klahvi vajutatakse, kopeeritakse pildi või video URL aadress lõikelauale.",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
-        "message": "View previous image in a gallery",
+        "message": "Vaata eelmist pilti galeriis",
         "description": "[options] Action key title"
     },
     "optPrevImgKeyDescription": {
-        "message": "Press this key to view the previous image in a gallery.",
+        "message": "Vajutage seda klahvi, et vaadata eelmist pilti galeriis.",
         "description": "[options] Action key description"
     },
     "optNextImgKeyTitle": {
-        "message": "View next image in a gallery",
+        "message": "Vaata järgmist pilti galeriis",
         "description": "[options] Action key title"
     },
     "optNextImgKeyDescription": {
-        "message": "Press this key to view the next image in a gallery.",
+        "message": "Vajutage seda klahvi, et vaadata järgmist pilti galeriis.",
         "description": "[options] Action key description"
     },
     "optFlipImageKeyTitle": {
@@ -780,11 +780,11 @@
         "description": "[options] Action key title"
     },
     "optFlipImageKeyDescription": {
-        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+        "message": "Vajutage seda klahvi pildi vaheldumisi vertikaalselt ja horisontaalselt ümberpööramiseks. Praktiline tekstide ja logode lugemiseks peegeldatud piltidel või videotes.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
-        "message": "Source code",
+        "message": "Allikakood",
         "description": "[options] Source code link in page footer"
     },
     "optFooterChangelog": {
@@ -792,19 +792,19 @@
         "description": "[options] Changelog link in page footer"
     },
     "optFooterReportIssue": {
-        "message": "Report a bug",
+        "message": "Teatage veast",
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
+        "message": "Versioon $1 (viimane uuendus: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click anywhere on the page then hover again",
+        "message": "klõpsake kuskil lehel ja seejärel hõljake uuesti",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     },
     "msgClickPageToActivateActionKeys": {
-        "message": "click anywhere on the page to activate Action Keys",
+        "message": "klõpsake kuskil lehel, et aktiveerida tegevusklahvid",
         "description": "Action keys are active only if page is focused"
     }
 }
