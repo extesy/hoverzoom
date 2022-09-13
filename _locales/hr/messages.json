@@ -44,11 +44,11 @@
         "description": "[options] Page title"
     },
     "optButtonDisableAllPlugins": {
-        "message": "Disable all",
+        "message": "Onemogući sve",
         "description": "[options] disable all plugins button label"
     },
     "optButtonEnableAllPlugins": {
-        "message": "Enable all",
+        "message": "Omogući sve",
         "description": "[options] enable all plugins button label"
     },
     "optButtonSave": {
@@ -84,7 +84,7 @@
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optSectionView": {
-        "message": "Viewer",
+        "message": "Preglednik",
         "description": "[options] Page section for viewer options"
     },
     "optSectionVideo": {
@@ -92,7 +92,7 @@
         "description": "[options] Page section for video options"
     },
     "optSectionAudio": {
-        "message": "Audio",
+        "message": "Zvuk",
         "description": "[options] Page section for audio options"
     },
     "optZoomFactor": {
@@ -128,7 +128,7 @@
         "description": "[options] Caption location option to disable captions"
     },
     "optDetailsLocation": {
-        "message": "Details position:",
+        "message": "Pozicija detalja:",
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
@@ -148,7 +148,7 @@
         "description": "[options] Details location option to disable details"
     },
     "optFontOutline": {
-        "message": "Font outline",
+        "message": "Obrub fonta",
         "description": "[options] Outline option"
     },
     "optFontOutlineTooltip": {
@@ -348,7 +348,7 @@
         "description": "[options] Unit name (pixel) for frame thickness"
     },
     "optFontSize": {
-        "message": "Font size:",
+        "message": "Veličina fonta:",
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
@@ -544,7 +544,7 @@
         "description": "[options] Add download duration option"
     },
     "optSectionTroubleshooting": {
-        "message": "Troubleshooting",
+        "message": "Otklanjanje problema",
         "description": "[options] Page section for troubleshooting"
     },
     "optEnableDebugTooltip": {
@@ -556,27 +556,27 @@
         "description": "[options] Enable debug option"
     },
     "optSectionSupportedFormats": {
-        "message": "Supported formats",
+        "message": "Podržani formati",
         "description": "[options] Page section for supported formats"
     },
     "optSupportedImageFormats": {
-        "message": "Images :",
+        "message": "Slike:",
         "description": "[options] Page section for supported image formats"
     },
     "optSupportedVideoFormats": {
-        "message": "Video :",
+        "message": "Videozapis:",
         "description": "[options] Page section for supported video formats"
     },
     "optSupportedAudioFormats": {
-        "message": "Audio :",
+        "message": "Zvuk:",
         "description": "[options] Page section for supported audio formats"
     },
     "optPageFAQ": {
-        "message": "FAQ",
+        "message": "Često postavljana pitanja",
         "description": "[options] Page title for FAQ"
     },
     "optSectionFAQ": {
-        "message": "Frequently Asked Questions",
+        "message": "Često postavljena pitanja",
         "description": "[options] Page section for Frequently Asked Questions"
     },
     "optFAQ_Q1": {
