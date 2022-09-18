@@ -72,7 +72,7 @@
         "description": "[options] Notification after cancelling modification(s) to options"
     },
     "optReset": {
-        "message": "Options reset to factory settings, save to apply.",
+        "message": "Beállítások visszaállítása a gyári beállításokra, mentés az alkalmazáshoz.",
         "description": "[options] Notification after resetting options to factory settings"
     },
     "optPageGeneral": {
@@ -212,11 +212,11 @@
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
-        "message": "Zoom videos",
+        "message": "Zoom videók",
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Supported formats: 3gpp m4v mkv mp4 ogv webm",
+        "message": "Támogatott formátumok: m4v mkv mp4 ogv webm",
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
@@ -260,15 +260,15 @@
         "description": "[options] Tooltip for audio volume for unmuted videos option"
     },
     "optPlayAudio": {
-        "message": "Play audio sources such as MP3",
+        "message": "Hangforrások, például MP3 lejátszása",
         "description": "[options] Play audio option"
     },
     "optPlayAudioTooltip": {
-        "message": "Supported formats: flac m4a mp3 oga ogg opus wav",
+        "message": "Támogatott formátumok: Oga ogg opus wav",
         "description": "[options] Tooltip for play audio option"
     },
     "optAudioVolume": {
-        "message": "Audio volume:",
+        "message": "Hangerő:",
         "description": "[options] Audio volume option"
     },
     "optAudioVolumeUnitName": {
@@ -276,7 +276,7 @@
         "description": "[options] Unit name (percentage) for audio volume option"
     },
     "optAudioVolumeTooltip": {
-        "message": "Set the volume to this percentage (0-100)",
+        "message": "Állítsa be a hangerőt erre a százalékos értékre (0-100).",
         "description": "[options] Tooltip for audio volume option"
     },
     "optEnableAmbilight": {
@@ -432,7 +432,7 @@
         "description": "[options] Page section for advanced options"
     },
     "optEnableDownloads": {
-        "message": "Allow downloading images using an action key",
+        "message": "Képek letöltésének engedélyezése akcióbillentyűvel",
         "description": "[options] Grant browser permission to allow file downloading using an action key"
     },
     "optAddToHistory": {
@@ -440,11 +440,11 @@
         "description": "[options] Add viewed pictures to the browser's history option"
     },
     "optAllowHeadersRewriteTooltip": {
-        "message": "Useful to be able to zoom & play content from one site on another site, such as videos",
+        "message": "Hasznos, ha az egyik webhelyről származó tartalmakat, például videókat, nagyítani és lejátszani lehet egy másik webhelyen.",
         "description": "[options] Tooltip for allow rewrite of headers for HTTP(S) request or response option"
     },
     "optAllowHeadersRewrite": {
-        "message": "Allow rewrite of headers for HTTP(S) request or response",
+        "message": "A HTTP(S) kérés vagy válasz fejlécek átírásának engedélyezése",
         "description": "[options] Allow rewrite of headers for HTTP(S) request or response option"
     },
     "optFilterNSFW": {
@@ -460,11 +460,11 @@
         "description": "[options] Enable albums support option"
     },
     "optEnableNoFocusMsg": {
-        "message": "Enable Action Keys focus overlay message",
+        "message": "Műveleti billentyűk fókuszának engedélyezése overlay üzenet",
         "description": "[options] Enable Action Keys focus overlay message option"
     },
     "optEnableNoFocusMsgTooltip": {
-        "message": "Sometimes Action Keys seem to be broken, this usually happens when page has lost focus. If option is checked, a warning message will be displayed (only once).",
+        "message": "Néha úgy tűnik, hogy a Műveleti gombok elromlanak, ez általában akkor történik, ha az oldal elvesztette a fókuszt. Ha az opció be van jelölve, egy figyelmeztető üzenet jelenik meg (csak egyszer).",
         "description": "[options] Tooltip for enable Action Keys focus overlay message option"
     },
     "optPicturesOpacity": {
@@ -552,119 +552,119 @@
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
-        "message": "Enable debug logging",
+        "message": "Hibakeresési naplózás engedélyezése",
         "description": "[options] Enable debug option"
     },
     "optSectionSupportedFormats": {
-        "message": "Supported formats",
+        "message": "Támogatott formátumok",
         "description": "[options] Page section for supported formats"
     },
     "optSupportedImageFormats": {
-        "message": "Images :",
+        "message": "Képek :",
         "description": "[options] Page section for supported image formats"
     },
     "optSupportedVideoFormats": {
-        "message": "Video :",
+        "message": "Videó :",
         "description": "[options] Page section for supported video formats"
     },
     "optSupportedAudioFormats": {
-        "message": "Audio :",
+        "message": "Hang :",
         "description": "[options] Page section for supported audio formats"
     },
     "optPageFAQ": {
-        "message": "FAQ",
+        "message": "GYIK",
         "description": "[options] Page title for FAQ"
     },
     "optSectionFAQ": {
-        "message": "Frequently Asked Questions",
+        "message": "Gyakran ismételt kérdések",
         "description": "[options] Page section for Frequently Asked Questions"
     },
     "optFAQ_Q1": {
-        "message": "I edited some options, but i see no changes.",
+        "message": "Szerkesztettem néhány opciót, de nem látok változást.",
         "description": "[options] FAQ Question 1"
     },
     "optFAQ_A1_1": {
-        "message": "After edition, click \"Save\" button",
+        "message": "A kiadás után kattintson a \"Mentés\" gombra",
         "description": "[options] FAQ Answer 1 part 1"
     },
     "optFAQ_A1_2": {
-        "message": "on bottom of Options page",
+        "message": "az Opciók oldal alján",
         "description": "[options] FAQ Answer 1 part 2"
     },
     "optFAQ_A1_3": {
-        "message": "Reload the page (F5)",
+        "message": "Az oldal újratöltése (F5)",
         "description": "[options] FAQ Answer 1 part 3"
     },
     "optFAQ_Q2": {
-        "message": "I want to hide the mouse cursor on zoomed image or video.",
+        "message": "Szeretném elrejteni az egérkurzort a nagyított képen vagy videón.",
         "description": "[options] FAQ Question 2"
     },
     "optFAQ_A2_1": {
-        "message": "In Options -> General -> Delays, activate \"Hide mouse cursor\"",
+        "message": "A Beállítások -> Általános -> Késleltetések menüpontban aktiválja az \"Egérkurzor elrejtése\" opciót.",
         "description": "[options] FAQ Answer 2 part 1"
     },
     "optFAQ_SaveAndReload": {
-        "message": "Save and reload the page (F5)",
+        "message": "Mentse és töltse újra az oldalt (F5)",
         "description": "[options] FAQ Save and reload page"
     },
     "optFAQ_Q3": {
-        "message": "I need HoverZoom+ to be active for some sites only.",
+        "message": "A HoverZoom+ csak bizonyos oldalakon legyen aktív.",
         "description": "[options] FAQ Question 3"
     },
     "optFAQ_A3_1": {
-        "message": "E.g. to activate HoverZoom+ on DeviantArt.com & 1X.com:",
+        "message": "Például a HoverZoom+ aktiválásához a DeviantArt.com és az 1X.com oldalon:",
         "description": "[options] FAQ Answer 3 part 1"
     },
     "optFAQ_A3_2": {
-        "message": "In Options -> Sites, activate \"Whitelist mode\"",
+        "message": "A Beállítások -> Oldalak menüpontban aktiválja a \"Whitelist módot\".",
         "description": "[options] FAQ Answer 3 part 2"
     },
     "optFAQ_A3_3": {
-        "message": "Add DeviantArt.com & 1X.com to list of URLs (not case-sensitive)",
+        "message": "DeviantArt.com & 1X.com hozzáadása az URL-ek listájához (nem nagy- és kisbetű-érzékeny)",
         "description": "[options] FAQ Answer 3 part 3"
     },
     "optFAQ_Q4": {
-        "message": "I want to zoom an image or video to its original size even if larger than screen.",
+        "message": "Szeretnék egy képet vagy videót eredeti méretére nagyítani, még akkor is, ha az nagyobb, mint a képernyő.",
         "description": "[options] FAQ Question 4"
     },
     "optFAQ_A4_1": {
-        "message": "Hover over an image or video then lock it on screen (default action key: \"L\")",
+        "message": "Mozgassa a gépet egy kép vagy videó fölé, majd rögzítse azt a képernyőn (alapértelmezett művelet gomb: \"L\").",
         "description": "[options] FAQ Answer 4 part 1"
     },
     "optFAQ_A4_2": {
-        "message": "Image or video is now displayed fullsize. You can zoom in or out using mousewheel.",
+        "message": "A kép vagy videó mostantól teljes méretben jelenik meg. Az egérkerék segítségével nagyíthat vagy kicsinyíthet.",
         "description": "[options] FAQ Answer 4 part 2"
     },
     "optFAQ_Q5": {
-        "message": "Action keys do not work!",
+        "message": "Az akcióbillentyűk nem működnek!",
         "description": "[options] FAQ Question 5"
     },
     "optFAQ_A5_1": {
-        "message": "Sometimes action keys seem to be broken, this usually happens when page has lost focus.",
+        "message": "Néha úgy tűnik, hogy az akcióbillentyűk elromlanak, ez általában akkor történik, amikor az oldal elvesztette a fókuszt.",
         "description": "[options] FAQ Answer 5 part 1"
     },
     "optFAQ_A5_2": {
-        "message": "Just click anywhere on page to regain focus.",
+        "message": "A fókusz visszanyeréséhez kattintson az oldal bármely pontjára.",
         "description": "[options] FAQ Answer 5 part 2"
     },
     "optFAQ_A5_3": {
-        "message": "In Options -> Advanced, you can activate \"Enable Action Keys focus overlay message\", so you'll get a warning message when focus is lost.",
+        "message": "A Beállítások -> Speciális menüpontban aktiválhatja a \"Műveleti gombok fókuszfigyelő üzenet engedélyezése\" opciót, így figyelmeztető üzenetet kap, ha a fókusz elveszik.",
         "description": "[options] FAQ Answer 5 part 3"
     },
     "optFAQ_Q6": {
-        "message": "Some videos do not play when opened from sites other than original ones.",
+        "message": "Egyes videók nem játszódnak le, ha nem az eredetitől eltérő webhelyekről nyitják meg őket.",
         "description": "[options] FAQ Question 6"
     },
     "optFAQ_A6_1": {
-        "message": "e.g: Dailymotion videos play in dailymotion.com, but not in Google search results.",
+        "message": "pl: A Dailymotion videók a dailymotion.com oldalon játszódnak le, de a Google keresési eredményekben nem.",
         "description": "[options] FAQ Answer 6 part 1"
     },
     "optFAQ_A6_2": {
-        "message": "This is due to CORS restrictions, to lift them:",
+        "message": "Ez a CORS korlátozások miatt van, hogy feloldja őket:",
         "description": "[options] FAQ Answer 6 part 2"
     },
     "optFAQ_A6_3": {
-        "message": "In Options -> Advanced, activate \"Allow rewrite of headers for HTTP(S) request or response\"",
+        "message": "A Beállítások -> Speciális menüpontban aktiválja a \"HTTP(S) kérés vagy válasz fejlécek újraírásának engedélyezése\" opciót.",
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optPixelsUnitName": {
@@ -672,19 +672,19 @@
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
-        "message": "Activate HoverZoom+",
+        "message": "HoverZoom+ aktiválása",
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "If a key is set, HoverZoom+ will be active only when this key is held down.",
+        "message": "Ha be van állítva egy billentyű, a HoverZoom+ csak akkor lesz aktív, ha ezt a billentyűt lenyomva tartjuk.",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
-        "message": "Toggle HoverZoom+",
+        "message": "HoverZoom+ kapcsoló",
         "description": "[options] Action key title"
     },
     "optToggleKeyDescription": {
-        "message": "Enable/disable HoverZoom+",
+        "message": "HoverZoom+ be-/kikapcsolása",
         "description": "[options] Action key description"
     },
     "optCloseKeyTitle": {
@@ -724,7 +724,7 @@
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
+        "message": "Ezt a billentyűt megnyomva a képet vagy videót az oldal közepén rögzítheti, lehetővé téve a nagyítást és a pásztázást. Nyomja meg a bezár billentyűt, vagy kattintson a képen kívülre a feloldáshoz.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -732,7 +732,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Press this key to save the image or video you are currently viewing.",
+        "message": "Nyomja meg ezt a gombot az éppen megtekintett kép vagy videó mentéséhez.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
@@ -796,15 +796,15 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
+        "message": "Verzió: $1 (legutóbb frissítve: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click anywhere on the page then hover again",
+        "message": "kattints bárhova ezen az oldalon, majd mutass a videóra megint",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     },
     "msgClickPageToActivateActionKeys": {
-        "message": "click anywhere on the page to activate Action Keys",
+        "message": "kattintson bárhová az oldalon az akcióbillentyűk aktiválásához",
         "description": "Action keys are active only if page is focused"
     }
 }

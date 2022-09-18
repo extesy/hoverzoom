@@ -44,11 +44,11 @@
         "description": "[options] Page title"
     },
     "optButtonDisableAllPlugins": {
-        "message": "Disable all",
+        "message": "Onemogući sve",
         "description": "[options] disable all plugins button label"
     },
     "optButtonEnableAllPlugins": {
-        "message": "Enable all",
+        "message": "Omogući sve",
         "description": "[options] enable all plugins button label"
     },
     "optButtonSave": {
@@ -68,11 +68,11 @@
         "description": "[options] Notification after saving options"
     },
     "optCancel": {
-        "message": "Modification(s) cancelled.",
+        "message": "Promjene otkazane.",
         "description": "[options] Notification after cancelling modification(s) to options"
     },
     "optReset": {
-        "message": "Options reset to factory settings, save to apply.",
+        "message": "Postavke vraćene na tvorničke postavke, spremiti za primjenu.",
         "description": "[options] Notification after resetting options to factory settings"
     },
     "optPageGeneral": {
@@ -84,7 +84,7 @@
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optSectionView": {
-        "message": "Viewer",
+        "message": "Preglednik",
         "description": "[options] Page section for viewer options"
     },
     "optSectionVideo": {
@@ -92,7 +92,7 @@
         "description": "[options] Page section for video options"
     },
     "optSectionAudio": {
-        "message": "Audio",
+        "message": "Zvuk",
         "description": "[options] Page section for audio options"
     },
     "optZoomFactor": {
@@ -128,7 +128,7 @@
         "description": "[options] Caption location option to disable captions"
     },
     "optDetailsLocation": {
-        "message": "Details position:",
+        "message": "Pozicija detalja:",
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
@@ -136,19 +136,19 @@
         "description": "[options] Tooltip for adjusting the position of details"
     },
     "optDetailsLocationAbove": {
-        "message": "Above",
+        "message": "Iznad",
         "description": "[options] Details location option to put details above the image"
     },
     "optDetailsLocationBelow": {
-        "message": "Below",
+        "message": "Ispod",
         "description": "[options] Details location option to put details below the image"
     },
     "optDetailsLocationNone": {
-        "message": "None",
+        "message": "Nigdje",
         "description": "[options] Details location option to disable details"
     },
     "optFontOutline": {
-        "message": "Font outline",
+        "message": "Obrub fonta",
         "description": "[options] Outline option"
     },
     "optFontOutlineTooltip": {
@@ -216,7 +216,7 @@
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Supported formats: 3gpp m4v mkv mp4 ogv webm",
+        "message": "Podržani video formati: 3gpp m4v mkv mp4 ogv webm",
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
@@ -260,11 +260,11 @@
         "description": "[options] Tooltip for audio volume for unmuted videos option"
     },
     "optPlayAudio": {
-        "message": "Play audio sources such as MP3",
+        "message": "Reproduciraj audio izvore kao što su MP3",
         "description": "[options] Play audio option"
     },
     "optPlayAudioTooltip": {
-        "message": "Supported formats: flac m4a mp3 oga ogg opus wav",
+        "message": "Podržani audio formati: flac m4a mp3 oga ogg opus wav",
         "description": "[options] Tooltip for play audio option"
     },
     "optAudioVolume": {
@@ -276,7 +276,7 @@
         "description": "[options] Unit name (percentage) for audio volume option"
     },
     "optAudioVolumeTooltip": {
-        "message": "Set the volume to this percentage (0-100)",
+        "message": "Postaviti glasnoću na ovaj postotak (0-100)",
         "description": "[options] Tooltip for audio volume option"
     },
     "optEnableAmbilight": {
@@ -344,11 +344,11 @@
         "description": "[options] Tooltip for frame thickness option"
     },
     "optFrameThicknessUnitName": {
-        "message": "pixels",
+        "message": "piksela",
         "description": "[options] Unit name (pixel) for frame thickness"
     },
     "optFontSize": {
-        "message": "Font size:",
+        "message": "Veličina fonta:",
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
@@ -356,7 +356,7 @@
         "description": "[options] Tooltip for font size option"
     },
     "optFontSizeUnitName": {
-        "message": "pixels",
+        "message": "piksela",
         "description": "[options] Unit name (pixel) for font size"
     },
     "optSectionDelays": {
@@ -544,7 +544,7 @@
         "description": "[options] Add download duration option"
     },
     "optSectionTroubleshooting": {
-        "message": "Troubleshooting",
+        "message": "Otklanjanje problema",
         "description": "[options] Page section for troubleshooting"
     },
     "optEnableDebugTooltip": {
@@ -556,43 +556,43 @@
         "description": "[options] Enable debug option"
     },
     "optSectionSupportedFormats": {
-        "message": "Supported formats",
+        "message": "Podržani formati",
         "description": "[options] Page section for supported formats"
     },
     "optSupportedImageFormats": {
-        "message": "Images :",
+        "message": "Slike:",
         "description": "[options] Page section for supported image formats"
     },
     "optSupportedVideoFormats": {
-        "message": "Video :",
+        "message": "Videozapis:",
         "description": "[options] Page section for supported video formats"
     },
     "optSupportedAudioFormats": {
-        "message": "Audio :",
+        "message": "Zvuk:",
         "description": "[options] Page section for supported audio formats"
     },
     "optPageFAQ": {
-        "message": "FAQ",
+        "message": "Često postavljana pitanja",
         "description": "[options] Page title for FAQ"
     },
     "optSectionFAQ": {
-        "message": "Frequently Asked Questions",
+        "message": "Često postavljena pitanja",
         "description": "[options] Page section for Frequently Asked Questions"
     },
     "optFAQ_Q1": {
-        "message": "I edited some options, but i see no changes.",
+        "message": "Promijenio sam neke opcije, ali ne vidim nikakve promjene.",
         "description": "[options] FAQ Question 1"
     },
     "optFAQ_A1_1": {
-        "message": "After edition, click \"Save\" button",
+        "message": "Nakon izmjena, odabrati \"Spremi\"",
         "description": "[options] FAQ Answer 1 part 1"
     },
     "optFAQ_A1_2": {
-        "message": "on bottom of Options page",
+        "message": "na dnu stranice Opcija",
         "description": "[options] FAQ Answer 1 part 2"
     },
     "optFAQ_A1_3": {
-        "message": "Reload the page (F5)",
+        "message": "Osvježi stranicu (F5)",
         "description": "[options] FAQ Answer 1 part 3"
     },
     "optFAQ_Q2": {
@@ -604,7 +604,7 @@
         "description": "[options] FAQ Answer 2 part 1"
     },
     "optFAQ_SaveAndReload": {
-        "message": "Save and reload the page (F5)",
+        "message": "Spremi i osjveži stranicu (F5)",
         "description": "[options] FAQ Save and reload page"
     },
     "optFAQ_Q3": {
@@ -672,11 +672,11 @@
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
-        "message": "Activate HoverZoom+",
+        "message": "Aktivirati HoverZoom+",
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "If a key is set, HoverZoom+ will be active only when this key is held down.",
+        "message": "Ako je tipka postavljena, HoverZoom+ će biti aktiviran samo kada je tipka pritisnuta.",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
@@ -696,7 +696,7 @@
         "description": "[options] Action key description"
     },
     "optHideKeyTitle": {
-        "message": "Hide image",
+        "message": "Sakrij sliku",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
@@ -708,7 +708,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
+        "message": "Pritisnite ovu tipku da biste otvorili sliku ili video koji trenutno gledate u novom prozoru. Pritisnite ovu tipku ponovo da bi ste zatvorili prozor.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
@@ -716,7 +716,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
+        "message": "Pritisnite ovu tipku da biste otvorili sliku ili video koji trenutno gledate u novoj kartici. Pritisnite ovu tipku ponovno da biste zatvorili karticu. Shift+tipka otvara sliku u pozadini.",
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
@@ -732,7 +732,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Press this key to save the image or video you are currently viewing.",
+        "message": "Pritisnite ovu tipku da biste spremili sliku ili video koji trenutno gledate.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
@@ -744,19 +744,19 @@
         "description": "[options] Action key description"
     },
     "optCopyImageKeyTitle": {
-        "message": "Copy image to clipboard",
+        "message": "Kopiraj sliku u međuspremnik",
         "description": "[options] Action key title"
     },
     "optCopyImageKeyDescription": {
-        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "message": "Pritiskom ove tipke slika se kopira u međuspremnik.",
         "description": "[options] Action key description"
     },
     "optCopyImageUrlKeyTitle": {
-        "message": "Copy image URL to clipboard",
+        "message": "Kopiraj URL slike u međuspremnik",
         "description": "[options] Action key title"
     },
     "optCopyImageUrlKeyDescription": {
-        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
+        "message": "Pritiskom ove tipke URL slike ili videa se kopira u međuspremnik.",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
@@ -776,11 +776,11 @@
         "description": "[options] Action key description"
     },
     "optFlipImageKeyTitle": {
-        "message": "Flip image",
+        "message": "Okreni sliku",
         "description": "[options] Action key title"
     },
     "optFlipImageKeyDescription": {
-        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+        "message": "Pritisnite ovu tipku da bi naizmjenično okrenuli sliku vertikalnu ili horizontalno. Korisno pri čitanju teksta ili logo u zrcalno okrenutim slikama.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
@@ -788,7 +788,7 @@
         "description": "[options] Source code link in page footer"
     },
     "optFooterChangelog": {
-        "message": "Changelog",
+        "message": "Popis promjena",
         "description": "[options] Changelog link in page footer"
     },
     "optFooterReportIssue": {
@@ -796,7 +796,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
+        "message": "Verzija $1 (zadnja izmjena: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {

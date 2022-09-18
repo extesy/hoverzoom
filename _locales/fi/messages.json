@@ -44,11 +44,11 @@
         "description": "[options] Page title"
     },
     "optButtonDisableAllPlugins": {
-        "message": "Disable all",
+        "message": "Poista kaikki käytöstä",
         "description": "[options] disable all plugins button label"
     },
     "optButtonEnableAllPlugins": {
-        "message": "Enable all",
+        "message": "Ota kaikki käyttöön",
         "description": "[options] enable all plugins button label"
     },
     "optButtonSave": {
@@ -56,7 +56,7 @@
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
-        "message": "Cancel",
+        "message": "Peruuta",
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
@@ -68,11 +68,11 @@
         "description": "[options] Notification after saving options"
     },
     "optCancel": {
-        "message": "Modification(s) cancelled.",
+        "message": "Muutos (muutokset) peruutettu.",
         "description": "[options] Notification after cancelling modification(s) to options"
     },
     "optReset": {
-        "message": "Options reset to factory settings, save to apply.",
+        "message": "Vaihtoehdot palauta tehdasasetukset, tallenna sovellettavaksi.",
         "description": "[options] Notification after resetting options to factory settings"
     },
     "optPageGeneral": {
@@ -84,7 +84,7 @@
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optSectionView": {
-        "message": "Viewer",
+        "message": "Katseluohjelma",
         "description": "[options] Page section for viewer options"
     },
     "optSectionVideo": {
@@ -108,51 +108,51 @@
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optCaptionLocation": {
-        "message": "Caption position:",
+        "message": "Kuvatekstin sijainti:",
         "description": "[options] Adjust the position of the caption"
     },
     "optCaptionLocationTooltip": {
-        "message": "View the caption above/below the image, or not at all",
+        "message": "Näytä kuvateksti kuvan ylä- tai alapuolella tai ei lainkaan.",
         "description": "[options] Tooltip for adjusting the position of the caption"
     },
     "optCaptionLocationAbove": {
-        "message": "Above",
+        "message": "Edellä",
         "description": "[options] Caption location option to put captions above the image"
     },
     "optCaptionLocationBelow": {
-        "message": "Below",
+        "message": "Alla",
         "description": "[options] Caption location option to put captions below the image"
     },
     "optCaptionLocationNone": {
-        "message": "None",
+        "message": "Ei ole",
         "description": "[options] Caption location option to disable captions"
     },
     "optDetailsLocation": {
-        "message": "Details position:",
+        "message": "Yksityiskohdat asema:",
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
-        "message": "View details (size, format...) above/below the image, or not at all",
+        "message": "Näytä tiedot (koko, muoto...) kuvan ylä-/alareunassa tai ei lainkaan.",
         "description": "[options] Tooltip for adjusting the position of details"
     },
     "optDetailsLocationAbove": {
-        "message": "Above",
+        "message": "Edellä",
         "description": "[options] Details location option to put details above the image"
     },
     "optDetailsLocationBelow": {
-        "message": "Below",
+        "message": "Alla",
         "description": "[options] Details location option to put details below the image"
     },
     "optDetailsLocationNone": {
-        "message": "None",
+        "message": "Ei ole",
         "description": "[options] Details location option to disable details"
     },
     "optFontOutline": {
-        "message": "Font outline",
+        "message": "Fontin ääriviivat",
         "description": "[options] Outline option"
     },
     "optFontOutlineTooltip": {
-        "message": "If checked: use white font + thin black border for caption & details",
+        "message": "Jos valittuna: Käytä valkoista fonttia + ohutta mustaa reunusta kuvatekstissä ja yksityiskohdissa.",
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
@@ -160,15 +160,15 @@
         "description": "[options] Extend zoomed images below the mouse cursor option"
     },
     "optMouseUnderlapTooltip": {
-        "message": "If unchecked, zoomed images will be resized dynamically",
+        "message": "Jos valintamerkki poistetaan, suurennettujen kuvien kokoa muutetaan dynaamisesti.",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
     "optHideMouseCursor": {
-        "message": "Hide mouse cursor after:",
+        "message": "Piilota hiiren kursori sen jälkeen:",
         "description": "[options] Hide mouse cursor option"
     },
     "optHideMouseCursorTooltip": {
-        "message": "If checked, mouse cursor will be hidden after delay",
+        "message": "Jos valitaan, hiiren kursori piilotetaan viiveen jälkeen.",
         "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optPageActionEnabled": {
@@ -208,47 +208,47 @@
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optDisableMouseWheelForVideoTooltip": {
-        "message": "Scroll through albums but don't jump forward/backward in videos",
+        "message": "Selaa albumeita, mutta älä hyppää eteenpäin/taaksepäin videoissa.",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
-        "message": "Zoom videos",
+        "message": "Zoom-videot",
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Supported formats: 3gpp m4v mkv mp4 ogv webm",
+        "message": "Tuetut formaatit: Mahdolliset formaatit: 3gpp m4v mkv mp4 ogv webm",
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
-        "message": "Use prev/next action keys (or mousewheel) to change video position by",
+        "message": "Vaihda videon sijaintia prev/sext-toimintonäppäimillä (tai hiirenpyörällä) seuraavasti.",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
-        "message": "sec",
+        "message": "sek",
         "description": "[options] Unit name (seconds) for changing video position option"
     },
     "optVideoPositionStepTooltip": {
-        "message": "Skip video back or forth for this amount of seconds",
+        "message": "Hyppää videota edestakaisin tämän sekuntimäärän ajan",
         "description": "[options] Tooltip for changing video position option"
     },
     "optMuteVideos": {
-        "message": "Mute zoomed videos",
+        "message": "Mykistetyt videot",
         "description": "[options] Mute zoomed videos option"
     },
     "optMuteVideosTooltip": {
-        "message": "Disable sound in zoomed videos",
+        "message": "Äänen poistaminen käytöstä zoomatuissa videoissa",
         "description": "[options] Tooltip for mute zoomed videos option"
     },
     "optVideoTimestamp": {
-        "message": "Show timestamp on videos",
+        "message": "Näytä aikaleima videoissa",
         "description": "[options] Enable timestamp / video length on videos"
     },
     "optVideoTimestampTooltip": {
-        "message": "Enable timestamp / video length on videos",
+        "message": "Aikaleiman / videon pituuden ottaminen käyttöön videoissa",
         "description": "[options] Tooltip for video length countdown on videos"
     },
     "optVideoVolume": {
-        "message": "Audio volume for unmuted videos:",
+        "message": "Äänenvoimakkuus mykistämättömille videoille:",
         "description": "[options] Audio volume for unmuted videos option"
     },
     "optVideoVolumeUnitName": {
@@ -256,19 +256,19 @@
         "description": "[options] Unit name (percentage) for video volume option"
     },
     "optVideoVolumeTooltip": {
-        "message": "If the video is not completely muted, set the volume to this percentage (0-100)",
+        "message": "Jos video ei ole täysin mykistetty, aseta äänenvoimakkuus tähän prosenttiosuuteen (0-100).",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
     },
     "optPlayAudio": {
-        "message": "Play audio sources such as MP3",
+        "message": "Toista äänilähteitä, kuten MP3",
         "description": "[options] Play audio option"
     },
     "optPlayAudioTooltip": {
-        "message": "Supported formats: flac m4a mp3 oga ogg opus wav",
+        "message": "Tuetut formaatit: Oga ogg opus wav: Flac m4a mp3 oga ogg opus wav",
         "description": "[options] Tooltip for play audio option"
     },
     "optAudioVolume": {
-        "message": "Audio volume:",
+        "message": "Äänenvoimakkuus:",
         "description": "[options] Audio volume option"
     },
     "optAudioVolumeUnitName": {
@@ -276,19 +276,19 @@
         "description": "[options] Unit name (percentage) for audio volume option"
     },
     "optAudioVolumeTooltip": {
-        "message": "Set the volume to this percentage (0-100)",
+        "message": "Aseta äänenvoimakkuus tähän prosenttiosuuteen (0-100).",
         "description": "[options] Tooltip for audio volume option"
     },
     "optEnableAmbilight": {
-        "message": "Enable ambient light behind images",
+        "message": "Ympäristön valon ottaminen käyttöön kuvien takana",
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Create a subtle glow effect similar to Philips Ambilight technology",
+        "message": "Luo hienovarainen hehkuva vaikutus, joka on samanlainen kuin Philips Ambilight -tekniikka.",
         "description": "[options] Tooltip for enable ambient light behind images option"
     },
     "optAmbilightHaloSize": {
-        "message": "Size of halo :",
+        "message": "Halon koko :",
         "description": "[options] Size of halo option"
     },
     "optAmbilightHaloSizeUnitName": {
@@ -296,11 +296,11 @@
         "description": "[options] Unit name (percentage) for halo size"
     },
     "optAmbilightHaloSizeTooltip": {
-        "message": "Size of halo around zoomed image (0% : no halo)",
+        "message": "Halon koko zoomatun kuvan ympärillä (0% : ei haloa).",
         "description": "[options] Tooltip for size of halo"
     },
     "optAmbilightBackgroundOpacity": {
-        "message": "Background opacity :",
+        "message": "Taustan läpinäkymättömyys :",
         "description": "[options] Background opacity option"
     },
     "optAmbilightBackgroundOpacityUnitName": {
@@ -308,55 +308,55 @@
         "description": "[options] Unit name (percentage) for background opacity"
     },
     "optAmbilightBackgroundOpacityTooltip": {
-        "message": "0% : transparent, 100% : black",
+        "message": "0% : läpinäkyvä, 100% : musta",
         "description": "[options] Tooltip for background opacity"
     },
     "optCenterImages": {
-        "message": "Center images",
+        "message": "Keskellä olevat kuvat",
         "description": "[options] Center images in the middle of the page option"
     },
     "optCenterImagesTooltip": {
-        "message": "Center images as opposed to having them follow the cursor",
+        "message": "Keskitä kuvat sen sijaan, että ne seuraisivat kursoria.",
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optFrameBackgroundColor": {
-        "message": "Frame background color:",
+        "message": "Kehyksen taustaväri:",
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
-        "message": "Background color for the frame the image appears in",
+        "message": "Kuvan näkyvän kehyksen taustaväri",
         "description": "[options] Tooltip for frame background color option"
     },
     "optFrameBackgroundColorChooseText": {
-        "message": "Select",
+        "message": "Valitse",
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
-        "message": "Cancel",
+        "message": "Peruuta",
         "description": "[options] Frame background color button - Cancel"
     },
     "optFrameThickness": {
-        "message": "Frame thickness:",
+        "message": "Rungon paksuus:",
         "description": "[options] Frame thickness option"
     },
     "optFrameThicknessTooltip": {
-        "message": "Thickness of border for the frame the image appears in (0 : no frame)",
+        "message": "Kuvan näkyvän kehyksen reunuksen paksuus (0 : ei kehystä).",
         "description": "[options] Tooltip for frame thickness option"
     },
     "optFrameThicknessUnitName": {
-        "message": "pixels",
+        "message": "pikseliä",
         "description": "[options] Unit name (pixel) for frame thickness"
     },
     "optFontSize": {
-        "message": "Font size:",
+        "message": "Kirjasinkoko:",
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
-        "message": "Size of font used for captions & details",
+        "message": "Kuvateksteissä ja yksityiskohdissa käytettävän fontin koko",
         "description": "[options] Tooltip for font size option"
     },
     "optFontSizeUnitName": {
-        "message": "pixels",
+        "message": "pikseliä",
         "description": "[options] Unit name (pixel) for font size"
     },
     "optSectionDelays": {
@@ -400,19 +400,19 @@
         "description": "[options] Page section for enabling extension for specific sites"
     },
     "optWhitelistMode": {
-        "message": "Whitelist mode",
+        "message": "Whitelist-tila",
         "description": "[options] Whitelist mode checkbox"
     },
     "optWhitelistModeTooltip": {
-        "message": "Only enable Hover Zoom+ for the sites listed below",
+        "message": "Ota Hover Zoom+ käyttöön vain alla luetelluilla sivustoilla.",
         "description": "[options] Tooltip for whitelist mode checkbox"
     },
     "optSitePlaceholder": {
-        "message": "Examples: facebook.com, google.com/reader",
+        "message": "Esimerkkejä: facebook.com, google.com/reader",
         "description": "[options] Placeholder for a site url input box"
     },
     "optSiteDisclaimer": {
-        "message": "Be aware that domain filters can overlap. Example: if you have filtered \"picasaweb.google.com\" and \"google.com\", removing \"picasaweb.google.com\" will not reactivate Picasa Web Albums, as it will still be excluded by the \"google.com\" filter.",
+        "message": "Huomaa, että toimialueen suodattimet voivat olla päällekkäisiä. Esimerkki: jos olet suodattanut \"picasaweb.google.com\" ja \"google.com\", \"picasaweb.google.com\" poistaminen ei aktivoi Picasa Web Albums -verkkokuvaa uudelleen, koska \"google.com\"-suodatin sulkee sen edelleen pois.",
         "description": "[options] Disclaimer on the sites option page"
     },
     "optButtonAddSite": {
@@ -432,7 +432,7 @@
         "description": "[options] Page section for advanced options"
     },
     "optEnableDownloads": {
-        "message": "Allow downloading images using an action key",
+        "message": "Salli kuvien lataaminen toimintonäppäimellä",
         "description": "[options] Grant browser permission to allow file downloading using an action key"
     },
     "optAddToHistory": {
@@ -440,11 +440,11 @@
         "description": "[options] Add viewed pictures to the browser's history option"
     },
     "optAllowHeadersRewriteTooltip": {
-        "message": "Useful to be able to zoom & play content from one site on another site, such as videos",
+        "message": "Hyödyllinen mahdollisuus zoomata ja toistaa yhden sivuston sisältöä toisella sivustolla, kuten videoita.",
         "description": "[options] Tooltip for allow rewrite of headers for HTTP(S) request or response option"
     },
     "optAllowHeadersRewrite": {
-        "message": "Allow rewrite of headers for HTTP(S) request or response",
+        "message": "Salli HTTP(S)-pyynnön tai -vastauksen otsikoiden uudelleenkirjoittaminen.",
         "description": "[options] Allow rewrite of headers for HTTP(S) request or response option"
     },
     "optFilterNSFW": {
@@ -456,19 +456,19 @@
         "description": "[options] Automatically preload zoomed images option"
     },
     "optEnableGalleries": {
-        "message": "Enable albums support",
+        "message": "Ota albumituki käyttöön",
         "description": "[options] Enable albums support option"
     },
     "optEnableNoFocusMsg": {
-        "message": "Enable Action Keys focus overlay message",
+        "message": "Ota toimintonäppäinten tarkennuksen päällekkäisviesti käyttöön",
         "description": "[options] Enable Action Keys focus overlay message option"
     },
     "optEnableNoFocusMsgTooltip": {
-        "message": "Sometimes Action Keys seem to be broken, this usually happens when page has lost focus. If option is checked, a warning message will be displayed (only once).",
+        "message": "Joskus toimintonäppäimet näyttävät olevan rikki, tämä tapahtuu yleensä silloin, kun sivu on menettänyt tarkennuksen. Jos vaihtoehto on valittuna, näytetään varoitusviesti (vain kerran).",
         "description": "[options] Tooltip for enable Action Keys focus overlay message option"
     },
     "optPicturesOpacity": {
-        "message": "Zoomed pictures opacity:",
+        "message": "Suurennettujen kuvien läpinäkymättömyys:",
         "description": "[options] Zoomed pictures opacity option"
     },
     "optOpacityUnitName": {
@@ -476,91 +476,91 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optDisplayImageLoaderTooltip": {
-        "message": "Display a little spinner as image is loading (green:loading, red:error). Red spinner is optional.",
+        "message": "Näyttää pienen pyörittimen, kun kuva latautuu (vihreä: latautuu, punainen: virhe). Punainen pyöritin on valinnainen.",
         "description": "[options] Tooltip for display image loader option"
     },
     "optDisplayImageLoader": {
-        "message": "Display a red spinner when image loading failed",
+        "message": "Näyttää punaisen spinnerin, kun kuvan lataus epäonnistui",
         "description": "[options] Display image loader option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
-        "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
+        "message": "Hyödyllinen HTTPS-sivustoille, kuten Google Images, jotka estävät HTTP-kuvien lataamisen.",
         "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrls": {
-        "message": "Try to open unloadable urls in separate:",
+        "message": "Yritä avata lataamattomat urlit erillisessä:",
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
-        "message": "Tab",
+        "message": "Välilehti",
         "description": "[options] Use separate tab for unloadable urls option"
     },
     "optUseSeparateWindowForUnloadableUrls": {
-        "message": "Window",
+        "message": "Ikkuna",
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
-        "message": "Subfolder(s) will be created if needed",
+        "message": "Tarvittaessa luodaan alikansio(t).",
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
-        "message": "Example: animals/cats",
+        "message": "Esimerkki: eläimet/kissat",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images & videos to folder: Downloads/",
+        "message": "Tallenna kuvat ja videot kansioon: Downloads/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Prefix original names of downloads with origin, size and/or duration for easier management",
+        "message": "Alkuperä, koko ja/tai kesto latausten alkuperäisissä nimissä helpottamaan hallintaa.",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Rename saved images & videos by adding:",
+        "message": "Nimeä tallennetut kuvat ja videot uudelleen lisäämällä:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
-        "message": "Add origin (e.g. www.deviantart.com)",
+        "message": "Lisää alkuperä (esim. www.deviantart.com).",
         "description": "[options] Tooltip for add download origin option"
     },
     "optAddDownloadOrigin": {
-        "message": "origin",
+        "message": "alkuperä",
         "description": "[options] Add download origin option"
     },
     "optAddDownloadSizeTooltip": {
-        "message": "Add size (WxH) in pixels (e.g. 1024x750)",
+        "message": "Lisää koko (WxH) pikseleinä (esim. 1024x750).",
         "description": "[options] Tooltip for add download size option"
     },
     "optAddDownloadSize": {
-        "message": "size",
+        "message": "koko",
         "description": "[options] Add download size option"
     },
     "optAddDownloadDurationTooltip": {
-        "message": "Add duration (hh mm ss) of video (e.g. 00 16 35)",
+        "message": "Lisää videon kesto (hh mm ss) (esim. 00 16 35).",
         "description": "[options] Tooltip for add download duration option"
     },
     "optAddDownloadDuration": {
-        "message": "duration",
+        "message": "kesto",
         "description": "[options] Add download duration option"
     },
     "optSectionTroubleshooting": {
-        "message": "Troubleshooting",
+        "message": "Vianmääritys",
         "description": "[options] Page section for troubleshooting"
     },
     "optEnableDebugTooltip": {
-        "message": "Display debug messages in browser's console (to open console: press F12)",
+        "message": "Näyttää vikailmoitukset selaimen konsolissa (konsolin avaaminen: paina F12).",
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
-        "message": "Enable debug logging",
+        "message": "Ota vianmäärityksen kirjaus käyttöön",
         "description": "[options] Enable debug option"
     },
     "optSectionSupportedFormats": {
-        "message": "Supported formats",
+        "message": "Tuetut formaatit",
         "description": "[options] Page section for supported formats"
     },
     "optSupportedImageFormats": {
-        "message": "Images :",
+        "message": "Kuvat :",
         "description": "[options] Page section for supported image formats"
     },
     "optSupportedVideoFormats": {
@@ -576,187 +576,187 @@
         "description": "[options] Page title for FAQ"
     },
     "optSectionFAQ": {
-        "message": "Frequently Asked Questions",
+        "message": "Usein kysytyt kysymykset",
         "description": "[options] Page section for Frequently Asked Questions"
     },
     "optFAQ_Q1": {
-        "message": "I edited some options, but i see no changes.",
+        "message": "Muokkasin joitakin vaihtoehtoja, mutta en näe muutoksia.",
         "description": "[options] FAQ Question 1"
     },
     "optFAQ_A1_1": {
-        "message": "After edition, click \"Save\" button",
+        "message": "Paina painikkeen \"Save\" painiketta painamisen jälkeen",
         "description": "[options] FAQ Answer 1 part 1"
     },
     "optFAQ_A1_2": {
-        "message": "on bottom of Options page",
+        "message": "Vaihtoehdot-sivun alareunassa",
         "description": "[options] FAQ Answer 1 part 2"
     },
     "optFAQ_A1_3": {
-        "message": "Reload the page (F5)",
+        "message": "Lataa sivu uudelleen (F5)",
         "description": "[options] FAQ Answer 1 part 3"
     },
     "optFAQ_Q2": {
-        "message": "I want to hide the mouse cursor on zoomed image or video.",
+        "message": "Haluan piilottaa hiiren kursorin zoomatussa kuvassa tai videossa.",
         "description": "[options] FAQ Question 2"
     },
     "optFAQ_A2_1": {
-        "message": "In Options -> General -> Delays, activate \"Hide mouse cursor\"",
+        "message": "Aktivoi kohdassa Asetukset -> Yleiset -> Viiveet \"Piilota hiiren kursori\".",
         "description": "[options] FAQ Answer 2 part 1"
     },
     "optFAQ_SaveAndReload": {
-        "message": "Save and reload the page (F5)",
+        "message": "Tallenna ja lataa sivu uudelleen (F5).",
         "description": "[options] FAQ Save and reload page"
     },
     "optFAQ_Q3": {
-        "message": "I need HoverZoom+ to be active for some sites only.",
+        "message": "Tarvitsen HoverZoom+:n olevan aktiivinen vain joillakin sivustoilla.",
         "description": "[options] FAQ Question 3"
     },
     "optFAQ_A3_1": {
-        "message": "E.g. to activate HoverZoom+ on DeviantArt.com & 1X.com:",
+        "message": "Esimerkiksi HoverZoom+:n aktivoimiseksi DeviantArt.comissa ja 1X.comissa:",
         "description": "[options] FAQ Answer 3 part 1"
     },
     "optFAQ_A3_2": {
-        "message": "In Options -> Sites, activate \"Whitelist mode\"",
+        "message": "Aktivoi kohdassa Asetukset -> Sivustot \"Whitelist-tila\".",
         "description": "[options] FAQ Answer 3 part 2"
     },
     "optFAQ_A3_3": {
-        "message": "Add DeviantArt.com & 1X.com to list of URLs (not case-sensitive)",
+        "message": "Lisää DeviantArt.com ja 1X.com URL-osoitteiden luetteloon (ei isojen ja pienten kirjainten erottelua).",
         "description": "[options] FAQ Answer 3 part 3"
     },
     "optFAQ_Q4": {
-        "message": "I want to zoom an image or video to its original size even if larger than screen.",
+        "message": "Haluan zoomata kuvan tai videon alkuperäiseen kokoonsa, vaikka se olisi näytön kokoa suurempi.",
         "description": "[options] FAQ Question 4"
     },
     "optFAQ_A4_1": {
-        "message": "Hover over an image or video then lock it on screen (default action key: \"L\")",
+        "message": "Vie hiiren kursori kuvan tai videon päälle ja lukitse se sitten näytölle (oletustoimintonäppäin: \"L\").",
         "description": "[options] FAQ Answer 4 part 1"
     },
     "optFAQ_A4_2": {
-        "message": "Image or video is now displayed fullsize. You can zoom in or out using mousewheel.",
+        "message": "Kuva tai video näytetään nyt täysikokoisena. Voit suurentaa tai pienentää kuvaa hiiren pyörän avulla.",
         "description": "[options] FAQ Answer 4 part 2"
     },
     "optFAQ_Q5": {
-        "message": "Action keys do not work!",
+        "message": "Toimintonäppäimet eivät toimi!",
         "description": "[options] FAQ Question 5"
     },
     "optFAQ_A5_1": {
-        "message": "Sometimes action keys seem to be broken, this usually happens when page has lost focus.",
+        "message": "Joskus toimintonäppäimet näyttävät olevan rikki, tämä tapahtuu yleensä silloin, kun sivu on menettänyt tarkennuksen.",
         "description": "[options] FAQ Answer 5 part 1"
     },
     "optFAQ_A5_2": {
-        "message": "Just click anywhere on page to regain focus.",
+        "message": "Napsauta mitä tahansa kohtaa sivulla saadaksesi tarkennuksen takaisin.",
         "description": "[options] FAQ Answer 5 part 2"
     },
     "optFAQ_A5_3": {
-        "message": "In Options -> Advanced, you can activate \"Enable Action Keys focus overlay message\", so you'll get a warning message when focus is lost.",
+        "message": "Asetuksissa -> Lisäasetukset voit aktivoida \"Ota toimintonäppäinten tarkennuksen päällekkäisviesti käyttöön\", jolloin saat varoitusviestin, kun tarkennus katoaa.",
         "description": "[options] FAQ Answer 5 part 3"
     },
     "optFAQ_Q6": {
-        "message": "Some videos do not play when opened from sites other than original ones.",
+        "message": "Jotkin videot eivät toistu, kun ne avataan muilta kuin alkuperäisiltä sivustoilta.",
         "description": "[options] FAQ Question 6"
     },
     "optFAQ_A6_1": {
-        "message": "e.g: Dailymotion videos play in dailymotion.com, but not in Google search results.",
+        "message": "esim: Dailymotion-videot toistuvat dailymotion.com-sivustolla, mutta eivät Googlen hakutuloksissa.",
         "description": "[options] FAQ Answer 6 part 1"
     },
     "optFAQ_A6_2": {
-        "message": "This is due to CORS restrictions, to lift them:",
+        "message": "Tämä johtuu CORS-rajoitteista, jotka on poistettava:",
         "description": "[options] FAQ Answer 6 part 2"
     },
     "optFAQ_A6_3": {
-        "message": "In Options -> Advanced, activate \"Allow rewrite of headers for HTTP(S) request or response\"",
+        "message": "Aktivoi kohdassa Asetukset -> Lisäasetukset \"Salli HTTP(S)-pyynnön tai -vastauksen otsikoiden uudelleenkirjoittaminen\".",
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optPixelsUnitName": {
-        "message": "pixels",
+        "message": "pikseliä",
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
-        "message": "Activate HoverZoom+",
+        "message": "Aktivoi HoverZoom+",
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "If a key is set, HoverZoom+ will be active only when this key is held down.",
+        "message": "Jos näppäin on asetettu, HoverZoom+ on aktiivinen vain, kun näppäintä pidetään alhaalla.",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
-        "message": "Toggle HoverZoom+",
+        "message": "Vaihda HoverZoom+",
         "description": "[options] Action key title"
     },
     "optToggleKeyDescription": {
-        "message": "Enable/disable HoverZoom+",
+        "message": "Ota HoverZoom+ käyttöön/pois käytöstä",
         "description": "[options] Action key description"
     },
     "optCloseKeyTitle": {
-        "message": "Close image",
+        "message": "Sulje kuva",
         "description": "[options] Action key title"
     },
     "optCloseKeyDescription": {
-        "message": "Press this key to close zoomed image or video.",
+        "message": "Paina tätä näppäintä sulkeaksesi zoomatun kuvan tai videon.",
         "description": "[options] Action key description"
     },
     "optHideKeyTitle": {
-        "message": "Hide image",
+        "message": "Piilota kuva",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
+        "message": "Pitämällä tätä näppäintä alhaalla voit piilottaa zoomatun kuvan tai videon. Käytä sitä, kun kuva peittää elementtejä, jotka näkyvät myös hiiren yliohjauksessa.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
-        "message": "Open image in a new window",
+        "message": "Avaa kuva uudessa ikkunassa",
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
+        "message": "Paina tätä näppäintä, jos haluat avata parhaillaan katselemasi kuvan tai videon uuteen ikkunaan. Sulje ikkuna painamalla tätä näppäintä uudelleen.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
-        "message": "Open image in a new tab",
+        "message": "Avaa kuva uudessa välilehdessä",
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
+        "message": "Paina tätä näppäintä, jos haluat avata parhaillaan katselemasi kuvan tai videon uuteen välilehteen. Sulje välilehti painamalla tätä näppäintä uudelleen. Shift+näppäin avaa kuvan taustavälilehdelle.",
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
-        "message": "Lock image on screen",
+        "message": "Lukitse kuva näytöllä",
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
+        "message": "Painamalla tätä näppäintä voit lukita kuvan tai videon sivun keskelle, jolloin voit zoomata ja panoroida. Avaa lukitus painamalla Sulje-näppäintä tai napsauttamalla kuvan ulkopuolella.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
-        "message": "Save image",
+        "message": "Tallenna kuva",
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Press this key to save the image or video you are currently viewing.",
+        "message": "Paina tätä näppäintä tallentaaksesi parhaillaan katselemasi kuvan tai videon.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
-        "message": "Activate full zoom",
+        "message": "Aktivoi täysi zoomaus",
         "description": "[options] Action key title"
     },
     "optFullZoomKeyDescription": {
-        "message": "When this key is held down, the picture is displayed using all available space. Useful for high resolution pictures only.",
+        "message": "Kun tätä näppäintä pidetään alhaalla, kuva näytetään käyttämällä kaikki käytettävissä oleva tila. Hyödyllinen vain korkean resoluution kuville.",
         "description": "[options] Action key description"
     },
     "optCopyImageKeyTitle": {
-        "message": "Copy image to clipboard",
+        "message": "Kopioi kuva leikepöydälle",
         "description": "[options] Action key title"
     },
     "optCopyImageKeyDescription": {
-        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "message": "Kun tätä näppäintä painetaan, kuva kopioidaan leikepöydälle.",
         "description": "[options] Action key description"
     },
     "optCopyImageUrlKeyTitle": {
-        "message": "Copy image URL to clipboard",
+        "message": "Kopioi kuvan URL-osoite leikepöydälle",
         "description": "[options] Action key title"
     },
     "optCopyImageUrlKeyDescription": {
-        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
+        "message": "Kun tätä näppäintä painetaan, kuvan tai videon URL-osoite kopioidaan leikepöydälle.",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
@@ -772,15 +772,15 @@
         "description": "[options] Action key title"
     },
     "optNextImgKeyDescription": {
-        "message": "Press this key to view the next image in a gallery.",
+        "message": "Paina tätä näppäintä nähdäksesi seuraavan kuvan galleriassa.",
         "description": "[options] Action key description"
     },
     "optFlipImageKeyTitle": {
-        "message": "Flip image",
+        "message": "Käännä kuva",
         "description": "[options] Action key title"
     },
     "optFlipImageKeyDescription": {
-        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+        "message": "Paina tätä näppäintä kääntääksesi kuvaa vuorotellen pysty- ja vaakasuunnassa. Kätevä, kun haluat lukea tekstejä ja logoja peilatuista kuvista tai videoista.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
@@ -796,15 +796,15 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 (last update: $2) - © 2014-2022 Oleg Anashkin",
+        "message": "Versio $1 (viimeinen päivitys: $2) - © 2014-2022 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click anywhere on the page then hover again",
+        "message": "napsauta mitä tahansa kohtaa sivulla ja siirrä sitten hiiren leijaus uudelleen",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     },
     "msgClickPageToActivateActionKeys": {
-        "message": "click anywhere on the page to activate Action Keys",
+        "message": "aktivoi toimintonäppäimet napsauttamalla mitä tahansa kohtaa sivulla.",
         "description": "Action keys are active only if page is focused"
     }
 }
