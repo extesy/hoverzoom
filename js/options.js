@@ -78,6 +78,7 @@ function loadKeys(sel) {
 // TODO: Migrate to https://developer.chrome.com/extensions/storage
 function saveOptions() {
     options.extensionEnabled = $('#chkExtensionEnabled')[0].checked;
+    options.darkMode = $('#chkDarkMode')[0].checked;
     options.zoomFactor = $('#txtZoomFactor')[0].value;
     options.zoomVideos = $('#chkZoomVideos')[0].checked;
     options.videoPositionStep = $('#txtVideoPositionStep')[0].value;
@@ -168,6 +169,7 @@ function restoreOptions(optionsFromFactorySettings) {
     options = optionsFromFactorySettings || loadOptions();
 
     $('#chkExtensionEnabled').trigger(options.extensionEnabled ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkDarkMode').trigger(options.darkMode ? 'gumby.check' : 'gumby.uncheck');
     $('#txtZoomFactor')[0].value = options.zoomFactor;
     $('#chkZoomVideos').trigger(options.zoomVideos ? 'gumby.check' : 'gumby.uncheck');
     $('#txtVideoPositionStep')[0].value = options.videoPositionStep;
@@ -551,6 +553,14 @@ function updateRngAudioVolume() {
     $('#rngAudioVolume').val(this.value);
 }
 
+function updateDarkMode() {
+    if ($('#chkDarkMode')[0].checked) {
+        $('body').addClass('darkmode');
+    } else {
+        $('body').removeClass('darkmode');
+    }
+}
+
 function onMessage(message, sender, callback) {
     switch (message.action) {
         case 'optionsChanged':
@@ -643,6 +653,7 @@ $(function () {
     initEnableDownloads();
     initAddToHistory();
     initAllowHeadersRewrite();
+    chkDarkMode();
     $("#version").text(chrome.i18n.getMessage("optFooterVersionCopyright", [chrome.runtime.getManifest().version, localStorage['HoverZoomLastUpdate'] ? localStorage['HoverZoomLastUpdate'] : localStorage['HoverZoomInstallation']]));
     $('#btnSave').click(function() { removeModifications(); saveOptions(); displayMsg(Saved); return false; }); // "return false" needed to prevent page scroll
     $('#btnCancel').click(function() { removeModifications(); restoreOptions(); displayMsg(Cancel); return false; });
@@ -672,6 +683,7 @@ $(function () {
     $('#txtDownloadFolder').change(downloadFolderOnChange);
     $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled').parent().on('gumby.onChange', updateUseSeparateTabOrWindowForUnloadableUrls);
     $('#chkHideMouseCursor').parent().on('gumby.onChange', updateDivHideMouseCursor);
+    $('#chkDarkMode').parent().on('gumby.onChange', updateDarkMode);
 
     restoreOptions();
     loadPlugins();

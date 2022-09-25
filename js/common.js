@@ -1,5 +1,6 @@
 var factorySettings = {
     extensionEnabled : true,
+    darkMode : false,
     zoomFactor : 1,
     zoomVideos : true,
     videoPositionStep : 10,
@@ -85,6 +86,7 @@ function loadOptions() {
     options = JSON.parse(localStorage.options);  // TODO: Migrate to https://developer.chrome.com/extensions/storage
 
     options.extensionEnabled = options.hasOwnProperty('extensionEnabled') ? options.extensionEnabled : factorySettings.extensionEnabled;
+    options.darkMode = options.hasOwnProperty('darkMode') ? options.darkMode : factorySettings.darkMode;
     options.zoomFactor = options.hasOwnProperty('zoomFactor') ? options.zoomFactor : factorySettings.zoomFactor;
     options.zoomVideos = options.hasOwnProperty('zoomVideos') ? options.zoomVideos : factorySettings.zoomVideos;
     options.videoPositionStep = options.hasOwnProperty('videoPositionStep') ? options.videoPositionStep : factorySettings.videoPositionStep;
@@ -233,4 +235,10 @@ function i18n() {
         var elem = $(element);
         elem.attr('data-tooltip', chrome.i18n.getMessage(elem.attr('data-i18n-tooltip')));
     });
+}
+
+// enable/disable dark mode for Options & Popup
+function chkDarkMode() {
+    if (options.darkMode) $('body').addClass('darkmode');
+    else $('body').removeClass('darkmode');
 }
