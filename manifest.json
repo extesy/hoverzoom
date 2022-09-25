@@ -1862,6 +1862,10 @@
         {
             "js": ["plugins/boredpanda.js"],
             "matches": ["*://*.boredpanda.com/*"]
+        },
+        {
+            "js": ["plugins/yiffer.js"],
+            "matches": ["*://*.yiffer.xyz/*"]
         }
    ]
 }
