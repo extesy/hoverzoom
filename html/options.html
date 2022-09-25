@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <script src="../js/libs/modernizr-2.7.1.js"></script>
 </head>
-<body>
+<body class="options">
     <div class="pretty container">
         <div class="row">
             <div class="two columns text-center"><img src="../images/icon128.png"></div>
@@ -26,10 +26,14 @@
                 </ul>
                 <div class="tab-content active">
                     <form>
-                        <div class="field">
+                        <div class="field" style="display:flex; justify-content:space-between;">
                             <label class="checkbox" for="chkExtensionEnabled">
                                 <input type="checkbox" id="chkExtensionEnabled"><span></span>
                                 <div style="display:inline" data-i18n="optExtensionEnabled"></div>
+                            </label>
+                            <label class="checkbox" for="chkDarkMode">
+                                <input type="checkbox" id="chkDarkMode"><span></span>
+                                <div style="display:inline" data-i18n="optDarkMode"></div>
                             </label>
                         </div>
                         <fieldset>

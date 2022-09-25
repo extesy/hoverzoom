@@ -200,6 +200,7 @@ $(function () {
     initActionKeys();
     i18n();
     options = loadOptions();
+    chkDarkMode();
 
     $('#btnSave').click(function() { removeModifications(); saveOptions(); displayMsg(Saved); return false; }); // "return false" needed to prevent page scroll
     $('#btnCancel').click(function() { removeModifications(); restoreOptions(); displayMsg(Cancel); return false; });
