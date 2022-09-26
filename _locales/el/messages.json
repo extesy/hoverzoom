@@ -83,6 +83,10 @@
         "message": "Ενεργοποίηση του ζουμ με αιώρηση",
         "description": "[options] Enable Hover Zoom+ option"
     },
+    "optDarkMode": {
+        "message": "Dark mode",
+        "description": "[options] Enable dark mode for Options & Popup"
+    },
     "optSectionView": {
         "message": "Πρόγραμμα προβολής",
         "description": "[options] Page section for viewer options"
