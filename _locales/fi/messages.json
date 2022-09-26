@@ -83,6 +83,10 @@
         "message": "Hover Zoom+ päälle",
         "description": "[options] Enable Hover Zoom+ option"
     },
+    "optDarkMode": {
+        "message": "Dark mode",
+        "description": "[options] Enable dark mode for Options & Popup"
+    },
     "optSectionView": {
         "message": "Katseluohjelma",
         "description": "[options] Page section for viewer options"
