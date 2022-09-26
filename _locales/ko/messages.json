@@ -83,6 +83,10 @@
         "message": "호버 줌 활성화",
         "description": "[options] Enable Hover Zoom+ option"
     },
+    "optDarkMode": {
+        "message": "Dark mode",
+        "description": "[options] Enable dark mode for Options & Popup"
+    },
     "optSectionView": {
         "message": "보기",
         "description": "[options] Page section for viewer options"
