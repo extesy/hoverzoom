@@ -84,7 +84,7 @@
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optDarkMode": {
-        "message": "Dark mode",
+        "message": "Dunkler Modus",
         "description": "[options] Enable dark mode for Options & Popup"
     },
     "optSectionView": {
