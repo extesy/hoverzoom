@@ -83,6 +83,10 @@
         "message": "Ieslēgt tālummaiņu ar kursoru",
         "description": "[options] Enable Hover Zoom+ option"
     },
+    "optDarkMode": {
+        "message": "Dark mode",
+        "description": "[options] Enable dark mode for Options & Popup"
+    },
     "optSectionView": {
         "message": "Skatītājs",
         "description": "[options] Page section for viewer options"
