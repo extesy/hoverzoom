@@ -84,7 +84,7 @@
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optDarkMode": {
-        "message": "Dark mode",
+        "message": "Tumma tila",
         "description": "[options] Enable dark mode for Options & Popup"
     },
     "optSectionView": {
