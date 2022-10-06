@@ -1867,13 +1867,11 @@
             "js": ["plugins/yiffer.js"],
             "matches": ["*://*.yiffer.xyz/*"]
         },
-				{
-          "js": ["plugins/homeexchange.js"],
-          "matches": [
-            "*://*.homeexchange.com/*",
-            "*://*.homeexchange.fr/*",
-            "*://*.homeexchange.it/*"
-          ]
+        {
+            "js": ["plugins/homeexchange.js"],
+            "matches": ["*://*.homeexchange.com/*",
+                        "*://*.homeexchange.fr/*",
+                        "*://*.homeexchange.it/*"]
         }
-   ]
+    ]
 }
