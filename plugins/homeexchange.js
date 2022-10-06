@@ -2,8 +2,8 @@ var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
   name: 'homeexchange',
   version: '0.1',
-  prepareImgLinks: function (callback) {
-    var res = [];
+  prepareImgLinks: (callback) => {
+    let res = [];
 
     // Example URLs:
     //    https://image.homeexchange.fr/images/home/3694222/1887472/1698493326865718.jpg?quality=80&keep-ratio=true
