@@ -19,7 +19,7 @@ hoverZoomPlugins.push({
 
     hoverZoom.urlReplace(
       res,
-      'a[data-bg*="image.homeexchange"]',
+      '[data-bg*="image.homeexchange"]',
       /\?.[^"]*/,
       '?quality=100&height=800&smart-resize=true&smart-resize=true'
     );
@@ -27,6 +27,13 @@ hoverZoomPlugins.push({
     hoverZoom.urlReplace(
       res,
       'img[src*="image.homeexchange"]',
+      /\?.[^"]*/,
+      '?quality=100&width=500&height=500&smart-resize=true&smart-resize=true'
+    );
+
+    hoverZoom.urlReplace(
+      res,
+      '.user-image[style*="image.homeexchange"]',
       /\?.[^"]*/,
       '?quality=100&width=500&height=500&smart-resize=true&smart-resize=true'
     );
