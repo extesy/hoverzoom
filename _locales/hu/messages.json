@@ -220,7 +220,7 @@
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Támogatott formátumok: m4v mkv mp4 ogv webm",
+        "message": "Támogatott formátumok: 3gpp m4v mkv mp4 ogv webm",
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
@@ -268,7 +268,7 @@
         "description": "[options] Play audio option"
     },
     "optPlayAudioTooltip": {
-        "message": "Támogatott formátumok: Oga ogg opus wav",
+        "message": "Támogatott formátumok: flac m4a mp3 oga ogg opus wav",
         "description": "[options] Tooltip for play audio option"
     },
     "optAudioVolume": {
@@ -436,7 +436,7 @@
         "description": "[options] Page section for advanced options"
     },
     "optEnableDownloads": {
-        "message": "Képek letöltésének engedélyezése akcióbillentyűvel",
+        "message": "Képek letöltésének engedélyezése műveletbillentyűvel",
         "description": "[options] Grant browser permission to allow file downloading using an action key"
     },
     "optAddToHistory": {
@@ -444,7 +444,7 @@
         "description": "[options] Add viewed pictures to the browser's history option"
     },
     "optAllowHeadersRewriteTooltip": {
-        "message": "Hasznos, ha az egyik webhelyről származó tartalmakat, például videókat, nagyítani és lejátszani lehet egy másik webhelyen.",
+        "message": "Hasznos egyik weboldalról származó tartalom (pl. videók) másik weboldalon történő lejátszásához, illetve nagyításához",
         "description": "[options] Tooltip for allow rewrite of headers for HTTP(S) request or response option"
     },
     "optAllowHeadersRewrite": {
@@ -452,7 +452,7 @@
         "description": "[options] Allow rewrite of headers for HTTP(S) request or response option"
     },
     "optFilterNSFW": {
-        "message": "NSFW képek kizárása (csak a Redditben)",
+        "message": "NSFW képek kizárása (csak a Redditen)",
         "description": "[options] Exclude NSFW images (Reddit only) option"
     },
     "optAlwaysPreload": {
@@ -464,7 +464,7 @@
         "description": "[options] Enable albums support option"
     },
     "optEnableNoFocusMsg": {
-        "message": "Műveleti billentyűk fókuszának engedélyezése overlay üzenet",
+        "message": "Műveleti billentyűk fókuszfedvény-üzenet engedélyezése",
         "description": "[options] Enable Action Keys focus overlay message option"
     },
     "optEnableNoFocusMsgTooltip": {
@@ -588,15 +588,15 @@
         "description": "[options] FAQ Question 1"
     },
     "optFAQ_A1_1": {
-        "message": "A kiadás után kattintson a \"Mentés\" gombra",
+        "message": "Szerkesztés után kattintson a \"Mentés\" gombra",
         "description": "[options] FAQ Answer 1 part 1"
     },
     "optFAQ_A1_2": {
-        "message": "az Opciók oldal alján",
+        "message": "a Beállítások oldal alján",
         "description": "[options] FAQ Answer 1 part 2"
     },
     "optFAQ_A1_3": {
-        "message": "Az oldal újratöltése (F5)",
+        "message": "Töltsd újra az oldalt (F5 billentyű)",
         "description": "[options] FAQ Answer 1 part 3"
     },
     "optFAQ_Q2": {
@@ -604,7 +604,7 @@
         "description": "[options] FAQ Question 2"
     },
     "optFAQ_A2_1": {
-        "message": "A Beállítások -> Általános -> Késleltetések menüpontban aktiválja az \"Egérkurzor elrejtése\" opciót.",
+        "message": "A Beállítások -> Általános -> Késleltetések menüpontban aktiváld az \"Egérkurzor elrejtése\" opciót.",
         "description": "[options] FAQ Answer 2 part 1"
     },
     "optFAQ_SaveAndReload": {
@@ -612,19 +612,19 @@
         "description": "[options] FAQ Save and reload page"
     },
     "optFAQ_Q3": {
-        "message": "A HoverZoom+ csak bizonyos oldalakon legyen aktív.",
+        "message": "A HoverZoom+-t csak bizonyos weboldalakon szeretném aktiválni.",
         "description": "[options] FAQ Question 3"
     },
     "optFAQ_A3_1": {
-        "message": "Például a HoverZoom+ aktiválásához a DeviantArt.com és az 1X.com oldalon:",
+        "message": "Példa - a HoverZoom+ engedélyezése csak a DeviantArt.com és az 1X.com weboldalakon:",
         "description": "[options] FAQ Answer 3 part 1"
     },
     "optFAQ_A3_2": {
-        "message": "A Beállítások -> Oldalak menüpontban aktiválja a \"Whitelist módot\".",
+        "message": "A Beállítások -> Oldalak menüpontban aktiváld a \"Fehérlista mód\" opciót",
         "description": "[options] FAQ Answer 3 part 2"
     },
     "optFAQ_A3_3": {
-        "message": "DeviantArt.com & 1X.com hozzáadása az URL-ek listájához (nem nagy- és kisbetű-érzékeny)",
+        "message": "Add hozzá a DeviantArt.com-t és az 1X.com-t az URL-ek listájához (nem nagy- és kisbetű-érzékeny)",
         "description": "[options] FAQ Answer 3 part 3"
     },
     "optFAQ_Q4": {
@@ -640,7 +640,7 @@
         "description": "[options] FAQ Answer 4 part 2"
     },
     "optFAQ_Q5": {
-        "message": "Az akcióbillentyűk nem működnek!",
+        "message": "A műveletbillentyűk nem működnek!",
         "description": "[options] FAQ Question 5"
     },
     "optFAQ_A5_1": {
