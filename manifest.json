@@ -1,1815 +1,1879 @@
 {
-  "name": "__MSG_extName__",
-  "short_name": "__MSG_extShortName__",
-  "version": "1.0.197",
-  "description": "__MSG_extDescription__",
-  "homepage_url": "https://github.com/extesy/hoverzoom/",
-  "author": "Oleg Anashkin",
-  "manifest_version": 2,
-  "icons": {
-    "16": "images/icon16.png",
-    "32": "images/icon32.png",
-    "48": "images/icon48.png",
-    "128": "images/icon128.png"
-  },
-  "default_locale": "en",
-  "minimum_chrome_version": "22",
-  "background": {
-    "persistent": true,
-    "scripts": [
-      "js/libs/backgroundScriptsAPIBridge.js",
-      "js/common.js",
-      "js/background.js"
-    ]
-  },
-  "options_ui": {
-    "page": "html/options.html",
-    "chrome_style": false,
-    "open_in_tab": true
-  },
-  "page_action": {
-    "default_icon": {
-      "19": "images/icon19.png"
+    "name": "__MSG_extName__",
+    "short_name": "__MSG_extShortName__",
+    "version": "1.0.197",
+    "description": "__MSG_extDescription__",
+    "homepage_url": "https://github.com/extesy/hoverzoom/",
+    "author": "Oleg Anashkin",
+    "manifest_version": 2,
+    "icons": {
+        "16": "images/icon16.png",
+        "32": "images/icon32.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
     },
-    "default_popup": "html/popup.html",
-    "default_title": "Hover Zoom+"
-  },
-  "permissions": ["*://*/*", "unlimitedStorage"],
-  "optional_permissions": [
-    "downloads",
-    "history",
-    "tabs",
-    "webRequest",
-    "webRequestBlocking"
-  ],
-  "web_accessible_resources": [
-    "images/loading.gif",
-    "images/spectrogram.png",
-    "js/libs/gumby.js",
-    "js/libs/jquery-3.2.1.js",
-    "js/libs/jquery.mobile.custom.js",
-    "js/libs/modernizr-2.7.1.js",
-    "js/common.js",
-    "js/options.js"
-  ],
-  "content_scripts": [
-    {
-      "js": [
+    "default_locale": "en",
+    "minimum_chrome_version": "22",
+    "background": {
+        "persistent": true,
+        "scripts": ["js/libs/backgroundScriptsAPIBridge.js", "js/common.js", "js/background.js"]
+    },
+    "options_ui": {
+        "page": "html/options.html",
+        "chrome_style": false,
+        "open_in_tab": true
+    },
+    "page_action": {
+        "default_icon": {
+            "19": "images/icon19.png"
+        },
+        "default_popup": "html/popup.html",
+        "default_title": "Hover Zoom+"
+    },
+    "permissions": [
+        "*://*/*",
+        "unlimitedStorage"
+    ],
+    "optional_permissions": [
+        "downloads",
+        "history",
+        "tabs",
+        "webRequest",
+        "webRequestBlocking"
+    ],
+    "web_accessible_resources": [
+        "images/loading.gif",
+        "images/spectrogram.png",
+        "js/libs/gumby.js",
         "js/libs/jquery-3.2.1.js",
-        "js/libs/contentScriptsAPIBridge.js",
-        "js/tools.js",
-        "js/plugins.js",
-        "plugins/default.js",
-        "js/hoverzoom.js",
-        "js/hls.js"
-      ],
-      "matches": ["<all_urls>"],
-      "all_frames": true
-    },
-    {
-      "js": [
-        "plugins/alicdn_a.js",
-        "plugins/aws_a.js",
-        "plugins/bilibili_a.js",
-        "plugins/bing_a.js",
-        "plugins/blogspot_a.js",
-        "plugins/chan_a.js",
-        "plugins/clippituser_a.js",
-        "plugins/cloudapp_a.js",
-        "plugins/cloudfront_a.js",
-        "plugins/cloudinary_a.js",
-        "plugins/dailymotion_a.js",
-        "plugins/deviantart_a.js",
-        "plugins/ebay_a.js",
-        "plugins/facebook_a.js",
-        "plugins/flickr_a.js",
-        "plugins/gallery_a.js",
-        "plugins/google_a.js",
-        "plugins/gravatar_a.js",
-        "plugins/imagebam_a.js",
-        "plugins/imagefap_a.js",
-        "plugins/imageshack_a.js",
-        "plugins/imgflip_a.js",
-        "plugins/imgur_a.js",
-        "plugins/instagram_a.js",
-        "plugins/ipboard_a.js",
-        "plugins/mediawiki_a.js",
-        "plugins/medium_a.js",
-        "plugins/niconico_a.js",
-        "plugins/photoshop_a.js",
-        "plugins/screencast_a.js",
-        "plugins/sendvid_a.js",
-        "plugins/squarespace_a.js",
-        "plugins/streamable_a.js",
-        "plugins/tiktok_a.js",
-        "plugins/tumblr_a.js",
-        "plugins/twitch_a.js",
-        "plugins/twitter_a.js",
-        "plugins/vbulletin_a.js",
-        "plugins/vimeo_a.js",
-        "plugins/vine_a.js",
-        "plugins/wordpress_a.js",
-        "plugins/xhamster_a.js",
-        "plugins/youtube_a.js",
-        "plugins/rule34video_a.js"
-      ],
-      "matches": ["<all_urls>"],
-      "all_frames": true
-    },
-    {
-      "js": ["plugins/facebook.js"],
-      "matches": ["*://*.facebook.com/*"]
-    },
-    {
-      "js": ["plugins/flickr.js"],
-      "matches": ["*://*.flickr.com/*", "*://*.flickr.net/*"]
-    },
-    {
-      "js": ["plugins/yahoo.js"],
-      "matches": ["*://*.search.yahoo.com/*", "*://*.search.yahoo.co.jp/*"]
-    },
-    {
-      "js": ["plugins/deviantart.js"],
-      "matches": ["*://*.deviantart.com/*"]
-    },
-    {
-      "js": ["plugins/google.js"],
-      "matches": [
-        "*://*.google.ad/*",
-        "*://*.google.ae/*",
-        "*://*.google.am/*",
-        "*://*.google.as/*",
-        "*://*.google.at/*",
-        "*://*.google.az/*",
-        "*://*.google.ba/*",
-        "*://*.google.be/*",
-        "*://*.google.bg/*",
-        "*://*.google.bi/*",
-        "*://*.google.bj/*",
-        "*://*.google.bs/*",
-        "*://*.google.ca/*",
-        "*://*.google.cat/*",
-        "*://*.google.cd/*",
-        "*://*.google.cf/*",
-        "*://*.google.cg/*",
-        "*://*.google.ch/*",
-        "*://*.google.ci/*",
-        "*://*.google.cl/*",
-        "*://*.google.cn/*",
-        "*://*.google.co.bw/*",
-        "*://*.google.co.ck/*",
-        "*://*.google.co.cr/*",
-        "*://*.google.co.id/*",
-        "*://*.google.co.il/*",
-        "*://*.google.co.in/*",
-        "*://*.google.co.jp/*",
-        "*://*.google.co.ke/*",
-        "*://*.google.co.kr/*",
-        "*://*.google.co.ls/*",
-        "*://*.google.co.ma/*",
-        "*://*.google.co.mz/*",
-        "*://*.google.co.nz/*",
-        "*://*.google.co.th/*",
-        "*://*.google.co.tz/*",
-        "*://*.google.co.ug/*",
-        "*://*.google.co.uk/*",
-        "*://*.google.co.uz/*",
-        "*://*.google.co.ve/*",
-        "*://*.google.co.vi/*",
-        "*://*.google.co.za/*",
-        "*://*.google.co.zm/*",
-        "*://*.google.co.zw/*",
-        "*://*.google.com.af/*",
-        "*://*.google.com.ag/*",
-        "*://*.google.com.ai/*",
-        "*://*.google.com.ar/*",
-        "*://*.google.com.au/*",
-        "*://*.google.com.bd/*",
-        "*://*.google.com.bh/*",
-        "*://*.google.com.bn/*",
-        "*://*.google.com.bo/*",
-        "*://*.google.com.br/*",
-        "*://*.google.com.by/*",
-        "*://*.google.com.bz/*",
-        "*://*.google.com.co/*",
-        "*://*.google.com.cu/*",
-        "*://*.google.com.cy/*",
-        "*://*.google.com.do/*",
-        "*://*.google.com.ec/*",
-        "*://*.google.com.eg/*",
-        "*://*.google.com.et/*",
-        "*://*.google.com.fj/*",
-        "*://*.google.com.gh/*",
-        "*://*.google.com.gi/*",
-        "*://*.google.com.gt/*",
-        "*://*.google.com.hk/*",
-        "*://*.google.com.jm/*",
-        "*://*.google.com.kh/*",
-        "*://*.google.com.kw/*",
-        "*://*.google.com.lb/*",
-        "*://*.google.com.ly/*",
-        "*://*.google.com.mt/*",
-        "*://*.google.com.mx/*",
-        "*://*.google.com.my/*",
-        "*://*.google.com.na/*",
-        "*://*.google.com.nf/*",
-        "*://*.google.com.ng/*",
-        "*://*.google.com.ni/*",
-        "*://*.google.com.np/*",
-        "*://*.google.com.om/*",
-        "*://*.google.com.pa/*",
-        "*://*.google.com.pe/*",
-        "*://*.google.com.ph/*",
-        "*://*.google.com.pk/*",
-        "*://*.google.com.pr/*",
-        "*://*.google.com.py/*",
-        "*://*.google.com.qa/*",
-        "*://*.google.com.sa/*",
-        "*://*.google.com.sb/*",
-        "*://*.google.com.sg/*",
-        "*://*.google.com.sl/*",
-        "*://*.google.com.sv/*",
-        "*://*.google.com.tj/*",
-        "*://*.google.com.tr/*",
-        "*://*.google.com.tw/*",
-        "*://*.google.com.ua/*",
-        "*://*.google.com.uy/*",
-        "*://*.google.com.vc/*",
-        "*://*.google.com.vn/*",
-        "*://*.google.com/*",
-        "*://*.google.cz/*",
-        "*://*.google.de/*",
-        "*://*.google.dj/*",
-        "*://*.google.dk/*",
-        "*://*.google.dm/*",
-        "*://*.google.dz/*",
-        "*://*.google.ee/*",
-        "*://*.google.es/*",
-        "*://*.google.fi/*",
-        "*://*.google.fm/*",
-        "*://*.google.fr/*",
-        "*://*.google.ga/*",
-        "*://*.google.ge/*",
-        "*://*.google.gg/*",
-        "*://*.google.gl/*",
-        "*://*.google.gm/*",
-        "*://*.google.gp/*",
-        "*://*.google.gr/*",
-        "*://*.google.gy/*",
-        "*://*.google.hn/*",
-        "*://*.google.hr/*",
-        "*://*.google.ht/*",
-        "*://*.google.hu/*",
-        "*://*.google.ie/*",
-        "*://*.google.im/*",
-        "*://*.google.is/*",
-        "*://*.google.it.ao/*",
-        "*://*.google.it/*",
-        "*://*.google.je/*",
-        "*://*.google.jo/*",
-        "*://*.google.kg/*",
-        "*://*.google.ki/*",
-        "*://*.google.kz/*",
-        "*://*.google.la/*",
-        "*://*.google.li/*",
-        "*://*.google.lk/*",
-        "*://*.google.lt/*",
-        "*://*.google.lu/*",
-        "*://*.google.lv/*",
-        "*://*.google.md/*",
-        "*://*.google.me/*",
-        "*://*.google.mg/*",
-        "*://*.google.mk/*",
-        "*://*.google.mn/*",
-        "*://*.google.ms/*",
-        "*://*.google.mu/*",
-        "*://*.google.mv/*",
-        "*://*.google.mw/*",
-        "*://*.google.nl/*",
-        "*://*.google.no/*",
-        "*://*.google.nr/*",
-        "*://*.google.nu/*",
-        "*://*.google.pl/*",
-        "*://*.google.pn/*",
-        "*://*.google.ps/*",
-        "*://*.google.pt/*",
-        "*://*.google.ro/*",
-        "*://*.google.rs/*",
-        "*://*.google.ru/*",
-        "*://*.google.rw/*",
-        "*://*.google.sc/*",
-        "*://*.google.se/*",
-        "*://*.google.sh/*",
-        "*://*.google.si/*",
-        "*://*.google.sk/*",
-        "*://*.google.sm/*",
-        "*://*.google.sn/*",
-        "*://*.google.st/*",
-        "*://*.google.td/*",
-        "*://*.google.tg/*",
-        "*://*.google.tk/*",
-        "*://*.google.tl/*",
-        "*://*.google.tm/*",
-        "*://*.google.to/*",
-        "*://*.google.tt/*",
-        "*://*.google.vg/*",
-        "*://*.google.vu/*",
-        "*://*.google.ws/*"
-      ]
-    },
-    {
-      "js": ["plugins/opendesktop.js"],
-      "matches": [
-        "*://beryl-themes.org/*",
-        "*://blenderstuff.org/*",
-        "*://box-look.org/*",
-        "*://cli-apps.org/*",
-        "*://compiz-themes.org/*",
-        "*://debian-art.org/*",
-        "*://e17-stuff.org/*",
-        "*://ede-look.org/*",
-        "*://eyeos-apps.org/*",
-        "*://gentoo-art.org/*",
-        "*://gimpstuff.org/*",
-        "*://gnome-look.org/*",
-        "*://gtk-apps.org/*",
-        "*://inkscapestuff.org/*",
-        "*://java-apps.org/*",
-        "*://kde-apps.org/*",
-        "*://kde-files.org/*",
-        "*://kde-look.org/*",
-        "*://kubuntu-art.org/*",
-        "*://linuxmint-art.org/*",
-        "*://mandriva-art.org/*",
-        "*://opendesktop.org/*",
-        "*://qt-apps.org/*",
-        "*://scribusstuff.org/*",
-        "*://server-apps.org/*",
-        "*://suse-art.org/*",
-        "*://ubuntu-art.org/*",
-        "*://wine-apps.org/*",
-        "*://xfce-look.org/*"
-      ]
-    },
-    {
-      "js": ["plugins/gamekult.js"],
-      "matches": ["*://*.gamekult.com/*"]
-    },
-    {
-      "js": ["plugins/imdb.js"],
-      "matches": [
-        "*://*.imdb.com/*",
-        "*://*.imdb.de/*",
-        "*://*.imdb.it/*",
-        "*://*.imdb.es/*",
-        "*://*.imdb.fr/*",
-        "*://*.imdb.pt/*"
-      ]
-    },
-    {
-      "js": ["plugins/image_aspx.js"],
-      "matches": ["*://manager.co.th/*"]
-    },
-    {
-      "js": ["plugins/myspace.js"],
-      "matches": ["*://*.myspace.com/*"]
-    },
-    {
-      "js": ["plugins/baidu.js"],
-      "matches": ["*://*.baidu.com/*"]
-    },
-    {
-      "js": ["plugins/amazon.js"],
-      "matches": [
-        "*://*.amazon.com/*",
-        "*://*.amazon.com.au/*",
-        "*://*.amazon.com.br/*",
-        "*://*.amazon.com.mx/*",
-        "*://*.amazon.com.tr/*",
-        "*://*.amazon.ae/*",
-        "*://*.amazon.ca/*",
-        "*://*.amazon.cn/*",
-        "*://*.amazon.de/*",
-        "*://*.amazon.es/*",
-        "*://*.amazon.fr/*",
-        "*://*.amazon.co.jp/*",
-        "*://*.amazon.co.uk/*",
-        "*://*.amazon.in/*",
-        "*://*.amazon.it/*",
-        "*://*.amazon.nl/*",
-        "*://*.amazon.sg/*"
-      ]
-    },
-    {
-      "js": ["plugins/windowslive.js"],
-      "matches": ["*://*.photos.live.com/*"]
-    },
-    {
-      "js": ["plugins/hi5.js"],
-      "matches": ["*://*.hi5.com/*"]
-    },
-    {
-      "js": ["plugins/play.js"],
-      "matches": ["*://*.play.com/*"]
-    },
-    {
-      "js": ["plugins/ebay.js"],
-      "matches": [
-        "*://*.ebay.at/*",
-        "*://*.ebay.be/*",
-        "*://*.ebay.ch/*",
-        "*://*.ebay.co.th/*",
-        "*://*.ebay.co.uk/*",
-        "*://*.ebay.com.au/*",
-        "*://*.ebay.com.hk/*",
-        "*://*.ebay.com.my/*",
-        "*://*.ebay.com.sg/*",
-        "*://*.ebay.com/*",
-        "*://*.ebay.de/*",
-        "*://*.ebay.es/*",
-        "*://*.ebay.fr/*",
-        "*://*.ebay.ie/*",
-        "*://*.ebay.in/*",
-        "*://*.ebay.it/*",
-        "*://*.ebay.nl/*",
-        "*://*.ebay.ph/*",
-        "*://*.ebay.pl/*"
-      ]
-    },
-    {
-      "js": ["plugins/allocine.js"],
-      "matches": [
-        "*://*.allocine.fr/*",
-        "*://*.filmstarts.de/*",
-        "*://*.sensacine.com/*"
-      ]
-    },
-    {
-      "js": ["plugins/flixster.js"],
-      "matches": ["*://*.flixster.com/*", "*://*.rottentomatoes.com/*"]
-    },
-    {
-      "js": ["plugins/gamespot.js"],
-      "matches": ["*://*.gamespot.com/*"]
-    },
-    {
-      "js": ["plugins/twitter.js"],
-      "matches": ["*://*.twitter.com/*", "*://*.tweetdeck.com/*"]
-    },
-    {
-      "js": ["plugins/twitpic.js"],
-      "matches": ["*://*.twitter.com/*"]
-    },
-    {
-      "js": ["plugins/ravelry.js"],
-      "matches": ["*://*.ravelry.com/*"]
-    },
-    {
-      "js": ["plugins/jeuxvideo_com.js"],
-      "matches": ["*://*.jeuxvideo.com/*"]
-    },
-    {
-      "js": ["plugins/beautify_it.js"],
-      "matches": ["*://*.beautify.it/*"]
-    },
-    {
-      "js": ["plugins/cnet.js"],
-      "matches": ["*://*.cnet.com/*"]
-    },
-    {
-      "js": ["plugins/lastfm.js"],
-      "matches": [
-        "*://*.last.fm/*",
-        "*://*.lastfm.com.br/*",
-        "*://*.lastfm.com.tr/*",
-        "*://*.lastfm.de/*",
-        "*://*.lastfm.es/*",
-        "*://*.lastfm.fr/*",
-        "*://*.lastfm.it/*",
-        "*://*.lastfm.jp/*",
-        "*://*.lastfm.pl/*",
-        "*://*.lastfm.ru/*",
-        "*://*.lastfm.se/*"
-      ]
-    },
-    {
-      "js": ["plugins/musicme.js"],
-      "matches": ["*://*.musicme.com/*"]
-    },
-    {
-      "js": ["plugins/tinypic.js"],
-      "matches": ["*://*.tinypic.com/*"]
-    },
-    {
-      "js": ["plugins/photobucket.js"],
-      "matches": ["*://*.photobucket.com/*"]
-    },
-    {
-      "js": ["plugins/backpage.js"],
-      "matches": ["*://*.backpage.com/*"]
-    },
-    {
-      "js": ["plugins/wretch_cc.js"],
-      "matches": ["*://*.wretch.cc/*"]
-    },
-    {
-      "js": ["plugins/events-gallery_ch.js"],
-      "matches": ["*://*.events-gallery.ch/*"]
-    },
-    {
-      "js": ["plugins/knowyourmeme.js"],
-      "matches": ["*://*.knowyourmeme.com/*"]
-    },
-    {
-      "js": ["plugins/tshirthell.js"],
-      "matches": ["*://*.tshirthell.com/*"]
-    },
-    {
-      "js": ["plugins/threadless.js"],
-      "matches": ["*://*.threadless.com/*"]
-    },
-    {
-      "js": ["plugins/viedemerde.js"],
-      "matches": [
-        "*://*.viedemerde.fr/*",
-        "*://*.fmylife.com/*",
-        "*://*.vitadimerda.it/*",
-        "*://*.vayamierdadevida.com/*",
-        "*://*.fanformittliv.com/*"
-      ]
-    },
-    {
-      "js": ["plugins/xing.js"],
-      "matches": ["*://*.xing.com/*"]
-    },
-    {
-      "js": ["plugins/stern_de.js"],
-      "matches": ["*://*.stern.de/*"]
-    },
-    {
-      "js": ["plugins/gawker.js"],
-      "matches": [
-        "*://*.deadspin.com/*",
-        "*://*.gawker.com/*",
-        "*://*.gizmodo.com.au/*",
-        "*://*.gizmodo.com/*",
-        "*://*.gizmodo.de/*",
-        "*://*.gizmodo.jp/*",
-        "*://*.gizmodo.pl/*",
-        "*://*.io9.com/*",
-        "*://*.jalopnik.com/*",
-        "*://*.jezebel.com/*",
-        "*://*.kotaku.com/*",
-        "*://*.lifehacker.com/*"
-      ]
-    },
-    {
-      "js": ["plugins/nintendolife.js"],
-      "matches": ["*://*.nintendolife.com/*"]
-    },
-    {
-      "js": ["plugins/skyrock.js"],
-      "matches": ["*://*.skyrock.com/*"]
-    },
-    {
-      "js": ["plugins/leboncoin_fr.js"],
-      "matches": ["*://*.leboncoin.fr/*"]
-    },
-    {
-      "js": ["plugins/linkedin.js"],
-      "matches": ["*://*.linkedin.com/*"]
-    },
-    {
-      "js": ["plugins/phapit.js"],
-      "matches": ["*://*.phapit.com/*", "*://*.reddit.com/*"]
-    },
-    {
-      "js": ["plugins/fukung.js"],
-      "matches": ["*://*.fukung.net/*", "*://*.reddit.com/*"]
-    },
-    {
-      "js": ["plugins/picsarus.js"],
-      "matches": ["*://*.reddit.com/*"]
-    },
-    {
-      "js": ["plugins/pixiv.js"],
-      "matches": [
-        "*://*.fanbox.cc/*",
-        "*://*.pixiv.net/*",
-        "*://*.pixivision.net/*",
-        "*://*.vroid.com/*"
-      ]
-    },
-    {
-      "js": ["plugins/rakuten.js"],
-      "matches": ["*://*.rakuten.co.jp/*", "*://*.rakuten.com/*"]
-    },
-    {
-      "js": ["plugins/copainsdavant.js"],
-      "matches": ["*://copainsdavant.linternaute.com/*"]
-    },
-    {
-      "js": ["plugins/blogcdn.js"],
-      "matches": [
-        "*://*.engadget.com/*",
-        "*://*.joystiq.com/*",
-        "*://*.switched.com/*",
-        "*://*.tuaw.com/*"
-      ]
-    },
-    {
-      "js": ["plugins/badoo.js"],
-      "matches": ["*://*.badoo.com/*", "*://*.hotornot.com/*"]
-    },
-    {
-      "js": ["plugins/steam.js"],
-      "matches": ["*://*.steamcommunity.com/*", "*://*.steampowered.com/*"]
-    },
-    {
-      "js": ["plugins/1x.js"],
-      "matches": ["*://*.1x.com/*"]
-    },
-    {
-      "js": ["plugins/wired.js"],
-      "matches": ["*://*.wired.com/*"]
-    },
-    {
-      "js": ["plugins/maxmodels.js"],
-      "matches": ["*://*.maxmodels.pl/*"]
-    },
-    {
-      "js": ["plugins/digart.js"],
-      "matches": ["*://*.digart.pl/*"]
-    },
-    {
-      "js": ["plugins/twimg.js"],
-      "matches": [
-        "*://*.favstar.fm/*",
-        "*://*.tweetmeme.com/*",
-        "*://*.twitter.com/*"
-      ]
-    },
-    {
-      "js": ["plugins/cyworld.js"],
-      "matches": [
-        "*://*.cyworld.com/*",
-        "*://*.cyworld.co.kr/*",
-        "*://*.cyworld.co.cn/*"
-      ]
-    },
-    {
-      "js": ["plugins/fotolog.js"],
-      "matches": ["*://*.fotolog.com/*"]
-    },
-    {
-      "js": ["plugins/panoramio.js"],
-      "matches": ["*://*.panoramio.com/*"]
-    },
-    {
-      "js": ["plugins/oxd_in.js"],
-      "matches": ["*://*.oxd.in/*", "*://*.reddit.com/*"]
-    },
-    {
-      "js": ["plugins/vk.js"],
-      "matches": ["*://*.vk.com/*", "*://*.vkontakte.ru/*"]
-    },
-    {
-      "js": ["plugins/plurk.js"],
-      "matches": ["*://*.plurk.com/*"]
-    },
-    {
-      "js": ["plugins/bebo.js"],
-      "matches": ["*://*.bebo.com/*"]
-    },
-    {
-      "js": ["plugins/okcupid.js"],
-      "matches": ["*://*.okcupid.com/*"]
-    },
-    {
-      "js": ["plugins/paheal.js"],
-      "matches": ["*://*.paheal.net/*"]
-    },
-    {
-      "matches": ["*://*.reddit.com/*"],
-      "js": [
-        "plugins/clips.twitch.js",
-        "plugins/gfycat.js",
-        "plugins/livememe.js",
-        "plugins/memedad.js",
-        "plugins/memefive.js",
-        "plugins/memegenerator.js",
-        "plugins/reddit.js",
-        "plugins/redgifs.js"
-      ]
-    },
-    {
-      "js": ["plugins/quickmeme.js"],
-      "matches": ["*://*.feedly.com/*", "*://*.reddit.com/*"]
-    },
-    {
-      "js": ["plugins/inkbunny.js"],
-      "matches": ["*://*.inkbunny.net/*"]
-    },
-    {
-      "js": ["plugins/instructables.js"],
-      "matches": ["*://*.instructables.com/*"]
-    },
-    {
-      "js": ["plugins/nofrag.js"],
-      "matches": ["*://*.nofrag.com/*"]
-    },
-    {
-      "js": ["plugins/pictmobi.js"],
-      "matches": ["*://*.pict.mobi/*"]
-    },
-    {
-      "js": ["plugins/zing_vn.js"],
-      "matches": ["*://*.zing.vn/*"]
-    },
-    {
-      "js": ["plugins/rootmusic.js"],
-      "matches": ["*://*.bandpage.com/*", "*://*.rootmusic.com/fb/*"]
-    },
-    {
-      "js": ["plugins/liveshare.js"],
-      "matches": ["*://*.liveshare.com/*"]
-    },
-    {
-      "js": ["plugins/weheartit.js"],
-      "matches": ["*://*.weheartit.com/*"]
-    },
-    {
-      "js": ["plugins/funnyjunk.js"],
-      "matches": ["*://*.funnyjunk.com/*"]
-    },
-    {
-      "js": ["plugins/blogo_it.js"],
-      "matches": [
-        "*://*.02blog.it/*",
-        "*://*.06blog.it/*",
-        "*://*.artsblog.it/*",
-        "*://*.autoblog.it/*",
-        "*://*.bebeblog.it/*",
-        "*://*.benessereblog.it/*",
-        "*://*.betsblog.it/*",
-        "*://*.booksblog.it/*",
-        "*://*.calcioblog.it/*",
-        "*://*.cineblog.it/*",
-        "*://*.clickblog.it/*",
-        "*://*.comicsblog.it/*",
-        "*://*.crimeblog.it/*",
-        "*://*.deluxeblog.it/*",
-        "*://*.designerblog.it/*",
-        "*://*.downloadblog.it/*",
-        "*://*.ecoblog.it/*",
-        "*://*.fashionblog.it/*",
-        "*://*.finanzablog.it/*",
-        "*://*.gadgetblog.it/*",
-        "*://*.gamesblog.it/*",
-        "*://*.gossipblog.it/*",
-        "*://*.gustoblog.it/*",
-        "*://*.happyblog.it/*",
-        "*://*.melablog.it/*",
-        "*://*.mobileblog.it/*",
-        "*://*.motoblog.it/*",
-        "*://*.motorsportblog.it/*",
-        "*://*.ossblog.it/*",
-        "*://*.outdoorblog.it/*",
-        "*://*.pinkblog.it/*",
-        "*://*.polisblog.it/*",
-        "*://*.queerblog.it/*",
-        "*://*.softblog.it/*",
-        "*://*.soldiblog.it/*",
-        "*://*.soundsblog.it/*",
-        "*://*.toysblog.it/*",
-        "*://*.travelblog.it/*",
-        "*://*.tvblog.it/*"
-      ]
-    },
-    {
-      "js": ["plugins/yelp.js"],
-      "matches": [
-        "*://*.yelp.ae/*",
-        "*://*.yelp.at/*",
-        "*://*.yelp.be/*",
-        "*://*.yelp.ca/*",
-        "*://*.yelp.ch/*",
-        "*://*.yelp.cn/*",
-        "*://*.yelp.co.cz/*",
-        "*://*.yelp.co.jp/*",
-        "*://*.yelp.co.nz/*",
-        "*://*.yelp.co.uk/*",
-        "*://*.yelp.com.au/*",
-        "*://*.yelp.com.pl/*",
-        "*://*.yelp.com/*",
-        "*://*.yelp.de/*",
-        "*://*.yelp.dk/*",
-        "*://*.yelp.es/*",
-        "*://*.yelp.fi/*",
-        "*://*.yelp.fr/*",
-        "*://*.yelp.ie/*",
-        "*://*.yelp.in/*",
-        "*://*.yelp.it/*",
-        "*://*.yelp.nl/*",
-        "*://*.yelp.no/*",
-        "*://*.yelp.pt/*",
-        "*://*.yelp.ru/*",
-        "*://*.yelp.se/*"
-      ]
-    },
-    {
-      "js": ["plugins/hwzone_il.js"],
-      "matches": ["*://*.hwzone.co.il/*"]
-    },
-    {
-      "js": ["plugins/spinchat.js"],
-      "matches": ["*://*.spinchat.com/*", "*://*.spin.de/*"]
-    },
-    {
-      "js": ["plugins/etsy.js"],
-      "matches": ["*://*.etsy.com/*"]
-    },
-    {
-      "js": ["plugins/asos.js"],
-      "matches": ["*://*.asos.com/*", "*://*.asos.fr/*", "*://*.asos.de/*"]
-    },
-    {
-      "js": ["plugins/pinterest.js"],
-      "matches": [
-        "*://*.pinterest.ca/*",
-        "*://*.pinterest.ch/*",
-        "*://*.pinterest.co.in/*",
-        "*://*.pinterest.co.kr/*",
-        "*://*.pinterest.co.nz/*",
-        "*://*.pinterest.co.uk/*",
-        "*://*.pinterest.com.au/*",
-        "*://*.pinterest.com.mx/*",
-        "*://*.pinterest.com/*",
-        "*://*.pinterest.cz/*",
-        "*://*.pinterest.de/*",
-        "*://*.pinterest.dk/*",
-        "*://*.pinterest.es/*",
-        "*://*.pinterest.fi/*",
-        "*://*.pinterest.fr/*",
-        "*://*.pinterest.ie/*",
-        "*://*.pinterest.it/*",
-        "*://*.pinterest.jp/*",
-        "*://*.pinterest.nl/*",
-        "*://*.pinterest.pt/*",
-        "*://*.pinterest.ru/*",
-        "*://*.pinterest.se/*"
-      ]
-    },
-    {
-      "js": ["plugins/500px.js"],
-      "matches": ["*://*.500px.com/*"]
-    },
-    {
-      "js": ["plugins/modelmayhem.js"],
-      "matches": ["*://*.modelmayhem.com/*"]
-    },
-    {
-      "js": ["plugins/yam.js"],
-      "matches": ["*://*.yam.com/*"]
-    },
-    {
-      "js": ["plugins/gmail.js"],
-      "matches": ["*://mail.google.com/*"]
-    },
-    {
-      "js": ["plugins/8tracks.js"],
-      "matches": ["*://*.8tracks.com/*"]
-    },
-    {
-      "js": ["plugins/yfrog.js"],
-      "matches": ["*://*.twitter.com/*"]
-    },
-    {
-      "js": ["plugins/gameblog.js"],
-      "matches": ["*://*.gameblog.fr/*"]
-    },
-    {
-      "js": ["plugins/diaspora.js"],
-      "matches": [
-        "*://*.diasp.eu/*",
-        "*://*.diasp.org/*",
-        "*://*.joindiaspora.com/*"
-      ]
-    },
-    {
-      "js": ["plugins/memecrunch.js"],
-      "matches": ["*://*.memecrunch.com/*", "*://*.reddit.com/*"]
-    },
-    {
-      "js": ["plugins/jeuxvideo_fr.js"],
-      "matches": ["*://*.jeuxvideo.fr/*"]
-    },
-    {
-      "js": ["plugins/boardgamegeek.js"],
-      "matches": [
-        "*://*.boardgamegeek.com/*",
-        "*://*.rpggeek.com/*",
-        "*://*.videogamegeek.com/*"
-      ]
-    },
-    {
-      "js": ["plugins/e621.js"],
-      "matches": [
-        "*://*.e621.net/*",
-        "*://*.e926.net/*",
-        "*://danbooru.donmai.us/*"
-      ]
-    },
-    {
-      "js": ["plugins/jootix.js"],
-      "matches": ["*://*.jootix.com/*"]
-    },
-    {
-      "js": ["plugins/bing.js"],
-      "matches": ["*://*.bing.com/*"],
-      "all_frames": true
-    },
-    {
-      "js": ["plugins/xuite.js"],
-      "matches": ["*://*.xuite.net/*"]
-    },
-    {
-      "js": ["plugins/craigslist.js"],
-      "matches": ["*://*.craigslist.org/*"]
-    },
-    {
-      "js": ["plugins/zinio.js"],
-      "matches": ["*://*.zinio.com/*"]
-    },
-    {
-      "js": ["plugins/dribbble.js"],
-      "matches": ["*://*.dribbble.com/*"]
-    },
-    {
-      "js": ["plugins/pixnet.js"],
-      "matches": ["*://*.pixnet.net/*"]
-    },
-    {
-      "js": ["plugins/dropbox.js"],
-      "matches": ["*://*.dropbox.com/*"]
-    },
-    {
-      "js": ["plugins/newegg.js"],
-      "matches": [
-        "*://*.newegg.ca/*",
-        "*://*.newegg.com/*",
-        "*://*.newegg.com.cn/*"
-      ]
-    },
-    {
-      "js": ["plugins/furaffinity.js"],
-      "matches": ["*://*.furaffinity.net/*"]
-    },
-    {
-      "js": ["plugins/alicdn.js"],
-      "matches": ["*://*.taobao.com/*", "*://*.tmall.com/*"]
-    },
-    {
-      "js": ["plugins/lazygirls_info.js"],
-      "matches": ["*://*.lazygirls.info/*"]
-    },
-    {
-      "js": ["plugins/zhihu.js"],
-      "matches": ["*://*.zhihu.com/*"]
-    },
-    {
-      "js": ["plugins/hupu.js"],
-      "matches": ["*://*.hupu.com/*"]
-    },
-    {
-      "js": ["plugins/weibo.js"],
-      "matches": ["*://*.weibo.com/*"]
-    },
-    {
-      "js": ["plugins/douban.js"],
-      "matches": ["*://*.douban.com/*"]
-    },
-    {
-      "js": ["plugins/github.js"],
-      "matches": ["*://*.github.com/*"]
-    },
-    {
-      "js": ["plugins/freepik.js"],
-      "matches": ["*://*.freepik.com/*"]
-    },
-    {
-      "js": ["plugins/weasyl.js"],
-      "matches": ["*://*.weasyl.com/*"]
-    },
-    {
-      "js": ["plugins/quora.js"],
-      "matches": ["*://*.quora.com/*"]
-    },
-    {
-      "js": ["plugins/wallbase_cc.js"],
-      "matches": ["*://*.wallbase.cc/*"]
-    },
-    {
-      "js": ["plugins/wallhaven_cc.js"],
-      "matches": ["*://*.wallhaven.cc/*"]
-    },
-    {
-      "js": ["plugins/bluray.js"],
-      "matches": ["*://*.blu-ray.com/*"]
-    },
-    {
-      "js": ["plugins/minitokyo.js"],
-      "matches": ["*://*.minitokyo.net/*"]
-    },
-    {
-      "js": ["plugins/animepaper.js"],
-      "matches": ["*://*.animepaper.net/*"]
-    },
-    {
-      "js": ["plugins/choualbox.js"],
-      "matches": ["*://*.choualbox.com/*"]
-    },
-    {
-      "js": ["plugins/yandex.js"],
-      "matches": [
-        "*://*.yandex.at/*",
-        "*://*.yandex.au/*",
-        "*://*.yandex.be/*",
-        "*://*.yandex.ca/*",
-        "*://*.yandex.ch/*",
-        "*://*.yandex.cl/*",
-        "*://*.yandex.cn/*",
-        "*://*.yandex.co.hu/*",
-        "*://*.yandex.co.id/*",
-        "*://*.yandex.co.il/*",
-        "*://*.yandex.co.kr/*",
-        "*://*.yandex.co.nz/*",
-        "*://*.yandex.co.uk/*",
-        "*://*.yandex.co.za/*",
-        "*://*.yandex.co/*",
-        "*://*.yandex.com.ar/*",
-        "*://*.yandex.com.au/*",
-        "*://*.yandex.com.br/*",
-        "*://*.yandex.com.eg/*",
-        "*://*.yandex.com.gr/*",
-        "*://*.yandex.com.hk/*",
-        "*://*.yandex.com.mx/*",
-        "*://*.yandex.com.my/*",
-        "*://*.yandex.com.pe/*",
-        "*://*.yandex.com.ph/*",
-        "*://*.yandex.com.sg/*",
-        "*://*.yandex.com.tr/*",
-        "*://*.yandex.com.tw/*",
-        "*://*.yandex.com.ve/*",
-        "*://*.yandex.com.vn/*",
-        "*://*.yandex.com/*",
-        "*://*.yandex.cz/*",
-        "*://*.yandex.de/*",
-        "*://*.yandex.dk/*",
-        "*://*.yandex.es/*",
-        "*://*.yandex.fi/*",
-        "*://*.yandex.fr/*",
-        "*://*.yandex.ie/*",
-        "*://*.yandex.in/*",
-        "*://*.yandex.it/*",
-        "*://*.yandex.jp/*",
-        "*://*.yandex.net/*",
-        "*://*.yandex.nl/*",
-        "*://*.yandex.pt/*",
-        "*://*.yandex.rs/*",
-        "*://*.yandex.ru/*",
-        "*://*.yandex.se/*",
-        "*://*.yandex.sk/*",
-        "*://*.yandex.ua/*"
-      ]
-    },
-    {
-      "js": ["plugins/kununu.js"],
-      "matches": ["*://*.kununu.com/*"]
-    },
-    {
-      "js": ["plugins/miiverse.js"],
-      "matches": ["*://miiverse.nintendo.net/*"]
-    },
-    {
-      "js": ["plugins/fetlife.js"],
-      "matches": ["*://*.fetlife.com/*"]
-    },
-    {
-      "js": ["plugins/kenmarcus.js"],
-      "matches": ["*://*.kenmarcus.com/*"]
-    },
-    {
-      "js": ["plugins/zenfolio.js"],
-      "matches": ["*://*.zenfolio.com/*"]
-    },
-    {
-      "js": ["plugins/escapistmagazine.js"],
-      "matches": ["*://*.escapistmagazine.com/*"]
-    },
-    {
-      "js": ["plugins/dirty.js"],
-      "matches": ["*://*.d3.ru/*", "*://*.dirty.ru/*"]
-    },
-    {
-      "js": ["plugins/slickdeals.js"],
-      "matches": ["*://*.slickdeals.net/*"]
-    },
-    {
-      "js": ["plugins/flipkart.js"],
-      "matches": ["*://*.flipkart.com/*"]
-    },
-    {
-      "js": ["plugins/artuk.js"],
-      "matches": ["*://*.artuk.org/*"]
-    },
-    {
-      "js": ["plugins/n11.js"],
-      "matches": ["*://*.n11.com/*"]
-    },
-    {
-      "js": ["plugins/carrefoursa.js"],
-      "matches": ["*://*.carrefoursa.com/*"]
-    },
-    {
-      "js": ["plugins/ask.js"],
-      "matches": ["*://ask.fm/*"]
-    },
-    {
-      "js": ["plugins/artlimited.js"],
-      "matches": ["*://*.artlimited.net/*"]
-    },
-    {
-      "js": ["plugins/instagram.js"],
-      "matches": ["*://*.instagram.com/*"]
-    },
-    {
-      "js": ["plugins/kephost.js"],
-      "matches": ["*://kephost.com/*"]
-    },
-    {
-      "js": ["plugins/visualart.js"],
-      "matches": ["*://*.visualart.me/*", "*://*.visualart.ro/*"]
-    },
-    {
-      "js": ["plugins/photo_net.js"],
-      "matches": ["*://*.photo.net/*"]
-    },
-    {
-      "js": ["plugins/gettyimages.js"],
-      "matches": [
-        "*://*.gettyimages.ae/*",
-        "*://*.gettyimages.at/*",
-        "*://*.gettyimages.be/*",
-        "*://*.gettyimages.ca/*",
-        "*://*.gettyimages.ch/*",
-        "*://*.gettyimages.cn/*",
-        "*://*.gettyimages.co.cz/*",
-        "*://*.gettyimages.co.jp/*",
-        "*://*.gettyimages.co.nz/*",
-        "*://*.gettyimages.co.uk/*",
-        "*://*.gettyimages.com.au/*",
-        "*://*.gettyimages.com.pl/*",
-        "*://*.gettyimages.com/*",
-        "*://*.gettyimages.de/*",
-        "*://*.gettyimages.dk/*",
-        "*://*.gettyimages.es/*",
-        "*://*.gettyimages.fi/*",
-        "*://*.gettyimages.fr/*",
-        "*://*.gettyimages.ie/*",
-        "*://*.gettyimages.in/*",
-        "*://*.gettyimages.it/*",
-        "*://*.gettyimages.nl/*",
-        "*://*.gettyimages.no/*",
-        "*://*.gettyimages.pt/*",
-        "*://*.gettyimages.ru/*",
-        "*://*.gettyimages.se/*"
-      ]
-    },
-    {
-      "js": ["plugins/pixabay.js"],
-      "matches": ["*://*.pixabay.com/*"]
-    },
-    {
-      "js": ["plugins/freeimages.js"],
-      "matches": ["*://*.freeimages.com/*"]
-    },
-    {
-      "js": ["plugins/artstation.js"],
-      "matches": ["*://*.artstation.com/*"]
-    },
-    {
-      "js": ["plugins/artsper.js"],
-      "matches": ["*://*.artsper.com/*"]
-    },
-    {
-      "js": ["plugins/istockphoto.js"],
-      "matches": ["*://*.istockphoto.com/*"]
-    },
-    {
-      "js": ["plugins/everystockphoto.js"],
-      "matches": ["*://*.everystockphoto.com/*"]
-    },
-    {
-      "js": ["plugins/smugmug.js"],
-      "matches": ["*://*.smugmug.com/*"]
-    },
-    {
-      "js": ["plugins/cgcookie.js"],
-      "matches": ["*://*.cgcookie.com/*"]
-    },
-    {
-      "js": ["plugins/dreamstime.js"],
-      "matches": ["*://*.dreamstime.com/*"]
-    },
-    {
-      "js": ["plugins/cgsociety.js"],
-      "matches": ["*://*.cgsociety.org/*"]
-    },
-    {
-      "js": ["plugins/mobypicture.js"],
-      "matches": ["*://*.mobypicture.com/*"]
-    },
-    {
-      "js": ["plugins/foursquare.js"],
-      "matches": ["*://*.foursquare.com/*"]
-    },
-    {
-      "js": ["plugins/metmuseum.js"],
-      "matches": ["*://*.metmuseum.org/*"]
-    },
-    {
-      "js": ["plugins/wookmark.js"],
-      "matches": ["*://*.wookmark.com/*"]
-    },
-    {
-      "js": ["plugins/stocksnap.js"],
-      "matches": ["*://*.stocksnap.io/*", "*://*.stocksnap.com/*"]
-    },
-    {
-      "js": ["plugins/pexels.js"],
-      "matches": ["*://*.pexels.com/*"]
-    },
-    {
-      "js": ["plugins/adobestock.js"],
-      "matches": ["*://stock.adobe.com/*"]
-    },
-    {
-      "js": ["plugins/3dtotal.js"],
-      "matches": ["*://*.3dtotal.com/*"]
-    },
-    {
-      "js": ["plugins/fubiz.js"],
-      "matches": ["*://*.fubiz.net/*"]
-    },
-    {
-      "js": ["plugins/drawcrowd.js"],
-      "matches": ["*://*.drawcrowd.com/*"]
-    },
-    {
-      "js": ["plugins/wykop.js"],
-      "matches": ["*://*.wykop.pl/*"]
-    },
-    {
-      "js": ["plugins/9gag.js"],
-      "matches": ["*://9gag.com/*"]
-    },
-    {
-      "js": ["plugins/hiptest.js"],
-      "matches": ["*://app.hiptest.com/*"]
-    },
-    {
-      "js": ["plugins/safebooru.js"],
-      "matches": [
-        "*://*.booru.org/*",
-        "*://*.gelbooru.com/*",
-        "*://*.mspabooru.com/*",
-        "*://*.safebooru.org/*",
-        "*://*.xbooru.com/*"
-      ]
-    },
-    {
-      "js": ["plugins/depositphotos.js"],
-      "matches": ["*://*.depositphotos.com/*"]
-    },
-    {
-      "js": ["plugins/airbnb.js"],
-      "matches": [
-        "*://*.airbnb.ae/*",
-        "*://*.airbnb.am/*",
-        "*://*.airbnb.at/*",
-        "*://*.airbnb.az/*",
-        "*://*.airbnb.ba/*",
-        "*://*.airbnb.be/*",
-        "*://*.airbnb.ca/*",
-        "*://*.airbnb.cat/*",
-        "*://*.airbnb.ch/*",
-        "*://*.airbnb.cl/*",
-        "*://*.airbnb.cn/*",
-        "*://*.airbnb.co.cr/*",
-        "*://*.airbnb.co.id/*",
-        "*://*.airbnb.co.in/*",
-        "*://*.airbnb.co.kr/*",
-        "*://*.airbnb.co.nz/*",
-        "*://*.airbnb.co.uk/*",
-        "*://*.airbnb.co.ve/*",
-        "*://*.airbnb.co.za/*",
-        "*://*.airbnb.com.ar/*",
-        "*://*.airbnb.com.au/*",
-        "*://*.airbnb.com.bo/*",
-        "*://*.airbnb.com.br/*",
-        "*://*.airbnb.com.bz/*",
-        "*://*.airbnb.com.co/*",
-        "*://*.airbnb.com.ec/*",
-        "*://*.airbnb.com.ee/*",
-        "*://*.airbnb.com.gt/*",
-        "*://*.airbnb.com.hk/*",
-        "*://*.airbnb.com.hn/*",
-        "*://*.airbnb.com.mt/*",
-        "*://*.airbnb.com.my/*",
-        "*://*.airbnb.com.ni/*",
-        "*://*.airbnb.com.pa/*",
-        "*://*.airbnb.com.pe/*",
-        "*://*.airbnb.com.ph/*",
-        "*://*.airbnb.com.py/*",
-        "*://*.airbnb.com.ro/*",
-        "*://*.airbnb.com.sg/*",
-        "*://*.airbnb.com.sv/*",
-        "*://*.airbnb.com.tr/*",
-        "*://*.airbnb.com.tw/*",
-        "*://*.airbnb.com.ua/*",
-        "*://*.airbnb.com/*",
-        "*://*.airbnb.cz/*",
-        "*://*.airbnb.de/*",
-        "*://*.airbnb.dk/*",
-        "*://*.airbnb.es/*",
-        "*://*.airbnb.fi/*",
-        "*://*.airbnb.fr/*",
-        "*://*.airbnb.gr/*",
-        "*://*.airbnb.gy/*",
-        "*://*.airbnb.hu/*",
-        "*://*.airbnb.ie/*",
-        "*://*.airbnb.is/*",
-        "*://*.airbnb.it/*",
-        "*://*.airbnb.jp/*",
-        "*://*.airbnb.lt/*",
-        "*://*.airbnb.lv/*",
-        "*://*.airbnb.mx/*",
-        "*://*.airbnb.nl/*",
-        "*://*.airbnb.no/*",
-        "*://*.airbnb.pl/*",
-        "*://*.airbnb.pt/*",
-        "*://*.airbnb.rs/*",
-        "*://*.airbnb.ru/*",
-        "*://*.airbnb.se/*",
-        "*://*.airbnb.si/*"
-      ]
-    },
-    {
-      "js": ["plugins/booking.js"],
-      "matches": ["*://*.booking.com/*"]
-    },
-    {
-      "js": ["plugins/publicdomainpictures.js"],
-      "matches": ["*://*.publicdomainpictures.net/*"]
-    },
-    {
-      "js": ["plugins/avopix.js"],
-      "matches": [
-        "*://*.avopix.ae/*",
-        "*://*.avopix.at/*",
-        "*://*.avopix.be/*",
-        "*://*.avopix.ca/*",
-        "*://*.avopix.ch/*",
-        "*://*.avopix.cn/*",
-        "*://*.avopix.co.cz/*",
-        "*://*.avopix.co.jp/*",
-        "*://*.avopix.co.nz/*",
-        "*://*.avopix.co.uk/*",
-        "*://*.avopix.com.au/*",
-        "*://*.avopix.com.pl/*",
-        "*://*.avopix.com/*",
-        "*://*.avopix.de/*",
-        "*://*.avopix.dk/*",
-        "*://*.avopix.es/*",
-        "*://*.avopix.fi/*",
-        "*://*.avopix.fr/*",
-        "*://*.avopix.ie/*",
-        "*://*.avopix.in/*",
-        "*://*.avopix.it/*",
-        "*://*.avopix.nl/*",
-        "*://*.avopix.no/*",
-        "*://*.avopix.pt/*",
-        "*://*.avopix.ru/*",
-        "*://*.avopix.se/*"
-      ]
-    },
-    {
-      "js": ["plugins/bakashots.js"],
-      "matches": ["*://*.bakashots.me/*"]
-    },
-    {
-      "js": ["plugins/fanart.js"],
-      "matches": ["*://*.fanart.tv/*"]
-    },
-    {
-      "js": ["plugins/fotki.js"],
-      "matches": ["*://*.fotki.com/*"]
-    },
-    {
-      "js": ["plugins/free-images.js"],
-      "matches": ["*://*.free-images.com/*"]
-    },
-    {
-      "js": ["plugins/galerie-sakura.js"],
-      "matches": ["*://*.galerie-sakura.com/*"]
-    },
-    {
-      "js": ["plugins/lostfilm.js"],
-      "matches": ["*://*.lostfilm.info/*"]
-    },
-    {
-      "js": ["plugins/lostfilmtv.js"],
-      "matches": ["*://*.lostfilm.run/*", "*://*.lostfilm.tv/*"]
-    },
-    {
-      "js": ["plugins/meetup.js"],
-      "matches": ["*://*.meetup.com/*"]
-    },
-    {
-      "js": ["plugins/nasa.js"],
-      "matches": ["*://*.nasa.gov/*"]
-    },
-    {
-      "js": ["plugins/photoblink.js"],
-      "matches": ["*://*.photoblink.com/*"]
-    },
-    {
-      "js": ["plugins/photoforum.js"],
-      "matches": ["*://*.photoforum.ru/*"]
-    },
-    {
-      "js": ["plugins/photo-forum.js"],
-      "matches": ["*://*.photo-forum.net/*"]
-    },
-    {
-      "js": ["plugins/photopost.js"],
-      "matches": ["*://*.photopost.cz/*"]
-    },
-    {
-      "js": ["plugins/photosight.js"],
-      "matches": ["*://*.photosight.ru/*"]
-    },
-    {
-      "js": ["plugins/picturepush.js"],
-      "matches": ["*://*.picturepush.com/*"]
-    },
-    {
-      "js": ["plugins/tuchong.js"],
-      "matches": ["*://*.tuchong.com/*"]
-    },
-    {
-      "js": ["plugins/wireimage.js"],
-      "matches": [
-        "*://*.wireimage.co.in/*",
-        "*://*.wireimage.com.au/*",
-        "*://*.wireimage.com.pt/*",
-        "*://*.wireimage.com/*",
-        "*://*.wireimage.de/*",
-        "*://*.wireimage.es/*",
-        "*://*.wireimage.fr/*",
-        "*://*.wireimage.it/*",
-        "*://*.wireimage.jp/*",
-        "*://*.wireimage.se/*"
-      ]
-    },
-    {
-      "js": ["plugins/wysp.js"],
-      "matches": ["*://*.wysp.ws/*"]
-    },
-    {
-      "js": ["plugins/tripadvisor.js"],
-      "matches": [
-        "*://*.tripadvisor.at/*",
-        "*://*.tripadvisor.be/*",
-        "*://*.tripadvisor.ca/*",
-        "*://*.tripadvisor.ch/*",
-        "*://*.tripadvisor.cl/*",
-        "*://*.tripadvisor.cn/*",
-        "*://*.tripadvisor.co.hu/*",
-        "*://*.tripadvisor.co.id/*",
-        "*://*.tripadvisor.co.il/*",
-        "*://*.tripadvisor.co.kr/*",
-        "*://*.tripadvisor.co.nz/*",
-        "*://*.tripadvisor.co.uk/*",
-        "*://*.tripadvisor.co.za/*",
-        "*://*.tripadvisor.co/*",
-        "*://*.tripadvisor.com.ar/*",
-        "*://*.tripadvisor.com.au/*",
-        "*://*.tripadvisor.com.br/*",
-        "*://*.tripadvisor.com.eg/*",
-        "*://*.tripadvisor.com.gr/*",
-        "*://*.tripadvisor.com.hk/*",
-        "*://*.tripadvisor.com.mx/*",
-        "*://*.tripadvisor.com.my/*",
-        "*://*.tripadvisor.com.pe/*",
-        "*://*.tripadvisor.com.ph/*",
-        "*://*.tripadvisor.com.sg/*",
-        "*://*.tripadvisor.com.tr/*",
-        "*://*.tripadvisor.com.tw/*",
-        "*://*.tripadvisor.com.ve/*",
-        "*://*.tripadvisor.com.vn/*",
-        "*://*.tripadvisor.com/*",
-        "*://*.tripadvisor.cz/*",
-        "*://*.tripadvisor.de/*",
-        "*://*.tripadvisor.dk/*",
-        "*://*.tripadvisor.es/*",
-        "*://*.tripadvisor.fi/*",
-        "*://*.tripadvisor.fr/*",
-        "*://*.tripadvisor.ie/*",
-        "*://*.tripadvisor.in/*",
-        "*://*.tripadvisor.it/*",
-        "*://*.tripadvisor.jp/*",
-        "*://*.tripadvisor.nl/*",
-        "*://*.tripadvisor.pt/*",
-        "*://*.tripadvisor.rs/*",
-        "*://*.tripadvisor.ru/*",
-        "*://*.tripadvisor.se/*",
-        "*://*.tripadvisor.sk/*"
-      ]
-    },
-    {
-      "js": ["plugins/freerangestock.js"],
-      "matches": ["*://*.freerangestock.com/*"]
-    },
-    {
-      "js": ["plugins/joemonster.js"],
-      "matches": ["*://*.joemonster.org/*"]
-    },
-    {
-      "js": ["plugins/voxmedia.js"],
-      "matches": ["*://*.vox.com/*"]
-    },
-    {
-      "js": ["plugins/behance.js"],
-      "matches": ["*://*.behance.net/*"]
-    },
-    {
-      "js": ["plugins/goodreads.js"],
-      "matches": ["*://*.goodreads.com/*"]
-    },
-    {
-      "js": ["plugins/pikwizard.js"],
-      "matches": ["*://*.pikwizard.com/*"]
-    },
-    {
-      "js": ["plugins/thingiverse.js"],
-      "matches": ["*://*.thingiverse.com/*"]
-    },
-    {
-      "js": ["plugins/derpibooru.js"],
-      "matches": ["*://*.derpibooru.org/*"]
-    },
-    {
-      "js": ["plugins/aminus3.js"],
-      "matches": ["*://*.aminus3.com/*"]
-    },
-    {
-      "js": ["plugins/livememe.js"],
-      "matches": ["*://*.livememe.com/*"]
-    },
-    {
-      "js": ["plugins/8kun.js"],
-      "matches": ["*://*.8ch.net/*", "*://*.8kun.top/*"]
-    },
-    {
-      "js": ["plugins/giphy.js"],
-      "matches": ["*://*.giphy.com/*"]
-    },
-    {
-      "js": ["plugins/imageevent.js"],
-      "matches": ["*://*.imageevent.com/*"]
-    },
-    {
-      "js": ["plugins/aol.js"],
-      "matches": ["*://*.aol.com/*"]
-    },
-    {
-      "js": ["plugins/govdeals.js"],
-      "matches": ["*://*.govdeals.com/*"]
-    },
-    {
-      "js": ["plugins/minds.js"],
-      "matches": ["*://*.minds.com/*"]
-    },
-    {
-      "js": ["plugins/gitlab.js"],
-      "matches": ["*://*.gitlab.com/*"]
-    },
-    {
-      "js": ["plugins/phorio.js"],
-      "matches": ["*://*.phorio.com/*"]
-    },
-    {
-      "js": ["plugins/wallapop.js"],
-      "matches": ["*://*.wallapop.com/*"]
-    },
-    {
-      "js": ["plugins/gog.js"],
-      "matches": ["*://*.gog.com/*"]
-    },
-    {
-      "js": ["plugins/picclick.js"],
-      "matches": [
-        "*://*.picclick.at/*",
-        "*://*.picclick.be/*",
-        "*://*.picclick.ca/*",
-        "*://*.picclick.ch/*",
-        "*://*.picclick.co.uk/*",
-        "*://*.picclick.com.au/*",
-        "*://*.picclick.com/*",
-        "*://*.picclick.de/*",
-        "*://*.picclick.es/*",
-        "*://*.picclick.fr/*",
-        "*://*.picclick.ie/*",
-        "*://*.picclick.it/*",
-        "*://*.picclick.nl/*"
-      ]
-    },
-    {
-      "js": ["plugins/libraryofcongress.js"],
-      "matches": ["*://*.loc.gov/*"]
-    },
-    {
-      "js": ["plugins/duitang.js"],
-      "matches": ["*://*.duitang.com/*"]
-    },
-    {
-      "js": ["plugins/wdl.js"],
-      "matches": ["*://*.wdl.org/*"]
-    },
-    {
-      "js": ["plugins/hibid.js"],
-      "matches": ["*://*.hibid.com/*"]
-    },
-    {
-      "js": ["plugins/maxsold.js"],
-      "matches": ["*://*.maxsold.com/*"]
-    },
-    {
-      "js": ["plugins/myanimelist.js"],
-      "matches": ["*://*.myanimelist.net/*"]
-    },
-    {
-      "js": ["plugins/themoviedb.js"],
-      "matches": ["*://*.themoviedb.org/*"]
-    },
-    {
-      "js": ["plugins/twibooru.js"],
-      "matches": ["*://*.twibooru.org/*"]
-    },
-    {
-      "js": ["plugins/catawiki.js"],
-      "matches": ["*://*.catawiki.com/*"]
-    },
-    {
-      "js": ["plugins/qwant.js"],
-      "matches": ["*://*.qwant.com/*"]
-    },
-    {
-      "js": ["plugins/duckduckgo.js"],
-      "matches": ["*://*.duckduckgo.com/*"]
-    },
-    {
-      "js": ["plugins/sogou.js"],
-      "matches": ["*://*.sogou.cn/*", "*://*.sogou.com/*"]
-    },
-    {
-      "js": ["plugins/googlesheets.js"],
-      "matches": ["*://docs.google.com/spreadsheets/*"]
-    },
-    {
-      "js": ["plugins/naver.js"],
-      "matches": ["*://*.naver.com/*"]
-    },
-    {
-      "js": ["plugins/allegro.js"],
-      "matches": ["*://*.allegro.pl/*"]
-    },
-    {
-      "js": ["plugins/startpage.js"],
-      "matches": ["*://*.startpage.com/*"]
-    },
-    {
-      "js": ["plugins/redgifs.js"],
-      "matches": ["*://*.redgifs.com/*"]
-    },
-    {
-      "js": ["plugins/you.js"],
-      "matches": ["*://*.you.com/*"]
-    },
-    {
-      "js": ["plugins/wikifeet.js"],
-      "matches": [
-        "*://*.wikifeet.com/*",
-        "*://*.wikifeetx.com/*",
-        "*://*.mywikifeet.com/*"
-      ]
-    },
-    {
-      "js": ["plugins/gfycat.js"],
-      "matches": ["*://*.gfycat.com/*"]
-    },
-    {
-      "js": ["plugins/tipeee.js"],
-      "matches": ["*://*.tipeee.com/*"]
-    },
-    {
-      "js": ["plugins/pic2me.js"],
-      "matches": ["*://*.pic2.me/*"]
-    },
-    {
-      "js": ["plugins/celebs-place.js"],
-      "matches": ["*://*.celebs-place.com/*"]
-    },
-    {
-      "js": ["plugins/viewbug.js"],
-      "matches": ["*://*.viewbug.com/*"],
-      "all_frames": true
-    },
-    {
-      "js": ["plugins/shein.js"],
-      "matches": ["*://*.shein.com/*"]
-    },
-    {
-      "js": ["plugins/huaban.js"],
-      "matches": ["*://*.huaban.com/*"]
-    },
-    {
-      "js": ["plugins/bnf.js"],
-      "matches": ["*://*.bnf.fr/*"]
-    },
-    {
-      "js": ["plugins/tiktok.js"],
-      "matches": ["*://*.tiktok.com/*"]
-    },
-    {
-      "js": ["plugins/unlimphotos.js"],
-      "matches": ["*://*.unlimphotos.com/*"]
-    },
-    {
-      "js": ["plugins/eksisozluk.js"],
-      "matches": ["*://*.eksisozluk.com/*"]
-    },
-    {
-      "js": ["plugins/moddb.js"],
-      "matches": ["*://*.moddb.com/*", "*://*.indiedb.com/*"]
-    },
-    {
-      "js": ["plugins/motherless.js"],
-      "matches": ["*://*.motherless.com/*"]
-    },
-    {
-      "js": ["plugins/tnaflix.js"],
-      "matches": ["*://*.tnaflix.com/*"]
-    },
-    {
-      "js": ["plugins/2gis.js"],
-      "matches": [
-        "*://*.2gis.com/*",
-        "*://*.2gis.ae/*",
-        "*://*.2gis.az/*",
-        "*://*.2gis.cl/*",
-        "*://*.2gis.cz/*",
-        "*://*.2gis.kg/*",
-        "*://*.2gis.kz/*",
-        "*://*.2gis.ru/*",
-        "*://*.2gis.uz/*",
-        "*://*.urbi-bh.com/*",
-        "*://*.urbi-kw.com/*",
-        "*://*.urbi-qa.com/*",
-        "*://*.urbi-sa.com/*"
-      ]
-    },
-    {
-      "js": ["plugins/rule34.js"],
-      "matches": ["*://*.rule34.xxx/*"]
-    },
-    {
-      "js": ["plugins/boredpanda.js"],
-      "matches": ["*://*.boredpanda.com/*"]
-    },
-    {
-      "js": ["plugins/yiffer.js"],
-      "matches": ["*://*.yiffer.xyz/*"]
-    },
-    {
-      "js": ["plugins/homeexchange.js"],
-      "matches": [
-        "*://*.homeexchange.com/*",
-        "*://*.homeexchange.fr/*",
-        "*://*.homeexchange.it/*"
-      ]
-    }
-  ]
+        "js/libs/jquery.mobile.custom.js",
+        "js/libs/modernizr-2.7.1.js",
+        "js/common.js",
+        "js/options.js"
+    ],
+    "content_scripts": [
+        {
+            "js": [
+                "js/libs/jquery-3.2.1.js",
+                "js/libs/contentScriptsAPIBridge.js",
+                "js/tools.js",
+                "js/plugins.js",
+                "plugins/default.js",
+                "js/hoverzoom.js",
+                "js/hls.js"
+            ],
+            "matches": ["<all_urls>"],
+            "all_frames": true
+        },
+        {
+            "js": [
+                "plugins/alicdn_a.js",
+                "plugins/aws_a.js",
+                "plugins/bilibili_a.js",
+                "plugins/bing_a.js",
+                "plugins/blogspot_a.js",
+                "plugins/chan_a.js",
+                "plugins/clippituser_a.js",
+                "plugins/cloudapp_a.js",
+                "plugins/cloudfront_a.js",
+                "plugins/cloudinary_a.js",
+                "plugins/dailymotion_a.js",
+                "plugins/deviantart_a.js",
+                "plugins/ebay_a.js",
+                "plugins/facebook_a.js",
+                "plugins/flickr_a.js",
+                "plugins/gallery_a.js",
+                "plugins/google_a.js",
+                "plugins/gravatar_a.js",
+                "plugins/imagebam_a.js",
+                "plugins/imagefap_a.js",
+                "plugins/imageshack_a.js",
+                "plugins/imgflip_a.js",
+                "plugins/imgur_a.js",
+                "plugins/instagram_a.js",
+                "plugins/ipboard_a.js",
+                "plugins/mediawiki_a.js",
+                "plugins/medium_a.js",
+                "plugins/niconico_a.js",
+                "plugins/photoshop_a.js",
+                "plugins/screencast_a.js",
+                "plugins/sendvid_a.js",
+                "plugins/squarespace_a.js",
+                "plugins/streamable_a.js",
+                "plugins/tiktok_a.js",
+                "plugins/tumblr_a.js",
+                "plugins/twitch_a.js",
+                "plugins/twitter_a.js",
+                "plugins/vbulletin_a.js",
+                "plugins/vimeo_a.js",
+                "plugins/vine_a.js",
+                "plugins/wordpress_a.js",
+                "plugins/xhamster_a.js",
+                "plugins/youtube_a.js",
+                "plugins/rule34video_a.js"
+            ],
+            "matches": ["<all_urls>"],
+            "all_frames": true
+        },
+        {
+            "js": ["plugins/facebook.js"],
+            "matches": ["*://*.facebook.com/*"]
+        },
+        {
+            "js": ["plugins/flickr.js"],
+            "matches": ["*://*.flickr.com/*",
+                "*://*.flickr.net/*"]
+        },
+        {
+            "js": ["plugins/yahoo.js"],
+            "matches": ["*://*.search.yahoo.com/*",
+                "*://*.search.yahoo.co.jp/*"]
+        },
+        {
+            "js": ["plugins/deviantart.js"],
+            "matches": ["*://*.deviantart.com/*"]
+        },
+        {
+            "js": ["plugins/google.js"],
+            "matches": [
+                "*://*.google.ad/*",
+                "*://*.google.ae/*",
+                "*://*.google.am/*",
+                "*://*.google.as/*",
+                "*://*.google.at/*",
+                "*://*.google.az/*",
+                "*://*.google.ba/*",
+                "*://*.google.be/*",
+                "*://*.google.bg/*",
+                "*://*.google.bi/*",
+                "*://*.google.bj/*",
+                "*://*.google.bs/*",
+                "*://*.google.ca/*",
+                "*://*.google.cat/*",
+                "*://*.google.cd/*",
+                "*://*.google.cf/*",
+                "*://*.google.cg/*",
+                "*://*.google.ch/*",
+                "*://*.google.ci/*",
+                "*://*.google.cl/*",
+                "*://*.google.cn/*",
+                "*://*.google.co.bw/*",
+                "*://*.google.co.ck/*",
+                "*://*.google.co.cr/*",
+                "*://*.google.co.id/*",
+                "*://*.google.co.il/*",
+                "*://*.google.co.in/*",
+                "*://*.google.co.jp/*",
+                "*://*.google.co.ke/*",
+                "*://*.google.co.kr/*",
+                "*://*.google.co.ls/*",
+                "*://*.google.co.ma/*",
+                "*://*.google.co.mz/*",
+                "*://*.google.co.nz/*",
+                "*://*.google.co.th/*",
+                "*://*.google.co.tz/*",
+                "*://*.google.co.ug/*",
+                "*://*.google.co.uk/*",
+                "*://*.google.co.uz/*",
+                "*://*.google.co.ve/*",
+                "*://*.google.co.vi/*",
+                "*://*.google.co.za/*",
+                "*://*.google.co.zm/*",
+                "*://*.google.co.zw/*",
+                "*://*.google.com.af/*",
+                "*://*.google.com.ag/*",
+                "*://*.google.com.ai/*",
+                "*://*.google.com.ar/*",
+                "*://*.google.com.au/*",
+                "*://*.google.com.bd/*",
+                "*://*.google.com.bh/*",
+                "*://*.google.com.bn/*",
+                "*://*.google.com.bo/*",
+                "*://*.google.com.br/*",
+                "*://*.google.com.by/*",
+                "*://*.google.com.bz/*",
+                "*://*.google.com.co/*",
+                "*://*.google.com.cu/*",
+                "*://*.google.com.cy/*",
+                "*://*.google.com.do/*",
+                "*://*.google.com.ec/*",
+                "*://*.google.com.eg/*",
+                "*://*.google.com.et/*",
+                "*://*.google.com.fj/*",
+                "*://*.google.com.gh/*",
+                "*://*.google.com.gi/*",
+                "*://*.google.com.gt/*",
+                "*://*.google.com.hk/*",
+                "*://*.google.com.jm/*",
+                "*://*.google.com.kh/*",
+                "*://*.google.com.kw/*",
+                "*://*.google.com.lb/*",
+                "*://*.google.com.ly/*",
+                "*://*.google.com.mt/*",
+                "*://*.google.com.mx/*",
+                "*://*.google.com.my/*",
+                "*://*.google.com.na/*",
+                "*://*.google.com.nf/*",
+                "*://*.google.com.ng/*",
+                "*://*.google.com.ni/*",
+                "*://*.google.com.np/*",
+                "*://*.google.com.om/*",
+                "*://*.google.com.pa/*",
+                "*://*.google.com.pe/*",
+                "*://*.google.com.ph/*",
+                "*://*.google.com.pk/*",
+                "*://*.google.com.pr/*",
+                "*://*.google.com.py/*",
+                "*://*.google.com.qa/*",
+                "*://*.google.com.sa/*",
+                "*://*.google.com.sb/*",
+                "*://*.google.com.sg/*",
+                "*://*.google.com.sl/*",
+                "*://*.google.com.sv/*",
+                "*://*.google.com.tj/*",
+                "*://*.google.com.tr/*",
+                "*://*.google.com.tw/*",
+                "*://*.google.com.ua/*",
+                "*://*.google.com.uy/*",
+                "*://*.google.com.vc/*",
+                "*://*.google.com.vn/*",
+                "*://*.google.com/*",
+                "*://*.google.cz/*",
+                "*://*.google.de/*",
+                "*://*.google.dj/*",
+                "*://*.google.dk/*",
+                "*://*.google.dm/*",
+                "*://*.google.dz/*",
+                "*://*.google.ee/*",
+                "*://*.google.es/*",
+                "*://*.google.fi/*",
+                "*://*.google.fm/*",
+                "*://*.google.fr/*",
+                "*://*.google.ga/*",
+                "*://*.google.ge/*",
+                "*://*.google.gg/*",
+                "*://*.google.gl/*",
+                "*://*.google.gm/*",
+                "*://*.google.gp/*",
+                "*://*.google.gr/*",
+                "*://*.google.gy/*",
+                "*://*.google.hn/*",
+                "*://*.google.hr/*",
+                "*://*.google.ht/*",
+                "*://*.google.hu/*",
+                "*://*.google.ie/*",
+                "*://*.google.im/*",
+                "*://*.google.is/*",
+                "*://*.google.it.ao/*",
+                "*://*.google.it/*",
+                "*://*.google.je/*",
+                "*://*.google.jo/*",
+                "*://*.google.kg/*",
+                "*://*.google.ki/*",
+                "*://*.google.kz/*",
+                "*://*.google.la/*",
+                "*://*.google.li/*",
+                "*://*.google.lk/*",
+                "*://*.google.lt/*",
+                "*://*.google.lu/*",
+                "*://*.google.lv/*",
+                "*://*.google.md/*",
+                "*://*.google.me/*",
+                "*://*.google.mg/*",
+                "*://*.google.mk/*",
+                "*://*.google.mn/*",
+                "*://*.google.ms/*",
+                "*://*.google.mu/*",
+                "*://*.google.mv/*",
+                "*://*.google.mw/*",
+                "*://*.google.nl/*",
+                "*://*.google.no/*",
+                "*://*.google.nr/*",
+                "*://*.google.nu/*",
+                "*://*.google.pl/*",
+                "*://*.google.pn/*",
+                "*://*.google.ps/*",
+                "*://*.google.pt/*",
+                "*://*.google.ro/*",
+                "*://*.google.rs/*",
+                "*://*.google.ru/*",
+                "*://*.google.rw/*",
+                "*://*.google.sc/*",
+                "*://*.google.se/*",
+                "*://*.google.sh/*",
+                "*://*.google.si/*",
+                "*://*.google.sk/*",
+                "*://*.google.sm/*",
+                "*://*.google.sn/*",
+                "*://*.google.st/*",
+                "*://*.google.td/*",
+                "*://*.google.tg/*",
+                "*://*.google.tk/*",
+                "*://*.google.tl/*",
+                "*://*.google.tm/*",
+                "*://*.google.to/*",
+                "*://*.google.tt/*",
+                "*://*.google.vg/*",
+                "*://*.google.vu/*",
+                "*://*.google.ws/*"
+            ]
+        },
+        {
+            "js": ["plugins/opendesktop.js"],
+            "matches": [
+                "*://beryl-themes.org/*",
+                "*://blenderstuff.org/*",
+                "*://box-look.org/*",
+                "*://cli-apps.org/*",
+                "*://compiz-themes.org/*",
+                "*://debian-art.org/*",
+                "*://e17-stuff.org/*",
+                "*://ede-look.org/*",
+                "*://eyeos-apps.org/*",
+                "*://gentoo-art.org/*",
+                "*://gimpstuff.org/*",
+                "*://gnome-look.org/*",
+                "*://gtk-apps.org/*",
+                "*://inkscapestuff.org/*",
+                "*://java-apps.org/*",
+                "*://kde-apps.org/*",
+                "*://kde-files.org/*",
+                "*://kde-look.org/*",
+                "*://kubuntu-art.org/*",
+                "*://linuxmint-art.org/*",
+                "*://mandriva-art.org/*",
+                "*://opendesktop.org/*",
+                "*://qt-apps.org/*",
+                "*://scribusstuff.org/*",
+                "*://server-apps.org/*",
+                "*://suse-art.org/*",
+                "*://ubuntu-art.org/*",
+                "*://wine-apps.org/*",
+                "*://xfce-look.org/*"
+            ]
+        },
+        {
+            "js": ["plugins/gamekult.js"],
+            "matches": ["*://*.gamekult.com/*"]
+        },
+        {
+            "js": ["plugins/imdb.js"],
+            "matches": [
+                "*://*.imdb.com/*",
+                "*://*.imdb.de/*",
+                "*://*.imdb.it/*",
+                "*://*.imdb.es/*",
+                "*://*.imdb.fr/*",
+                "*://*.imdb.pt/*"
+            ]
+        },
+        {
+            "js": ["plugins/image_aspx.js"],
+            "matches": ["*://manager.co.th/*"]
+        },
+        {
+            "js": ["plugins/myspace.js"],
+            "matches": ["*://*.myspace.com/*"]
+        },
+        {
+            "js": ["plugins/baidu.js"],
+            "matches": ["*://*.baidu.com/*"]
+        },
+        {
+            "js": ["plugins/amazon.js"],
+            "matches": [
+                "*://*.amazon.com/*",
+                "*://*.amazon.com.au/*",
+                "*://*.amazon.com.br/*",
+                "*://*.amazon.com.mx/*",
+                "*://*.amazon.com.tr/*",
+                "*://*.amazon.ae/*",
+                "*://*.amazon.ca/*",
+                "*://*.amazon.cn/*",
+                "*://*.amazon.de/*",
+                "*://*.amazon.es/*",
+                "*://*.amazon.fr/*",
+                "*://*.amazon.co.jp/*",
+                "*://*.amazon.co.uk/*",
+                "*://*.amazon.in/*",
+                "*://*.amazon.it/*",
+                "*://*.amazon.nl/*",
+                "*://*.amazon.sg/*"
+            ]
+        },
+        {
+            "js": ["plugins/windowslive.js"],
+            "matches": ["*://*.photos.live.com/*"]
+        },
+        {
+            "js": ["plugins/hi5.js"],
+            "matches": ["*://*.hi5.com/*"]
+        },
+        {
+            "js": ["plugins/play.js"],
+            "matches": ["*://*.play.com/*"]
+        },
+        {
+            "js": ["plugins/ebay.js"],
+            "matches": [
+                "*://*.ebay.at/*",
+                "*://*.ebay.be/*",
+                "*://*.ebay.ch/*",
+                "*://*.ebay.co.th/*",
+                "*://*.ebay.co.uk/*",
+                "*://*.ebay.com.au/*",
+                "*://*.ebay.com.hk/*",
+                "*://*.ebay.com.my/*",
+                "*://*.ebay.com.sg/*",
+                "*://*.ebay.com/*",
+                "*://*.ebay.de/*",
+                "*://*.ebay.es/*",
+                "*://*.ebay.fr/*",
+                "*://*.ebay.ie/*",
+                "*://*.ebay.in/*",
+                "*://*.ebay.it/*",
+                "*://*.ebay.nl/*",
+                "*://*.ebay.ph/*",
+                "*://*.ebay.pl/*"
+            ]
+        },
+        {
+            "js": ["plugins/allocine.js"],
+            "matches": [
+                "*://*.allocine.fr/*",
+                "*://*.filmstarts.de/*",
+                "*://*.sensacine.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/flixster.js"],
+            "matches": [
+                "*://*.flixster.com/*",
+                "*://*.rottentomatoes.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/gamespot.js"],
+            "matches": ["*://*.gamespot.com/*"]
+        },
+        {
+            "js": ["plugins/twitter.js"],
+            "matches": [
+                "*://*.twitter.com/*",
+                "*://*.tweetdeck.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/twitpic.js"],
+            "matches": ["*://*.twitter.com/*"]
+        },
+        {
+            "js": ["plugins/ravelry.js"],
+            "matches": ["*://*.ravelry.com/*"]
+        },
+        {
+            "js": ["plugins/jeuxvideo_com.js"],
+            "matches": ["*://*.jeuxvideo.com/*"]
+        },
+        {
+            "js": ["plugins/beautify_it.js"],
+            "matches": ["*://*.beautify.it/*"]
+        },
+        {
+            "js": ["plugins/cnet.js"],
+            "matches": ["*://*.cnet.com/*"]
+        },
+        {
+            "js": ["plugins/lastfm.js"],
+            "matches": [
+                "*://*.last.fm/*",
+                "*://*.lastfm.com.br/*",
+                "*://*.lastfm.com.tr/*",
+                "*://*.lastfm.de/*",
+                "*://*.lastfm.es/*",
+                "*://*.lastfm.fr/*",
+                "*://*.lastfm.it/*",
+                "*://*.lastfm.jp/*",
+                "*://*.lastfm.pl/*",
+                "*://*.lastfm.ru/*",
+                "*://*.lastfm.se/*"
+            ]
+        },
+        {
+            "js": ["plugins/musicme.js"],
+            "matches": ["*://*.musicme.com/*"]
+        },
+        {
+            "js": ["plugins/tinypic.js"],
+            "matches": ["*://*.tinypic.com/*"]
+        },
+        {
+            "js": ["plugins/photobucket.js"],
+            "matches": ["*://*.photobucket.com/*"]
+        },
+        {
+            "js": ["plugins/backpage.js"],
+            "matches": ["*://*.backpage.com/*"]
+        },
+        {
+            "js": ["plugins/wretch_cc.js"],
+            "matches": ["*://*.wretch.cc/*"]
+        },
+        {
+            "js": ["plugins/events-gallery_ch.js"],
+            "matches": ["*://*.events-gallery.ch/*"]
+        },
+        {
+            "js": ["plugins/knowyourmeme.js"],
+            "matches": ["*://*.knowyourmeme.com/*"]
+        },
+        {
+            "js": ["plugins/tshirthell.js"],
+            "matches": ["*://*.tshirthell.com/*"]
+        },
+        {
+            "js": ["plugins/threadless.js"],
+            "matches": ["*://*.threadless.com/*"]
+        },
+        {
+            "js": ["plugins/viedemerde.js"],
+            "matches": [
+                "*://*.viedemerde.fr/*",
+                "*://*.fmylife.com/*",
+                "*://*.vitadimerda.it/*",
+                "*://*.vayamierdadevida.com/*",
+                "*://*.fanformittliv.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/xing.js"],
+            "matches": ["*://*.xing.com/*"]
+        },
+        {
+            "js": ["plugins/stern_de.js"],
+            "matches": ["*://*.stern.de/*"]
+        },
+        {
+            "js": ["plugins/gawker.js"],
+            "matches": [
+                "*://*.deadspin.com/*",
+                "*://*.gawker.com/*",
+                "*://*.gizmodo.com.au/*",
+                "*://*.gizmodo.com/*",
+                "*://*.gizmodo.de/*",
+                "*://*.gizmodo.jp/*",
+                "*://*.gizmodo.pl/*",
+                "*://*.io9.com/*",
+                "*://*.jalopnik.com/*",
+                "*://*.jezebel.com/*",
+                "*://*.kotaku.com/*",
+                "*://*.lifehacker.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/nintendolife.js"],
+            "matches": ["*://*.nintendolife.com/*"]
+        },
+        {
+            "js": ["plugins/skyrock.js"],
+            "matches": ["*://*.skyrock.com/*"]
+        },
+        {
+            "js": ["plugins/leboncoin_fr.js"],
+            "matches": ["*://*.leboncoin.fr/*"]
+        },
+        {
+            "js": ["plugins/linkedin.js"],
+            "matches": ["*://*.linkedin.com/*"]
+        },
+        {
+            "js": ["plugins/phapit.js"],
+            "matches": [
+                "*://*.phapit.com/*",
+                "*://*.reddit.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/fukung.js"],
+            "matches": [
+                "*://*.fukung.net/*",
+                "*://*.reddit.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/picsarus.js"],
+            "matches": ["*://*.reddit.com/*"]
+        },
+        {
+            "js": ["plugins/pixiv.js"],
+            "matches": [
+                "*://*.fanbox.cc/*",
+                "*://*.pixiv.net/*",
+                "*://*.pixivision.net/*",
+                "*://*.vroid.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/rakuten.js"],
+            "matches": [
+                "*://*.rakuten.co.jp/*",
+                "*://*.rakuten.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/copainsdavant.js"],
+            "matches": ["*://copainsdavant.linternaute.com/*"]
+        },
+        {
+            "js": ["plugins/blogcdn.js"],
+            "matches": [
+                "*://*.engadget.com/*",
+                "*://*.joystiq.com/*",
+                "*://*.switched.com/*",
+                "*://*.tuaw.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/badoo.js"],
+            "matches": [
+                "*://*.badoo.com/*",
+                "*://*.hotornot.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/steam.js"],
+            "matches": [
+                "*://*.steamcommunity.com/*",
+                "*://*.steampowered.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/1x.js"],
+            "matches": ["*://*.1x.com/*"]
+        },
+        {
+            "js": ["plugins/wired.js"],
+            "matches": ["*://*.wired.com/*"]
+        },
+        {
+            "js": ["plugins/maxmodels.js"],
+            "matches": ["*://*.maxmodels.pl/*"]
+        },
+        {
+            "js": ["plugins/digart.js"],
+            "matches": ["*://*.digart.pl/*"]
+        },
+        {
+            "js": ["plugins/twimg.js"],
+            "matches": [
+                "*://*.favstar.fm/*",
+                "*://*.tweetmeme.com/*",
+                "*://*.twitter.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/cyworld.js"],
+            "matches": [
+                "*://*.cyworld.com/*",
+                "*://*.cyworld.co.kr/*",
+                "*://*.cyworld.co.cn/*"
+            ]
+        },
+        {
+            "js": ["plugins/fotolog.js"],
+            "matches": ["*://*.fotolog.com/*"]
+        },
+        {
+            "js": ["plugins/panoramio.js"],
+            "matches": ["*://*.panoramio.com/*"]
+        },
+        {
+            "js": ["plugins/oxd_in.js"],
+            "matches": [
+                "*://*.oxd.in/*",
+                "*://*.reddit.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/vk.js"],
+            "matches": [
+                "*://*.vk.com/*",
+                "*://*.vkontakte.ru/*"
+            ]
+        },
+        {
+            "js": ["plugins/plurk.js"],
+            "matches": ["*://*.plurk.com/*"]
+        },
+        {
+            "js": ["plugins/bebo.js"],
+            "matches": ["*://*.bebo.com/*"]
+        },
+        {
+            "js": ["plugins/okcupid.js"],
+            "matches": ["*://*.okcupid.com/*"]
+        },
+        {
+            "js": ["plugins/paheal.js"],
+            "matches": ["*://*.paheal.net/*"]
+        },
+        {
+            "matches": ["*://*.reddit.com/*"],
+            "js": [
+                "plugins/clips.twitch.js",
+                "plugins/gfycat.js",
+                "plugins/livememe.js",
+                "plugins/memedad.js",
+                "plugins/memefive.js",
+                "plugins/memegenerator.js",
+                "plugins/reddit.js",
+                "plugins/redgifs.js"
+            ]
+        },
+        {
+            "js": ["plugins/quickmeme.js"],
+            "matches": [
+                "*://*.feedly.com/*",
+                "*://*.reddit.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/inkbunny.js"],
+            "matches": ["*://*.inkbunny.net/*"]
+        },
+        {
+            "js": ["plugins/instructables.js"],
+            "matches": ["*://*.instructables.com/*"]
+        },
+        {
+            "js": ["plugins/nofrag.js"],
+            "matches": ["*://*.nofrag.com/*"]
+        },
+        {
+            "js": ["plugins/pictmobi.js"],
+            "matches": ["*://*.pict.mobi/*"]
+        },
+        {
+            "js": ["plugins/zing_vn.js"],
+            "matches": ["*://*.zing.vn/*"]
+        },
+        {
+            "js": ["plugins/rootmusic.js"],
+            "matches": [
+                "*://*.bandpage.com/*",
+                "*://*.rootmusic.com/fb/*"
+            ]
+        },
+        {
+            "js": ["plugins/liveshare.js"],
+            "matches": ["*://*.liveshare.com/*"]
+        },
+        {
+            "js": ["plugins/weheartit.js"],
+            "matches": ["*://*.weheartit.com/*"]
+        },
+        {
+            "js": ["plugins/funnyjunk.js"],
+            "matches": ["*://*.funnyjunk.com/*"]
+        },
+        {
+            "js": ["plugins/blogo_it.js"],
+            "matches": [
+                "*://*.02blog.it/*",
+                "*://*.06blog.it/*",
+                "*://*.artsblog.it/*",
+                "*://*.autoblog.it/*",
+                "*://*.bebeblog.it/*",
+                "*://*.benessereblog.it/*",
+                "*://*.betsblog.it/*",
+                "*://*.booksblog.it/*",
+                "*://*.calcioblog.it/*",
+                "*://*.cineblog.it/*",
+                "*://*.clickblog.it/*",
+                "*://*.comicsblog.it/*",
+                "*://*.crimeblog.it/*",
+                "*://*.deluxeblog.it/*",
+                "*://*.designerblog.it/*",
+                "*://*.downloadblog.it/*",
+                "*://*.ecoblog.it/*",
+                "*://*.fashionblog.it/*",
+                "*://*.finanzablog.it/*",
+                "*://*.gadgetblog.it/*",
+                "*://*.gamesblog.it/*",
+                "*://*.gossipblog.it/*",
+                "*://*.gustoblog.it/*",
+                "*://*.happyblog.it/*",
+                "*://*.melablog.it/*",
+                "*://*.mobileblog.it/*",
+                "*://*.motoblog.it/*",
+                "*://*.motorsportblog.it/*",
+                "*://*.ossblog.it/*",
+                "*://*.outdoorblog.it/*",
+                "*://*.pinkblog.it/*",
+                "*://*.polisblog.it/*",
+                "*://*.queerblog.it/*",
+                "*://*.softblog.it/*",
+                "*://*.soldiblog.it/*",
+                "*://*.soundsblog.it/*",
+                "*://*.toysblog.it/*",
+                "*://*.travelblog.it/*",
+                "*://*.tvblog.it/*"
+            ]
+        },
+        {
+            "js": ["plugins/yelp.js"],
+            "matches": [
+                "*://*.yelp.ae/*",
+                "*://*.yelp.at/*",
+                "*://*.yelp.be/*",
+                "*://*.yelp.ca/*",
+                "*://*.yelp.ch/*",
+                "*://*.yelp.cn/*",
+                "*://*.yelp.co.cz/*",
+                "*://*.yelp.co.jp/*",
+                "*://*.yelp.co.nz/*",
+                "*://*.yelp.co.uk/*",
+                "*://*.yelp.com.au/*",
+                "*://*.yelp.com.pl/*",
+                "*://*.yelp.com/*",
+                "*://*.yelp.de/*",
+                "*://*.yelp.dk/*",
+                "*://*.yelp.es/*",
+                "*://*.yelp.fi/*",
+                "*://*.yelp.fr/*",
+                "*://*.yelp.ie/*",
+                "*://*.yelp.in/*",
+                "*://*.yelp.it/*",
+                "*://*.yelp.nl/*",
+                "*://*.yelp.no/*",
+                "*://*.yelp.pt/*",
+                "*://*.yelp.ru/*",
+                "*://*.yelp.se/*"
+            ]
+        },
+        {
+            "js": ["plugins/hwzone_il.js"],
+            "matches": ["*://*.hwzone.co.il/*"]
+        },
+        {
+            "js": ["plugins/spinchat.js"],
+            "matches": [
+                "*://*.spinchat.com/*",
+                "*://*.spin.de/*"
+            ]
+        },
+        {
+            "js": ["plugins/etsy.js"],
+            "matches": ["*://*.etsy.com/*"]
+        },
+        {
+            "js": ["plugins/asos.js"],
+            "matches": [
+                "*://*.asos.com/*",
+                "*://*.asos.fr/*",
+                "*://*.asos.de/*"
+            ]
+        },
+        {
+            "js": ["plugins/pinterest.js"],
+            "matches": [
+                "*://*.pinterest.ca/*",
+                "*://*.pinterest.ch/*",
+                "*://*.pinterest.co.in/*",
+                "*://*.pinterest.co.kr/*",
+                "*://*.pinterest.co.nz/*",
+                "*://*.pinterest.co.uk/*",
+                "*://*.pinterest.com.au/*",
+                "*://*.pinterest.com.mx/*",
+                "*://*.pinterest.com/*",
+                "*://*.pinterest.cz/*",
+                "*://*.pinterest.de/*",
+                "*://*.pinterest.dk/*",
+                "*://*.pinterest.es/*",
+                "*://*.pinterest.fi/*",
+                "*://*.pinterest.fr/*",
+                "*://*.pinterest.ie/*",
+                "*://*.pinterest.it/*",
+                "*://*.pinterest.jp/*",
+                "*://*.pinterest.nl/*",
+                "*://*.pinterest.pt/*",
+                "*://*.pinterest.ru/*",
+                "*://*.pinterest.se/*"
+            ]
+        },
+        {
+            "js": ["plugins/500px.js"],
+            "matches": ["*://*.500px.com/*"]
+        },
+        {
+            "js": ["plugins/modelmayhem.js"],
+            "matches": ["*://*.modelmayhem.com/*"]
+        },
+        {
+            "js": ["plugins/yam.js"],
+            "matches": ["*://*.yam.com/*"]
+        },
+        {
+            "js": ["plugins/gmail.js"],
+            "matches": ["*://mail.google.com/*"]
+        },
+        {
+            "js": ["plugins/8tracks.js"],
+            "matches": ["*://*.8tracks.com/*"]
+        },
+        {
+            "js": ["plugins/yfrog.js"],
+            "matches": ["*://*.twitter.com/*"]
+        },
+        {
+            "js": ["plugins/gameblog.js"],
+            "matches": ["*://*.gameblog.fr/*"]
+        },
+        {
+            "js": ["plugins/diaspora.js"],
+            "matches": [
+                "*://*.diasp.eu/*",
+                "*://*.diasp.org/*",
+                "*://*.joindiaspora.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/memecrunch.js"],
+            "matches": [
+                "*://*.memecrunch.com/*",
+                "*://*.reddit.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/jeuxvideo_fr.js"],
+            "matches": ["*://*.jeuxvideo.fr/*"]
+        },
+        {
+            "js": ["plugins/boardgamegeek.js"],
+            "matches": [
+                "*://*.boardgamegeek.com/*",
+                "*://*.rpggeek.com/*",
+                "*://*.videogamegeek.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/e621.js"],
+            "matches": [
+                "*://*.e621.net/*",
+                "*://*.e926.net/*",
+                "*://danbooru.donmai.us/*"
+            ]
+        },
+        {
+            "js": ["plugins/jootix.js"],
+            "matches": ["*://*.jootix.com/*"]
+        },
+        {
+            "js": ["plugins/bing.js"],
+            "matches": ["*://*.bing.com/*"],
+            "all_frames": true
+        },
+        {
+            "js": ["plugins/xuite.js"],
+            "matches": ["*://*.xuite.net/*"]
+        },
+        {
+            "js": ["plugins/craigslist.js"],
+            "matches": ["*://*.craigslist.org/*"]
+        },
+        {
+            "js": ["plugins/zinio.js"],
+            "matches": ["*://*.zinio.com/*"]
+        },
+        {
+            "js": ["plugins/dribbble.js"],
+            "matches": ["*://*.dribbble.com/*"]
+        },
+        {
+            "js": ["plugins/pixnet.js"],
+            "matches": ["*://*.pixnet.net/*"]
+        },
+        {
+            "js": ["plugins/dropbox.js"],
+            "matches": ["*://*.dropbox.com/*"]
+        },
+        {
+            "js": ["plugins/newegg.js"],
+            "matches": [
+                "*://*.newegg.ca/*",
+                "*://*.newegg.com/*",
+                "*://*.newegg.com.cn/*"
+            ]
+        },
+        {
+            "js": ["plugins/furaffinity.js"],
+            "matches": ["*://*.furaffinity.net/*"]
+        },
+        {
+            "js": ["plugins/alicdn.js"],
+            "matches": [
+                "*://*.taobao.com/*",
+                "*://*.tmall.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/lazygirls_info.js"],
+            "matches": ["*://*.lazygirls.info/*"]
+        },
+        {
+            "js": ["plugins/zhihu.js"],
+            "matches": ["*://*.zhihu.com/*"]
+        },
+        {
+            "js": ["plugins/hupu.js"],
+            "matches": ["*://*.hupu.com/*"]
+        },
+        {
+            "js": ["plugins/weibo.js"],
+            "matches": ["*://*.weibo.com/*"]
+        },
+        {
+            "js": ["plugins/douban.js"],
+            "matches": ["*://*.douban.com/*"]
+        },
+        {
+            "js": ["plugins/github.js"],
+            "matches": ["*://*.github.com/*"]
+        },
+        {
+            "js": ["plugins/freepik.js"],
+            "matches": ["*://*.freepik.com/*"]
+        },
+        {
+            "js": ["plugins/weasyl.js"],
+            "matches": ["*://*.weasyl.com/*"]
+        },
+        {
+            "js": ["plugins/quora.js"],
+            "matches": ["*://*.quora.com/*"]
+        },
+        {
+            "js": ["plugins/wallbase_cc.js"],
+            "matches": ["*://*.wallbase.cc/*"]
+        },
+        {
+            "js": ["plugins/wallhaven_cc.js"],
+            "matches": ["*://*.wallhaven.cc/*"]
+        },
+        {
+            "js": ["plugins/bluray.js"],
+            "matches": ["*://*.blu-ray.com/*"]
+        },
+        {
+            "js": ["plugins/minitokyo.js"],
+            "matches": ["*://*.minitokyo.net/*"]
+        },
+        {
+            "js": ["plugins/animepaper.js"],
+            "matches": ["*://*.animepaper.net/*"]
+        },
+        {
+            "js": ["plugins/choualbox.js"],
+            "matches": ["*://*.choualbox.com/*"]
+        },
+        {
+            "js": ["plugins/yandex.js"],
+            "matches": [
+                "*://*.yandex.at/*",
+                "*://*.yandex.au/*",
+                "*://*.yandex.be/*",
+                "*://*.yandex.ca/*",
+                "*://*.yandex.ch/*",
+                "*://*.yandex.cl/*",
+                "*://*.yandex.cn/*",
+                "*://*.yandex.co.hu/*",
+                "*://*.yandex.co.id/*",
+                "*://*.yandex.co.il/*",
+                "*://*.yandex.co.kr/*",
+                "*://*.yandex.co.nz/*",
+                "*://*.yandex.co.uk/*",
+                "*://*.yandex.co.za/*",
+                "*://*.yandex.co/*",
+                "*://*.yandex.com.ar/*",
+                "*://*.yandex.com.au/*",
+                "*://*.yandex.com.br/*",
+                "*://*.yandex.com.eg/*",
+                "*://*.yandex.com.gr/*",
+                "*://*.yandex.com.hk/*",
+                "*://*.yandex.com.mx/*",
+                "*://*.yandex.com.my/*",
+                "*://*.yandex.com.pe/*",
+                "*://*.yandex.com.ph/*",
+                "*://*.yandex.com.sg/*",
+                "*://*.yandex.com.tr/*",
+                "*://*.yandex.com.tw/*",
+                "*://*.yandex.com.ve/*",
+                "*://*.yandex.com.vn/*",
+                "*://*.yandex.com/*",
+                "*://*.yandex.cz/*",
+                "*://*.yandex.de/*",
+                "*://*.yandex.dk/*",
+                "*://*.yandex.es/*",
+                "*://*.yandex.fi/*",
+                "*://*.yandex.fr/*",
+                "*://*.yandex.ie/*",
+                "*://*.yandex.in/*",
+                "*://*.yandex.it/*",
+                "*://*.yandex.jp/*",
+                "*://*.yandex.net/*",
+                "*://*.yandex.nl/*",
+                "*://*.yandex.pt/*",
+                "*://*.yandex.rs/*",
+                "*://*.yandex.ru/*",
+                "*://*.yandex.se/*",
+                "*://*.yandex.sk/*",
+                "*://*.yandex.ua/*"
+            ]
+        },
+        {
+            "js": ["plugins/kununu.js"],
+            "matches": ["*://*.kununu.com/*"]
+        },
+        {
+            "js": ["plugins/miiverse.js"],
+            "matches": ["*://miiverse.nintendo.net/*"]
+        },
+        {
+            "js": ["plugins/fetlife.js"],
+            "matches": ["*://*.fetlife.com/*"]
+        },
+        {
+            "js": ["plugins/kenmarcus.js"],
+            "matches": ["*://*.kenmarcus.com/*"]
+        },
+        {
+            "js": ["plugins/zenfolio.js"],
+            "matches": ["*://*.zenfolio.com/*"]
+        },
+        {
+            "js": ["plugins/escapistmagazine.js"],
+            "matches": ["*://*.escapistmagazine.com/*"]
+        },
+        {
+            "js": ["plugins/dirty.js"],
+            "matches": [
+                "*://*.d3.ru/*",
+                "*://*.dirty.ru/*"
+            ]
+        },
+        {
+            "js": ["plugins/slickdeals.js"],
+            "matches": ["*://*.slickdeals.net/*"]
+        },
+        {
+            "js": ["plugins/flipkart.js"],
+            "matches": ["*://*.flipkart.com/*"]
+        },
+        {
+            "js": ["plugins/artuk.js"],
+            "matches": ["*://*.artuk.org/*"]
+        },
+        {
+            "js": ["plugins/n11.js"],
+            "matches": ["*://*.n11.com/*"]
+        },
+        {
+            "js": ["plugins/carrefoursa.js"],
+            "matches": ["*://*.carrefoursa.com/*"]
+        },
+        {
+            "js": ["plugins/ask.js"],
+            "matches": ["*://ask.fm/*"]
+        },
+        {
+            "js": ["plugins/artlimited.js"],
+            "matches": ["*://*.artlimited.net/*"]
+        },
+        {
+            "js": ["plugins/instagram.js"],
+            "matches": ["*://*.instagram.com/*"]
+        },
+        {
+            "js": ["plugins/kephost.js"],
+            "matches": ["*://kephost.com/*"]
+        },
+        {
+            "js": ["plugins/visualart.js"],
+            "matches": [
+                "*://*.visualart.me/*",
+                "*://*.visualart.ro/*"
+            ]
+        },
+        {
+            "js": ["plugins/photo_net.js"],
+            "matches": ["*://*.photo.net/*"]
+        },
+        {
+            "js": ["plugins/gettyimages.js"],
+            "matches": [
+                "*://*.gettyimages.ae/*",
+                "*://*.gettyimages.at/*",
+                "*://*.gettyimages.be/*",
+                "*://*.gettyimages.ca/*",
+                "*://*.gettyimages.ch/*",
+                "*://*.gettyimages.cn/*",
+                "*://*.gettyimages.co.cz/*",
+                "*://*.gettyimages.co.jp/*",
+                "*://*.gettyimages.co.nz/*",
+                "*://*.gettyimages.co.uk/*",
+                "*://*.gettyimages.com.au/*",
+                "*://*.gettyimages.com.pl/*",
+                "*://*.gettyimages.com/*",
+                "*://*.gettyimages.de/*",
+                "*://*.gettyimages.dk/*",
+                "*://*.gettyimages.es/*",
+                "*://*.gettyimages.fi/*",
+                "*://*.gettyimages.fr/*",
+                "*://*.gettyimages.ie/*",
+                "*://*.gettyimages.in/*",
+                "*://*.gettyimages.it/*",
+                "*://*.gettyimages.nl/*",
+                "*://*.gettyimages.no/*",
+                "*://*.gettyimages.pt/*",
+                "*://*.gettyimages.ru/*",
+                "*://*.gettyimages.se/*"
+            ]
+        },
+        {
+            "js": ["plugins/pixabay.js"],
+            "matches": ["*://*.pixabay.com/*"]
+        },
+        {
+            "js": ["plugins/freeimages.js"],
+            "matches": ["*://*.freeimages.com/*"]
+        },
+        {
+            "js": ["plugins/artstation.js"],
+            "matches": ["*://*.artstation.com/*"]
+        },
+        {
+            "js": ["plugins/artsper.js"],
+            "matches": ["*://*.artsper.com/*"]
+        },
+        {
+            "js": ["plugins/istockphoto.js"],
+            "matches": ["*://*.istockphoto.com/*"]
+        },
+        {
+            "js": ["plugins/everystockphoto.js"],
+            "matches": ["*://*.everystockphoto.com/*"]
+        },
+        {
+            "js": ["plugins/smugmug.js"],
+            "matches": ["*://*.smugmug.com/*"]
+        },
+        {
+            "js": ["plugins/cgcookie.js"],
+            "matches": ["*://*.cgcookie.com/*"]
+        },
+        {
+            "js": ["plugins/dreamstime.js"],
+            "matches": ["*://*.dreamstime.com/*"]
+        },
+        {
+            "js": ["plugins/cgsociety.js"],
+            "matches": ["*://*.cgsociety.org/*"]
+        },
+        {
+            "js": ["plugins/mobypicture.js"],
+            "matches": ["*://*.mobypicture.com/*"]
+        },
+        {
+            "js": ["plugins/foursquare.js"],
+            "matches": ["*://*.foursquare.com/*"]
+        },
+        {
+            "js": ["plugins/metmuseum.js"],
+            "matches": ["*://*.metmuseum.org/*"]
+        },
+        {
+            "js": ["plugins/wookmark.js"],
+            "matches": ["*://*.wookmark.com/*"]
+        },
+        {
+            "js": ["plugins/stocksnap.js"],
+            "matches": [
+                "*://*.stocksnap.io/*",
+                "*://*.stocksnap.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/pexels.js"],
+            "matches": ["*://*.pexels.com/*"]
+        },
+        {
+            "js": ["plugins/adobestock.js"],
+            "matches": ["*://stock.adobe.com/*"]
+        },
+        {
+            "js": ["plugins/3dtotal.js"],
+            "matches": ["*://*.3dtotal.com/*"]
+        },
+        {
+            "js": ["plugins/fubiz.js"],
+            "matches": ["*://*.fubiz.net/*"]
+        },
+        {
+            "js": ["plugins/drawcrowd.js"],
+            "matches": ["*://*.drawcrowd.com/*"]
+        },
+        {
+            "js": ["plugins/wykop.js"],
+            "matches": ["*://*.wykop.pl/*"]
+        },
+        {
+            "js": ["plugins/9gag.js"],
+            "matches": ["*://9gag.com/*"]
+        },
+        {
+            "js": ["plugins/hiptest.js"],
+            "matches": ["*://app.hiptest.com/*"]
+        },
+        {
+            "js": ["plugins/safebooru.js"],
+            "matches": [
+                "*://*.booru.org/*",
+                "*://*.gelbooru.com/*",
+                "*://*.mspabooru.com/*",
+                "*://*.safebooru.org/*",
+                "*://*.xbooru.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/depositphotos.js"],
+            "matches": ["*://*.depositphotos.com/*"]
+        },
+        {
+            "js": ["plugins/airbnb.js"],
+            "matches": [
+                "*://*.airbnb.ae/*",
+                "*://*.airbnb.am/*",
+                "*://*.airbnb.at/*",
+                "*://*.airbnb.az/*",
+                "*://*.airbnb.ba/*",
+                "*://*.airbnb.be/*",
+                "*://*.airbnb.ca/*",
+                "*://*.airbnb.cat/*",
+                "*://*.airbnb.ch/*",
+                "*://*.airbnb.cl/*",
+                "*://*.airbnb.cn/*",
+                "*://*.airbnb.co.cr/*",
+                "*://*.airbnb.co.id/*",
+                "*://*.airbnb.co.in/*",
+                "*://*.airbnb.co.kr/*",
+                "*://*.airbnb.co.nz/*",
+                "*://*.airbnb.co.uk/*",
+                "*://*.airbnb.co.ve/*",
+                "*://*.airbnb.co.za/*",
+                "*://*.airbnb.com.ar/*",
+                "*://*.airbnb.com.au/*",
+                "*://*.airbnb.com.bo/*",
+                "*://*.airbnb.com.br/*",
+                "*://*.airbnb.com.bz/*",
+                "*://*.airbnb.com.co/*",
+                "*://*.airbnb.com.ec/*",
+                "*://*.airbnb.com.ee/*",
+                "*://*.airbnb.com.gt/*",
+                "*://*.airbnb.com.hk/*",
+                "*://*.airbnb.com.hn/*",
+                "*://*.airbnb.com.mt/*",
+                "*://*.airbnb.com.my/*",
+                "*://*.airbnb.com.ni/*",
+                "*://*.airbnb.com.pa/*",
+                "*://*.airbnb.com.pe/*",
+                "*://*.airbnb.com.ph/*",
+                "*://*.airbnb.com.py/*",
+                "*://*.airbnb.com.ro/*",
+                "*://*.airbnb.com.sg/*",
+                "*://*.airbnb.com.sv/*",
+                "*://*.airbnb.com.tr/*",
+                "*://*.airbnb.com.tw/*",
+                "*://*.airbnb.com.ua/*",
+                "*://*.airbnb.com/*",
+                "*://*.airbnb.cz/*",
+                "*://*.airbnb.de/*",
+                "*://*.airbnb.dk/*",
+                "*://*.airbnb.es/*",
+                "*://*.airbnb.fi/*",
+                "*://*.airbnb.fr/*",
+                "*://*.airbnb.gr/*",
+                "*://*.airbnb.gy/*",
+                "*://*.airbnb.hu/*",
+                "*://*.airbnb.ie/*",
+                "*://*.airbnb.is/*",
+                "*://*.airbnb.it/*",
+                "*://*.airbnb.jp/*",
+                "*://*.airbnb.lt/*",
+                "*://*.airbnb.lv/*",
+                "*://*.airbnb.mx/*",
+                "*://*.airbnb.nl/*",
+                "*://*.airbnb.no/*",
+                "*://*.airbnb.pl/*",
+                "*://*.airbnb.pt/*",
+                "*://*.airbnb.rs/*",
+                "*://*.airbnb.ru/*",
+                "*://*.airbnb.se/*",
+                "*://*.airbnb.si/*"
+            ]
+        },
+        {
+            "js": ["plugins/booking.js"],
+            "matches": ["*://*.booking.com/*"]
+        },
+        {
+            "js": ["plugins/publicdomainpictures.js"],
+            "matches": ["*://*.publicdomainpictures.net/*"]
+        },
+        {
+            "js": ["plugins/avopix.js"],
+            "matches": [
+                "*://*.avopix.ae/*",
+                "*://*.avopix.at/*",
+                "*://*.avopix.be/*",
+                "*://*.avopix.ca/*",
+                "*://*.avopix.ch/*",
+                "*://*.avopix.cn/*",
+                "*://*.avopix.co.cz/*",
+                "*://*.avopix.co.jp/*",
+                "*://*.avopix.co.nz/*",
+                "*://*.avopix.co.uk/*",
+                "*://*.avopix.com.au/*",
+                "*://*.avopix.com.pl/*",
+                "*://*.avopix.com/*",
+                "*://*.avopix.de/*",
+                "*://*.avopix.dk/*",
+                "*://*.avopix.es/*",
+                "*://*.avopix.fi/*",
+                "*://*.avopix.fr/*",
+                "*://*.avopix.ie/*",
+                "*://*.avopix.in/*",
+                "*://*.avopix.it/*",
+                "*://*.avopix.nl/*",
+                "*://*.avopix.no/*",
+                "*://*.avopix.pt/*",
+                "*://*.avopix.ru/*",
+                "*://*.avopix.se/*"
+            ]
+        },
+        {
+            "js": ["plugins/bakashots.js"],
+            "matches": ["*://*.bakashots.me/*"]
+        },
+        {
+            "js": ["plugins/fanart.js"],
+            "matches": ["*://*.fanart.tv/*"]
+        },
+        {
+            "js": ["plugins/fotki.js"],
+            "matches": ["*://*.fotki.com/*"]
+        },
+        {
+            "js": ["plugins/free-images.js"],
+            "matches": ["*://*.free-images.com/*"]
+        },
+        {
+            "js": ["plugins/galerie-sakura.js"],
+            "matches": ["*://*.galerie-sakura.com/*"]
+        },
+        {
+            "js": ["plugins/lostfilm.js"],
+            "matches": ["*://*.lostfilm.info/*"]
+        },
+        {
+            "js": ["plugins/lostfilmtv.js"],
+            "matches": [
+                "*://*.lostfilm.run/*",
+                "*://*.lostfilm.tv/*"
+            ]
+        },
+        {
+            "js": ["plugins/meetup.js"],
+            "matches": ["*://*.meetup.com/*"]
+        },
+        {
+            "js": ["plugins/nasa.js"],
+            "matches": ["*://*.nasa.gov/*"]
+        },
+        {
+            "js": ["plugins/photoblink.js"],
+            "matches": ["*://*.photoblink.com/*"]
+        },
+        {
+            "js": ["plugins/photoforum.js"],
+            "matches": ["*://*.photoforum.ru/*"]
+        },
+        {
+            "js": ["plugins/photo-forum.js"],
+            "matches": ["*://*.photo-forum.net/*"]
+        },
+        {
+            "js": ["plugins/photopost.js"],
+            "matches": ["*://*.photopost.cz/*"]
+        },
+        {
+            "js": ["plugins/photosight.js"],
+            "matches": ["*://*.photosight.ru/*"]
+        },
+        {
+            "js": ["plugins/picturepush.js"],
+            "matches": ["*://*.picturepush.com/*"]
+        },
+        {
+            "js": ["plugins/tuchong.js"],
+            "matches": ["*://*.tuchong.com/*"]
+        },
+        {
+            "js": ["plugins/wireimage.js"],
+            "matches": [
+                "*://*.wireimage.co.in/*",
+                "*://*.wireimage.com.au/*",
+                "*://*.wireimage.com.pt/*",
+                "*://*.wireimage.com/*",
+                "*://*.wireimage.de/*",
+                "*://*.wireimage.es/*",
+                "*://*.wireimage.fr/*",
+                "*://*.wireimage.it/*",
+                "*://*.wireimage.jp/*",
+                "*://*.wireimage.se/*"
+            ]
+        },
+        {
+            "js": ["plugins/wysp.js"],
+            "matches": ["*://*.wysp.ws/*"]
+        },
+        {
+            "js": ["plugins/tripadvisor.js"],
+            "matches": [
+                "*://*.tripadvisor.at/*",
+                "*://*.tripadvisor.be/*",
+                "*://*.tripadvisor.ca/*",
+                "*://*.tripadvisor.ch/*",
+                "*://*.tripadvisor.cl/*",
+                "*://*.tripadvisor.cn/*",
+                "*://*.tripadvisor.co.hu/*",
+                "*://*.tripadvisor.co.id/*",
+                "*://*.tripadvisor.co.il/*",
+                "*://*.tripadvisor.co.kr/*",
+                "*://*.tripadvisor.co.nz/*",
+                "*://*.tripadvisor.co.uk/*",
+                "*://*.tripadvisor.co.za/*",
+                "*://*.tripadvisor.co/*",
+                "*://*.tripadvisor.com.ar/*",
+                "*://*.tripadvisor.com.au/*",
+                "*://*.tripadvisor.com.br/*",
+                "*://*.tripadvisor.com.eg/*",
+                "*://*.tripadvisor.com.gr/*",
+                "*://*.tripadvisor.com.hk/*",
+                "*://*.tripadvisor.com.mx/*",
+                "*://*.tripadvisor.com.my/*",
+                "*://*.tripadvisor.com.pe/*",
+                "*://*.tripadvisor.com.ph/*",
+                "*://*.tripadvisor.com.sg/*",
+                "*://*.tripadvisor.com.tr/*",
+                "*://*.tripadvisor.com.tw/*",
+                "*://*.tripadvisor.com.ve/*",
+                "*://*.tripadvisor.com.vn/*",
+                "*://*.tripadvisor.com/*",
+                "*://*.tripadvisor.cz/*",
+                "*://*.tripadvisor.de/*",
+                "*://*.tripadvisor.dk/*",
+                "*://*.tripadvisor.es/*",
+                "*://*.tripadvisor.fi/*",
+                "*://*.tripadvisor.fr/*",
+                "*://*.tripadvisor.ie/*",
+                "*://*.tripadvisor.in/*",
+                "*://*.tripadvisor.it/*",
+                "*://*.tripadvisor.jp/*",
+                "*://*.tripadvisor.nl/*",
+                "*://*.tripadvisor.pt/*",
+                "*://*.tripadvisor.rs/*",
+                "*://*.tripadvisor.ru/*",
+                "*://*.tripadvisor.se/*",
+                "*://*.tripadvisor.sk/*"
+            ]
+        },
+        {
+            "js": ["plugins/freerangestock.js"],
+            "matches": ["*://*.freerangestock.com/*"]
+        },
+        {
+            "js": ["plugins/joemonster.js"],
+            "matches": ["*://*.joemonster.org/*"]
+        },
+        {
+            "js": ["plugins/voxmedia.js"],
+            "matches": ["*://*.vox.com/*"]
+        },
+        {
+            "js": ["plugins/behance.js"],
+            "matches": ["*://*.behance.net/*"]
+        },
+        {
+            "js": ["plugins/goodreads.js"],
+            "matches": ["*://*.goodreads.com/*"]
+        },
+        {
+            "js": ["plugins/pikwizard.js"],
+            "matches": ["*://*.pikwizard.com/*"]
+        },
+    	{
+            "js": ["plugins/thingiverse.js"],
+            "matches": ["*://*.thingiverse.com/*"]
+        },
+        {
+            "js": ["plugins/derpibooru.js"],
+            "matches": ["*://*.derpibooru.org/*"]
+        },
+        {
+            "js": ["plugins/aminus3.js"],
+            "matches": ["*://*.aminus3.com/*"]
+        },
+        {
+            "js": ["plugins/livememe.js"],
+            "matches": ["*://*.livememe.com/*"]
+        },
+        {
+            "js": ["plugins/8kun.js"],
+            "matches": [
+                "*://*.8ch.net/*",
+                "*://*.8kun.top/*"
+            ]
+        },
+        {
+            "js": ["plugins/giphy.js"],
+            "matches": ["*://*.giphy.com/*"]
+        },
+        {
+            "js": ["plugins/imageevent.js"],
+            "matches": ["*://*.imageevent.com/*"]
+        },
+        {
+            "js": ["plugins/aol.js"],
+            "matches": ["*://*.aol.com/*"]
+        },
+        {
+            "js": ["plugins/govdeals.js"],
+            "matches": ["*://*.govdeals.com/*"]
+        },
+        {
+            "js": ["plugins/minds.js"],
+            "matches": ["*://*.minds.com/*"]
+        },
+        {
+            "js": ["plugins/gitlab.js"],
+            "matches": ["*://*.gitlab.com/*"]
+        },
+        {
+            "js": ["plugins/phorio.js"],
+            "matches": ["*://*.phorio.com/*"]
+        },
+        {
+            "js": ["plugins/wallapop.js"],
+            "matches": ["*://*.wallapop.com/*"]
+        },
+        {
+            "js": ["plugins/gog.js"],
+            "matches": ["*://*.gog.com/*"]
+        },
+        {
+            "js": ["plugins/picclick.js"],
+            "matches": [
+                "*://*.picclick.at/*",
+                "*://*.picclick.be/*",
+                "*://*.picclick.ca/*",
+                "*://*.picclick.ch/*",
+                "*://*.picclick.co.uk/*",
+                "*://*.picclick.com.au/*",
+                "*://*.picclick.com/*",
+                "*://*.picclick.de/*",
+                "*://*.picclick.es/*",
+                "*://*.picclick.fr/*",
+                "*://*.picclick.ie/*",
+                "*://*.picclick.it/*",
+                "*://*.picclick.nl/*"
+            ]
+        },
+        {
+            "js": ["plugins/libraryofcongress.js"],
+            "matches": ["*://*.loc.gov/*"]
+        },
+        {
+            "js": ["plugins/duitang.js"],
+            "matches": ["*://*.duitang.com/*"]
+        },
+        {
+            "js": ["plugins/wdl.js"],
+            "matches": ["*://*.wdl.org/*"]
+        },
+        {
+            "js": ["plugins/hibid.js"],
+            "matches": ["*://*.hibid.com/*"]
+        },
+        {
+            "js": ["plugins/maxsold.js"],
+            "matches": ["*://*.maxsold.com/*"]
+        },
+        {
+            "js": ["plugins/myanimelist.js"],
+            "matches": ["*://*.myanimelist.net/*"]
+        },
+        {
+            "js": ["plugins/themoviedb.js"],
+            "matches": ["*://*.themoviedb.org/*"]
+        },
+        {
+            "js": ["plugins/twibooru.js"],
+            "matches": ["*://*.twibooru.org/*"]
+        },
+        {
+            "js": ["plugins/catawiki.js"],
+            "matches": ["*://*.catawiki.com/*"]
+        },
+        {
+            "js": ["plugins/qwant.js"],
+            "matches": ["*://*.qwant.com/*"]
+        },
+        {
+            "js": ["plugins/duckduckgo.js"],
+            "matches": ["*://*.duckduckgo.com/*"]
+        },
+        {
+            "js": ["plugins/sogou.js"],
+            "matches": [
+                "*://*.sogou.cn/*",
+                "*://*.sogou.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/googlesheets.js"],
+            "matches": ["*://docs.google.com/spreadsheets/*"]
+        },
+        {
+            "js": ["plugins/naver.js"],
+            "matches": ["*://*.naver.com/*"]
+        },
+        {
+            "js": ["plugins/allegro.js"],
+            "matches": ["*://*.allegro.pl/*"]
+        },
+        {
+            "js": ["plugins/startpage.js"],
+            "matches": ["*://*.startpage.com/*"]
+        },
+        {
+            "js": ["plugins/redgifs.js"],
+            "matches": ["*://*.redgifs.com/*"]
+        },
+        {
+            "js": ["plugins/you.js"],
+            "matches": ["*://*.you.com/*"]
+        },
+        {
+            "js": ["plugins/wikifeet.js"],
+            "matches": [
+                "*://*.wikifeet.com/*",
+                "*://*.wikifeetx.com/*",
+                "*://*.mywikifeet.com/*"
+            ]
+        },
+        {
+            "js": ["plugins/gfycat.js"],
+            "matches": ["*://*.gfycat.com/*"]
+        },
+        {
+            "js": ["plugins/tipeee.js"],
+            "matches": ["*://*.tipeee.com/*"]
+        },
+        {
+            "js": ["plugins/pic2me.js"],
+            "matches": ["*://*.pic2.me/*"]
+        },
+        {
+            "js": ["plugins/celebs-place.js"],
+            "matches": ["*://*.celebs-place.com/*"]
+        },
+        {
+            "js": ["plugins/viewbug.js"],
+            "matches": ["*://*.viewbug.com/*"],
+            "all_frames": true
+        },
+        {
+            "js": ["plugins/shein.js"],
+            "matches": ["*://*.shein.com/*"]
+        },
+        {
+            "js": ["plugins/huaban.js"],
+            "matches": ["*://*.huaban.com/*"]
+        },
+        {
+            "js": ["plugins/bnf.js"],
+            "matches": ["*://*.bnf.fr/*"]
+        },
+        {
+            "js": ["plugins/tiktok.js"],
+            "matches": ["*://*.tiktok.com/*"]
+        },
+        {
+            "js": ["plugins/unlimphotos.js"],
+            "matches": ["*://*.unlimphotos.com/*"]
+        },
+        {
+            "js": ["plugins/eksisozluk.js"],
+            "matches": ["*://*.eksisozluk.com/*"]
+        },
+        {
+            "js": ["plugins/moddb.js"],
+            "matches": ["*://*.moddb.com/*",
+                        "*://*.indiedb.com/*"]
+        },
+        {
+            "js": ["plugins/motherless.js"],
+            "matches": ["*://*.motherless.com/*"]
+        },
+        {
+            "js": ["plugins/tnaflix.js"],
+            "matches": ["*://*.tnaflix.com/*"]
+        },
+        {
+            "js": ["plugins/2gis.js"],
+            "matches": ["*://*.2gis.com/*",
+                        "*://*.2gis.ae/*",
+                        "*://*.2gis.az/*",
+                        "*://*.2gis.cl/*",
+                        "*://*.2gis.cz/*",
+                        "*://*.2gis.kg/*",
+                        "*://*.2gis.kz/*",
+                        "*://*.2gis.ru/*",
+                        "*://*.2gis.uz/*",
+                        "*://*.urbi-bh.com/*",
+                        "*://*.urbi-kw.com/*",
+                        "*://*.urbi-qa.com/*",
+                        "*://*.urbi-sa.com/*"]
+        },
+        {
+            "js": ["plugins/rule34.js"],
+            "matches": ["*://*.rule34.xxx/*"]
+        },
+        {
+            "js": ["plugins/boredpanda.js"],
+            "matches": ["*://*.boredpanda.com/*"]
+        },
+        {
+            "js": ["plugins/yiffer.js"],
+            "matches": ["*://*.yiffer.xyz/*"]
+        },
+				{
+          "js": ["plugins/homeexchange.js"],
+          "matches": [
+            "*://*.homeexchange.com/*",
+            "*://*.homeexchange.fr/*",
+            "*://*.homeexchange.it/*"
+          ]
+        }
+   ]
 }
