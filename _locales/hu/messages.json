@@ -40,7 +40,7 @@
         "description": "[popup] More options"
     },
     "optTitle": {
-        "message": "Hover Zoom+ opciók",
+        "message": "Hover Zoom+ beállítások",
         "description": "[options] Page title"
     },
     "optButtonDisableAllPlugins": {
@@ -72,7 +72,7 @@
         "description": "[options] Notification after cancelling modification(s) to options"
     },
     "optReset": {
-        "message": "Beállítások visszaállítása a gyári beállításokra, mentés az alkalmazáshoz.",
+        "message": "Beállítások vissza lettek állítva a gyári értékekre, mentsen az alkalmazásukhoz.",
         "description": "[options] Notification after resetting options to factory settings"
     },
     "optPageGeneral": {
@@ -84,11 +84,11 @@
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optDarkMode": {
-        "message": "Sötét üzemmód",
+        "message": "Sötét mód",
         "description": "[options] Enable dark mode for Options & Popup"
     },
     "optSectionView": {
-        "message": "Viewer",
+        "message": "Megtekintő",
         "description": "[options] Page section for viewer options"
     },
     "optSectionVideo": {
@@ -96,15 +96,15 @@
         "description": "[options] Page section for video options"
     },
     "optSectionAudio": {
-        "message": "Audio",
+        "message": "Hang",
         "description": "[options] Page section for audio options"
     },
     "optZoomFactor": {
-        "message": "Nagyított képek nagyítása ennyiszer:",
+        "message": "Nagyított képek nagyítása",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optZoomFactorUnitName": {
-        "message": "szor/szer",
+        "message": "-szor/szer",
         "description": "[options] Unit name (percentage) for zoomed images size option"
     },
     "optZoomFactorTooltip": {
@@ -216,7 +216,7 @@
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
-        "message": "Zoom videók",
+        "message": "Videók nagyítása",
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
