@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Zinio',
-    version:'0.1',
+    version:'0.2',
     prepareImgLinks:function (callback) {
         var res = [];
         hoverZoom.urlReplace(
@@ -10,6 +10,14 @@ hoverZoomPlugins.push({
             /(_|size=)(\d{3})((.jpg)?)/i,
             '$1370$3'
         );
-        callback($(res));
+
+        hoverZoom.urlReplace(
+            res,
+            'img[src*="zinio"]',
+            /\?.*/,
+            ''
+        );
+
+        callback($(res), this.name);
     }
 });
