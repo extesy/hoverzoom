@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'You',
-    version:'1.0',
+    version:'1.1',
     prepareImgLinks:function (callback) {
 
         var res = [];
@@ -122,12 +122,15 @@ hoverZoomPlugins.push({
 
         $('img[src]').each(function() {
 
-            let link = $(this);
+            const link = $(this);
             let src = this.src;
+            src = decodeURIComponent(src);
+            // sample: https://you.com/proxy?url=https://tse3.mm.bing.net/th?id=OIP.IagGmkSmwDtu7hQxAIoF4wHaJQ&pid=Api
+            src = src.replace(/^.*url=/, '');
 
             if (hzSendData && hzSendData.indexOf(src) != -1) {
                 try {
-                    let sendData = JSON.parse(hzSendData);
+                    const sendData = JSON.parse(hzSendData);
                     let search_results = sendData.eventData.search_results;
                     search_results = JSON.parse(search_results);
                     let result = search_results.results.find(r => r.thumbnailUrl == src);
@@ -140,8 +143,8 @@ hoverZoomPlugins.push({
 
             if (hzFetchData && hzFetchData.indexOf(src) != -1) {
                 try {
-                    let fetchData = JSON.parse(hzFetchData);
-                    let result = fetchData.searchResults.results.find(r => r.thumbnailUrl == src);
+                    const fetchData = JSON.parse(hzFetchData);
+                    const result = fetchData.searchResults.results.find(r => r.thumbnailUrl == src);
                     if (result) {
                         link.data().hoverZoomSrc = [result.url];
                         res.push(link);
