@@ -1,9 +1,10 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'thingiverse.com',
-    version:'1.0',
+    version:'1.1',
     prepareImgLinks:function (callback) {
-        $('a > img[src*="card_preview"]').one('mouseover', function() {
+
+        $('a > img[src*="card_preview"], a > img[src*="preview_card"]').one('mouseover', function() {
             var link = $(this).parent();
             var href = link.attr('href');
             var thingId = href.substring(href.lastIndexOf(':') + 1);
