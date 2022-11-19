@@ -1,10 +1,16 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'meetup.com',
-    version:'1.0',
+    version:'1.1',
     prepareImgLinks:function (callback) {
 
-        var res = [];       
+        var res = [];
+
+        hoverZoom.urlReplace(res,
+            'img[src]',
+            /\/\d+x\d+/,
+            '/2200x2200'
+        );
 
         hoverZoom.urlReplace(res,
             'img[src]',
@@ -22,17 +28,17 @@ hoverZoomPlugins.push({
                 var backgroundImageUrl = backgroundImage.replace(/^['"]/,"").replace(/['"]+$/,"");
                 var reThumb = /(.*)\/(.*)_/
                 var fullsizeUrl = backgroundImageUrl.replace(reThumb, '$1/highres_');
-                if (fullsizeUrl != backgroundImageUrl) {  
+                if (fullsizeUrl != backgroundImageUrl) {
                     var link = $(this);
                    if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
-                    if (link.data().hoverZoomSrc.indexOf(fullsizeUrl) == -1) { 
+                    if (link.data().hoverZoomSrc.indexOf(fullsizeUrl) == -1) {
                         link.data().hoverZoomSrc.unshift(fullsizeUrl);
-                        res.push(link); 
+                        res.push(link);
                     }
                 }
             }
         });
-        
+
         callback($(res), this.name);
     }
 });
