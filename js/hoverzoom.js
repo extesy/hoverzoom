@@ -3171,7 +3171,22 @@ var hoverZoom = {
         $(filter).each(function () {
             var _this = $(this), link, url, thumbUrl;
             if (parentFilter) {
-                link = _this.parents(parentFilter);
+                if (Array.isArray(parentFilter)) {
+                    // try each filter until parent is found
+                    // if filter == '' then parent = this
+                    $.each(parentFilter, function(k, v) { 
+                        if (v == '') {
+                            link = _this;
+                            return false; 
+                        }
+                        link = _this.parents(v); 
+                        if (link[0]) { 
+                            return false; 
+                        }
+                    });                       
+                } else {
+                    link = _this.parents(parentFilter);
+                }
             } else {
                 link = _this;
             }
