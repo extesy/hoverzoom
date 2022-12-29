@@ -52,6 +52,14 @@ hoverZoomPlugins.push({
                 return;
             }
             
+            // New in 2022, I guess: links to posts with a new layout: "https://www.tumblr.com/<blog name>/<post id>"
+            // The old layout is still in use: "https://<blog name>.tumblr.com/post/<post id>/<optional text>"
+            // They both have this attribute:
+            var blog_name = link.attr("data-login-wall-blog-name");
+            if (blog_name && blog_name.length && href.split("/").length == 5) {
+                return;
+            }
+            
             // The "srcset" attribute contains the available versions of the image,
             // in the format "url1 size1, url2 size2, urlN sizeN", sorted by size, largest last.
             var srcset = img.attr('srcset').split(" ");
@@ -66,15 +74,29 @@ hoverZoomPlugins.push({
             ''
         );
         callback($(res));
-        $('a[href*="tumblr.com/post/"], a[href*="tumblr.com/image/"]').one('mouseenter', function () {
+        $('a[href*="tumblr.com/post/"], a[href*="tumblr.com/image/"], a[data-login-wall-blog-name]').one('mouseenter', function () {
             var link = $(this), lData = link.data(), aHref = this.href.split('/');
             if (lData.hoverZoomSrc) {
                 return;
             }
+            
+            // This relies on the fact we're currently only getting three types of links here.
+            // I don't feel like finding out how to check for data-login-wall-blog-name.
+            // Also let's hope there are no blogs called "post" or "image".
+            if (aHref[3] != "post" && aHref[3] != "image") {
+                blog_name = aHref[3];
+                
+                // Skip links like "http://www.tumblr.com/<blog name>"
+                // so we can load the profile picture or profile banner.
+                if (aHref.length != 5)
+                    return;
+            } else {
+                blog_name = aHref[2];
+            }
 
             // Send "npf=true" so that we receive the post in "Neue Post Format" (New Post Format),
             // which provides the URL for the original image size.
-            $.getJSON('https://api.tumblr.com/v2/blog/' + aHref[2] + '/posts?id=' + aHref[4] + '&api_key=GSgWCc96GxL3x2OlEtMUE56b8gjbFHSV5wf8Zm8Enr1kNcjt3U&npf=true', function (data) {
+            $.getJSON('https://api.tumblr.com/v2/blog/' + blog_name + '/posts?id=' + aHref[4] + '&api_key=GSgWCc96GxL3x2OlEtMUE56b8gjbFHSV5wf8Zm8Enr1kNcjt3U&npf=true', function (data) {
                 if (data && data.response && data.response.posts && data.response.posts[0]) {
                     var post = data.response.posts[0];
 
