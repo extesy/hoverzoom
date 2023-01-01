@@ -7,7 +7,7 @@ hoverZoomPlugins.push({
         var res = [];
         var link;
 
-        $('div[data-task-click="WallPost/openPhoto"]').each(function () {
+        $('[data-task-click="WallPost/openPhoto"]').each(function () {
             var link = $(this), data = this.getAttribute('data-options');
             var url = "";
             //parse onclick function body in order to extract alternative images urls
