@@ -680,7 +680,7 @@
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "Se for definida uma chave, o HoverZoom+ só estará activo quando essa chave for mantida premida.",
+        "message": "Se definir uma tecla, o HoverZoom+ só estará ativo enquanto essa tecla for pressionada.",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
