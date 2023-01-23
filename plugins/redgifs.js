@@ -1,30 +1,33 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'redgifs.com',
-    version:'0.3',
+    version:'0.4',
     prepareImgLinks:function (callback) {
         var res = [];
         var name = this.name;
+
+        var apiUrl = 'https://api.redgifs.com/v2';
+        var tempToken;
+
+        $.get(`${apiUrl}/auth/temporary`, function(data) {
+            if (data && data.token) {
+                tempToken = data.token;
+            }
+        });
 
         $('a[href^="https://redgifs.com/"],a[href^="https://www.redgifs.com/"]').one('mouseenter', function() {
             var link = $(this),
                 gfyId = this.href.replace(/.*redgifs.com\/(..\/)?(watch\/)?(detail\/)?(\w+).*/, '$4');
 
-            var requestUrl = 'https://api.redgifs.com/v1/gfycats/' + gfyId;
-
-            chrome.runtime.sendMessage({action:'ajaxGet', url:requestUrl}, function (response) {
-                if (response == null) {
-                    return;
+            $.ajaxSetup({
+                headers:{
+                    'Authorization': `Bearer ${tempToken}`
                 }
+            });
 
-                try {
-                    var data = JSON.parse(response);
-                } catch (e) {
-                    return;
-                }
-
-                if (data && data.gfyItem) {
-                    link.data().hoverZoomSrc = [options.zoomVideos ? data.gfyItem.mp4Url : data.gfyItem.gifUrl]
+            $.get(`${apiUrl}/gifs/${gfyId}`, function(data) {
+                if (data && data.gif) {
+                    link.data().hoverZoomSrc = [options.zoomVideos ? data.gif.urls.hd : data.gif.urls.gif];
                     callback(link, name);
                     hoverZoom.displayPicFromElement(link);
                 }
