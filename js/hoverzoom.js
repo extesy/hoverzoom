@@ -135,6 +135,7 @@ var hoverZoom = {
                 url:'',
                 audioUrl:'',
                 audioMuted:false,
+                subtitlesUrl:'',
                 host:'',
                 naturalHeight:0,
                 naturalWidth:0,
@@ -624,17 +625,28 @@ var hoverZoom = {
         // some plug-ins append:
         // .video to video streams so url = videourl.video
         // .audio to audio streams so url = audiourl.audio
-        // if both urls are present then url = videourl.video_audiourl.audio
-        function getVideoAudioFromUrl() {
+        // .subtitles to subtitles streams so url = subtitlesurl.subtitles
+        // url = videourl.video (mandatory) + _audiourl.audio (optional) + _subtitlesurl.subtitles (optional)
+        function getVideoAudioSubtitlesFromUrl() {
             const videourl = srcDetails.url.split('.video')[0];
-            const audiourl = srcDetails.url.split('.video')[1] || '';
+            const audiosubtitlesurl = srcDetails.url.split('.video')[1] || '';
+            const subtitlesurl = audiosubtitlesurl.split('.audiomuted')[1] || audiosubtitlesurl.split('.audio')[1] || audiosubtitlesurl;
+            const audiourl = (audiosubtitlesurl.indexOf('.audio') != -1 ? (audiosubtitlesurl.indexOf('.audiomuted') != -1 ? audiosubtitlesurl.split('.audiomuted')[0] + '.audiomuted' : (audiosubtitlesurl.split('.audio')[0] + '.audio' || '')) : '');
+
+            srcDetails.audioUrl = '';
             if (audiourl.endsWith('.audio')) {
-                srcDetails.audioUrl = audiourl.substring(1, audiourl.length-6);
+                srcDetails.audioUrl = audiourl.replace(/^_/, '').replace('.audio', '');
                 srcDetails.audioMuted = false;
-            } else if (audiourl.endsWith('.audiomuted')) {
-                srcDetails.audioUrl = audiourl.substring(1, audiourl.length-11);
+            }
+            if (audiourl.endsWith('.audiomuted')) {
+                srcDetails.audioUrl = audiourl.replace(/^_/, '').replace('.audiomuted', '');
                 srcDetails.audioMuted = true;  // in case of video with audio track embeded + distinct audio track: mute distinct audio track
             }
+            srcDetails.subtitlesUrl = '';
+            if (subtitlesurl.endsWith('.subtitles')) {
+                srcDetails.subtitlesUrl = subtitlesurl.replace(/^_/, '').replace('.subtitles', '');
+            }
+
             srcDetails.url = videourl;
         }
 
@@ -875,10 +887,20 @@ var hoverZoom = {
                 now = true;
             }
             hz.hzViewer.stop(true, true).fadeOut(now ? 0 : options.fadeDuration, function () {
-                removeMedias();
+                stopMedias();
                 hzCaptionMiscellaneous = null;
                 hzDetails = null;
                 hz.hzViewer.empty();
+                if (imgFullSize) {
+                    imgFullSize.remove();
+                    imgFullSize = null;
+                    viewerLocked = false;
+                }
+                if (audioControls) {
+                    audioControls.remove();
+                    audioControls = null;
+                    viewerLocked = false;
+                }
             });
         }
 
@@ -1059,7 +1081,7 @@ var hoverZoom = {
                 srcDetails.audio = isAudioLink(srcDetails.url);
 
                 if (srcDetails.video) {
-                    getVideoAudioFromUrl();
+                    getVideoAudioSubtitlesFromUrl();
 
                     if (!options.zoomVideos) {
                         cancelSourceLoading();
@@ -1241,8 +1263,9 @@ var hoverZoom = {
                 }
 
                 // if video comes with distinct url for audio then get additonal infos for video url only
-                srcDetails.host = getHostFromUrl(srcDetails.audio ? srcDetails.audioUrl : srcDetails.url);
-                getAdditionalInfosFromServer(srcDetails.audio ? srcDetails.audioUrl : srcDetails.url);
+                const urlDetails = (srcDetails.audio && !srcDetails.video ? srcDetails.audioUrl : srcDetails.url);
+                srcDetails.host = getHostFromUrl(urlDetails);
+                getAdditionalInfosFromServer(urlDetails);
 
                 skipFadeIn = false;
                 imgFullSize.css(progressCss);
@@ -1674,25 +1697,26 @@ var hoverZoom = {
 
         function getSrcDetails(link) {
             let details = {};
-            if (!srcDetails.audio) {
+            if (!srcDetails.audio || srcDetails.video) {
                 if (srcDetails.naturalWidth) details.dimensions = Math.round(srcDetails.naturalWidth / parseInt(options.zoomFactor)) + 'x' + Math.round(srcDetails.naturalHeight / parseInt(options.zoomFactor));
                 if (srcDetails.naturalWidth) details.ratio = getImgRatio(srcDetails.naturalWidth, srcDetails.naturalHeight);
                 let displayedWidth = imgFullSize.width() || imgFullSize[0].width;
                 if (srcDetails.naturalWidth) details.scale = Math.round(100.0 * displayedWidth / srcDetails.naturalWidth) + '%';
             }
 
-            details.extension = getExtensionFromUrl(srcDetails.audio ? srcDetails.audioUrl : srcDetails.url, srcDetails.video, srcDetails.playlist, srcDetails.audio);
+            // if video comes with distinct url for audio then extension = video's extension
+            details.extension = getExtensionFromUrl(srcDetails.audio && !srcDetails.video ? srcDetails.audioUrl : srcDetails.url, srcDetails.video, srcDetails.playlist, srcDetails.audio);
             details.host = srcDetails.host;
             let filename = getDownloadFilename();
             if (filename) details.filename = filename;
-            let duration = (srcDetails.audio ? getDurationFromAudio() : getDurationFromVideo());
+            let duration = (srcDetails.audio && !srcDetails.video ? getDurationFromAudio() : getDurationFromVideo());
             if (duration) details.duration = duration.replace(/ /g, ':');
 
             let additionaInfos = sessionStorage.getItem('hoverZoomAdditionalInfos');
             if (additionaInfos) {
                 try {
                     additionaInfos = JSON.parse(additionaInfos);
-                    let infos = additionaInfos[srcDetails.audio ? srcDetails.audioUrl : srcDetails.url];
+                    let infos = additionaInfos[srcDetails.audio && !srcDetails.video ? srcDetails.audioUrl : srcDetails.url];
                     if (infos) {
                         details.contentLength = infos.contentLength;
                         details.lastModified = infos.lastModified;
@@ -2782,7 +2806,8 @@ var hoverZoom = {
             IMG : "IMG",
             VIDEO : "VIDEO",
             AUDIO : "AUDIO",
-            PLAYLIST : "PLAYLIST"
+            PLAYLIST : "PLAYLIST",
+            SUBTITLES : "SUBTITLES"
         }
 
         // return download filename without knowing type of download
@@ -2795,6 +2820,8 @@ var hoverZoom = {
             filename = getDownloadFilenameByMedia(downloadMedias.AUDIO);
             if (filename) return filename;
             filename = getDownloadFilenameByMedia(downloadMedias.PLAYLIST);
+            if (filename) return filename;
+            filename = getDownloadFilenameByMedia(downloadMedias.SUBTITLES);
             if (filename) return filename;
             return '';
         }
@@ -2855,6 +2882,18 @@ var hoverZoom = {
                     filename = 'playlist-' + filename;
                     if (filename.indexOf('.') === -1) filename = filename + '.m3u8';
                     return filename;
+
+                case downloadMedias.SUBTITLES:
+                    if (!hz.hzViewer) return '';
+                    if (!srcDetails.subtitlesUrl) return '';
+                    src = srcDetails.subtitlesUrl;
+                    // remove trailing / & trailing query
+                    src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
+                    // extract filename
+                    filename = src.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
+                    filename = 'subtitles-' + filename;
+                    if (filename.indexOf('.') === -1) filename = filename + '.txt';
+                    return filename;
             }
             return '';
         }
@@ -2900,10 +2939,11 @@ var hoverZoom = {
             saveVideo();
             saveAudio();
             savePlaylist();
+            saveSubtitles();
         }
 
         function copyLink() {
-            const url = (srcDetails.audio ? srcDetails.audioUrl : srcDetails.url);
+            const url = (srcDetails.audio && !srcDetails.video ? srcDetails.audioUrl : srcDetails.url);
             if (!url) return;
             navigator.clipboard.writeText(url);
         }
@@ -2992,6 +3032,22 @@ var hoverZoom = {
                 filename = origin + filename;
             }
             downloadResource(src, filename);
+        }
+
+        function saveSubtitles() {
+            if (!hz.hzViewer) return;
+            let video = hz.hzViewer.find('video').get(0);
+            let audio = hz.hzViewer.find('audio').get(0);
+            if (!video && !audio) return;
+            let filename = getDownloadFilenameByMedia(downloadMedias.SUBTITLES);
+            if (!filename) return;
+
+            if (options.addDownloadOrigin) {
+                // prefix with origin
+                let origin = '[' + getOrigin() + ']';
+                filename = origin + filename;
+            }
+            downloadResource(srcDetails.subtitlesUrl, filename);
         }
 
         // save the *** URL *** of playlist so user can load it in a video player such as VLC
@@ -3174,16 +3230,16 @@ var hoverZoom = {
                 if (Array.isArray(parentFilter)) {
                     // try each filter until parent is found
                     // if filter == '' then parent = this
-                    $.each(parentFilter, function(k, v) { 
+                    $.each(parentFilter, function(k, v) {
                         if (v == '') {
                             link = _this;
-                            return false; 
+                            return false;
                         }
-                        link = _this.parents(v); 
-                        if (link[0]) { 
-                            return false; 
+                        link = _this.parents(v);
+                        if (link[0]) {
+                            return false;
                         }
-                    });                       
+                    });
                 } else {
                     link = _this.parents(parentFilter);
                 }
@@ -3387,6 +3443,9 @@ var hoverZoom = {
             link.data().hoverZoomGallerySrc = src;
             link.data().hoverZoomGalleryIndex = 0;
             link.data().hoverZoomSrc = src[0];
+            if (Array.isArray(link.data().hoverZoomGalleryCaption)) {
+                link.data().hoverZoomCaption = link.data().hoverZoomGalleryCaption[0];
+            }
         } else {
             link.data().hoverZoomSrc = [src];
         }

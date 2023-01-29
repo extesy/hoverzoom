@@ -2,287 +2,425 @@ var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Instagram',
     version:'0.4',
+    favicon:'instagram.svg',
     prepareImgLinks:function (callback) {
+
+        const pluginName = this.name;
         var res = [];
-        var sharedData = null;
-        var hookedData = sessionStorage.getItem('hookedData');
-        var hookedDataJson = null;
-        try {
-            hookedDataJson = JSON.parse(hookedData);
-        } catch (e) {}
 
-        // Hook Instagram 'Open' XMLHttpRequests to catch data & metadata associated with pictures displayed
-        // These requests are issued by client side to Instagram servers in order to obtain new data when user scrolls down
-        // Hooked data is stored in sessionStorage
-        if ($('script.hoverZoomHook').length == 0) { // Inject hook script in document if not already there
-            var hookScript = document.createElement('script');
-            hookScript.type = 'text/javascript';
-            hookScript.text = `if (typeof oldXHROpen !== 'function') { // Hook only once!
-                oldXHROpen = window.XMLHttpRequest.prototype.open;
-                window.XMLHttpRequest.prototype.open = function(method, url, async, user, password) {
-                    // catch responses
-                    this.addEventListener('load', function() {
-                        try {
-                            // filter responses
-                            if (/shortcode/.test(this.responseText)) {
-                                // store response as plain text in a sessionStorage for later usage by plug-in
-                                sessionStorage.setItem('hookedData', this.responseText);
-
-                                // Add & remove empty <a> element to/from DOM to trigger HoverZoom,
-                                // so hooked data can be exploited
-                                let fakeA = document.createElement('a');
-                                (document.head || document.documentElement).appendChild(fakeA);
-                                (document.head || document.documentElement).removeChild(fakeA);
-                            }
-                        } catch {}
-                    });
-                    // Proceed with original function
-                    return oldXHROpen.apply(this, arguments);
-                }
-            }`;
-            hookScript.classList.add('hoverZoomHook');
-            (document.head || document.documentElement).appendChild(hookScript);
-        }
-
-        // Find key(s) in JSON object and return corresponding value(s) and path(s)
-        // If key not found then return []
-        // https://gist.github.com/killants/569c4af5f2983e340512916e15a48ac0
-        function getKeysInObject(jsonObj, searchKey, isRegex, maxDeepLevel, currDeepLevel) {
-
-            var bShowInfo = false;
-
-            maxDeepLevel = ( maxDeepLevel || maxDeepLevel == 0 ) ? maxDeepLevel : 100;
-            currDeepLevel = currDeepLevel ? currDeepLevel : 1 ;
-            isRegex = isRegex ? isRegex : false;
-
-            // check RegEx validity if needed
-            var re;
-            if (isRegex) {
-                try {
-                    re = new RegExp(searchKey);
-                } catch (e) {
-                    cLog(e);
-                    return [];
-                }
-            }
-
-            if( currDeepLevel > maxDeepLevel ) {
-                return [];
-            } else {
-
-                var keys = [];
-
-                for(var curr in jsonObj) {
-                    var currElem = jsonObj[curr];
-
-                    if( currDeepLevel == 1 && bShowInfo ) { cLog("getKeysInObject : Looking property \"" + curr + "\" ") }
-
-                    if( isRegex ? re.test(curr) : curr === searchKey ){
-                        var r = {};
-                        r.key = curr;
-                        r.value = currElem;
-                        r.path = '["' + curr + '"]';
-                        keys.push( r );
-                    }
-
-                    if( typeof currElem == "object" ) { // object is "object" and "array" is also in the eyes of "typeof"
-                        // search again :D
-                        var deepKeys = getKeysInObject( currElem, searchKey, isRegex, maxDeepLevel, currDeepLevel + 1 );
-
-                        for(var e = 0 ; e < deepKeys.length; e++) {
-                            // update path backwards
-                            deepKeys[e].path = '["' + curr + '"]' + deepKeys[e].path;
-                            keys.push( deepKeys[e] );
-                        }
-                    }
-                }
-                return keys;
-            }
-        }
-
-        // Find value(s) in JSON object and return corresponding key(s) and path(s)
-        // If value not found then return []
-        // ref: https://gist.github.com/killants/569c4af5f2983e340512916e15a48ac0
-        function getValuesInObject(jsonObj, searchValue, isRegex, maxDeepLevel, currDeepLevel) {
-
-            var bShowInfo = false;
-
-            maxDeepLevel = ( maxDeepLevel || maxDeepLevel == 0 ) ? maxDeepLevel : 100;
-            currDeepLevel = currDeepLevel ? currDeepLevel : 1 ;
-            isRegex = isRegex ? isRegex : false;
-
-            // check RegEx validity if needed
-            var re;
-            if (isRegex) {
-                try {
-                    re = new RegExp(searchValue);
-                } catch (e) {
-                    cLog(e);
-                    return [];
-                }
-            }
-
-            if( currDeepLevel > maxDeepLevel ) {
-                return [];
-            } else {
-
-                var keys = [];
-
-                for(var curr in jsonObj) {
-                    var currElem = jsonObj[curr];
-
-                    if( currDeepLevel == 1 && bShowInfo ) { cLog("getKeysInObject : Looking property \"" + curr + "\" ") }
-
-                    if( typeof currElem == "object" ) { // object is "object" and "array" is also in the eyes of "typeof"
-                        // search again :D
-                        var deepKeys = getValuesInObject( currElem, searchValue, isRegex, maxDeepLevel, currDeepLevel + 1 );
-                        for(var e = 0 ; e < deepKeys.length; e++) {
-                            // update path backwards
-                            deepKeys[e].path = '["' + curr + '"]' + deepKeys[e].path;
-                            keys.push( deepKeys[e] );
-                        }
-                    } else {
-
-                        if( isRegex ? re.test(currElem) : currElem === searchValue ){
-
-                            var r = {};
-                            r.key = curr;
-                            r.value = currElem;
-                            r.path = '["' + curr + '"]';
-                            keys.push( r );
-                        }
-                    }
-                }
-                return keys;
-            }
-        }
-
-        // Find node with good shortcode
-        function FindNode(nodes, shortcode) {
-            node = null;
-            $(nodes).each(function() { if (this.value.shortcode == shortcode) { node = this.value; return false; } });
-            return node;
-        }
-
-        // Extract data in window._sharedData
-        function extractSharedData(shortcode) {
-            cLog('extractSharedData');
-            if (sharedData == null) {
-                if (document.scripts == undefined) return null;
-                let scripts = Array.from(document.scripts);
-                let goodScripts = scripts.filter(script => /^window._sharedData /.test(script.text));
-                if (goodScripts.length != 1) return null;
-                let dataFromScript = goodScripts[0].text;
-                let idxJsonBegin = dataFromScript.indexOf('window._sharedData ');
-                let idxJsonEnd = dataFromScript.indexOf('};', idxJsonBegin);
-                let json2parse = dataFromScript.substring(dataFromScript.indexOf('{', idxJsonBegin) - 1, idxJsonEnd + 1);
-                try {
-                    sharedData = JSON.parse(json2parse);
-                } catch (e) {}
-            }
-            let nodes = getKeysInObject(sharedData, 'node');
-            let data = FindNode(nodes, shortcode);
-            return data;
-        }
-
-        // Extract hooked data from sessionStorage
-        function extractHookedData(shortcode) {
-            cLog('extractHookedData');
-            if (hookedData == undefined) return null;
-            if (hookedDataJson == undefined) return null;
-            let nodes = getKeysInObject(hookedDataJson, 'node');
-            let data = FindNode(nodes, shortcode);
-            return data;
-        }
-
-        // Extract shortcode from link associated with each image, then use shortcode as a key to find url for larger image.
-        // This url can be found in sharedData for first loaded images, or in hooked data for images displayed  after some scrolling
-        // In last resort, an API call is issued.
-        $('a[href]:has(img[src]):not(.hoverZoomLink)').each(function() {
-
-            // extract href from link
-            var link = $(this);
-            link = $(link);
-            var href = this.href;
-            var fullsizeUrl;
-
-            // extract shortcode from href
-            var re = /.*\/p\/(.*)\//
-            var m = href.match(re);
-            if (m) {
-                var shortcode = m[1];
-                cLog('shortcode:' + shortcode);
-
-                // check sessionStorage in case url was already found
-                var dataFromSessionStorage = sessionStorage.getItem(shortcode);
-                if (dataFromSessionStorage == null) {
-
-                    // try to find shortcode in sharedData
-                    data = extractSharedData(shortcode);
-                    if (data) {
-                        fullsizeUrl = data.display_url;
-                        cLog('photo fullsizeUrl (from sharedData):' + fullsizeUrl);
-                    }
-
-                    // try to find shortcode in hooked data
-                    if (data == null) {
-                        data = extractHookedData(shortcode);
-                        if (data) {
-                            fullsizeUrl = data.display_url;
-                            cLog('photo fullsizeUrl (from hookedData):' + fullsizeUrl);
-                        }
-                    }
-
-                    // if data with good shortcode is found then store it
-                    if (data) {
-                        sessionStorage.setItem(shortcode, JSON.stringify(data));
-                    }
+        function sortResults(obj, prop, asc) {
+            obj.sort(function(a, b) {
+                if (asc) {
+                    return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
                 } else {
-                    data = JSON.parse(dataFromSessionStorage);
-                    fullsizeUrl = (data.display_url ? data.display_url : (data.graphql && data.graphql.shortcode_media ? data.graphql.shortcode_media.display_url : ''));
-                    cLog('photo fullsizeUrl (from sessionStorage):' + fullsizeUrl);
+                    return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
                 }
+            });
+        }
 
-                if (fullsizeUrl != undefined) {
-                    if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
-                    if (link.data().hoverZoomSrc.indexOf(fullsizeUrl) == -1) {
-                        link.data().hoverZoomSrc.unshift(fullsizeUrl);
+        // find user name, user id, user fullname, reels highlights
+        //    sample: https://www.instagram.com/wants_a_meme/reels/
+        //  user name: wants_a_meme
+        // => user id: 54909864326
+
+        var userName, userId, userFullname;
+        const m = document.location.href.match(/instagram\.com\/([^/]{1,})/);
+        if (m) {
+            userName = m[1];
+            if (!['instagram|explore|reels|stories|p'].includes(userName)) {
+
+                var instagramUsersData = sessionStorage.getItem('instagramUsersData') || '{}';
+                try {
+                    instagramUsersData = JSON.parse(instagramUsersData);
+                    if (instagramUsersData[userName]) {
+                        userId = instagramUsersData[userName].data.user.id;
+                        userFullname = instagramUsersData[userName].data.user.full_name;
                     }
-                    link.addClass('hoverZoomLink');
-                    callback(link);
+                } catch {}
+
+                if (!userId && !userFullname) {
+                    chrome.runtime.sendMessage({action:'ajaxGet',
+                                                url:'https://www.instagram.com/api/v1/users/web_profile_info/?username=' + userName,
+                                                headers:[{"header":"X-IG-App-ID","value":"936619743392459"}],
+                                                }, function (response) {
+
+                                                    try {
+                                                        const o = JSON.parse(response);
+                                                        userId = o.data.user.id;
+                                                        userFullname = o.data.user.full_name;
+                                                        // store user data
+                                                        instagramUsersData[userName] = o;
+                                                        try {
+                                                            sessionStorage.setItem('instagramUsersData', JSON.stringify(instagramUsersData));
+                                                        } catch {
+                                                            // reset sessionStorage
+                                                            let instagramUserData = instagramUsersData[userName];
+                                                            instagramUsersData = {};
+                                                            instagramUsersData[userName] = instagramUserData;
+                                                            sessionStorage.setItem('instagramUsersData', JSON.stringify(instagramUsersData));
+                                                        }
+                                                        getUserReelsHighlights();
+                                                    } catch { }
+                                                }
+                    )
                 } else {
-
-                    // no data found  locally so proceed with API call
-                    // WARNING: CORB error (Cross-Origin Read Blocking) raised when calling the API from the content script.
-                    // cf https://www.chromium.org/Home/chromium-security/extension-content-script-fetches
-                    // Workaround: call the API from background page.
-                    var requestUrl = 'https://www.instagram.com/p/' + shortcode + '/?__a=1';
-
-                    chrome.runtime.sendMessage({action:'ajaxGet', url:requestUrl}, function (response) {
-
-                        if (response == null) { return; }
-
-                        try {
-                            var data = JSON.parse(response);
-                        } catch (e) { return; }
-
-                        // store whole response in sessionStorage
-                        sessionStorage.setItem(shortcode, response);
-
-                        if (data.graphql && data.graphql.shortcode_media) fullsizeUrl = data.graphql.shortcode_media.display_url;
-                        cLog('photo fullsizeUrl (from API call):' + fullsizeUrl);
-
-                        if (fullsizeUrl != undefined) {
-                            if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
-                            if (link.data().hoverZoomSrc.indexOf(fullsizeUrl) == -1) {
-                                link.data().hoverZoomSrc.unshift(fullsizeUrl);
-                            }
-                            link.addClass('hoverZoomLink');
-                            callback(link);
+                    var instagramUsersReelsHighlights = sessionStorage.getItem('instagramUsersReelsHighlights') || '{}';
+                    try {
+                        instagramUsersReelsHighlights = JSON.parse(instagramUsersReelsHighlights);
+                        if (!instagramUsersReelsHighlights[userId]) {
+                            getUserReelsHighlights();
                         }
-                    });
+                    } catch {}
                 }
             }
+        }
+
+        function getUserReelsHighlights() {
+            if (! userId) return;
+            chrome.runtime.sendMessage({action:'ajaxGet',
+                                        url:'https://www.instagram.com/graphql/query/?query_hash=d4d88dc1500312af6f937f7b804c68c3&variables={"user_id":"' + userId + '","include_chaining":true,"include_reel":false,"include_suggested_users":false,"include_logged_out_extras":false,"include_highlight_reels":true,"include_live_status":false}',
+                                        headers:[{"header":"X-IG-App-ID","value":"936619743392459"}],
+                                        }, function (response) {
+
+                                            var instagramUsersReelsHighlights = sessionStorage.getItem('instagramUsersReelsHighlights') || '{}';
+                                            try {
+                                                instagramUsersReelsHighlights = JSON.parse(instagramUsersReelsHighlights);
+                                                // store reels data
+                                                instagramUsersReelsHighlights[userId] = JSON.parse(response);
+                                                try {
+                                                    sessionStorage.setItem('instagramUsersReelsHighlights', JSON.stringify(instagramUsersReelsHighlights));
+                                                } catch {
+                                                    // reset sessionStorage
+                                                    let instagramUserReelsHighlights = instagramUsersReelsHighlights[userId];
+                                                    instagramUsersReelsHighlights = {};
+                                                    instagramUsersReelsHighlights[userId] = instagramUserReelsHighlights;
+                                                    sessionStorage.setItem('instagramUsersReelsHighlights', JSON.stringify(instagramUsersReelsHighlights));
+                                                }
+                                            } catch {}
+                                        });
+        }
+
+        // audio
+        // sample: https://www.instagram.com/reels/audio/492466295586301/
+        // TBD
+
+        // header reels
+        $('header div[role="button"] img').on('mouseover', function() {
+            if (document.location.href.match('(following|followers)')) return;
+            // extract image src (e.g: 321365237_536711615164811_1593293938921078231_n.jpg)
+            const imgSrc = this.src.replace(/.*?([^\/]{1,}\.jpg)(\?.*)?/, '$1');
+            const link = $(this);
+
+            // resuse previous result
+            if (link.data().hoverZoomInstagramUserId == userId) {
+                if (link.data().hoverZoomInstagramGallerySrc) {
+                    link.data().hoverZoomGallerySrc = link.data().hoverZoomInstagramGallerySrc;
+                    if (link.data().hoverZoomInstagramGalleryCaption) {
+                        link.data().hoverZoomGalleryCaption = link.data().hoverZoomInstagramGalleryCaption;
+                    }
+                }
+                return;
+            }
+
+            link.data().hoverZoomInstagramUserId = userId;
+            link.data().hoverZoomGallerySrc = undefined;
+            link.data().hoverZoomGalleryCaption = undefined;
+
+            chrome.runtime.sendMessage({action:'ajaxGet',
+                                        url:'https://www.instagram.com/api/v1/feed/reels_media/?reel_ids=' + userId,
+                                        headers:[{"header":"X-IG-App-ID","value":"936619743392459"}],
+                                        }, function (response) {
+
+                                            try {
+                                                const o = JSON.parse(response);
+                                                var gallery = [];
+                                                var captions = [];
+                                                // reels might mix images & videos
+                                                const reels = o.reels_media[0].items;
+                                                reels.map(r => { gallery.push([r.video_versions ? r.video_versions[0].url : r.image_versions2.candidates[0].url]); captions.push(r.caption ?? userFullname); });
+                                                link.data().hoverZoomGallerySrc = gallery;
+                                                link.data().hoverZoomInstagramGallerySrc = gallery;
+                                                link.data().hoverZoomGalleryCaption = captions;
+                                                link.data().hoverZoomInstagramGalleryCaption = captions;
+                                                callback(link, pluginName);
+                                                hoverZoom.displayPicFromElement(link);
+                                            } catch {}
+
+                                        }
+                                    );
         });
+
+        // highlighted reels
+        $('div[role="presentation"] img').on('mouseover', function() {
+            if (document.location.href.match('(following|followers)')) return;
+            // extract image src (e.g: 321365237_536711615164811_1593293938921078231_n.jpg)
+            // image src will be used as a key to find reels id
+            const imgSrc = this.src.replace(/.*?([^\/]{1,}\.jpg)(\?.*)?/, '$1');
+            const link = $(this);
+
+            // resuse previous result
+            if (link.data().hoverZoomInstagramUserId == userId) {
+                if (link.data().hoverZoomInstagramGallerySrc) {
+                    link.data().hoverZoomGallerySrc = link.data().hoverZoomInstagramGallerySrc;
+                    if (link.data().hoverZoomInstagramGalleryCaption) {
+                        link.data().hoverZoomGalleryCaption = link.data().hoverZoomInstagramGalleryCaption;
+                    }
+                }
+                return;
+            }
+
+            // clean previous result
+            link.data().hoverZoomInstagramUserId = userId;
+            link.data().hoverZoomGallerySrc = undefined;
+            link.data().hoverZoomGalleryCaption = undefined;
+
+            // lookup sessionStorage
+            var instagramUsersReelsHighlights = sessionStorage.getItem('instagramUsersReelsHighlights') || '{}';
+            var reels;
+            try {
+                instagramUsersReelsHighlights = JSON.parse(instagramUsersReelsHighlights);
+                reels = instagramUsersReelsHighlights[userId];
+            } catch { return; }
+
+            // find reel_ids associated to img
+            var reel_ids = undefined;
+            try {
+                const values = hoverZoom.getValuesInJsonObject(reels, imgSrc, false, true, true); // look for a partial match & stop after 1st match
+                if (values.length == 0) {
+                    return;
+                }
+                // extract object containing id
+                const o = hoverZoom.getJsonObjectFromPath(reels, values[0].path.substring(0, values[0].path.substring(0, values[0].path.lastIndexOf('[')).lastIndexOf('[')));
+                reel_ids = o.id;
+            } catch {}
+
+            if (!reel_ids) return;
+
+            chrome.runtime.sendMessage({action:'ajaxGet',
+                                        url:'https://www.instagram.com/api/v1/feed/reels_media/?reel_ids=highlight:' + reel_ids,
+                                        headers:[{"header":"X-IG-App-ID","value":"936619743392459"}],
+                                        }, function (response) {
+
+                                            try {
+                                                const o = JSON.parse(response);
+                                                var gallery = [];
+                                                var captions = [];
+                                                // reels might mix images & videos
+                                                const reels = o.reels_media[0].items;
+                                                reels.map(r => { gallery.push([r.video_versions ? r.video_versions[0].url : r.image_versions2.candidates[0].url]); captions.push(r.caption ?? userFullname); });
+                                                link.data().hoverZoomGallerySrc = gallery;
+                                                link.data().hoverZoomInstagramGallerySrc = gallery;
+                                                link.data().hoverZoomGalleryCaption = captions;
+                                                link.data().hoverZoomInstagramGalleryCaption = captions;
+                                                callback(link, pluginName);
+                                                hoverZoom.displayPicFromElement(link);
+                                            } catch {}
+                                        });
+        });
+
+        // profiles
+        // sample 1: https://www.instagram.com/therock/
+        // sample 2: https://www.instagram.com/ronaldo_sites/reels/
+        $('a[href]:not(.hoverZoomMouseover)').filter(function() { return (!/(\/reel\/|\/p\/)/.test($(this).prop('href'))) }).addClass('hoverZoomMouseover').one('mouseover', function() {
+
+            var href = this.href;
+            var link = $(this);
+
+            const re = /instagram\.com\/([^/]{1,})\//
+            const m = href.replace('reels/', '').match(re);
+            if (m == null) return;
+            const username = m[1];
+
+            // clean previous result
+            link.data().hoverZoomSrc = [];
+
+            // lookup sessionStorage
+            var instagramUsersData = sessionStorage.getItem('instagramUsersData') || '{}';
+            try {
+                instagramUsersData = JSON.parse(instagramUsersData);
+                if (instagramUsersData[username]) {
+                    link.data().hoverZoomSrc = [instagramUsersData[username].data.user.profile_pic_url_hd];
+                    link.data().hoverZoomCaption = instagramUsersData[username].data.user.full_name;
+                    hoverZoom.displayPicFromElement(link);
+                    return;
+                }
+            } catch {}
+
+            // username not found in sessionStorage => proceed with api call
+            chrome.runtime.sendMessage({action:'ajaxGet',
+                                        url:'https://www.instagram.com/api/v1/users/web_profile_info/?username=' + username,
+                                        headers:[{"header":"X-IG-App-ID","value":"936619743392459"}],
+                                        }, function (response) {
+
+                                            try {
+                                                const o = JSON.parse(response);
+                                                const profileUrl = o.data.user.profile_pic_url_hd;
+                                                link.data().hoverZoomSrc = [profileUrl];
+                                                link.data().hoverZoomCaption = o.data.user.full_name;
+                                                // store user data
+                                                instagramUsersData[username] = o;
+                                                try {
+                                                    sessionStorage.setItem('instagramUsersData', JSON.stringify(instagramUsersData));
+                                                } catch {
+                                                    // reset sessionStorage
+                                                    let instagramUserData = instagramUsersData[username];
+                                                    instagramUsersData = {};
+                                                    instagramUsersData[username] = instagramUserData;
+                                                    sessionStorage.setItem('instagramUsersData', JSON.stringify(instagramUsersData));
+                                                }
+                                                callback(link, pluginName);
+                                                hoverZoom.displayPicFromElement(link);
+                                            } catch { }
+                                        }
+            );
+        });
+
+        // pictures & videos
+        // sample: https://www.instagram.com/p/ClpZbUIpNvx/
+        $('a[href*="/p/"]:not(.hoverZoomMouseover), a[href*="/reel/"]:not(.hoverZoomMouseover)').addClass('hoverZoomMouseover').one('mouseover', function() {
+
+            const href = this.href;
+            const link = $(this);
+
+            const re = /\/(p|reel)\/([^/]{1,})/
+            const m = href.match(re);
+            if (m == null) return;
+            const shortcode = m[2];
+
+            var mediaId = undefined;
+
+            // lookup sessionStorage
+            var instagramMediaData = sessionStorage.getItem('instagramMediaData') || '{}';
+            try {
+                instagramMediaData = JSON.parse(instagramMediaData);
+                if (instagramMediaData[shortcode]) {
+                    const items0 = instagramMediaData[shortcode];
+                    displayMedia(link, items0);
+                    callback(link, pluginName);
+                    return;
+                } else {
+                    // find media id associated to shortcode in user data
+                    var instagramUsersData = sessionStorage.getItem('instagramUsersData') || '{}';
+                    instagramUsersData = JSON.parse(instagramUsersData);
+                    if (instagramUsersData[userName]) {
+
+                        const values = hoverZoom.getValuesInJsonObject(instagramUsersData[userName], shortcode, true, true, true); // look for a full match & stop after 1st match
+                        if (values.length) {
+                            // extract object containing media id
+                            const o = hoverZoom.getJsonObjectFromPath(instagramUsersData[userName], values[0].path.substring(0, values[0].path.lastIndexOf('[')));
+                            mediaId = o.id;
+                        }
+                    }
+                }
+            } catch {}
+
+            if (mediaId == undefined) {
+                // compute media id from shortcode
+                mediaId = mediaIdfromShortcode(shortcode);
+            }
+
+            // clean previous result
+            link.data().hoverZoomSrc = [];
+
+            chrome.runtime.sendMessage({action:'ajaxGet',
+                                        url:'https://www.instagram.com/api/v1/media/' + mediaId + '/info/',
+                                        headers:[{"header":"X-IG-App-ID","value":"936619743392459"}],
+                                        }, function (response) {
+
+                                            try {
+                                                const o = JSON.parse(response);
+                                                const items0 = o.items[0];
+                                                // store media data
+                                                var instagramMediaData = sessionStorage.getItem('instagramMediaData') || '{}';
+                                                instagramMediaData = JSON.parse(instagramMediaData);
+                                                instagramMediaData[shortcode] = items0;
+                                                try {
+                                                    sessionStorage.setItem('instagramMediaData', JSON.stringify(instagramMediaData));
+                                                } catch {
+                                                    // reset sessionStorage
+                                                    instagramMediaData = {};
+                                                    instagramMediaData[shortcode] = items0;
+                                                    sessionStorage.setItem('instagramMediaData', JSON.stringify(instagramMediaData));
+                                                }
+                                                displayMedia(link, items0);
+                                                callback(link, pluginName);
+                                                hoverZoom.displayPicFromElement(link);
+                                            } catch { }
+                                        }
+            );
+        });
+
+        // display all kind of media (images, videos, carousel)
+        function displayMedia(link, items0, callback) {
+
+            const videos = items0.video_versions;
+            const images = items0.image_versions2;
+            const carousel = items0.carousel_media;
+            if (videos) {
+                // extract best quality video url
+                //sortResults(videos, 'width', false);
+                const videoUrl = videos[0].url + '.video';
+
+                // try to extract audio url (might not be present)
+                let audioUrl;
+                try {
+                    if (items0.clips_metadata.original_sound_info) {
+                        audioUrl = items0.clips_metadata.original_sound_info.progressive_download_url + '.audiomuted'; // there is already a soundtrack in video, this one is only for download
+                    } else if (items0.clips_metadata.music_info) {
+                        audioUrl = items0.clips_metadata.music_info.music_asset_info.progressive_download_url + '.audiomuted'; // there is already a soundtrack in video, this one is only for download
+                    }
+                } catch {}
+
+                // try to extract subtitles url (might not be present)
+                let subtitlesUrl;
+                try {
+                    if (items0.video_subtitles_uri) subtitlesUrl = items0.video_subtitles_uri + '.subtitles';
+                } catch {}
+
+                let videoAudioSubtitlesUrl = videoUrl;
+                if (audioUrl) videoAudioSubtitlesUrl += '_' + audioUrl;
+                if (subtitlesUrl) videoAudioSubtitlesUrl += '_' + subtitlesUrl;
+                link.data().hoverZoomCaption = (items0.caption ? items0.caption.text : (items0.accessibility_caption ? items0.accessibility_caption : items0.user.full_name));
+                if (callback) callback(videoAudioSubtitlesUrl);
+                else link.data().hoverZoomSrc = [videoAudioSubtitlesUrl];
+            } else if (images) {
+                const imagesUrl = images.candidates[0].url;
+                link.data().hoverZoomCaption = (items0.caption ? items0.caption.text : (items0.accessibility_caption ? items0.accessibility_caption : items0.user.full_name));
+                if (callback) callback(imagesUrl);
+                else link.data().hoverZoomSrc = [imagesUrl];
+            } else if (carousel) {
+                var gallery = [];
+                var captions = [];
+                const caption = (items0.caption ? items0.caption.text : (items0.accessibility_caption ? items0.accessibility_caption : items0.user.full_name));
+                // carousel might mix images & videos
+                carousel.map(c => { gallery.push([c.video_versions ? c.video_versions[0].url : c.image_versions2.candidates[0].url]); captions.push(caption ?? ''); });
+                link.data().hoverZoomGalleryCaption = captions;
+                if (callback) callback(gallery);
+                else link.data().hoverZoomGallerySrc = gallery;
+            }
+        }
+
+        // from https://gist.github.com/sclark39/9daf13eea9c0b381667b61e3d2e7bc11
+        // require https://github.com/peterolson/BigInteger.js
+
+        var lower = 'abcdefghijklmnopqrstuvwxyz';
+        var upper = lower.toUpperCase();
+        var numbers = '0123456789';
+        var ig_alphabet =  upper + lower + numbers + '-_';
+        var bigint_alphabet = numbers + lower;
+
+        // compute media id from shortcode
+        // e.g: CG53Utagki0 => 2430216789653866676
+        function mediaIdfromShortcode( shortcode )
+        {
+            var o = shortcode.replace( /\S/g, m =>
+            {
+                var c = ig_alphabet.indexOf( m );
+                var b = bigint_alphabet.charAt( c );
+                return ( b != "" ) ? b : `<${c}>`;
+            } );
+            return bigInt( o, 64 ).toString( 10 );
+        }
+
     }
 });
