@@ -671,6 +671,14 @@
         "message": "옵션 -> 고급에서 \"HTTP(S) 요청 및 응답의 헤더 수정 허용\" 설정을 켜세요",
         "description": "[options] FAQ Answer 6 part 3"
     },
+    "optFAQ_Q7": {
+        "message": "이미지나 비디오 위에 마우스를 올려놓았지만 아무일도 일어나지 않아요!",
+        "description": "[options] FAQ Question 7"
+    },
+    "optFAQ_A7": {
+        "message": "스크롤을 내리거나 아무곳이나 클릭하면 호버 줌+ 가 동작합니다!",
+        "description": "[options] FAQ Answer 7"
+    },
     "optPixelsUnitName": {
         "message": "픽셀",
         "description": "[options] Unit name (pixels)"
