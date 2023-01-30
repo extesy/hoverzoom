@@ -287,10 +287,10 @@ hoverZoomPlugins.push({
             if (m == null) return;
             const shortcode = m[2];
 
-            var mediaId = undefined;
+            let mediaId = undefined;
 
             // lookup sessionStorage
-            var instagramMediaData = sessionStorage.getItem('instagramMediaData') || '{}';
+            let instagramMediaData = sessionStorage.getItem('instagramMediaData') || '{}';
             try {
                 instagramMediaData = JSON.parse(instagramMediaData);
                 if (instagramMediaData[shortcode]) {
@@ -300,7 +300,7 @@ hoverZoomPlugins.push({
                     return;
                 } else {
                     // find media id associated to shortcode in user data
-                    var instagramUsersData = sessionStorage.getItem('instagramUsersData') || '{}';
+                    let instagramUsersData = sessionStorage.getItem('instagramUsersData') || '{}';
                     instagramUsersData = JSON.parse(instagramUsersData);
                     if (instagramUsersData[userName]) {
 
@@ -314,7 +314,7 @@ hoverZoomPlugins.push({
                 }
             } catch {}
 
-            if (mediaId == undefined) {
+            if (mediaId === undefined) {
                 // compute media id from shortcode
                 mediaId = mediaIdfromShortcode(shortcode);
             }
@@ -389,8 +389,8 @@ hoverZoomPlugins.push({
                 if (callback) callback(imagesUrl);
                 else link.data().hoverZoomSrc = [imagesUrl];
             } else if (carousel) {
-                var gallery = [];
-                var captions = [];
+                let gallery = [];
+                let captions = [];
                 const caption = (items0.caption ? items0.caption.text : (items0.accessibility_caption ? items0.accessibility_caption : items0.user.full_name));
                 // carousel might mix images & videos
                 carousel.map(c => { gallery.push([c.video_versions ? c.video_versions[0].url : c.image_versions2.candidates[0].url]); captions.push(caption ?? ''); });
@@ -400,27 +400,23 @@ hoverZoomPlugins.push({
             }
         }
 
-        // from https://gist.github.com/sclark39/9daf13eea9c0b381667b61e3d2e7bc11
-        // require https://github.com/peterolson/BigInteger.js
-
-        var lower = 'abcdefghijklmnopqrstuvwxyz';
-        var upper = lower.toUpperCase();
-        var numbers = '0123456789';
-        var ig_alphabet =  upper + lower + numbers + '-_';
-        var bigint_alphabet = numbers + lower;
+        const lower = 'abcdefghijklmnopqrstuvwxyz';
+        const upper = lower.toUpperCase();
+        const numbers = '0123456789';
+        const ig_alphabet =  upper + lower + numbers + '-_';
+        const bigint_alphabet = numbers + lower;
 
         // compute media id from shortcode
         // e.g: CG53Utagki0 => 2430216789653866676
-        function mediaIdfromShortcode( shortcode )
+        function mediaIdfromShortcode(shortcode)
         {
-            var o = shortcode.replace( /\S/g, m =>
+            const o = shortcode.replace(/\S/g, m =>
             {
-                var c = ig_alphabet.indexOf( m );
-                var b = bigint_alphabet.charAt( c );
-                return ( b != "" ) ? b : `<${c}>`;
-            } );
-            return bigInt( o, 64 ).toString( 10 );
+                const c = ig_alphabet.indexOf(m);
+                const b = bigint_alphabet.charAt(c);
+                return b !== "" ? b : `<${c}>`;
+            });
+            return BigInt(o).toString(10);
         }
-
     }
 });

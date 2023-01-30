@@ -1190,7 +1190,7 @@
             "matches": ["*://*.artlimited.net/*"]
         },
         {
-            "js": ["plugins/instagram.js", "js/BigInteger.js"],
+            "js": ["plugins/instagram.js"],
             "matches": ["*://*.instagram.com/*"]
         },
         {
