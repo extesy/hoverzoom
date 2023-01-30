@@ -671,6 +671,14 @@
         "message": "Sa Mga opsyon -> Advanced, i-activate ang \"Payagan ang muling pagsulat ng mga header para sa HTTP(S) na request o response\"",
         "description": "[options] FAQ Answer 6 part 3"
     },
+    "optFAQ_Q7": {
+        "message": "Nag-hover ako ng larawan o video pero minsan walang nangyayari!",
+        "description": "[options] FAQ Question 7"
+    },
+    "optFAQ_A7": {
+        "message": "Mag-scroll pababa o mag-click kahit saan sa pahina para magising ang HoverZoom+!",
+        "description": "[options] FAQ Answer 7"
+    },
     "optPixelsUnitName": {
         "message": "mga pixel",
         "description": "[options] Unit name (pixels)"

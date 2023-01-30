@@ -671,6 +671,14 @@
         "message": "在 \"选项\"->\"高级 \"中，激活 \"允许重写HTTP(S)请求或响应的头信息\"",
         "description": "[options] FAQ Answer 6 part 3"
     },
+    "optFAQ_Q7": {
+        "message": "I hover an image or video but sometimes nothing happens!",
+        "description": "[options] FAQ Question 7"
+    },
+    "optFAQ_A7": {
+        "message": "Scroll down or click anywhere on page to wake up HoverZoom+!",
+        "description": "[options] FAQ Answer 7"
+    },
     "optPixelsUnitName": {
         "message": "像素",
         "description": "[options] Unit name (pixels)"

@@ -671,6 +671,14 @@
         "message": "オプション」→「詳細設定」で、\"HTTP(S)リクエストまたはレスポンスのヘッダーの書き換えを許可する \"を有効にする。",
         "description": "[options] FAQ Answer 6 part 3"
     },
+    "optFAQ_Q7": {
+        "message": "I hover an image or video but sometimes nothing happens!",
+        "description": "[options] FAQ Question 7"
+    },
+    "optFAQ_A7": {
+        "message": "Scroll down or click anywhere on page to wake up HoverZoom+!",
+        "description": "[options] FAQ Answer 7"
+    },
     "optPixelsUnitName": {
         "message": "ピクセル",
         "description": "[options] Unit name (pixels)"

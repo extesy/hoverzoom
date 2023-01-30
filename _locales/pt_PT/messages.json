@@ -671,6 +671,14 @@
         "message": "Em Opções -> Opções Avançadas, ative \"Permitir reescrever cabeçalhos de pedido ou resposta HTTP(S)\"",
         "description": "[options] FAQ Answer 6 part 3"
     },
+    "optFAQ_Q7": {
+        "message": "Eu passo o rato sobre uma imagem ou vídeo, mas às vezes nada acontece!",
+        "description": "[options] FAQ Question 7"
+    },
+    "optFAQ_A7": {
+        "message": "Deslize o rato par baixo ou clique em qualquer lugar na página para acordar o HoverZoom+!",
+        "description": "[options] FAQ Answer 7"
+    },
     "optPixelsUnitName": {
         "message": "píxeis",
         "description": "[options] Unit name (pixels)"
