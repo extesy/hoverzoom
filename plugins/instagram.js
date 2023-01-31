@@ -323,7 +323,7 @@ hoverZoomPlugins.push({
             link.data().hoverZoomSrc = [];
 
             chrome.runtime.sendMessage({action:'ajaxGet',
-                                        url:'https://www.instagram.com/api/v1/media/' + mediaId + '/info/',
+                                        url:`https://www.instagram.com/api/v1/media/${mediaId}/info/`,
                                         headers:[{"header":"X-IG-App-ID","value":"936619743392459"}],
                                         }, function (response) {
 
@@ -403,20 +403,14 @@ hoverZoomPlugins.push({
         const lower = 'abcdefghijklmnopqrstuvwxyz';
         const upper = lower.toUpperCase();
         const numbers = '0123456789';
-        const ig_alphabet =  upper + lower + numbers + '-_';
-        const bigint_alphabet = numbers + lower;
+        const ig_alphabet = upper + lower + numbers + '-_';
 
         // compute media id from shortcode
         // e.g: CG53Utagki0 => 2430216789653866676
-        function mediaIdfromShortcode(shortcode)
+        function mediaIdfromShortcode( shortcode )
         {
-            const o = shortcode.replace(/\S/g, m =>
-            {
-                const c = ig_alphabet.indexOf(m);
-                const b = bigint_alphabet.charAt(c);
-                return b !== "" ? b : `<${c}>`;
-            });
-            return BigInt(o).toString(10);
+            const o = shortcode.replace(/\S/g, m => (ig_alphabet.indexOf(m) >>> 0).toString(2).padStart(6, '0')); // base64 to binary
+            return BigInt('0b' + o).toString(10); // binary to decimal
         }
     }
 });
