@@ -672,11 +672,11 @@
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optFAQ_Q7": {
-        "message": "I hover an image or video but sometimes nothing happens!",
+        "message": "Bir resmin veya videonun üzerine geliyorum ama bazen hiçbir şey olmuyor!",
         "description": "[options] FAQ Question 7"
     },
     "optFAQ_A7": {
-        "message": "Scroll down or click anywhere on page to wake up HoverZoom+!",
+        "message": "HoverZoom+'ı uyandırmak için sayfayı aşağı kaydırın veya sayfada herhangi bir yeri tıklayın!",
         "description": "[options] FAQ Answer 7"
     },
     "optPixelsUnitName": {
