@@ -57,11 +57,14 @@ hoverZoomPlugins.push({
       $.get('https://www.reddit.com/by_id/t3_' + galleryid + '.json?raw_json=1', function (data) {
         if (data && data.data) {
           post.find('a.thumbnail,a.title').each(function () {
-            var img = $(this);
-            var items = data.data.children[0].data.gallery_data.items;
+            var gallery_data = data.data.children[0].data.gallery_data;
             var media_metadata = data.data.children[0].data.media_metadata;
-            var src = items.map(item => ['https://i.redd.it/' + item.media_id + '.' + media_metadata[item.media_id].m.substring(6)]);
-            hoverZoom.prepareLink(img, src);
+            if (gallery_data != null && media_metadata != null) {
+              var img = $(this);
+              var items = gallery_data.items;
+              var src = items.map(item => ['https://i.redd.it/' + item.media_id + '.' + media_metadata[item.media_id].m.substring(6)]);
+              hoverZoom.prepareLink(img, src);
+            }
           });
         }
       });

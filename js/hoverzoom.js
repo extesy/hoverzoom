@@ -633,7 +633,6 @@ var hoverZoom = {
             const subtitlesurl = audiosubtitlesurl.split('.audiomuted')[1] || audiosubtitlesurl.split('.audio')[1] || audiosubtitlesurl;
             const audiourl = (audiosubtitlesurl.indexOf('.audio') != -1 ? (audiosubtitlesurl.indexOf('.audiomuted') != -1 ? audiosubtitlesurl.split('.audiomuted')[0] + '.audiomuted' : (audiosubtitlesurl.split('.audio')[0] + '.audio' || '')) : '');
 
-            srcDetails.audioUrl = '';
             if (audiourl.endsWith('.audio')) {
                 srcDetails.audioUrl = audiourl.replace(/^_/, '').replace('.audio', '');
                 srcDetails.audioMuted = false;
