@@ -53,7 +53,8 @@ hoverZoomPlugins.push({
 
     $('div[data-url*="//www.reddit.com/gallery/"]').each(function () {
       var post = $(this);
-      var galleryid = post.attr('data-url').slice(-6);
+      var link = post.attr('data-url');
+      var galleryid = link.substring(link.lastIndexOf('/') + 1);
       $.get('https://www.reddit.com/by_id/t3_' + galleryid + '.json?raw_json=1', function (data) {
         if (data && data.data) {
           post.find('a.thumbnail,a.title').each(function () {
@@ -72,7 +73,8 @@ hoverZoomPlugins.push({
 
     $('a[href*="//www.reddit.com/gallery/"]').each(function () {
       var img = $(this);
-      var galleryid = img.attr('href').slice(-7);
+      var link = post.attr('data-url');
+      var galleryid = link.substring(link.lastIndexOf('/') + 1);
       $.get('https://www.reddit.com/by_id/t3_' + galleryid + '.json?raw_json=1', function (data) {
         if (data && data.data) {
           var items = data.data.children[0].data.gallery_data.items;
