@@ -38,6 +38,10 @@ com_crashlytics_export_strings.xml
 # npm modules
 node_modules/
 
+# Vale text linter
+.vale.ini
+.vale-styles
+
 web-ext-artifacts
 hoverzoom.zip
 .vscode

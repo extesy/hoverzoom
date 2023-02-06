@@ -85,6 +85,20 @@ hoverZoomPlugins.push({
       });
     });
 
+    $('div[data-is-gallery=true]').each(function () {
+      var img = $(this);
+      var galleryid = img.attr('data-fullname');
+      $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', function (data) {
+        if (data && data.data) {
+          var items = data.data.children[0].data.gallery_data.items;
+          var media_metadata = data.data.children[0].data.media_metadata;
+          var src = items.map(item => ['https://i.redd.it/' + item.media_id + '.' + media_metadata[item.media_id].m.substring(6)]);
+          var title = img.find('a.title');
+          hoverZoom.prepareLink(title, src);
+        }
+      });
+    });
+
     $('div[data-url*="//v.redd.it/"]').each(function () {
       var post = $(this);
       var link = post.attr('data-url');
