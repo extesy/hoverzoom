@@ -3,6 +3,22 @@ hoverZoomPlugins.push({
   name: 'Reddit',
   version: '0.3',
   prepareImgLinks: function (callback) {
+    // https://preview.redd.it/example.png?width=640&amp;...
+    function transformPreviewUrl(url) {
+      url = url.replace('preview', 'i');
+      url = url.slice('0', url.indexOf('?'));
+      return url;
+    }
+
+    // https://external-preview.redd.it/example.jpg?width=640...
+    function transformExternalPreviewUrl(url) {
+      if (url.indexOf('&amp') !== -1) {
+        url = url.replaceAll('&amp%3B', '&');
+        url = url.replaceAll('&amp;', '&');
+      }
+      return url;
+    }
+
     $('.hoverZoomLink').each(function () {
       var _this = $(this);
       if (options.filterNSFW && _this.parents('.over18').length) {
@@ -11,14 +27,51 @@ hoverZoomPlugins.push({
       _this.data().hoverZoomCaption = _this.parent().find('a.title').text();
     });
 
+    $('.Post').one('mouseover', function() {
+      var post = $(this);
+
+      var gallery = post.find('ul');
+      if (gallery.length > 0) {
+        // Remove default hoverzoom processing to avoid gallery being processed as single image
+        post.find('.hoverZoomLink').each(function() {
+          $(this).removeClass('hoverZoomLink');
+        })
+
+        var items = gallery.find('img');
+
+        var src = [];
+        items.each(function() {
+          var item = $(this)
+          src.push([transformPreviewUrl(item.attr('src'))]);
+        });
+
+        hoverZoom.prepareLink(gallery, src);
+        return;
+      }
+
+      var img = post.find('img.ImageBox-image');
+      if (img.length > 0) {
+        var src = img.attr('src');
+
+        switch (src.slice(8, src.indexOf('.'))) {
+        case 'preview':
+          src = transformPreviewUrl(src);
+          break;
+        case 'external-preview':
+          src = transformExternalPreviewUrl(src);
+        }
+
+        hoverZoom.prepareLink(img, src);
+        return;
+      }
+    });
+
     $('a[href*="//external-preview.redd.it/"]').each(function () {
       const post = $(this);
       let href = post.attr('href');
-      if (href.indexOf('&amp') !== -1) {
-        href = href.replaceAll('&amp%3B', '&');
-        href = href.replaceAll('&amp;', '&');
-        post.attr('href', href);
-      }
+
+      href = transformExternalPreviewUrl(href)
+      post.attr('href', href);
       post.data('hoverZoomSrc', [href]);
     });
 
