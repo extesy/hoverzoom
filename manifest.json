@@ -1872,6 +1872,10 @@
             "matches": ["*://*.homeexchange.com/*",
                         "*://*.homeexchange.fr/*",
                         "*://*.homeexchange.it/*"]
+        },
+        {
+            "js": ["plugins/fandom.js"],
+            "matches": ["*://*.fandom.com/*"]
         }
     ]
 }
