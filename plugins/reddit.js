@@ -114,7 +114,9 @@ hoverZoomPlugins.push({
             if (gallery_data != null && media_metadata != null) {
               var img = $(this);
               var items = gallery_data.items;
-              var src = items.map(item => ['https://i.redd.it/' + item.media_id + '.' + media_metadata[item.media_id].m.substring(6)]);
+              var src = items
+                .filter(item => media_metadata[item.media_id].status === 'valid')
+                .map(item => ['https://i.redd.it/' + item.media_id + '.' + media_metadata[item.media_id].m.substring(6)]);
               hoverZoom.prepareLink(img, src);
             }
           });
@@ -132,7 +134,9 @@ hoverZoomPlugins.push({
           var media_metadata = data.data.children[0].data.media_metadata;
           if (gallery_data != null && media_metadata != null) {
             var items = gallery_data.items;
-            var src = items.map(item => ['https://i.redd.it/' + item.media_id + '.' + media_metadata[item.media_id].m.substring(6)]);
+            var src = items
+              .filter(item => media_metadata[item.media_id].status === 'valid')
+              .map(item => ['https://i.redd.it/' + item.media_id + '.' + media_metadata[item.media_id].m.substring(6)]);
             hoverZoom.prepareLink(post, src);
           }
         }
@@ -144,11 +148,16 @@ hoverZoomPlugins.push({
       var galleryid = img.attr('data-fullname');
       $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', function (data) {
         if (data && data.data) {
-          var items = data.data.children[0].data.gallery_data.items;
+          var gallery_data = data.data.children[0].data.gallery_data;
           var media_metadata = data.data.children[0].data.media_metadata;
-          var src = items.map(item => ['https://i.redd.it/' + item.media_id + '.' + media_metadata[item.media_id].m.substring(6)]);
-          var title = img.find('a.title');
-          hoverZoom.prepareLink(title, src);
+          if (gallery_data != null && media_metadata != null) {
+            var items = gallery_data.items;
+            var src = items
+              .filter(item => media_metadata[item.media_id].status === 'valid')
+              .map(item => ['https://i.redd.it/' + item.media_id + '.' + media_metadata[item.media_id].m.substring(6)]);
+            var title = img.find('a.title');
+            hoverZoom.prepareLink(title, src);
+          }
         }
       });
     });
