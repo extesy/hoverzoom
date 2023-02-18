@@ -1880,6 +1880,14 @@
         {
             "js": ["plugins/temu.js"],
             "matches": ["*://*.temu.com/*"]
+        },
+        {
+            "js": ["plugins/fotocommunity.js"],
+            "matches": ["*://*.fotocommunity.com/*",
+                        "*://*.fotocommunity.de/*",
+                        "*://*.fotocommunity.es/*",
+                        "*://*.fotocommunity.fr/*",
+                        "*://*.fotocommunity.it/*"]
         }
     ]
 }
