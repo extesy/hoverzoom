@@ -1892,6 +1892,10 @@
         {
             "js": ["plugins/ecranlarge.js"],
             "matches": ["*://*.ecranlarge.com/*"]
+        },
+        {
+            "js": ["plugins/hejto.js"],
+            "matches": ["*://*.hejto.pl/*"]
         }
     ]
 }
