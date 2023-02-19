@@ -1888,6 +1888,10 @@
                         "*://*.fotocommunity.es/*",
                         "*://*.fotocommunity.fr/*",
                         "*://*.fotocommunity.it/*"]
+        },
+        {
+            "js": ["plugins/ecranlarge.js"],
+            "matches": ["*://*.ecranlarge.com/*"]
         }
     ]
 }
