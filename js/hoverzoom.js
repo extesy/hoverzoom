@@ -622,6 +622,13 @@ var hoverZoom = {
             return audioExtensions.has(ext);
         }
 
+        function isImageLink(url) {
+            if (isVideoLink(url)) return false;
+            if (isAudioLink(url)) return false;
+            if (isPlaylistLink(url)) return false;
+            return true;
+        }
+
         // some plug-ins append:
         // .video to video streams so url = videourl.video
         // .audio to audio streams so url = audiourl.audio
@@ -3130,16 +3137,23 @@ var hoverZoom = {
             loading = true;
             hzGallery.text('.../' + data.hoverZoomGallerySrc.length);
 
-            removeMedias();
-
             loadNextGalleryImage();
             preloadGalleryImage((data.hoverZoomGalleryIndex + rot + l) % l);
         }
 
         function loadNextGalleryImage() {
             clearTimeout(loadFullSizeImageTimeout);
+            // keep same viewer when switching from image to image
+            // recreate viewer when switching to video, audio or playlist
+            let isImgLinkPrev = isImageLink(srcDetails.url);
             srcDetails.url = hz.currentLink.data().hoverZoomSrc[hz.currentLink.data().hoverZoomSrcIndex];
-            loadFullSizeImage();
+            let isImgLinkNext = isImageLink(srcDetails.url);
+            if (isImgLinkPrev && isImgLinkNext) {
+                imgFullSize.on('load', nextGalleryImageOnLoad).on('error', srcFullSizeOnError).attr('src', srcDetails.url);
+            } else {
+                removeMedias();
+                loadFullSizeImage();
+            }
             getAdditionalInfosFromServer(srcDetails.url);
         }
 
