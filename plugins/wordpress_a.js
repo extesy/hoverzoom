@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Wordpress',
-    version:'2.2',
+    version:'2.3',
     prepareImgLinks:function (callback) {
         var res = [];
 
@@ -24,7 +24,7 @@ hoverZoomPlugins.push({
             // extract url from style
             // ex: style="background-image: url(https://globalvoices.org/wp-content/uploads/2019/01/20160507_KAR5877-400x300.jpg)"
             let backgroundImage = this.style.backgroundImage;
-            if (backgroundImage.indexOf('wp-content') !== -1) {
+            if (backgroundImage && backgroundImage.indexOf('wp-content') !== -1) {
                 const reUrl = /.*url\s*\(\s*(.*)\s*\).*/i;
                 let backgroundImageUrl = backgroundImage.replace(reUrl, '$1');
                 // remove leading & trailing quotes
