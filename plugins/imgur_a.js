@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Imgur_a',
-    version:'1.4',
+    version:'1.5',
     prepareImgLinks:function (callback) {
 
         var name = this.name;
@@ -22,7 +22,7 @@ hoverZoomPlugins.push({
 
         function prepareImgLink() {
             var link = $(this), data = link.data(), href = link.attr('href');
-            
+
             // special case for Google Docs
             if (window.location.host == 'docs.google.com') {
                 data.hoverZoomSrc = [href];
@@ -135,7 +135,7 @@ hoverZoomPlugins.push({
             // extract url from style
             // ex: backgroundImage = url("http://site.net/image.png")
             var backgroundImage = this.style.backgroundImage;
-            if (backgroundImage.indexOf("url") !== -1 && backgroundImage.indexOf("imgur") !== -1) {
+            if (backgroundImage && backgroundImage.indexOf("url") !== -1 && backgroundImage.indexOf("imgur") !== -1) {
                 var reUrl = /.*url\s*\(\s*(.*)\s*\).*/i
                 backgroundImage = backgroundImage.replace(reUrl, '$1');
                 // remove leading & trailing quotes
