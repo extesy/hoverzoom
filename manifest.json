@@ -1896,6 +1896,14 @@
         {
             "js": ["plugins/hejto.js"],
             "matches": ["*://*.hejto.pl/*"]
+        },
+        {
+            "js": ["plugins/geograph.js"],
+            "matches": ["*://*.geograph.org/*",
+                        "*://*.geograph.org.uk/*",
+                        "*://*.geograph.org.gg/*",
+                        "*://*.geograph.ie/*",
+                        "*://*.hlipp.de/*"]
         }
     ]
 }
