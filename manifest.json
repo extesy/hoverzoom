@@ -1904,6 +1904,10 @@
                         "*://*.geograph.org.gg/*",
                         "*://*.geograph.ie/*",
                         "*://*.hlipp.de/*"]
+        },
+        {
+            "js": ["plugins/canmore.js"],
+            "matches": ["*://*.canmore.org.uk/*"]
         }
     ]
 }
