@@ -1,7 +1,8 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'MediaWiki_a',
-    version:'0.9',
+    version:'1.0',
+    favicon:'mediawiki.svg',
     prepareImgLinks:function (callback) {
 
         var res = [];
@@ -36,6 +37,17 @@ hoverZoomPlugins.push({
             _this.data().hoverZoomSrc = srcs;
             res.push(_this);
 
+        });
+
+        // sample: https://commons.wikimedia.org/wiki/File:Mary_Stuart_Young6.jpg
+        $('a[href*="/wiki/File:"]').one('mouseenter', function() {
+            hoverZoom.prepareFromDocument($(this), this.href, function (doc) {
+                let link = $(this);
+                var ogImg = doc.head.querySelector('meta[property="og:image"]');
+                if (ogImg) {
+                    return ogImg.content;
+                }
+            });
         });
 
         callback($(res), this.name);
