@@ -1908,6 +1908,10 @@
         {
             "js": ["plugins/canmore.js"],
             "matches": ["*://*.canmore.org.uk/*"]
+        },
+        {
+            "js": ["plugins/head-fi.js"],
+            "matches": ["*://*.head-fi.org/*"]
         }
     ]
 }
