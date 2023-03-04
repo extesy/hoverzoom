@@ -1913,6 +1913,10 @@
         {
             "js": ["plugins/head-fi.js"],
             "matches": ["*://*.head-fi.org/*"]
+        },
+        {
+            "js": ["plugins/wildcritters.js"],
+            "matches": ["*://*.wildcritters.ws/*"]
         }
     ]
 }
