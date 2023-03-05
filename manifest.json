@@ -1917,6 +1917,10 @@
         {
             "js": ["plugins/wildcritters.js"],
             "matches": ["*://*.wildcritters.ws/*"]
+        },
+        {
+            "js": ["plugins/auscelebs.js"],
+            "matches": ["*://*.auscelebs.net/*"]
         }
     ]
 }
