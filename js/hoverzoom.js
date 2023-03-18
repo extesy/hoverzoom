@@ -2955,8 +2955,8 @@ var hoverZoom = {
         }
 
         function copyImage() {
-            const url = srcDetails.url;
-            if(!url) return;
+            if (! srcDetails.url) return;
+            const url = srcDetails.url.replaceAll(' ', '%20');
 
             fetch(url)
                 .then(resp => resp.blob())
@@ -3088,17 +3088,7 @@ var hoverZoom = {
             }
 
             // download KO: This function must be called during a user gesture => debugger must be closed
-            var urlBlob = URL.createObjectURL( new Blob([srcDetails.url], {type: 'text/plain'}) );
-            chrome.runtime.sendMessage({
-                action: 'downloadFile',
-                url: urlBlob,
-                filename: filename,
-                conflictAction: 'uniquify' //'overwrite'
-            }, function() {
-                try {
-                    URL.revokeObjectURL(urlBlob);
-                } catch {}
-            });
+            downloadResource(srcDetails.url, filename);
         }
 
         function getDurationFromVideo() {

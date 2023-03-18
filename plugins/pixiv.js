@@ -1,8 +1,26 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'Pixiv',
-    version:'3.0',
+    version:'3.1',
     prepareImgLinks: function (callback) {
+        var name = this.name;
+
+        // if header(s) rewrite is allowed store headers settings that will be used for rewrite
+        if (options.allowHeadersRewrite) {
+            chrome.runtime.sendMessage({action:"storeHeaderSettings",
+                                        plugin:name,
+                                        settings:
+                                            [{"type":"request",
+                                            "skipInitiator":"pixiv",
+                                            "url":"pximg.net",
+                                            "headers":[{"name":"referer", "value":"https://www.pixiv.net/", "typeOfUpdate":"add"}]},
+                                            {"type":"response",
+                                            "skipInitiator":"pixiv",
+                                            "url":"pximg.net",
+                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
+                                        });
+        }
+
         // the element selector
         const selector = {
             thumbnail: 'a[href*="/artworks/"], a[href*="member_illust.php?mode="], a[href*="/group/"]',
