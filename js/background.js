@@ -6,6 +6,10 @@ function ajaxRequest(request, callback) {
     var response = request.response;
     var method = request.method;
     var url = request.url;
+    var filename = request.filename;
+    var conflictAction = request.conflictAction;
+
+    if (response === 'DOWNLOAD') xhr.responseType = 'arraybuffer';
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
@@ -13,10 +17,17 @@ function ajaxRequest(request, callback) {
                 if (method === 'HEAD') {
                     callback({url:url, headers:xhr.getAllResponseHeaders()});
                 } else {
-                    if (response === 'URL') {
-                        callback(xhr.responseURL);
-                    } else {
-                        callback(xhr.responseText);
+                    switch (response) {
+                        case 'DOWNLOAD':
+                            const blobBin = new Blob([xhr.response], {type:'application/octet-stream'});
+                            const blobUrl = URL.createObjectURL(blobBin);
+                            downloadFile(blobUrl, filename, conflictAction, callback);
+                            break;
+                        case 'URL':
+                            callback(xhr.responseURL);
+                            break;
+                        default:
+                            callback(xhr.responseText);
                     }
                 }
             } else {
@@ -32,18 +43,41 @@ function ajaxRequest(request, callback) {
     xhr.send(request.data);
 }
 
+function downloadFile(url, filename, conflictAction, callback) {
+    let currentId;
+    chrome.downloads.onChanged.addListener(onChanged);
+    chrome.downloads.download({url, filename, conflictAction, saveAs: false}, id => { currentId = id });
+    return true;
+
+    function onChanged(delta) {
+        if (!delta) return;
+        if (delta.id != currentId) return;
+        if (delta.state && delta.state.current !== 'in_progress') {
+            chrome.downloads.onChanged.removeListener(onChanged);
+            try {
+                URL.revokeObjectURL(url); // remove blob
+            } catch {}
+            callback();
+        }
+    }
+}
 function onMessage(message, sender, callback) {
     switch (message.action) {
         case 'downloadFile':
+            // direct URL download through Chrome API might be prohibited (e.g: Pixiv)
+            // workaround:
+            // 1. obtain ArrayBuffer from XHR request (GET URL) 
+            // 2. create Blob from ArrayBuffer
+            // 3. download Blob URL through Chrome API
             if (options.enableDownloads) {
-                chrome.downloads.download({url: message.url, filename: message.filename, conflictAction: message.conflictAction});
+                ajaxRequest({method:'GET', response:'DOWNLOAD', url:message.url, filename:message.filename, conflictAction:message.conflictAction, headers:message.headers}, callback);
                 return true;
             } else {
                 chrome.permissions.request({
                     permissions: ['downloads']
                 }, function (granted) {
                     if (granted) {
-                        chrome.downloads.download({url: message.url, filename: message.filename, conflictAction: message.conflictAction});
+                        ajaxRequest({method:'GET', response:'DOWNLOAD', url:message.url, filename:message.filename, conflictAction:message.conflictAction, headers:message.headers}, callback);
                         return true;
                     } else {
                         return false;

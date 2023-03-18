@@ -1,12 +1,28 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push( {
     name: 'tiktok_a',
-    version: '1.3',
+    version: '1.4',
     prepareImgLinks: function(callback) {
         var name = this.name;
 
         const token1 = 'SIGI_STATE';
         const token2 = 'SIGI_RETRY';
+
+        // if header(s) rewrite is allowed store headers settings that will be used for rewrite
+        if (options.allowHeadersRewrite) {
+             chrome.runtime.sendMessage({action:"storeHeaderSettings",
+                                        plugin:name,
+                                        settings:
+                                            [{"type":"request",
+                                            "skipInitiator":"tiktok",
+                                            "url":"tiktok.com",
+                                            "headers":[{"name":"referer", "value":"https://www.tiktok.com/", "typeOfUpdate":"add"}]},
+                                            {"type":"response",
+                                            "skipInitiator":"tiktok",
+                                            "url":"tiktok.com",
+                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
+                                        });
+        }
 
         function getVideo(videoId, jsonData, link) {
             try {
