@@ -92,6 +92,7 @@
                 "plugins/imgur_a.js",
                 "plugins/instagram_a.js",
                 "plugins/ipboard_a.js",
+                "plugins/kick_a.js",
                 "plugins/mediawiki_a.js",
                 "plugins/medium_a.js",
                 "plugins/niconico_a.js",
