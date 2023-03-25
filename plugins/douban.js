@@ -1,7 +1,8 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push( {
     name: 'Douban',
-    version:'0.2',
+    version:'0.3',
+    favicon:'douban.ico',
     prepareImgLinks: function(callback) {
         var res = [];
 // http://img1.douban.com/view/photo/albumicon/public/p1236054384.jpg
@@ -45,37 +46,45 @@ hoverZoomPlugins.push( {
             /imedium/,
             'medium'
         );
-        
+
         hoverZoom.urlReplace(res,
             'img[src]',
             /\/albumcover\//,
             '/original/'
         );
-        
+
         hoverZoom.urlReplace(res,
             'img[src]',
             /\/sq?x?s?\//,
             '/original/'
         );
-        
+
         hoverZoom.urlReplace(res,
             'img[src]',
-            /\/(l|m)\//,
+            /\/(l|m|m_ratio_poster)\//,
             '/original/'
         );
-        
+
         hoverZoom.urlReplace(res,
             'img[src]',
             /\/s_/,
             '/'
         );
-          
+
         hoverZoom.urlReplace(res,
             'div[style]',
             /\?image.*/,
             ''
         );
-              
+
+        // https://img1.doubanio.com/pview/event_poster/large/public/a5f81657a5dc0c7.jpg
+        // https://img1.doubanio.com/pview/event_poster/raw/public/a5f81657a5dc0c7.jpg
+        hoverZoom.urlReplace(res,
+            'img[src]',
+            /\/(small|medium|large)\//,
+            '/raw/'
+        );
+
         callback($(res), this.name);
     }
 });
