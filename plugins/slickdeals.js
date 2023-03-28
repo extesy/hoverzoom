@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'slickdeals',
-    version:'0.1',
+    version:'0.2',
     prepareImgLinks:function (callback) {
         var res = [];
 
@@ -19,7 +19,7 @@ hoverZoomPlugins.push({
             hoverZoom.displayPicFromElement(img);
         });
 
-        $('body').on('mouseenter', 'a.bp-c-card_imageContainer', function() {
+        $('body').on('mouseenter', 'span.dealCardList__dealImageContainer, a.bp-c-card_imageContainer', function() {
             const self = $(this);
             const img = self.find('img');
             if (img.length === 1) {
