@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'eBay',
-    version:'0.6',
+    version:'0.7',
     prepareImgLinks:function (callback) {
         var res = [];
         var hzItems = [], itemIds = [];
@@ -11,7 +11,8 @@ hoverZoomPlugins.push({
         hoverZoom.urlReplace(res,
             'img[src*="ebayimg"],[style*="ebayimg"]',
             /\$_\d+/,
-            '$_32'
+            '$_32',
+            'div.s-item__image-wrapper'
         );
 
         // sample: https://i.ebayimg.com/images/g/SDwAAOSw9vdgOLBv/s-l500.jpg
@@ -19,7 +20,8 @@ hoverZoomPlugins.push({
         hoverZoom.urlReplace(res,
             'img[src*="ebayimg"],[style*="ebayimg"]',
             /\/s-l\d+\./,
-            '/s-l1600.'
+            '/s-l1600.',
+            'div.s-item__image-wrapper'
         );
 
         callback($(res), this.name);
@@ -70,7 +72,7 @@ hoverZoomPlugins.push({
                 chrome.runtime.sendMessage({action: 'ajaxGet', url: requestUrl}, function (data) {
                     var res = [];
                     var response = JSON.parse(data);
-                    if (!response.gallery)
+                    if (!response || !response.gallery)
                         return;
 
                     for (const hzItem of hzItems) {
