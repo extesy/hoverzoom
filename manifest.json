@@ -79,6 +79,7 @@
                 "plugins/cloudinary_a.js",
                 "plugins/dailymotion_a.js",
                 "plugins/deviantart_a.js",
+                "plugins/douyin_a.js",
                 "plugins/ebay_a.js",
                 "plugins/facebook_a.js",
                 "plugins/flickr_a.js",
@@ -1922,6 +1923,10 @@
         {
             "js": ["plugins/auscelebs.js"],
             "matches": ["*://*.auscelebs.net/*"]
+        },
+        {
+            "js": ["plugins/douyin.js"],
+            "matches": ["*://*.douyin.com/*"]
         }
     ]
 }
