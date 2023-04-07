@@ -1927,6 +1927,10 @@
         {
             "js": ["plugins/douyin.js"],
             "matches": ["*://*.douyin.com/*"]
+        },
+        {
+            "js": ["plugins/picsart.js"],
+            "matches": ["*://*.picsart.com/*"]
         }
     ]
 }
