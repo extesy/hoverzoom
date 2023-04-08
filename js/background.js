@@ -63,10 +63,10 @@ function downloadFile(url, filename, conflictAction, callback) {
 }
 function onMessage(message, sender, callback) {
     switch (message.action) {
-        case 'downloadFile':
+        case 'downloadFileBlob':
             // direct URL download through Chrome API might be prohibited (e.g: Pixiv)
             // workaround:
-            // 1. obtain ArrayBuffer from XHR request (GET URL) 
+            // 1. obtain ArrayBuffer from XHR request (GET URL)
             // 2. create Blob from ArrayBuffer
             // 3. download Blob URL through Chrome API
             if (options.enableDownloads) {
@@ -78,6 +78,39 @@ function onMessage(message, sender, callback) {
                 }, function (granted) {
                     if (granted) {
                         ajaxRequest({method:'GET', response:'DOWNLOAD', url:message.url, filename:message.filename, conflictAction:message.conflictAction, headers:message.headers}, callback);
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+            }
+        case 'downloadFile':
+
+            function onChanged(delta) {
+                if (!delta) return;
+                if (delta.id != currentId) return;
+                if (delta.state && delta.state.current !== 'in_progress') {
+                    chrome.downloads.onChanged.removeListener(onChanged);
+                    // call callback only if download failed
+                    if (delta.state.current !== 'complete') {
+                        callback();
+                    }
+                }
+            }
+
+            if (options.enableDownloads) {
+                var currentId;
+                chrome.downloads.onChanged.addListener(onChanged);
+                chrome.downloads.download({url: message.url, filename: message.filename, conflictAction: message.conflictAction, saveAs: false}, id => { currentId = id });
+                return true;
+            } else {
+                chrome.permissions.request({
+                    permissions: ['downloads']
+                }, function (granted) {
+                    if (granted) {
+                        var currentId;
+                        chrome.downloads.onChanged.addListener(onChanged);
+                        chrome.downloads.download({url: message.url, filename: message.filename, conflictAction: message.conflictAction, saveAs: false}, id => { currentId = id });
                         return true;
                     } else {
                         return false;

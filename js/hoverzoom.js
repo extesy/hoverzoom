@@ -2799,12 +2799,18 @@ var hoverZoom = {
                 cLog('filename: ' + filename);
             }
 
-            chrome.runtime.sendMessage({
-                action: 'downloadFile',
-                url: url,
-                filename: filename,
-                conflictAction: 'uniquify'
-            }, callback);
+            // 1st attempt to download file (Chrome API)
+            chrome.runtime.sendMessage({action:'downloadFile',
+                                        url:url,
+                                        filename:filename,
+                                        conflictAction:'uniquify'},
+                                        function() {
+                                            // 2nd attempt (blob + Chrome API)
+                                            chrome.runtime.sendMessage({action:'downloadFileBlob',
+                                                                        url:url,
+                                                                        filename:filename,
+                                                                        conflictAction:'uniquify'});
+                                        });
         }
 
         // 4 types of media can be saved to disk: image, video, audio, playlist
