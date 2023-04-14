@@ -72,17 +72,6 @@ function onMessage(message, sender, callback) {
             if (options.enableDownloads) {
                 ajaxRequest({method:'GET', response:'DOWNLOAD', url:message.url, filename:message.filename, conflictAction:message.conflictAction, headers:message.headers}, callback);
                 return true;
-            } else {
-                chrome.permissions.request({
-                    permissions: ['downloads']
-                }, function (granted) {
-                    if (granted) {
-                        ajaxRequest({method:'GET', response:'DOWNLOAD', url:message.url, filename:message.filename, conflictAction:message.conflictAction, headers:message.headers}, callback);
-                        return true;
-                    } else {
-                        return false;
-                    }
-                });
             }
         case 'downloadFile':
 
@@ -103,19 +92,6 @@ function onMessage(message, sender, callback) {
                 chrome.downloads.onChanged.addListener(onChanged);
                 chrome.downloads.download({url: message.url, filename: message.filename, conflictAction: message.conflictAction, saveAs: false}, id => { currentId = id });
                 return true;
-            } else {
-                chrome.permissions.request({
-                    permissions: ['downloads']
-                }, function (granted) {
-                    if (granted) {
-                        var currentId;
-                        chrome.downloads.onChanged.addListener(onChanged);
-                        chrome.downloads.download({url: message.url, filename: message.filename, conflictAction: message.conflictAction, saveAs: false}, id => { currentId = id });
-                        return true;
-                    } else {
-                        return false;
-                    }
-                });
             }
         case 'ajaxGet':
             ajaxRequest({url:message.url, response:message.response, method:'GET', headers:message.headers}, callback);
