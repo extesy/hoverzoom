@@ -1993,6 +1993,7 @@ var hoverZoom = {
             clearTimeout(prepareImgLinksTimeout);
             prepareImgLinksTimeout = setTimeout(prepareImgLinks, prepareImgLinksDelay);
             prepareImgLinksDelay *= 2;
+            if (prepareImgLinksDelay > 1000) prepareImgLinksDelay = 1000; 
         }
 
         function deepUnescape(url) {
@@ -2121,6 +2122,7 @@ var hoverZoom = {
 
             // needed when navigating galleries fullscreen
             $(document).on('click', function() { prepareImgLinksAsync(); });
+            $(document).mouseup(prepareImgLinksAsync);
 
             $(document).contextmenu(documentContextMenu);
             $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).mouseleave(cancelSourceLoading);
