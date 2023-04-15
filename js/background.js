@@ -82,7 +82,7 @@ function onMessage(message, sender, callback) {
                     chrome.downloads.onChanged.removeListener(onChanged);
                     // call callback only if download failed
                     if (delta.state.current !== 'complete') {
-                        callback();
+                        callback(true);
                     }
                 }
             }
