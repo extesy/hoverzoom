@@ -2806,12 +2806,14 @@ var hoverZoom = {
                                         url:url,
                                         filename:filename,
                                         conflictAction:'uniquify'},
-                                        function() {
-                                            // 2nd attempt (blob + Chrome API)
-                                            chrome.runtime.sendMessage({action:'downloadFileBlob',
-                                                                        url:url,
-                                                                        filename:filename,
-                                                                        conflictAction:'uniquify'});
+                                        function (downloadKO) {
+                                            if (downloadKO) {
+                                                // 2nd attempt (blob + Chrome API)
+                                                chrome.runtime.sendMessage({action:'downloadFileBlob',
+                                                                            url:url,
+                                                                            filename:filename,
+                                                                            conflictAction:'uniquify'});
+                                            }
                                         });
         }
 
