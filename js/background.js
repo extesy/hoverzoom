@@ -51,7 +51,7 @@ function downloadFile(url, filename, conflictAction, callback) {
 
     function onChanged(delta) {
         if (!delta) return;
-        if (delta.id != currentId) return;
+        if (delta.id !== currentId) return;
         if (delta.state && delta.state.current !== 'in_progress') {
             chrome.downloads.onChanged.removeListener(onChanged);
             try {
@@ -77,12 +77,15 @@ function onMessage(message, sender, callback) {
 
             function onChanged(delta) {
                 if (!delta) return;
-                if (delta.id != currentId) return;
+                if (delta.id !== currentId) return;
                 if (delta.state && delta.state.current !== 'in_progress') {
                     chrome.downloads.onChanged.removeListener(onChanged);
                     // call callback only if download failed
                     if (delta.state.current !== 'complete') {
-                        callback(true);
+                        // call callback iff download failed & user did NOT cancel
+                        if (delta.error.current !== 'USER_CANCELED') {
+                            callback(true);
+                        }
                     }
                 }
             }

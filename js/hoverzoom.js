@@ -2790,6 +2790,7 @@ var hoverZoom = {
         }
 
         function downloadResource(url, filename, callback) {
+            if (! options.enableDownloads) return;
             cLog('download: ' + url);
             if (!filename) filename = url.split('\\').pop().split('/').pop();
 
