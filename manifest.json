@@ -1931,6 +1931,10 @@
         {
             "js": ["plugins/picsart.js"],
             "matches": ["*://*.picsart.com/*"]
+        },
+        {
+            "js": ["plugins/lemon8.js"],
+            "matches": ["*://*.lemon8-app.com/*"]
         }
     ]
 }
