@@ -2,6 +2,7 @@
 hoverZoomPlugins.push({
     name: 'Pixiv',
     version:'3.1',
+    favicon:'pixiv.svg',
     prepareImgLinks: function (callback) {
         var name = this.name;
 
@@ -76,7 +77,9 @@ hoverZoomPlugins.push({
 
             const data = getData(containerString)
             // abort if the data not found
-            if(!data) return
+            if(!data) {
+                return;
+            }
 
             // get the image count
             const imageCount = getImgCount(containerString)
@@ -103,7 +106,6 @@ hoverZoomPlugins.push({
 
             callback($([jcontainer]))
         })
-
 
         var res = [];
 
@@ -173,7 +175,6 @@ hoverZoomPlugins.push({
                 dataType: 'text',
                 url: url,
                 success: function(response) {
-
                     try {
                         urlPlaylist = JSON.parse(response).data.owner.hls_movie.url;
                         let data = link.data();
@@ -186,8 +187,96 @@ hoverZoomPlugins.push({
             })
         });
 
+        // preview
+        $('img[src*="img-master"]').filter(function() { return $(this).parents("a").length == 0 }).each(function() {
+
+            let link = $(this);
+            let data = link.data();
+
+            let fullsize = this.src.replace(/^.*img-master\/(.*_p\d+).*\.(.*)/, 'https://i.pximg.net/img-original/$1.$2');
+            data.hoverZoomSrc = [fullsize];
+            link.addClass('hoverZoomLinkFromPlugIn');
+            res.push(link);
+
+        });
+
+        // videos = sequence of still images in a zip file
+        // sample:   https://www.pixiv.net/en/artworks/104956863
+        // video id: 104956863
+        $('img').siblings('svg').parents('a[href*="/artworks/"]:not(.hoverZoomMouseover)').addClass('hoverZoomMouseover').each(function() {
+            $(this).one('mouseover', function() {
+
+                var link = this;
+                link = $(link);
+                var img = link.find('img')[0];
+                img = $(img);
+                const href = this.href;
+                const re = /\/artworks\/(\d+)/;
+                const m = href.match(re);
+                if (m == null) return;
+                const id = m[1];
+
+                // find zip url
+                $.ajax({
+                    type: "GET",
+                    dataType: 'text',
+                    url: 'https://www.pixiv.net/ajax/illust/' + id + '/ugoira_meta',
+                    success: function(response) {
+                        try {
+                            const j = JSON.parse(response);
+                            const zipUrl = j.body.originalSrc || j.body.src;
+                            handleZip(zipUrl, link, img);
+                        } catch {}
+                    },
+                    error: function(response) { }
+                })
+            })
+        });
+
+        // download zip file & display content as a gallery (static, no animation)
+        function handleZip(zipUrl, link, img) {
+
+            fetch(zipUrl)
+                .then(handleResponse)
+                .catch(function(error) {
+                    cLog(error);
+                });
+
+            function handleResponse(response) {
+                if (response.ok) {
+                    response.blob()
+                    .then(blob => blob.arrayBuffer())
+                    .then(buffer => {
+                        // load zip file with JSZip library
+                        JSZip.loadAsync(buffer).then(function (zip) {
+                            var gallery = [];
+                            var nbFiles = 0;
+                            zip.forEach(function(f) { nbFiles++ });
+                            var cnt = 0;
+                            zip.forEach(function(f) {
+                                zip.file(f).async('uint8array').then(function(data) {
+                                    // convert each file to Blob
+                                    const blobBin = new Blob([data], {type:'application/octet-stream'});
+                                    const blobUrl = URL.createObjectURL(blobBin);
+                                    gallery.push([blobUrl]);
+                                    if (++cnt == nbFiles) {
+                                        link.data().hoverZoomSrc = undefined;
+                                        link.data().hoverZoomGallerySrc = gallery;
+                                        link.data().hoverZoomGalleryIndex = 0;
+                                        callback(link, this.name);
+                                        hoverZoom.displayPicFromElement(link);
+                                    }
+                                })
+                            })
+                        })
+                    })
+                }
+            }
+        }
+
         if (res.length) {
             callback($(res), this.name);
         }
+
     }
 });
