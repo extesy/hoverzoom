@@ -13,7 +13,6 @@ var factorySettings = {
     showHighRes : true,
     galleriesMouseWheel : true,
     disableMouseWheelForVideo : false,
-    enableDownloads : false,
     addToHistory : false,
     allowHeadersRewrite : false,
     alwaysPreload : false,
@@ -101,7 +100,6 @@ function loadOptions() {
     options.disableMouseWheelForVideo = options.hasOwnProperty('disableMouseWheelForVideo') ? options.disableMouseWheelForVideo : factorySettings.disableMouseWheelForVideo;
 
     // These options are directly associated with browser permissions. Changing pemissions manually will make them out of sync.
-    options.enableDownloads = options.hasOwnProperty('enableDownloads') ? options.enableDownloads : factorySettings.enableDownloads;
     options.addToHistory = options.hasOwnProperty('addToHistory') ? options.addToHistory : factorySettings.addToHistory;
     options.allowHeadersRewrite = options.hasOwnProperty('allowHeadersRewrite') ? options.allowHeadersRewrite : factorySettings.allowHeadersRewrite;
 

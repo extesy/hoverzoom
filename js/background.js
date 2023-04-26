@@ -1,5 +1,11 @@
 ﻿var options;
 
+function cLog(msg) {
+    if (options.debug && msg) {
+        console.log(msg);
+    }
+}
+
 // Performs an ajax request
 function ajaxRequest(request, callback) {
     var xhr = new XMLHttpRequest();
@@ -44,23 +50,33 @@ function ajaxRequest(request, callback) {
 }
 
 function downloadFile(url, filename, conflictAction, callback) {
+    cLog('downloadFile: ' + url);
     let currentId;
     chrome.downloads.onChanged.addListener(onChanged);
     chrome.downloads.download({url, filename, conflictAction, saveAs: false}, id => { currentId = id });
-    return true;
 
     function onChanged(delta) {
         if (!delta) return;
+        cLog('onChanged: ' + delta.id);
         if (delta.id !== currentId) return;
         if (delta.state && delta.state.current !== 'in_progress') {
+            cLog('onChanged delta.state: ' + delta.state);
             chrome.downloads.onChanged.removeListener(onChanged);
             try {
                 URL.revokeObjectURL(url); // remove blob
             } catch {}
-            callback();
+            // call callback only if download failed
+            if (delta.state.current !== 'complete') {
+                cLog('onChanged delta.error: ' + delta.error);
+                // call callback iff download failed & user did NOT cancel
+                if (delta.error.current !== 'USER_CANCELED') {
+                    callback(true);
+                }
+            }
         }
     }
 }
+
 function onMessage(message, sender, callback) {
     switch (message.action) {
         case 'downloadFileBlob':
@@ -69,33 +85,23 @@ function onMessage(message, sender, callback) {
             // 1. obtain ArrayBuffer from XHR request (GET URL)
             // 2. create Blob from ArrayBuffer
             // 3. download Blob URL through Chrome API
-            if (options.enableDownloads) {
-                ajaxRequest({method:'GET', response:'DOWNLOAD', url:message.url, filename:message.filename, conflictAction:message.conflictAction, headers:message.headers}, callback);
-                return true;
-            }
-        case 'downloadFile':
-
-            function onChanged(delta) {
-                if (!delta) return;
-                if (delta.id !== currentId) return;
-                if (delta.state && delta.state.current !== 'in_progress') {
-                    chrome.downloads.onChanged.removeListener(onChanged);
-                    // call callback only if download failed
-                    if (delta.state.current !== 'complete') {
-                        // call callback iff download failed & user did NOT cancel
-                        if (delta.error.current !== 'USER_CANCELED') {
-                            callback(true);
-                        }
-                    }
+            cLog('downloadFileBlob: ' + message);
+            chrome.permissions.request({permissions: ['downloads']}, function (granted) {
+                cLog('downloadFile granted: ' + granted);
+                if (granted) {
+                    ajaxRequest({method:'GET', response:'DOWNLOAD', url:message.url, filename:message.filename, conflictAction:message.conflictAction, headers:message.headers}, callback);
                 }
-            }
-
-            if (options.enableDownloads) {
-                var currentId;
-                chrome.downloads.onChanged.addListener(onChanged);
-                chrome.downloads.download({url: message.url, filename: message.filename, conflictAction: message.conflictAction, saveAs: false}, id => { currentId = id });
-                return true;
-            }
+            });
+            return true;
+        case 'downloadFile':
+            cLog('downloadFile: ' + message);
+            chrome.permissions.request({permissions: ['downloads']}, function (granted) {
+                cLog('downloadFile granted: ' + granted);
+                if (granted) {
+                    downloadFile(message.url, message.filename, message.conflictAction, callback);
+                }
+            });
+            return true;
         case 'ajaxGet':
             ajaxRequest({url:message.url, response:message.response, method:'GET', headers:message.headers}, callback);
             return true;

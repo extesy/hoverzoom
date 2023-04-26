@@ -435,10 +435,6 @@
         "message": "Advanced options",
         "description": "[options] Page section for advanced options"
     },
-    "optEnableDownloads": {
-        "message": "Allow downloading images using an action key",
-        "description": "[options] Grant browser permission to allow file downloading using an action key"
-    },
     "optAddToHistory": {
         "message": "Add viewed pictures to the browser's history",
         "description": "[options] Add viewed pictures to the browser's history option"

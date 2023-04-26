@@ -122,7 +122,6 @@ function saveOptions() {
         options[key] = parseInt($('#sel' + id).val());
     });
 
-    options.enableDownloads = $('#chkEnableDownloads')[0].checked;
     options.addToHistory = $('#chkAddToHistory')[0].checked;
     options.allowHeadersRewrite = $('#chkAllowHeadersRewrite')[0].checked;
 
@@ -153,7 +152,6 @@ function saveOptions() {
 }
 
 function savePermissionOptions() {
-    options.enableDownloads = $('#chkEnableDownloads')[0].checked;
     options.addToHistory = $('#chkAddToHistory')[0].checked;
     options.allowHeadersRewrite = $('#chkAllowHeadersRewrite')[0].checked;
     localStorage.options = JSON.stringify(options);
@@ -237,7 +235,6 @@ function restoreOptions(optionsFromFactorySettings) {
         $('#sel' + id).val(options[key]);
     });
 
-    $('#chkEnableDownloads').trigger(options.enableDownloads ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAddToHistory').trigger(options.addToHistory ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAllowHeadersRewrite').trigger(options.allowHeadersRewrite ? 'gumby.check' : 'gumby.uncheck');
 
@@ -366,30 +363,6 @@ function selKeyOnChange(event) {
 
 function chkWhiteListModeOnChange() {
     $('#lblToggle').text(chrome.i18n.getMessage($('#chkWhiteListMode')[0].checked ? "optSectionSitesEnabled" : "optSectionSitesDisabled"));
-}
-
-function chkEnableDownloadsOnChange() {
-    if ($('#chkEnableDownloads')[0].checked) {
-        chrome.permissions.request({permissions: ['downloads']}, function (granted) {
-            if (granted === false) {
-                $('#chkEnableDownloads').trigger('gumby.uncheck');
-            } else {
-                savePermissionOptions();
-            }
-        });
-    } else {
-        chrome.permissions.remove({permissions: ['downloads']}, function (removed) {
-            if (removed === false) {
-                $('#chkEnableDownloads').trigger('gumby.check');
-            } else {
-                savePermissionOptions();
-            }
-        });
-    }
-}
-
-function initEnableDownloads() {
-    $('#chkEnableDownloads').parent().on('gumby.onChange', chkEnableDownloadsOnChange);
 }
 
 function chkAddToHistoryModeOnChange() {
@@ -650,7 +623,6 @@ $(function () {
     initActionKeys();
     i18n();
     chkWhiteListModeOnChange();
-    initEnableDownloads();
     initAddToHistory();
     initAllowHeadersRewrite();
     chkDarkMode();

@@ -2126,7 +2126,7 @@ var hoverZoom = {
 
             $(document).contextmenu(documentContextMenu);
             $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).mouseleave(cancelSourceLoading);
-            $(document).keydown(documentOnKeyDown).keyup(documentOnKeyUp).keypress(documentOnKeyPress);
+            $(document).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
             if (options.galleriesMouseWheel) {
                 window.addEventListener('wheel', documentOnMouseWheel, {passive: false});
             }
@@ -2324,18 +2324,25 @@ var hoverZoom = {
         }
 
         function documentOnKeyUp(event) {
+            // Skips if an input controlled is focused
+            if (event.target && ['INPUT','TEXTAREA','SELECT'].indexOf(event.target.tagName) > -1) {
+                return;
+            }
+
+            const keyCode = event.which;
+
             // Action key (zoom image) is released
-            if (event.which === options.actionKey) {
+            if (keyCode === options.actionKey) {
                 actionKeyDown = false;
                 closeHoverZoomViewer();
             }
             // Full zoom key is released
-            if (event.which === options.fullZoomKey) {
+            if (keyCode === options.fullZoomKey) {
                 fullZoomKeyDown = false;
                 $(this).mousemove();
             }
             // Hide key is released
-            if (event.which === options.hideKey) {
+            if (keyCode === options.hideKey) {
                 hideKeyDown = false;
                 if (imgFullSize) {
                     hz.hzViewer.show();
@@ -2343,19 +2350,6 @@ var hoverZoom = {
                 }
                 $(this).mousemove();
             }
-        }
-
-        function documentOnKeyPress(event) {
-            event = event.originalEvent;
-            // Skips if an input controlled is focused
-            if (event.target && ['INPUT','TEXTAREA','SELECT'].indexOf(event.target.tagName) > -1) {
-                return;
-            }
-
-            let keyCode = event.which;
-            if (keyCode >= 97 && keyCode <= 122) // Translate lowercase key codes into uppercase key codes
-                keyCode = keyCode - 32;
-
             // the following keys are processed only if an image is displayed
             if (imgFullSize) {
                 // "Open image in a new window" key
@@ -2790,7 +2784,6 @@ var hoverZoom = {
         }
 
         function downloadResource(url, filename, callback) {
-            if (! options.enableDownloads) return;
             cLog('download: ' + url);
             if (!filename) filename = url.split('\\').pop().split('/').pop();
 
@@ -2802,20 +2795,17 @@ var hoverZoom = {
                 cLog('filename: ' + filename);
             }
 
-            // 1st attempt to download file (Chrome API)
-            chrome.runtime.sendMessage({action:'downloadFile',
-                                        url:url,
-                                        filename:filename,
-                                        conflictAction:'uniquify'},
-                                        function (downloadKO) {
-                                            if (downloadKO) {
-                                                // 2nd attempt (blob + Chrome API)
-                                                chrome.runtime.sendMessage({action:'downloadFileBlob',
-                                                                            url:url,
-                                                                            filename:filename,
-                                                                            conflictAction:'uniquify'});
-                                            }
-                                        });
+            if (url.indexOf('//i.pximg.net/') !== -1) { // pixiv.net workaround
+                chrome.runtime.sendMessage({action: 'downloadFileBlob',
+                    url: url,
+                    filename: filename,
+                    conflictAction: 'uniquify'});
+            } else {
+                chrome.runtime.sendMessage({action: 'downloadFile',
+                    url: url,
+                    filename: filename,
+                    conflictAction: 'uniquify'});
+            }
         }
 
         // 4 types of media can be saved to disk: image, video, audio, playlist
