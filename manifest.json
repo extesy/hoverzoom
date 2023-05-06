@@ -1935,6 +1935,10 @@
         {
             "js": ["plugins/lemon8.js"],
             "matches": ["*://*.lemon8-app.com/*"]
+        },
+        {
+            "js": ["plugins/gcsurplus.js"],
+            "matches": ["*://*.gcsurplus.ca/*"]
         }
     ]
 }
