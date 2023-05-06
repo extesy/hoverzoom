@@ -1993,7 +1993,7 @@ var hoverZoom = {
             clearTimeout(prepareImgLinksTimeout);
             prepareImgLinksTimeout = setTimeout(prepareImgLinks, prepareImgLinksDelay);
             prepareImgLinksDelay *= 2;
-            if (prepareImgLinksDelay > 1000) prepareImgLinksDelay = 1000; 
+            if (prepareImgLinksDelay > 1000) prepareImgLinksDelay = 1000;
         }
 
         function deepUnescape(url) {
@@ -2795,17 +2795,20 @@ var hoverZoom = {
                 cLog('filename: ' + filename);
             }
 
-            if (url.indexOf('//i.pximg.net/') !== -1) { // pixiv.net workaround
-                chrome.runtime.sendMessage({action: 'downloadFileBlob',
-                    url: url,
-                    filename: filename,
-                    conflictAction: 'uniquify'});
-            } else {
-                chrome.runtime.sendMessage({action: 'downloadFile',
-                    url: url,
-                    filename: filename,
-                    conflictAction: 'uniquify'});
-            }
+            // 1st attempt to download file (Chrome API)
+            chrome.runtime.sendMessage({action:'downloadFile',
+                                        url:url,
+                                        filename:filename,
+                                        conflictAction:'uniquify'},
+                                        function (downloadKO) {
+                                            if (downloadKO === true) {
+                                                // 2nd attempt (blob + Chrome API)
+                                                chrome.runtime.sendMessage({action:'downloadFileBlob',
+                                                                            url:url,
+                                                                            filename:filename,
+                                                                            conflictAction:'uniquify'});
+                                            }
+                                        });
         }
 
         // 4 types of media can be saved to disk: image, video, audio, playlist
