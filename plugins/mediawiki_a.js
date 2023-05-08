@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'MediaWiki_a',
-    version:'1.0',
+    version:'1.1',
     favicon:'mediawiki.svg',
     prepareImgLinks:function (callback) {
 
@@ -39,15 +39,35 @@ hoverZoomPlugins.push({
 
         });
 
-        // sample: https://commons.wikimedia.org/wiki/File:Mary_Stuart_Young6.jpg
-        $('a[href*="/wiki/File:"]').one('mouseenter', function() {
-            hoverZoom.prepareFromDocument($(this), this.href, function (doc) {
-                let link = $(this);
-                var ogImg = doc.head.querySelector('meta[property="og:image"]');
-                if (ogImg) {
-                    return ogImg.content;
-                }
-            });
+        // sample (image): https://commons.wikimedia.org/wiki/File:Mary_Stuart_Young6.jpg
+        // sample (audio): https://en.wiktionary.org/wiki/File:En-au-face-melter.ogg
+        // sample (video): https://en.wikipedia.org/wiki/File:Rocky_(1976)_-_Rocky_Steps.ogv
+        //                 https://de.wiktionary.org/wiki/Datei:Bublak_mofette.ogv
+        $('a[href*="/wiki/"]:not(.hoverZoomMouseover)').filter(function() { return (/\/wiki\/\w+:/.test($(this).prop('href'))) }).addClass('hoverZoomMouseover').one('mouseenter', function() {
+
+            var link = this;
+            link = $(link);
+
+            if (link.data().hoverZoomSrc == undefined) {
+                // load link
+                hoverZoom.prepareFromDocument(link, this.href, function (doc, callback) {
+                    // default media
+                    var ogImg = doc.head.querySelector('meta[property="og:image"]');
+                    // full media
+                    var media = doc.querySelectorAll('.fullMedia');
+                    if (media.length == 1) {
+                        media = $(media[0]);
+                        media = media.find('a[href]')[0];
+                        if (media) {
+                            callback(media.href);
+                            hoverZoom.displayPicFromElement(link);
+                        }
+                    } else if (ogImg) {
+                        callback(ogImg.content);
+                        hoverZoom.displayPicFromElement(link);
+                    }
+                }, true); // get source async
+            }
         });
 
         callback($(res), this.name);
