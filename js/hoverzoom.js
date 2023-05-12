@@ -2795,20 +2795,28 @@ var hoverZoom = {
                 cLog('filename: ' + filename);
             }
 
-            // 1st attempt to download file (Chrome API)
-            chrome.runtime.sendMessage({action:'downloadFile',
-                                        url:url,
-                                        filename:filename,
-                                        conflictAction:'uniquify'},
-                                        function (downloadKO) {
-                                            if (downloadKO === true) {
-                                                // 2nd attempt (blob + Chrome API)
-                                                chrome.runtime.sendMessage({action:'downloadFileBlob',
-                                                                            url:url,
-                                                                            filename:filename,
-                                                                            conflictAction:'uniquify'});
-                                            }
-                                        });
+            // pixiv.net: use "blob" workaround as regular download always fails
+            if (url.indexOf('//i.pximg.net/') !== -1) {
+                chrome.runtime.sendMessage({action: 'downloadFileBlob',
+                                            url: url,
+                                            filename: filename,
+                                            conflictAction: 'uniquify'});
+            } else { // all sites except pixiv.net
+                // 1st attempt to download file (Chrome API)
+                chrome.runtime.sendMessage({action: 'downloadFile',
+                                            url: url,
+                                            filename: filename,
+                                            conflictAction: 'uniquify'},
+                                            function (downloadKO) {
+                                                if (downloadKO === true) {
+                                                    // 2nd attempt (blob + Chrome API)
+                                                    chrome.runtime.sendMessage({action: 'downloadFileBlob',
+                                                                                url: url,
+                                                                                filename: filename,
+                                                                                conflictAction: 'uniquify'});
+                                                }
+                                            });
+            }
         }
 
         // 4 types of media can be saved to disk: image, video, audio, playlist
