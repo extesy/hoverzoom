@@ -119,9 +119,14 @@ var hoverZoom = {
             actionKeyDown = false,
             fullZoomKeyDown = false,
             hideKeyDown = false,
+            plusKeyDown = false,
+            minusKeyDown = false,
+            arrowUpKeyDown = false,
+            arrowDownKeyDown = false,
             viewerLocked = false,
             lockViewerClickTime = 0,
             zoomFactor = 1,
+            zoomSpeedFactor = 1,
             pageActionShown = false,
             skipFadeIn = false,
             titledElements = null,
@@ -2159,6 +2164,13 @@ var hoverZoom = {
                 // For large imgs (= width or height > 1000px), a smaller step is needed
                 let stepInit = 0.1 / (1.0 + Math.floor(Math.max(srcDetails.naturalWidth, srcDetails.naturalHeight) / 1000.0));
                 let step = zoomFactor < 2 ? stepInit : stepInit * Math.floor(zoomFactor);
+                if (plusKeyDown || arrowUpKeyDown) {
+                    zoomSpeedFactor *= 2.0;
+                }
+                if (minusKeyDown || arrowDownKeyDown) {
+                    zoomSpeedFactor *= 0.5;
+                }
+                step *= zoomSpeedFactor;
                 zoomFactor = zoomFactor + (event.deltaY < 0 ? 1 : -1) * step;
                 zoomFactor = Math.max(Math.min(zoomFactor, 10), stepInit);
                 posViewer();
@@ -2313,6 +2325,34 @@ var hoverZoom = {
                     flipImage();
                     return false;
                 }
+                // "+" key is pressed
+                if (event.which == 107) {
+                    event.preventDefault();
+                    plusKeyDown = true;
+                    zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
+                    return false;
+                }
+                // "-" key is pressed
+                if (event.which == 109) {
+                    event.preventDefault();
+                    minusKeyDown = true;
+                    zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
+                    return false;
+                }
+                // "Arrow Up" key is pressed
+                if (event.which == 38) {
+                    event.preventDefault();
+                    arrowUpKeyDown = true;
+                    zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
+                    return false;
+                }
+                // "Arrow Down" key is pressed
+                if (event.which == 40) {
+                    event.preventDefault();
+                    arrowDownKeyDown = true;
+                    zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
+                    return false;
+                }
             }
         }
 
@@ -2370,6 +2410,30 @@ var hoverZoom = {
                 if (keyCode === options.saveImageKey) {
                     saveImage();
                     return false;
+                }
+                // "+" key is released
+                if (event.which == 107) {
+                    event.preventDefault();
+                    plusKeyDown = false;
+                    zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
+                }
+                // "-" key is released
+                if (event.which == 109) {
+                    event.preventDefault();
+                    minusKeyDown = false;
+                    zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
+                }
+                // "Arrow Up" key is released
+                if (event.which == 38) {
+                    event.preventDefault();
+                    arrowUpKeyDown = false;
+                    zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
+                }
+                // "Arrow Down" key is released
+                if (event.which == 40) {
+                    event.preventDefault();
+                    arrowDownKeyDown = false;
+                    zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
                 }
             }
         }
