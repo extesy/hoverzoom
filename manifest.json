@@ -1939,6 +1939,10 @@
         {
             "js": ["plugins/gcsurplus.js"],
             "matches": ["*://*.gcsurplus.ca/*"]
+        },
+        {
+            "js": ["plugins/iwara.js"],
+            "matches": ["*://*.iwara.tv/*"]
         }
     ]
 }
