@@ -99,6 +99,7 @@
                 "plugins/niconico_a.js",
                 "plugins/omegle_a.js",
                 "plugins/photoshop_a.js",
+                "plugins/rule34video_a.js",
                 "plugins/screencast_a.js",
                 "plugins/sendvid_a.js",
                 "plugins/squarespace_a.js",
@@ -112,8 +113,8 @@
                 "plugins/vine_a.js",
                 "plugins/wordpress_a.js",
                 "plugins/xhamster_a.js",
-                "plugins/youtube_a.js",
-                "plugins/rule34video_a.js"
+                "plugins/ylilauta_a.js",
+                "plugins/youtube_a.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
