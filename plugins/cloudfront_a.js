@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'cloudfront_a',
-    version:'0.2',
+    version:'0.3',
     prepareImgLinks:function (callback) {
         var res = [];
 
@@ -12,7 +12,9 @@ hoverZoomPlugins.push({
 
         // sample: https://www.leparisien.fr/resizer/xRuYCaOxI88qdE8cFXvzjqhmje4=/932x582/cloudfront-eu-central-1.images.arcpublishing.com/leparisien/5WVYUA3CRHLVQ2B5HZZCL43LTM.jpg
         //      -> cloudfront-eu-central-1.images.arcpublishing.com/leparisien/5WVYUA3CRHLVQ2B5HZZCL43LTM.jpg
-        var reThumb2 = /.*\/\d+x\d+\/(.*)/;
+        // sample: https://www.lexpress.fr/resizer/UAT5-7OWS5H9L0NqUL95-v_ImyY=/300x167/filters:focal(2804x1160:2814x1170)/cloudfront-eu-central-1.images.arcpublishing.com/lexpress/B3FAAH7ISVHJLEMK3XT6LZPVPA.jpg
+        //      -> cloudfront-eu-central-1.images.arcpublishing.com/lexpress/B3FAAH7ISVHJLEMK3XT6LZPVPA.jpg
+        var reThumb2 = /.*\/(cloudfront.*)/;
         var reReplace2 = '$1';
 
         function findFullsizeUrl(link, src) {
