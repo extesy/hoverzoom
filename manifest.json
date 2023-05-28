@@ -83,6 +83,7 @@
                 "plugins/ebay_a.js",
                 "plugins/facebook_a.js",
                 "plugins/flickr_a.js",
+                "plugins/focus_a.js",
                 "plugins/gallery_a.js",
                 "plugins/google_a.js",
                 "plugins/gravatar_a.js",
