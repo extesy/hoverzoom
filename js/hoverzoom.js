@@ -1896,8 +1896,12 @@ var hoverZoom = {
 
         function getHostname(href) {
             if (!href) { return undefined; }
-
-            var url = new URL(href);
+            var url = undefined;
+            try {
+                url = new URL(href);
+            } catch { 
+                return url;
+            }
             return url.hostname;
         }
 
