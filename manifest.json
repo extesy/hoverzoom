@@ -75,6 +75,7 @@
                 "plugins/chan_a.js",
                 "plugins/clippituser_a.js",
                 "plugins/cloudapp_a.js",
+                "plugins/cloudflare_a.js",
                 "plugins/cloudfront_a.js",
                 "plugins/cloudinary_a.js",
                 "plugins/dailymotion_a.js",
