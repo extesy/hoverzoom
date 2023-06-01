@@ -81,6 +81,7 @@
                 "plugins/dailymotion_a.js",
                 "plugins/deviantart_a.js",
                 "plugins/douyin_a.js",
+                "plugins/drupal_a.js",
                 "plugins/ebay_a.js",
                 "plugins/facebook_a.js",
                 "plugins/flickr_a.js",
