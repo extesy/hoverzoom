@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push( {
     name: 'tiktok_a',
-    version: '1.4',
+    version: '1.5',
     prepareImgLinks: function(callback) {
         var name = this.name;
 
@@ -15,11 +15,11 @@ hoverZoomPlugins.push( {
                                         settings:
                                             [{"type":"request",
                                             "skipInitiator":"tiktok",
-                                            "url":"tiktok.com",
+                                            "urls":["tiktok.com"],
                                             "headers":[{"name":"referer", "value":"https://www.tiktok.com/", "typeOfUpdate":"add"}]},
                                             {"type":"response",
                                             "skipInitiator":"tiktok",
-                                            "url":"tiktok.com",
+                                            "urls":["tiktok.com"],
                                             "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
                                         });
         }

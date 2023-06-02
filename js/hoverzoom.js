@@ -1673,7 +1673,7 @@ var hoverZoom = {
                                                 plugin:"custom",
                                                 settings:
                                                     [{"type":"request",
-                                                    "url":url,
+                                                    "urls":[url],
                                                     "headers":[{"name":"referer", "value":referer, "typeOfUpdate":"add"}]},
                                                     {"type":"response",
                                                     "url":url,

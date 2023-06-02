@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'kick_a',
-    version:'0.1',
+    version:'0.2',
     prepareImgLinks:function (callback) {
         var name = this.name;
         var res = [];
@@ -11,9 +11,13 @@ hoverZoomPlugins.push({
              chrome.runtime.sendMessage({action:"storeHeaderSettings",
                                         plugin:name,
                                         settings:
-                                            [{"type":"response",
+                                            [{"type":"request",
                                             "skipInitiator":"kick",
-                                            "url":"kick.com",
+                                            "urls":["kick.com","hls.live-video.net","playback.live-video.net"],
+                                            "headers":[{"name":"referer", "value":"https://kick.com", "typeOfUpdate":"add"},{"name":"origin", "value":"https://kick.com", "typeOfUpdate":"add"}]},
+                                            {"type":"response",
+                                            "skipInitiator":"kick",
+                                            "urls":["kick.com","hls.live-video.net","playback.live-video.net"],
                                             "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
                                         });
         }

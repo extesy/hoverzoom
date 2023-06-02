@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Imagefap_a',
-    version:'0.3',
+    version:'0.4',
     prepareImgLinks:function (callback) {
         var res = [];
 
@@ -12,7 +12,7 @@ hoverZoomPlugins.push({
                                         settings:
                                             [{"type":"request",
                                             "skipInitiator":"imagefap",
-                                            "url":"moviefap.com",
+                                            "urls":["moviefap.com"],
                                             "headers":[{"name":"referer", "value":"https://www.imagefap.com", "typeOfUpdate":"add"}]}]
                                         });
         }

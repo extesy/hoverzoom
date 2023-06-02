@@ -303,10 +303,9 @@ function findHeaderSettings(url, requestOrResponse) {
     hoverZoomHeaderSettings = JSON.parse(hoverZoomHeaderSettings);
 
     let settings = [];
-    hoverZoomHeaderSettings.forEach(s => s.settings.forEach(s2 => settings.push(s2)));
-    settings = settings.find(s => s.type === requestOrResponse && url.indexOf(s.url) !== -1);
-    if (! settings) return null; // no settings found for url
-    return settings;
+    url = url.toLowerCase();
+    hoverZoomHeaderSettings.forEach(s => s.settings.forEach(s2 => { if (s2.type === requestOrResponse && s2.urls.find(u => url.indexOf(u) !== -1) !== undefined) settings.push(s2) }))
+    return settings[0];
 }
 
 // update header(s) according to plug-in settings

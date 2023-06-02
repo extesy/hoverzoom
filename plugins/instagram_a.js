@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Instagram_a',
-    version:'0.2',
+    version:'0.3',
     favicon:'instagram.svg',
     prepareImgLinks:function (callback) {
 
@@ -14,11 +14,11 @@ hoverZoomPlugins.push({
                                         settings:
                                             [{"type":"request",
                                             "skipInitiator":"instagram",
-                                            "url":"instagram",
+                                            "urls":["instagram"],
                                             "headers":[{"name":"referer", "value":"https://www.instagram.com/", "typeOfUpdate":"add"}]},
                                             {"type":"response",
                                             "skipInitiator":"instagram",
-                                            "url":"instagram",
+                                            "urls":["instagram"],
                                             "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
                                         });
         }
