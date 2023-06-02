@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'youtube_a',
-    version: '2.2',
+    version: '2.3',
 
     prepareImgLinks:function (callback) {
         const name = this.name;
@@ -45,19 +45,13 @@ hoverZoomPlugins.push({
                     [{
                         "type": "request",
                         "skipInitiator": "youtube",
-                        "url": "youtube.com/youtubei/v1/player?key=",
+                        "urls": ["youtube.com/youtubei/v1/player?key="],
                         "headers": [{"name": "origin", "value": "https://music.youtube.com", "typeOfUpdate": "add"}]
                     },
                     {
                         "type": "response",
                         "skipInitiator": "youtube",
-                        "url": "youtube.com/youtubei/v1/player?key=",
-                        "headers": [{"name": "Access-Control-Allow-Origin", "value": "*", "typeOfUpdate": "add"}]
-                    },
-                    {
-                        "type": "response",
-                        "skipInitiator": "",
-                        "url": "googlevideo.com/videoplayback/id/",
+                        "urls": ["youtube.com/youtubei/v1/player?key=","googlevideo.com/videoplayback/id/"],
                         "headers": [{"name": "Access-Control-Allow-Origin", "value": "*", "typeOfUpdate": "add"}]
                     }]
             });

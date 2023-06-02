@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'Pixiv',
-    version:'3.1',
+    version:'3.2',
     favicon:'pixiv.svg',
     prepareImgLinks: function (callback) {
         var name = this.name;
@@ -13,11 +13,11 @@ hoverZoomPlugins.push({
                                         settings:
                                             [{"type":"request",
                                             "skipInitiator":"pixiv",
-                                            "url":"pximg.net",
+                                            "urls":["pximg.net"],
                                             "headers":[{"name":"referer", "value":"https://www.pixiv.net/", "typeOfUpdate":"add"}]},
                                             {"type":"response",
                                             "skipInitiator":"pixiv",
-                                            "url":"pximg.net",
+                                            "urls":["pximg.net"],
                                             "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
                                         });
         }

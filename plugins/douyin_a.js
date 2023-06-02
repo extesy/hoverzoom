@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push( {
     name: 'douyin_a',
-    version: '1.0',
+    version: '1.1',
     prepareImgLinks: function(callback) {
         var name = this.name;
 
@@ -12,11 +12,11 @@ hoverZoomPlugins.push( {
                                         settings:
                                             [{"type":"request",
                                             "skipInitiator":"douyin",
-                                            "url":"zjcdn.com",
+                                            "urls":["zjcdn.com"],
                                             "headers":[{"name":"referer", "value":"https://www.douyin.com/", "typeOfUpdate":"add"}]},
                                             {"type":"response",
                                             "skipInitiator":"douyin",
-                                            "url":"zjcdn.com",
+                                            "urls":["zjcdn.com"],
                                             "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
                                         });
         }

@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push( {
     name: 'xhamster_a',
-    version: '1.0',
+    version: '1.1',
     prepareImgLinks: function(callback) {
         var name = this.name;
 
@@ -12,11 +12,11 @@ hoverZoomPlugins.push( {
                                         settings:
                                             [{"type":"request",
                                             "skipInitiator":"xhamster",
-                                            "url":"xhcdn.com",
+                                            "urls":["xhcdn.com"],
                                             "headers":[{"name":"referer", "value":"https://xhamster.com/", "typeOfUpdate":"add"}]},
                                             {"type":"response",
                                             "skipInitiator":"xhamster",
-                                            "url":"xhcdn.com",
+                                            "urls":["xhcdn.com"],
                                             "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
                                         });
         }

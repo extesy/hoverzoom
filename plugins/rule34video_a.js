@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push( {
     name: 'rule34video_a',
-    version: '1.0',
+    version: '1.1',
     prepareImgLinks: function(callback) {
         var res = [];
 
@@ -12,7 +12,7 @@ hoverZoomPlugins.push( {
                                         settings:
                                             [{"type":"request",
                                             "skipInitiator":"rule34video",
-                                            "url":"rule34video",
+                                            "urls":["rule34video"],
                                             "headers":[{"name":"referer", "value":"https://rule34video.com/", "typeOfUpdate":"add"}]}]
                                         });
         }

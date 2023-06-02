@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push( {
     name: 'dailymotion_a',
-    version: '1.3',
+    version: '1.4',
     prepareImgLinks: function(callback) {
         var name = this.name;
 
@@ -12,11 +12,11 @@ hoverZoomPlugins.push( {
                                         settings:
                                             [{"type":"request",
                                             "skipInitiator":"dailymotion",
-                                            "url":"dailymotion.com",
+                                            "urls":["dailymotion.com"],
                                             "headers":[{"name":"referer", "value":"https://www.dailymotion.com/", "typeOfUpdate":"add"}]},
                                             {"type":"response",
                                             "skipInitiator":"dailymotion",
-                                            "url":"dailymotion.com",
+                                            "urls":["dailymotion.com"],
                                             "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
                                         });
         }

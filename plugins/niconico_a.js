@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'niconico_a',
-    version:'0.1',
+    version:'0.2',
     prepareImgLinks:function (callback) {
         var res = [];
 
@@ -12,7 +12,7 @@ hoverZoomPlugins.push({
                                         settings:
                                             [{"type":"response",
                                             "skipInitiator":"nico",
-                                            "url":"dmc.nico",
+                                            "urls":["dmc.nico"],
                                             "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
                                         });
         }
