@@ -1947,6 +1947,10 @@
         {
             "js": ["plugins/iwara.js"],
             "matches": ["*://*.iwara.tv/*"]
+        },
+        {
+            "js": ["plugins/usbeketrica.js"],
+            "matches": ["*://*.usbeketrica.com/*"]
         }
     ]
 }
