@@ -1951,6 +1951,10 @@
         {
             "js": ["plugins/usbeketrica.js"],
             "matches": ["*://*.usbeketrica.com/*"]
+        },
+        {
+            "js": ["plugins/letterboxd.js"],
+            "matches": ["*://*.letterboxd.com/*"]
         }
     ]
 }
