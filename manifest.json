@@ -1959,6 +1959,10 @@
         {
             "js": ["plugins/figma.js"],
             "matches": ["*://*.figma.com/files/*"]
+        },
+        {
+            "js": ["plugins/kleinanzeigen.js"],
+            "matches": ["*://*.kleinanzeigen.de/*"]
         }
     ]
 }
