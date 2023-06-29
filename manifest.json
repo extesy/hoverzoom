@@ -1955,6 +1955,10 @@
         {
             "js": ["plugins/letterboxd.js"],
             "matches": ["*://*.letterboxd.com/*"]
+        },
+        {
+            "js": ["plugins/figma.js"],
+            "matches": ["*://*.figma.com/files/*"]
         }
     ]
 }
