@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Instagram',
-    version:'0.4',
+    version:'0.6',
     favicon:'instagram.svg',
     prepareImgLinks:function (callback) {
 
@@ -383,11 +383,6 @@ hoverZoomPlugins.push({
                 link.data().hoverZoomCaption = (items0.caption ? items0.caption.text : (items0.accessibility_caption ? items0.accessibility_caption : items0.user.full_name));
                 if (callback) callback(videoAudioSubtitlesUrl);
                 else link.data().hoverZoomSrc = [videoAudioSubtitlesUrl];
-            } else if (images) {
-                const imagesUrl = images.candidates[0].url;
-                link.data().hoverZoomCaption = (items0.caption ? items0.caption.text : (items0.accessibility_caption ? items0.accessibility_caption : items0.user.full_name));
-                if (callback) callback(imagesUrl);
-                else link.data().hoverZoomSrc = [imagesUrl];
             } else if (carousel) {
                 let gallery = [];
                 let captions = [];
@@ -397,6 +392,11 @@ hoverZoomPlugins.push({
                 link.data().hoverZoomGalleryCaption = captions;
                 if (callback) callback(gallery);
                 else link.data().hoverZoomGallerySrc = gallery;
+            } else if (images) {
+                const imagesUrl = images.candidates[0].url;
+                link.data().hoverZoomCaption = (items0.caption ? items0.caption.text : (items0.accessibility_caption ? items0.accessibility_caption : items0.user.full_name));
+                if (callback) callback(imagesUrl);
+                else link.data().hoverZoomSrc = [imagesUrl];
             }
         }
 

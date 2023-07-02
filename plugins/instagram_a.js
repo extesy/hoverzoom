@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Instagram_a',
-    version:'0.3',
+    version:'0.4',
     favicon:'instagram.svg',
     prepareImgLinks:function (callback) {
 
@@ -77,11 +77,6 @@ hoverZoomPlugins.push({
                                                     link.data().hoverZoomSrc = [videoAudioSubtitlesUrl];
                                                     callback(link, pluginName);
                                                     hoverZoom.displayPicFromElement(link);
-                                                } else if (images) {
-                                                    link.data().hoverZoomSrc = [images.candidates[0].url];
-                                                    link.data().hoverZoomCaption = (items0.caption ? items0.caption.text : (items0.accessibility_caption ? items0.accessibility_caption : fullname));
-                                                    callback(link, pluginName);
-                                                    hoverZoom.displayPicFromElement(link);
                                                 } else if (carousel) {
                                                     var gallery = [];
                                                     var captions = [];
@@ -90,6 +85,11 @@ hoverZoomPlugins.push({
                                                     carousel.map(c => { gallery.push([c.video_versions ? c.video_versions[0].url : c.image_versions2.candidates[0].url]); captions.push(caption ?? ''); });
                                                     link.data().hoverZoomGallerySrc = gallery;
                                                     link.data().hoverZoomGalleryCaption = captions;
+                                                    callback(link, pluginName);
+                                                    hoverZoom.displayPicFromElement(link);
+                                                } else if (images) {
+                                                    link.data().hoverZoomSrc = [images.candidates[0].url];
+                                                    link.data().hoverZoomCaption = (items0.caption ? items0.caption.text : (items0.accessibility_caption ? items0.accessibility_caption : fullname));
                                                     callback(link, pluginName);
                                                     hoverZoom.displayPicFromElement(link);
                                                 }
