@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'kick_a',
-    version:'0.2',
+    version:'0.3',
     prepareImgLinks:function (callback) {
         var name = this.name;
         var res = [];
@@ -30,6 +30,7 @@ hoverZoomPlugins.push({
             var link = $(this);
             const clipUrl = src.replace('-thumbnail.jpeg', '.mp4');
             link.data().hoverZoomSrc = [clipUrl];
+            callback(link, name);
             hoverZoom.displayPicFromElement(link);
         });
 
