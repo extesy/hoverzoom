@@ -96,7 +96,7 @@
         "description": "[options] Page section for video options"
     },
     "optSectionAudio": {
-        "message": "ㅅ리",
+        "message": "소리",
         "description": "[options] Page section for audio options"
     },
     "optZoomFactor": {
