@@ -1,8 +1,0 @@
-version: "1.0"
-linter: jetbrains/qodana-js:latest
-include:
-  - name: RegExpSimplifiable
-exclude:
-  - name: All
-    paths:
-      - js/libs
