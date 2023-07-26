@@ -88,7 +88,7 @@
         "description": "[options] Enable dark mode for Options & Popup"
     },
     "optSectionView": {
-        "message": "Viewer",
+        "message": "Прегледник",
         "description": "[options] Page section for viewer options"
     },
     "optSectionVideo": {
@@ -96,7 +96,7 @@
         "description": "[options] Page section for video options"
     },
     "optSectionAudio": {
-        "message": "Аудио",
+        "message": "Звук",
         "description": "[options] Page section for audio options"
     },
     "optZoomFactor": {
@@ -383,6 +383,34 @@
         "message": "сек.",
         "description": "[options] Short form of \"second\" for delay duration"
     },
+    "optSectionZoomSpeed": {
+        "message": "Zoom speed",
+        "description": "[options] Page section for zoom speed"
+    },
+    "optZoomSpeed_P1": {
+        "message": "When an image or video is locked on screen, it can be zoomed in or out using mouse wheel.",
+        "description": "[options] Zoom speed Part 1"
+    },
+    "optZoomSpeed_P2": {
+        "message": "press",
+        "description": "[options] Zoom speed Part 2"
+    },
+    "optZoomSpeed_P3": {
+        "message": "or",
+        "description": "[options] Zoom speed Part 3"
+    },
+    "optZoomSpeed_P4": {
+        "message": " while scrolling to zoom",
+        "description": "[options] Zoom speed Part 4"
+    },
+    "optZoomSpeed_P41": {
+        "message": "faster",
+        "description": "[options] Zoom speed Part 41"
+    },
+    "optZoomSpeed_P42": {
+        "message": "slower",
+        "description": "[options] Zoom speed Part 42"
+    },
     "optPagePlugins": {
         "message": "Приставки",
         "description": "[options] Page title for plugin options"
@@ -434,10 +462,6 @@
     "optSectionAdvanced": {
         "message": "Допълнителни опции",
         "description": "[options] Page section for advanced options"
-    },
-    "optEnableDownloads": {
-        "message": "Разрешаване на изтеглянето на изображения чрез клавиш за действие",
-        "description": "[options] Grant browser permission to allow file downloading using an action key"
     },
     "optAddToHistory": {
         "message": "Добавяне на разглеждани картинки в историята на браузъра",
@@ -672,11 +696,11 @@
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optFAQ_Q7": {
-        "message": "I hover an image or video but sometimes nothing happens!",
+        "message": "Задържам се над образ или видео, но понякога нищо не се случва!",
         "description": "[options] FAQ Question 7"
     },
     "optFAQ_A7": {
-        "message": "Scroll down or click anywhere on page to wake up HoverZoom+!",
+        "message": "Превъртете надолу или щракнете някъде из страницата, за да събудите HoverZoom+!",
         "description": "[options] FAQ Answer 7"
     },
     "optPixelsUnitName": {

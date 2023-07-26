@@ -383,6 +383,34 @@
         "message": "sek",
         "description": "[options] Short form of \"second\" for delay duration"
     },
+    "optSectionZoomSpeed": {
+        "message": "Zoom speed",
+        "description": "[options] Page section for zoom speed"
+    },
+    "optZoomSpeed_P1": {
+        "message": "When an image or video is locked on screen, it can be zoomed in or out using mouse wheel.",
+        "description": "[options] Zoom speed Part 1"
+    },
+    "optZoomSpeed_P2": {
+        "message": "press",
+        "description": "[options] Zoom speed Part 2"
+    },
+    "optZoomSpeed_P3": {
+        "message": "or",
+        "description": "[options] Zoom speed Part 3"
+    },
+    "optZoomSpeed_P4": {
+        "message": " while scrolling to zoom",
+        "description": "[options] Zoom speed Part 4"
+    },
+    "optZoomSpeed_P41": {
+        "message": "faster",
+        "description": "[options] Zoom speed Part 41"
+    },
+    "optZoomSpeed_P42": {
+        "message": "slower",
+        "description": "[options] Zoom speed Part 42"
+    },
     "optPagePlugins": {
         "message": "Udvidelser",
         "description": "[options] Page title for plugin options"
@@ -434,10 +462,6 @@
     "optSectionAdvanced": {
         "message": "Avancerede indstillinger",
         "description": "[options] Page section for advanced options"
-    },
-    "optEnableDownloads": {
-        "message": "Tillad downloading af billeder ved hjælp af en handlingstast",
-        "description": "[options] Grant browser permission to allow file downloading using an action key"
     },
     "optAddToHistory": {
         "message": "Tilføj sete billeder til browserens historik",
