@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Imagefap_a',
-    version:'0.4',
+    version:'0.5',
     prepareImgLinks:function (callback) {
         var res = [];
 
@@ -17,6 +17,7 @@ hoverZoomPlugins.push({
                                         });
         }
 
+
         // images
         // page hosting thumbnail img: https://www.imagefap.com/photo/58046625/
         // thumbnail img:              https://cdn.imagefap.com/images/mini/111/658/65819236.jpg?end=1659223634&secure=04cba344d9553fef9d3f7
@@ -26,22 +27,24 @@ hoverZoomPlugins.push({
             var thumb = this.src || this.href;
             var link = $(this);
 
-            const re = /\/images\/.*\/(\d+)\./;   // image id (e.g. 65819236)
+            const re = /\/\d+\/\d+\/(\d+)\./;   // image id (e.g. 65819236)
             var m = thumb.match(re);
             if (m == undefined) return;
             let imageId = m[1];
 
-            var phpLink = 'https://www.imagefap.com/image.php?id=' + imageId;
+            var imgUrl = 'https://www.imagefap.com/photo/' + imageId;
 
             // clean previous result
             link.data().hoverZoomSrc = [];
-            hoverZoom.prepareFromDocument($(this), phpLink, function(doc, callback) {
+            hoverZoom.prepareFromDocument($(this), imgUrl, function(doc, callback) {
 
-                let img = doc.querySelector('img#mainPhoto');
-                if (img) {
-                    callback(img.src);
-                    hoverZoom.displayPicFromElement(link, true);
-                }
+                const re = /\/\d+\/\d+\/(\d+)\./;   // image id (e.g. 65819236)
+                var m = link[0].src.match(re);
+                if (m == undefined) return;
+                let imageId = m[1];
+                const fullsize = doc.querySelector(`a[href*="${imageId}"]`).href;
+                callback(fullsize);
+                hoverZoom.displayPicFromElement(link, true);
 
             }, true); // get source async
         });
