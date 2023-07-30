@@ -384,7 +384,7 @@
         "description": "[options] Short form of \"second\" for delay duration"
     },
     "optSectionZoomSpeed": {
-        "message": "Zoom speed",
+        "message": "확대 속도",
         "description": "[options] Page section for zoom speed"
     },
     "optZoomSpeed_P1": {
@@ -396,7 +396,7 @@
         "description": "[options] Zoom speed Part 2"
     },
     "optZoomSpeed_P3": {
-        "message": "or",
+        "message": "또는",
         "description": "[options] Zoom speed Part 3"
     },
     "optZoomSpeed_P4": {
@@ -404,11 +404,11 @@
         "description": "[options] Zoom speed Part 4"
     },
     "optZoomSpeed_P41": {
-        "message": "faster",
+        "message": "빠르게",
         "description": "[options] Zoom speed Part 41"
     },
     "optZoomSpeed_P42": {
-        "message": "slower",
+        "message": "느리게",
         "description": "[options] Zoom speed Part 42"
     },
     "optPagePlugins": {
