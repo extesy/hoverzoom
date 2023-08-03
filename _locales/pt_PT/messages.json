@@ -384,31 +384,31 @@
         "description": "[options] Short form of \"second\" for delay duration"
     },
     "optSectionZoomSpeed": {
-        "message": "Zoom speed",
+        "message": "Velocidade do zoom",
         "description": "[options] Page section for zoom speed"
     },
     "optZoomSpeed_P1": {
-        "message": "When an image or video is locked on screen, it can be zoomed in or out using mouse wheel.",
+        "message": "Quando uma imagem ou vídeo está bloqueada no ecrã, pode ser ampliada ou reduzida com a roda do rato.",
         "description": "[options] Zoom speed Part 1"
     },
     "optZoomSpeed_P2": {
-        "message": "press",
+        "message": "pressione",
         "description": "[options] Zoom speed Part 2"
     },
     "optZoomSpeed_P3": {
-        "message": "or",
+        "message": "ou",
         "description": "[options] Zoom speed Part 3"
     },
     "optZoomSpeed_P4": {
-        "message": " while scrolling to zoom",
+        "message": " enquanto desliza para fazer zoom",
         "description": "[options] Zoom speed Part 4"
     },
     "optZoomSpeed_P41": {
-        "message": "faster",
+        "message": "mais rápido",
         "description": "[options] Zoom speed Part 41"
     },
     "optZoomSpeed_P42": {
-        "message": "slower",
+        "message": "mais lento",
         "description": "[options] Zoom speed Part 42"
     },
     "optPagePlugins": {
@@ -660,7 +660,7 @@
         "description": "[options] FAQ Answer 4 part 1"
     },
     "optFAQ_A4_2": {
-        "message": "A imagem ou o vídeo são agora exibidos em tamanho real. Pode fazer ampliar/reduzir usando a roda do rato.",
+        "message": "A imagem ou o vídeo são agora exibidos em tamanho real. Pode ampliar ou reduzir o zoom usando a roda do rato.",
         "description": "[options] FAQ Answer 4 part 2"
     },
     "optFAQ_Q5": {
@@ -700,7 +700,7 @@
         "description": "[options] FAQ Question 7"
     },
     "optFAQ_A7": {
-        "message": "Deslize o rato par baixo ou clique em qualquer lugar na página para acordar o HoverZoom+!",
+        "message": "Deslize o rato para baixo ou clique em qualquer parte da página para ativar o HoverZoom+!",
         "description": "[options] FAQ Answer 7"
     },
     "optPixelsUnitName": {
