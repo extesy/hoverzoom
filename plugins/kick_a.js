@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'kick_a',
-    version:'0.3',
+    version:'0.4',
     prepareImgLinks:function (callback) {
         var name = this.name;
         var res = [];
@@ -25,10 +25,13 @@ hoverZoomPlugins.push({
         // clips
         // thumbnail url: https://clips.kick.com/clips/cacd6b78-e0d8-49fa-976f-8672d35c7bfa-thumbnail.jpeg
         //   => clip url: https://clips.kick.com/clips/cacd6b78-e0d8-49fa-976f-8672d35c7bfa.mp4
+        // thumbnail url: https://clips.kick.com/clips/clip_01H6KQJC31DGZVGENT05PWM7R3/thumbnail.png
+        //   => clip url: https://clips.kick.com/clips/clip_01H6KQJC31DGZVGENT05PWM7R3/playlist.m3u8
         $('img[src*="clips.kick.com/clips/"]:not(.hoverZoomMouseover)').addClass('hoverZoomMouseover').one('mouseover', function() {
             const src = this.src;
             var link = $(this);
-            const clipUrl = src.replace('-thumbnail.jpeg', '.mp4');
+            const clipUrl = src.replace('-thumbnail.jpeg', '.mp4').replace('/thumbnail.png', '/playlist.m3u8');
+            if (clipUrl == src) return;
             link.data().hoverZoomSrc = [clipUrl];
             callback(link, name);
             hoverZoom.displayPicFromElement(link);
