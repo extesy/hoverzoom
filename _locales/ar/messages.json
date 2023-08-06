@@ -84,7 +84,7 @@
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optDarkMode": {
-        "message": "Dark mode",
+        "message": "الوضع الداكن",
         "description": "[options] Enable dark mode for Options & Popup"
     },
     "optSectionView": {
@@ -384,19 +384,19 @@
         "description": "[options] Short form of \"second\" for delay duration"
     },
     "optSectionZoomSpeed": {
-        "message": "Zoom speed",
+        "message": "سرعة التكبير",
         "description": "[options] Page section for zoom speed"
     },
     "optZoomSpeed_P1": {
-        "message": "When an image or video is locked on screen, it can be zoomed in or out using mouse wheel.",
+        "message": "عندما تكون الصورة أو الفيديو مقفلة على الشاشة، يمكن تكبير الصورة أو تصغيرها باستخدام عجلة الفأرة.",
         "description": "[options] Zoom speed Part 1"
     },
     "optZoomSpeed_P2": {
-        "message": "press",
+        "message": "اضغط",
         "description": "[options] Zoom speed Part 2"
     },
     "optZoomSpeed_P3": {
-        "message": "or",
+        "message": "أو",
         "description": "[options] Zoom speed Part 3"
     },
     "optZoomSpeed_P4": {
