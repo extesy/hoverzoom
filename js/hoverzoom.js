@@ -1899,7 +1899,7 @@ var hoverZoom = {
             var url = undefined;
             try {
                 url = new URL(href);
-            } catch { 
+            } catch {
                 return url;
             }
             return url.hostname;
@@ -3825,11 +3825,18 @@ var hoverZoom = {
     },
 
     // Return JSON object corresponding to path, without using the Evil eval
-    // path syntax: [key1][key2][key3]...
-    getJsonObjectFromPath:function (jsonObj, path) {
+    // path syntax: [key 1][key 2][key 3]...[key n-2][key n-1][key n]
+    // if level = 0 or undefined: use full path ([key 1]...[key n]) to return child
+    // if level = 1: shorten path ([key 1]...[key n-1]) to return parent
+    // if level = 2: shorten path ([key 1]...[key n-2]) to return grand-parent
+    // ...
+    getJsonObjectFromPath:function (jsonObj, path, level) {
         if (!path || path.length < 4) return jsonObj;
-        const keys = path.substr(2, path.length - 4).split('"]["');
+        var keys = path.substr(2, path.length - 4).split('"]["');
         let result = jsonObj;
+        if (level) {
+            keys = keys.slice(0, Math.max(keys.length - level, 1));
+        }
         keys.forEach(key => result = result[key]);
         return result;
     }
