@@ -1676,7 +1676,7 @@ var hoverZoom = {
                                                     "urls":[url],
                                                     "headers":[{"name":"referer", "value":referer, "typeOfUpdate":"add"}]},
                                                     {"type":"response",
-                                                    "url":url,
+                                                    "urls":[url],
                                                     "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
                                                 }, callback());
         }
