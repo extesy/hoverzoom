@@ -25,7 +25,22 @@ hoverZoomPlugins.push({
                 }
             });
 
-            $.get(`${apiUrl}/gifs/${gfyId}`, function(data) {
+            chrome.runtime.sendMessage({
+                action: 'ajaxGet',
+                url: `${apiUrl}/gifs/${gfyId}`,
+                headers: [{
+                    header: 'Authorization',
+                    value: `Bearer ${tempToken}`
+                }]
+            }, (response) => {
+                var data;
+
+                try {
+                    data = JSON.parse(response);
+                } catch (e) {
+                    return;
+                }
+
                 if (data && data.gif) {
                     link.data().hoverZoomSrc = [options.zoomVideos ? data.gif.urls.hd : data.gif.urls.gif];
                     callback(link, name);
