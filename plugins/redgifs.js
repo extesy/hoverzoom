@@ -15,25 +15,19 @@ hoverZoomPlugins.push({
             }
         });
 
-        $('a[href^="https://redgifs.com/"],a[href^="https://www.redgifs.com/"],a[href^="https://v3.redgifs.com/"]').one('mouseenter', function() {
-            var link = $(this),
-                gfyId = this.href.replace(/.*redgifs.com\/(..\/)?(watch\/)?(detail\/)?(\w+).*/, '$4');
-
-            $.ajaxSetup({
-                headers:{
-                    'Authorization': `Bearer ${tempToken}`
-                }
-            });
+        $('a[href^="https://redgifs.com/"],a[href^="https://www.redgifs.com/"],a[href^="https://v3.redgifs.com/"]').one('mouseenter', function () {
+            const link = $(this);
+            const gfyId = this.href.replace(/.*redgifs.com\/(..\/)?(watch\/)?(detail\/)?(\w+).*/, '$4');
 
             chrome.runtime.sendMessage({
                 action: 'ajaxGet',
                 url: `${apiUrl}/gifs/${gfyId}`,
                 headers: [{
                     header: 'Authorization',
-                    value: `Bearer ${tempToken}`
-                }]
+                    value: `Bearer ${tempToken}`,
+                }],
             }, (response) => {
-                var data;
+                let data;
 
                 try {
                     data = JSON.parse(response);
