@@ -15,17 +15,26 @@ hoverZoomPlugins.push({
             }
         });
 
-        $('a[href^="https://redgifs.com/"],a[href^="https://www.redgifs.com/"],a[href^="https://v3.redgifs.com/"]').one('mouseenter', function() {
-            var link = $(this),
-                gfyId = this.href.replace(/.*redgifs.com\/(..\/)?(watch\/)?(detail\/)?(\w+).*/, '$4');
+        $('a[href^="https://redgifs.com/"],a[href^="https://www.redgifs.com/"],a[href^="https://v3.redgifs.com/"]').one('mouseenter', function () {
+            const link = $(this);
+            const gfyId = this.href.replace(/.*redgifs.com\/(..\/)?(watch\/)?(detail\/)?(\w+).*/, '$4');
 
-            $.ajaxSetup({
-                headers:{
-                    'Authorization': `Bearer ${tempToken}`
+            chrome.runtime.sendMessage({
+                action: 'ajaxGet',
+                url: `${apiUrl}/gifs/${gfyId}`,
+                headers: [{
+                    header: 'Authorization',
+                    value: `Bearer ${tempToken}`,
+                }],
+            }, (response) => {
+                let data;
+
+                try {
+                    data = JSON.parse(response);
+                } catch (e) {
+                    return;
                 }
-            });
 
-            $.get(`${apiUrl}/gifs/${gfyId}`, function(data) {
                 if (data && data.gif) {
                     link.data().hoverZoomSrc = [options.zoomVideos ? data.gif.urls.hd : data.gif.urls.gif];
                     callback(link, name);
