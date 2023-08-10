@@ -8,11 +8,11 @@
         "description": "Short extension name"
     },
     "extDescription": {
-        "message": "Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.",
+        "message": "Để thu phóng hình ảnh/videos trên các trang web như (Facebook, Amazon...), bạn chỉ cần di chuột vào hình ảnh để phóng to.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
     "popDisableForAllSites": {
-        "message": "Disable for all sites",
+        "message": "Vô hiệu hóa cho tất cả các trang",
         "description": "[popup] Disable the extension"
     },
     "popAllowPerSiteToggle": {
@@ -20,11 +20,11 @@
         "description": "[popup] Allow per-site extension configuration"
     },
     "popDisableForSite": {
-        "message": "Disable for $1",
+        "message": "Vô hiệu hóa cho $1",
         "description": "[popup] Disables the extension for a specific site"
     },
     "popEnableForSite": {
-        "message": "Enable for $1",
+        "message": "Kích hoạt cho $1",
         "description": "[popup] Enables the extension for a specific site"
     },
     "popPreloadImages": {
@@ -688,7 +688,7 @@
         "description": "[options] FAQ Answer 6 part 1"
     },
     "optFAQ_A6_2": {
-        "message": "This is due to CORS restrictions, to lift them:",
+        "message": "Bởi vì sự hạn chế của cơ chế CORS, để loại bỏ chúng:",
         "description": "[options] FAQ Answer 6 part 2"
     },
     "optFAQ_A6_3": {
