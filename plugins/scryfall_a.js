@@ -30,7 +30,7 @@ hoverZoomPlugins.push({
             // extract url from style
             // e.g: style="background-image: url(https://globalvoices.org/wp-content/uploads/2019/01/20160507_KAR5877-400x300.jpg)"
             var backgroundImage = this.style.backgroundImage;
-            if (backgroundImage && backgroundImage.indexOf('/scryfall.io/') != -1) {
+            if (backgroundImage && backgroundImage.indexOf('scryfall.io/') != -1) {
                 const link = $(this);
                 const reUrl = /.*url\s*\(\s*(.*)\s*\).*/i
                 backgroundImage = backgroundImage.replace(reUrl, '$1');
