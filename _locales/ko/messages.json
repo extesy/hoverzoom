@@ -392,7 +392,7 @@
         "description": "[options] Zoom speed Part 1"
     },
     "optZoomSpeed_P2": {
-        "message": "press",
+        "message": "스크롤로 확대/축소할 때",
         "description": "[options] Zoom speed Part 2"
     },
     "optZoomSpeed_P3": {
@@ -400,7 +400,7 @@
         "description": "[options] Zoom speed Part 3"
     },
     "optZoomSpeed_P4": {
-        "message": " while scrolling to zoom",
+        "message": " 키를 눌러 줌 속도를",
         "description": "[options] Zoom speed Part 4"
     },
     "optZoomSpeed_P41": {
