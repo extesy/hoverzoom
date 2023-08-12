@@ -104,6 +104,7 @@
                 "plugins/photoshop_a.js",
                 "plugins/rule34video_a.js",
                 "plugins/screencast_a.js",
+                "plugins/scryfall_a.js",
                 "plugins/sendvid_a.js",
                 "plugins/squarespace_a.js",
                 "plugins/streamable_a.js",
