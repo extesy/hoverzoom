@@ -1963,6 +1963,10 @@
         {
             "js": ["plugins/kleinanzeigen.js"],
             "matches": ["*://*.kleinanzeigen.de/*"]
+        },
+        {
+            "js": ["plugins/trakttv.js"],
+            "matches": ["*://*.trakt.tv/*"]
         }
     ]
 }
