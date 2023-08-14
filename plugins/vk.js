@@ -7,8 +7,12 @@ hoverZoomPlugins.push({
         var res = [];
         var link;
 
-        $('[data-task-click="WallPost/openPhoto"]').each(function () {
+        $('div[data-task-click="WallPost/openPhoto"], a.page_post_thumb_wrap').each(function () {
             var link = $(this), data = this.getAttribute('data-options');
+            if (!data)
+                data = this.getAttribute('onclick');
+            if (!data)
+                return;
             var url = "";
             //parse onclick function body in order to extract alternative images urls
             var index1 = data.indexOf('{');
