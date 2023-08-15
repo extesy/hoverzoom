@@ -88,6 +88,7 @@
                 "plugins/focus_a.js",
                 "plugins/gallery_a.js",
                 "plugins/google_a.js",
+                "plugins/grailed_a.js",
                 "plugins/gravatar_a.js",
                 "plugins/imagebam_a.js",
                 "plugins/imagefap_a.js",
