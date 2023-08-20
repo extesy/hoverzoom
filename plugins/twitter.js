@@ -42,10 +42,10 @@ hoverZoomPlugins.push({
             if (url.match(/\/[^:]+\.(?:jpe?g|gifv?|png|svg|webp|bmp|ico|xbm)(?:[\?#:].*)?$/i) || url.match(/twimg\.com/)) {
                 //replace .jpg by .jpg:large
                 url = url.replace(/(.jpe?g)$/, '$1:large').replace(/(.jpe?g)([^:])/, '$1:large$2');
-                link.data().hoverZoomSrc = [url.replace(':thumb', ':large').replace(':small', ':large').replace(':medium', ':large')];
+`                link.data().hoverZoomSrc = [url.replace(':thumb', ':large').replace(':small', ':large').replace(':medium', ':large')];
                 res.push(link);
                 link.addClass('hoverZoomLink');
-            }
+`            }
         });
 
         $('a:contains("pic.twitter.com/")').one('mouseover', function() {

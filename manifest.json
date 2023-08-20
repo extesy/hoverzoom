@@ -1971,6 +1971,10 @@
         {
             "js": ["plugins/trakttv.js"],
             "matches": ["*://*.trakt.tv/*"]
+        },
+        {
+            "js": ["plugins/vsco.js"],
+            "matches": ["*://*.vsco.co/*"]
         }
     ]
 }
