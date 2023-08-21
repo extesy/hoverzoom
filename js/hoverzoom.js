@@ -3532,6 +3532,9 @@ var hoverZoom = {
         } else {
             link.data().hoverZoomSrc = [src];
         }
+        if (!link.data().hoverZoomCaption && link.attr('alt')) {
+            link.data().hoverZoomCaption = link.attr('alt');
+        }
         link.addClass('hoverZoomLink');
         link.addClass('hoverZoomLinkFromPlugIn');
         hoverZoom.displayPicFromElement(link);
