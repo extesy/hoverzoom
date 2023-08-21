@@ -15,7 +15,7 @@ hoverZoomPlugins.push({
             }
         });
 
-        $('a[href^="https://redgifs.com/"],a[href^="https://www.redgifs.com/"],a[href^="https://v3.redgifs.com/"],a[href^="https://i.redgifs.com/"]').one('mouseenter', function () {
+        $('a[href*="redgifs.com/"]').one('mouseenter', function () {
             const link = $(this);
             const gfyId = this.href.replace(/.*redgifs.com\/(..\/)?(watch\/|i\/)?(\w+)(?:\.\w+)?/, '$3');
 
