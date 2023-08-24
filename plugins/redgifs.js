@@ -17,7 +17,7 @@ hoverZoomPlugins.push({
 
         $('a[href*="redgifs.com/"]').one('mouseenter', function () {
             const link = $(this);
-            const gfyId = this.href.replace(/.*redgifs.com\/(..\/)?(watch\/|i\/)?(\w+)(?:\.\w+)?/, '$3');
+            const gfyId = this.href.replace(/.*redgifs.com\/(..\/)?(\w+\/)?(\w+)(?:\.\w+)?/, '$3');
 
             chrome.runtime.sendMessage({
                 action: 'ajaxGet',
