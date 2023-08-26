@@ -3381,15 +3381,15 @@ var hoverZoom = {
         if (hoverZoom.isEmbeddedImg(el.src)) imageSrc = ''; // discard embedded images
         else imageSrc = el.src;
 
-        return imageSrc || backgroundImageSrc || el.href;
+        return imageSrc || el.getAttribute('data-src') || backgroundImageSrc || el.href;
     },
 
     // Embedded image url look like:  "data:image/png;base64,Base64 encoded string of the image"
     // sample: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
     isEmbeddedImg:function (url) {
         if (!url) return false;
-        if (url.indexOf('data:image') === -1 && url.indexOf('base64') === -1) return false;
-        return true;
+        return !(url.indexOf('data:image') === -1 && url.indexOf('base64') === -1);
+
     },
 
     // Simulates a mousemove event to force a zoom call

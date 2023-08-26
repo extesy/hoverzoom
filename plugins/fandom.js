@@ -3,6 +3,7 @@ hoverZoomPlugins.push({
     name:'fandom',
     version:'0.1',
     prepareImgLinks:function (callback) {
+        // Images
 
         // sample: https://static.wikia.nocookie.net/supernaturalpowers/images/3/34/%EB%A7%88%EB%B8%94_%EC%9D%B4%ED%84%B0%EB%8B%88%ED%8B%B0.jpg/revision/latest/zoom-crop/width/500/height/500?cb=20190426134645&path-prefix=ko
         //   full: https://static.wikia.nocookie.net/supernaturalpowers/images/3/34/%EB%A7%88%EB%B8%94_%EC%9D%B4%ED%84%B0%EB%8B%88%ED%8B%B0.jpg/revision/latest/?cb=20190426134645&path-prefix=ko
@@ -10,7 +11,7 @@ hoverZoomPlugins.push({
         $('img[src*="nocookie"], div[src*="nocookie"], a[href*="nocookie"]').one('mouseover', function() {
             let link = $(this);
             const src = this.src || this.href;
-            const fullsize = src.replace(/\/(zoom|scale|smart|thumbnail)([^\?]{1,})(.*)/, '$3');
+            const fullsize = src.replace(/\/(zoom|scale|smart|thumbnail)([^?]+)(.*)/, '$3');
             link.data().hoverZoomSrc = [fullsize];
             link.addClass('hoverZoomLink');
             hoverZoom.displayPicFromElement(link);
@@ -24,13 +25,13 @@ hoverZoomPlugins.push({
             backgroundImage = backgroundImage.replace(reUrl, '$1');
             // remove leading & trailing quotes
             const src = backgroundImage.replace(/^['"]/, "").replace(/['"]+$/, "");
-            const fullsize = src.replace(/\/(zoom|scale|smart|thumbnail)([^\?]{1,})(.*)/, '$3');
+            const fullsize = src.replace(/\/(zoom|scale|smart|thumbnail)([^?]+)(.*)/, '$3');
             link.data().hoverZoomSrc = [fullsize];
             link.addClass('hoverZoomLink');
             hoverZoom.displayPicFromElement(link);
         });
 
-        // videos
+        // Videos
 
         //   sample: https://www.fandom.com/video/t7eezF6p/honest-game-trailers-valheim
         // playlist: https://cdn.jwplayer.com/manifests/t7eezF6p.m3u8
@@ -65,7 +66,7 @@ hoverZoomPlugins.push({
             backgroundImage = backgroundImage.replace(reUrl, '$1');
             // remove leading & trailing quotes
             const src = backgroundImage.replace(/^['"]/, "").replace(/['"]+$/, "");
-            const re = /\/([^\/]{1,})\/poster/
+            const re = /\/([^\/]+)\/poster/
             const m = src.match(re);
             if (m == null) return;
             const videoId = m[1];
@@ -74,6 +75,5 @@ hoverZoomPlugins.push({
             link.addClass('hoverZoomLink');
             hoverZoom.displayPicFromElement(link);
         });
-
     }
 });
