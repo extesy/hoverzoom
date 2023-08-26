@@ -25,9 +25,11 @@ hoverZoomPlugins.push({
             const fullsize = src.replace(thumbnailRegex, '.');
 
             const divOverlay = link.parent().next('div');
-            divOverlay.data().hoverZoomSrc = [fullsize];
-            divOverlay.addClass('hoverZoomLink');
-            res.push(divOverlay);
+            if (divOverlay[0]) {
+                divOverlay.data().hoverZoomSrc = [fullsize];
+                divOverlay.addClass('hoverZoomLink');
+                res.push(divOverlay);
+            }
         });
 
         callback($(res), this.name);
