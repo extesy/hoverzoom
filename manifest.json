@@ -1977,8 +1977,8 @@
             "matches": ["*://*.vsco.co/*"]
         },
         {
-            "js": ["plugins/shirt_woot.js"],
-            "matches": ["*://shirt.woot.com/*"]
+            "js": ["plugins/woot.js"],
+            "matches": ["*://*.woot.com/*"]
         }
     ]
 }

@@ -1,12 +1,13 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
+console.log("loaded woot");
 hoverZoomPlugins.push({
-    name: 'shirt.woot.com',
+    name: 'woot.com',
     version: '0.1',
     prepareImgLinks(callback) {
         const res = [];
         hoverZoom.urlReplace(res,
             'a img',
-            '._SX240_.',
+            /\._.*_\./,
             '.');
 
         callback($(res), this.name);
