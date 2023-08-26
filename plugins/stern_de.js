@@ -9,6 +9,6 @@ hoverZoomPlugins.push({
             [ /_maxpane_\d+_\d+[.]jpg/ , /_fitin_\d+_\d+[.]jpg/ ],
             [ '_maxsize_735_490.jpg' , '_maxsize_735_490.jpg' ]
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

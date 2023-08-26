@@ -10,6 +10,6 @@ hoverZoomPlugins.push({
          '/thumbs/t',
          '/'
          );
-         callback($(res));*/
+         callback($(res), this.name);*/
     }
 });

@@ -9,6 +9,6 @@ hoverZoomPlugins.push({
             '.thumb.',
             repl
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

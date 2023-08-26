@@ -9,7 +9,7 @@ hoverZoomPlugins.push({
             '-01.jpg',
             '-02.jpg'
         );
-        callback($(res));
+        callback($(res), this.name);
 
         // Fixes the bad positioning bug.
         // Doesn't seem to break the site's layout.

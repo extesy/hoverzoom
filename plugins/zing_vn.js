@@ -15,6 +15,6 @@ hoverZoomPlugins.push({
             '_180_',
             ':eq(0)'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

@@ -22,6 +22,6 @@ hoverZoomPlugins.push({
             [patch1, patch2]
         );
 
-        callback($(res));
+        callback($(res), this.name);
     }
 });

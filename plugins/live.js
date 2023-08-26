@@ -4,6 +4,6 @@ hoverZoomPlugins.push({
     prepareImgLinks:function (callback) {
         var res = [];
         hoverZoom.urlReplace(res, 'img[src*="maxwidth="]', /&max(width|height)=\d+/g, '');
-        callback($(res));
+        callback($(res), this.name);
     }
 });

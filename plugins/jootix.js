@@ -9,6 +9,6 @@ hoverZoomPlugins.push({
             /thumbs\/(.*)_(big|small)\./,
             'cache/$1-975x550.'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

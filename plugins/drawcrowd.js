@@ -10,6 +10,6 @@ hoverZoomPlugins.push({
             ['/large/', '/large/']
         );
 
-        callback($(res));
+        callback($(res), this.name);
     }
 });

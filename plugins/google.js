@@ -167,7 +167,7 @@ hoverZoomPlugins.push({
             }
         });
 
-        callback($(res));
+        callback($(res), this.name);
 
         // remove this when old google image is retired
         function prepareImgLink(img) {

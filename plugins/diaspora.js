@@ -9,6 +9,6 @@ hoverZoomPlugins.push({
             /thumb_[^_]+_/,
             ''
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

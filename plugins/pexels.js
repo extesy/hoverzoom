@@ -10,6 +10,6 @@ hoverZoomPlugins.push({
             ['$1', '$1', '$1']
         );
 
-        callback($(res));
+        callback($(res), this.name);
     }
 });

@@ -47,6 +47,6 @@ hoverZoomPlugins.push({
       patch
     );
 
-    callback($(res));
+    callback($(res), this.name);
   },
 });

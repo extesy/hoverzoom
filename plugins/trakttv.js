@@ -11,6 +11,6 @@ hoverZoomPlugins.push({
             const src = img.attr('src').replace("thumb", "full");
             hoverZoom.prepareLink(img.parent(), src);
         })
-        callback($(res));
+        callback($(res), this.name);
     }
 });

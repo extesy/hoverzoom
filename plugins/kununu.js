@@ -9,6 +9,6 @@ hoverZoomPlugins.push({
             /crop_\d{1,3}_\d{1,3}\//,
             ''
         );
-		callback($(res));
+		callback($(res), this.name);
     }
 });

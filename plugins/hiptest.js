@@ -8,6 +8,6 @@ hoverZoomPlugins.push({
             'a[href*="attachments"]',
             /(.*)/, '$1/'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

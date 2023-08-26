@@ -11,6 +11,6 @@ hoverZoomPlugins.push({
             ['_960_720', '_960_720', '_960_720', '_960_720', '_1280', '_96x96']
         );
                 
-        callback($(res));
+        callback($(res), this.name);
     }
 });

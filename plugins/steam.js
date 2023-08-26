@@ -48,6 +48,6 @@ hoverZoomPlugins.push({
             }
         });
 
-        callback($(res));
+        callback($(res), this.name);
     }
 });

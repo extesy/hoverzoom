@@ -8,6 +8,6 @@ hoverZoomPlugins.push({
             /\/mnresize\/\d+\/\d+\//,
             options.showHighRes ? '/' : '/mnresize/1000/1000/'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

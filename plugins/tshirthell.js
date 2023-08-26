@@ -9,6 +9,6 @@ hoverZoomPlugins.push({
             '_thumb.jpg',
             '_bm.gif'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

@@ -10,6 +10,6 @@ hoverZoomPlugins.push({
             _this.data().hoverZoomSrc = [url.replace(/twitpic\.com\/([^\/]*)$/, 'twitpic.com/show/' + (options.showHighRes ? 'full' : 'large') + '/$1')];
             res.push(_this);
         });
-        callback($(res));
+        callback($(res), this.name);
     }
 });

@@ -12,6 +12,6 @@ hoverZoomPlugins.push({
             'img[src*="/thumb_"]',
             '/thumb_',
             '/');
-        callback($(res));
+        callback($(res), this.name);
     }
 });

@@ -17,6 +17,6 @@ hoverZoomPlugins.push({
             '$1/O/$3.'
         );
                 
-        callback($(res));
+        callback($(res), this.name);
     }
 });

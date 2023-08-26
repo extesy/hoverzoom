@@ -5,6 +5,6 @@ hoverZoomPlugins.push( {
     prepareImgLinks: function(callback) {
         var res = [];
         hoverZoom.urlReplace(res, 'a img[src*="preview"]', /preview/, 'source/image');
-        callback($(res));
+        callback($(res), this.name);
     }
 });

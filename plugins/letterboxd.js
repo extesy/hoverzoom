@@ -16,6 +16,6 @@ hoverZoomPlugins.push({
             elem.data().hoverZoomSrc = [url];
             res.push(elem);
         });
-        callback($(res));
+        callback($(res), this.name);
     }
 });

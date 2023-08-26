@@ -27,7 +27,7 @@ var hoverZoomPluginFlickerA = {
                  hoverZoomPluginFlickerA.prepareImgLinkFromSrc(link);
                  }*/
             });
-        callback($(res));
+        callback($(res), this.name);
 
         // Links to flickr pages. Requires API calls.
         var filter = 'a[href*="flickr.com/photos/"]';

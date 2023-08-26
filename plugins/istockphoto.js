@@ -11,6 +11,6 @@ hoverZoomPlugins.push({
             '?s=2048x2048'
         );
                 
-        callback($(res));
+        callback($(res), this.name);
     }
 });

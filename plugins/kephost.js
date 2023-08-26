@@ -8,6 +8,6 @@ hoverZoomPlugins.push({
             /\.md\./,
             '.'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

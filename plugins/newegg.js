@@ -24,6 +24,6 @@ hoverZoomPlugins.push({
             /\/ProductImageCompressAll.*\//,
             '/ProductImageCompressAll1280/'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

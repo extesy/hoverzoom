@@ -10,6 +10,6 @@ hoverZoomPlugins.push({
             '/jpg343/',
             ':eq(0)'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

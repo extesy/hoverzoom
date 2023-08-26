@@ -25,7 +25,7 @@ hoverZoomPlugins.push({
         );
 
         if (res.length > 0) {
-            callback($(res));
+            callback($(res), this.name);
         }
     },
 });

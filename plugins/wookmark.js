@@ -10,6 +10,6 @@ hoverZoomPlugins.push({
             ['images.wookmark', 'profile/']
         );        
         
-        callback($(res));
+        callback($(res), this.name);
     }
 });

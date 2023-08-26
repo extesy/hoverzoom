@@ -34,6 +34,6 @@ hoverZoomPlugins.push({
             ['.jpg', '/$1/$2p8/']
         );
         
-        callback($(res));
+        callback($(res), this.name);
     }
 });

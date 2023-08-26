@@ -12,6 +12,6 @@ hoverZoomPlugins.push({
             'thumb=1',
             'thumb=0'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

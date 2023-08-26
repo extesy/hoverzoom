@@ -18,6 +18,6 @@ hoverZoomPlugins.push( {
             /\w{4}\.jpg/,
             '.jpg'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

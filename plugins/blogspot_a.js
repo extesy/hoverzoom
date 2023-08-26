@@ -15,6 +15,6 @@ hoverZoomPlugins.push({
             hoverZoom.urlReplace(res, filter_i, search, '/s0/');
         }
 
-        callback($(res));
+        callback($(res), this.name);
     },
 });

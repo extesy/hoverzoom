@@ -8,6 +8,6 @@ hoverZoomPlugins.push( {
             hoverZoom.urlReplace(res, 'a img.pv-img', /-\d+\.jpg/, '-5.jpg');
         else 
             hoverZoom.urlReplace(res, 'a img.pv-img', /-\d+\.jpg/, '-4.jpg');
-        callback($(res));
+        callback($(res), this.name);
     }
 });

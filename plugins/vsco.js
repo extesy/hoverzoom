@@ -12,6 +12,6 @@ hoverZoomPlugins.push({
             const href = src.substring(0, src.indexOf('?'));
             hoverZoom.prepareLink(img, href);
         })
-        callback($(res));
+        callback($(res), this.name);
     }
 });

@@ -14,6 +14,6 @@ hoverZoomPlugins.push({
             '_128.',
             '_960.'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

@@ -32,6 +32,6 @@ hoverZoomPlugins.push({
             ['/thumbnails/', '/thumbnails_160x160/'],
             ['/large/', '/large/']
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

@@ -17,6 +17,6 @@ hoverZoomPlugins.push({
             img.data().hoverZoomCaption = img.attr('alt');
             res.push(img);
         });
-        callback($(res));
+        callback($(res), this.name);
     }
 });

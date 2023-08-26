@@ -9,6 +9,6 @@ hoverZoomPlugins.push({
             /\/(\d+x\d+)\/(\d+x\d+)\/(\d+x\d+)\/(\d+x\d+)\/(\d+)/,
             '/$1/558x800/$3/$4/0'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

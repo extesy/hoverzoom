@@ -43,6 +43,6 @@ hoverZoomPlugins.push({
             'thumbnail',
             'logo'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

@@ -15,6 +15,6 @@ hoverZoomPlugins.push({
             '/53x53/',
             '/180x180/'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

@@ -13,6 +13,6 @@ hoverZoomPlugins.push({
             /\/\d{2}\//,
             '/140/'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

@@ -84,6 +84,6 @@ hoverZoomPlugins.push({
             res.push(link);
         });
 
-        callback($(res));
+        callback($(res), this.name);
     }
 });

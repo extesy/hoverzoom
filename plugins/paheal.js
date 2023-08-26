@@ -9,6 +9,6 @@ hoverZoomPlugins.push({
             ['thumbs', 'thumbs'],
             ['images', 'images']
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

@@ -9,6 +9,6 @@ hoverZoomPlugins.push({
             /pict\.mobi\/([^\/]*)$/,
             'pict.mobi/show/med/med_$1'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

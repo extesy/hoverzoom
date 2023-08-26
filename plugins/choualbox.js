@@ -5,6 +5,6 @@ hoverZoomPlugins.push({
         var res = [];
         hoverZoom.urlReplace(res, 'img[src*="/Img_resize/"]', 'Img_resize', 'Img');
         hoverZoom.urlReplace(res, 'img[src*="/mini.php"]', /\/mini\.php\?src=(.*?)&.*/, '$1');
-        callback($(res));
+        callback($(res), this.name);
     }
 });

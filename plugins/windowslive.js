@@ -59,7 +59,7 @@ hoverZoomPlugins.push({
                     link.addClass('hoverZoomLink');
                     res.push(link);
                 });
-                callback($(res));
+                callback($(res), this.name);
             }
         });
     }

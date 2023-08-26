@@ -14,6 +14,6 @@ hoverZoomPlugins.push({
             '_tn.',
             '_large.'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

@@ -9,6 +9,6 @@ hoverZoomPlugins.push({
             _this.data().hoverZoomSrc = [this.getAttribute('zoom')];
             res.push(_this);
         });
-        callback($(res));
+        callback($(res), this.name);
     }
 });

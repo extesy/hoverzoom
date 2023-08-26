@@ -14,6 +14,6 @@ hoverZoomPlugins.push({
             /^(.*)_460s\.([a-z]+)$/,
             '$1_700b.$2'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

@@ -33,6 +33,6 @@ hoverZoomPlugins.push({
             _this.data().hoverZoomSrc = [url + '.jpg', url + '.gif', url + '.png'];
             res.push(_this);
         });
-        callback($(res));
+        callback($(res), this.name);
     }
 });

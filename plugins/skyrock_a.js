@@ -9,6 +9,6 @@ hoverZoomPlugins.push({
             /\/(\d+)_(0|1)_(\d+)\./,
             '/$1_2_$3.'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

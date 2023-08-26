@@ -9,6 +9,6 @@ hoverZoomPlugins.push({
             /\?_ex=.*$/,
             ''
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

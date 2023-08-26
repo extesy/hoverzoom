@@ -41,6 +41,6 @@ hoverZoomPlugins.push({
             ['-o.', '-o.', '-o.', '-o.']
         );
                 
-        callback($(res));
+        callback($(res), this.name);
     }
 });

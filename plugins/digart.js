@@ -9,6 +9,6 @@ hoverZoomPlugins.push({
             /(miniaturki|SQmin)(\d+)/,
             'download'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

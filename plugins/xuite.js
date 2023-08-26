@@ -11,6 +11,6 @@ hoverZoomPlugins.push({
             options.showHighRes ? '_x.' : '_l.',
             ':eq(0)'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

@@ -10,6 +10,6 @@ hoverZoomPlugins.push({
             ['.', '']
         );
         hoverZoom.urlReplace(res, 'img[src]', /(http.*)(http.*)/ , '$2');
-        callback($(res));
+        callback($(res), this.name);
     }
 });

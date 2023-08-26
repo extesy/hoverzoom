@@ -8,6 +8,6 @@ hoverZoomPlugins.push({
             /\/meme\/(\d+)/,
             '/memes/$1.jpg'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

@@ -20,7 +20,7 @@ hoverZoomPlugins.push({
         });
 
         if (res.length) {
-            callback($(res));
+            callback($(res), this.name);
         }
     }
 });

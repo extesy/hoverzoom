@@ -8,6 +8,6 @@ hoverZoomPlugins.push({
             /(view|thumbs)/,
             'downloads'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

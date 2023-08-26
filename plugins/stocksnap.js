@@ -10,6 +10,6 @@ hoverZoomPlugins.push({
             '/960w/'
         );        
         
-        callback($(res));
+        callback($(res), this.name);
     }
 });

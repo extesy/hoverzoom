@@ -9,6 +9,6 @@ hoverZoomPlugins.push({
             /.+(http:.*)/,
             '$1'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

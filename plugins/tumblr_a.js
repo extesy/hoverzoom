@@ -73,7 +73,7 @@ hoverZoomPlugins.push({
             '',
             ''
         );
-        callback($(res));
+        callback($(res), this.name);
         $('a[href*="tumblr.com/post/"], a[href*="tumblr.com/image/"], a[data-login-wall-blog-name]').one('mouseenter', function () {
             var link = $(this), lData = link.data(), aHref = this.href.split('/');
             if (lData.hoverZoomSrc) {

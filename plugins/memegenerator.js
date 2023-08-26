@@ -9,6 +9,6 @@ hoverZoomPlugins.push({
             /.*instance\/(\d+).*/,
             'http://images.memegenerator.net/instances/500x/$1.jpg'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

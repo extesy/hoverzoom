@@ -14,6 +14,6 @@ hoverZoomPlugins.push({
         $('a[data-focusable="true"] > div:nth-child(2)').css('pointer-events', 'none');
         // Links to profiles found in the profile popup have "aria-hidden=true".
         $('a[aria-hidden="true"] > div:nth-child(2)').css('pointer-events', 'none');
-        callback($(res));
+        callback($(res), this.name);
     }
 });

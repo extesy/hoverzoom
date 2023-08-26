@@ -6,6 +6,6 @@ hoverZoomPlugins.push({
         var res = [];
         hoverZoom.urlReplace(res, 'img[src*="/t_"], img[src*="/s_"]', /\/[ts]_/, '/');
         hoverZoom.urlReplace(res, 'img[src*="/tindex"]', '/tindex', '/index');
-        callback($(res));
+        callback($(res), this.name);
     }
 });

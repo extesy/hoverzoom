@@ -9,6 +9,6 @@ hoverZoomPlugins.push({
             /(g2_itemId=\d+).*/,
             '$1&g2_view=core.DownloadItem'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

@@ -13,6 +13,6 @@ hoverZoomPlugins.push({
             'a.project-image'
         );
 
-        callback($(res));
+        callback($(res), this.name);
     }
 });

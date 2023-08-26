@@ -21,6 +21,6 @@ hoverZoomPlugins.push({
             '/1000_F'
         );
 
-        callback($(res));
+        callback($(res), this.name);
     }
 });

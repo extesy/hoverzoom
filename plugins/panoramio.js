@@ -22,6 +22,6 @@ hoverZoomPlugins.push({
                 'http://static.panoramio.com/photos/original'
             );
         }
-        callback($(res));
+        callback($(res), this.name);
     }
 });

@@ -14,7 +14,7 @@ hoverZoomPlugins.push({
             'http://media.fukung.net/images/'
         );
         if (res.length) {
-            callback($(res));
+            callback($(res), this.name);
         }
     }
 });

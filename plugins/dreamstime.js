@@ -11,6 +11,6 @@ hoverZoomPlugins.push({
             ['/z/', '/z/', '/z/', '/z/']
         );     
                 
-        callback($(res));
+        callback($(res), this.name);
     }
 });

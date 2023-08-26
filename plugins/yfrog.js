@@ -11,6 +11,6 @@ hoverZoomPlugins.push({
             _this.data().hoverZoomSrc = [url + ':medium', url + ':frame'];
             res.push(_this);
         });
-        callback($(res));
+        callback($(res), this.name);
     }
 });

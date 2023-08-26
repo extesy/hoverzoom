@@ -9,6 +9,6 @@ hoverZoomPlugins.push({
             /^.*src=\.(.*)&.*/,
             '$1'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

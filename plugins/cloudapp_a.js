@@ -13,6 +13,6 @@ hoverZoomPlugins.push({
             /.*(?:cl\.ly)\/((?!download)[^\/]+).*/,
             'https://cl.ly/$1/download'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

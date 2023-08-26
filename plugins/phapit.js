@@ -10,7 +10,7 @@ hoverZoomPlugins.push({
             'http://images.phapit.com/uploaded_pics/$1.jpg'
         );
         if (res.length) {
-            callback($(res));
+            callback($(res), this.name);
         }
     }
 });

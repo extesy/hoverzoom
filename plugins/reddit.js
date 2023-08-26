@@ -209,6 +209,6 @@ hoverZoomPlugins.push({
 
     Promise.all(promises.map(function (p) {
       return p.catch(function(err) { console.error('Error initializing reddit image', err); });
-    })).then(function (res) { callback($(res)); })
+    })).then(function (res) { callback($(res), this.name); })
   }
 });

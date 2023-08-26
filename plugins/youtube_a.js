@@ -169,6 +169,6 @@ hoverZoomPlugins.push({
             res.push(img);
         });
 
-        callback($(res));
+        callback($(res), this.name);
     }
 });

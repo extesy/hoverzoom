@@ -14,6 +14,6 @@ hoverZoomPlugins.push({
             /^.*qkme.me\/(\w+).*$/,
             'http://i.qkme.me/$1.jpg'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });

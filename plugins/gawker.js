@@ -34,6 +34,6 @@ hoverZoomPlugins.push({
             '_thumb.',
             '.'
         );
-        callback($(res));
+        callback($(res), this.name);
     }
 });
