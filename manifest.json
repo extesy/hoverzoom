@@ -1987,6 +1987,10 @@
         {
             "js": ["plugins/anilist.js"],
             "matches": ["*://*.anichart.net/*", "*://*.anilist.co/*"]
+        },
+        {
+            "js": ["plugins/freeimagehost.js"],
+            "matches": ["*://*.freeimage.host/*"]
         }
     ]
 }
