@@ -1977,6 +1977,10 @@
             "matches": ["*://*.vsco.co/*"]
         },
         {
+            "js": ["plugins/woot.js"],
+            "matches": ["*://*.woot.com/*"]
+        },
+        {
             "js": ["plugins/vero.js"],
             "matches": ["*://*.vero.co/*"]
         }
