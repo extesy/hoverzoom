@@ -5,7 +5,7 @@ hoverZoomPlugins.push({
     prepareImgLinks(callback) {
         const res = [];
         hoverZoom.urlReplace(res,
-            'a img',
+            'ul.product-grid a img',
             /\._.*_\./,
             '.');
 
