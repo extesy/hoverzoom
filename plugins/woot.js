@@ -8,7 +8,7 @@ hoverZoomPlugins.push({
 
         // All images are thumbnails: https://shirt.woot.com/plus/derby-editors-choice-sportsball-1?ref=w_cnt_wp_1
         // Some images are not thumbnails, but full size: https://www.woot.com/category/computers/desktops?ref=w_cnt_cdet_pc_2
-        $('ul a img').each(function handleNestedImages() {
+        $('ul a img, li a img').each(function handleNestedImages() {
             const { src } = this;
             const link = $(this);
             const fullsize = src.replace(thumbnailRegex, '.');
