@@ -4,7 +4,8 @@ var hoverZoomPlugins = hoverZoomPlugins || [],
     regexForbiddenChars = /[\\/:*?"<>|~]/g,
     debug = false,
     logger = new Logger(),
-    hls = null; // https://github.com/video-dev/hls.js/
+    hls = null, // https://github.com/video-dev/hls.js/
+    fmp4Data = { 'audio': [], 'video': [] };
 
 function cLog(msg) {
     if (debug && msg) {
@@ -1236,6 +1237,12 @@ var hoverZoom = {
                         debug: debug,
                     });
 
+                    // MP4 buffering
+                    // ref: https://github.com/huzhlei/DASH-to-HLS-Playback
+                    fmp4Data = { 'audio': [], 'video': [] };
+                    hls.on(Hls.Events.BUFFER_APPENDING, function(event, data) {
+                        fmp4Data[data.type].push(data.data);
+                    });
                     hls.loadSource(srcDetails.url);
                     hls.attachMedia(video);
 
@@ -3169,6 +3176,30 @@ var hoverZoom = {
 
             // download KO: This function must be called during a user gesture => debugger must be closed
             downloadResource(srcDetails.url, filename);
+            savePlaylistAsMP3MP4(filename);
+        }
+        // save playlist to 2 distinct files:
+        // - filename.m3u8.mp4 (video part)
+        // - filename.m3u8.mp3 (audio part)
+        function savePlaylistAsMP3MP4(filename) {
+            const blobVideo = new Blob([arrayConcat(fmp4Data['video'])], {type:'application/octet-stream'});
+            const blobAudio = new Blob([arrayConcat(fmp4Data['audio'])], {type:'application/octet-stream'});
+            const blobVideoUrl = URL.createObjectURL(blobVideo);
+            const blobAudioUrl = URL.createObjectURL(blobAudio);
+
+            forceDownload(blobVideoUrl, filename + '.mp4');
+            forceDownload(blobAudioUrl, filename + '.mp3');
+        }
+
+        function arrayConcat(inputArray) {
+            var totalLength = inputArray.reduce( function(prev, cur) { return prev + cur.length} ,0);
+            var result = new Uint8Array(totalLength);
+            var offset = 0;
+            inputArray.forEach(function(element) {
+                result.set(element, offset);
+                offset += element.length;
+            });
+            return result;
         }
 
         function getDurationFromVideo() {
