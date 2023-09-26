@@ -99,6 +99,7 @@
                 "plugins/ipboard_a.js",
                 "plugins/itaku_a.js",
                 "plugins/kick_a.js",
+                "plugins/lensdump_a.js",
                 "plugins/mediawiki_a.js",
                 "plugins/medium_a.js",
                 "plugins/niconico_a.js",
