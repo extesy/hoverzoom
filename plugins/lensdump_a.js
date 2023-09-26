@@ -12,15 +12,19 @@ hoverZoomPlugins.push({
         // https://lensdump.com/oembed/?url=https%3A%2F%2Flensdump.com%2Fi%2FdHJdu0&format=json
         // and then look at the 'url' property
 
-        $('a[href*="//lensdump.com/i"]').each(function() {
+        $('a[href*="//lensdump.com/i"]').on('mouseover', function() {
             const link = $(this), data = link.data(), href = link.attr('href');
             const lensdump_metadata_url = 'https://lensdump.com/oembed/?url=' + encodeURIComponent(href) + '&format=json';
-            $.ajax(lensdump_metadata_url).done(function (lensdump) {
+            chrome.runtime.sendMessage({action:'ajaxGet', url:lensdump_metadata_url}, function (lensdump) {
+                if (!lensdump)
+                    return;
+                lensdump = JSON.parse(lensdump);
                 if (lensdump.url) {
                     // sometimes the URL is a thumbnail (.md.png or .th.png) instead of full image URL
                     const url = lensdump.url.replace('.md', '').replace('.th', '');
                     data.hoverZoomSrc = [url];
-                    callback($([link]), pluginName);
+                    callback($(link), pluginName);
+                    hoverZoom.displayPicFromElement(link);
                 }
             });
         });
