@@ -16,7 +16,7 @@
         "description": "[popup] Disable the extension"
     },
     "popAllowPerSiteToggle": {
-        "message": "Allow per-site extension configuration",
+        "message": "允许每个站点分别配置",
         "description": "[popup] Allow per-site extension configuration"
     },
     "popDisableForSite": {
@@ -44,11 +44,11 @@
         "description": "[options] Page title"
     },
     "optButtonDisableAllPlugins": {
-        "message": "Disable all",
+        "message": "禁用所有",
         "description": "[options] disable all plugins button label"
     },
     "optButtonEnableAllPlugins": {
-        "message": "Enable all",
+        "message": "启用所有",
         "description": "[options] enable all plugins button label"
     },
     "optButtonSave": {
@@ -56,7 +56,7 @@
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
-        "message": "Cancel",
+        "message": "取消",
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
@@ -64,7 +64,7 @@
         "description": "[options] Reset button label"
     },
     "optSaved": {
-        "message": "Options saved. Some settings might need a page refresh.",
+        "message": "设置已保存。某些设置项可能需要刷新页面才能生效。",
         "description": "[options] Notification after saving options"
     },
     "optCancel": {
