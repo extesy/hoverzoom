@@ -3189,6 +3189,10 @@ var hoverZoom = {
 
             forceDownload(blobVideoUrl, filename + '.mp4');
             forceDownload(blobAudioUrl, filename + '.mp3');
+            
+            // release resources
+            URL.revokeObjectURL(blobVideoUrl);
+            URL.revokeObjectURL(blobAudioUrl);
         }
 
         function arrayConcat(inputArray) {
