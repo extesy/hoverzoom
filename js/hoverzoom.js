@@ -618,7 +618,7 @@ var hoverZoom = {
         }
 
         function isPlaylistLink(url) {
-            return url.indexOf('.m3u8') !== -1;
+            return url.indexOf('.m3u8') !== -1 || url.indexOf('.mpd') !== -1;
         }
 
         function isAudioLink(url) {
@@ -1243,6 +1243,220 @@ var hoverZoom = {
                     hls.on(Hls.Events.BUFFER_APPENDING, function(event, data) {
                         fmp4Data[data.type].push(data.data);
                     });
+                    hls.on('hlsError', function(event, data) {
+                        cLog(`event: ${event}`);
+                        cLog(`type: ${data.type}`);
+                        cLog(`reason: ${data.reason}`);
+                        cLog(`details: ${data.details}`);
+                        if (data.response) {
+                            cLog(`response.data: ${data.response.data}`);
+                            // retry in case of DASH-MPD
+                            if (data.response.data && data.response.data.indexOf('MPD') != -1) {
+                                // convert MPD to M3U8 playlist then feed it to HLS
+                                const mpdRaw = data.response.data;
+                                var MpdInfo = extractMpdInfo(mpdRaw);
+                                cLog(`MpdInfo: ${MpdInfo}`);
+                                // extract base url
+                                // e.g: https://scontent-cdg4-3.xx.fbcdn.net/hvideo-odn-cln/_nc_cat-111/_nc_sr_t-4/v/rASdx8eImJZyLhAH2flcBQSRy4PYoZZVMdadGC0-MOxAyBA/_nc_ohc-xn2oxj7yZsQAX-2l08Z/live-dash/dash-abr3/794256226039541.mpd?ccb=2-4&ms=m_CTPAL&sc_t=1&oh=00_AfDEa7gEh5wVOsGUdnpotv4Pt7rA_YNQN6BvbjgxQ0oYPA&oe=651B3A07
+                                // => https://scontent-cdg4-3.xx.fbcdn.net/hvideo-odn-cln/_nc_cat-111/_nc_sr_t-4/v/rASdx8eImJZyLhAH2flcBQSRy4PYoZZVMdadGC0-MOxAyBA/_nc_ohc-xn2oxj7yZsQAX-2l08Z/live-dash/dash-abr3/
+                                var url = data.url.split('?')[0];
+                                url = url.substr(0, url.lastIndexOf('/') + 1);
+                                url = url.replace('/live-dash/', '/live-dash/ID/'); // needed for Facebook live
+                                var masterAddress = createMasterPlaylist(MpdInfo, createMediaPlaylist(MpdInfo, url));
+                                hls.loadSource(masterAddress);
+                                hls.attachMedia(video);
+                            }
+                        }
+                    });
+                    // <-- original code from : https://github.com/huzhlei/DASH-to-HLS-Playback/blob/master/conversion.js
+                    function extractMpdInfo(textToDec)
+                    {
+                        var reg = /(\w+)=\"(.*?)\"/g; // find the pattern [xxx="yyy"], remember xxx and yyy
+                        var key = [];
+                        var item = [];
+                        while(array = reg.exec(textToDec))
+                        {
+                            key.push(array[1]);	// push into array
+                            item.push(array[2]);
+                        }
+                        return [key,item];
+                    }
+
+                    function createMediaPlaylist(MpdInfo, url)
+                    {
+                        var header = "#EXTM3U\n" + "#EXT-X-VERSION:6\n";
+                        var tail = "#EXT-X-ENDLIST\n";
+                        var mediaPlaylistBlob = [];
+
+                        var key = MpdInfo[0];
+                        var item = MpdInfo[1];
+
+                        var videoKey = new RegExp('video');
+                        var audioKey = new RegExp('audio');
+                        var idx = key.indexOf('mimeType');
+                        while (idx != -1)
+                        {
+                            var segmentType = item[idx];
+
+                            // #EXT-X-TARGETDURATION:
+                            var rawDuration = item[key.indexOf('duration')] || '30000S';   // use period's total duration as upper bound of media segments, default duration: 30000s
+                            var timePatternFull = /(\d*)H(\d*)M(.*)S/;
+                            var timePatternSec = /(\d*)S/;
+                            var time = timePatternFull.exec(rawDuration);
+                            if (time)
+                            {
+                                var maxDuration = parseFloat(time[1]) * 3600 + parseFloat(time[2]) * 60 + parseFloat(time[3]);
+                            }
+                            else
+                            {
+                                var time = timePatternSec.exec(rawDuration);
+                                var maxDuration = parseFloat(time[1]);
+                            }
+                            var maxSegmentDuration = '#EXT-X-TARGETDURATION:' + maxDuration + '\n';
+
+                            // #EXT-X-MEDIA-SEQUENCE:
+                            var firstSequence = item[key.indexOf('startNumber', idx)] || 100;   // by default, number starts from 100
+                            var startSequence = '#EXT-X-MEDIA-SEQUENCE:' + firstSequence + '\n';
+
+                            // #EXT-X-PLAYLIST-TYPE:EVENT
+                            switch (item[key.indexOf('type')])
+                            {
+                                case 'static':
+                                    var playlistType = '#EXT-X-PLAYLIST-TYPE:EVENT\n';  // VOD
+                                    break;
+                                case 'live':
+                                    var playlistType = '#EXT-X-PLAYLIST-TYPE:EVENT\n';
+                                    break;
+                                default:
+                                    var playlistType = '#EXT-X-PLAYLIST-TYPE:EVENT\n';
+                                    break;
+                            }
+
+                            // #EXT-X-MAP:URI="tears_of_steel_1080p_1000k_h264_dash_track1_init.mp4"
+                            var mapInit = '#EXT-X-MAP:URI="' + url.substring(0, url.lastIndexOf('/') + 1) + item[key.indexOf('initialization', idx)] + '"\n';
+
+                            // #EXT-X-MLB-INFO:max-bw=999120,duration=4.000
+                            // totalDuration
+                            var rawtotalDuration = item[key.indexOf('mediaPresentationDuration')];
+                            var totalTime = timePatternFull.exec(rawDuration);
+                            if (totalTime)
+                            {
+                                var totalDuration = parseFloat(totalTime[1]) * 3600 + parseFloat(totalTime[2]) * 60 + parseFloat(totalTime[3]);
+                            }
+                            else
+                            {
+                                var totalTime = timePatternSec.exec(rawDuration);
+                                var totalDuration = parseFloat(totalTime[1]);
+                            }
+                            var info = '#EXT-X-MLB-INFO:' + 'max-bw=' + item[key.indexOf('bandwidth', idx)] + ',duration=' + totalDuration + '\n';
+
+                            var segmentsName = item[key.indexOf('media', idx)];
+                            var segmentDuration = parseFloat(item[key.indexOf('duration', idx)] || item[key.indexOf('FBAverageDuration', idx)] || 2000) / parseFloat(item[key.indexOf('timescale', idx)]); // Facebook uses "FBAverageDuration" instead of "duration"
+                            var numSegment = Math.ceil(totalDuration/segmentDuration);    // how many segments of the representation
+                            var segmentUnit = "";
+
+                            if (videoKey.test(segmentType))
+                            {
+                                for (i = firstSequence; i <= numSegment; i++)
+                                {
+                                    if (i === numSegment)
+                                    {
+                                        segmentDuration = totalDuration - segmentDuration * (numSegment - 1);
+                                    }
+                                    // #EXTINF
+                                    inf = '#EXTINF:' + segmentDuration  + '\n';
+                                    // tears_of_steel_1080p_1000k_h264_dash_track1_$Number$.m4s
+                                    segment = url.substring(0, url.lastIndexOf('/') + 1) + segmentsName.replace(/\$.*?\$/,i) + '\n';
+                                    segmentUnit += inf + segment;
+                                }
+
+                               // #EXT-X-MLB-VIDEO-INFO:codecs="avc1.640028",width="1920",height="1080",sar="1:1",frame-duration=12288
+                               var video_info = '#EXT-X-MLB-VIDEO-INFO:' + 'codecs="' + item[key.indexOf('codecs', idx)] + '",' + 'width="' + item[key.indexOf('width', idx)] + '",' + 'height="' + item[key.indexOf('height', idx)] + '",' + 'sar="' + item[key.indexOf('sar', idx)] + '",' + 'frame-duration=' + item[key.indexOf('timescale', idx)] + '\n';	
+
+                               var output = maxSegmentDuration + startSequence + playlistType + mapInit + segmentUnit + video_info + info;
+                            }
+                            else if (audioKey.test(segmentType))
+                            {
+                                for (i = firstSequence; i <= numSegment; i++)
+                                {
+                                    if (i === numSegment)
+                                    {
+                                        segmentDuration = totalDuration - segmentDuration * (numSegment - 1);
+                                    }
+                                    // #EXTINF:2.000
+                                    inf = '#EXTINF:' + segmentDuration  + '\n';
+                                    // tears_of_steel_1080p_1000k_h264_dash_track1_$Number$.m4s
+                                    segment = url.substring(0, url.lastIndexOf('/') + 1) + segmentsName.replace(/\$.*?\$/,i) +'\n';
+                                    segmentUnit += inf + segment;
+                                }
+
+                                // #EXT-X-MLB-AUDIO-INFO:codecs="mp4a.40.2",audioSamplingRate="48000"
+                                var audio_info = '#EXT-X-MLB-AUDIO-INFO:' + 'codecs="' + item[key.indexOf('codecs', idx)] + '",' + 'audioSamplingRate="' + item[key.indexOf('audioSamplingRate', idx)] + '"\n';
+
+                                // #EXT-X-MLB-AUDIO-CHANNEL-INFO:schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011",value="2"
+                                var channel_info = '#EXT-X-MLB-AUDIO-CHANNEL-INFO:schemeIdUri="' + item[key.indexOf('schemeIdUri', idx)] + '",' + 'value="' + item[key.indexOf('value', idx)] + '\n';
+
+                                var output = maxSegmentDuration + startSequence + playlistType + mapInit + segmentUnit + audio_info + channel_info + info;
+                            }
+
+                            idx = key.indexOf('mimeType', idx + 1);
+                            mediaPlaylistBlob.push(saveTextAsBlob(header + output + tail));
+                        }
+                        return mediaPlaylistBlob;
+                    }
+
+                    function createMasterPlaylist(MpdInfo, mediaPlaylistBlob)
+                    {
+                        var header = "#EXTM3U\n" + "#EXT-X-VERSION:6\n";
+                        var output = header;
+
+                        var key = MpdInfo[0];
+                        var item = MpdInfo[1];
+                        // segment type
+                        var videoKey = new RegExp('video');
+                        var audioKey = new RegExp('audio');
+                        var idx = key.indexOf('mimeType');
+                        var j = 0;
+                        while (idx != -1)
+                        {
+                            var segmentType = item[idx];
+
+                            if (videoKey.test(segmentType))
+                            {
+                                // video segments
+                                var videoMasterInfo = '#EXT-X-STREAM-INF:AUDIO="audio",'; // audio name be improved according to audio segments!
+                                videoMasterInfo += 'CODECS="' + item[key.indexOf('codecs', idx)] + '",';
+                                videoMasterInfo += 'RESOLUTION=' + item[key.indexOf('width', idx)] + '*' + item[key.indexOf('height', idx)] + ',';
+                                if (key.indexOf('frameRate', idx) !== -1)
+                                {
+                                videoMasterInfo += 'FRAME_RATE=' + item[key.indexOf('frameRate', idx)] + ',';
+                                }
+                                videoMasterInfo += 'BANDWIDTH=' + item[key.indexOf('bandwidth', idx)];
+
+                                var mediaRep = item[key.indexOf('media', idx)];	// may need improvement
+                                var videoMediaPlaylist = mediaPlaylistBlob[j];
+                                j = j + 1;
+                                output += videoMasterInfo + '\n' + videoMediaPlaylist + '\n';
+                            }
+                            else if (audioKey.test(segmentType))
+                            {
+                                // audio segments
+                                var mediaRep = item[key.indexOf('media', idx)];
+                                var audioMaster = '#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio",URI="' + mediaPlaylistBlob[j] + '"\n';
+                                output += audioMaster;
+                            }	
+                            idx = key.indexOf('mimeType', idx + 1);
+                        }
+                        return saveTextAsBlob(output);
+                    }
+
+                    function saveTextAsBlob(textToSave)
+                    {
+                        var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+                        return window.URL.createObjectURL(textToSaveAsBlob);
+                    }
+                    // -->
+
                     hls.loadSource(srcDetails.url);
                     hls.attachMedia(video);
 
@@ -3189,7 +3403,7 @@ var hoverZoom = {
 
             forceDownload(blobVideoUrl, filename + '.mp4');
             forceDownload(blobAudioUrl, filename + '.mp3');
-            
+
             // release resources
             URL.revokeObjectURL(blobVideoUrl);
             URL.revokeObjectURL(blobAudioUrl);

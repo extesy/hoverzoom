@@ -84,7 +84,7 @@
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optDarkMode": {
-        "message": "Dark mode",
+        "message": "Tamni način",
         "description": "[options] Enable dark mode for Options & Popup"
     },
     "optSectionView": {
@@ -136,7 +136,7 @@
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
-        "message": "View details (size, format...) above/below the image, or not at all",
+        "message": "Pogledaj detalje (veličina, format...) iznad/ispod slike, ili nikako",
         "description": "[options] Tooltip for adjusting the position of details"
     },
     "optDetailsLocationAbove": {
@@ -156,7 +156,7 @@
         "description": "[options] Outline option"
     },
     "optFontOutlineTooltip": {
-        "message": "If checked: use white font + thin black border for caption & details",
+        "message": "Ako odabrano: koristi bijeli font + tanki crni obrub za opis i detalje",
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
@@ -168,11 +168,11 @@
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
     "optHideMouseCursor": {
-        "message": "Hide mouse cursor after:",
+        "message": "Sakrij pokazivač nakon:",
         "description": "[options] Hide mouse cursor option"
     },
     "optHideMouseCursorTooltip": {
-        "message": "If checked, mouse cursor will be hidden after delay",
+        "message": "Ako odabrano, pokazivač će biti skrivena nakon odgode",
         "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optPageActionEnabled": {
@@ -216,7 +216,7 @@
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
-        "message": "Zoom videos",
+        "message": "Povećaj video",
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
@@ -272,7 +272,7 @@
         "description": "[options] Tooltip for play audio option"
     },
     "optAudioVolume": {
-        "message": "Audio volume:",
+        "message": "Glasnoća:",
         "description": "[options] Audio volume option"
     },
     "optAudioVolumeUnitName": {
@@ -340,11 +340,11 @@
         "description": "[options] Frame background color button - Cancel"
     },
     "optFrameThickness": {
-        "message": "Frame thickness:",
+        "message": "Debljina okvira:",
         "description": "[options] Frame thickness option"
     },
     "optFrameThicknessTooltip": {
-        "message": "Thickness of border for the frame the image appears in (0 : no frame)",
+        "message": "Debljina okvira koji se pojavljuje oko slike (0 : bez okvira)",
         "description": "[options] Tooltip for frame thickness option"
     },
     "optFrameThicknessUnitName": {
@@ -356,7 +356,7 @@
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
-        "message": "Size of font used for captions & details",
+        "message": "Veličina fonta koji se pojavljuje za opis i detalje",
         "description": "[options] Tooltip for font size option"
     },
     "optFontSizeUnitName": {
@@ -384,7 +384,7 @@
         "description": "[options] Short form of \"second\" for delay duration"
     },
     "optSectionZoomSpeed": {
-        "message": "Zoom speed",
+        "message": "Brzina povećanja",
         "description": "[options] Page section for zoom speed"
     },
     "optZoomSpeed_P1": {
@@ -404,11 +404,11 @@
         "description": "[options] Zoom speed Part 4"
     },
     "optZoomSpeed_P41": {
-        "message": "faster",
+        "message": "brže",
         "description": "[options] Zoom speed Part 41"
     },
     "optZoomSpeed_P42": {
-        "message": "slower",
+        "message": "sporije",
         "description": "[options] Zoom speed Part 42"
     },
     "optPagePlugins": {
@@ -724,7 +724,7 @@
         "description": "[options] Action key description"
     },
     "optCloseKeyTitle": {
-        "message": "Close image",
+        "message": "Zatvori sliku",
         "description": "[options] Action key title"
     },
     "optCloseKeyDescription": {
