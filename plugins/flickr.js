@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Flickr',
-    version:'1.2',
+    version:'1.3',
     prepareImgLinks:function (callback) {
         cLog('Plug-In: ' + this.name);
 
@@ -371,6 +371,8 @@ hoverZoomPlugins.push({
                     url = dataJson.sizes['h'].url;
                 } else if (dataJson.sizes['l']) {
                     url = dataJson.sizes['l'].url;
+                } else if (dataJson.sizes['b']) {
+                    url = dataJson.sizes['b'].url;
                 }
             } else {
                 if (dataJson.url_o) {
@@ -389,6 +391,8 @@ hoverZoomPlugins.push({
                     url = dataJson.url_h;
                 } else if (dataJson.url_l) {
                     url = dataJson.url_l;
+                } else if (dataJson.url_b) {
+                    url = dataJson.url_b;
                 }
             }
 
@@ -438,12 +442,11 @@ hoverZoomPlugins.push({
                         if (fullsizeUrl == undefined) {
 
                             cLog('Proceed with API call for id: ' + id);
-                            // API call: api.flickr.com/services/rest/?photo_id=3379827411&method=flickr.photos.getSizes&format=json&nojsoncallback=1&api_key=26a8c097b4cc3237a4efad4df5f8fc7a
                             // no data found  locally so proceed with API call
                             // WARNING: CORB error (Cross-Origin Read Blocking) raised when calling the API from the content script.
                             // cf https://www.chromium.org/Home/chromium-security/extension-content-script-fetches
                             // Workaround: call the API from background page.
-                            var requestUrl = 'https://api.flickr.com/services/rest/?photo_id=' + id + '&method=flickr.photos.getSizes&format=json&nojsoncallback=1&api_key=26a8c097b4cc3237a4efad4df5f8fc7a';
+                            var requestUrl = 'https://api.flickr.com/services/rest/?photo_id=' + id + '&method=flickr.photos.getSizes&format=json&nojsoncallback=1&api_key=9bb671af308f509d0c82146cbc936b3c';
 
                             chrome.runtime.sendMessage({action:'ajaxGet', url:requestUrl}, function (response) {
 
@@ -453,7 +456,7 @@ hoverZoomPlugins.push({
                                     var responseJson = JSON.parse(response);
                                 } catch (e) { return; }
 
-                                // sort by width
+                                // sort by height
                                 let sortedsizes = responseJson.sizes.size.sort(function(a,b) { if (parseInt(a.height) > parseInt(b.height)) return -1; if (parseInt(a.height) < parseInt(b.height)) return 1; return 0; })
                                 let fullsizeUrl = sortedsizes[0].source;
 
