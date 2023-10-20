@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 var hoverZoomPluginFlickerA = {
     name:'Flickr_a',
-    version:'0.3',
+    version:'0.4',
     prepareImgLinks:function (callback) {
         var res = [];
 
@@ -20,12 +20,6 @@ var hoverZoomPluginFlickerA = {
                 src = src.replace(/_[mst]\./, '.');
                 data.hoverZoomSrc = [src];
                 res.push(link);
-
-                // Second processing, this time with API calls.
-                // Will overwrite values from first processing if larger images are found.
-                /*if (options.showHighRes) {
-                 hoverZoomPluginFlickerA.prepareImgLinkFromSrc(link);
-                 }*/
             });
         callback($(res), this.name);
 
@@ -38,15 +32,12 @@ var hoverZoomPluginFlickerA = {
             filter = 'a[href*="/photos/"]';
         }
         $(filter).each(function () {
-            hoverZoomPluginFlickerA.prepareImgLinkFromHref($(this));
+            hoverZoomPluginFlickerA.prepareImgLinkFromHref($(this), callback);
         });
-        /*$(filter).one('mouseenter', function() {
-         hoverZoom.prepareOEmbedLink(this, 'http://www.flickr.com/services/oembed?format=json&url=', this.href);
-         });*/
     },
 
     // Get details from this URL: http://www.flickr.com/photos/{user-id}/{photo-id}
-    prepareImgLinkFromHref:function (link) {
+    prepareImgLinkFromHref:function (link, callback) {
         var href = link.attr('href'),
             aHref = href.split('/'),
             photoIdIndex = 5;
@@ -63,7 +54,7 @@ var hoverZoomPluginFlickerA = {
         if (parseInt(photoId) != photoId) {
             return;
         }
-        hoverZoomPluginFlickerA.prepareImgLinkFromPhotoId(link, photoId);
+        hoverZoomPluginFlickerA.prepareImgLinkFromPhotoId(link, photoId, callback);
     },
 
     // Get details from this URL: http://farm{farm-id}.static.flickr.com/{server-id}/{id}_{secret}_[mstbo].(jpg|gif|png)
@@ -79,7 +70,7 @@ var hoverZoomPluginFlickerA = {
     },
 
     // Prepares a link by making a Flickr API call.
-    prepareImgLinkFromPhotoId:function (link, photoId) {
+    prepareImgLinkFromPhotoId:function (link, photoId, callback) {
         if (!link || !photoId) {
             return;
         }
@@ -90,6 +81,9 @@ var hoverZoomPluginFlickerA = {
         if (storedUrl) {
             data.hoverZoomSrc = [storedUrl];
             link.addClass('hoverZoomLink');
+            var res = [];
+            res.push(link);
+            callback($(res), this.name);
         } else {
             link.mouseenter(function () {
                 data.hoverZoomMouseOver = true;
@@ -98,7 +92,8 @@ var hoverZoomPluginFlickerA = {
                 }
                 data.hoverZoomFlickrApiCalled = true;
                 //var apiKey = '0bb8ac4ab9a737b644c407ba8f59e9e7';
-                var apiKey = '26a8c097b4cc3237a4efad4df5f8fc7a';
+                //var apiKey = '26a8c097b4cc3237a4efad4df5f8fc7a';
+                const apiKey = '9bb671af308f509d0c82146cbc936b3c';
                 var requestUrl = 'https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=' + apiKey + '&photo_id=' + photoId + '&format=json&nojsoncallback=1';
                 chrome.runtime.sendMessage({action:'ajaxGet', url:requestUrl}, function (response) {
                     var rsp = JSON.parse(response);
@@ -107,15 +102,16 @@ var hoverZoomPluginFlickerA = {
                         return;
                     }
                     var src = '';
-                    for (var i = 0; i < rsp.sizes.size.length; i++) {
-                        if (options.showHighRes && rsp.sizes.size[i].label == 'Original' || /*options.showHighRes &&*/ rsp.sizes.size[i].label == 'Large' || rsp.sizes.size[i].label.indexOf('Medium') == 0) {
-                            src = rsp.sizes.size[i].source;
-                        }
-                    }
+                    // sort by height
+                    let sortedsizes = rsp.sizes.size.sort(function(a,b) { if (parseInt(a.height) > parseInt(b.height)) return -1; if (parseInt(a.height) < parseInt(b.height)) return 1; return 0; })
+                    src = sortedsizes[0].source;
                     if (src != '') {
                         data.hoverZoomSrc = [src];
                         link.addClass('hoverZoomLink');
 
+                        var res = [];
+                        res.push(link);
+                        callback($(res), this.name);
                         // Image is displayed if the cursor is still over the link
                         if (data.hoverZoomMouseOver)
                             hoverZoom.displayPicFromElement(link);
