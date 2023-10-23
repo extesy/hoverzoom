@@ -50,10 +50,6 @@ It's super easy to start contributing to HoverZoom. Just follow these simple ste
 
 We want to keep HoverZoom's code clean and consistent. Please follow our coding style and guidelines. We use [PEP 8](https://pep8.org/) for Python code and [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript.
 
-### Help and Support 🆘
-
-If you have any questions or need help with your contribution, feel free to reach out to us on our [Gitter chat](https://gitter.im/hoverzoom/community).
-
 ### Contributors 💪
 
 We appreciate every contribution, big or small! Your name will be added to our list of amazing contributors in the README file.
