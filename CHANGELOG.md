@@ -11,8 +11,8 @@
 
 **Fixed bugs:**
 
-- Fallout Fandom wiki show only one image on hover [\#1218](https://github.com/extesy/hoverzoom/issues/1218)
-- Locked image on screen, mouse cursor panning doesnt work [\#1036](https://github.com/extesy/hoverzoom/issues/1036)
+- Fallout Fandom wiki shows only one image on hover [\#1218](https://github.com/extesy/hoverzoom/issues/1218)
+- Locked image on the screen, mouse cursor panning doesn't work [\#1036](https://github.com/extesy/hoverzoom/issues/1036)
 - typo fix [\#1206](https://github.com/extesy/hoverzoom/pull/1206) ([GrosPoulet](https://github.com/GrosPoulet))
 
 **Closed issues:**
@@ -74,7 +74,7 @@
 
 - when will there be a backup of the settings? [\#1177](https://github.com/extesy/hoverzoom/issues/1177)
 - Album Support is not working [\#1171](https://github.com/extesy/hoverzoom/issues/1171)
-- Go to  https://www.flickr.com/photos/simpletones/   hoover zoom not working.  [\#1169](https://github.com/extesy/hoverzoom/issues/1169)
+- Go to  https://www.flickr.com/photos/simpletones/   hover zoom is not working.  [\#1169](https://github.com/extesy/hoverzoom/issues/1169)
 -  Images are not hovering when activating hoverzoom on Microsoft Edge browser [\#1162](https://github.com/extesy/hoverzoom/issues/1162)
 
 **Merged pull requests:**
@@ -134,7 +134,7 @@
 **Closed issues:**
 
 - Add support for : gcsurplus.ca [\#1138](https://github.com/extesy/hoverzoom/issues/1138)
-- Downloading 3 copies of same image [\#1137](https://github.com/extesy/hoverzoom/issues/1137)
+- Downloading 3 copies of the same image [\#1137](https://github.com/extesy/hoverzoom/issues/1137)
 - Images still saves twice [\#1134](https://github.com/extesy/hoverzoom/issues/1134)
 - problem downloading images [\#1132](https://github.com/extesy/hoverzoom/issues/1132)
 
@@ -155,7 +155,7 @@
 
 **Fixed bugs:**
 
-- saving pictures, file extention is not provided after save, so the filename is incomplete. [\#1116](https://github.com/extesy/hoverzoom/issues/1116)
+- saving pictures, file extension is not provided after save, so the filename is incomplete. [\#1116](https://github.com/extesy/hoverzoom/issues/1116)
 - Fix for \#1127 [\#1130](https://github.com/extesy/hoverzoom/pull/1130) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix for multiple downloads when saving a file \(\#1127\) [\#1129](https://github.com/extesy/hoverzoom/pull/1129) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix for multiple downloads of same file \(\#1127\) [\#1128](https://github.com/extesy/hoverzoom/pull/1128) ([GrosPoulet](https://github.com/GrosPoulet))
@@ -175,7 +175,7 @@
 **Closed issues:**
 
 - Despite the update, it still doesn't work on ebay.de! [\#1113](https://github.com/extesy/hoverzoom/issues/1113)
-- on ebay.de is not working again ! [\#1094](https://github.com/extesy/hoverzoom/issues/1094)
+- on ebay.de is not working again! [\#1094](https://github.com/extesy/hoverzoom/issues/1094)
 
 **Merged pull requests:**
 
@@ -208,7 +208,7 @@
 - Add support for : https://www.hejto.pl/ [\#1067](https://github.com/extesy/hoverzoom/issues/1067)
 - Instagram [\#960](https://github.com/extesy/hoverzoom/issues/960)
 - Hover Zoom+ does not work on instagram.com [\#866](https://github.com/extesy/hoverzoom/issues/866)
-- Scrolling album not work on Instagram [\#865](https://github.com/extesy/hoverzoom/issues/865)
+- Scrolling album does not work on Instagram [\#865](https://github.com/extesy/hoverzoom/issues/865)
 - Orphaned plugins not included in manifest [\#303](https://github.com/extesy/hoverzoom/issues/303)
 - Warnings raised by addons.mozilla.org while publishing [\#300](https://github.com/extesy/hoverzoom/issues/300)
 
@@ -220,7 +220,7 @@
 - Merge remote-tracking branch 'upstream/master' [\#1104](https://github.com/extesy/hoverzoom/pull/1104) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in for: Omegle [\#1103](https://github.com/extesy/hoverzoom/pull/1103) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in for: head-fi.org [\#1102](https://github.com/extesy/hoverzoom/pull/1102) ([GrosPoulet](https://github.com/GrosPoulet))
-- Fix for plug-in: mediawiki \(\#1083\) [\#1101](https://github.com/extesy/hoverzoom/pull/1101) ([GrosPoulet](https://github.com/GrosPoulet))
+- Fix for plug-in: MediaWiki \(\#1083\) [\#1101](https://github.com/extesy/hoverzoom/pull/1101) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in for: canmore.org.uk [\#1100](https://github.com/extesy/hoverzoom/pull/1100) ([GrosPoulet](https://github.com/GrosPoulet))
 - New plug-in for: geograph.org [\#1099](https://github.com/extesy/hoverzoom/pull/1099) ([GrosPoulet](https://github.com/GrosPoulet))
 - Update wordpress\_a.js [\#1098](https://github.com/extesy/hoverzoom/pull/1098) ([GrosPoulet](https://github.com/GrosPoulet))
@@ -232,7 +232,7 @@
 - Add a link to the list of plugins in the readme [\#1085](https://github.com/extesy/hoverzoom/pull/1085) ([Jipok](https://github.com/Jipok))
 - New plug-in for: fandom.com \(\#1077\) [\#1084](https://github.com/extesy/hoverzoom/pull/1084) ([GrosPoulet](https://github.com/GrosPoulet))
 - Zoom Reddit single and gallery images [\#1082](https://github.com/extesy/hoverzoom/pull/1082) ([weimeng](https://github.com/weimeng))
-- Fix getting galleryid in reddit plugin [\#1080](https://github.com/extesy/hoverzoom/pull/1080) ([TETYYS](https://github.com/TETYYS))
+- Fix getting galleryid in Reddit plugin [\#1080](https://github.com/extesy/hoverzoom/pull/1080) ([TETYYS](https://github.com/TETYYS))
 - New Crowdin updates [\#1079](https://github.com/extesy/hoverzoom/pull/1079) ([extesy](https://github.com/extesy))
 
 ## [1.0.202](https://github.com/extesy/hoverzoom/tree/1.0.202) (2023-02-03)
@@ -254,7 +254,7 @@
 
 **Closed issues:**
 
-- dont work on ebay please fix it ! [\#1072](https://github.com/extesy/hoverzoom/issues/1072)
+- don't work on eBay please fix it ! [\#1072](https://github.com/extesy/hoverzoom/issues/1072)
 
 **Merged pull requests:**
 
@@ -428,9 +428,9 @@
 
 **Fixed bugs:**
 
-- Save Image hotkey is not working on firefox [\#939](https://github.com/extesy/hoverzoom/issues/939)
+- Save Image hotkey is not working on Firefox [\#939](https://github.com/extesy/hoverzoom/issues/939)
 - Mouse wheel zooming on locked "v.redd.it" video [\#923](https://github.com/extesy/hoverzoom/issues/923)
-- disable on site shadertoy.com → still freeze the site display. [\#902](https://github.com/extesy/hoverzoom/issues/902)
+- disable on-site shadertoy.com → still freezes the site display. [\#902](https://github.com/extesy/hoverzoom/issues/902)
 - Shortcuts suddenly don't work anymore, out of nowhere [\#732](https://github.com/extesy/hoverzoom/issues/732)
 - fix for plug-in: YouTube\_a [\#965](https://github.com/extesy/hoverzoom/pull/965) ([GrosPoulet](https://github.com/GrosPoulet))
 - Fix for plug-in: YouTube\_a [\#958](https://github.com/extesy/hoverzoom/pull/958) ([GrosPoulet](https://github.com/GrosPoulet))
@@ -443,10 +443,10 @@
 - Добавь Бэкап настроек, и по нажатию по расширению чтобы было, вкл увеличивало по наведению и выключенно, только по кнопке шифт [\#946](https://github.com/extesy/hoverzoom/issues/946)
 - Can't load images from preview.redd.it [\#924](https://github.com/extesy/hoverzoom/issues/924)
 - Issue with Wallhaven.cc [\#918](https://github.com/extesy/hoverzoom/issues/918)
-- Mouse wheel do not work on imgur album [\#872](https://github.com/extesy/hoverzoom/issues/872)
-- Action keys not working in firefox latest [\#862](https://github.com/extesy/hoverzoom/issues/862)
+- Mouse wheel does not work on Imgur album [\#872](https://github.com/extesy/hoverzoom/issues/872)
+- Action keys not working in Firefox latest [\#862](https://github.com/extesy/hoverzoom/issues/862)
 - YouTube Support broken [\#855](https://github.com/extesy/hoverzoom/issues/855)
-- Youtube previews don't work on reddit [\#454](https://github.com/extesy/hoverzoom/issues/454)
+- YouTube previews don't work on Reddit [\#454](https://github.com/extesy/hoverzoom/issues/454)
 - Youtube Link Shows a White Empty Box [\#407](https://github.com/extesy/hoverzoom/issues/407)
 
 **Merged pull requests:**
@@ -471,7 +471,7 @@
 **Merged pull requests:**
 
 - New Crowdin updates [\#944](https://github.com/extesy/hoverzoom/pull/944) ([extesy](https://github.com/extesy))
-- Add an option to Advanced options tab to toggle NoFocus message visibility [\#943](https://github.com/extesy/hoverzoom/pull/943) ([ablankenship10](https://github.com/ablankenship10))
+- Add an option to the Advanced options tab to toggle NoFocus message visibility [\#943](https://github.com/extesy/hoverzoom/pull/943) ([ablankenship10](https://github.com/ablankenship10))
 
 ## [1.0.192](https://github.com/extesy/hoverzoom/tree/1.0.192) (2022-06-07)
 
@@ -488,7 +488,7 @@
 **Closed issues:**
 
 - Chrome complains about DOM mutation listener [\#935](https://github.com/extesy/hoverzoom/issues/935)
-- Hoverzoom not working on Reddit when users upload using Redgifs website. [\#927](https://github.com/extesy/hoverzoom/issues/927)
+- Hoverzoom not working on Reddit when users upload using the Redgifs website. [\#927](https://github.com/extesy/hoverzoom/issues/927)
 - The extension is not working on Slickdeals.net [\#919](https://github.com/extesy/hoverzoom/issues/919)
 
 **Merged pull requests:**
@@ -516,7 +516,7 @@
 
 - Add support for :  https://www.huaban.com [\#913](https://github.com/extesy/hoverzoom/issues/913)
 - The Extension is not working on Slickdeals [\#911](https://github.com/extesy/hoverzoom/issues/911)
-- redgifs.com links on reddit no longer working [\#910](https://github.com/extesy/hoverzoom/issues/910)
+- redgifs.com links on Reddit no longer working [\#910](https://github.com/extesy/hoverzoom/issues/910)
 
 **Merged pull requests:**
 
@@ -548,9 +548,9 @@
 **Closed issues:**
 
 - Add support for : https://us.shein.com/ [\#906](https://github.com/extesy/hoverzoom/issues/906)
-- Stop works on Istagram [\#903](https://github.com/extesy/hoverzoom/issues/903)
+- Stop works on Instagram [\#903](https://github.com/extesy/hoverzoom/issues/903)
 - Add support for : Viewbug.com [\#896](https://github.com/extesy/hoverzoom/issues/896)
-- "Add viewed pictures to the browser's history" not working on reddit [\#884](https://github.com/extesy/hoverzoom/issues/884)
+- "Add viewed pictures to the browser's history" not working on Reddit [\#884](https://github.com/extesy/hoverzoom/issues/884)
 - Add support for : preview.redd.it [\#876](https://github.com/extesy/hoverzoom/issues/876)
 
 **Merged pull requests:**
@@ -648,7 +648,7 @@
 - It doesn't work with  Twitter Avatar pictures anymore! [\#836](https://github.com/extesy/hoverzoom/issues/836)
 - update for new Pixiv design [\#820](https://github.com/extesy/hoverzoom/issues/820)
 - Twitch clips no longer working [\#482](https://github.com/extesy/hoverzoom/issues/482)
-- mouse cursor doesn't disappear when hovering [\#347](https://github.com/extesy/hoverzoom/issues/347)
+- The mouse cursor doesn't disappear when hovering [\#347](https://github.com/extesy/hoverzoom/issues/347)
 - issues in Google Image search results page [\#106](https://github.com/extesy/hoverzoom/issues/106)
 
 **Merged pull requests:**
@@ -688,7 +688,7 @@
 
 **Closed issues:**
 
-- Hovering on gifv thumbnails on reddit doesnt work [\#818](https://github.com/extesy/hoverzoom/issues/818)
+- Hovering on gifv thumbnails on Reddit doesn't work [\#818](https://github.com/extesy/hoverzoom/issues/818)
 
 **Merged pull requests:**
 
@@ -771,10 +771,10 @@
 
 **Implemented enhancements:**
 
-- Copy URL of image or video [\#765](https://github.com/extesy/hoverzoom/issues/765)
-- Add copy to clipboard hotkey [\#750](https://github.com/extesy/hoverzoom/issues/750)
+- Copy the URL of the image or video [\#765](https://github.com/extesy/hoverzoom/issues/765)
+- Add a copy to clipboard hotkey [\#750](https://github.com/extesy/hoverzoom/issues/750)
 - \[Feature Request\] shortcut copy image [\#459](https://github.com/extesy/hoverzoom/issues/459)
-- Please add the resized image the resize percent to corner! [\#156](https://github.com/extesy/hoverzoom/issues/156)
+- Please add the resized image and the resize percent to the corner! [\#156](https://github.com/extesy/hoverzoom/issues/156)
 
 **Fixed bugs:**
 
@@ -784,7 +784,7 @@
 
 - redgifs [\#780](https://github.com/extesy/hoverzoom/issues/780)
 - Won’t work at all on Chrome \(MacBook Pro 13” M1\) [\#769](https://github.com/extesy/hoverzoom/issues/769)
-- HoverzZoom+ and Chrome - Autocloses zoomed videos when opened in new window [\#693](https://github.com/extesy/hoverzoom/issues/693)
+- HoverzZoom+ and Chrome - Autocloses zoomed videos when opened in a new window [\#693](https://github.com/extesy/hoverzoom/issues/693)
 - Google Chat horribly laggy [\#620](https://github.com/extesy/hoverzoom/issues/620)
 - HoverZoom locks up windows rendering [\#492](https://github.com/extesy/hoverzoom/issues/492)
 - "save image" does not work in 4chan  [\#491](https://github.com/extesy/hoverzoom/issues/491)
@@ -811,7 +811,7 @@
 
 **Fixed bugs:**
 
-- Right clicking causes "lockImageClickTime is not defined" errors [\#760](https://github.com/extesy/hoverzoom/issues/760)
+- Right-clicking causes "lockImageClickTime is not defined" errors [\#760](https://github.com/extesy/hoverzoom/issues/760)
 - Fix for captions [\#763](https://github.com/extesy/hoverzoom/pull/763) ([GrosPoulet](https://github.com/GrosPoulet))
 
 **Closed issues:**
@@ -839,7 +839,7 @@
 **Closed issues:**
 
 - v.redd.it videos no audio on hover [\#758](https://github.com/extesy/hoverzoom/issues/758)
-- Zoomed videos from v.redd.it don't play sound [\#756](https://github.com/extesy/hoverzoom/issues/756)
+- Zoomed videos from v.redd.it doesn't play sound [\#756](https://github.com/extesy/hoverzoom/issues/756)
 - Add support for : MyAnimeList [\#744](https://github.com/extesy/hoverzoom/issues/744)
 
 **Merged pull requests:**
@@ -863,7 +863,7 @@
 - New Crowdin updates [\#753](https://github.com/extesy/hoverzoom/pull/753) ([extesy](https://github.com/extesy))
 - New Crowdin updates [\#752](https://github.com/extesy/hoverzoom/pull/752) ([extesy](https://github.com/extesy))
 - New image/video viewer [\#751](https://github.com/extesy/hoverzoom/pull/751) ([GrosPoulet](https://github.com/GrosPoulet))
-- Initial prototype for locking image on screen, allowing user to zoom and pan around. [\#746](https://github.com/extesy/hoverzoom/pull/746) ([EhsanKia](https://github.com/EhsanKia))
+- Initial prototype for locking image on the screen, allowing user to zoom and pan around. [\#746](https://github.com/extesy/hoverzoom/pull/746) ([EhsanKia](https://github.com/EhsanKia))
 - New plug-in : MyAnimeList [\#745](https://github.com/extesy/hoverzoom/pull/745) ([GrosPoulet](https://github.com/GrosPoulet))
 - New Crowdin updates [\#742](https://github.com/extesy/hoverzoom/pull/742) ([extesy](https://github.com/extesy))
 - add debug mode toggle in advanced settings [\#740](https://github.com/extesy/hoverzoom/pull/740) ([Mattwmaster58](https://github.com/Mattwmaster58))
@@ -902,7 +902,7 @@
 
 **Fixed bugs:**
 
-- Audio for Hoverzoome'd video will play in background even after video closes - Version 1.0.159 [\#638](https://github.com/extesy/hoverzoom/issues/638)
+- Audio for Hoverzoome'd video will play in the background even after video closes - Version 1.0.159 [\#638](https://github.com/extesy/hoverzoom/issues/638)
 - Fix for embedded images [\#727](https://github.com/extesy/hoverzoom/pull/727) ([GrosPoulet](https://github.com/GrosPoulet))
 
 **Closed issues:**
@@ -1056,9 +1056,9 @@
 
 **Closed issues:**
 
-- Hovering over a redgifs.com link won't open video or when it opens no animation is shown [\#661](https://github.com/extesy/hoverzoom/issues/661)
-- Inconsistencies and Nozooms in Yahoo, Google, Tumbr, and \*Pinterest\* [\#349](https://github.com/extesy/hoverzoom/issues/349)
-- Stopped Working on tumblr Blogs [\#112](https://github.com/extesy/hoverzoom/issues/112)
+- Hovering over a redgifs.com link won't open the video or when it opens no animation is shown [\#661](https://github.com/extesy/hoverzoom/issues/661)
+- Inconsistencies and Nozooms in Yahoo, Google, Tumblr, and \*Pinterest\* [\#349](https://github.com/extesy/hoverzoom/issues/349)
+- Stopped Working on Tumblr blogs [\#112](https://github.com/extesy/hoverzoom/issues/112)
 
 **Merged pull requests:**
 
@@ -1070,7 +1070,7 @@
 
 **Implemented enhancements:**
 
-- New option: open unloadable urls in new tab or window [\#656](https://github.com/extesy/hoverzoom/pull/656) ([GrosPoulet](https://github.com/GrosPoulet))
+- New option: open unloadable URLs in new tab or window [\#656](https://github.com/extesy/hoverzoom/pull/656) ([GrosPoulet](https://github.com/GrosPoulet))
 - Enhancement: save files to specific subdirectory [\#649](https://github.com/extesy/hoverzoom/pull/649) ([GrosPoulet](https://github.com/GrosPoulet))
 
 **Fixed bugs:**
@@ -1080,7 +1080,7 @@
 
 **Closed issues:**
 
-- not working on the Pinterest  [\#477](https://github.com/extesy/hoverzoom/issues/477)
+- not working on Pinterest  [\#477](https://github.com/extesy/hoverzoom/issues/477)
 
 **Merged pull requests:**
 
