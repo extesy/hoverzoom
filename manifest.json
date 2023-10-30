@@ -60,7 +60,8 @@
                 "js/plugins.js",
                 "plugins/default.js",
                 "js/hoverzoom.js",
-                "js/hls.js"
+                "js/hls.js",
+                "js/findMatchingBracket.js"
             ],
             "matches": ["<all_urls>"],
             "all_frames": true
