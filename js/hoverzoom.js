@@ -1268,6 +1268,7 @@ var hoverZoom = {
                             }
                         }
                     });
+
                     // <-- original code from : https://github.com/huzhlei/DASH-to-HLS-Playback/blob/master/conversion.js
                     function extractMpdInfo(textToDec)
                     {
@@ -4091,6 +4092,34 @@ var hoverZoom = {
         }
         keys.forEach(key => result = result[key]);
         return result;
+    },
+
+    // Replace unicode by decoded chars
+    // e.g: https:u002Fu002Fwww.deviantart.comu002Fjoensou002Fartu002FLate-to-the-party-984921567
+    //   => https://www.deviantart.com/joenso/art/Late-to-the-party-984921567
+    decodeUnicode:function(strUnicode) {
+        const re = /u00([0-9A-F]{2})/gi;
+        return strUnicode.replace(re, function (match, grp) { return String.fromCharCode(parseInt(grp, 16)); });
+    },
+
+    // Find matching bracket : {...}, (...), [...], ...
+    //                             ^      ^      ^
+    // credits: https://github.com/alfnielsen/find-matching-bracket
+    // return:
+    // => position (0-based) of matching bracket if found
+    // => -1 if cursor comes to end of code without finding maching bracket
+    // => -2 if startPostion don't match start bracket
+    // => -3 if end bracket dont match start bracket
+    //
+    // ex1 : '{"comments":7,"favourites":72,"views":38946,"downloads":1,"privatelyCollected":0}'
+    // => matchBracket(ex1, 0) returns 80
+    // ex2 : '{"comments":7,"favourites":72,"views":38946,"downloads":1,"privatelyCollected":0]'
+    // => matchBracket(ex2, 0) returns -1
+    // ex3 : '{"t":"92S","r":0,"c":"/v1/crop/w_92,h_92,x_11,y_0,scl_0.13469985358712,q_70,strp/<prettyName>-92s.jpg","h":92,"w":92,"ss":[{"x":2,"c":"/v1/crop/w_184,h_184,x_23,y_0,scl_0.26939970717423,q_70,strp/<prettyName>-92s-2x.jpg","w":184,"h":184}]}'
+    // => matchBracket(ex3, 123) returns 236
+    // => matchBracket(ex3, 124) returns 237
+    matchBracket:function(data, startPosition) {
+        return matchBracket(data, startPosition);
     }
 };
 
