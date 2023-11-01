@@ -1993,6 +1993,10 @@
         {
             "js": ["plugins/freeimagehost.js"],
             "matches": ["*://*.freeimage.host/*"]
+        },
+        {
+            "js": ["plugins/googledrive.js"],
+            "matches": ["*://drive.google.com/*"]
         }
     ]
 }
