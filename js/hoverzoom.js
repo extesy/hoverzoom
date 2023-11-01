@@ -1681,7 +1681,7 @@ var hoverZoom = {
                     imgThumb = hz.currentLink.find('[style]');
                     if (imgThumb.length > 0) {
                         imgThumb = $(imgThumb[0]);
-                        lowResSrc = hz.getThumbUrl(imgThumb);
+                        lowResSrc = hz.getThumbUrl(imgThumb[0]);
                     }
                 }
                 lowResSrc = lowResSrc || 'noimage';
