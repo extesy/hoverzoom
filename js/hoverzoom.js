@@ -357,10 +357,6 @@ var hoverZoom = {
             }`;
         document.head.appendChild(styleBlink);
 
-        var flashFixDomains = [
-            'www.redditmedia.com'
-        ];
-
         // calculate optimal viewer position and size
         function posViewer(position) {
 
@@ -2323,8 +2319,6 @@ var hoverZoom = {
                     prepareImgLinksAsync();
                 }
                 bindJsaction();
-            } else if (insertedNode.nodeName === 'EMBED' || insertedNode.nodeName === 'OBJECT') {
-                fixFlash();
             }
         }
 
@@ -2662,40 +2656,6 @@ var hoverZoom = {
                     zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
                 }
             }
-        }
-
-        // TODO: Flash is basically dead. Should this be deleted?
-        function fixFlash() {
-            if (flashFixDomains.indexOf(location.host) === -1) {
-                return;
-            }
-            if (isExcludedSite() || window == window.top && $('.hoverZoomLink').length == 0) {
-                return;
-            }
-            $('embed:not([wmode]), embed[wmode="window"]').each(function () {
-                if (!this.type || this.type.toLowerCase() != 'application/x-shockwave-flash') {
-                    return;
-                }
-                var embed = this.cloneNode(true);
-                embed.setAttribute('wmode', 'opaque');
-                unbindObserver();
-                $(this).replaceWith(embed);
-                bindObserver();
-            });
-            var wmodeFilter = function () {
-                return this.name.toLowerCase() == 'wmode';
-            };
-            $('object[type="application/x-shockwave-flash"]').filter(function () {
-                var param = $(this).children('param').filter(wmodeFilter);
-                return param.length == 0 || param.attr('value').toLowerCase() == 'window';
-            }).each(function () {
-                    var object = this.cloneNode(true);
-                    $(object).children('param').filter(wmodeFilter).remove();
-                    $('<param name="wmode" value="opaque">').appendTo(object);
-                    unbindObserver();
-                    $(this).replaceWith(object);
-                    bindObserver();
-                });
         }
 
         function getExtensionFromUrl(url, video, playlist, audio) {
@@ -3528,7 +3488,6 @@ var hoverZoom = {
             hz.pageGenerator = $('meta[name="generator"]').attr('content');
             prepareImgLinks();
             bindEvents();
-            fixFlash();
 
             debug = options.debug;
         }
