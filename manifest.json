@@ -1997,6 +1997,10 @@
         {
             "js": ["plugins/googledrive.js"],
             "matches": ["*://drive.google.com/*"]
+        },
+        {
+            "js": ["plugins/findagrave.js"],
+            "matches": ["*://*.findagrave.com/*"]
         }
     ]
 }
