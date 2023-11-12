@@ -2002,6 +2002,10 @@
         {
             "js": ["plugins/findagrave.js"],
             "matches": ["*://*.findagrave.com/*"]
+        },
+        {
+            "js": ["plugins/ldlc.js"],
+            "matches": ["*://*.ldlc.com/*"]
         }
     ]
 }
