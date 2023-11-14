@@ -106,6 +106,7 @@
                 "plugins/niconico_a.js",
                 "plugins/omegle_a.js",
                 "plugins/photoshop_a.js",
+                "plugins/prestashop_a.js",
                 "plugins/rule34video_a.js",
                 "plugins/screencast_a.js",
                 "plugins/scryfall_a.js",
