@@ -2007,6 +2007,10 @@
         {
             "js": ["plugins/ldlc.js"],
             "matches": ["*://*.ldlc.com/*"]
+        },
+        {
+            "js": ["plugins/mubi.js"],
+            "matches": ["*://*.mubi.com/*"]
         }
     ]
 }
