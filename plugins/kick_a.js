@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'kick_a',
-    version:'0.4',
+    version:'0.5',
     prepareImgLinks:function (callback) {
         var name = this.name;
         var res = [];
@@ -27,14 +27,22 @@ hoverZoomPlugins.push({
         //   => clip url: https://clips.kick.com/clips/cacd6b78-e0d8-49fa-976f-8672d35c7bfa.mp4
         // thumbnail url: https://clips.kick.com/clips/clip_01H6KQJC31DGZVGENT05PWM7R3/thumbnail.png
         //   => clip url: https://clips.kick.com/clips/clip_01H6KQJC31DGZVGENT05PWM7R3/playlist.m3u8
-        $('img[src*="clips.kick.com/clips/"]:not(.hoverZoomMouseover)').addClass('hoverZoomMouseover').one('mouseover', function() {
+        $('img[src*="clips.kick.com/clips/"]').one('mouseover', function() {
             const src = this.src;
             var link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
+
             const clipUrl = src.replace('-thumbnail.jpeg', '.mp4').replace('/thumbnail.png', '/playlist.m3u8');
             if (clipUrl == src) return;
             link.data().hoverZoomSrc = [clipUrl];
             callback(link, name);
-            hoverZoom.displayPicFromElement(link);
+            // Image is displayed if the cursor is still over the link
+            if (link.data().hoverZoomMouseOver)
+                hoverZoom.displayPicFromElement(link);
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
 
         // videos
@@ -43,6 +51,8 @@ hoverZoomPlugins.push({
         $('a[href]').filter(function() { return (/kick\.com\/video\//.test($(this).prop('href'))) }).one('mouseover', function() {
             const href = this.href;
             var link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
 
             const re = /kick\.com\/video\/(.*)/;   // video id (e.g. d1f27b01-abd8-47f2-a52a-5b2c22044d3b)
             m = href.match(re);
@@ -69,10 +79,15 @@ hoverZoomPlugins.push({
                                                     link.data().hoverZoomKickVideoUrl = videoUrl;
                                                     link.data().hoverZoomSrc = [videoUrl];
                                                     callback(link, name);
-                                                    hoverZoom.displayPicFromElement(link);
+                                                    // Image is displayed if the cursor is still over the link
+                                                    if (link.data().hoverZoomMouseOver)
+                                                        hoverZoom.displayPicFromElement(link);
                                                 }
                                             } catch {}
                                         });
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
 
         // live
@@ -81,6 +96,8 @@ hoverZoomPlugins.push({
         $('a[href]').filter(function() { return (! /kick\.com\/video\//.test($(this).prop('href')) && /kick\.com\/[^\/]{1,}/.test($(this).prop('href'))) }).one('mouseover', function() {
             const href = this.href;
             var link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
 
             const re = /kick\.com\/(.*)/;   // live id (e.g. aleea)
             m = href.match(re);
@@ -108,10 +125,15 @@ hoverZoomPlugins.push({
                                                     link.data().hoverZoomKickLiveUrl = liveUrl;
                                                     link.data().hoverZoomSrc = [liveUrl];
                                                     callback(link, name);
-                                                    hoverZoom.displayPicFromElement(link);
+                                                    // Image is displayed if the cursor is still over the link
+                                                    if (link.data().hoverZoomMouseOver)
+                                                        hoverZoom.displayPicFromElement(link);
                                                 }
                                             } catch {}
                                         });
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
 
         hoverZoom.urlReplace(res,
