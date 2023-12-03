@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Facebook',
-    version:'3.1',
+    version:'3.3',
     favicon:'facebook.svg',
     prepareImgLinks:function (callback) {
 
@@ -193,9 +193,12 @@ hoverZoomPlugins.push({
         // => fbid: 10232656805626323
         //  sample: https://www.facebook.com/photo.php?fbid=288195657198081&set=p.288195657198081&type=3&__cft__[0]=AZUJZvwHuooX1XXkKTpmw1i5a425EeQcXJtCtcx1Ra3-i_A1po-ZxHKoNRgTXg__lHSMqSjASFpMXhSHCeW1oPViD1hKkTdtqsjhpvF1qEda73kd_E5nqNb2CXCthMbvbD31i6neavZUKMANvPmodIQzbyAHjK2nbVcE80axlqkrYxpURu010rT8Ek_ejqEfU3Y&__tn__=R]-R
         // => fbid: 288195657198081
-        $('a[href*="/photo/?fbid="]:not(.hoverZoomMouseOverFbid), a[href*="/photo.php?fbid="]:not(.hoverZoomMouseOverFbid)').addClass('hoverZoomMouseOverFbid').one('mouseover', function () {
+        $('a[href*="/photo/?fbid="], a[href*="/photo.php?fbid="]').one('mouseenter', function () {
 
             var link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
+
             const href = link.prop('href');
 
             let fbid = null;
@@ -224,25 +227,50 @@ hoverZoomPlugins.push({
                         if (uri) {
                             link.data().hoverZoomSrc = [uri];
                             callback(link, pluginName);
-                            hoverZoom.displayPicFromElement(link);
+                            // Image is displayed if the cursor is still over the link
+                            if (link.data().hoverZoomMouseOver)
+                                hoverZoom.displayPicFromElement(link);
                         }
                     } catch {}
                 },
                 error: function(response) { cLog('error: ' + response) }
             });
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
 
         // marketplace item
         // sample: https://www.facebook.com/marketplace/item/188620124163085/
         // => marketId = 188620124163085
-        $('a[href*="/marketplace/item/"]:not(.hoverZoomMouseOverMarket)').addClass('hoverZoomMouseOverMarket').one('mouseover', function () {
+        $('a[href*="/marketplace/item/"]').one('mouseenter', function () {
             var link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
+
             const href = link.prop('href');
             let regexMarketId = /\/marketplace\/item\/(\d+).*/;
             let matchesMarketId = href.match(regexMarketId);
             let marketId = null;
             if (matchesMarketId) marketId = matchesMarketId.length > 1 ? matchesMarketId[1] : null;
             if (marketId == null) return;
+
+            // reuse previous result
+            if (link.data().hoverZoomFacebookMarketId == marketId) {
+                if (link.data().hoverZoomFacebookMarketGallery) {
+                    link.data().hoverZoomGallerySrc = link.data().hoverZoomFacebookMarketGallery;
+                    // Image is displayed if the cursor is still over the link
+                    if (link.data().hoverZoomMouseOver)
+                        hoverZoom.displayPicFromElement(link);
+                    return;
+                }
+            }
+
+            link.data().hoverZoomFacebookMarketId = marketId;
+            link.data().hoverZoomFacebookMarketGallery = undefined;
+
+            // clean previous result
+            link.data().hoverZoomSrc = [];
 
             if (fb_dtsg == undefined) {
                 fb_dtsg = findFbDtsg();
@@ -262,20 +290,30 @@ hoverZoomPlugins.push({
                         const gallery = keys[0].value.map(k => [k.image.uri]);
                         link.data().hoverZoomSrc = undefined;
                         link.data().hoverZoomGallerySrc = gallery;
+                        link.data().hoverZoomFacebookMarketId = marketId;
+                        link.data().hoverZoomFacebookMarketGallery = gallery;
                         link.data().hoverZoomGalleryIndex = 0;
                         callback(link, pluginName);
-                        hoverZoom.displayPicFromElement(link);
+                        // Image is displayed if the cursor is still over the link
+                        if (link.data().hoverZoomMouseOver)
+                            hoverZoom.displayPicFromElement(link);
                     } catch {}
                 },
                 error: function(response) { cLog('error: ' + response) }
             });
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
 
         // marketplace profile
         // sample: https://www.facebook.com/marketplace/profile/743742771/
         // => profileId = 743742771
-        $('a[href*="/marketplace/profile/"]:not(.hoverZoomMouseOverMarket)').addClass('hoverZoomMouseOverMarket').one('mouseover', function () {
+        $('a[href*="/marketplace/profile/"]').one('mouseenter', function () {
             var link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
+
             const href = link.prop('href');
             let regexProfileId = /\/marketplace\/profile\/(\d+).*/;
             let matchesProfileId = href.match(regexProfileId);
@@ -306,22 +344,35 @@ hoverZoomPlugins.push({
                         link.data().hoverZoomGallerySrc = gallery;
                         link.data().hoverZoomGalleryIndex = 0;
                         callback(link, pluginName);
-                        hoverZoom.displayPicFromElement(link);
+                        // Image is displayed if the cursor is still over the link
+                        if (link.data().hoverZoomMouseOver)
+                            hoverZoom.displayPicFromElement(link);
                     } catch {}
                 },
                 error: function(response) { cLog('error: ' + response) }
             });
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
 
         // marketplace thumbnail
-        $('div[aria-label*=Thumbnail]').one('mouseover', function () {
+        $('div[aria-label*=Thumbnail]').one('mouseenter', function () {
             var link = $(this), data = link.data();
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
+
             if (data.hoverZoomSrc) return;
             var img = $(this).find('img[src]')[0];
             if (!img) return;
             data.hoverZoomSrc = [img.src];
             link.addClass('hoverZoomLink');
-            hoverZoom.displayPicFromElement(link);
+            // Image is displayed if the cursor is still over the link
+            if (link.data().hoverZoomMouseOver)
+                hoverZoom.displayPicFromElement(link);
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
 
         $('a[ajaxify*="src="]:not(.coverWrap):not(.hoverZoom1)').addClass('hoverZoom1').each(function () {
@@ -406,7 +457,7 @@ hoverZoomPlugins.push({
         });
 
         // thumbnail => fullsize (<img>)
-        $('a[href]:not(.hoverZoomMouseOverImg)').filter(function() { return $(this).find('img[src*=".jpg"]').length == 1 }).addClass('hoverZoomMouseOverImg').one('mouseover', function () {
+        $('a[href]').filter(function() { return $(this).find('img[src*=".jpg"]').length == 1 }).each(function () {
 
             let link = $(this);
             let img = $(this).find('img[src*=".jpg"]');
@@ -424,13 +475,12 @@ hoverZoomPlugins.push({
             if (fullsizeUrl) {
                 link.data().hoverZoomSrc = [fullsizeUrl];
                 res.push(link);
-                callback(link, pluginName);
-                hoverZoom.displayPicFromElement(link);
+
             }
         });
 
         // thumbnail => fullsize (<image>)
-        $('a[href]:not(.hoverZoomMouseOverImg)').filter(function() { return $(this).find('image').length == 1 }).addClass('hoverZoomMouseOverImg').one('mouseover', function () {
+        $('a[href]').filter(function() { return $(this).find('image').length == 1 }).each(function () {
 
             let link = $(this);
             let img = $(this).find('image');
@@ -449,17 +499,19 @@ hoverZoomPlugins.push({
             if (fullsizeUrl) {
                 link.data().hoverZoomSrc = [fullsizeUrl];
                 res.push(link);
-                callback(link, pluginName);
-                hoverZoom.displayPicFromElement(link);
+
             }
         });
 
         // profile
         // sample: https://www.facebook.com/profile.php?id=100014884125598
         // => profileid = 100014884125598
-        $('a[href*="/profile.php"]').one('mouseover', function () {
+        $('a[href*="/profile.php"]').one('mouseenter', function () {
 
             var link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
+
             const href = link.prop('href');
             let regexProfileid = /\/profile.php\?id=(\d+)/;
             let matchesProfileid = href.match(regexProfileid);
@@ -504,20 +556,28 @@ hoverZoomPlugins.push({
                             link.data().hoverZoomFacebookProfileId = profileid;
                             link.data().hoverZoomFacebookProfileUrl = keys[0].value.uri;
                             callback(link, pluginName);
-                            hoverZoom.displayPicFromElement(link);
+                            // Image is displayed if the cursor is still over the link
+                            if (link.data().hoverZoomMouseOver)
+                                hoverZoom.displayPicFromElement(link);
                         }
                     } catch {}
                 },
                 error: function(response) { cLog('error: ' + response) }
             });
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
 
         // profile
         // sample: https://www.facebook.com/sofia.urrea03
         // => username = sofia.urrea03
         // => profileid = 100005256759899
-        $('a[href]').filter(function() { return ! /(\.php\?|\/watch\/|profile_id|\/photos\/|\/videos\/)/.test($(this).prop('href')) }).one('mouseover', function () {
+        $('a[href]').filter(function() { return ! /(\.php\?|\/watch\/|profile_id|\/photos\/|\/videos\/|\/reel\/)/.test($(this).prop('href')) }).one('mouseenter', function () {
             var link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
+
             const href = link.prop('href');
             let regexUsername = /facebook\.com\/([^/\?]{1,})/;
             let matchesUsername = href.match(regexUsername);
@@ -565,12 +625,17 @@ hoverZoomPlugins.push({
                             link.data().hoverZoomFacebookProfileId = profileid;
                             link.data().hoverZoomFacebookProfileUrl = keys[0].value.uri;
                             callback(link, pluginName);
-                            hoverZoom.displayPicFromElement(link);
+                            // Image is displayed if the cursor is still over the link
+                            if (link.data().hoverZoomMouseOver)
+                                hoverZoom.displayPicFromElement(link);
                         }
                     } catch {}
                 },
                 error: function(response) { cLog('error: ' + response) }
             });
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
 
         // profile
@@ -578,8 +643,11 @@ hoverZoomPlugins.push({
         // => profileid = 100077099961507
         // sample: https://www.facebook.com/friends/suggestions/?profile_id=100009267692104
         // => profileid = 100009267692104
-        $('a[href*="/watch/"], a[href*="profile_id"]').filter(function() { return $(this).prop('href').indexOf('.php?') == -1 }).one('mouseover', function () {
+        $('a[href*="/watch/"], a[href*="profile_id"]').filter(function() { return $(this).prop('href').indexOf('.php?') == -1 }).one('mouseenter', function () {
             var link = $(this);
+            if (link.data().hoverZoomMouseOver1) return;
+            link.data().hoverZoomMouseOver1 = true;
+
             const href = link.prop('href');
             let regexProfileid = /facebook\.com\/watch\/(\d+)/;
             let matchesProfileid = href.match(regexProfileid);
@@ -629,19 +697,27 @@ hoverZoomPlugins.push({
                             link.data().hoverZoomFacebookProfileId = profileid;
                             link.data().hoverZoomFacebookProfileUrl = keys[0].value.uri;
                             callback(link, pluginName);
-                            hoverZoom.displayPicFromElement(link);
+                            // Image is displayed if the cursor is still over the link
+                            if (link.data().hoverZoomMouseOver1)
+                                hoverZoom.displayPicFromElement(link);
                         }
                     } catch {}
                 },
                 error: function(response) { cLog('error: ' + response) }
             });
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver1 = false;
         });
 
         // profile
         // sample: https://www.facebook.com/watch/expertarchaeologist/
-        $('a[href*="/watch/"]:not(.hoverZoomMouseOverProfile4)').filter(function() { return $(this).prop('href').indexOf('.php?') == -1 }).addClass('hoverZoomMouseOverProfile4').one('mouseover', function () {
+        $('a[href*="/watch/"]').filter(function() { return $(this).prop('href').indexOf('.php?') == -1 }).one('mouseenter', function () {
 
             var link = $(this);
+            if (link.data().hoverZoomMouseOver2) return;
+            link.data().hoverZoomMouseOver2 = true;
+
             const href = link.prop('href');
             let regexUsername = /facebook\.com\/watch\/([^/\?]{1,})/;
             let matchesUsername = href.match(regexUsername);
@@ -675,12 +751,17 @@ hoverZoomPlugins.push({
                         if (keys.length == 1) {
                             link.data().hoverZoomSrc = [keys[0].value.uri];
                             callback(link, pluginName);
-                            hoverZoom.displayPicFromElement(link);
+                            // Image is displayed if the cursor is still over the link
+                            if (link.data().hoverZoomMouseOver2)
+                                hoverZoom.displayPicFromElement(link);
                         }
                     } catch {}
                 },
                 error: function(response) { cLog('error: ' + response) }
             });
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver2 = false;
         });
 
         // video
@@ -690,16 +771,21 @@ hoverZoomPlugins.push({
         // => videoId = 168809246022573
         // sample: https://www.facebook.com/watch/?ref=search&v=964373281036797
         // => videoId = 964373281036797
-        $('a[href*="/videos/"], a[href*="/watch/?"]').filter(function() { return $(this).prop('href').indexOf('.php?') == -1 }).one('mouseover', function () {
+        // sample: https://www.facebook.com/watch/live/?ref=search&v=716310417225781
+        // => videoId = 716310417225781
+        $('a[href*="/videos/"], a[href*="/watch/?"], a[href*="/watch/live/?"]').filter(function() { return $(this).prop('href').indexOf('.php?') == -1 }).one('mouseenter', function () {
 
             var link = $(this);
+            if (link.data().hoverZoomMouseOver3) return;
+            link.data().hoverZoomMouseOver3 = true;
+
             let videoId = null;
             const href = link.prop('href');
             let regexVideoId = /facebook\.com\/.*\/videos\/(\d+)/;
             let matchesVideoId = href.match(regexVideoId);
             if (matchesVideoId) videoId = matchesVideoId.length > 1 ? matchesVideoId[1] : null;
             if (videoId == null) {
-                regexVideoId = /facebook\.com\/watch\/\?.*v=(\d+)/;
+                regexVideoId = /facebook\.com\/watch\/(?:live\/)?\?.*v=(\d+)/;
                 matchesVideoId = href.match(regexVideoId);
                 if (matchesVideoId) videoId = matchesVideoId.length > 1 ? matchesVideoId[1] : null;
             }
@@ -742,20 +828,28 @@ hoverZoomPlugins.push({
                             link.data().hoverZoomFacebookVideoId = videoId;
                             link.data().hoverZoomFacebookVideoUrl = keys[0].value;
                             callback(link, pluginName);
-                            hoverZoom.displayPicFromElement(link);
+                            // Image is displayed if the cursor is still over the link
+                            if (link.data().hoverZoomMouseOver3)
+                                hoverZoom.displayPicFromElement(link);
                         }
                     } catch {}
                 },
                 error: function(response) { cLog('error: ' + response) }
             });
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver3 = false;
         });
 
         // reels
         // samples source: https://www.facebook.com/groups/646032424205352/media/videos
         // sample: https://www.facebook.com/reel/948338253095761/
-        $('a[href*="/reel/"]').filter(function() { return $(this).prop('href').indexOf('.php?') == -1 }).one('mouseover', function () {
+        $('a[href*="/reel/"]').filter(function() { return $(this).prop('href').indexOf('.php?') == -1 }).one('mouseenter', function () {
 
             var link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
+
             let reelId = null;
             const href = link.prop('href');
             let regexReelId = /facebook\.com\/reel\/(\d+)/;
@@ -800,17 +894,18 @@ hoverZoomPlugins.push({
                             link.data().hoverZoomFacebookReelId = reelId;
                             link.data().hoverZoomFacebookReelUrl = keys[0].value;
                             callback(link, pluginName);
-                            hoverZoom.displayPicFromElement(link);
+                            // Image is displayed if the cursor is still over the link
+                            if (link.data().hoverZoomMouseOver)
+                                hoverZoom.displayPicFromElement(link);
                         }
                     } catch {}
                 },
                 error: function(response) { cLog('error: ' + response) }
             });
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
-
-        // TO BE DONE
-        // stories
-        // live (require MPD handling)
 
         callback($(res), pluginName);
     }
