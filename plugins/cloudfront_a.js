@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'cloudfront_a',
-    version:'0.3',
+    version:'0.4',
     prepareImgLinks:function (callback) {
         var res = [];
 
@@ -45,15 +45,16 @@ hoverZoomPlugins.push({
             findFullsizeUrl($(this), this.src);
         });
 
-        $('[style*=url]').filter(function() { return this.style.backgroundImage.indexOf('cloudfront') == -1 ? false : true }).each(function() {
+        $('[style*="cloudfront"]').each(function() {
             // extract url from style
             var backgroundImage = this.style.backgroundImage;
-            var reUrl = /.*url\s*\(\s*(.*)\s*\).*/i
-            backgroundImage = backgroundImage.replace(reUrl, '$1');
-            // remove leading & trailing quotes
-            var backgroundImageUrl = backgroundImage.replace(/^['"]/, '').replace(/['"]+$/, '');
-
-            findFullsizeUrl($(this), backgroundImageUrl);
+            if (backgroundImage && backgroundImage.indexOf('cloudfront') != -1) {
+                var reUrl = /.*url\s*\(\s*(.*)\s*\).*/i
+                backgroundImage = backgroundImage.replace(reUrl, '$1');
+                // remove leading & trailing quotes
+                var backgroundImageUrl = backgroundImage.replace(/^['"]/, '').replace(/['"]+$/, '');
+                findFullsizeUrl($(this), backgroundImageUrl);
+            }
         });
 
         if (res.length) {
