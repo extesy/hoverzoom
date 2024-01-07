@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'focus_a',
-    version:'0.1',
+    version:'0.2',
     prepareImgLinks:function (callback) {
         var res = [];
 
@@ -36,14 +36,16 @@ hoverZoomPlugins.push({
             findFullsizeUrl($(this), this.src);
         });
 
-        $('[style*=url]').filter(function() { return this.style.backgroundImage.indexOf('focus.') == -1 ? false : true }).each(function() {
+        $('[style*="focus."]').each(function() {
             // extract url from style
             var backgroundImage = this.style.backgroundImage;
-            const reUrl = /.*url\s*\(\s*(.*)\s*\).*/i
-            backgroundImage = backgroundImage.replace(reUrl, '$1');
-            // remove leading & trailing quotes
-            var backgroundImageUrl = backgroundImage.replace(/^['"]/, '').replace(/['"]+$/, '');
-            findFullsizeUrl($(this), backgroundImageUrl);
+            if (backgroundImage && backgroundImage.indexOf('focus.') != -1) {
+                const reUrl = /.*url\s*\(\s*(.*)\s*\).*/i
+                backgroundImage = backgroundImage.replace(reUrl, '$1');
+                // remove leading & trailing quotes
+                var backgroundImageUrl = backgroundImage.replace(/^['"]/, '').replace(/['"]+$/, '');
+                findFullsizeUrl($(this), backgroundImageUrl);
+            }
         });
 
         if (res.length) {
