@@ -2011,6 +2011,10 @@
         {
             "js": ["plugins/mubi.js"],
             "matches": ["*://*.mubi.com/*"]
+        },
+        {
+            "js": ["plugins/tapas.js"],
+            "matches": ["*://*.tapas.io/*"]
         }
     ]
 }
