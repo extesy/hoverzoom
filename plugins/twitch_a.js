@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'twitch_a',
-    version:'2.4',
+    version:'2.5',
     prepareImgLinks:function (callback) {
 
         var res = [];
@@ -69,7 +69,9 @@ hoverZoomPlugins.push({
                     link.data().hoverZoomTwitchApiVideoUrl = fullsizeUrl;
                 }
                 callback(link, name);
-                hoverZoom.displayPicFromElement(link);
+                // Image or video is displayed iff the cursor is still over the link
+                if (link.data().hoverZoomMouseOver)
+                    hoverZoom.displayPicFromElement(link);
             } catch {}
         }
 
@@ -88,9 +90,9 @@ hoverZoomPlugins.push({
         // sample: https://www.twitch.tv/potion_kr/clip/OpenPopularKimchiThunBeast-1MHlQ1yr5K5l7kTm?filter=clips&range=30d&sort=time
         // sample: https://clips.twitch.tv/ConsiderateCuteGrouseOneHand-JKJrY3qglQ37kdsY?tt_medium=clips&tt_content=recommendation
         $('a[href]').filter(function() { return (/twitch\.tv/.test(this.href)) }).filter(function() { return (/\/clip\//.test(this.href)) || (/clips.twitch.tv\//.test(this.href)) }).one('mouseover', function() {
-
-            var link = this;
-            link = $(link);
+            var link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
 
             var re = /(\/clip\/|clips.twitch.tv\/)([^?]{1,})/;
             var m = this.href.match(re);
@@ -124,19 +126,25 @@ hoverZoomPlugins.push({
                                             buildFullsizeUrl(link, response);
                                         });
 
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
 
         // ---------------------------------------------------- live
         // sample: https://www.twitch.tv/beyondthesummit2
         $('a[href]').filter(function() { return (/\.twitch\.tv\/[^/]{1,}$/.test(this.href)) }).one('mouseover', function() {
-
-            var link = this;
-            link = $(link);
+            var link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
 
             var login = link.attr('href').replace('/', '');
 
             // build GraphQL query
             performGraphQLLive(login, link);
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
 
         function performGraphQLLive(login, link) {
@@ -168,7 +176,9 @@ hoverZoomPlugins.push({
                 data.hoverZoomSrc = [urlPlaylist];
 
                 callback(link, name);
-                hoverZoom.displayPicFromElement(link);
+                // Image or video is displayed iff the cursor is still over the link
+                if (link.data().hoverZoomMouseOver)
+                    hoverZoom.displayPicFromElement(link);
 
                 // get M3U8 file
                 /*$.ajax({
@@ -183,9 +193,9 @@ hoverZoomPlugins.push({
         // sample: https://www.twitch.tv/videos/1178403330?filter=archives&sort=time
         // sample: https://www.twitch.tv/mrriflez/video/1442006232
         $('a[href*="/videos/"],a[href*="/video/"]').filter(function() { return (/twitch\.tv/.test(this.href)) }).one('mouseover', function() {
-
-            var link = this;
-            link = $(link);
+            var link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
 
             var re = /\/videos?\/(\d+)/;
             var m = link.attr('href').match(re);
@@ -194,6 +204,9 @@ hoverZoomPlugins.push({
 
             // build GraphQL query
             performGraphQLVOD(vodID, link);
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
 
         function performGraphQLVOD(vodID, link) {
@@ -225,7 +238,9 @@ hoverZoomPlugins.push({
                 data.hoverZoomSrc = [urlPlaylist];
 
                 callback(link, name);
-                hoverZoom.displayPicFromElement(link);
+                // Image or video is displayed iff the cursor is still over the link
+                if (link.data().hoverZoomMouseOver)
+                    hoverZoom.displayPicFromElement(link);
 
                 // get M3U8 file
                 /*$.ajax({
