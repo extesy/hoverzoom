@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push( {
     name: 'dailymotion_a',
-    version: '1.5',
+    version: '1.6',
     prepareImgLinks: function(callback) {
         var name = this.name;
 
@@ -16,7 +16,7 @@ hoverZoomPlugins.push( {
                                             "headers":[{"name":"referer", "value":"https://www.dailymotion.com/", "typeOfUpdate":"add"}]},
                                             {"type":"response",
                                             "skipInitiator":"dailymotion",
-                                            "urls":["dailymotion.com"],
+                                            "urls":["dailymotion.com", "dmcdn.net"],
                                             "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
                                         });
         }
