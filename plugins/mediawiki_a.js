@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'MediaWiki_a',
-    version:'1.1',
+    version:'1.2',
     favicon:'mediawiki.svg',
     prepareImgLinks:function (callback) {
         var res = [];
@@ -41,8 +41,10 @@ hoverZoomPlugins.push({
         // sample (audio): https://en.wiktionary.org/wiki/File:En-au-face-melter.ogg
         // sample (video): https://en.wikipedia.org/wiki/File:Rocky_(1976)_-_Rocky_Steps.ogv
         //                 https://de.wiktionary.org/wiki/Datei:Bublak_mofette.ogv
-        $('a[href*="/wiki/"]:not(.hoverZoomMouseover)').filter(function() { return (/\/wiki\/\w+:/.test($(this).prop('href'))) }).addClass('hoverZoomMouseover').one('mouseenter', function() {
+        $('a[href*="/wiki/"]').filter(function() { return (/\/wiki\/\w+:/.test($(this).prop('href'))) }).one('mouseenter', function() {
             const link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
 
             if (link.data().hoverZoomSrc === undefined) {
                 // load link
@@ -61,14 +63,21 @@ hoverZoomPlugins.push({
                         media = media.find('a[href]')[0];
                         if (media) {
                             callback(media.href);
-                            hoverZoom.displayPicFromElement(link);
+                            // Image or video is displayed iff the cursor is still over the link
+                            if (link.data().hoverZoomMouseOver)
+                                hoverZoom.displayPicFromElement(link);
                         }
                     } else if (ogImg) {
                         callback(ogImg.content);
-                        hoverZoom.displayPicFromElement(link);
+                        // Image or video is displayed iff the cursor is still over the link
+                        if (link.data().hoverZoomMouseOver)
+                            hoverZoom.displayPicFromElement(link);
                     }
                 }, true); // get source async
             }
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
 
         callback($(res), this.name);

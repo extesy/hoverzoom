@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Vimeo_a',
-    version:'0.4',
+    version:'0.5',
     prepareImgLinks:function (callback) {
         var res = [];
 
@@ -31,13 +31,11 @@ hoverZoomPlugins.push({
         // sample: https://vimeo.com/channels/staffpicks/702642924?autoplay=1
         // groups
         // sample: https://vimeo.com/groups/motion/videos/712080074
-        $('a[href]').filter(function() { return (/vimeo\.com\/.*?\d+/.test($(this).prop('href'))) }).on('mouseover', function() {
-
-            var link = undefined;
-            var href = undefined;
-
-            href = this.href;
-            link = $(this);
+        $('a[href]').filter(function() { return (/vimeo\.com\/.*?\d+/.test($(this).prop('href'))) }).one('mouseover', function() {
+            var link = $(this);
+            var href = this.href;
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
 
             const re = /vimeo\.com\/.*?(\d+)/;   // video id (e.g. 693687508)
             m = href.match(re);
@@ -56,7 +54,10 @@ hoverZoomPlugins.push({
             // clean previous result
             link.data().hoverZoomSrc = [];
             getVideoFromAPI(videoId, link);
-        })
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
+        });
 
         function getVideoFromAPI(videoId, link) {
 
@@ -77,7 +78,9 @@ hoverZoomPlugins.push({
                                                         link.data().hoverZoomVimeoVideoUrl = videoUrl;
                                                         link.data().hoverZoomSrc = [videoUrl];
                                                         callback(link, name);
-                                                        hoverZoom.displayPicFromElement(link);
+                                                        // Image or video is displayed iff the cursor is still over the link
+                                                        if (link.data().hoverZoomMouseOver)
+                                                            hoverZoom.displayPicFromElement(link);
                                                     }
                                                 }
 
@@ -91,7 +94,9 @@ hoverZoomPlugins.push({
                                                         link.data().hoverZoomVimeoVideoUrl = videoUrl;
                                                         link.data().hoverZoomSrc = [videoUrl];
                                                         callback(link, name);
-                                                        hoverZoom.displayPicFromElement(link);
+                                                        // Image or video is displayed iff the cursor is still over the link
+                                                        if (link.data().hoverZoomMouseOver)
+                                                            hoverZoom.displayPicFromElement(link);
                                                     }
                                                 }
                                             } catch {}

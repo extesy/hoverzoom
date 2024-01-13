@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'imagebam_a',
-    version: '0.1',
+    version: '0.2',
     prepareImgLinks: function(callback) {
         var res = [];
 
@@ -13,7 +13,10 @@ hoverZoomPlugins.push({
         // sample gallery: https://www.imagebam.com/gallery/ltximpfxaf8gzebp8uymdvhtglhdfxg0
         //                 https://www.imagebam.com/gallery/bf2ify3sx8bpqnvslhppghdt9h9z56zh
 
-        $('img[src*="imagebam"]:not(.hoverZoomMouseover)').addClass('hoverZoomMouseover').filter(function() { return /thumb/.test(this.src) }).one('mouseover', function() {
+        $('img[src*="imagebam"]').filter(function() { return /thumb/.test(this.src) }).one('mouseover', function() {
+            var link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
 
             var href = this.src.replace(/.*\/(.*)/, 'https://www.imagebam.com/image/$1');
 
@@ -30,6 +33,9 @@ hoverZoomPlugins.push({
                 }, 5000);
 
             }, true); //async
+        }).one('mouseleave', function () {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
 
         function findUrl(doc, callback) {

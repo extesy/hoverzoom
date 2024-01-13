@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'scryfall_a',
-    version:'1.0',
+    version:'1.1',
     prepareImgLinks:function (callback) {
 
         var res = [];
@@ -26,7 +26,7 @@ hoverZoomPlugins.push({
         });
 
         // background images
-        $('[style]').each(function () {
+        $('[style*="scryfall.io/"]').each(function () {
             // extract url from style
             // e.g: style="background-image: url(https://globalvoices.org/wp-content/uploads/2019/01/20160507_KAR5877-400x300.jpg)"
             var backgroundImage = this.style.backgroundImage;
