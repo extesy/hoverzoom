@@ -5,7 +5,7 @@ var hoverZoomPlugins = hoverZoomPlugins || [],
     debug = false,
     logger = new Logger(),
     hls = null, // https://github.com/video-dev/hls.js/
-    fmp4Data = { 'audio': [], 'video': [] };
+    fmp4Data = { 'audio': [], 'video': [], 'audiovideo': [] };
 
 function cLog(msg) {
     if (debug && msg) {
@@ -1235,7 +1235,7 @@ var hoverZoom = {
 
                     // MP4 buffering
                     // ref: https://github.com/huzhlei/DASH-to-HLS-Playback
-                    fmp4Data = { 'audio': [], 'video': [] };
+                    fmp4Data = { 'audio': [], 'video': [], 'audiovideo': [] };
                     hls.on(Hls.Events.BUFFER_APPENDING, function(event, data) {
                         fmp4Data[data.type].push(data.data);
                     });
@@ -3357,17 +3357,29 @@ var hoverZoom = {
         // - filename.m3u8.mp4 (video part)
         // - filename.m3u8.mp3 (audio part)
         function savePlaylistAsMP3MP4(filename) {
-            const blobVideo = new Blob([arrayConcat(fmp4Data['video'])], {type:'application/octet-stream'});
-            const blobAudio = new Blob([arrayConcat(fmp4Data['audio'])], {type:'application/octet-stream'});
-            const blobVideoUrl = URL.createObjectURL(blobVideo);
-            const blobAudioUrl = URL.createObjectURL(blobAudio);
+            // audio
+            if (fmp4Data['audio'].length) {
+                const blobAudio = new Blob([arrayConcat(fmp4Data['audio'])], {type:'application/octet-stream'});
+                const blobAudioUrl = URL.createObjectURL(blobAudio);
+                forceDownload(blobAudioUrl, filename + '.mp3');
+                URL.revokeObjectURL(blobAudioUrl);
+            }
 
-            forceDownload(blobVideoUrl, filename + '.mp4');
-            forceDownload(blobAudioUrl, filename + '.mp3');
+            // video
+            if (fmp4Data['video'].length) {
+                const blobVideo = new Blob([arrayConcat(fmp4Data['video'])], {type:'application/octet-stream'});
+                const blobVideoUrl = URL.createObjectURL(blobVideo);
+                forceDownload(blobVideoUrl, filename + '.mp4');
+                URL.revokeObjectURL(blobVideoUrl);
+            }
 
-            // release resources
-            URL.revokeObjectURL(blobVideoUrl);
-            URL.revokeObjectURL(blobAudioUrl);
+            // audio & video
+            if (fmp4Data['audiovideo'].length) {
+                const blobAudioVideo = new Blob([arrayConcat(fmp4Data['audiovideo'])], {type:'application/octet-stream'});
+                const blobAudioVideoUrl = URL.createObjectURL(blobAudioVideo);
+                forceDownload(blobAudioVideoUrl, filename + '.mp4');
+                URL.revokeObjectURL(blobAudioVideoUrl);
+            }
         }
 
         function arrayConcat(inputArray) {
@@ -4080,7 +4092,7 @@ var hoverZoom = {
     matchBracket:function(data, startPosition) {
         return matchBracket(data, startPosition);
     },
-    
+
     // Given data position, find closest matching brackets : {.....{........................................}.....}
     //                                                             ^                   ^                    ^
     //                                                             |                   |                    |
