@@ -2015,6 +2015,10 @@
         {
             "js": ["plugins/tapas.js"],
             "matches": ["*://*.tapas.io/*"]
+        },
+        {
+            "js": ["plugins/sspai.js"],
+            "matches": ["*://*.sspai.com/*"]
         }
     ]
 }
