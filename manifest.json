@@ -2020,6 +2020,10 @@
         {
             "js": ["plugins/sspai.js"],
             "matches": ["*://*.sspai.com/*"]
+        },
+        {
+            "js": ["plugins/bluesky.js"],
+            "matches": ["*://*.bsky.app/*"]
         }
     ]
 }
