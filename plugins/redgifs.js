@@ -3,17 +3,18 @@ hoverZoomPlugins.push({
     name:'redgifs.com',
     version:'0.4',
     prepareImgLinks:function (callback) {
+        var self = this;
         var res = [];
         var name = this.name;
-
         var apiUrl = 'https://api.redgifs.com/v2';
-        var tempToken;
 
-        $.get(`${apiUrl}/auth/temporary`, function(data) {
-            if (data && data.token) {
-                tempToken = data.token;
-            }
-        });
+        if (!self.redgifsToken) {
+            $.get(`${apiUrl}/auth/temporary`, function(data) {
+                if (data && data.token) {
+                    self.redgifsToken = data.token;
+                }
+            });
+        }
 
         $('a[href*="redgifs.com/"]').one('mouseenter', function () {
             const link = $(this);
@@ -24,7 +25,7 @@ hoverZoomPlugins.push({
                 url: `${apiUrl}/gifs/${gfyId}`,
                 headers: [{
                     header: 'Authorization',
-                    value: `Bearer ${tempToken}`,
+                    value: `Bearer ${self.redgifsToken}`,
                 }],
             }, (response) => {
                 let data;

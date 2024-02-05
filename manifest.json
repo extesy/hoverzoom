@@ -113,6 +113,7 @@
                 "plugins/sendvid_a.js",
                 "plugins/squarespace_a.js",
                 "plugins/streamable_a.js",
+                "plugins/streaminone_a.js",
                 "plugins/tcgplayer_a.js",
                 "plugins/tiktok_a.js",
                 "plugins/tumblr_a.js",
@@ -2015,6 +2016,14 @@
         {
             "js": ["plugins/tapas.js"],
             "matches": ["*://*.tapas.io/*"]
+        },
+        {
+            "js": ["plugins/sspai.js"],
+            "matches": ["*://*.sspai.com/*"]
+        },
+        {
+            "js": ["plugins/bluesky.js"],
+            "matches": ["*://*.bsky.app/*"]
         }
     ]
 }

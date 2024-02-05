@@ -23,9 +23,9 @@ hoverZoomPlugins.push({
         //          -> https://lh3.googleusercontent.com/-pjJcqQ567-8/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuckcnEaqf2P_2Kp0ITTsXt4bzL54Ww.CMID/s0/
         // sample url: https://lh3.googleusercontent.com/-pjJcqQ567-8/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuckcnEaqf2P_2Kp0ITTsXt4bzL54Ww.CMID/s32-c/photo.jpg
         //          -> https://lh3.googleusercontent.com/-pjJcqQ567-8/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuckcnEaqf2P_2Kp0ITTsXt4bzL54Ww.CMID/s0/photo.jpg
-        const filter2 = /(?=.*\.googleusercontent\.com\/)(?!.*=)/;
-        const regex2 = /(.*)\/.*\//;
-        const patch2 = '$1/s0/';
+        // const filter2 = /(?=.*\.googleusercontent\.com\/)(?!.*=)/;
+        // const regex2 = /(.*)\/.*\//;
+        // const patch2 = '$1/s0/';
 
         // sample url: https://lh5.googleusercontent.com/-qnv3HcOTfdU/AAAAAAAAAAI/AAAAAAAAECY/LDjaha4DLVQ/photo.jpg?sz=64
         //          -> https://lh5.googleusercontent.com/-qnv3HcOTfdU/AAAAAAAAAAI/AAAAAAAAECY/LDjaha4DLVQ/photo.jpg
@@ -48,11 +48,11 @@ hoverZoomPlugins.push({
             patch1
         );
 
-        hoverZoom.urlReplace(res,
-            'img[src*=".googleusercontent.com/"]:not([src*="="])',
-            regex2,
-            patch2
-        );
+        // hoverZoom.urlReplace(res,
+        //     'img[src*=".googleusercontent.com/"]:not([src*="="])',
+        //     regex2,
+        //     patch2
+        // );
 
         hoverZoom.urlReplace(res,
             'img[src*=".googleusercontent.com/"]',
@@ -77,7 +77,12 @@ hoverZoomPlugins.push({
             // remove leading & trailing quotes
             var backgroundImageUrl = backgroundImage.replace(/^['"]/, "").replace(/['"]+$/, "");
 
-            $([{f:filter1, r:regex1, p:patch1}, {f:filter2, r:regex2, p:patch2}, {f:filter3, r:regex3, p:patch3}, {f:filter4, r:regex4, p:patch4}]).each(function() {
+            $([
+                {f:filter1, r:regex1, p:patch1},
+                // {f:filter2, r:regex2, p:patch2},
+                {f:filter3, r:regex3, p:patch3},
+                {f:filter4, r:regex4, p:patch4}
+            ]).each(function() {
                 if (this.f.test(backgroundImageUrl)) {
                     var fullsizeUrl = backgroundImageUrl.replace(this.r, this.p);
                     if (fullsizeUrl != backgroundImageUrl) {
