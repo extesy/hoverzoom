@@ -111,6 +111,18 @@
         "message": "Multiply the size of zoomed images by this amount",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
+    "optMaxWidth": {
+        "message": "Set max width of zoomed images:",
+        "description": "[options] Adjust the size of zoomed images option"
+    },
+    "optMaxWidthUnitName": {
+        "message": "px",
+        "description": "[options] Unit name (px) for zoomed images size option"
+    },
+    "optMaxWidthTooltip": {
+        "message": "Set max width of zoomed images by this amount (if 0 then no max width)",
+        "description": "[options] Tooltip for adjust the size of zoomed images option"
+    },
     "optCaptionLocation": {
         "message": "Caption position:",
         "description": "[options] Adjust the position of the caption"
