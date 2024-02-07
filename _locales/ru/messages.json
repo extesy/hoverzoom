@@ -120,7 +120,7 @@
         "description": "[options] Unit name (px) for zoomed images size option"
     },
     "optMaxWidthTooltip": {
-        "message": "Ширина увеличенного изображения не будет превышать это число (если 0 то ограничения не будет)",
+        "message": "Ширина увеличенного изображения не будет превышать это число (если 0, то ограничения не будет)",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optCaptionLocation": {
