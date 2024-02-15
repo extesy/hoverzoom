@@ -111,7 +111,9 @@ hoverZoomPlugins.push({
           var src = items
             .filter(item => media_metadata[item.media_id].status === 'valid')
             .map(item => ['https://i.redd.it/' + item.media_id + '.' + media_metadata[item.media_id].m.substring(6)]);
-          var img = post.find('a.title,a.thumbnail');
+          var img = post.find('a.title');
+          if (img.length === 0)
+            img = post.find('a.thumbnail');
           if (img.length === 0)
             img = post;
           hoverZoom.prepareLink(img, src);
