@@ -3615,7 +3615,7 @@ var hoverZoom = {
 
     // Simulates a mousemove event to force a zoom call
     displayPicFromElement:function (el, force) {
-        if (force) {
+        if (el.filter(':hover').length > 0 || force) {
             hoverZoom.currentLink = el;
             $(document).mousemove();
         }
@@ -3778,8 +3778,8 @@ var hoverZoom = {
             }
 
             var handleSrc = function (src) {
-            if (src)
-                hoverZoom.prepareLink(link, src);
+                if (src)
+                    hoverZoom.prepareLink(link, src);
             };
 
             if (isAsync) {
