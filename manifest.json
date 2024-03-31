@@ -2024,6 +2024,10 @@
         {
             "js": ["plugins/bluesky.js"],
             "matches": ["*://*.bsky.app/*"]
-        }
+        },
+        {
+            "js": ["plugins/onzemondial.js"],
+            "matches": ["*://*.onzemondial.com/*"]
+        }  
     ]
 }
