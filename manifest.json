@@ -2028,6 +2028,10 @@
         {
             "js": ["plugins/onzemondial.js"],
             "matches": ["*://*.onzemondial.com/*"]
-        }  
+        },
+        {
+            "js": ["plugins/cineserie.js"],
+            "matches": ["*://*.cineserie.com/*"]
+        }
     ]
 }
