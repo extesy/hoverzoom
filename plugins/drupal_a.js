@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'drupal_a',
-    version:'0.1',
+    version:'0.2',
     prepareImgLinks:function (callback) {
         var res = [];
 
@@ -11,8 +11,12 @@ hoverZoomPlugins.push({
         //      -> https://images.cnrs.fr/system/files/media/images/2023/02/CNRS_20230013_0024_68650.jpg?h=7881f276&itok=LSIypB03
         // sample: https://leseng.rosselcdn.net/sites/default/files/dpistyles_v2/ls_16_9_917w/2023/05/31/node_516510/30171764/public/2023/05/31/000_zq9cf.jpeg?itok=wXUaAz4i1685524735
         //      -> https://leseng.rosselcdn.net/sites/default/files/2023/05/31/000_zq9cf.jpeg?itok=wXUaAz4i1685524735
+        // sample: https://archeologie.culture.gouv.fr/sites/archeologie/files/styles/portail_home_focus/public/2021-09/img_2304_0.jpg?h=1017c59c&itok=NRsFLnj1
+        //      -> https://archeologie.culture.gouv.fr/sites/archeologie/files/2021-09/img_2304_0.jpg?h=1017c59c&itok=NRsFLnj1
+        // sample: https://totalenergies.com/sites/g/files/nytnzq121/files/styles/350x230/public/images/2023-04/TotalEnergies_Seagreen_eolien_en_mer_0.jpg?itok=S7pL9WsE
+        //      -> https://totalenergies.com/sites/g/files/nytnzq121/files/images/2023-04/TotalEnergies_Seagreen_eolien_en_mer_0.jpg?itok=S7pL9WsE
 
-        const rePublic = /(^.*\/sites\/default\/files)\/.*\/public\/(.*)/;
+        const rePublic = /(^.*\/sites\/.*\/files)\/.*\/public\/(.*)/;
         const rePrivate = /(^.*\/system\/files)\/.*\/private\/(.*)/;
         const reReplace = '$1/$2';
 
@@ -36,11 +40,11 @@ hoverZoomPlugins.push({
             }
         }
 
-        $('img[src*="/sites/default/files/"], img[src*="/system/files/"]').each(function() {
+        $('img[src*="/files/"]').filter(function() { return /\/sites\/.*\/files\//.test(this.src) || /\/system\/files\//.test(this.src) }).each(function() {
             findFullsizeUrl($(this), this.src);
         });
 
-        $('[style*=url]').filter(function() { return this.style.backgroundImage.indexOf('/sites/default/files/') == -1 && this.style.backgroundImage.indexOf('/system/files/') == -1 ? false : true }).each(function() {
+        $('[style*=url]').filter(function() { return /\/sites\/\.*\/files\//.test(this.style.backgroundImage) || /\/system\/files\//.test(this.style.backgroundImage) }).each(function() {
             // extract url from style
             var backgroundImage = this.style.backgroundImage;
             const reUrl = /.*url\s*\(\s*(.*)\s*\).*/i
