@@ -384,31 +384,31 @@
         "description": "[options] Short form of \"second\" for delay duration"
     },
     "optSectionZoomSpeed": {
-        "message": "Zoom speed",
+        "message": "Zooma hastighet",
         "description": "[options] Page section for zoom speed"
     },
     "optZoomSpeed_P1": {
-        "message": "When an image or video is locked on screen, it can be zoomed in or out using mouse wheel.",
+        "message": "När en bild eller video är låst på skärmen kan den zoomas in eller ut med hjälp av mushjulet.",
         "description": "[options] Zoom speed Part 1"
     },
     "optZoomSpeed_P2": {
-        "message": "press",
+        "message": "tryck",
         "description": "[options] Zoom speed Part 2"
     },
     "optZoomSpeed_P3": {
-        "message": "or",
+        "message": "eller",
         "description": "[options] Zoom speed Part 3"
     },
     "optZoomSpeed_P4": {
-        "message": " while scrolling to zoom",
+        "message": " medan du rullar för att zooma",
         "description": "[options] Zoom speed Part 4"
     },
     "optZoomSpeed_P41": {
-        "message": "faster",
+        "message": "snabbare",
         "description": "[options] Zoom speed Part 41"
     },
     "optZoomSpeed_P42": {
-        "message": "slower",
+        "message": "långsammare",
         "description": "[options] Zoom speed Part 42"
     },
     "optPagePlugins": {
@@ -696,11 +696,11 @@
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optFAQ_Q7": {
-        "message": "I hover an image or video but sometimes nothing happens!",
+        "message": "Jag håller en bild eller video men ibland händer ingenting!",
         "description": "[options] FAQ Question 7"
     },
     "optFAQ_A7": {
-        "message": "Scroll down or click anywhere on page to wake up HoverZoom+!",
+        "message": "Bläddra nedåt eller klicka någonstans på sidan för att vakna upp HoverZoom+!",
         "description": "[options] FAQ Answer 7"
     },
     "optPixelsUnitName": {
