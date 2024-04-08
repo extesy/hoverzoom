@@ -8,15 +8,15 @@
         "description": "Short extension name"
     },
     "extDescription": {
-        "message": "Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.",
+        "message": "Forstørr bilder/videoer på alle favorittnettstedene dine (Facebook, Amazon, etc). Bare svever musen over bildet for å forstørre den.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
     "popDisableForAllSites": {
-        "message": "Disable for all sites",
+        "message": "Deaktiver for alle sider",
         "description": "[popup] Disable the extension"
     },
     "popAllowPerSiteToggle": {
-        "message": "Allow per-site extension configuration",
+        "message": "Tillat per-område utvidelseskonfigurasjon",
         "description": "[popup] Allow per-site extension configuration"
     },
     "popDisableForSite": {
@@ -28,15 +28,15 @@
         "description": "[popup] Enables the extension for a specific site"
     },
     "popPreloadImages": {
-        "message": "Preload zoomed images",
+        "message": "Forhåndsvis zoomede bilder",
         "description": "[popup] Preload zoomed images"
     },
     "popPreloadingImages": {
-        "message": "Preloading...",
+        "message": "Laster inn...",
         "description": "[popup] Preloading zoomed images"
     },
     "popMoreOptions": {
-        "message": "More options",
+        "message": "Flere alternativer",
         "description": "[popup] More options"
     },
     "optTitle": {
