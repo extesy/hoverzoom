@@ -592,7 +592,7 @@
         "description": "[options] Page section for supported image formats"
     },
     "optSupportedVideoFormats": {
-        "message": "Video :",
+        "message": "දෘශ්‍යකය :",
         "description": "[options] Page section for supported video formats"
     },
     "optSupportedAudioFormats": {

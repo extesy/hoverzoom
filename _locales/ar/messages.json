@@ -160,7 +160,7 @@
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
-        "message": "Étendre les images de zoom sous le pointeur de la souris",
+        "message": "تمديد الصور المكبرة أسفل مؤشر الفأرة",
         "description": "[options] Extend zoomed images below the mouse cursor option"
     },
     "optMouseUnderlapTooltip": {
@@ -200,15 +200,15 @@
         "description": "[options] Tooltip for show high resolution pictures when available option"
     },
     "optGalleriesMouseWheel": {
-        "message": "استخدم عجلة الماوس للتنقل بين الألبومات",
+        "message": "استخدم عجلة الفأرة للتنقل بين الألبومات",
         "description": "[options] Use mousewheel to navigate albums option"
     },
     "optGalleriesMouseWheelTooltip": {
-        "message": "تصفح الألبوم باستخدام عجلة الماوس",
+        "message": "تصفح الألبوم باستخدام عجلة الفأرة",
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
     "optDisableMouseWheelForVideo": {
-        "message": "لا تستخدم عجلة الماوس للتصفح داخل الفيديو ( المفاتيح الأخرى ستظل تعمل)",
+        "message": "لا تستخدم عجلة الفأرة للتنقل داخل الفيديو (ستظل مفاتيح الإجراءات تعمل)",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optDisableMouseWheelForVideoTooltip": {
@@ -224,7 +224,7 @@
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
-        "message": "استخدم مفاتيح الإجراء السابق / التالي (أو عجلة الماوس) لتغيير موضع الفيديو من خلال",
+        "message": "استخدم مفاتيح الإجراء السابق / التالي (أو عجلة الفأرة) لتغيير موضع الفيديو بواسطة",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
@@ -400,15 +400,15 @@
         "description": "[options] Zoom speed Part 3"
     },
     "optZoomSpeed_P4": {
-        "message": " while scrolling to zoom",
+        "message": " أثناء التمرير للتكبير",
         "description": "[options] Zoom speed Part 4"
     },
     "optZoomSpeed_P41": {
-        "message": "faster",
+        "message": "أسرع",
         "description": "[options] Zoom speed Part 41"
     },
     "optZoomSpeed_P42": {
-        "message": "slower",
+        "message": "أبطأ",
         "description": "[options] Zoom speed Part 42"
     },
     "optPagePlugins": {
@@ -452,7 +452,7 @@
         "description": "[options] Button for adding a site on sites option page"
     },
     "optPageActionKeys": {
-        "message": "مفاتيح العمل",
+        "message": "مفاتيح الإجراءات",
         "description": "[options] Page title for action key options"
     },
     "optPageAdvanced": {
@@ -488,11 +488,11 @@
         "description": "[options] Enable albums support option"
     },
     "optEnableNoFocusMsg": {
-        "message": "وضع رسالة تحذير عند فقدان التركيز على الصفحة",
+        "message": "تمكين رسالة تركيز overlay مفاتيح الإجراءات",
         "description": "[options] Enable Action Keys focus overlay message option"
     },
     "optEnableNoFocusMsgTooltip": {
-        "message": "في بعض الأحيان لا تعمل بعض المفاتيح، يحدث هذا عادة عندما تخرج من الصفحة. إذا تم تحديد الخيار، سيتم عرض رسالة تحذير (مرة واحدة فقط).",
+        "message": "في بعض الأحيان مفاتيح الإجراءات لا تعمل ، ويحدث هذه عادةً عندما تفقد الصفحة التركيز. إذا تم تحديد الخِيار ، فسيتم عرض رسالة تحذير (مرة واحدة فقط).",
         "description": "[options] Tooltip for enable Action Keys focus overlay message option"
     },
     "optPicturesOpacity": {
@@ -628,7 +628,7 @@
         "description": "[options] FAQ Question 2"
     },
     "optFAQ_A2_1": {
-        "message": "في الإعدادات -> العام-> التأخير، قم بتفعيل \"إخفاء مؤشر الماوس\"",
+        "message": "في الإعدادات -> العام-> التأخير، قم بتفعيل \"إخفاء مؤشر الفأرة\"",
         "description": "[options] FAQ Answer 2 part 1"
     },
     "optFAQ_SaveAndReload": {
@@ -664,11 +664,11 @@
         "description": "[options] FAQ Answer 4 part 2"
     },
     "optFAQ_Q5": {
-        "message": "المفاتيح لا تعمل!",
+        "message": "مفاتيح الإجراءات لا تعمل!",
         "description": "[options] FAQ Question 5"
     },
     "optFAQ_A5_1": {
-        "message": "في بعض الأحيان مفاتيح الإجراءات تنقطع، وهذا يحدث عادة عندما تخرج من الصفحة.",
+        "message": "في بعض الأحيان مفاتيح الإجراءات لا تعمل ، ويحدث هذه عادةً عندما تفقد الصفحة التركيز.",
         "description": "[options] FAQ Answer 5 part 1"
     },
     "optFAQ_A5_2": {
@@ -676,7 +676,7 @@
         "description": "[options] FAQ Answer 5 part 2"
     },
     "optFAQ_A5_3": {
-        "message": "في الإعدادات -> المتقدمة، يمكنك تنشيط \"وضع رسالة تحذير عند فقدان التركيز على الصفحة\"، بعد ذلك ستحصل على رسالة تحذير عند الخروج من الصفحة.",
+        "message": "في الإعدادات -> المتقدمة، يمكنك تنشيط \"تمكين رسالة تركيز overlay مفاتيح الإجراءات\"، لتحصل على رسالة تحذير عند فقدان التركيز.",
         "description": "[options] FAQ Answer 5 part 3"
     },
     "optFAQ_Q6": {
@@ -696,11 +696,11 @@
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optFAQ_Q7": {
-        "message": "I hover an image or video but sometimes nothing happens!",
+        "message": "أحوم فوق صورة أو مقطع فيديو ولكن في بعض الأحيان لا يحدث شيء!",
         "description": "[options] FAQ Question 7"
     },
     "optFAQ_A7": {
-        "message": "Scroll down or click anywhere on page to wake up HoverZoom+!",
+        "message": "مرر لأسفل أو انقر في أي مكان على الصفحة لإيقاظ HoverZoom +!",
         "description": "[options] FAQ Answer 7"
     },
     "optPixelsUnitName": {
@@ -712,7 +712,7 @@
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "If a key is set, HoverZoom+ will be active only when this key is held down.",
+        "message": "إذا تم تعيين مفتاح ما ، فسيكون Hover Zoom + نشطًا فقط عند الضغط على هذا المفتاح.",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
@@ -728,7 +728,7 @@
         "description": "[options] Action key title"
     },
     "optCloseKeyDescription": {
-        "message": "اضغط على هذا الزر لإغلاق الصورة المكبرة أو المقطع.",
+        "message": "اضغط على هذا المفتاح لإغلاق الصورة المكبرة أو الفيديو.",
         "description": "[options] Action key description"
     },
     "optHideKeyTitle": {
@@ -736,7 +736,7 @@
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "الضغط على هذا المفتاح يخفي الصورة المكبرة مؤقتا.",
+        "message": "يؤدي الضغط باستمرار على هذا المفتاح إلى إخفاء الصورة المكبرة أو مقطع الفيديو. استخدمه عندما تخفي الصورة العناصر التي يتم عرضها أيضًا عند تمرير الفأرة.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -744,7 +744,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "اضغط على هذا المفتاح لفتح الصورة التي تعرضها حاليًا في نافذة جديدة. اضغط على هذا المفتاح مرة أخرى لإغلاق النافذة.",
+        "message": "اضغط على هذا المفتاح لفتح الصورة أو الفيديو الذي تعرضه حاليا في نافذة جديدة. اضغط على هذا المفتاح مرة أخرى لإغلاق النافذة.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
@@ -752,7 +752,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "اضغط على هذا المفتاح لفتح الصورة التي تعرضها حاليًا في لسان جديد. اضغط على هذا المفتاح مرة أخرى لإغلاق اللسان. المفتاح [Shift+الزر] يفتح الصورة في لسان في الخلفية.",
+        "message": "اضغط على هذا المفتاح لفتح الصورة أو الفيديو الذي تعرضه حاليا في علامة تبويب جديدة. اضغط على هذا المفتاح مرة أخرى لإغلاق التبويب. مفتاح Shift+key يفتح الصورة في علامة تبويب الخلفية.",
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
@@ -760,7 +760,7 @@
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "اضغط على هذا الزر لتثبيت الصورة أو المقطع في وَسَط الصفحة، مما يسمح لك بتكبيرها. اضغط على مفتاح الإغلاق أو اضغط خارج الصورة لإزالة التثبيت.",
+        "message": "اضغط على هذا المفتاح لقفل الصورة أو الفيديو في وسط الصفحة، مما يسمح لك بالتكبير/التكبير. اضغط على مفتاح الإغلاق أو اضغط خارج الصورة لفتح القفل.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -768,15 +768,15 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "اضغط على هذا المفتاح لحفظ الصورة التي تعرضها حاليًا.",
+        "message": "اضغط على هذا المفتاح لحفظ الصورة أو الفيديو الذي تعرضه حاليا.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
-        "message": "Activer le zoom complet",
+        "message": "تفعيل التكبير الكامل",
         "description": "[options] Action key title"
     },
     "optFullZoomKeyDescription": {
-        "message": "عند الضغط على هذا المفتاح ، يتم عرض الصورة باستخدام كل المساحة المتاحة. مفيدة للصور عالية الدقة فقط.",
+        "message": "عند الضغط على هذا المفتاح ، يتم عرض الصورة باستخدام كل المساحة المتاحة. مفيدة للصور عالية الدِّقَّة فقط.",
         "description": "[options] Action key description"
     },
     "optCopyImageKeyTitle": {
@@ -800,15 +800,15 @@
         "description": "[options] Action key title"
     },
     "optPrevImgKeyDescription": {
-        "message": "اضغط على هذا المفتاح لعرض الصورة السابقة في المعرض.",
+        "message": "اضغط على هذا المفتاح لعرض الصورة السابقة في المَعْرِض.",
         "description": "[options] Action key description"
     },
     "optNextImgKeyTitle": {
-        "message": "عرض الصورة التالية في معرض",
+        "message": "عرض الصورة التالية في مَعْرِض",
         "description": "[options] Action key title"
     },
     "optNextImgKeyDescription": {
-        "message": "اضغط على هذا المفتاح لعرض الصورة التالية في معرض.",
+        "message": "اضغط على هذا المفتاح لعرض الصورة التالية في مَعْرِض.",
         "description": "[options] Action key description"
     },
     "optFlipImageKeyTitle": {
@@ -840,7 +840,7 @@
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     },
     "msgClickPageToActivateActionKeys": {
-        "message": "انقر في أي مكان على الصفحة لتنشيط الأزرار.",
+        "message": "انقر في أي مكان على الصفحة لتنشيط مفاتيح الإجراءات",
         "description": "Action keys are active only if page is focused"
     }
 }

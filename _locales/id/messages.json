@@ -384,31 +384,31 @@
         "description": "[options] Short form of \"second\" for delay duration"
     },
     "optSectionZoomSpeed": {
-        "message": "Zoom speed",
+        "message": "Kecepatan zoom",
         "description": "[options] Page section for zoom speed"
     },
     "optZoomSpeed_P1": {
-        "message": "When an image or video is locked on screen, it can be zoomed in or out using mouse wheel.",
+        "message": "Apabila gambar atau video terkunci di layar, gambar atau video dapat diperbesar atau diperkecil menggunakan roda mouse.",
         "description": "[options] Zoom speed Part 1"
     },
     "optZoomSpeed_P2": {
-        "message": "press",
+        "message": "tekan",
         "description": "[options] Zoom speed Part 2"
     },
     "optZoomSpeed_P3": {
-        "message": "or",
+        "message": "atau",
         "description": "[options] Zoom speed Part 3"
     },
     "optZoomSpeed_P4": {
-        "message": " while scrolling to zoom",
+        "message": " saat menggulir untuk memperbesar",
         "description": "[options] Zoom speed Part 4"
     },
     "optZoomSpeed_P41": {
-        "message": "faster",
+        "message": "lebih cepat",
         "description": "[options] Zoom speed Part 41"
     },
     "optZoomSpeed_P42": {
-        "message": "slower",
+        "message": "lebih lambat",
         "description": "[options] Zoom speed Part 42"
     },
     "optPagePlugins": {
@@ -696,11 +696,11 @@
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optFAQ_Q7": {
-        "message": "I hover an image or video but sometimes nothing happens!",
+        "message": "Saya mengarahkan gambar atau video, tetapi terkadang tidak terjadi apa-apa!",
         "description": "[options] FAQ Question 7"
     },
     "optFAQ_A7": {
-        "message": "Scroll down or click anywhere on page to wake up HoverZoom+!",
+        "message": "Gulir ke bawah atau klik di mana saja pada halaman untuk mengaktifkan HoverZoom+!",
         "description": "[options] FAQ Answer 7"
     },
     "optPixelsUnitName": {

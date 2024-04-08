@@ -384,31 +384,31 @@
         "description": "[options] Short form of \"second\" for delay duration"
     },
     "optSectionZoomSpeed": {
-        "message": "Zoom speed",
+        "message": "Zoomgeschwindigkeit",
         "description": "[options] Page section for zoom speed"
     },
     "optZoomSpeed_P1": {
-        "message": "When an image or video is locked on screen, it can be zoomed in or out using mouse wheel.",
+        "message": "Wenn ein Bild oder Video auf dem Bildschirm gesperrt ist, kann es mit dem Mausrad vergrößert oder verkleinert werden.",
         "description": "[options] Zoom speed Part 1"
     },
     "optZoomSpeed_P2": {
-        "message": "press",
+        "message": "drücken",
         "description": "[options] Zoom speed Part 2"
     },
     "optZoomSpeed_P3": {
-        "message": "or",
+        "message": "oder",
         "description": "[options] Zoom speed Part 3"
     },
     "optZoomSpeed_P4": {
-        "message": " while scrolling to zoom",
+        "message": " beim Scrollen zum Zoomen",
         "description": "[options] Zoom speed Part 4"
     },
     "optZoomSpeed_P41": {
-        "message": "faster",
+        "message": "schneller",
         "description": "[options] Zoom speed Part 41"
     },
     "optZoomSpeed_P42": {
-        "message": "slower",
+        "message": "langsamer",
         "description": "[options] Zoom speed Part 42"
     },
     "optPagePlugins": {
@@ -696,11 +696,11 @@
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optFAQ_Q7": {
-        "message": "I hover an image or video but sometimes nothing happens!",
+        "message": "Ich bewege den Mauszeiger über ein Bild oder ein Video, aber manchmal passiert nichts!",
         "description": "[options] FAQ Question 7"
     },
     "optFAQ_A7": {
-        "message": "Scroll down or click anywhere on page to wake up HoverZoom+!",
+        "message": "Scrollen Sie nach unten oder klicken Sie irgendwo auf der Seite, um HoverZoom+ zu aktivieren!",
         "description": "[options] FAQ Answer 7"
     },
     "optPixelsUnitName": {

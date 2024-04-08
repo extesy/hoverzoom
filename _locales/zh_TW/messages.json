@@ -336,7 +336,7 @@
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
-        "message": "Cancel",
+        "message": "取消",
         "description": "[options] Frame background color button - Cancel"
     },
     "optFrameThickness": {
@@ -592,7 +592,7 @@
         "description": "[options] Page section for supported image formats"
     },
     "optSupportedVideoFormats": {
-        "message": "Video :",
+        "message": "影片 :",
         "description": "[options] Page section for supported video formats"
     },
     "optSupportedAudioFormats": {

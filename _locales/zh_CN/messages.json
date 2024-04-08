@@ -384,31 +384,31 @@
         "description": "[options] Short form of \"second\" for delay duration"
     },
     "optSectionZoomSpeed": {
-        "message": "Zoom speed",
+        "message": "缩放速度",
         "description": "[options] Page section for zoom speed"
     },
     "optZoomSpeed_P1": {
-        "message": "When an image or video is locked on screen, it can be zoomed in or out using mouse wheel.",
+        "message": "当图像或视频在屏幕上锁定时，可以使用鼠标滚轮缩放。",
         "description": "[options] Zoom speed Part 1"
     },
     "optZoomSpeed_P2": {
-        "message": "press",
+        "message": "按下",
         "description": "[options] Zoom speed Part 2"
     },
     "optZoomSpeed_P3": {
-        "message": "or",
+        "message": "或",
         "description": "[options] Zoom speed Part 3"
     },
     "optZoomSpeed_P4": {
-        "message": " while scrolling to zoom",
+        "message": " 滚动缩放时",
         "description": "[options] Zoom speed Part 4"
     },
     "optZoomSpeed_P41": {
-        "message": "faster",
+        "message": "更快的",
         "description": "[options] Zoom speed Part 41"
     },
     "optZoomSpeed_P42": {
-        "message": "slower",
+        "message": "减速",
         "description": "[options] Zoom speed Part 42"
     },
     "optPagePlugins": {
@@ -696,11 +696,11 @@
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optFAQ_Q7": {
-        "message": "I hover an image or video but sometimes nothing happens!",
+        "message": "我悬停一张图片或视频，但有时没有发生任何事件！",
         "description": "[options] FAQ Question 7"
     },
     "optFAQ_A7": {
-        "message": "Scroll down or click anywhere on page to wake up HoverZoom+!",
+        "message": "向下滚动或点击页面上的任何地方唤醒HoverZoom+！",
         "description": "[options] FAQ Answer 7"
     },
     "optPixelsUnitName": {
