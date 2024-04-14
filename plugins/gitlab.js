@@ -1,7 +1,8 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'gitlab',
-    version:'0.1',
+    version:'0.2',
+    favicon:'gitlab.png',
     prepareImgLinks:function (callback) {
         var res = [];
 
@@ -36,9 +37,8 @@ hoverZoomPlugins.push({
                 } else {
                     href = href + '&s=512';
                 }
-            }
-            // gitlab
-            if (href.indexOf('gitlab') != -1) {
+            } else {
+                // gitlab
                 href = href.replace(/\?width.*/, '');
             }
 
