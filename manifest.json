@@ -2033,6 +2033,14 @@
         {
             "js": ["plugins/cineserie.js"],
             "matches": ["*://*.cineserie.com/*"]
+        },
+        {
+            "js": ["plugins/opendata92.js"],
+            "matches": ["*://*.opendata.hauts-de-seine.fr/*"]
+        },
+        {
+            "js": ["plugins/nature.js"],
+            "matches": ["*://*.nature.com/*"]
         }
     ]
 }
