@@ -2041,6 +2041,10 @@
         {
             "js": ["plugins/nature.js"],
             "matches": ["*://*.nature.com/*"]
+        },
+        {
+            "js": ["plugins/galerie9art.js"],
+            "matches": ["*://*.galerie9art.fr/*"]
         }
     ]
 }
