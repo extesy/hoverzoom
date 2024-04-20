@@ -2045,6 +2045,10 @@
         {
             "js": ["plugins/galerie9art.js"],
             "matches": ["*://*.galerie9art.fr/*"]
+        },
+        {
+            "js": ["plugins/worldatlas.js"],
+            "matches": ["*://*.worldatlas.com/*"]
         }
     ]
 }
