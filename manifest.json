@@ -2049,6 +2049,10 @@
         {
             "js": ["plugins/worldatlas.js"],
             "matches": ["*://*.worldatlas.com/*"]
+        },
+        {
+            "js": ["plugins/kotnauction.js"],
+            "matches": ["*://*.kotnauction.com/*"]
         }
     ]
 }
