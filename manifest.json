@@ -2053,6 +2053,10 @@
         {
             "js": ["plugins/kotnauction.js"],
             "matches": ["*://*.kotnauction.com/*"]
+        },
+        {
+            "js": ["plugins/techradar.js"],
+            "matches": ["*://*.techradar.com/*"]
         }
     ]
 }
