@@ -2057,6 +2057,10 @@
         {
             "js": ["plugins/techradar.js"],
             "matches": ["*://*.techradar.com/*"]
+        },
+        {
+            "js": ["plugins/feedly.js"],
+            "matches": ["*://*.feedly.com/*"]
         }
     ]
 }
