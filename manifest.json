@@ -2061,6 +2061,10 @@
         {
             "js": ["plugins/feedly.js"],
             "matches": ["*://*.feedly.com/*"]
+        },
+        {
+            "js": ["plugins/inoreader.js"],
+            "matches": ["*://*.inoreader.com/*"]
         }
     ]
 }
