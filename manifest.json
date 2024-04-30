@@ -2065,6 +2065,10 @@
         {
             "js": ["plugins/inoreader.js"],
             "matches": ["*://*.inoreader.com/*"]
+        },
+        {
+            "js": ["plugins/unsplash.js"],
+            "matches": ["*://*.unsplash.com/*"]
         }
     ]
 }
