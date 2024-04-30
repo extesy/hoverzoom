@@ -2018,7 +2018,7 @@ var hoverZoom = {
                     // Skip if the image has the same URL as the thumbnail.
                     if (linkData.hoverZoomSrc && linkData.hoverZoomSrc.length) {
                         var url = linkData.hoverZoomSrc[0],
-                            skip = url === link.attr('src');
+                            skip = (link.is('img') && url === link.attr('src'));
                         if (!skip) {
                             link.find('img[src]').each(function () {
                                 if (this.src === url) {
