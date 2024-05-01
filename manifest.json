@@ -2069,6 +2069,10 @@
         {
             "js": ["plugins/unsplash.js"],
             "matches": ["*://*.unsplash.com/*"]
+        },
+        {
+            "js": ["plugins/usarmy.js"],
+            "matches": ["*://*.defense.gov/*", "*://*.mil/*"]
         }
     ]
 }
