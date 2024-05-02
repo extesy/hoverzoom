@@ -2077,6 +2077,10 @@
         {
             "js": ["plugins/lacroix.js"],
             "matches": ["*://*.la-croix.com/*"]
+        },
+        {
+            "js": ["plugins/routard.js"],
+            "matches": ["*://*.routard.com/*"]
         }
     ]
 }
