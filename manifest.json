@@ -2081,6 +2081,10 @@
         {
             "js": ["plugins/routard.js"],
             "matches": ["*://*.routard.com/*"]
-        }
+        },
+        {
+            "js": ["plugins/podcasts_apple.js"],
+            "matches": ["*://podcasts.apple.com/*"]
+        }  
     ]
 }
