@@ -2085,6 +2085,10 @@
         {
             "js": ["plugins/podcasts_apple.js"],
             "matches": ["*://podcasts.apple.com/*"]
-        }  
+        },
+        {
+            "js": ["plugins/monuments_nationaux.js"],
+            "matches": ["*://*.monuments-nationaux.fr/*"]
+        }
     ]
 }
