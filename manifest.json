@@ -2089,6 +2089,10 @@
         {
             "js": ["plugins/monuments_nationaux.js"],
             "matches": ["*://*.monuments-nationaux.fr/*"]
+        },
+        {
+            "js": ["plugins/physorg.js"],
+            "matches": ["*://*.phys.org/*", "*://*.medicalxpress.com/*", "*://*.sciencex.com/*", "*://*.techxplore.com/*"]
         }
     ]
 }
