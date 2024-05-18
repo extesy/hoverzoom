@@ -476,6 +476,7 @@
         {
             "js": ["plugins/twitter.js"],
             "matches": [
+                "*://*.x.com/*",
                 "*://*.twitter.com/*",
                 "*://*.tweetdeck.com/*"
             ]
