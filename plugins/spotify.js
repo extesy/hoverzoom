@@ -42,7 +42,7 @@ hoverZoomPlugins.push({
         // track sample: https://open.spotify.com/intl-fr/track/7fj36UASAJfRL4pdD00OPV?si=077b59604f0c4ec0
         //  -> track id: 7fj36UASAJfRL4pdD00OPV
         // note: podcasts (= episodes) not supported
-        $('a[href*="/track/"]').on('mouseover', function() {
+        $('a[href*="/track/"]').one('mouseover', function() {
 
             const link = $(this);
             const href = this.href;
@@ -74,7 +74,7 @@ hoverZoomPlugins.push({
                                             handleAudio(link, audioUrl, caption);
                                         }
             );
-        }).on('mouseleave', function () {
+        }).one('mouseleave', function () {
             const link = $(this);
             link.data().hoverZoomMouseOver = false;
         });
@@ -100,7 +100,9 @@ hoverZoomPlugins.push({
                         link.data().hoverZoomSrc = [blobUrl + '.audio'];
                         link.data().hoverZoomCaption = caption;
                         callback(link, pluginName);
-                        hoverZoom.displayPicFromElement(link);
+                        // Track is displayed iff the cursor is still over the track
+                        if (link.data().hoverZoomMouseOver)
+                            hoverZoom.displayPicFromElement(link);
                     })
                 }
             }
@@ -314,7 +316,9 @@ hoverZoomPlugins.push({
             link.data().hoverZoomSrc = [imgUrl];
             link.data().hoverZoomCaption = caption;
             callback(link, pluginName);
-            hoverZoom.displayPicFromElement(link);
+            // Cover is displayed iff the cursor is still over the image
+            if (link.data().hoverZoomMouseOver)
+                hoverZoom.displayPicFromElement(link);
         }
 
         // albums images
