@@ -618,6 +618,10 @@ var hoverZoom = {
         }
 
         function isAudioLink(url) {
+            if (url.indexOf('.audio') !== -1) {
+                return true;
+            }
+            
             if (url.lastIndexOf('?') > 0)
                 url = url.substring(0, url.lastIndexOf('?'));
             const ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
@@ -1174,7 +1178,7 @@ var hoverZoom = {
                         return;
                     }
 
-                    var src = (srcDetails.audioUrl ? srcDetails.audioUrl : srcDetails.url);
+                    var src = (srcDetails.audioUrl ? srcDetails.audioUrl : srcDetails.url).replace('.audio', '');
 
                     // audio controls are displayed on top of an image provided by extension: 'images/spectrogram.png'
                     srcDetails.url = chrome.extension.getURL('images/spectrogram.png');
@@ -1186,7 +1190,7 @@ var hoverZoom = {
                     audio.controls = true; // controls always visible even if not locked
                     audio.autoplay = true;
                     audio.volume = options.audioVolume;
-                    audio.src = src;
+                    audio.src = srcDetails.audioUrl;
                     audioControls = $(audio).appendTo(hz.hzViewer);
 
                     audio.addEventListener('error', srcFullSizeOnError);

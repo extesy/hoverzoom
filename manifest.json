@@ -2098,6 +2098,10 @@
         {
             "js": ["plugins/physorg.js"],
             "matches": ["*://*.phys.org/*", "*://*.medicalxpress.com/*", "*://*.sciencex.com/*", "*://*.techxplore.com/*"]
+        },
+        {
+            "js": ["plugins/spotify.js"],
+            "matches": ["*://*.spotify.com/*"]
         }
     ]
 }
