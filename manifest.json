@@ -2106,6 +2106,10 @@
         {
             "js": ["plugins/songkick.js"],
             "matches": ["*://*.songkick.com/*"]
+        },
+        {
+            "js": ["plugins/nextdoor.js"],
+            "matches": ["*://*.nextdoor.com/*"]
         }
     ]
 }
