@@ -3250,6 +3250,17 @@ var hoverZoom = {
                 let size = '[' + img.naturalWidth + 'x' + img.naturalHeight + ']';
                 filename = size + filename;
             }
+            if (options.addDownloadIndex) {
+                let gallery = hz.currentLink.data().hoverZoomGallerySrc;
+                let index = hz.currentLink.data().hoverZoomGalleryIndex;
+                if (gallery) {
+                    index++;
+                    let indexLen = index.toString().length;
+                    let galleryLen = gallery.length.toString().length
+                    let galleryIndex = `[${index.toString().padStart(galleryLen,'0')}-${gallery.length}]`;
+                    filename = galleryIndex + filename;
+                }
+            }
             if (options.addDownloadOrigin) {
                 // prefix with origin
                 let origin = '[' + getOrigin() + ']';

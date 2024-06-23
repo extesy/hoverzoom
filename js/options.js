@@ -139,8 +139,9 @@ function saveOptions() {
     options.downloadFolder = $('#txtDownloadFolder')[0].value;
     options.addDownloadOrigin = $('#chkAddDownloadOrigin')[0].checked;
     options.addDownloadSize = $('#chkAddDownloadSize')[0].checked;
-    options.debug = $('#chkEnableDebug')[0].checked;
     options.addDownloadDuration = $('#chkAddDownloadDuration')[0].checked;
+    options.addDownloadIndex = $('#chkAddDownloadIndex')[0].checked;
+    options.debug = $('#chkEnableDebug')[0].checked;
     options.useSeparateTabOrWindowForUnloadableUrlsEnabled = $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled')[0].checked;
     options.useSeparateTabOrWindowForUnloadableUrls = $('#selectUseSeparateTabOrWindowForUnloadableUrls').val();
 
@@ -255,6 +256,7 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#chkAddDownloadOrigin').trigger(options.addDownloadOrigin ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAddDownloadSize').trigger(options.addDownloadSize ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAddDownloadDuration').trigger(options.addDownloadDuration ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkAddDownloadIndex').trigger(options.addDownloadIndex ? 'gumby.check' : 'gumby.uncheck');
     $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled').trigger(options.useSeparateTabOrWindowForUnloadableUrlsEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#selectUseSeparateTabOrWindowForUnloadableUrls').val(options.useSeparateTabOrWindowForUnloadableUrls);
     $('#chkEnableDebug').trigger(options.debug ? 'gumby.check' : 'gumby.uncheck');

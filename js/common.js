@@ -47,6 +47,7 @@ var factorySettings = {
     addDownloadOrigin : false,
     addDownloadSize : false,
     addDownloadDuration : false,
+    addDownloadIndex : false,
     useSeparateTabOrWindowForUnloadableUrlsEnabled: false,
     useSeparateTabOrWindowForUnloadableUrls: 'window',
     captionLocation : 'below',
@@ -135,6 +136,7 @@ function loadOptions() {
     options.addDownloadOrigin = options.hasOwnProperty('addDownloadOrigin') ? options.addDownloadOrigin : factorySettings.addDownloadOrigin;
     options.addDownloadSize = options.hasOwnProperty('addDownloadSize') ? options.addDownloadSize : factorySettings.addDownloadSize;
     options.addDownloadDuration = options.hasOwnProperty('addDownloadDuration') ? options.addDownloadDuration : factorySettings.addDownloadDuration;
+    options.addDownloadIndex = options.hasOwnProperty('addDownloadIndex') ? options.addDownloadIndex : factorySettings.addDownloadIndex;
     options.useSeparateTabOrWindowForUnloadableUrlsEnabled = options.hasOwnProperty('useSeparateTabOrWindowForUnloadableUrlsEnabled') ? options.useSeparateTabOrWindowForUnloadableUrlsEnabled : factorySettings.useSeparateTabOrWindowForUnloadableUrlsEnabled;
     options.useSeparateTabOrWindowForUnloadableUrls = options.hasOwnProperty('useSeparateTabOrWindowForUnloadableUrls') ? options.useSeparateTabOrWindowForUnloadableUrls : factorySettings.useSeparateTabOrWindowForUnloadableUrls;
 
