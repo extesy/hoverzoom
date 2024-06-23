@@ -2110,6 +2110,10 @@
         {
             "js": ["plugins/nextdoor.js"],
             "matches": ["*://*.nextdoor.com/*"]
+        },
+        {
+            "js": ["plugins/polona.js"],
+            "matches": ["*://*.polona.pl/*"]
         }
     ]
 }
