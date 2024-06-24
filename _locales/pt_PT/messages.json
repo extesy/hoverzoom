@@ -571,6 +571,14 @@
         "message": "duração",
         "description": "[options] Add download duration option"
     },
+    "optAddDownloadIndexTooltip": {
+        "message": "Adicionar o índice da imagem na galeria (por exemplo: terceira imagem de dez: 03-10)",
+        "description": "[options] Tooltip for add download index option"
+    },
+    "optAddDownloadIndex": {
+        "message": "índice",
+        "description": "[options] Add download index option"
+    },
     "optSectionTroubleshooting": {
         "message": "Resolução de problemas",
         "description": "[options] Page section for troubleshooting"
