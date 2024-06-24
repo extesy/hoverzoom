@@ -571,6 +571,14 @@
         "message": "길이",
         "description": "[options] Add download duration option"
     },
+    "optAddDownloadIndexTooltip": {
+        "message": "갤러리 내 이미지의 색인 추가 (예를 들어, 열 개 중 세 번째 이미지라면: 03-10)",
+        "description": "[options] Tooltip for add download index option"
+    },
+    "optAddDownloadIndex": {
+        "message": "색인",
+        "description": "[options] Add download index option"
+    },
     "optSectionTroubleshooting": {
         "message": "문제 해결",
         "description": "[options] Page section for troubleshooting"
