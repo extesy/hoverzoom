@@ -536,15 +536,15 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "画像・動画をフォルダに保存するダウンロード/",
+        "message": "Save images, videos & audios to folder: Downloads/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "ダウンロードの元の名前に、起源、サイズ、期間を付けて管理しやすくします。",
+        "message": "Prefix original names of downloads with origin, size, duration and so on for easier management",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "保存された画像＆動画の名前を追加で変更する。",
+        "message": "Rename saved files by adding:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
@@ -578,6 +578,14 @@
     "optAddDownloadIndex": {
         "message": "index",
         "description": "[options] Add download index option"
+    },
+    "optAddDownloadCaptionTooltip": {
+        "message": "Add caption (e.g: Mona Lisa by Leonardo da Vinci)",
+        "description": "[options] Tooltip for add download caption option"
+    },
+    "optAddDownloadCaption": {
+        "message": "caption",
+        "description": "[options] Add download caption option"
     },
     "optSectionTroubleshooting": {
         "message": "トラブルシューティング",

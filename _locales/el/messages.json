@@ -536,15 +536,15 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Αποθήκευση εικόνων και βίντεο σε φάκελο: Downloads/",
+        "message": "Save images, videos & audios to folder: Downloads/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Προθέστε τα αρχικά ονόματα των λήψεων με την προέλευση, το μέγεθος ή/και τη διάρκεια για ευκολότερη διαχείριση",
+        "message": "Prefix original names of downloads with origin, size, duration and so on for easier management",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Μετονομάστε αποθηκευμένες εικόνες και βίντεο προσθέτοντας:",
+        "message": "Rename saved files by adding:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
@@ -578,6 +578,14 @@
     "optAddDownloadIndex": {
         "message": "index",
         "description": "[options] Add download index option"
+    },
+    "optAddDownloadCaptionTooltip": {
+        "message": "Add caption (e.g: Mona Lisa by Leonardo da Vinci)",
+        "description": "[options] Tooltip for add download caption option"
+    },
+    "optAddDownloadCaption": {
+        "message": "caption",
+        "description": "[options] Add download caption option"
     },
     "optSectionTroubleshooting": {
         "message": "Αντιμετώπιση προβλημάτων",

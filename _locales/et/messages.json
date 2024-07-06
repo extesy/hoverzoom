@@ -536,15 +536,15 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Salvesta pildid ja videod kausta: Allalaadimised/",
+        "message": "Save images, videos & audios to folder: Downloads/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Haldamise lihtsustamiseks võib allalaadimiste originaalnimedele lisada päritolu, suuruse ja/või kestuse.",
+        "message": "Prefix original names of downloads with origin, size, duration and so on for easier management",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Salvestatud piltide ja videote ümbernimetamine, lisades:",
+        "message": "Rename saved files by adding:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
@@ -578,6 +578,14 @@
     "optAddDownloadIndex": {
         "message": "index",
         "description": "[options] Add download index option"
+    },
+    "optAddDownloadCaptionTooltip": {
+        "message": "Add caption (e.g: Mona Lisa by Leonardo da Vinci)",
+        "description": "[options] Tooltip for add download caption option"
+    },
+    "optAddDownloadCaption": {
+        "message": "caption",
+        "description": "[options] Add download caption option"
     },
     "optSectionTroubleshooting": {
         "message": "Veaotsing",

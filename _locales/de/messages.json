@@ -536,15 +536,15 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Bilder und Videos in einem Ordner speichern: Downloads/",
+        "message": "Save images, videos & audios to folder: Downloads/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Voranstellen der Originalnamen von Downloads mit Herkunft, Größe und/oder Dauer zur einfacheren Verwaltung",
+        "message": "Prefix original names of downloads with origin, size, duration and so on for easier management",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Umbenennen von gespeicherten Bildern und Videos durch Hinzufügen:",
+        "message": "Rename saved files by adding:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
@@ -578,6 +578,14 @@
     "optAddDownloadIndex": {
         "message": "index",
         "description": "[options] Add download index option"
+    },
+    "optAddDownloadCaptionTooltip": {
+        "message": "Add caption (e.g: Mona Lisa by Leonardo da Vinci)",
+        "description": "[options] Tooltip for add download caption option"
+    },
+    "optAddDownloadCaption": {
+        "message": "caption",
+        "description": "[options] Add download caption option"
     },
     "optSectionTroubleshooting": {
         "message": "Fehlersuche",

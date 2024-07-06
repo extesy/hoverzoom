@@ -536,15 +536,15 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Menyimpan gambar & video ke folder: Unduh/",
+        "message": "Save images, videos & audios to folder: Downloads/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Awali nama asli unduhan dengan asal, ukuran, dan/atau durasi untuk pengelolaan yang lebih mudah",
+        "message": "Prefix original names of downloads with origin, size, duration and so on for easier management",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Ubah nama gambar & video yang disimpan dengan menambahkan:",
+        "message": "Rename saved files by adding:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
@@ -578,6 +578,14 @@
     "optAddDownloadIndex": {
         "message": "index",
         "description": "[options] Add download index option"
+    },
+    "optAddDownloadCaptionTooltip": {
+        "message": "Add caption (e.g: Mona Lisa by Leonardo da Vinci)",
+        "description": "[options] Tooltip for add download caption option"
+    },
+    "optAddDownloadCaption": {
+        "message": "caption",
+        "description": "[options] Add download caption option"
     },
     "optSectionTroubleshooting": {
         "message": "Pemecahan Masalah",
