@@ -117,32 +117,41 @@ hoverZoomPlugins.push({
           if (img.length === 0)
             img = post;
           hoverZoom.prepareLink(img, src);
+          post.data().hoverZoomMouseOver = false;
         }
       }
     }
 
-    $('div[data-url*="//www.reddit.com/gallery/"]').each(function () {
+    $('div[data-url*="//www.reddit.com/gallery/"]').one('mouseover', function () {
       var post = $(this);
+      if (post.data().hoverZoomMouseOver) return;
+      post.data().hoverZoomMouseOver = true;
       var link = post.attr('data-url');
       var galleryid = link.substring(link.lastIndexOf('/') + 1);
       $.get('https://www.reddit.com/by_id/t3_' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
 
-    $('a[href*="//www.reddit.com/gallery/"]').each(function () {
+    $('a[href*="//www.reddit.com/gallery/"]').one('mouseover', function () {
       var post = $(this);
+      if (post.data().hoverZoomMouseOver) return;
+      post.data().hoverZoomMouseOver = true;
       var link = post.attr('href');
       var galleryid = link.substring(link.lastIndexOf('/') + 1);
       $.get('https://www.reddit.com/by_id/t3_' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
 
-    $('div[data-is-gallery=true]').each(function () {
+    $('div[data-is-gallery=true]').one('mouseover', function () {
       var post = $(this);
+      if (post.data().hoverZoomMouseOver) return;
+      post.data().hoverZoomMouseOver = true;
       var galleryid = post.attr('data-fullname');
       $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
 
-    $('gallery-carousel').each(function () {
+    $('gallery-carousel').one('mouseover', function () {
       var post = $(this);
+      if (post.data().hoverZoomMouseOver) return;
+      post.data().hoverZoomMouseOver = true;
       var galleryid = post.attr('post-id');
       $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
