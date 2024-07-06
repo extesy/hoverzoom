@@ -3245,9 +3245,17 @@ var hoverZoom = {
             let filename = getDownloadFilenameByMedia(downloadMedias.IMG);
             if (!filename) return;
 
+            if (options.addDownloadCaption) {
+                // prefix with caption
+                let caption = getCaption();
+                if (caption) {
+                    caption = '[' + caption + ']';
+                    filename = caption + filename;
+                }
+            }
             if (options.addDownloadSize) {
                 // prefix with size [WxH]
-                let size = '[' + img.naturalWidth + 'x' + img.naturalHeight + ']';
+                let size = '[' + getSizeImage(img) + ']';
                 filename = size + filename;
             }
             if (options.addDownloadIndex) {
@@ -3278,9 +3286,17 @@ var hoverZoom = {
             let filename = getDownloadFilenameByMedia(downloadMedias.VIDEO);
             if (!filename) return;
 
+            if (options.addDownloadCaption) {
+                // prefix with caption
+                let caption = getCaption();
+                if (caption) {
+                    caption = '[' + caption + ']';
+                    filename = caption + filename;
+                }
+            }
             if (options.addDownloadSize) {
                 // prefix with size [WxH]
-                let size = '[' + video.videoWidth + 'x' + video.videoHeight + ']';
+                let size = '[' + getSizeVideo(video) + ']';
                 filename = size + filename;
             }
             if (options.addDownloadDuration) {
@@ -3304,6 +3320,14 @@ var hoverZoom = {
             let filename = getDownloadFilenameByMedia(downloadMedias.AUDIO);
             if (!filename) return;
 
+            if (options.addDownloadCaption) {
+                // prefix with caption
+                let caption = getCaption();
+                if (caption) {
+                    caption = '[' + caption + ']';
+                    filename = caption + filename;
+                }
+            }
             if (options.addDownloadDuration) {
                 // prefix with duration [hh mm ss]
                 let duration = hz.secondsToHms(audio.duration);
@@ -3325,6 +3349,14 @@ var hoverZoom = {
             let filename = getDownloadFilenameByMedia(downloadMedias.SUBTITLES);
             if (!filename) return;
 
+            if (options.addDownloadCaption) {
+                // prefix with caption
+                let caption = getCaption();
+                if (caption) {
+                    caption = '[' + caption + ']';
+                    filename = caption + filename;
+                }
+            }
             if (options.addDownloadOrigin) {
                 // prefix with origin
                 let origin = '[' + getOrigin() + ']';
@@ -3342,9 +3374,17 @@ var hoverZoom = {
             let filename = getDownloadFilenameByMedia(downloadMedias.PLAYLIST);
             if (!filename) return;
 
+            if (options.addDownloadCaption) {
+                // prefix with caption
+                let caption = getCaption();
+                if (caption) {
+                    caption = '[' + caption + ']';
+                    filename = caption + filename;
+                }
+            }
             if (options.addDownloadSize) {
                 // prefix with size [WxH]
-                let size = '[' + video.videoWidth + 'x' + video.videoHeight + ']';
+                let size = '[' + getSizeVideo(video) + ']';
                 filename = size + filename;
             }
             if (options.addDownloadDuration) {
@@ -3427,6 +3467,22 @@ var hoverZoom = {
         // return hostname with forbidden characters replaced by '_'
         function getOrigin() {
             return window.location.hostname.replace(regexForbiddenChars, '_');
+        }
+
+        // return displayed size (W x H)
+        function getSizeVideo(video) {
+            return video.videoWidth + 'x' + video.videoHeight;
+        }
+
+        // return displayed size (W x H)
+        function getSizeImage(img) {
+            return img.naturalWidth + 'x' + img.naturalHeight;
+        }
+
+        // return caption with forbidden characters replaced by '_'
+        function getCaption() {
+            let caption = hz.currentLink.data().hoverZoomCaption || hz.currentLink.data().hoverZoomGalleryCaption || '';
+            return caption.replace(regexForbiddenChars, '_');
         }
 
         function rotateGalleryImg(rot) {
