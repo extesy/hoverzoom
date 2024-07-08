@@ -536,15 +536,15 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images, videos & audios to folder: Downloads/",
+        "message": "사진, 동영상 및 오디오를 저장할 폴더: Downloads/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Prefix original names of downloads with origin, size, duration and so on for easier management",
+        "message": "파일을 보다 쉽게 관리할 수 있도록 출처, 크기, 길이 등을 파일 이름 앞에 붙입니다",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Rename saved files by adding:",
+        "message": "저장한 파일의 이름에 문자 추가:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
@@ -580,7 +580,7 @@
         "description": "[options] Add download index option"
     },
     "optAddDownloadCaptionTooltip": {
-        "message": "Add caption (e.g: Mona Lisa by Leonardo da Vinci)",
+        "message": "캡션 추가 (예: 레오나르도 다빈치의 모나리자)",
         "description": "[options] Tooltip for add download caption option"
     },
     "optAddDownloadCaption": {
