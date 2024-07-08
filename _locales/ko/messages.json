@@ -584,7 +584,7 @@
         "description": "[options] Tooltip for add download caption option"
     },
     "optAddDownloadCaption": {
-        "message": "caption",
+        "message": "캡션",
         "description": "[options] Add download caption option"
     },
     "optSectionTroubleshooting": {

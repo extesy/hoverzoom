@@ -536,15 +536,15 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images, videos & audios to folder: Downloads/",
+        "message": "Сохранять изображения, видео и аудио в папку: Загрузки/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Prefix original names of downloads with origin, size, duration and so on for easier management",
+        "message": "Добавлять к исходным названиям загрузок префиксы с указанием источника, размера, длительности и так далее для упрощения управления",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Rename saved files by adding:",
+        "message": "Переименовывать сохранённые файлы, добавив:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
@@ -572,19 +572,19 @@
         "description": "[options] Add download duration option"
     },
     "optAddDownloadIndexTooltip": {
-        "message": "Add index of image in gallery (e.g: third image out of ten: 03-10)",
+        "message": "Добавить индекс изображения в галерее (например: третье изображение из десяти: 03-10)",
         "description": "[options] Tooltip for add download index option"
     },
     "optAddDownloadIndex": {
-        "message": "index",
+        "message": "индекс",
         "description": "[options] Add download index option"
     },
     "optAddDownloadCaptionTooltip": {
-        "message": "Add caption (e.g: Mona Lisa by Leonardo da Vinci)",
+        "message": "Добавлять подпись (например: «Мона Лиза» Леонардо да Винчи)",
         "description": "[options] Tooltip for add download caption option"
     },
     "optAddDownloadCaption": {
-        "message": "caption",
+        "message": "подпись",
         "description": "[options] Add download caption option"
     },
     "optSectionTroubleshooting": {
