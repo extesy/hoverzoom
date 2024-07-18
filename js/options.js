@@ -142,6 +142,8 @@ function saveOptions() {
     options.addDownloadDuration = $('#chkAddDownloadDuration')[0].checked;
     options.addDownloadIndex = $('#chkAddDownloadIndex')[0].checked;
     options.addDownloadCaption = $('#chkAddDownloadCaption')[0].checked;
+    options.replaceOriginalFilename = $('#chkDownloadReplaceOriginalFilename')[0].checked;
+    options.downloadFilename = $('#txtDownloadReplaceOriginalFilename')[0].value;
     options.debug = $('#chkEnableDebug')[0].checked;
     options.useSeparateTabOrWindowForUnloadableUrlsEnabled = $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled')[0].checked;
     options.useSeparateTabOrWindowForUnloadableUrls = $('#selectUseSeparateTabOrWindowForUnloadableUrls').val();
@@ -259,6 +261,8 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#chkAddDownloadDuration').trigger(options.addDownloadDuration ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAddDownloadIndex').trigger(options.addDownloadIndex ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAddDownloadCaption').trigger(options.addDownloadCaption ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkDownloadReplaceOriginalFilename').trigger(options.replaceOriginalFilename ? 'gumby.check' : 'gumby.uncheck');
+    $('#txtDownloadReplaceOriginalFilename').val(options.downloadFilename);
     $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled').trigger(options.useSeparateTabOrWindowForUnloadableUrlsEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#selectUseSeparateTabOrWindowForUnloadableUrls').val(options.useSeparateTabOrWindowForUnloadableUrls);
     $('#chkEnableDebug').trigger(options.debug ? 'gumby.check' : 'gumby.uncheck');
@@ -453,11 +457,29 @@ function downloadFolderOnChange(val) {
     return this.value;
 }
 
+// validate user input
+function replaceOriginalFilenameOnChange(val) {
+    let value = (typeof val == 'string' ? val : this.value);
+    value = value.trim();
+    // remove Windows Explorer forbidden characters for file name -> : * ? " < > | /
+    value = value.replace(/[!*:?"<>|\/\\]/g, '');
+    this.value = value;
+    return this.value;
+}
+
 function updateDivAmbilight() {
     if ($('#chkAmbilightEnabled')[0].checked) {
         $('#divAmbilight').removeClass('disabled');
     } else {
         $('#divAmbilight').addClass('disabled');
+    }
+}
+
+function updateDownloadReplaceOriginalFilename() {
+    if ($('#chkDownloadReplaceOriginalFilename')[0].checked) {
+        $('#txtDownloadReplaceOriginalFilename').removeClass('disabled');
+    } else {
+        $('#txtDownloadReplaceOriginalFilename').addClass('disabled');
     }
 }
 
@@ -658,6 +680,8 @@ $(function () {
     $('#btnAddExcludedSite').click(btnAddExcludedSiteOnClick);
     $('#btnRemoveExcludedSite').click(btnRemoveExcludedSiteOnClick);
     $('#txtDownloadFolder').change(downloadFolderOnChange);
+    $('#chkDownloadReplaceOriginalFilename').parent().on('gumby.onChange', updateDownloadReplaceOriginalFilename);
+    $('#txtDownloadReplaceOriginalFilename').change(replaceOriginalFilenameOnChange);
     $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled').parent().on('gumby.onChange', updateUseSeparateTabOrWindowForUnloadableUrls);
     $('#chkHideMouseCursor').parent().on('gumby.onChange', updateDivHideMouseCursor);
     $('#chkDarkMode').parent().on('gumby.onChange', updateDarkMode);
