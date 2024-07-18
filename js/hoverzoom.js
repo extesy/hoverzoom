@@ -1940,7 +1940,7 @@ var hoverZoom = {
             // if video comes with distinct url for audio then extension = video's extension
             details.extension = getExtensionFromUrl(srcDetails.audio && !srcDetails.video ? srcDetails.audioUrl : srcDetails.url, srcDetails.video, srcDetails.playlist, srcDetails.audio);
             details.host = srcDetails.host;
-            let filename = getDownloadFilename();
+            let filename = getFilename();
             if (filename) details.filename = filename;
             let duration = (srcDetails.audio && !srcDetails.video ? getDurationFromAudio() : getDurationFromVideo());
             if (duration) details.duration = duration.replace(/ /g, ':');
@@ -3040,7 +3040,7 @@ var hoverZoom = {
         function downloadResource(url, filename, callback) {
             cLog('download: ' + url);
             if (!filename) filename = url.split('\\').pop().split('/').pop();
-
+            if (filename.startsWith('.')) filename = 'download' + filename;
             // prefix with download folder if needed
             if (options.downloadFolder) {
                 cLog('options.downloadFolder: ' + options.downloadFolder);
@@ -3073,8 +3073,8 @@ var hoverZoom = {
             }
         }
 
-        // 4 types of media can be saved to disk: image, video, audio, playlist
-        const downloadMedias = {
+        // 5 types of media can be saved to disk: image, video, audio, playlist, subtitles
+        const fileMedias = {
             IMG : "IMG",
             VIDEO : "VIDEO",
             AUDIO : "AUDIO",
@@ -3082,89 +3082,118 @@ var hoverZoom = {
             SUBTITLES : "SUBTITLES"
         }
 
-        // return download filename without knowing type of download
-        function getDownloadFilename() {
+        // return filename without knowing type of media displayed
+        function getFilename() {
 
-            let filename = getDownloadFilenameByMedia(downloadMedias.IMG);
+            let filename = getFilenameByMedia(fileMedias.IMG, false);
             if (filename) return filename;
-            filename = getDownloadFilenameByMedia(downloadMedias.VIDEO);
+            filename = getFilenameByMedia(fileMedias.VIDEO, false);
             if (filename) return filename;
-            filename = getDownloadFilenameByMedia(downloadMedias.AUDIO);
+            filename = getFilenameByMedia(fileMedias.AUDIO, false);
             if (filename) return filename;
-            filename = getDownloadFilenameByMedia(downloadMedias.PLAYLIST);
+            filename = getFilenameByMedia(fileMedias.PLAYLIST, false);
             if (filename) return filename;
-            filename = getDownloadFilenameByMedia(downloadMedias.SUBTITLES);
+            filename = getFilenameByMedia(fileMedias.SUBTITLES, false);
             if (filename) return filename;
             return '';
         }
 
-        // return download filename according to type of download in param
-        function getDownloadFilenameByMedia(downloadMedia) {
+        function replaceOriginalFilename(filename) {
+            if (options.replaceOriginalFilename) {
+                if (filename.indexOf('.') !== -1) filename = filename.replace(/(.*)\.(.*)/, `${options.downloadFilename}.$2`);
+                else filename = options.downloadFilename;
+            }
+            return filename;
+        }
+
+        // return original or download filename according to type of media in param
+        function getFilenameByMedia(fileMedia, download = true) {
 
             let src, filename;
-            switch (downloadMedia) {
-                case downloadMedias.IMG:
-                    if (!hz.hzViewer) return '';
+            switch (fileMedia) {
+                case fileMedias.IMG:
+                    if (!hz.hzViewer) return undefined;
                     let img = hz.hzViewer.find('img:not(.hzPlaceholder)').get(0);
-                    if (!img) return '';
+                    if (!img) return undefined;
                     src = img.src;
                     // remove trailing / & trailing query
                     src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
                     // extract filename
                     filename = src.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
-                    if (filename == '') filename = 'image';
-                    if (filename.indexOf('.') === -1) filename = filename + '.jpg';
+                    if (filename === '') {
+                        filename = 'image';
+                    }
+                    if (download) {
+                        filename = replaceOriginalFilename(filename);
+                        if (filename.indexOf('.') === -1) filename = filename + '.jpg'; // add default extension for download
+                    }
                     return filename;
 
-                case downloadMedias.VIDEO:
-                    if (!hz.hzViewer) return '';
+                case fileMedias.VIDEO:
+                    if (!hz.hzViewer) return undefined;
                     let video = hz.hzViewer.find('video').get(0);
-                    if (!video) return '';
+                    if (!video) return undefined;
                     src = video.src;
-                    if (src.startsWith('blob:')) return '';
+                    if (src.startsWith('blob:')) return undefined;
                     // remove trailing / & trailing query
                     src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
                     // extract filename
                     filename = src.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
-                    if (filename == '') filename = 'video';
-                    if (filename.indexOf('.') === -1) filename = filename + '.mp4';
+                    if (filename === '') {
+                        filename = 'video';
+                    }
+                    if (download) {
+                        filename = replaceOriginalFilename(filename);
+                        if (filename.indexOf('.') === -1) filename = filename + '.mp4'; // add default extension for download
+                    }
                     return filename;
 
-                case downloadMedias.AUDIO:
-                    if (!hz.hzViewer) return '';
+                case fileMedias.AUDIO:
+                    if (!hz.hzViewer) return undefined;
                     let audio = hz.hzViewer.find('audio').get(0);
-                    if (!audio) return '';
+                    if (!audio) return undefined;
                     src = audio.src;
                     // remove trailing / & trailing query
                     src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
                     // extract filename
                     filename = src.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
-                    if (filename == '') filename = 'audio';
-                    if (filename.indexOf('.') === -1) filename = filename + '.mp4';
+                    if (filename === '') {
+                        filename = 'audio';
+                    }
+                    if (download) {
+                        filename = replaceOriginalFilename(filename);
+                        if (filename.indexOf('.') === -1) filename = filename + '.mp4'; // add default extension for download
+                    }
                     return filename;
 
-                case downloadMedias.PLAYLIST:
-                    if (!hz.hzViewer) return '';
-                    if (!srcDetails.playlist) return '';
+                case fileMedias.PLAYLIST:
+                    if (!hz.hzViewer) return undefined;
+                    if (!srcDetails.playlist) return undefined;
                     src = srcDetails.url;
                     // remove trailing / & trailing query
                     src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
                     // extract filename
                     filename = src.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
-                    filename = 'playlist-' + filename;
-                    if (filename.indexOf('.') === -1) filename = filename + '.m3u8';
+                    if (download) {
+                        filename = replaceOriginalFilename(filename);
+                        filename = 'playlist-' + filename;
+                        if (filename.indexOf('.') === -1) filename = filename + '.m3u8'; // add default extension for download
+                    }
                     return filename;
 
-                case downloadMedias.SUBTITLES:
-                    if (!hz.hzViewer) return '';
-                    if (!srcDetails.subtitlesUrl) return '';
+                case fileMedias.SUBTITLES:
+                    if (!hz.hzViewer) return undefined;
+                    if (!srcDetails.subtitlesUrl) return undefined;
                     src = srcDetails.subtitlesUrl;
                     // remove trailing / & trailing query
                     src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
                     // extract filename
                     filename = src.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
-                    filename = 'subtitles-' + filename;
-                    if (filename.indexOf('.') === -1) filename = filename + '.txt';
+                    if (download) {
+                        filename = replaceOriginalFilename(filename);
+                        filename = 'subtitles-' + filename;
+                        if (filename.indexOf('.') === -1) filename = filename + '.txt'; // add default extension for download
+                    }
                     return filename;
             }
             return '';
@@ -3242,7 +3271,7 @@ var hoverZoom = {
             let img = hz.hzViewer.find('img').get(0);
             if (!img) return;
             let src = img.src;
-            let filename = getDownloadFilenameByMedia(downloadMedias.IMG);
+            let filename = getFilenameByMedia(fileMedias.IMG);
             if (!filename) return;
 
             if (options.addDownloadCaption) {
@@ -3283,7 +3312,7 @@ var hoverZoom = {
             if (!video) return;
             let src = video.src;
             if (src.startsWith('blob:')) return;
-            let filename = getDownloadFilenameByMedia(downloadMedias.VIDEO);
+            let filename = getFilenameByMedia(fileMedias.VIDEO);
             if (!filename) return;
 
             if (options.addDownloadCaption) {
@@ -3317,7 +3346,7 @@ var hoverZoom = {
             let audio = hz.hzViewer.find('audio').get(0);
             if (!audio) return;
             let src = audio.src;
-            let filename = getDownloadFilenameByMedia(downloadMedias.AUDIO);
+            let filename = getFilenameByMedia(fileMedias.AUDIO);
             if (!filename) return;
 
             if (options.addDownloadCaption) {
@@ -3346,7 +3375,7 @@ var hoverZoom = {
             let video = hz.hzViewer.find('video').get(0);
             let audio = hz.hzViewer.find('audio').get(0);
             if (!video && !audio) return;
-            let filename = getDownloadFilenameByMedia(downloadMedias.SUBTITLES);
+            let filename = getFilenameByMedia(fileMedias.SUBTITLES);
             if (!filename) return;
 
             if (options.addDownloadCaption) {
@@ -3371,7 +3400,7 @@ var hoverZoom = {
             if (!hz.hzViewer) return;
             let video = hz.hzViewer.find('video').get(0);
             if (!video) return;
-            let filename = getDownloadFilenameByMedia(downloadMedias.PLAYLIST);
+            let filename = getFilenameByMedia(fileMedias.PLAYLIST);
             if (!filename) return;
 
             if (options.addDownloadCaption) {
@@ -3398,12 +3427,6 @@ var hoverZoom = {
                 filename = origin + filename;
             }
 
-            // prefix with download folder if needed
-            if (options.downloadFolder) {
-                let downloadFolder = options.downloadFolder;
-                filename = downloadFolder + filename;
-            }
-
             // download KO: This function must be called during a user gesture => debugger must be closed
             downloadResource(srcDetails.url, filename);
             savePlaylistAsMP3MP4(filename);
@@ -3412,6 +3435,13 @@ var hoverZoom = {
         // - filename.m3u8.mp4 (video part)
         // - filename.m3u8.mp3 (audio part)
         function savePlaylistAsMP3MP4(filename) {
+            // prefix with download folder if needed
+            if (options.downloadFolder) {
+                console.log('options.downloadFolder: ' + options.downloadFolder);
+                let downloadFolder = options.downloadFolder;
+                filename = downloadFolder + filename;
+                console.log('filename: ' + filename);
+            }
             // audio
             if (fmp4Data['audio'].length) {
                 const blobAudio = new Blob([arrayConcat(fmp4Data['audio'])], {type:'application/octet-stream'});
