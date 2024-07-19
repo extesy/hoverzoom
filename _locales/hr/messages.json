@@ -587,6 +587,18 @@
         "message": "caption",
         "description": "[options] Add download caption option"
     },
+    "optDownloadReplaceOriginalFilenameTooltip": {
+        "message": "Replace original filename or remove it if no value supplied (extension is preserved)",
+        "description": "[options] Tooltip for replace original filename when downloading option"
+    },
+    "optDownloadReplaceOriginalFilenamePlaceholder": {
+        "message": "Example: fullsize_image",
+        "description": "[options] Placeholder for download folder option"
+    },
+    "optDownloadReplaceOriginalFilename": {
+        "message": "On save, replace original filename by:",
+        "description": "[options] Replace original filename when downloading option"
+    },
     "optSectionTroubleshooting": {
         "message": "Otklanjanje problema",
         "description": "[options] Page section for troubleshooting"
