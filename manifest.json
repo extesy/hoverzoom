@@ -2114,6 +2114,10 @@
         {
             "js": ["plugins/polona.js"],
             "matches": ["*://*.polona.pl/*"]
+        },
+        {
+            "js": ["plugins/raindrop.js"],
+            "matches": ["*://*.raindrop.io/*"]
         }
     ]
 }
