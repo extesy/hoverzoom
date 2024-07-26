@@ -621,7 +621,7 @@ var hoverZoom = {
             if (url.indexOf('.audio') !== -1) {
                 return true;
             }
-            
+
             if (url.lastIndexOf('?') > 0)
                 url = url.substring(0, url.lastIndexOf('?'));
             const ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
@@ -3437,11 +3437,12 @@ var hoverZoom = {
         function savePlaylistAsMP3MP4(filename) {
             // prefix with download folder if needed
             if (options.downloadFolder) {
-                console.log('options.downloadFolder: ' + options.downloadFolder);
+                cLog.log('options.downloadFolder: ' + options.downloadFolder);
                 let downloadFolder = options.downloadFolder;
                 filename = downloadFolder + filename;
-                console.log('filename: ' + filename);
+                cLog.log('filename: ' + filename);
             }
+
             // audio
             if (fmp4Data['audio'].length) {
                 const blobAudio = new Blob([arrayConcat(fmp4Data['audio'])], {type:'application/octet-stream'});
@@ -4228,6 +4229,77 @@ var hoverZoom = {
         }
         result.openPos = result.closePos = -1;
         return result;
+    },
+
+    // Return largest src available in srcset according to width and density
+    // samples srcsets:
+    // "http://static.picto.fr/wp-content/uploads/2017/05/Grand-Trouble.jpg"
+    // "http://static.picto.fr/wp-content/uploads/2017/05/Grand-Trouble.jpg 489w, http://static.picto.fr/wp-content/uploads/2017/05/Grand-Trouble-768x1099.jpg 768w"
+    // "http://static.picto.fr/wp-content/uploads/2017/05/Grand-Trouble.jpg 1x, http://static.picto.fr/wp-content/uploads/2017/05/Grand-Trouble-768x1099.jpg 2x"
+    // "resize1-lejdd.ladmedia.fr/rcrop/620,310/img/var/europe1/storage/images/lejdd/jdd-paris/paris-le-nouveau-palais-de-justice-ou-lon-ne-peut-pas-se-garer-3627203/47706995-1-fre-FR/Paris-Le-nouveau-palais-de-justice-ou-l-on-ne-peut-pas-se-garer.jpg 620w,
+    // resize1-lejdd.ladmedia.fr/rcrop/300,150/img/var/europe1/storage/images/lejdd/jdd-paris/paris-le-nouveau-palais-de-justice-ou-lon-ne-peut-pas-se-garer-3627203/47706995-1-fre-FR/Paris-Le-nouveau-palais-de-justice-ou-l-on-ne-peut-pas-se-garer.jpg 300w,
+    // resize1-lejdd.ladmedia.fr/rcrop/710,355/img/var/europe1/storage/images/lejdd/jdd-paris/paris-le-nouveau-palais-de-justice-ou-lon-ne-peut-pas-se-garer-3627203/47706995-1-fre-FR/Paris-Le-nouveau-palais-de-justice-ou-l-on-ne-peut-pas-se-garer.jpg 710w,
+    // resize1-lejdd.ladmedia.fr/rcrop/940,470/img/var/europe1/storage/images/lejdd/jdd-paris/paris-le-nouveau-palais-de-justice-ou-lon-ne-peut-pas-se-garer-3627203/47706995-1-fre-FR/Paris-Le-nouveau-palais-de-justice-ou-l-on-ne-peut-pas-se-garer.jpg 940w"
+    // "https://video-images.vice.com/_uncategorized/1522934375314-retinite1.png?resize=400:*, https://video-images.vice.com/_uncategorized/1522934375314-retinite1.png?resize=600:* 2x"
+    // "https://www.parismatch.com/lmnr/f/webp/r/72,48,forcex,center-middle/img/var/pm/public/media/image/2024/03/31/12/2024-03-31t094641z_493903911_rc2xw6a0kxis_rtrmadp_3_britain-royals.jpg?VersionId=V90sjBHDp8nZOHJEoSwrJK3SThPIaGtD,
+    // https://www.parismatch.com/lmnr/f/webp/r/144,96,forcex,center-middle/img/var/pm/public/media/image/2024/03/31/12/2024-03-31t094641z_493903911_rc2xw6a0kxis_rtrmadp_3_britain-royals.jpg?VersionId=V90sjBHDp8nZOHJEoSwrJK3SThPIaGtD 2x"
+    getBiggestSrcFromSrcset:function(srcset) {
+
+        if (srcset == undefined)
+            return undefined;
+
+        // discard inline images
+        if (hoverZoom.isEmbeddedImg(srcset))
+            return undefined;
+
+        var src = undefined;
+        srcset = srcset.trim();
+
+        srcset = srcset.replace(/,http/g, ', http');
+        if (srcset.indexOf(", ") != -1) {
+
+            if (srcset.indexOf("x, ") != -1) { srcset = srcset.split("x, "); }
+            else if (srcset.indexOf("w, ") != -1) { srcset = srcset.split("w, "); }
+            else { srcset = srcset.split(", "); }
+
+            var urls = new Map();
+            var xws = [];
+            // separate urls and density/width
+            for (var i = 0; i < srcset.length; i++) {
+                var el = srcset[i].trim();
+                var url, xw;
+                if (el.indexOf(' ') == -1) {
+                    url =  el;
+                    xw  = "1x"; // default value
+                }
+                else {
+                    url = el.split(' ')[0];
+                    xw = el.split(' ')[1];
+                }
+                xw = xw.replace('x','').replace('w','');
+                urls.set(parseInt(xw), url);
+                xws.push(parseInt(xw));
+            }
+            // sort density/width
+            xws.sort(function(a, b){return b-a});
+            // select url associated to largest density/width
+            src = urls.get(xws[0]);
+        }
+        else {
+            srcset = srcset.trim();
+            if (srcset.indexOf(' ') == -1) { src = srcset; }
+            else {
+                src = srcset.split(' ')[0].trim();
+            }
+        }
+        return src;
+    },
+
+    emptyHoverZoomViewer:function(now) {
+        if (!hoverZoom.hzViewer) return;
+        hoverZoom.hzViewer.stop(true, true).fadeOut(now ? 0 : options.fadeDuration, function () {
+            hoverZoom.hzViewer.empty();
+        });
     }
 };
 
