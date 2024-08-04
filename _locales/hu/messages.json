@@ -536,15 +536,15 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images, videos & audios to folder: Downloads/",
+        "message": "Képek, videók és hanganyagok mentése mappába: Letöltések/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Prefix original names of downloads with origin, size, duration and so on for easier management",
+        "message": "Letöltések eredeti nevének előtagolása forrással, mérettel, hosszal stb. könnyebb kezelésért",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Rename saved files by adding:",
+        "message": "Mentett fájlok átnevezése ennek a hozzáadásával:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
@@ -572,7 +572,7 @@
         "description": "[options] Add download duration option"
     },
     "optAddDownloadIndexTooltip": {
-        "message": "Add index of image in gallery (e.g: third image out of ten: 03-10)",
+        "message": "A kép indexének hozzáadása a galériában (pl.: harmadik kép a tízből: 03-10)",
         "description": "[options] Tooltip for add download index option"
     },
     "optAddDownloadIndex": {
@@ -580,23 +580,23 @@
         "description": "[options] Add download index option"
     },
     "optAddDownloadCaptionTooltip": {
-        "message": "Add caption (e.g: Mona Lisa by Leonardo da Vinci)",
+        "message": "Felirat hozzáadása (pl.: Mona Lisa Leonardo da Vinci által)",
         "description": "[options] Tooltip for add download caption option"
     },
     "optAddDownloadCaption": {
-        "message": "caption",
+        "message": "felirat",
         "description": "[options] Add download caption option"
     },
     "optDownloadReplaceOriginalFilenameTooltip": {
-        "message": "Replace original filename or remove it if no value supplied (extension is preserved)",
+        "message": "Eredeti fájlnév helyettesítése vagy eltávolítása, ha nincs megadva érték (a kiterjesztés megmarad)",
         "description": "[options] Tooltip for replace original filename when downloading option"
     },
     "optDownloadReplaceOriginalFilenamePlaceholder": {
-        "message": "Example: fullsize_image",
+        "message": "Példa: fullsize_image",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadReplaceOriginalFilename": {
-        "message": "On save, replace original filename by:",
+        "message": "Mentéskor az eredeti fájlnevet helyettesítse ezzel:",
         "description": "[options] Replace original filename when downloading option"
     },
     "optSectionTroubleshooting": {
