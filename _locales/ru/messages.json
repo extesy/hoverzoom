@@ -111,6 +111,18 @@
         "message": "Умножить размер увеличенного изображения на это число",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
+    "optMaxWidth": {
+        "message": "Указать максимальный размер увеличенного изображения:",
+        "description": "[options] Adjust the size of zoomed images option"
+    },
+    "optMaxWidthUnitName": {
+        "message": "пиксели",
+        "description": "[options] Unit name (px) for zoomed images size option"
+    },
+    "optMaxWidthTooltip": {
+        "message": "Ширина увеличенного изображения не будет превышать это число (если 0, то ограничения не будет)",
+        "description": "[options] Tooltip for adjust the size of zoomed images option"
+    },
     "optCaptionLocation": {
         "message": "Расположение подписей к изображениям:",
         "description": "[options] Adjust the position of the caption"
