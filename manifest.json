@@ -2118,6 +2118,10 @@
         {
             "js": ["plugins/raindrop.js"],
             "matches": ["*://*.raindrop.io/*"]
+        },
+        {
+            "js": ["plugins/stackoverflow.js"],
+            "matches": ["*://*.stackoverflow.com/*"]
         }
     ]
 }
