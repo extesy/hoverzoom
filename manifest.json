@@ -2122,6 +2122,10 @@
         {
             "js": ["plugins/stackoverflow.js"],
             "matches": ["*://*.stackoverflow.com/*"]
+        },
+        {
+            "js": ["plugins/uinotes.js"],
+            "matches": ["*://*.uinotes.com/*"]
         }
     ]
 }
