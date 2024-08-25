@@ -47,7 +47,7 @@ hoverZoomPlugins.push({
         }).each(function () {
             var _this = $(this), data = _this.data();
             // discard video already being played
-            if (this.paused) {
+            if (this.paused || this.controls === false) {
                 var src = this.src;
                 if (!src.match(reVideos))
                     src += '.video';
