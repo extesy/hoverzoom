@@ -978,6 +978,7 @@
             "js": ["plugins/e621.js"],
             "matches": [
                 "*://*.e621.net/*",
+                "*://*.e6ai.net/*",
                 "*://*.e926.net/*",
                 "*://danbooru.donmai.us/*"
             ]
