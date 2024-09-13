@@ -2127,6 +2127,10 @@
         {
             "js": ["plugins/uinotes.js"],
             "matches": ["*://*.uinotes.com/*"]
+        },
+        {
+            "js": ["plugins/meiye.js"],
+            "matches": ["*://*.meiye.art/*"]
         }
     ]
 }
