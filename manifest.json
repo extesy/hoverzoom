@@ -2131,6 +2131,10 @@
         {
             "js": ["plugins/meiye.js"],
             "matches": ["*://*.meiye.art/*"]
+        },
+        {
+            "js": ["plugins/lummi.js"],
+            "matches": ["*://*.lummi.ai/*"]
         }
     ]
 }
