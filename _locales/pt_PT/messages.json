@@ -528,7 +528,7 @@
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
-        "message": "As subpastas, se necessário, serão automaticamente criadas",
+        "message": "Se necessário, serão criadas subpasta(s)",
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
@@ -536,15 +536,15 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images, videos & audios to folder: Downloads/",
+        "message": "Guardar imagens, vídeos e áudios numa pasta: Transferências/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Prefix original names of downloads with origin, size, duration and so on for easier management",
+        "message": "Prefixar os nomes originais das transferências com a origem, tamanho, duração, etc., para uma gestão mais fácil",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Rename saved files by adding:",
+        "message": "Mudar o nome dos ficheiros guardados adicionando:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
@@ -580,23 +580,23 @@
         "description": "[options] Add download index option"
     },
     "optAddDownloadCaptionTooltip": {
-        "message": "Add caption (e.g: Mona Lisa by Leonardo da Vinci)",
+        "message": "Adicionar legenda (por exemplo: Mona Lisa de Leonardo da Vinci)",
         "description": "[options] Tooltip for add download caption option"
     },
     "optAddDownloadCaption": {
-        "message": "caption",
+        "message": "legenda",
         "description": "[options] Add download caption option"
     },
     "optDownloadReplaceOriginalFilenameTooltip": {
-        "message": "Replace original filename or remove it if no value supplied (extension is preserved)",
+        "message": "Substitui o nome do ficheiro original ou remove-o se não for fornecido nenhum valor (a extensão é preservada)",
         "description": "[options] Tooltip for replace original filename when downloading option"
     },
     "optDownloadReplaceOriginalFilenamePlaceholder": {
-        "message": "Example: fullsize_image",
+        "message": "Exemplo: fullsize_image",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadReplaceOriginalFilename": {
-        "message": "On save, replace original filename by:",
+        "message": "Ao guardar, substituir o nome do ficheiro original por:",
         "description": "[options] Replace original filename when downloading option"
     },
     "optSectionTroubleshooting": {
