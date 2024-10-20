@@ -2135,6 +2135,10 @@
         {
             "js": ["plugins/lummi.js"],
             "matches": ["*://*.lummi.ai/*"]
+        },
+        {
+            "js": ["plugins/brave.js"],
+            "matches": ["*://*.search.brave.com/*"]
         }
     ]
 }
