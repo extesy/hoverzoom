@@ -4300,6 +4300,17 @@ var hoverZoom = {
         hoverZoom.hzViewer.stop(true, true).fadeOut(now ? 0 : options.fadeDuration, function () {
             hoverZoom.hzViewer.empty();
         });
+    },
+
+    // In JavaScript, keys can be strings, numbers, or identifier names WITHOUT single or double quotes
+    // e.g: person = {name:"John", age:31, city:"New York"};
+    strToJavascriptObj:function(e) {
+        if (typeof e == "string") {
+            let obj = new Function("return" + e);
+            try {
+                return obj();
+            } catch {}
+        }
     }
 };
 
