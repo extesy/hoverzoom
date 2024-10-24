@@ -1029,6 +1029,10 @@
             "matches": ["*://*.furaffinity.net/*"]
         },
         {
+            "js": ["plugins/furrynetwork.js"],
+            "matches": ["*://*.furrynetwork.com/*"]
+        },
+        {
             "js": ["plugins/alicdn.js"],
             "matches": [
                 "*://*.taobao.com/*",
