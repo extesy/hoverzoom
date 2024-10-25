@@ -85,7 +85,7 @@ hoverZoomPlugins.push({
         }
 
         function prepareMultipageSrcAsync(link, multipageLink, i) {
-            $.ajax('https://inkbunny.net' + multipageLink.attr('href')).done(function(response) {             
+            $.ajax('https://inkbunny.net' + multipageLink.attr('href')).done(function(response) {
                 const fullImg = $('a[href*="files/full/"]', response);
                 if (fullImg.length && /\.(png|jpg|gif)$/.test(fullImg.attr('href'))) {
                     link.data().hoverZoomGallerySrc[i] = [fullImg.attr('href')];
