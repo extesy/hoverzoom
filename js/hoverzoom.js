@@ -3868,7 +3868,7 @@ var hoverZoom = {
         chrome.runtime.sendMessage({action:'ajaxRequest', url: url, method: 'GET'}, function(data) {
             let doc = document.implementation.createHTMLDocument();
             doc.body.innerHTML = data;
-            let httpRefresh = doc.querySelector('meta[http-equiv="refresh"][content]');
+            const httpRefresh = doc.querySelector('meta[http-equiv="refresh"][content]');
             if (httpRefresh) {
                 let redirUrl = httpRefresh.content.substr(httpRefresh.content.toLowerCase().indexOf('url=') + 4);
                 if (redirUrl) {
@@ -3877,7 +3877,7 @@ var hoverZoom = {
                 }
             }
 
-            let handleSrc = function (src) {
+            const handleSrc = function (src) {
                 if (src)
                     hoverZoom.prepareLink(link, src);
             };
