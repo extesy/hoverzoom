@@ -3866,20 +3866,18 @@ var hoverZoom = {
     prepareFromDocument:function (link, url, getSrc, isAsync = false) {
         url = url.replace('http:', location.protocol);
         chrome.runtime.sendMessage({action:'ajaxRequest', url: url, method: 'GET'}, function(data) {
-            var doc = document.implementation.createHTMLDocument();
-            doc.open();
-            doc.write(data);
-            doc.close();
-            var httpRefresh = doc.querySelector('meta[http-equiv="refresh"][content]');
+            let doc = document.implementation.createHTMLDocument();
+            doc.body.innerHTML = data;
+            let httpRefresh = doc.querySelector('meta[http-equiv="refresh"][content]');
             if (httpRefresh) {
-                var redirUrl = httpRefresh.content.substr(httpRefresh.content.toLowerCase().indexOf('url=') + 4);
+                let redirUrl = httpRefresh.content.substr(httpRefresh.content.toLowerCase().indexOf('url=') + 4);
                 if (redirUrl) {
                     redirUrl = redirUrl.replace('http:', location.protocol);
                     hoverZoom.prepareFromDocument(link, redirUrl, getSrc, isAsync);
                 }
             }
 
-            var handleSrc = function (src) {
+            let handleSrc = function (src) {
                 if (src)
                     hoverZoom.prepareLink(link, src);
             };
@@ -3887,7 +3885,7 @@ var hoverZoom = {
             if (isAsync) {
                 getSrc(doc, handleSrc);
             } else {
-                var src = getSrc(doc);
+                let src = getSrc(doc);
                 handleSrc(src);
             }
         });
