@@ -95,6 +95,15 @@ function onMessage(message, sender, callback) {
             return true;
         case 'downloadFile':
             cLog('downloadFile: ' + message);
+            // Workaround for permissions.request not returning a promise in Firefox 
+            // First checks if permissions are availble. If not, requests them.
+            // Not as clean or effecient.
+            chrome.permissions.contains({permissions: ['tabs']}).then(function (granted) {
+                cLog('downloadFile granted: ' + granted);
+                if (granted) {
+                    downloadFile(message.url, message.filename, message.conflictAction, callback);
+                }
+            }),
             chrome.permissions.request({permissions: ['downloads']}, function (granted) {
                 cLog('downloadFile granted: ' + granted);
                 if (granted) {
