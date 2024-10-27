@@ -98,12 +98,13 @@ function onMessage(message, sender, callback) {
                 cLog('downloadFile contains: ' + granted);
                 if (granted) {
                     ajaxRequest({method:'GET', response:'DOWNLOAD', url:message.url, filename:message.filename, conflictAction:message.conflictAction, headers:message.headers}, callback);
-                }
-            }),
-            chrome.permissions.request({permissions: ['downloads']}, (granted) => {
-                cLog('downloadFile granted: ' + granted);
-                if (granted) {
-                    ajaxRequest({method:'GET', response:'DOWNLOAD', url:message.url, filename:message.filename, conflictAction:message.conflictAction, headers:message.headers}, callback);
+                } else {
+                    chrome.permissions.request({permissions: ['downloads']}, (granted) => {
+                        cLog('downloadFile granted: ' + granted);
+                        if (granted) {
+                            ajaxRequest({method:'GET', response:'DOWNLOAD', url:message.url, filename:message.filename, conflictAction:message.conflictAction, headers:message.headers}, callback);
+                        }
+                    })
                 }
             });
             return true;
@@ -118,12 +119,13 @@ function onMessage(message, sender, callback) {
                 cLog('downloadFile contains: ' + granted);
                 if (granted) {
                     downloadFile(message.url, message.filename, message.conflictAction, callback);
-                }
-            }),
-            chrome.permissions.request({permissions: ['downloads']}, (granted) => {
-                cLog('downloadFile granted: ' + granted);
-                if (granted) {
-                    downloadFile(message.url, message.filename, message.conflictAction, callback);
+                } else {
+                    chrome.permissions.request({permissions: ['downloads']}, (granted) => {
+                        cLog('downloadFile granted: ' + granted);
+                        if (granted) {
+                            downloadFile(message.url, message.filename, message.conflictAction, callback);
+                        }
+                    })
                 }
             });
             return true;
