@@ -94,9 +94,9 @@ function onMessage(message, sender, callback) {
             * Not as clean or effecient as just using 'permissions.request'.
             */
             cLog('downloadFileBlob: ' + message);
-            chrome.permissions.contains({permissions: ['downloads']}, (granted) => {
-                cLog('downloadFile contains: ' + granted);
-                if (granted) {
+            chrome.permissions.contains({permissions: ['downloads']}, (contained) => {
+                cLog('downloadFile contains: ' + contained);
+                if (contained) {
                     ajaxRequest({method:'GET', response:'DOWNLOAD', url:message.url, filename:message.filename, conflictAction:message.conflictAction, headers:message.headers}, callback);
                 } else {
                     chrome.permissions.request({permissions: ['downloads']}, (granted) => {
@@ -115,9 +115,9 @@ function onMessage(message, sender, callback) {
             * First checks if permissions are availble. If true, downloads file. If not, requests them.
             * Not as clean or effecient as just using 'permissions.request'.
             */
-            chrome.permissions.contains({permissions: ['downloads']}, (granted) => {
-                cLog('downloadFile contains: ' + granted);
-                if (granted) {
+            chrome.permissions.contains({permissions: ['downloads']}, (contained) => {
+                cLog('downloadFile contains: ' + contained);
+                if (contained) {
                     downloadFile(message.url, message.filename, message.conflictAction, callback);
                 } else {
                     chrome.permissions.request({permissions: ['downloads']}, (granted) => {
