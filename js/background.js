@@ -365,16 +365,20 @@ function updateHeaders(headers, settings) {
 // so they can be edited on-the-fly to enable API calls from plug-ins
 // https://developer.chrome.com/docs/extensions/reference/webRequest/
 function addWebRequestListeners() {
-    chrome.webRequest.onBeforeSendHeaders.addListener(updateRequestHeaders, { urls : ["<all_urls>"] }, [
-        'blocking',
-        'requestHeaders',
-        chrome.webRequest.OnSendHeadersOptions.EXTRA_HEADERS,
-      ].filter(Boolean));
-    chrome.webRequest.onHeadersReceived.addListener(updateResponseHeaders, { urls : ["<all_urls>"] }, [
-        'blocking',
-        'responseHeaders',
-        chrome.webRequest.OnSendHeadersOptions.EXTRA_HEADERS,
-      ].filter(Boolean));
+    if (!chrome.webRequest.onBeforeSendHeaders.hasListener(updateRequestHeaders)) {
+        chrome.webRequest.onBeforeSendHeaders.addListener(updateRequestHeaders, { urls : ["<all_urls>"] }, [
+            'blocking',
+            'requestHeaders',
+            chrome.webRequest.OnSendHeadersOptions.EXTRA_HEADERS,
+        ].filter(Boolean));
+    }
+    if (!chrome.webRequest.onHeadersReceived.hasListener(updateResponseHeaders)){
+        chrome.webRequest.onHeadersReceived.addListener(updateResponseHeaders, { urls : ["<all_urls>"] }, [
+            'blocking',
+            'responseHeaders',
+            chrome.webRequest.OnSendHeadersOptions.EXTRA_HEADERS,
+        ].filter(Boolean));
+    }
     
 }
 
