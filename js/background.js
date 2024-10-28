@@ -8,12 +8,12 @@ function cLog(msg) {
 
 // Performs an ajax request
 function ajaxRequest(request, callback) {
-    var xhr = new XMLHttpRequest();
-    var response = request.response;
-    var method = request.method;
-    var url = request.url;
-    var filename = request.filename;
-    var conflictAction = request.conflictAction;
+    const response = request.response;
+    const method = request.method;
+    const filename = request.filename;
+    const conflictAction = request.conflictAction;
+    let xhr = new XMLHttpRequest();
+    let url = request.url;
 
     if (response === 'DOWNLOAD') xhr.responseType = 'arraybuffer';
 
@@ -43,7 +43,7 @@ function ajaxRequest(request, callback) {
     }
 
     xhr.open(request.method, request.url, true);
-    for (var i in request.headers) {
+    for (let i in request.headers) {
         xhr.setRequestHeader(request.headers[i].header, request.headers[i].value);
     }
     xhr.send(request.data);
@@ -178,7 +178,7 @@ function onMessage(message, sender, callback) {
             localStorage.removeItem(message.id);
             break;
         case 'openViewWindow':
-            var url = message.createData.url;
+            let url = message.createData.url;
             if (url.indexOf('facebook.com/photo/download') !== -1) {
                 message.createData.url = 'data:text/html,<img src="' + url + '">';
             }
@@ -191,7 +191,7 @@ function onMessage(message, sender, callback) {
                 message.createData.index = tabs[0].index;
                 if (!message.createData.active)
                     message.createData.index++;
-                var url = message.createData.url;
+                let url = message.createData.url;
                 if (url.indexOf('facebook.com/photo/download') !== -1) {
                     message.createData.url = 'data:text/html,<img src="' + url + '">';
                 }
