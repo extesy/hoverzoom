@@ -80,25 +80,52 @@ function downloadFile(url, filename, conflictAction, callback) {
 function onMessage(message, sender, callback) {
     switch (message.action) {
         case 'downloadFileBlob':
-            // direct URL download through Chrome API might be prohibited (e.g: Pixiv)
-            // workaround:
-            // 1. obtain ArrayBuffer from XHR request (GET URL)
-            // 2. create Blob from ArrayBuffer
-            // 3. download Blob URL through Chrome API
+            /** 
+            * direct URL download through Chrome API might be prohibited (e.g: Pixiv)
+            * workaround:
+            * 1. obtain ArrayBuffer from XHR request (GET URL)
+            * 2. create Blob from ArrayBuffer
+            * 3. download Blob URL through Chrome API
+            */
+
+            /*
+            * Workaround for permissions.request not returning a promise in Firefox 
+            * First checks if permissions are availble. If true, downloads file. If not, requests them.
+            * Not as clean or effecient as just using 'permissions.request'.
+            */
             cLog('downloadFileBlob: ' + message);
-            chrome.permissions.request({permissions: ['downloads']}, function (granted) {
-                cLog('downloadFile granted: ' + granted);
-                if (granted) {
+            chrome.permissions.contains({permissions: ['downloads']}, (contained) => {
+                cLog('downloadFile contains: ' + contained);
+                if (contained) {
                     ajaxRequest({method:'GET', response:'DOWNLOAD', url:message.url, filename:message.filename, conflictAction:message.conflictAction, headers:message.headers}, callback);
+                } else {
+                    chrome.permissions.request({permissions: ['downloads']}, (granted) => {
+                        cLog('downloadFile granted: ' + granted);
+                        if (granted) {
+                            ajaxRequest({method:'GET', response:'DOWNLOAD', url:message.url, filename:message.filename, conflictAction:message.conflictAction, headers:message.headers}, callback);
+                        }
+                    })
                 }
             });
             return true;
         case 'downloadFile':
             cLog('downloadFile: ' + message);
-            chrome.permissions.request({permissions: ['downloads']}, function (granted) {
-                cLog('downloadFile granted: ' + granted);
-                if (granted) {
+            /*
+            * Workaround for permissions.request not returning a promise in Firefox 
+            * First checks if permissions are availble. If true, downloads file. If not, requests them.
+            * Not as clean or effecient as just using 'permissions.request'.
+            */
+            chrome.permissions.contains({permissions: ['downloads']}, (contained) => {
+                cLog('downloadFile contains: ' + contained);
+                if (contained) {
                     downloadFile(message.url, message.filename, message.conflictAction, callback);
+                } else {
+                    chrome.permissions.request({permissions: ['downloads']}, (granted) => {
+                        cLog('downloadFile granted: ' + granted);
+                        if (granted) {
+                            downloadFile(message.url, message.filename, message.conflictAction, callback);
+                        }
+                    })
                 }
             });
             return true;
