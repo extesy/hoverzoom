@@ -274,15 +274,19 @@ chrome.runtime.onInstalled.addListener((details) => {
     }
 })
 
-// - store request's header(s) setting(s) = modification(s) to be applied to request's header(s) just before sending request to server
-//   e.g: add/modify "Origin" header to deal with CORS limitations
-// - store response's header(s) setting(s) = modification(s) to be applied to response's header(s) just after receiving response from server
-//   e.g: add/modify "Access-Control-Allow-Origin" header so browser allows content display
+/**
+* - store request's header(s) setting(s) = modification(s) to be applied to request's header(s) just before sending request to server
+*   e.g: add/modify "Origin" header to deal with CORS limitations
+* - store response's header(s) setting(s) = modification(s) to be applied to response's header(s) just after receiving response from server
+*   e.g: add/modify "Access-Control-Allow-Origin" header so browser allows content display
+*/
 function storeHeaderSettings(message) {
-    // check that:
-    // - header(s) rewrite is allowed
-    // and
-    // - permissions are granted
+    /**
+    * check that:
+    * - header(s) rewrite is allowed
+    * and
+    * - permissions are granted
+    */
     if (!options.allowHeadersRewrite) {
         return;
     }
@@ -338,10 +342,12 @@ function findHeaderSettings(url, requestOrResponse) {
 // update header(s) according to plug-in settings
 function updateHeaders(headers, settings) {
     settings.headers.forEach(h => {
-        // types of update:
-        // - 'remove':  remove header
-        // - 'replace': replace header, if header does not exist then do nothing
-        // - 'add':     add header, if header already exists then replace it
+        /**
+        * types of update:
+        * - 'remove':  remove header
+        * - 'replace': replace header, if header does not exist then do nothing
+        * - 'add':     add header, if header already exists then replace it
+        */
         if (h.typeOfUpdate === 'remove') {
             let index = headers.findIndex(rh => rh.name.toLowerCase() === h.name.toLowerCase());
             if (index !== -1) headers.splice(index, 1);
@@ -359,11 +365,14 @@ function updateHeaders(headers, settings) {
     return headers;
 }
 
-// add listeners for web requests:
-// - onBeforeSendHeaders
-// - onHeadersReceived
-// so they can be edited on-the-fly to enable API calls from plug-ins
-// https://developer.chrome.com/docs/extensions/reference/webRequest/
+/** 
+* add listeners for web requests:
+* - onBeforeSendHeaders
+* - onHeadersReceived
+* so they can be edited on-the-fly to enable API calls from plug-ins
+* https://developer.chrome.com/docs/extensions/reference/webRequest/
+* https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest
+*/
 
 function addWebRequestListeners() {
     if (!chrome.webRequest.onBeforeSendHeaders.hasListener(updateRequestHeaders)) {
@@ -383,10 +392,12 @@ function addWebRequestListeners() {
     
 }
 
-// remove listeners for web requests:
-// - onBeforeSendHeaders
-// - onHeadersReceived
-// also remove headers settings since they are not used anymore
+/**
+* remove listeners for web requests:
+* - onBeforeSendHeaders
+* - onHeadersReceived
+* also remove headers settings since they are not used anymore
+*/
 function removeWebRequestListeners() {
     if (!chrome.webRequest.onBeforeSendHeaders.hasListener(updateRequestHeaders))
         chrome.webRequest.onBeforeSendHeaders.removeListener(updateRequestHeaders);
