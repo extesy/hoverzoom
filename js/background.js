@@ -399,9 +399,9 @@ function addWebRequestListeners() {
 * also remove headers settings since they are not used anymore
 */
 function removeWebRequestListeners() {
-    if (!chrome.webRequest.onBeforeSendHeaders.hasListener(updateRequestHeaders))
+    if (chrome.webRequest.onBeforeSendHeaders.hasListener(updateRequestHeaders))
         chrome.webRequest.onBeforeSendHeaders.removeListener(updateRequestHeaders);
-    if (!chrome.webRequest.onHeadersReceived.hasListener(updateResponseHeaders))
+    if (chrome.webRequest.onHeadersReceived.hasListener(updateResponseHeaders))
         chrome.webRequest.onHeadersReceived.removeListener(updateResponseHeaders);
 
     sessionStorage.removeItem('HoverZoomHeaderSettings');
