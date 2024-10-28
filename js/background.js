@@ -364,6 +364,7 @@ function updateHeaders(headers, settings) {
 // - onHeadersReceived
 // so they can be edited on-the-fly to enable API calls from plug-ins
 // https://developer.chrome.com/docs/extensions/reference/webRequest/
+
 function addWebRequestListeners() {
     if (!chrome.webRequest.onBeforeSendHeaders.hasListener(updateRequestHeaders)) {
         chrome.webRequest.onBeforeSendHeaders.addListener(updateRequestHeaders, { urls : ["<all_urls>"] }, [
@@ -387,9 +388,9 @@ function addWebRequestListeners() {
 // - onHeadersReceived
 // also remove headers settings since they are not used anymore
 function removeWebRequestListeners() {
-    if (chrome.webRequest.onBeforeSendHeaders.hasListeners())
+    if (!chrome.webRequest.onBeforeSendHeaders.hasListener(updateRequestHeaders))
         chrome.webRequest.onBeforeSendHeaders.removeListener(updateRequestHeaders);
-    if (chrome.webRequest.onHeadersReceived.hasListeners())
+    if (!chrome.webRequest.onHeadersReceived.hasListener(updateResponseHeaders))
         chrome.webRequest.onHeadersReceived.removeListener(updateResponseHeaders);
 
     sessionStorage.removeItem('HoverZoomHeaderSettings');
