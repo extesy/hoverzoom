@@ -88,6 +88,13 @@ hoverZoomPlugins.push({
       }
     });
 
+    // Works on sh.reddit images
+    $('img[class*="i18n-post-media-img"]').one('mouseover', function () {
+      let post = $(this);
+      let link = post.attr('src');
+      hoverZoom.prepareLink(post, link)
+    });
+
     var promises = [];
 
     $('div[data-url*="//i.redd.it/"], div[data-url*="//i.reddituploads.com/"]').each(function () {
