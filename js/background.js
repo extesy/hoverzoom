@@ -379,14 +379,14 @@ function addWebRequestListeners() {
         chrome.webRequest.onBeforeSendHeaders.addListener(updateRequestHeaders, { urls : ["<all_urls>"] }, [
             'blocking',
             'requestHeaders',
-            chrome.webRequest.onBeforeSendHeadersOptions.EXTRA_HEADERS,
+            chrome.webRequest.OnSendHeadersOptions.EXTRA_HEADERS,
         ].filter(Boolean));
     }
     if (!chrome.webRequest.onHeadersReceived.hasListener(updateResponseHeaders)){
         chrome.webRequest.onHeadersReceived.addListener(updateResponseHeaders, { urls : ["<all_urls>"] }, [
             'blocking',
             'responseHeaders',
-            chrome.webRequest.OnHeadersReceivedOptions.EXTRA_HEADERS,
+            chrome.webRequest.OnSendHeadersOptions.EXTRA_HEADERS,
         ].filter(Boolean));
     }
     
