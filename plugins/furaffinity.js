@@ -9,7 +9,8 @@ hoverZoomPlugins.push({
 		}).addClass('hoverZoomMouseover').one('mouseover', function() {
             hoverZoom.prepareFromDocument($(this), this.href, function(doc) {
                 var img = doc.querySelector('img[data-fullview-src]');
-                return img ? img.dataset.fullviewSrc : null;
+                const fullImg = img ? 'http:' + img.dataset.fullviewSrc : null;
+                return fullImg
             });
         });
         callback($(res), this.name);
