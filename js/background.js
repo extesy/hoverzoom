@@ -8,12 +8,12 @@ function cLog(msg) {
 
 // Performs an ajax request
 function ajaxRequest(request, callback) {
-    var xhr = new XMLHttpRequest();
-    var response = request.response;
-    var method = request.method;
-    var url = request.url;
-    var filename = request.filename;
-    var conflictAction = request.conflictAction;
+    const response = request.response;
+    const method = request.method;
+    const filename = request.filename;
+    const conflictAction = request.conflictAction;
+    let xhr = new XMLHttpRequest();
+    let url = request.url;
 
     if (response === 'DOWNLOAD') xhr.responseType = 'arraybuffer';
 
@@ -43,7 +43,7 @@ function ajaxRequest(request, callback) {
     }
 
     xhr.open(request.method, request.url, true);
-    for (var i in request.headers) {
+    for (let i in request.headers) {
         xhr.setRequestHeader(request.headers[i].header, request.headers[i].value);
     }
     xhr.send(request.data);
@@ -178,7 +178,7 @@ function onMessage(message, sender, callback) {
             localStorage.removeItem(message.id);
             break;
         case 'openViewWindow':
-            var url = message.createData.url;
+            let url = message.createData.url;
             if (url.indexOf('facebook.com/photo/download') !== -1) {
                 message.createData.url = 'data:text/html,<img src="' + url + '">';
             }
@@ -191,7 +191,7 @@ function onMessage(message, sender, callback) {
                 message.createData.index = tabs[0].index;
                 if (!message.createData.active)
                     message.createData.index++;
-                var url = message.createData.url;
+                let url = message.createData.url;
                 if (url.indexOf('facebook.com/photo/download') !== -1) {
                     message.createData.url = 'data:text/html,<img src="' + url + '">';
                 }
@@ -274,15 +274,19 @@ chrome.runtime.onInstalled.addListener((details) => {
     }
 })
 
-// - store request's header(s) setting(s) = modification(s) to be applied to request's header(s) just before sending request to server
-//   e.g: add/modify "Origin" header to deal with CORS limitations
-// - store response's header(s) setting(s) = modification(s) to be applied to response's header(s) just after receiving response from server
-//   e.g: add/modify "Access-Control-Allow-Origin" header so browser allows content display
+/**
+* - store request's header(s) setting(s) = modification(s) to be applied to request's header(s) just before sending request to server
+*   e.g: add/modify "Origin" header to deal with CORS limitations
+* - store response's header(s) setting(s) = modification(s) to be applied to response's header(s) just after receiving response from server
+*   e.g: add/modify "Access-Control-Allow-Origin" header so browser allows content display
+*/
 function storeHeaderSettings(message) {
-    // check that:
-    // - header(s) rewrite is allowed
-    // and
-    // - permissions are granted
+    /**
+    * check that:
+    * - header(s) rewrite is allowed
+    * and
+    * - permissions are granted
+    */
     if (!options.allowHeadersRewrite) {
         return;
     }
@@ -338,10 +342,12 @@ function findHeaderSettings(url, requestOrResponse) {
 // update header(s) according to plug-in settings
 function updateHeaders(headers, settings) {
     settings.headers.forEach(h => {
-        // types of update:
-        // - 'remove':  remove header
-        // - 'replace': replace header, if header does not exist then do nothing
-        // - 'add':     add header, if header already exists then replace it
+        /**
+        * types of update:
+        * - 'remove':  remove header
+        * - 'replace': replace header, if header does not exist then do nothing
+        * - 'add':     add header, if header already exists then replace it
+        */
         if (h.typeOfUpdate === 'remove') {
             let index = headers.findIndex(rh => rh.name.toLowerCase() === h.name.toLowerCase());
             if (index !== -1) headers.splice(index, 1);
@@ -359,26 +365,43 @@ function updateHeaders(headers, settings) {
     return headers;
 }
 
-// add listeners for web requests:
-// - onBeforeSendHeaders
-// - onHeadersReceived
-// so they can be edited on-the-fly to enable API calls from plug-ins
-// https://developer.chrome.com/docs/extensions/reference/webRequest/
+/** 
+* add listeners for web requests:
+* - onBeforeSendHeaders
+* - onHeadersReceived
+* so they can be edited on-the-fly to enable API calls from plug-ins
+* https://developer.chrome.com/docs/extensions/reference/webRequest/
+* https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest
+*/
+
 function addWebRequestListeners() {
-    if (!chrome.webRequest.onBeforeSendHeaders.hasListeners())
-        chrome.webRequest.onBeforeSendHeaders.addListener(updateRequestHeaders, { urls : ["<all_urls>"] }, ["blocking", "requestHeaders", "extraHeaders"]);
-    if (!chrome.webRequest.onHeadersReceived.hasListeners())
-        chrome.webRequest.onHeadersReceived.addListener(updateResponseHeaders, { urls : ["<all_urls>"] }, ["blocking", "responseHeaders", "extraHeaders"]);
+    if (!chrome.webRequest.onBeforeSendHeaders.hasListener(updateRequestHeaders)) {
+        chrome.webRequest.onBeforeSendHeaders.addListener(updateRequestHeaders, { urls : ["<all_urls>"] }, [
+            'blocking',
+            'requestHeaders',
+            chrome.webRequest.OnSendHeadersOptions.EXTRA_HEADERS,
+        ].filter(Boolean));
+    }
+    if (!chrome.webRequest.onHeadersReceived.hasListener(updateResponseHeaders)){
+        chrome.webRequest.onHeadersReceived.addListener(updateResponseHeaders, { urls : ["<all_urls>"] }, [
+            'blocking',
+            'responseHeaders',
+            chrome.webRequest.OnSendHeadersOptions.EXTRA_HEADERS,
+        ].filter(Boolean));
+    }
+    
 }
 
-// remove listeners for web requests:
-// - onBeforeSendHeaders
-// - onHeadersReceived
-// also remove headers settings since they are not used anymore
+/**
+* remove listeners for web requests:
+* - onBeforeSendHeaders
+* - onHeadersReceived
+* also remove headers settings since they are not used anymore
+*/
 function removeWebRequestListeners() {
-    if (chrome.webRequest.onBeforeSendHeaders.hasListeners())
+    if (chrome.webRequest.onBeforeSendHeaders.hasListener(updateRequestHeaders))
         chrome.webRequest.onBeforeSendHeaders.removeListener(updateRequestHeaders);
-    if (chrome.webRequest.onHeadersReceived.hasListeners())
+    if (chrome.webRequest.onHeadersReceived.hasListener(updateResponseHeaders))
         chrome.webRequest.onHeadersReceived.removeListener(updateResponseHeaders);
 
     sessionStorage.removeItem('HoverZoomHeaderSettings');
