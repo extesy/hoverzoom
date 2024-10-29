@@ -95,6 +95,14 @@ hoverZoomPlugins.push({
       hoverZoom.prepareLink(post, link)
     });
 
+    $('shreddit-player-2').one('mouseover', function () {
+      let post = $(this);
+      let link = post.find('"source":{"url":')
+
+      console.log(link)
+
+    });
+    
     var promises = [];
 
     $('div[data-url*="//i.redd.it/"], div[data-url*="//i.reddituploads.com/"]').each(function () {
