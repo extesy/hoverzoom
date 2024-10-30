@@ -323,6 +323,14 @@
         "message": "Centrare le immagini anziché di farle seguire il cursore",
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
+    "optAutoLockImages": {
+        "message": "Automatically lock images",
+        "description": "[options] Automatically lock images option"
+    },
+    "optAutoLockImagesTooltip": {
+        "message": "Automatically lock images when activating Hover Zoom+",
+        "description": "[options] Tooltip for automatically lock images option"
+    },
     "optFrameBackgroundColor": {
         "message": "Colore di sfondo della cornice:",
         "description": "[options] Frame background color option"
