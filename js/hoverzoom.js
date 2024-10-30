@@ -1577,6 +1577,11 @@ var hoverZoom = {
 
         function displayFullSizeImage() {
             cLog('displayFullSizeImage');
+
+            // if autoLock activate option is checked
+            if (options.autoLockImages)
+                viewerLocked = true;
+
             // check focus
             let focus = document.hasFocus();
 
