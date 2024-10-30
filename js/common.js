@@ -126,6 +126,7 @@ function loadOptions() {
     options.ambilightBackgroundOpacity = options.hasOwnProperty('ambilightBackgroundOpacity') ? options.ambilightBackgroundOpacity : factorySettings.ambilightBackgroundOpacity;
     options.disabledPlugins = options.hasOwnProperty('disabledPlugins') ? options.disabledPlugins : factorySettings.disabledPlugins;
     options.centerImages = options.hasOwnProperty('centerImages') ? options.centerImages : factorySettings.centerImages;
+    options.autoLockImages = options.hasOwnProperty('autoLockImages') ? options.autoLockImages : factorySettings.autoLockImages;
     options.frameBackgroundColor = options.hasOwnProperty('frameBackgroundColor') ? options.frameBackgroundColor : factorySettings.frameBackgroundColor;
     options.frameThickness = options.hasOwnProperty('frameThickness') ? options.frameThickness : factorySettings.frameThickness;
     options.displayImageLoader = options.hasOwnProperty('displayImageLoader') ? options.displayImageLoader : factorySettings.displayImageLoader;
