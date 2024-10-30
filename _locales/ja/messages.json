@@ -323,6 +323,14 @@
         "message": "画像がカーソルに追従するのではなく、中央に表示されるようになりました。",
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
+    "optAutoLockImages": {
+        "message": "Automatically lock images",
+        "description": "[options] Automatically lock images option"
+    },
+    "optAutoLockImagesTooltip": {
+        "message": "Automatically lock images when activating Hover Zoom+",
+        "description": "[options] Tooltip for automatically lock images option"
+    },
     "optFrameBackgroundColor": {
         "message": "フレームの背景色。",
         "description": "[options] Frame background color option"
