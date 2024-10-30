@@ -103,6 +103,7 @@ function saveOptions() {
     options.ambilightHaloSize = $('#txtAmbilightHaloSize')[0].value / 100;
     options.ambilightBackgroundOpacity = $('#txtAmbilightBackgroundOpacity')[0].value / 100;
     options.centerImages = $('#chkCenterImages')[0].checked;
+    options.autoLockImages = $('#chkAutoLockImages')[0].checked;
     options.frameBackgroundColor = $('#pickerFrameBackgroundColor')[0].value;
     options.frameThickness = $('#txtFrameThickness')[0].value;
 
@@ -200,6 +201,7 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#rngAmbilightBackgroundOpacity').val(parseInt(options.ambilightBackgroundOpacity * 100));
     $('#txtAmbilightBackgroundOpacity').val(parseInt(options.ambilightBackgroundOpacity * 100));
     $('#chkCenterImages').trigger(options.centerImages ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkAutoLockImages').trigger(options.autoLockImages ? 'gumby.check' : 'gumby.uncheck');
     $('#pickerFrameBackgroundColor').val(options.frameBackgroundColor);
     $('#rngFrameThickness').val(parseInt(options.frameThickness));
     $('#txtFrameThickness').val(parseInt(options.frameThickness));
