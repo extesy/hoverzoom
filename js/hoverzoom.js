@@ -490,8 +490,8 @@ var hoverZoom = {
                 if (viewerLocked) {
                     imgFullSize.width(srcDetails.naturalWidth * zoomFactor);
                 } else if (fullZoomKey) {
-                    //Replace zoomFactor by a large number to fill viewer screen
-                    imgFullSize.width(Math.min(srcDetails.naturalWidth * 500, wndWidth - padding - 2 * scrollBarWidth)); 
+                    //naturalWidth replaced with wndWidth to make image fit window size
+                    imgFullSize.width(Math.min(wndWidth, wndWidth - padding - 2 * scrollBarWidth)); 
                 } else if (fullZoom) {
                     imgFullSize.width(Math.min(srcDetails.naturalWidth * zoomFactor, wndWidth - padding - 2 * scrollBarWidth));
                 } else if (displayOnRight) {
