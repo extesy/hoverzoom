@@ -485,9 +485,13 @@ var hoverZoom = {
                 }
 
                 // width adjustment
-                var fullZoom = options.mouseUnderlap || fullZoomKeyDown || viewerLocked;
+                const fullZoom = options.mouseUnderlap ||  viewerLocked;
+                const fullZoomKey = fullZoomKeyDown
                 if (viewerLocked) {
                     imgFullSize.width(srcDetails.naturalWidth * zoomFactor);
+                } else if (fullZoomKey) {
+                    //Replace zoomFactor by a large number to fill viewer screen
+                    imgFullSize.width(Math.min(srcDetails.naturalWidth * 500, wndWidth - padding - 2 * scrollBarWidth)); 
                 } else if (fullZoom) {
                     imgFullSize.width(Math.min(srcDetails.naturalWidth * zoomFactor, wndWidth - padding - 2 * scrollBarWidth));
                 } else if (displayOnRight) {
