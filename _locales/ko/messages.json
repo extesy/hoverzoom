@@ -323,6 +323,14 @@
         "message": "사진이 커서를 따라 이동하도록 하는 대신 중앙에 배치",
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
+    "optAutoLockImages": {
+        "message": "Automatically lock images",
+        "description": "[options] Automatically lock images option"
+    },
+    "optAutoLockImagesTooltip": {
+        "message": "Automatically lock images when activating Hover Zoom+",
+        "description": "[options] Tooltip for automatically lock images option"
+    },
     "optFrameBackgroundColor": {
         "message": "액자 배경색:",
         "description": "[options] Frame background color option"
