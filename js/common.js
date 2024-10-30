@@ -34,7 +34,7 @@ var factorySettings = {
     ambilightBackgroundOpacity : 0.9,
     disabledPlugins : [],
     centerImages : false,
-    autoLockImages  : false,
+    autoLockImages : false,
     frameBackgroundColor: "#ffffff",
     frameThickness: 4,
     displayImageLoader: false,
