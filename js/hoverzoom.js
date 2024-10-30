@@ -1578,7 +1578,7 @@ var hoverZoom = {
         function displayFullSizeImage() {
             cLog('displayFullSizeImage');
 
-            // if autoLock activate option is checked
+            // if autoLockImages option is checked
             if (options.autoLockImages)
                 viewerLocked = true;
 
