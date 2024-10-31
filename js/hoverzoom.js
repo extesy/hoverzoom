@@ -486,11 +486,11 @@ var hoverZoom = {
 
                 // width adjustment
                 const fullZoom = options.mouseUnderlap ||  viewerLocked;
-                const fullZoomKey = fullZoomKeyDown
+                const fullZoomKey = fullZoomKeyDown;
                 if (viewerLocked) {
                     imgFullSize.width(srcDetails.naturalWidth * zoomFactor);
                 } else if (fullZoomKey) {
-                    //naturalWidth replaced with wndWidth to make image fill window
+                    // naturalWidth replaced with wndWidth to make image fill window
                     imgFullSize.width(Math.min(wndWidth, wndWidth - padding - 2 * scrollBarWidth)); 
                 } else if (fullZoom) {
                     imgFullSize.width(Math.min(srcDetails.naturalWidth * zoomFactor, wndWidth - padding - 2 * scrollBarWidth));
