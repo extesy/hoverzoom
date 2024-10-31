@@ -485,9 +485,13 @@ var hoverZoom = {
                 }
 
                 // width adjustment
-                var fullZoom = options.mouseUnderlap || fullZoomKeyDown || viewerLocked;
+                const fullZoom = options.mouseUnderlap ||  viewerLocked;
+                const fullZoomKey = fullZoomKeyDown;
                 if (viewerLocked) {
                     imgFullSize.width(srcDetails.naturalWidth * zoomFactor);
+                } else if (fullZoomKey) {
+                    // naturalWidth replaced with wndWidth to make image fill window
+                    imgFullSize.width(Math.min(wndWidth, wndWidth - padding - 2 * scrollBarWidth)); 
                 } else if (fullZoom) {
                     imgFullSize.width(Math.min(srcDetails.naturalWidth * zoomFactor, wndWidth - padding - 2 * scrollBarWidth));
                 } else if (displayOnRight) {
@@ -2345,7 +2349,7 @@ var hoverZoom = {
             // for instance, on TripAdvisor:
             // img's src placeholder is replaced by real img url stored in data-lazyurl as user scrolls down
             $(document).on('scroll mousewheel', function() {
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+                let scrollTop = window.scrollY || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
                 if (scrollTop < lastScrollTop) {
                     lastScrollTop = scrollTop < 0 ? 0 : scrollTop; // For Mobile or negative scrolling
                 } else if (scrollTop > lastScrollTop + deltaMin) {
