@@ -490,7 +490,7 @@ var hoverZoom = {
                 if (viewerLocked) {
                     imgFullSize.width(srcDetails.naturalWidth * zoomFactor);
                 } else if (fullZoomKey) {
-                    //naturalWidth replaced with wndWidth to make image fit window size
+                    //naturalWidth replaced with wndWidth to make image fill window
                     imgFullSize.width(Math.min(wndWidth, wndWidth - padding - 2 * scrollBarWidth)); 
                 } else if (fullZoom) {
                     imgFullSize.width(Math.min(srcDetails.naturalWidth * zoomFactor, wndWidth - padding - 2 * scrollBarWidth));
