@@ -486,6 +486,10 @@
             "matches": ["*://*.twitter.com/*"]
         },
         {
+            "js": ["plugins/gifbin.js"],
+            "matches": ["*://gifbin.com/*"]
+        },
+        {
             "js": ["plugins/ravelry.js"],
             "matches": ["*://*.ravelry.com/*"]
         },
