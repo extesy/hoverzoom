@@ -88,6 +88,21 @@ hoverZoomPlugins.push({
       }
     });
 
+    // To load sh.reddit images
+    $('img.i18n-post-media-img').one('mouseover', function () {
+      let post = $(this);
+      let link = post.attr('src');
+      hoverZoom.prepareLink(post, link)
+    });
+    
+    // To load sh.reddit videos
+    $('shreddit-player-2').one('mouseover', function () {
+      let post = $(this);
+      let packagedMedia = post.attr('packaged-media-json');
+      let link = 'https://' + packagedMedia.match(/"source":{"url":".*(packaged-media.redd.it\/.*)","dimensions"/)[1];
+      hoverZoom.prepareLink(post, link);
+    });
+    
     var promises = [];
 
     $('div[data-url*="//i.redd.it/"], div[data-url*="//i.reddituploads.com/"]').each(function () {
