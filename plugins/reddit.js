@@ -89,7 +89,7 @@ hoverZoomPlugins.push({
     });
 
     // To load sh.reddit images
-    $('img[class*="i18n-post-media-img"]').one('mouseover', function () {
+    $('img.i18n-post-media-img').one('mouseover', function () {
       let post = $(this);
       let link = post.attr('src');
       hoverZoom.prepareLink(post, link)
