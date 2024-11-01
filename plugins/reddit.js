@@ -94,6 +94,23 @@ hoverZoomPlugins.push({
       let link = post.attr('src');
       hoverZoom.prepareLink(post, link)
     });
+
+    /*
+    $('a.absolute.inset-0').one('mouseover', function () {
+      hoverZoom.prepareFromDocument($(this), this.href, function(doc) {
+        const img = doc.getElementById('post-image');
+        console.log(img.src)
+        return img ? img.src : null;
+      });
+    });
+    */
+    //shows thumbnails. Temp fix
+    $('faceplate-img.rounded-sm').one('mouseover', function () {
+      hoverZoom.prepareFromDocument($(this), post.attr('src'), function(doc) {
+        const img = doc.querySelector('img[data-fullview-src]');
+        return img ? 'https:' + img.dataset.fullviewSrc : null;
+    });
+    });
     
     // To load sh.reddit videos
     $('shreddit-player-2').one('mouseover', function () {
