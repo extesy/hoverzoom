@@ -1981,6 +1981,10 @@
             "matches": ["*://*.kleinanzeigen.de/*"]
         },
         {
+            "js": ["plugins/tenor.js"],
+            "matches": ["*://*.tenor.com/*"]
+        },
+        {
             "js": ["plugins/trakttv.js"],
             "matches": ["*://*.trakt.tv/*"]
         },
