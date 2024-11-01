@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Paheal.net',
-    version:'0.1',
+    version:'0.2',
     prepareImgLinks:function (callback) {
         let res = [];
 
