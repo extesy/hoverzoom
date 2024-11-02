@@ -1275,6 +1275,10 @@
             "matches": ["*://*.artstation.com/*"]
         },
         {
+            "js": ["plugins/artfol.js"],
+            "matches": ["*://*.artfol.co/*"]
+        },
+        {
             "js": ["plugins/artsper.js"],
             "matches": ["*://*.artsper.com/*"]
         },
