@@ -1937,6 +1937,10 @@
             "matches": ["*://*.head-fi.org/*"]
         },
         {
+            "js": ["plugins/etejo.js"],
+            "matches": ["*://*.etejo.com/*"]
+        },
+        {
             "js": ["plugins/wildcritters.js"],
             "matches": ["*://*.wildcritters.ws/*"]
         },
