@@ -721,17 +721,17 @@ function enableAllPlugins() {
 }
 
 function importSettings() {
-    let jsonString = $('#txtBoxImportExportSettings').value
+    //Checks if string is JSON
+    let jsonString = $('#txtBoxImportExportSettings')[0].value
     try {
         JSON.parse(jsonString);
     } catch (e) {
-        console.log('is not json')
         displayMsg(ImportFail)
         return false;
     }
     displayMsg(Imported)
-    console.log('is json')
-    //loadOptions(true);
+    loadOptions(jsonString);
+    $('#txtBoxImportExportSettings').val('')
 }
 
 function exportSettings() {
