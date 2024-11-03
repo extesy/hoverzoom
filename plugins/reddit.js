@@ -115,9 +115,13 @@ hoverZoomPlugins.push({
     // To load sh.reddit videos
     $('shreddit-player-2').one('mouseover', function () {
       let post = $(this);
-      let packagedMedia = post.attr('packaged-media-json');
-      let link = 'https://' + packagedMedia.match(/"source":{"url":".*(packaged-media.redd.it\/.*)","dimensions"/)[1];
-      hoverZoom.prepareLink(post, link);
+      let src = post.attr('src')
+      let packagedMedia = post.attr('packaged-media-json')
+
+      if (packagedMedia) {
+        src = 'https://' + packagedMedia.match(/"source":{"url":".*(packaged-media.redd.it\/.*)","dimensions"/)[1];
+      }
+      hoverZoom.prepareLink(post, src);
     });
     
     var promises = [];
