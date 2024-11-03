@@ -150,9 +150,11 @@ function saveOptions() {
     options.useSeparateTabOrWindowForUnloadableUrls = $('#selectUseSeparateTabOrWindowForUnloadableUrls').val();
 
     localStorage.options = JSON.stringify(options);
-
+    if (exportSettings) { return localStorage.options }
+    
     sendOptions(options);
     restoreOptions();
+    
 
     return false;
 }
@@ -661,6 +663,7 @@ $(function () {
     $('#btnReset').click(function() { restoreOptionsFromFactorySettings(); displayMsg(Reset); return false; });
     $('#btnDisableAllPlugins').click(function() { disableAllPlugins(); return false; });
     $('#btnEnableAllPlugins').click(function() { enableAllPlugins(); return false; });
+    $('#btnExportSettings').click(function() { exportSettings(); return false; });
     $('#chkWhiteListMode').parent().on('gumby.onChange', chkWhiteListModeOnChange);
     $('#txtZoomFactor').change(percentageOnChange);
     $('#txtPicturesOpacity').change(percentageOnChange);
@@ -705,6 +708,10 @@ function disableAllPlugins() {
 
 function enableAllPlugins() {
     $('input.chkPlugin').each(function() { $(this).trigger('gumby.check'); })
+}
+
+function exportSettings() {
+    $('#txtBoxImportExportSettings').val(saveOptions(true));
 }
 
 // highlight item if modified, unhighlight if not modified
