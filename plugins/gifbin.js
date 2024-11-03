@@ -4,7 +4,7 @@ hoverZoomPlugins.push({
     prepareImgLinks:function (callback) {
         let res = [];
 
-        // TODO: Fix status code 206 and repeated warning: "Invalid URI. Load of media resource  failed."
+        // TODO: Fix status code 206 and repeated warning: "Invalid URI. Load of media resource failed."
         $('a[title][href*="/"]:not([class][poster])').filter(function() {
              return this.href.match(/gifbin\.com\/\d+$/);
         }).one('mouseover', function () { 
