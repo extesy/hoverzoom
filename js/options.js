@@ -634,6 +634,8 @@ function initColorPicker(color){
 const Saved = Symbol("saved");
 const Cancel = Symbol("cancel");
 const Reset = Symbol("reset");
+const Imported = Symbol("imported");
+const ImportFail = Symbol("importFail");
 function displayMsg(msg) {
     switch (msg)  {
         case Saved:
@@ -645,11 +647,11 @@ function displayMsg(msg) {
         case Reset:
             $('#msgtxt').removeClass().addClass('centered text-center alert info').text(chrome.i18n.getMessage('optReset')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
             break;
-        case Import:
+        case Imported:
             $('#msgtxt').removeClass().addClass('centered text-center alert success').text(chrome.i18n.getMessage('optImport')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
             break;
         case ImportFail:
-            $('#msgtxt').removeClass().addClass('centered text-center alert warning').text(chrome.i18n.getMessage('optImportFailed')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
+            $('#msgtxt').removeClass().addClass('centered text-center alert danger').text(chrome.i18n.getMessage('optImportFailed')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
             break;
         default:
             break;
@@ -727,7 +729,7 @@ function importSettings() {
         displayMsg(ImportFail)
         return false;
     }
-    displayMsg(Import)
+    displayMsg(Imported)
     console.log('is json')
     //loadOptions(true);
 }
