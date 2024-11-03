@@ -149,8 +149,8 @@ function saveOptions(exportSettings = false) {
     options.useSeparateTabOrWindowForUnloadableUrlsEnabled = $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled')[0].checked;
     options.useSeparateTabOrWindowForUnloadableUrls = $('#selectUseSeparateTabOrWindowForUnloadableUrls').val();
 
+    if (exportSettings) { return JSON.stringify(options) }
     localStorage.options = JSON.stringify(options);
-    if (exportSettings) { return localStorage.options }
     
     sendOptions(options);
     restoreOptions();
