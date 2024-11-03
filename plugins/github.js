@@ -11,6 +11,12 @@ hoverZoomPlugins.push({
             img.data('hoverZoomCaption', [img.attr('alt')]);
             res.push(img);
         });
+
+        $('img[src*="private-user-images"]').each(function () {
+            var img = $(this);
+            img.data('hoverZoomSrc', [img.attr('src')]);
+            res.push(img);
+        });
         
         hoverZoom.urlReplace(res,
             'a[href*="/blob/"]',
@@ -23,6 +29,7 @@ hoverZoomPlugins.push({
             /(.*)\?(.*)/,
             '$1'
         );
+        
         
         callback($(res), this.name);
     }
