@@ -655,6 +655,14 @@
         "message": "Export",
         "description": "[options] Export a save string into the textarea"
     },
+    "optImport": {
+        "message": "Import Success!",
+        "description": "[options] Notification after successful import to options"
+    },
+    "optImportFailed": {
+        "message": "Import Failed",
+        "description": "[options] Notification after failed import to options"
+    },
     "optPageFAQ": {
         "message": "FAQ",
         "description": "[options] Page title for FAQ"
