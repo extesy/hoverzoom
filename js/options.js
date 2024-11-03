@@ -151,10 +151,8 @@ function saveOptions(exportSettings = false) {
 
     if (exportSettings) { return JSON.stringify(options) }
     localStorage.options = JSON.stringify(options);
-    
     sendOptions(options);
-    restoreOptions();
-    
+    restoreOptions();  
 
     return false;
 }
@@ -719,8 +717,9 @@ function enableAllPlugins() {
     $('input.chkPlugin').each(function() { $(this).trigger('gumby.check'); })
 }
 
+//Checks if string is JSON. 
+//If yes, imports settings and clears textarea.
 function importSettings() {
-    //Checks if string is JSON
     let jsonImport;
     try {
         jsonImport = JSON.parse($('#txtBoxImportExportSettings')[0].value);
