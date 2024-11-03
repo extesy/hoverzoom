@@ -663,6 +663,7 @@ $(function () {
     $('#btnReset').click(function() { restoreOptionsFromFactorySettings(); displayMsg(Reset); return false; });
     $('#btnDisableAllPlugins').click(function() { disableAllPlugins(); return false; });
     $('#btnEnableAllPlugins').click(function() { enableAllPlugins(); return false; });
+    $('#btnImportSettings').click(function() { importSettings(); return false; });
     $('#btnExportSettings').click(function() { exportSettings(); return false; });
     $('#chkWhiteListMode').parent().on('gumby.onChange', chkWhiteListModeOnChange);
     $('#txtZoomFactor').change(percentageOnChange);
@@ -708,6 +709,10 @@ function disableAllPlugins() {
 
 function enableAllPlugins() {
     $('input.chkPlugin').each(function() { $(this).trigger('gumby.check'); })
+}
+
+function importSettings() {
+    //$('txtBoxImportExportSettings').each(function() { $(this).trigger('gumby.check'); })
 }
 
 function exportSettings() {
