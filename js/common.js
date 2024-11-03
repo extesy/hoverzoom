@@ -82,7 +82,7 @@ function loadFactorySettings() {
 
 // Load options from local storage
 // Return default values if none exist
-function loadOptions() {
+function loadOptions(importSettings = false) {
     var options;
     if (localStorage.options == null) {
         localStorage.options = '{}';
