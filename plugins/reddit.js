@@ -91,7 +91,7 @@ hoverZoomPlugins.push({
     // To load Image from thumbnail in searches
     $('faceplate-tracker[data-faceplate-tracking-context*="post_thumbnail"]').one('mouseover', function () {
       hoverZoom.prepareFromDocument($(this), this.children[0].href, function(doc) {
-        const img = doc.getElementById('post-image');
+        const img = doc.getElementById('post-image') || doc.querySelector('img.preview-image');
         return img ? img.src : null;
       });
     });
