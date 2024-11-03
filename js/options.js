@@ -212,6 +212,7 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#rngFontSize').val(parseInt(options.fontSize));
     $('#txtFontSize').val(parseInt(options.fontSize));
     $('#chkFontOutline').trigger(options.fontOutline ? 'gumby.check' : 'gumby.uncheck');
+    $('#txtBoxImportExportSettings').val('')
 
     if (options.frameBackgroundColor == "") {
         initColorPicker('#ffffff');
