@@ -645,6 +645,12 @@ function displayMsg(msg) {
         case Reset:
             $('#msgtxt').removeClass().addClass('centered text-center alert info').text(chrome.i18n.getMessage('optReset')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
             break;
+        case Import:
+            $('#msgtxt').removeClass().addClass('centered text-center alert success').text(chrome.i18n.getMessage('optImport')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
+            break;
+        case ImportFail:
+            $('#msgtxt').removeClass().addClass('centered text-center alert warning').text(chrome.i18n.getMessage('optImportFailed')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
+            break;
         default:
             break;
     }
