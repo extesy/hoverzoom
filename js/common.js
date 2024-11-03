@@ -84,6 +84,11 @@ function loadFactorySettings() {
 // Return default values if none exist
 function loadOptions(importSettings = false) {
     var options;
+
+    if (importSettings) {
+        options = $('#txtBoxImportExportSettings').value
+    }
+
     if (localStorage.options == null) {
         localStorage.options = '{}';
     }
