@@ -82,16 +82,17 @@ function loadFactorySettings() {
 
 // Load options from local storage
 // Return default values if none exist
-function loadOptions(importSettings = false) {
+function loadOptions(importSettings = null) {
     var options;
-
-    if (importSettings) {
-        options = $('#txtBoxImportExportSettings').value
-    }
 
     if (localStorage.options == null) {
         localStorage.options = '{}';
     }
+
+    if (importSettings != null) {
+        localStorage.options = importSettings
+    }
+
     options = JSON.parse(localStorage.options);  // TODO: Migrate to https://developer.chrome.com/extensions/storage
 
     options.extensionEnabled = options.hasOwnProperty('extensionEnabled') ? options.extensionEnabled : factorySettings.extensionEnabled;
