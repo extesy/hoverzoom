@@ -77,7 +77,7 @@ function loadKeys(sel) {
 
 // Saves options to localStorage.
 // TODO: Migrate to https://developer.chrome.com/extensions/storage
-function saveOptions() {
+function saveOptions(exportSettings = false) {
     options.extensionEnabled = $('#chkExtensionEnabled')[0].checked;
     options.darkMode = $('#chkDarkMode')[0].checked;
     options.zoomFactor = $('#txtZoomFactor')[0].value;
