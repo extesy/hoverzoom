@@ -82,15 +82,11 @@ function loadFactorySettings() {
 
 // Load options from local storage
 // Return default values if none exist
-function loadOptions(importSettings = null) {
+function loadOptions() {
     var options;
 
     if (localStorage.options == null) {
         localStorage.options = '{}';
-    }
-
-    if (importSettings != null) {
-        localStorage.options = importSettings
     }
 
     options = JSON.parse(localStorage.options);  // TODO: Migrate to https://developer.chrome.com/extensions/storage
