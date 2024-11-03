@@ -719,7 +719,17 @@ function enableAllPlugins() {
 }
 
 function importSettings() {
-    //$('txtBoxImportExportSettings').each(function() { $(this).trigger('gumby.check'); })
+    let jsonString = $('#txtBoxImportExportSettings').value
+    try {
+        JSON.parse(jsonString);
+    } catch (e) {
+        console.log('is not json')
+        displayMsg(ImportFail)
+        return false;
+    }
+    displayMsg(Import)
+    console.log('is json')
+    //loadOptions(true);
 }
 
 function exportSettings() {
