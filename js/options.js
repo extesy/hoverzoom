@@ -212,7 +212,6 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#rngFontSize').val(parseInt(options.fontSize));
     $('#txtFontSize').val(parseInt(options.fontSize));
     $('#chkFontOutline').trigger(options.fontOutline ? 'gumby.check' : 'gumby.uncheck');
-    $('#txtBoxImportExportSettings').val('');
 
     if (options.frameBackgroundColor == "") {
         initColorPicker('#ffffff');
@@ -722,16 +721,16 @@ function enableAllPlugins() {
 
 function importSettings() {
     //Checks if string is JSON
-    let jsonString = $('#txtBoxImportExportSettings')[0].value
+    let jsonImport;
     try {
-        JSON.parse(jsonString);
+        jsonImport = JSON.parse($('#txtBoxImportExportSettings')[0].value);
     } catch (e) {
-        displayMsg(ImportFail)
+        displayMsg(ImportFail);
         return false;
     }
-    displayMsg(Imported)
-    loadOptions(jsonString);
-    $('#txtBoxImportExportSettings').val('')
+    displayMsg(Imported);
+    restoreOptions(Object.assign({}, jsonImport));
+    $('#txtBoxImportExportSettings').val('');
 }
 
 function exportSettings() {
