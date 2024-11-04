@@ -88,20 +88,6 @@ hoverZoomPlugins.push({
       }
     });
 
-    function processPostResponse(post, data) {
-      if (data && data.data) {
-        let postData = data.data.children[0].data;
-        let src = postData.url;
-        if (postData.thumbnail === 'self') { return false; }
-        console.log('i work')
-        if (postData.media) {
-          src = postData.media.reddit_video.fallback_url;
-        }
-        hoverZoom.prepareLink(post, src);
-        post.data().hoverZoomMouseOver = false;
-      }
-    }
-
     // To load Image from thumbnail in compact mode and searches
     $('a.absolute.inset-0[href*="/r/"]').one('mouseover', function () {
       let post = $(this);
