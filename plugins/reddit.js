@@ -88,25 +88,45 @@ hoverZoomPlugins.push({
       }
     });
 
-    // To load Image from thumbnail in compact mode and searches
-    $('a.absolute.inset-0[href*="/r/"]').one('mouseover', function () {
-      let post = $(this);
-      /*if (post.data().hoverZoomMouseOver) return;
-      post.data().hoverZoomMouseOver = true;
+    // To load Image from thumbnail in searches in sh.reddit
+    $('faceplate-tracker[data-faceplate-tracking-context*="post_thumbnail"]').one('mouseover', function () {
+      let img = $(this);
+      let url = this.children[0].href;
+      chrome.runtime.sendMessage({action:'ajaxRequest', url: url, method: 'GET'}, function(data) {
+        let doc = document.implementation.createHTMLDocument();
+        doc.body.innerHTML = data;
 
-      try{
-         postId = post.parent().attr('id');
-      } catch (err) {
-        return
-      }
+        let post = $(doc.querySelector('shreddit-post'));
+        let link = post.attr('content-href');
+        let type = post.attr('post-type');
+        if (link.search('.gifv') != -1) { type = 'video' }
 
-      $.get('https://www.reddit.com/by_id/' + postId + '.json?raw_json=1', data => processGalleryResponse(post, data));
-      $.get('https://www.reddit.com/by_id/' + postId + '.json?raw_json=1', data => processPostResponse(post, data));
-*/
-      hoverZoom.prepareFromDocument(post, this.href, function(doc) {
-        const post = doc.getElementById('post-image') || doc.querySelector('image');
-        return post ? post.src : null;
-      })
+        switch (type) {
+          case 'video': {
+            let title = post.attr('post-title');
+            img.data('hoverZoomSrc', [link + '/DASH_480.mp4', link + '/DASH_360.mp4']);
+            if (link.search('.gifv') != -1) {
+              img.data('hoverZoomSrc', [link.replace(/\.gifv?/, '.mp4'), link.replace(/\.gifv?/, '.webm')]);
+            }
+            img.data('hoverZoomCaption', [title]);
+            img.addClass('hoverZoomLink');
+            return
+          }
+          case 'gallery': {
+            let galleryid = link.substring(link.lastIndexOf('/') + 1);
+            $.get('https://www.reddit.com/by_id/t3_' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
+            return
+          }
+          case 'link': {
+            link = post.find('img[src*="external-preview.redd.it"]:first').attr('src');
+            hoverZoom.prepareLink(img, link);
+            return
+          }
+          default:
+            hoverZoom.prepareLink(img, link);
+            return
+        }
+      });
     });
 
     // Load images in compact mode
