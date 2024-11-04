@@ -109,13 +109,6 @@ hoverZoomPlugins.push({
       })
     });
 
-    // To load Image from thumbnail in searches
-    /*$('faceplate-tracker[data-faceplate-tracking-context*="post_thumbnail"]').one('mouseover', function () {
-      hoverZoom.prepareFromDocument($(this), this.children[0].href, function(doc) {
-        const post = doc.getElementById('post-image') || doc.querySelector('img.preview-image');
-        return post ? post.src : null;
-      });
-    });*/
     // Load images in compact mode
     $('shreddit-post[content-href*="//i.redd.it"]').one('mouseover', function () {
       let post = $(this);
