@@ -130,6 +130,12 @@ hoverZoomPlugins.push({
         return post ? post.src : null;
       });
     });*/
+    // Load images in compact mode
+    $('shreddit-post[content-href*="//i.redd.it"]').one('mouseover', function () {
+      let post = $(this);
+      let link = post.attr('content-href');
+      hoverZoom.prepareLink(post, link);
+    });
 
     // To load card view sh.reddit images
     $('img.i18n-post-media-img').one('mouseover', function () {
@@ -185,36 +191,36 @@ hoverZoomPlugins.push({
     }
 
     $('div[data-url*="//www.reddit.com/gallery/"]').one('mouseover', function () {
-      var post = $(this);
+      let post = $(this);
       if (post.data().hoverZoomMouseOver) return;
       post.data().hoverZoomMouseOver = true;
-      var link = post.attr('data-url');
-      var galleryid = link.substring(link.lastIndexOf('/') + 1);
+      let link = post.attr('data-url');
+      let galleryid = link.substring(link.lastIndexOf('/') + 1);
       $.get('https://www.reddit.com/by_id/t3_' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
 
     $('a[href*="//www.reddit.com/gallery/"]').one('mouseover', function () {
-      var post = $(this);
+      let post = $(this);
       if (post.data().hoverZoomMouseOver) return;
       post.data().hoverZoomMouseOver = true;
-      var link = post.attr('href');
-      var galleryid = link.substring(link.lastIndexOf('/') + 1);
+      let link = post.attr('href');
+      let galleryid = link.substring(link.lastIndexOf('/') + 1);
       $.get('https://www.reddit.com/by_id/t3_' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
 
     $('div[data-is-gallery=true]').one('mouseover', function () {
-      var post = $(this);
+      let post = $(this);
       if (post.data().hoverZoomMouseOver) return;
       post.data().hoverZoomMouseOver = true;
-      var galleryid = post.attr('data-fullname');
+      let galleryid = post.attr('data-fullname');
       $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
 
     $('gallery-carousel').one('mouseover', function () {
-      var post = $(this);
+      let post = $(this);
       if (post.data().hoverZoomMouseOver) return;
       post.data().hoverZoomMouseOver = true;
-      var galleryid = post.attr('post-id');
+      let galleryid = post.attr('post-id');
       $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
 
