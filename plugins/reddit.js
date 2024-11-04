@@ -194,6 +194,15 @@ hoverZoomPlugins.push({
       $.get('https://www.reddit.com/by_id/t3_' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
 
+    $('shreddit-post[content-href*="//www.reddit.com/gallery/"]').one('mouseover', function () {
+      let post = $(this);
+      if (post.data().hoverZoomMouseOver) return;
+      post.data().hoverZoomMouseOver = true;
+      let link = post.attr('content-href');
+      let galleryid = link.substring(link.lastIndexOf('/') + 1);
+      $.get('https://www.reddit.com/by_id/t3_' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
+    });
+    
     $('div[data-is-gallery=true]').one('mouseover', function () {
       let post = $(this);
       if (post.data().hoverZoomMouseOver) return;
@@ -210,16 +219,16 @@ hoverZoomPlugins.push({
       $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
 
-    $('div[data-url*="//v.redd.it/"]').each(function () {
-      var post = $(this);
-      var link = post.attr('data-url');
-      var title = post.find('a.title').text();
-
-      post.find('a.thumbnail,a.title').each(function() {
+    $('div[data-url*="//v.redd.it/"],shreddit-post[content-href*="//v.redd.it/"],shreddit-post[content-href*="https://i.imgur.com/"]').each(function () {
+      let post = $(this);
+      let link = post.attr('data-url') || post.attr('content-href');
+      let title = post.find('a.title').text() || post.attr('post-title');
+      let hoverTargets =  post.attr('data-url') ? 'a.thumbnail,a.title' : 'a.absolute.inset-0'
+      post.find(hoverTargets).each(function() {
         var img = $(this);
 
-        // Use /DASH_600_K as a default if for any reason the ajax request below doesn't find a valid link
-        img.data('hoverZoomSrc', [link + '/DASH_600_K']);
+        // Use /DASH_600_K or /DASH_360 as a default if for any reason the ajax request below doesn't find a valid link
+        img.data('hoverZoomSrc', [link + '/DASH_600_K',link.replace(/\.gifv?/, '.mp4'),link.replace(/\.gifv?/, '.webm')]);
         img.data('hoverZoomCaption', [title]);
 
         promises.push(new Promise(function (resolve, reject) {
