@@ -225,9 +225,10 @@ hoverZoomPlugins.push({
       let title = post.find('a.title').text() || post.attr('post-title');
       let hoverTargets =  post.attr('data-url') ? 'a.thumbnail,a.title' : 'a.absolute.inset-0'
       post.find(hoverTargets).each(function() {
-        var img = $(this);
+        let img = $(post);
 
-        // Use /DASH_600_K or /DASH_360 as a default if for any reason the ajax request below doesn't find a valid link
+        // Use /DASH_600_K as a default if for any reason the ajax request below doesn't find a valid link
+        // In case of imgur link, replace .gifv with .mp4 or .webm
         img.data('hoverZoomSrc', [link + '/DASH_600_K',link.replace(/\.gifv?/, '.mp4'),link.replace(/\.gifv?/, '.webm')]);
         img.data('hoverZoomCaption', [title]);
 
@@ -236,20 +237,20 @@ hoverZoomPlugins.push({
             { action:'ajaxRequest', url: link + '/DASHPlaylist.mpd', method: 'GET' },
             function (xml) {
               try {
-                var xmlDoc = (new DOMParser()).parseFromString(xml, 'application/xml');
-                var highestRes = [].slice.call(xmlDoc.querySelectorAll('Representation[frameRate]'))
+                let xmlDoc = (new DOMParser()).parseFromString(xml, 'application/xml');
+                let highestRes = [].slice.call(xmlDoc.querySelectorAll('Representation[frameRate]'))
                   .sort(function (r1, r2) {
-                    var w1 = parseInt(r1.getAttribute('width')), w2 = parseInt(r2.getAttribute('width'));
+                    let w1 = parseInt(r1.getAttribute('width')), w2 = parseInt(r2.getAttribute('width'));
                     return w1 > w2 ? -1 : (w1 < w2 ? 1 : 0);
                   })
                   .find(function (repr) { return !!repr.querySelector('BaseURL'); });
 
                 if (highestRes) {
-                  var baseUrl = highestRes.querySelector('BaseURL').textContent.trim();
+                  let baseUrl = highestRes.querySelector('BaseURL').textContent.trim();
                   img.data('hoverZoomSrc', [baseUrl.indexOf('//') !== -1 ? baseUrl : link + '/' + baseUrl]);
                 }
 
-                var audio = xmlDoc.querySelector('Representation[audioSamplingRate]'),
+                let audio = xmlDoc.querySelector('Representation[audioSamplingRate]'),
                   audioUrl = audio ? audio.querySelector('BaseURL').textContent.trim() : undefined;
                 if (audioUrl) {
                   img.data('hoverZoomAudioSrc', [audioUrl.indexOf('//') !== -1 ? audioUrl : link + '/' + audioUrl]);
