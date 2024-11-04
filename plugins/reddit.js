@@ -20,7 +20,7 @@ hoverZoomPlugins.push({
     }
 
     $('.hoverZoomLink').each(function () {
-      var _this = $(this);
+      let _this = $(this);
       if (options.filterNSFW && _this.parents('.over18').length) {
         _this.removeClass('hoverZoomLink');
       }
@@ -89,7 +89,7 @@ hoverZoomPlugins.push({
     });
 
     // To load Image from thumbnail in searches in sh.reddit
-    $('faceplate-tracker[data-faceplate-tracking-context*="post_thumbnail"]').one('mouseover', function () {
+    $('faceplate-tracker[data-faceplate-tracking-context*="post_thumbnail"]').each(function () {
       let img = $(this);
       let url = this.children[0].href;
       chrome.runtime.sendMessage({action:'ajaxRequest', url: url, method: 'GET'}, function(data) {
