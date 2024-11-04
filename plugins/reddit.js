@@ -91,19 +91,19 @@ hoverZoomPlugins.push({
     // To load Image from thumbnail in searches
     $('faceplate-tracker[data-faceplate-tracking-context*="post_thumbnail"]').one('mouseover', function () {
       hoverZoom.prepareFromDocument($(this), this.children[0].href, function(doc) {
-        const img = doc.getElementById('post-image') || doc.querySelector('img.preview-image');
-        return img ? img.src : null;
+        const post = doc.getElementById('post-image') || doc.querySelector('img.preview-image');
+        return post ? post.src : null;
       });
     });
 
-    // To load sh.reddit images
+    // To load card view sh.reddit images
     $('img.i18n-post-media-img').one('mouseover', function () {
       let post = $(this);
       let link = post.attr('src');
       hoverZoom.prepareLink(post, link);
     });
 
-    // To load sh.reddit videos
+    // To load card view sh.reddit videos
     $('shreddit-player-2').one('mouseover', function () {
       let post = $(this);
       let src = post.attr('src');
