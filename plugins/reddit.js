@@ -129,17 +129,10 @@ hoverZoomPlugins.push({
       });
     });
 
-    // Load images in compact mode
-    $('shreddit-post[content-href*="//i.redd.it"]').one('mouseover', function () {
+    // Load images in sh.reddit
+    $('shreddit-post[content-href*="//i.redd.it"], img.i18n-post-media-img').one('mouseover', function () {
       let post = $(this);
       let link = post.attr('content-href');
-      hoverZoom.prepareLink(post, link);
-    });
-
-    // To load card view sh.reddit images
-    $('img.i18n-post-media-img').one('mouseover', function () {
-      let post = $(this);
-      let link = post.attr('src');
       hoverZoom.prepareLink(post, link);
     });
 
