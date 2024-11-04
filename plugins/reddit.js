@@ -88,13 +88,48 @@ hoverZoomPlugins.push({
       }
     });
 
+    function processPostResponse(post, data) {
+      if (data && data.data) {
+        let postData = data.data.children[0].data;
+        let src = postData.url;
+        if (postData.thumbnail === 'self') { return false; }
+        console.log('i work')
+        if (postData.media) {
+          src = postData.media.reddit_video.fallback_url;
+        }
+        hoverZoom.prepareLink(post, src);
+        post.data().hoverZoomMouseOver = false;
+      }
+    }
+
+    // To load Image from thumbnail in compact mode and searches
+    $('a.absolute.inset-0[href*="/r/"]').one('mouseover', function () {
+      let post = $(this);
+      /*if (post.data().hoverZoomMouseOver) return;
+      post.data().hoverZoomMouseOver = true;
+
+      try{
+         postId = post.parent().attr('id');
+      } catch (err) {
+        return
+      }
+
+      $.get('https://www.reddit.com/by_id/' + postId + '.json?raw_json=1', data => processGalleryResponse(post, data));
+      $.get('https://www.reddit.com/by_id/' + postId + '.json?raw_json=1', data => processPostResponse(post, data));
+*/
+      hoverZoom.prepareFromDocument(post, this.href, function(doc) {
+        const post = doc.getElementById('post-image') || doc.querySelector('image');
+        return post ? post.src : null;
+      })
+    });
+
     // To load Image from thumbnail in searches
-    $('faceplate-tracker[data-faceplate-tracking-context*="post_thumbnail"]').one('mouseover', function () {
+    /*$('faceplate-tracker[data-faceplate-tracking-context*="post_thumbnail"]').one('mouseover', function () {
       hoverZoom.prepareFromDocument($(this), this.children[0].href, function(doc) {
         const post = doc.getElementById('post-image') || doc.querySelector('img.preview-image');
         return post ? post.src : null;
       });
-    });
+    });*/
 
     // To load card view sh.reddit images
     $('img.i18n-post-media-img').one('mouseover', function () {
