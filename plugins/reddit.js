@@ -117,15 +117,11 @@ hoverZoomPlugins.push({
             $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', data => processGalleryResponse(img, data));
             return
           }
-          case 'link': {
+          case 'link': 
             link = post.find('img[src*="external-preview.redd.it"]:first').attr('src');
-            hoverZoom.prepareLink(img, link);
-            return
-          }
           default:
-            hoverZoom.prepareLink(img, link);
-            return
-        }
+          }
+          hoverZoom.prepareLink(img, link);
       });
     });
 
