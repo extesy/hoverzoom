@@ -188,56 +188,29 @@ hoverZoomPlugins.push({
       }
     }
 
-    function requestGalleryData(post, dataType){
-      let post = $(post);
-      let galleryid;
-      switch (dataType){
-        case 'data-url': {
-          galleryid = 't3_' + post.attr('data-url');
-          break 
-        }
-        case 'href': {
-          let link = post.attr('href');
-          galleryid = 't3_' + link.substring(link.lastIndexOf('/') + 1);
-          break
-        }
-        case 'data-fullname': {
-          galleryid = post.attr('data-fullname');
-          break
-        }
-        case 'id': {
-          galleryid = post.attr('id');
-          post = post.find('div[slot*="thumbnail"]:first-child'); //finds thumbnail
-          break
-        }
-        case 'post-id': {
-          galleryid = post.attr('post-id');
-          break
-        }
-        default:
-      }
-      $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
-    }
-
     $('div[data-url*="//www.reddit.com/gallery/"]').one('mouseover', function () {
       let post = $(this);
       if (post.data().hoverZoomMouseOver) return;
       post.data().hoverZoomMouseOver = true;
-      requestGalleryData(post, 'data-url');
+      let galleryid = post.attr('data-url');
+      $.get('https://www.reddit.com/by_id/t3_' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
 
     $('a[href*="//www.reddit.com/gallery/"]').one('mouseover', function () {
       let post = $(this);
       if (post.data().hoverZoomMouseOver) return;
       post.data().hoverZoomMouseOver = true;
-      requestGalleryData(post, 'href');
+      let link = post.attr('href');
+      let galleryid = link.substring(link.lastIndexOf('/') + 1);
+      $.get('https://www.reddit.com/by_id/t3_' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
     
     $('div[data-is-gallery=true]').one('mouseover', function () {
       let post = $(this);
       if (post.data().hoverZoomMouseOver) return;
       post.data().hoverZoomMouseOver = true;
-      requestGalleryData(post, 'data-fullname');
+      let galleryid = post.attr('data-fullname');
+      $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
     
     // supports sh.reddit compact view galleries
@@ -245,7 +218,9 @@ hoverZoomPlugins.push({
       let post = $(this);
       if (post.data().hoverZoomMouseOver) return;
       post.data().hoverZoomMouseOver = true;
-      requestGalleryData(post, 'id');
+      let galleryid = post.attr('id');
+      let thumbnail = post.find('div[slot*="thumbnail"]:first-child'); //finds thumbnail
+      $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', data => processGalleryResponse(thumbnail, data));
     });
 
     // supports sh.reddit card view galleries
@@ -253,7 +228,8 @@ hoverZoomPlugins.push({
       let post = $(this);
       if (post.data().hoverZoomMouseOver) return;
       post.data().hoverZoomMouseOver = true;
-      requestGalleryData(post, 'post-id');
+      let galleryid = post.attr('post-id');
+      $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
 
     $('div[data-url*="//v.redd.it/"],shreddit-post[content-href*="//v.redd.it/"],shreddit-post[content-href*="https://i.imgur.com/"]').each(function () {
