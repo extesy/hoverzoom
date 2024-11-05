@@ -136,7 +136,7 @@ hoverZoomPlugins.push({
       hoverZoom.prepareLink(post, link);
     });
 
-    // To load card view sh.reddit videos
+    // Supports videos in sh.reddit card view 
     $('shreddit-player-2').one('mouseover', function () {
       let post = $(this);
       let src = post.attr('src');
@@ -216,6 +216,7 @@ hoverZoomPlugins.push({
       $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
 
+    // supports sh.reddit card view galleries
     $('gallery-carousel').one('mouseover', function () {
       let post = $(this);
       if (post.data().hoverZoomMouseOver) return;
