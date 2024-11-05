@@ -239,8 +239,8 @@ hoverZoomPlugins.push({
       let title = post.find('a.title').text() || post.attr('post-title');
       let hoverTargets =  post.attr('data-url') ? 'a.thumbnail,a.title' : 'div[slot*="thumbnail"]:first-child'
       post.find(hoverTargets).each(function() {
-        let img = $(post);
-
+        let img = $(this);
+        
         // Use /DASH_600_K as a default if for any reason the ajax request below doesn't find a valid link
         // In case of imgur link, replace .gifv with .mp4 or .webm
         img.data('hoverZoomSrc', [link + '/DASH_600_K',link.replace(/\.gifv?/, '.mp4'),link.replace(/\.gifv?/, '.webm')]);
