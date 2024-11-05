@@ -237,7 +237,7 @@ hoverZoomPlugins.push({
       let post = $(this);
       let link = post.attr('data-url') || post.attr('content-href');
       let title = post.find('a.title').text() || post.attr('post-title');
-      let hoverTargets =  post.attr('data-url') ? 'a.thumbnail,a.title' : 'a.absolute.inset-0'
+      let hoverTargets =  post.attr('data-url') ? 'a.thumbnail,a.title' : 'div[slot*="thumbnail"]:first-child'
       post.find(hoverTargets).each(function() {
         let img = $(post);
 
