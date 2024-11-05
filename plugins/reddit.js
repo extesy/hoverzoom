@@ -218,8 +218,7 @@ hoverZoomPlugins.push({
       let post = $(this);
       if (post.data().hoverZoomMouseOver) return;
       post.data().hoverZoomMouseOver = true;
-      let link = post.attr('content-href');
-      let galleryid = link.substring(link.lastIndexOf('/') + 1);
+      let galleryid = post.attr('id');
       post = post.find('div[slot*="thumbnail"]:first-child'); //finds thumbnail
       $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
