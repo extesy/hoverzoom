@@ -192,7 +192,7 @@ hoverZoomPlugins.push({
       let post = $(this);
       if (post.data().hoverZoomMouseOver) return;
       post.data().hoverZoomMouseOver = true;
-      let galleryid = post.attr('id');
+      let galleryid = post.attr('data-url');
       $.get('https://www.reddit.com/by_id/t3_' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
 
@@ -209,7 +209,7 @@ hoverZoomPlugins.push({
       let post = $(this);
       if (post.data().hoverZoomMouseOver) return;
       post.data().hoverZoomMouseOver = true;
-      let galleryid = post.attr('id');
+      let galleryid = post.attr('data-fullname');
       $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
     
