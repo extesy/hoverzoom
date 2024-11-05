@@ -129,9 +129,9 @@ hoverZoomPlugins.push({
     $('shreddit-post[content-href*="//i.redd.it"]').one('mouseover', function () {
       let post = $(this);
       let link = post.attr('content-href');
-      post = post.find('div[slot*="thumbnail"]:first-child');
+      let thumbnail = post.find('div[slot*="thumbnail"]:first-child');
       
-      hoverZoom.prepareLink(post, link);
+      hoverZoom.prepareLink(thumbnail, link);
     });
     
     // Supports images in sh.reddit card view 
@@ -219,8 +219,8 @@ hoverZoomPlugins.push({
       if (post.data().hoverZoomMouseOver) return;
       post.data().hoverZoomMouseOver = true;
       let galleryid = post.attr('id');
-      post = post.find('div[slot*="thumbnail"]:first-child'); //finds thumbnail
-      $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
+      let thumbnail = post.find('div[slot*="thumbnail"]:first-child'); //finds thumbnail
+      $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', data => processGalleryResponse(thumbnail, data));
     });
 
     // supports sh.reddit card view galleries
