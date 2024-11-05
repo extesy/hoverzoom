@@ -205,6 +205,7 @@ hoverZoomPlugins.push({
       $.get('https://www.reddit.com/by_id/t3_' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
     
+    $('div[data-is-gallery=true]').one('mouseover', function () {
       let post = $(this);
       if (post.data().hoverZoomMouseOver) return;
       post.data().hoverZoomMouseOver = true;
