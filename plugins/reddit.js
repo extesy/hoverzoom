@@ -125,7 +125,7 @@ hoverZoomPlugins.push({
       });
     });
 
-    // Supports images in sh.reddit card view
+    // Supports images in sh.reddit compact view
     $('shreddit-post[content-href*="//i.redd.it"]').one('mouseover', function () {
       let post = $(this);
       let link = post.attr('content-href');
