@@ -6,7 +6,7 @@ hoverZoomPlugins.push({
     // so now we need to load the actual picture page to get the full image URL with token to view anything
     // here's the work on it (iambic9 on fetlife if you have any questions or suggestions!)
     prepareImgLinks:function (callback) {
-        var res = [];
+        const res = [];
         $('a[href*="/users/"]').filter(function() {
 
             // this class is the full-size image preview (but still has a link to the next image)
@@ -23,8 +23,8 @@ hoverZoomPlugins.push({
 
             return this.href.match(/fetlife.com\/users\/\d+\/pictures\/\d+$/);
         }).each(function(){
-            var link= this.href;
-            var img = ($(this).find('img').length > 0 ? $(this) : null);
+            let link= this.href;
+            let img = ($(this).find('img').length > 0 ? $(this) : null);
 
             // push the caption from the image into the link data
             img.find('img:first').data().hoverZoomCaption = img.find('img:first').attr('alt');
