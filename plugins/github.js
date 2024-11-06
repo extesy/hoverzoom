@@ -30,7 +30,6 @@ hoverZoomPlugins.push({
             '$1'
         );
         
-        
         callback($(res), this.name);
     }
 });
