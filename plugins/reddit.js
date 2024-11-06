@@ -192,7 +192,8 @@ hoverZoomPlugins.push({
       let post = $(this);
       if (post.data().hoverZoomMouseOver) return;
       post.data().hoverZoomMouseOver = true;
-      let galleryid = post.attr('data-url');
+      let link = post.attr('data-url');
+      var galleryid = link.substring(link.lastIndexOf('/') + 1);
       $.get('https://www.reddit.com/by_id/t3_' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
 
