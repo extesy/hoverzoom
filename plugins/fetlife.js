@@ -33,11 +33,10 @@ hoverZoomPlugins.push({
             // news feed can have sometimes have 30-100 thumbnails right next to each
             // previously, sweeping the mouse over them would trigger one request per image
             // had some UI flicker issues, but also a bit of hammering to fetlife
-            var delay=80, timeout;
-            img.find('img:first').hover(
-                  function() {
-                    timeout = setTimeout(() => {
-
+            let delay=80;
+            let timeout;
+            img.on('mouseenter', function() {
+                timeout = setTimeout(() => {
                         // try to flag as processed ourselves to prevent multiple loads
                         // there were sometimes multiple loads after fetlife's feed would load more content
                         if ($(this).data().prepared) return false;
@@ -47,12 +46,11 @@ hoverZoomPlugins.push({
                             var img = doc.getElementsByClassName('fl-picture__img')[0];
                             return img ? img.src : false;
                         });
-                     }, delay);
-                    
-                  }, function() {
-                    clearTimeout(timeout );
-                  }
-                );
+                     }, delay);   
+                  }); 
+            img.on('mouseexit', function() {
+                    clearTimeout(timeout);
+                  });
         })
         callback($(res), this.name);
     }
