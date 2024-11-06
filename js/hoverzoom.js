@@ -2345,7 +2345,7 @@ var hoverZoom = {
             // for instance, on TripAdvisor:
             // img's src placeholder is replaced by real img url stored in data-lazyurl as user scrolls down
             $(document).on('scroll mousewheel', function() {
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+                let scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
                 if (scrollTop < lastScrollTop) {
                     lastScrollTop = scrollTop < 0 ? 0 : scrollTop; // For Mobile or negative scrolling
                 } else if (scrollTop > lastScrollTop + deltaMin) {
@@ -3603,7 +3603,7 @@ var hoverZoom = {
             fontSize(options.fontSize);
 
             webSiteExcluded = null;
-            body100pct = (body.css('position') != 'static') || (body.css('padding-left') == '0px' && body.css('padding-right') == '0px' && body.css('margin-left') == '0px' && body.css('margin-right') == '0px' && body.css('max-width') == ('none' || '100%'));
+            body100pct = (body.css('position') != 'static') || (body.css('padding-left') == '0px' && body.css('padding-right') == '0px' && body.css('margin-left') == '0px' && body.css('margin-right') == '0px' && (body.css('max-width') == ('none' || '100%')));
             hz.pageGenerator = $('meta[name="generator"]').attr('content');
             prepareImgLinks();
             bindEvents();
