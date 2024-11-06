@@ -23,7 +23,7 @@ hoverZoomPlugins.push({
 
             return this.href.match(/fetlife.com\/users\/\d+\/pictures\/\d+$/);
         }).each(function(){
-            let link= this.href;
+            let link = this.href;
             let img = ($(this).find('img').length > 0 ? $(this) : null);
 
             // push the caption from the image into the link data
@@ -43,12 +43,12 @@ hoverZoomPlugins.push({
                     $(this).data('prepared', true);
 
                     hoverZoom.prepareFromDocument($(this), link, function(doc) {
-                        //jquery can't read doc as a webpage, so we have to find the image url within body.innerHTML using .match
+                        // jquery can't read doc as a webpage, so we have to find the image url within body.innerHTML using .match
                         let html = doc.body.innerHTML;
                         let img = html.match(/"src1x":"(https:\/\/picv2-u1000\S+)","src2x"/) || html.match(/"src1x":"(https:\/\/picv2-u500\S+)","src2x"/);
                         return img ? img[1].replaceAll('\\u0026','&') : false;
                     });
-                 }, delay);   
+                }, delay);   
             }); 
             img.on('mouseexit', function() {
                 clearTimeout(timeout);
