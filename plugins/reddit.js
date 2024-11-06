@@ -233,14 +233,13 @@ hoverZoomPlugins.push({
       $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', data => processGalleryResponse(post, data));
     });
 
-    $('div[data-url*="//v.redd.it/"],shreddit-post[content-href*="//v.redd.it/"],shreddit-post[content-href*="https://i.imgur.com/"]').each(function () {
+    $('div[data-url*="//v.redd.it/"], shreddit-post[content-href*="//v.redd.it/"], shreddit-post[content-href*="https://i.imgur.com/"]').each(function () {
       let post = $(this);
       let link = post.attr('data-url') || post.attr('content-href');
       let title = post.find('a.title').text() || post.attr('post-title');
       let hoverTargets =  post.attr('data-url') ? 'a.thumbnail,a.title' : 'div[slot*="thumbnail"]:first-child'
       post.find(hoverTargets).each(function() {
         let img = $(this);
-        
         // Use /DASH_600_K as a default if for any reason the ajax request below doesn't find a valid link
         // In case of imgur link, replace .gifv with .mp4 or .webm
         img.data('hoverZoomSrc', [link + '/DASH_600_K',link.replace(/\.gifv?/, '.mp4'),link.replace(/\.gifv?/, '.webm')]);
