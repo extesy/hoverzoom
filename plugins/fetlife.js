@@ -43,8 +43,10 @@ hoverZoomPlugins.push({
                         $(this).data('prepared', true);
 
                         hoverZoom.prepareFromDocument($(this), link, function(doc) {
-                            var img = doc.getElementsByClassName('fl-picture__img')[0];
-                            return img ? img.src : false;
+                            //jquery can't read doc as a webpage, so we have to find the image url within body.innerHTML using .match
+                            let html = doc.body.innerHTML;
+                            let img = html.match(/"src1x":"(https:\/\/picv2-u1000\S+)","src2x"/) || html.match(/"src1x":"(https:\/\/picv2-u500\S+)","src2x"/);
+                            return img ? img[1].replaceAll('\\u0026','&') : false;
                         });
                      }, delay);   
                   }); 
