@@ -119,7 +119,9 @@ hoverZoomPlugins.push({
           }
           case 'link': 
             link = post.find('img[src*="external-preview.redd.it"]:first').attr('src');
+            break
           default:
+            break
           }
           hoverZoom.prepareLink(img, link);
       });
