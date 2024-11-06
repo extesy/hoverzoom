@@ -37,22 +37,22 @@ hoverZoomPlugins.push({
             let timeout;
             img.on('mouseenter', function() {
                 timeout = setTimeout(() => {
-                        // try to flag as processed ourselves to prevent multiple loads
-                        // there were sometimes multiple loads after fetlife's feed would load more content
-                        if ($(this).data().prepared) return false;
-                        $(this).data('prepared', true);
+                    // try to flag as processed ourselves to prevent multiple loads
+                    // there were sometimes multiple loads after fetlife's feed would load more content
+                    if ($(this).data().prepared) return false;
+                    $(this).data('prepared', true);
 
-                        hoverZoom.prepareFromDocument($(this), link, function(doc) {
-                            //jquery can't read doc as a webpage, so we have to find the image url within body.innerHTML using .match
-                            let html = doc.body.innerHTML;
-                            let img = html.match(/"src1x":"(https:\/\/picv2-u1000\S+)","src2x"/) || html.match(/"src1x":"(https:\/\/picv2-u500\S+)","src2x"/);
-                            return img ? img[1].replaceAll('\\u0026','&') : false;
-                        });
-                     }, delay);   
-                  }); 
+                    hoverZoom.prepareFromDocument($(this), link, function(doc) {
+                        //jquery can't read doc as a webpage, so we have to find the image url within body.innerHTML using .match
+                        let html = doc.body.innerHTML;
+                        let img = html.match(/"src1x":"(https:\/\/picv2-u1000\S+)","src2x"/) || html.match(/"src1x":"(https:\/\/picv2-u500\S+)","src2x"/);
+                        return img ? img[1].replaceAll('\\u0026','&') : false;
+                    });
+                 }, delay);   
+            }); 
             img.on('mouseexit', function() {
-                    clearTimeout(timeout);
-                  });
+                clearTimeout(timeout);
+            });
         })
         callback($(res), this.name);
     }
