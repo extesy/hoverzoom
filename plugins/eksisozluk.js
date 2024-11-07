@@ -17,7 +17,7 @@ hoverZoomPlugins.push({
             const src = this.href.replace(/soz\.lk\/i\/(.{1})/, 'cdn.eksisozluk.com/' + date[3] + '/' + date[2] + '/' + date[1] + '/$1/$1');
             link.data('hoverZoomSrc', [src + '.png', src + '.jpg']);
 
-            link.addClass('hoverZoomLink')
+            link.addClass('hoverZoomLink');
         });
 
         callback($(res), this.name);
