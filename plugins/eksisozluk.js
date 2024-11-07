@@ -14,7 +14,7 @@ hoverZoomPlugins.push({
             link.data().hoverZoomSrc = [];
             // extract date from post and create image link
             const date = link.parent().next().find('.entry-date.permalink')[0].innerText.match(/0?(\d{1,2})\.0?(\d{1,2})\.(\d{1,4})/);
-            const src = this.href.replace(/soz\.lk\/i\/(.{1})/, 'cdn.eksisozluk.com/' + date[3] + '/' + date[2] + '/' + date[1] + '/$1/$1');
+            const src = this.href.replace(/soz\.lk\/i\/(.)/, 'cdn.eksisozluk.com/' + date[3] + '/' + date[2] + '/' + date[1] + '/$1/$1');
             link.data('hoverZoomSrc', [src + '.png', src + '.jpg']);
 
             link.addClass('hoverZoomLink');
