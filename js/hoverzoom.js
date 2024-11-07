@@ -485,7 +485,7 @@ var hoverZoom = {
                 }
 
                 // width adjustment
-                const fullZoom = options.mouseUnderlap || fullZoomKeyDown || viewerLocked;
+                var fullZoom = options.mouseUnderlap || fullZoomKeyDown || viewerLocked;
                 if (viewerLocked) {
                     imgFullSize.width(srcDetails.naturalWidth * zoomFactor);
                 } else if (fullZoom) {
