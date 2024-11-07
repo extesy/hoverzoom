@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'eksisozluk',
-    version: '1.0',
+    version: '1.1',
     prepareImgLinks(callback) {
         const res = [];
 
@@ -13,7 +13,7 @@ hoverZoomPlugins.push({
             // clean previous result
             link.data().hoverZoomSrc = [];
             // extract date from post and create image link
-            const date = link.parent().next().find('.entry-date.permalink')[0].innerText.match(/0?(\d+)\.0?(\d+)\.(\d+)/);
+            const date = link.parent().next().find('.entry-date.permalink')[0].innerText.match(/0?(\d{1,2})\.0?(\d{1,2})\.(\d{1,4})/);
             const src = this.href.replace(/soz\.lk\/i\/(.{1})/, 'cdn.eksisozluk.com/' + date[3] + '/' + date[2] + '/' + date[1] + '/$1/$1');
             link.data('hoverZoomSrc', [src + '.png', src + '.jpg']);
 
