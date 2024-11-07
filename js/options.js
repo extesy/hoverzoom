@@ -151,6 +151,7 @@ function saveOptions(exportSettings = false) {
 
     if (exportSettings) { return JSON.stringify(options) }
     localStorage.options = JSON.stringify(options);
+    
     sendOptions(options);
     restoreOptions();
 
