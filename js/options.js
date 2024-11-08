@@ -78,7 +78,7 @@ function loadKeys(sel) {
 
 // Saves options to localStorage.
 // TODO: Migrate to https://developer.chrome.com/extensions/storage
-function saveOptions() {
+function saveOptions(exportSettings = false) {
     options.extensionEnabled = $('#chkExtensionEnabled')[0].checked;
     options.darkMode = $('#chkDarkMode')[0].checked;
     options.zoomFactor = $('#txtZoomFactor')[0].value;
@@ -150,11 +150,14 @@ function saveOptions() {
     options.useSeparateTabOrWindowForUnloadableUrlsEnabled = $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled')[0].checked;
     options.useSeparateTabOrWindowForUnloadableUrls = $('#selectUseSeparateTabOrWindowForUnloadableUrls').val();
 
-    localStorage.options = JSON.stringify(options);
+    if (exportSettings) { 
+        $('#txtBoxImportExportSettings').val(JSON.stringify(options));
+    } else {
+        localStorage.options = JSON.stringify(options);
 
-    sendOptions(options);
-    restoreOptions();
-
+        sendOptions(options);
+        restoreOptions();
+    }
     return false;
 }
 
@@ -632,6 +635,8 @@ function initColorPicker(color){
 const Saved = Symbol("saved");
 const Cancel = Symbol("cancel");
 const Reset = Symbol("reset");
+const Imported = Symbol("imported");
+const ImportFail = Symbol("importFail");
 function displayMsg(msg) {
     switch (msg)  {
         case Saved:
@@ -642,6 +647,12 @@ function displayMsg(msg) {
             break;
         case Reset:
             $('#msgtxt').removeClass().addClass('centered text-center alert info').text(chrome.i18n.getMessage('optReset')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
+            break;
+        case Imported:
+            $('#msgtxt').removeClass().addClass('centered text-center alert success').text(chrome.i18n.getMessage('optImport')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
+            break;
+        case ImportFail:
+            $('#msgtxt').removeClass().addClass('centered text-center alert danger').text(chrome.i18n.getMessage('optImportFailed')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
             break;
         default:
             break;
@@ -662,6 +673,8 @@ $(function () {
     $('#btnReset').click(function() { restoreOptionsFromFactorySettings(); displayMsg(Reset); return false; });
     $('#btnDisableAllPlugins').click(function() { disableAllPlugins(); return false; });
     $('#btnEnableAllPlugins').click(function() { enableAllPlugins(); return false; });
+    $('#btnImportSettings').click(function() { importSettings(); return false; });
+    $('#btnExportSettings').click(function() { exportSettings(); return false; });
     $('#chkWhiteListMode').parent().on('gumby.onChange', chkWhiteListModeOnChange);
     $('#txtZoomFactor').change(percentageOnChange);
     $('#txtPicturesOpacity').change(percentageOnChange);
@@ -706,6 +719,32 @@ function disableAllPlugins() {
 
 function enableAllPlugins() {
     $('input.chkPlugin').each(function() { $(this).trigger('gumby.check'); })
+}
+
+//Checks if string is JSON. 
+//If yes, imports settings and clears textarea.
+function importSettings() {
+    let jsonImport;
+    try {
+        jsonImport = JSON.parse($('#txtBoxImportExportSettings')[0].value);
+        // Checks if a few HZ+ settings are defined to test if it's a valid HZ+ JSON
+        const jsonTest = [jsonImport.centerImages, jsonImport.fullZoomKey, jsonImport.hideMouseCursor];
+        jsonTest.forEach((variable) => {
+            if (typeof variable === 'undefined') {
+                throw new Error('Not a valid HZ+ import JSON');
+            }
+        });
+    } catch (e) {
+        displayMsg(ImportFail);
+        return false;
+    }
+    displayMsg(Imported);
+    restoreOptions({jsonImport});
+    $('#txtBoxImportExportSettings').val('');
+}
+
+function exportSettings() {
+    saveOptions(true);
 }
 
 // highlight item if modified, unhighlight if not modified
