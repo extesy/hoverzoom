@@ -58,7 +58,7 @@ var factorySettings = {
     detailsLocation : 'none',
     fontSize : 11,
     fontOutline : false,
-    actionKey : 0,
+    actionKey : -5,
     toggleKey : 69,
     fullZoomKey : 90,
     copyImageKey: 67,
