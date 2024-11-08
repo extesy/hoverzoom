@@ -53,6 +53,7 @@ function loadKeys(sel) {
         $('<option value="16">Shift</option>').appendTo(sel);
     $('<option value="17">Ctrl</option>').appendTo(sel);
     $('<option value="18">Alt</option>').appendTo(sel);
+    $('<option value="13">Enter</option>').appendTo(sel);
     if (navigator.appVersion.indexOf('Macintosh') > -1) {
         $('<option value="91">Command</option>').appendTo(sel);
     }
