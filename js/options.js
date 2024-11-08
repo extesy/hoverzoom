@@ -151,13 +151,12 @@ function saveOptions(exportSettings = false) {
 
     if (exportSettings) { 
         $('#txtBoxImportExportSettings').val(JSON.stringify(options));
-        return false;
+    } else {
+        localStorage.options = JSON.stringify(options);
+
+        sendOptions(options);
+        restoreOptions();
     }
-    localStorage.options = JSON.stringify(options);
-
-    sendOptions(options);
-    restoreOptions();
-
     return false;
 }
 
