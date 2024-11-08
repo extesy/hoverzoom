@@ -724,6 +724,10 @@ function importSettings() {
     let jsonImport;
     try {
         jsonImport = JSON.parse($('#txtBoxImportExportSettings')[0].value);
+        // Checks for a few HZ+ settings to test if it's a valid HZ+ JSON
+        if (!jsonImport.darkMode || !jsonImport.disabledPlugins) {
+            throw new Error('Not a valid HZ+ import JSON')
+        }
     } catch (e) {
         displayMsg(ImportFail);
         return false;
