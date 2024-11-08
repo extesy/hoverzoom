@@ -40,7 +40,7 @@ function initActionKeys() {
 
 function loadKeys(sel) {
     $('<option value="0">None</option>').appendTo(sel);
-    if (sel.attr('id') != 'lockImageKey')
+    if (sel.attr('id') == 'selLockImageKey')
         $('<option value="-1">Right Click</option>').appendTo(sel);
     if (sel.attr('id') != 'selOpenImageInTabKey')
         $('<option value="16">Shift</option>').appendTo(sel);

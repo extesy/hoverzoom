@@ -1060,6 +1060,7 @@ var hoverZoom = {
             if (imgFullSize && !viewerLocked && options.lockImageKey === -1 && event.button === 2) {
                 lockViewerClickTime = event.timeStamp;
             } else if (imgFullSize && event.target !== hz.hzViewer[0] && event.target !== imgFullSize[0]) {
+                // if image is locked and left click is pressed outside of locked image
                 if (viewerLocked && event.button === 0) {
                     viewerLocked = false;
                 }
