@@ -1046,7 +1046,8 @@ var hoverZoom = {
             }
         }
 
-        let longPressTimer; //create timer
+        let longRightPressTimer; // create timer
+        let longMiddlePressTimer; // creates separate timer so they don't interfere
         let longPress = false;
 
         function documentContextMenu(event) {
@@ -1067,11 +1068,16 @@ var hoverZoom = {
             // The following trigger for right click
             switch (mouseButtonKey) {
                 case options.actionKey:
-                    clearTimeout(longPressTimer);                                            // clear any running timers
-                    longPressTimer = setTimeout(longRightClick.bind(this), pressDelay, mouseButtonKey); // create a new timer for this click
+                    if (mouseButtonKey === -2){
+                        clearTimeout(longRightPressTimer);
+                        longRightPressTimer = setTimeout(longClick.bind(this), 150, mouseButtonKey); // create a new timer for this click
+                    } else {
+                        clearTimeout(longMiddlePressTimer);
+                        longMiddlePressTimer = setTimeout(longClick.bind(this), 150, mouseButtonKey); // create a new timer for this click
+                    }
                     break;
                 default:
-                    return;
+                    break;
             }
             // The following only trigger when image is displayed
             if (imgFullSize) { 
@@ -1094,7 +1100,8 @@ var hoverZoom = {
             }
         }
 
-        function longRightClick(mouseButtonKey) {
+        function longClick(mouseButtonKey) {
+            longPress = true;
             switch (mouseButtonKey) {
                 case options.actionKey:
                     actionKeyDown = true;
@@ -1112,14 +1119,24 @@ var hoverZoom = {
             const mouseButtonKey = event.button[0,-2,-1,0,0];
             switch (mouseButtonKey) {
                 case options.actionKey:
-                    clearTimeout(longPressTimer); // clear timer if right click released too soon
+                    if (mouseButtonKey === -2){
+                        clearTimeout(longRightPressTimer);
+                    } else {
+                        clearTimeout(longMiddlePressTimer);
+                    }
                     if (actionKeyDown) {
                         actionKeyDown = false;
                         closeHoverZoomViewer();
                     }
                     break;
                 default:
-                    return;
+                    break;
+            }
+            if (imgFullSize) { 
+                switch (mouseButtonKey) {
+                    default:
+                        return;
+                }
             }
         }
 
