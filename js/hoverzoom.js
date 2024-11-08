@@ -1053,7 +1053,7 @@ var hoverZoom = {
         function documentContextMenu(event) {
             // If it's been less than 300ms since right click, lock viewer and prevent context menu.
             let lockElapsed = event.timeStamp - viewerClickTime;
-            if (imgFullSize && !viewerLocked && options.lockImageKey === -1 && lockElapsed < 300) {
+            if (imgFullSize && !viewerLocked && options.lockImageKey === -2 && lockElapsed < 300) {
                 lockViewer();
                 event.preventDefault();
             }
@@ -1064,8 +1064,8 @@ var hoverZoom = {
         }
 
         function documentMouseDown(event) {
-            const mouseButtonKey = event.button[0,-2,-1,0,0];
-            // The following trigger for right click
+            // Gets mouse button key from event.button
+            const mouseButtonKey = -event.button
             switch (mouseButtonKey) {
                 case options.actionKey:
                     if (mouseButtonKey === -2){
@@ -1116,7 +1116,7 @@ var hoverZoom = {
         }
 
         function documentMouseUp(event) {
-            const mouseButtonKey = event.button[0,-2,-1,0,0];
+            const mouseButtonKey = -event.button
             switch (mouseButtonKey) {
                 case options.actionKey:
                     if (mouseButtonKey === -2){
