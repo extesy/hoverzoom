@@ -1056,7 +1056,7 @@ var hoverZoom = {
                 lockViewer();
                 event.preventDefault();
             }
-            if (options.actionKey === -1 && longPress) {
+            if (longPress) {
                 longPress = false;
                 event.preventDefault();
             }
