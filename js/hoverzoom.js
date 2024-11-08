@@ -1046,8 +1046,8 @@ var hoverZoom = {
             }
         }
 
-        let longPress; //create timer
-        let pressDelay = 150;
+        let longPressTimer; //create timer
+        let longPress = false;
 
         function documentContextMenu(event) {
             // If it's been less than 300ms since right click, lock viewer and prevent context menu.
@@ -1056,43 +1056,70 @@ var hoverZoom = {
                 lockViewer();
                 event.preventDefault();
             }
-            if (options.actionKey === -1 && lockElapsed > pressDelay) {
+            if (options.actionKey === -1 && longPress) {
+                longPress = false;
                 event.preventDefault();
             }
         }
 
         function documentMouseDown(event) {
-            // Right click pressed and lockImageKey or actionKey is set to special value for right click (-1).
-            if ((options.lockImageKey === -1 || options.actionKey === -1) && event.button === 2){
-                clearTimeout(longPress);                                       // clear any running timers
-                viewerClickTime = event.timeStamp;
-                longPress = setTimeout(longRightClick.bind(this), pressDelay); // create a new timer for this click
-                
-            } else if (imgFullSize && event.target !== hz.hzViewer[0] && event.target !== imgFullSize[0]) {
-                // if image is locked and left click is pressed outside of locked image
-                if (viewerLocked && event.button === 0) {
-                    viewerLocked = false;
+            const mouseButtonKey = event.button[0,-2,-1,0,0];
+            // The following trigger for right click
+            switch (mouseButtonKey) {
+                case options.actionKey:
+                    clearTimeout(longPressTimer);                                            // clear any running timers
+                    longPressTimer = setTimeout(longRightClick.bind(this), pressDelay, mouseButtonKey); // create a new timer for this click
+                    break;
+                default:
+                    return;
+            }
+            // The following only trigger when image is displayed
+            if (imgFullSize) { 
+                switch (mouseButtonKey) {
+                    // Right click pressed and lockImageKey or actionKey is set to special value for right click (-1).
+                    case options.lockImageKey:
+                        viewerClickTime = event.timeStamp;
+                        break;
+                    default:
+                        return;
                 }
-                cancelSourceLoading();
-                restoreTitles();
+                if (event.target !== hz.hzViewer[0] && event.target !== imgFullSize[0]) {
+                    // if image is locked and left click is pressed outside of locked image
+                    if (viewerLocked && event.button === 0) {
+                        viewerLocked = false;
+                    }
+                    cancelSourceLoading();
+                    restoreTitles();
+                }
             }
         }
 
-        function longRightClick(){
-            actionKeyDown = true;
-            $(this).mousemove();
-            if (loading || imgFullSize) {
-                return false;
+        function longRightClick(mouseButtonKey) {
+            switch (mouseButtonKey) {
+                case options.actionKey:
+                    actionKeyDown = true;
+                    $(this).mousemove();
+                    if (loading || imgFullSize) {
+                        return false;
+                    }
+                    break;
+                default:
+                    return;
             }
         }
 
         function documentMouseUp(event) {
-            if (options.actionKey === -1 && event.button === 2){
-                clearTimeout(longPress); // clear timer if right click released too soon
-                if (actionKeyDown) {
-                    actionKeyDown = false;
-                    closeHoverZoomViewer();
-                }
+            const mouseButtonKey = event.button[0,-2,-1,0,0];
+            switch (mouseButtonKey) {
+                case options.actionKey:
+                    clearTimeout(longPressTimer); // clear timer if right click released too soon
+                    if (actionKeyDown) {
+                        actionKeyDown = false;
+                        closeHoverZoomViewer();
+                    }
+                    break;
+                default:
+                    return;
             }
         }
 
