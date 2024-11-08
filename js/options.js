@@ -149,7 +149,10 @@ function saveOptions(exportSettings = false) {
     options.useSeparateTabOrWindowForUnloadableUrlsEnabled = $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled')[0].checked;
     options.useSeparateTabOrWindowForUnloadableUrls = $('#selectUseSeparateTabOrWindowForUnloadableUrls').val();
 
-    if (exportSettings) { return JSON.stringify(options) }
+    if (exportSettings) { 
+        $('#txtBoxImportExportSettings').val(JSON.stringify(options));
+        return false;
+    }
     localStorage.options = JSON.stringify(options);
 
     sendOptions(options);
@@ -736,12 +739,12 @@ function importSettings() {
         return false;
     }
     displayMsg(Imported);
-    restoreOptions(Object.assign({}, jsonImport));
+    restoreOptions({jsonImport});
     $('#txtBoxImportExportSettings').val('');
 }
 
 function exportSettings() {
-    $('#txtBoxImportExportSettings').val(saveOptions(true));
+    saveOptions(true);
 }
 
 // highlight item if modified, unhighlight if not modified
