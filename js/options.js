@@ -724,10 +724,13 @@ function importSettings() {
     let jsonImport;
     try {
         jsonImport = JSON.parse($('#txtBoxImportExportSettings')[0].value);
-        // Checks for a few HZ+ settings to test if it's a valid HZ+ JSON
-        if (!jsonImport.darkMode || !jsonImport.disabledPlugins || !jsonImport.fullZoomKey) {
-            throw new Error('Not a valid HZ+ import JSON')
-        }
+        // Checks if a few HZ+ settings are defined to test if it's a valid HZ+ JSON
+        const jsonTest = [jsonImport.centerImages, jsonImport.fullZoomKey, jsonImport.hideMouseCursor];
+        jsonTest.forEach((variable) => {
+            if (typeof variable === 'undefined') {
+                throw new Error('Not a valid HZ+ import JSON');
+            }
+        });
     } catch (e) {
         displayMsg(ImportFail);
         return false;
