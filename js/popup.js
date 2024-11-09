@@ -40,7 +40,7 @@ function initActionKeys() {
 
 function loadKeys(sel) {
     $('<option value="-5">None</option>').appendTo(sel);
-    if (sel.attr('id') == 'selLockImageKey' || sel.attr('id') == 'selActionKey'){
+    if (sel.attr('id') != 'selPrevImgKey' || sel.attr('id') != 'selNextImgKey'){
         $('<option value="-2">Right Click</option>').appendTo(sel);
         $('<option value="-1">Middle Click</option>').appendTo(sel);
     }
