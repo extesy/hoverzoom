@@ -3607,7 +3607,7 @@ var hoverZoom = {
             fontSize(options.fontSize);
 
             webSiteExcluded = null;
-            body100pct = (body.css('position') != 'static') || (body.css('padding-left') == '0px' && body.css('padding-right') == '0px' && body.css('margin-left') == '0px' && body.css('margin-right') == '0px');
+            body100pct = (body.css('position') != 'static') || (body.css('padding-left') == '0px' && body.css('padding-right') == '0px' && body.css('margin-left') == '0px' && body.css('margin-right') == '0px' && (body.css('max-width') == 'none' || body.css('max-width') == '100%'));
             hz.pageGenerator = $('meta[name="generator"]').attr('content');
             prepareImgLinks();
             bindEvents();

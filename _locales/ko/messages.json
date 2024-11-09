@@ -324,11 +324,11 @@
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optAutoLockImages": {
-        "message": "Automatically lock images",
+        "message": "이미지 자동으로 잠금",
         "description": "[options] Automatically lock images option"
     },
     "optAutoLockImagesTooltip": {
-        "message": "Automatically lock images when activating Hover Zoom+",
+        "message": "호버 줌+ 활성화 시 이미지를 자동으로 잠그기",
         "description": "[options] Tooltip for automatically lock images option"
     },
     "optFrameBackgroundColor": {
@@ -596,15 +596,15 @@
         "description": "[options] Add download caption option"
     },
     "optDownloadReplaceOriginalFilenameTooltip": {
-        "message": "Replace original filename or remove it if no value supplied (extension is preserved)",
+        "message": "원본 파일명을 바꾸거나 값이 없는 경우 제거합니다 (확장자는 유지)",
         "description": "[options] Tooltip for replace original filename when downloading option"
     },
     "optDownloadReplaceOriginalFilenamePlaceholder": {
-        "message": "Example: fullsize_image",
+        "message": "예시: fullsize_image",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadReplaceOriginalFilename": {
-        "message": "On save, replace original filename by:",
+        "message": "저장할 때 원본 파일명을 다음으로 교체:",
         "description": "[options] Replace original filename when downloading option"
     },
     "optSectionTroubleshooting": {
@@ -634,6 +634,34 @@
     "optSupportedAudioFormats": {
         "message": "소리:",
         "description": "[options] Page section for supported audio formats"
+    },
+    "optSectionImportExportSettings": {
+        "message": "Import/Export",
+        "description": "[options] Page section for import/export"
+    },
+    "optSectionImportExportSettingsTooltip": {
+        "message": "Press export to get a string of your current settings. Press import to load your pasted settings",
+        "description": "[options] Tooltip for input and export options"
+    },
+    "optImportExportTextArea": {
+        "message": "Paste your saved settings here",
+        "description": "[options] Placeholder for import and export text area"
+    },
+    "optButtonImportSettings": {
+        "message": "Import",
+        "description": "[options] Import a save string from the textarea"
+    },
+    "optButtonExportSettings": {
+        "message": "Export",
+        "description": "[options] Export a save string into the textarea"
+    },
+    "optImport": {
+        "message": "Import Success!",
+        "description": "[options] Notification after successful import to options"
+    },
+    "optImportFailed": {
+        "message": "Import Failed",
+        "description": "[options] Notification after failed import to options"
     },
     "optPageFAQ": {
         "message": "FAQ",

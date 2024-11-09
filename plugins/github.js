@@ -3,12 +3,18 @@ hoverZoomPlugins.push({
     name:'GitHub',
     version:'0.3',
     prepareImgLinks:function (callback) {
-        var res = [];
+        const res = [];
         
         $('a > img[data-canonical-src]').each(function () {
-            var img = $(this);
+            let img = $(this);
             img.data('hoverZoomSrc', [img.attr('data-canonical-src')]);
             img.data('hoverZoomCaption', [img.attr('alt')]);
+            res.push(img);
+        });
+
+        $('img[src*="private-user-images"]').each(function () {
+            let img = $(this);
+            img.data('hoverZoomSrc', [img.attr('src')]);
             res.push(img);
         });
         

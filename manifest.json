@@ -1,7 +1,7 @@
 {
     "name": "__MSG_extName__",
     "short_name": "__MSG_extShortName__",
-    "version": "1.0.221",
+    "version": "1.0.222",
     "description": "__MSG_extDescription__",
     "homepage_url": "https://github.com/extesy/hoverzoom/",
     "author": "Oleg Anashkin",
@@ -484,6 +484,10 @@
         {
             "js": ["plugins/twitpic.js"],
             "matches": ["*://*.twitter.com/*"]
+        },
+        {
+            "js": ["plugins/gifbin.js"],
+            "matches": ["*://gifbin.com/*"]
         },
         {
             "js": ["plugins/ravelry.js"],
@@ -1275,6 +1279,10 @@
             "matches": ["*://*.artstation.com/*"]
         },
         {
+            "js": ["plugins/artfol.js"],
+            "matches": ["*://*.artfol.co/*"]
+        },
+        {
             "js": ["plugins/artsper.js"],
             "matches": ["*://*.artsper.com/*"]
         },
@@ -1983,6 +1991,10 @@
         {
             "js": ["plugins/kleinanzeigen.js"],
             "matches": ["*://*.kleinanzeigen.de/*"]
+        },
+        {
+            "js": ["plugins/tenor.js"],
+            "matches": ["*://*.tenor.com/*"]
         },
         {
             "js": ["plugins/trakttv.js"],
