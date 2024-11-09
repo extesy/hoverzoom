@@ -1015,7 +1015,7 @@ var hoverZoom = {
                     if (!imgFullSize) {
                         hz.currentLink = links;
 
-                        if (links.data().hoverZoomSrc && (!options.actionKey || actionKeyDown)) {
+                        if (links.data().hoverZoomSrc && (options.actionKey === -5 || actionKeyDown)) {
                             const src = hoverZoom.getFullUrl(links.data().hoverZoomSrc[hoverZoomSrcIndex]);
                             const audioSrc = links.data().hoverZoomAudioSrc ? hoverZoom.getFullUrl(links.data().hoverZoomAudioSrc[hoverZoomSrcIndex]) : undefined;
 
@@ -1052,10 +1052,10 @@ var hoverZoom = {
         
         function mouseButtonKeyHandler(mouseButtonKey){
             const timerDelay = 150;
-            console.log(mouseButtonKey)
             if (mouseButtonKey === -2){
                 longRightPressTimer = setTimeout(longClick.bind(this), timerDelay, mouseButtonKey); // create a new timer for this click
             } else {
+                longPress = false;
                 longMiddlePressTimer = setTimeout(longClick.bind(this), timerDelay, mouseButtonKey); // create a new timer for this click
             }
         }
@@ -1078,7 +1078,7 @@ var hoverZoom = {
                         return false;
                     }
                     break;
-                case options.lockKey:
+                case options.lockImageKey:
                     lockViewer();
                     return;
                 default:
@@ -1097,7 +1097,6 @@ var hoverZoom = {
         function documentMouseDown(event) {
             // Gets mouse button key from event.button
             const mouseButtonKey = -event.button
-            console.log(options.actionKey)
             switch (mouseButtonKey) {
                 case options.actionKey:
                     mouseButtonKeyHandler(mouseButtonKey).bind(this);
