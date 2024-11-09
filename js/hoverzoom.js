@@ -1083,7 +1083,7 @@ var hoverZoom = {
                     return;
                 case options.toggleKey:
                     toggleKey()
-                    break;
+                    return;
                 default:
                     return;
             }
@@ -1143,7 +1143,6 @@ var hoverZoom = {
 
         function documentMouseUp(event) {
             if (event.button === 0) return; // If left click, return
-
             const mouseButtonKey = -event.button;
             switch (mouseButtonKey) {
                 case options.actionKey:
@@ -2459,7 +2458,8 @@ var hoverZoom = {
             $(document).mouseup(prepareImgLinksAsync);
 
             $(document).contextmenu(documentContextMenu);
-            $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).mouseup(documentMouseUp).mouseleave(cancelSourceLoading);
+            $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).mouseleave(cancelSourceLoading);
+            $(document).on('mouseup', function(event) { documentMouseUp(event); })
             $(document).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
             if (options.galleriesMouseWheel) {
                 window.addEventListener('wheel', documentOnMouseWheel, {passive: false});
