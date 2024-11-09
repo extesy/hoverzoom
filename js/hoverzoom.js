@@ -1050,20 +1050,20 @@ var hoverZoom = {
         let longMiddlePressTimer; // creates separate timer so they don't interfere
         let longPress = false;
         
-        function mouseButtonKeyHandler(mouseButtonKey){
+        function mouseButtonKeyHandler(mouseButtonKey) {
             const timerDelay = 150;
             if (mouseButtonKey === -2){
-                longRightPressTimer = setTimeout(longClick.bind(this), timerDelay, mouseButtonKey); // create a new timer for this click
+                longRightPressTimer = setTimeout(longClick.bind(this), timerDelay, mouseButtonKey);
             } else {
-                longPress = false;
-                longMiddlePressTimer = setTimeout(longClick.bind(this), timerDelay, mouseButtonKey); // create a new timer for this click
+                longMiddlePressTimer = setTimeout(longClick.bind(this), timerDelay, mouseButtonKey);
             }
         }
 
-        function clearMouseButtonTimers(mouseButtonKey){
-            if (mouseButtonKey === -2){
+        function clearMouseButtonTimers(mouseButtonKey) {
+            if (mouseButtonKey === -2) {
                 clearTimeout(longRightPressTimer);
             } else {
+                longPress = false;
                 clearTimeout(longMiddlePressTimer);
             }
         }
@@ -1087,7 +1087,7 @@ var hoverZoom = {
         }
 
         function documentContextMenu(event) {
-            // If it's been less than 300ms since right click, lock viewer and prevent context menu.
+            // If right click is a long press, prevent context menu
             if (longPress) {
                 longPress = false;
                 event.preventDefault();
@@ -1108,7 +1108,7 @@ var hoverZoom = {
             if (imgFullSize) { 
                 switch (mouseButtonKey) {
                     case options.lockImageKey:
-                        mouseButtonKeyHandler(mouseButtonKey).bind(this);
+                        mouseButtonKeyHandler(mouseButtonKey);
                         return;
                     default:
                         break;
@@ -1128,13 +1128,14 @@ var hoverZoom = {
             const mouseButtonKey = -event.button
             switch (mouseButtonKey) {
                 case options.actionKey:
-                    clearMouseButtonTimers;
+                    clearMouseButtonTimers(mouseButtonKey);
                     if (actionKeyDown) {
                         actionKeyDown = false;
                         closeHoverZoomViewer();
                     }
                     return;
                 default:
+                    clearMouseButtonTimers(mouseButtonKey);
                     break;
             }
             if (imgFullSize) { 
