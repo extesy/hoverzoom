@@ -1233,13 +1233,8 @@ var hoverZoom = {
                         playMedias();
                     }
                     $(this).mousemove();
+                    break;
                 default:
-                    if (imgFullSize) { 
-                        switch (mouseButtonKey) {
-                            default:
-                                break;
-                        }
-                    }
                     break;
             }
             clearMouseButtonTimers(mouseButtonKey);
