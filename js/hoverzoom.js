@@ -1084,6 +1084,77 @@ var hoverZoom = {
                 case options.toggleKey:
                     toggleKey()
                     return;
+                case options.fullZoomKey:
+                    if (!fullZoomKeyDown) {
+                        fullZoomKeyDown = true;
+                        posViewer();
+                        if (imgFullSize) {
+                            return false;
+                        }
+                    }
+                    return
+                case options.closeKey:
+                    viewerLocked = false;
+                    if (hz.hzViewer) {
+                        stopMedias();
+                        hz.hzViewer.hide();
+                    }
+                    if (imgFullSize) {
+                        return false;
+                    }
+                    return
+                case options.hideKey:
+                    if (!hideKeyDown) {
+                        hideKeyDown = true;
+                        if (hz.hzViewer) {
+                            pauseMedias();
+                            hz.hzViewer.hide();
+                        }
+                        if (imgFullSize) {
+                            return false;
+                        }
+                    }
+                    return
+                case options.copyImageKey:
+                    if (isChromiumBased) {
+                        if (keyCode === options.copyImageKey) {
+                            copyImage();
+                            return false;
+                        }
+                    }
+                    return false;
+                case options.copyImageUrlKey:
+                    copyLink();
+                    return false;
+                // "Previous image" key
+                case options.prevImgKey:
+                    var linkData = hz.currentLink.data();
+                    if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(-1);
+                    else changeVideoPosition(-parseInt(options.videoPositionStep));
+                    return false;
+                // "Next image" key
+                case options.nextImgKey:
+                    var linkData = hz.currentLink.data();
+                    if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(1);
+                    else changeVideoPosition(parseInt(options.videoPositionStep));
+                    return false;
+                // "Flip image" key
+                case options.flipImageKey:
+                    flipImage();
+                    return false;
+                case options.openImageInWindowKey:
+                    if (srcDetails.video) openVideoInWindow();
+                    else if (srcDetails.audio) openAudioInWindow();
+                    else openImageInWindow();
+                    return false;
+                case options.openImageInTabKey:
+                    if (srcDetails.video) openVideoInTab(event.shiftKey);
+                    else if (srcDetails.audio) openAudioInTab();
+                    else openImageInTab(event.shiftKey);
+                    return false;
+                case options.saveImageKey:
+                    saveImage();
+                    return false;
                 default:
                     return;
             }
@@ -1115,9 +1186,9 @@ var hoverZoom = {
             switch (mouseButtonKey) {
                 case options.actionKey:
                 case options.toggleKey:
-                //case options.fullZoomKey:
-                //case options.closeKey:
-                //case options.hideKey:
+                case options.fullZoomKey:
+                case options.closeKey:
+                case options.hideKey:
                     mouseButtonKeyHandler(mouseButtonKey, this);
                     return;
                 default:
@@ -1151,6 +1222,17 @@ var hoverZoom = {
                         closeHoverZoomViewer();
                     }
                     break;
+                case options.fullZoomKey:
+                    fullZoomKeyDown = false;
+                    $(this).mousemove();
+                    break;
+                case options.hideKey:
+                    hideKeyDown = false;
+                    if (imgFullSize) {
+                        hz.hzViewer.show();
+                        playMedias();
+                    }
+                    $(this).mousemove();
                 default:
                     if (imgFullSize) { 
                         switch (mouseButtonKey) {
