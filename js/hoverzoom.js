@@ -1098,6 +1098,18 @@ var hoverZoom = {
         }
 
         function documentMouseDown(event) {
+            // if image is locked and left click is pressed outside of locked image
+            if (event.button === 0 && imgFullSize && event.target !== hz.hzViewer[0] && event.target !== imgFullSize[0]) {
+                if (viewerLocked) {
+                    viewerLocked = false;
+                }
+                cancelSourceLoading();
+                restoreTitles();
+                return
+            } else if (event.button === 0) { // We don't need left click
+                return
+            }
+
             // Gets mouse button key from event.button
             const mouseButtonKey = -event.button
             switch (mouseButtonKey) {
@@ -1106,40 +1118,33 @@ var hoverZoom = {
                 //case options.fullZoomKey:
                 //case options.closeKey:
                 //case options.hideKey:
-                        event.preventDefault();
                     mouseButtonKeyHandler(mouseButtonKey, this);
                     return;
                 default:
-                    break;
-            }
-            // The following only trigger when image is displayed
-            if (imgFullSize) { 
-                switch (mouseButtonKey) {
-                    case options.lockImageKey:
-                    case options.copyImageKey:
-                    case options.copyImageUrlKey:
-                    case options.flipImageKey:
-                    case options.openImageInWindowKey:
-                    case options.openImageInTabKey:
-                    case options.saveImageKey:
-                        mouseButtonKeyHandler(mouseButtonKey);
-                        return;
-                    default:
-                        break;
-                }
-                if (mouseButtonKey === 0 && event.target !== hz.hzViewer[0] && event.target !== imgFullSize[0]) {
-                    // if image is locked and left click is pressed outside of locked image
-                    if (viewerLocked) {
-                        viewerLocked = false;
+                    // The following only trigger when image is displayed
+                    if (imgFullSize) { 
+                        switch (mouseButtonKey) {
+                            case options.lockImageKey:
+                            case options.copyImageKey:
+                            case options.copyImageUrlKey:
+                            case options.flipImageKey:
+                            case options.openImageInWindowKey:
+                            case options.openImageInTabKey:
+                            case options.saveImageKey:
+                                mouseButtonKeyHandler(mouseButtonKey);
+                                return;
+                            default:
+                                break;
+                        }
                     }
-                    cancelSourceLoading();
-                    restoreTitles();
-                }
+                    return;
             }
         }
 
         function documentMouseUp(event) {
-            const mouseButtonKey = -event.button
+            if (event.button === 0) return; // If left click, return
+
+            const mouseButtonKey = -event.button;
             switch (mouseButtonKey) {
                 case options.actionKey:
                     if (actionKeyDown) {
