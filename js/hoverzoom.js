@@ -1142,22 +1142,21 @@ var hoverZoom = {
             const mouseButtonKey = -event.button
             switch (mouseButtonKey) {
                 case options.actionKey:
-                    clearMouseButtonTimers(mouseButtonKey);
                     if (actionKeyDown) {
                         actionKeyDown = false;
                         closeHoverZoomViewer();
                     }
-                    return;
+                    break;
                 default:
-                    clearMouseButtonTimers(mouseButtonKey);
+                    if (imgFullSize) { 
+                        switch (mouseButtonKey) {
+                            default:
+                                break;
+                        }
+                    }
                     break;
             }
-            if (imgFullSize) { 
-                switch (mouseButtonKey) {
-                    default:
-                        return;
-                }
-            }
+            clearMouseButtonTimers(mouseButtonKey);
         }
 
         // select correct font size for msg depending on img or video width
