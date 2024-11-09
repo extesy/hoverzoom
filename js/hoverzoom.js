@@ -1050,12 +1050,12 @@ var hoverZoom = {
         let longMiddlePressTimer; // creates separate timer so they don't interfere
         let longPress = false;
         
-        function mouseButtonKeyHandler(mouseButtonKey) {
+        function mouseButtonKeyHandler(mouseButtonKey, img) {
             const timerDelay = 150;
             if (mouseButtonKey === -2){
-                longRightPressTimer = setTimeout(longClick.bind(this), timerDelay, mouseButtonKey);
+                longRightPressTimer = setTimeout(longClick.bind(img), timerDelay, mouseButtonKey);
             } else {
-                longMiddlePressTimer = setTimeout(longClick.bind(this), timerDelay, mouseButtonKey);
+                longMiddlePressTimer = setTimeout(longClick.bind(img), timerDelay, mouseButtonKey);
             }
         }
 
