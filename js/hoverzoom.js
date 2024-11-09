@@ -1081,6 +1081,9 @@ var hoverZoom = {
                 case options.lockImageKey:
                     lockViewer();
                     return;
+                case options.toggleKey:
+                    toggleKey()
+                    break;
                 default:
                     return;
             }
@@ -1099,7 +1102,12 @@ var hoverZoom = {
             const mouseButtonKey = -event.button
             switch (mouseButtonKey) {
                 case options.actionKey:
-                    mouseButtonKeyHandler(mouseButtonKey).bind(this);
+                case options.toggleKey:
+                //case options.fullZoomKey:
+                //case options.closeKey:
+                //case options.hideKey:
+                        event.preventDefault();
+                    mouseButtonKeyHandler(mouseButtonKey, this);
                     return;
                 default:
                     break;
@@ -1108,6 +1116,12 @@ var hoverZoom = {
             if (imgFullSize) { 
                 switch (mouseButtonKey) {
                     case options.lockImageKey:
+                    case options.copyImageKey:
+                    case options.copyImageUrlKey:
+                    case options.flipImageKey:
+                    case options.openImageInWindowKey:
+                    case options.openImageInTabKey:
+                    case options.saveImageKey:
                         mouseButtonKeyHandler(mouseButtonKey);
                         return;
                     default:
@@ -2509,6 +2523,21 @@ var hoverZoom = {
             }
         }
 
+        function toggleKey() {
+            options.extensionEnabled = !options.extensionEnabled;
+            if (!options.extensionEnabled) {
+                // close zoomed image or video
+                viewerLocked = false;
+                if (hz.hzViewer) {
+                    stopMedias();
+                    hz.hzViewer.hide();
+                }
+                if (imgFullSize) {
+                    return false;
+                }
+            }
+        }
+
         function documentOnKeyDown(event) {
             // Skips if an input controlled is focused
             if (event.target && ['INPUT','TEXTAREA','SELECT'].indexOf(event.target.tagName) > -1) {
@@ -2519,18 +2548,7 @@ var hoverZoom = {
 
             // Toggle key is pressed down
             if (keyCode === options.toggleKey) {
-                options.extensionEnabled = !options.extensionEnabled;
-                if (!options.extensionEnabled) {
-                    // close zoomed image or video
-                    viewerLocked = false;
-                    if (hz.hzViewer) {
-                        stopMedias();
-                        hz.hzViewer.hide();
-                    }
-                    if (imgFullSize) {
-                        return false;
-                    }
-                }
+                toggleKey()
             }
 
             // Action key (zoom image) is pressed down
