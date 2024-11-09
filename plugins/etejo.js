@@ -3,13 +3,13 @@ hoverZoomPlugins.push({
     name:'Etejo',
     version:'0.1',
     prepareImgLinks:function (callback) {
-        let res = [];
+        const res = [];
 
         // This should work, yet no image shows on hover
         // I suspect Etejo has something preventing it
         $('div.row.gallery.point:not(.hoverZoomMouseover)').addClass('hoverZoomMouseover').one('mouseover', function () {
-            let img = $(this);
-            let src = 'https://etejo.com/' + img.find('img[src*="Users/"]').attr('src');
+            const img = $(this);
+            const src = 'https://etejo.com/' + img.find('img[src*="Users/"]').attr('src');
             
             hoverZoom.prepareLink(img, src)
         });
