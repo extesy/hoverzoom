@@ -218,8 +218,8 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#rngFontSize').val(parseInt(options.fontSize));
     $('#txtFontSize').val(parseInt(options.fontSize));
     $('#chkFontOutline').trigger(options.fontOutline ? 'gumby.check' : 'gumby.uncheck');
-    $('#txtBelowPositionOffset').val(parseInt(options.belowPositionOffset));
-    $('#txtAbovePositionOffset').val(parseInt(options.abovePositionOffset));
+    $('#txtBelowPositionOffset').val(parseFloat(options.belowPositionOffset));
+    $('#txtAbovePositionOffset').val(parseFloat(options.abovePositionOffset));
     $('#txtCaptionOpacity').val(parseInt(options.captionOpacity));
     $('#txtDetailsOpacity').val(parseInt(options.detailsOpacity));
 
