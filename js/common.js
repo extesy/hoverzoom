@@ -37,8 +37,10 @@ var factorySettings = {
     autoLockImages : false,
     frameBackgroundColor: "#ffffff",
     frameThickness: 4,
-    belowPositionOffset: '0%',
-    abovePositionOffset: '0%',
+    belowPositionOffset: '0',
+    abovePositionOffset: '0',
+    captionOpacity: '100',
+    detailsOpacity: '100',
     displayImageLoader: false,
     enlargementThresholdEnabled : true,
     enlargementThreshold : 2,
@@ -159,6 +161,8 @@ function loadOptions() {
     options.fontOutline = options.hasOwnProperty('fontOutline') ? options.fontOutline : factorySettings.fontOutline;
     options.belowPositionOffset = options.hasOwnProperty('belowPositionOffset') ? options.belowPositionOffset : factorySettings.belowPositionOffset;
     options.abovePositionOffset = options.hasOwnProperty('abovePositionOffset') ? options.abovePositionOffset : factorySettings.abovePositionOffset;
+    options.captionOpacity = options.hasOwnProperty('captionOpacity') ? options.captionOpacity : factorySettings.captionOpacity;
+    options.detailsOpacity = options.hasOwnProperty('detailsOpacity') ? options.detailsOpacity : factorySettings.detailsOpacity;
 
     // Action keys
     options.actionKey = options.hasOwnProperty('actionKey') ? options.actionKey : factorySettings.actionKey;

@@ -139,6 +139,8 @@ function saveOptions(exportSettings = false) {
     options.fontOutline = $('#chkFontOutline')[0].checked;
     options.belowPositionOffset = $('#txtBelowPositionOffset')[0].value;
     options.abovePositionOffset = $('#txtAbovePositionOffset')[0].value;
+    options.captionOpacity = $('#txtCaptionOpacity')[0].value;
+    options.detailsOpacity = $('#txtDetailsOpacity')[0].value;
     options.displayImageLoader = $('#chkDisplayImageLoader')[0].checked;
     options.downloadFolder = $('#txtDownloadFolder')[0].value;
     options.addDownloadOrigin = $('#chkAddDownloadOrigin')[0].checked;
@@ -218,6 +220,8 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#chkFontOutline').trigger(options.fontOutline ? 'gumby.check' : 'gumby.uncheck');
     $('#txtBelowPositionOffset').val(parseInt(options.belowPositionOffset));
     $('#txtAbovePositionOffset').val(parseInt(options.abovePositionOffset));
+    $('#txtCaptionOpacity').val(parseInt(options.captionOpacity));
+    $('#txtDetailsOpacity').val(parseInt(options.detailsOpacity));
 
     if (options.frameBackgroundColor == "") {
         initColorPicker('#ffffff');
@@ -548,6 +552,13 @@ function updateTxtAbovePositionOffset() {
     $('#txtAbovePositionOffset')[0].value = this.value;
 }
 
+function updateTxtCaptionOpacity() {
+    $('#txtCaptionOpacity')[0].value = this.value;
+}
+function updateTxtDetailsOpacity() {
+    $('#txtDetailsOpacity')[0].value = this.value;
+}
+
 function updateRngFontSize() {
     this.value = percentageOnChange(this.value);
     $('#rngFontSize').val(this.value);
@@ -705,6 +716,8 @@ $(function () {
     $('#txtFontSize').change(updateRngFontSize);
     $('#txtBelowPositionOffset').change(updateTxtBelowPositionOffset);
     $('#txtAbovePositionOffset').change(updateTxtAbovePositionOffset);
+    $('#txtCaptionOpacity').change(updateTxtCaptionOpacity);
+    $('#txtDetailsOpacity').change(updateTxtDetailsOpacity);
     $('#txtVideoPositionStep').change(percentageOnChange);
     $('.actionKey').change(selKeyOnChange);
     $('#btnAddExcludedSite').click(btnAddExcludedSiteOnClick);
