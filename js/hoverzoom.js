@@ -1094,25 +1094,11 @@ var hoverZoom = {
                     }
                     return
                 case options.closeKey:
-                    viewerLocked = false;
-                    if (hz.hzViewer) {
-                        stopMedias();
-                        hz.hzViewer.hide();
-                    }
-                    if (imgFullSize) {
-                        return false;
-                    }
+                    closeKey()
                     return
                 case options.hideKey:
                     if (!hideKeyDown) {
-                        hideKeyDown = true;
-                        if (hz.hzViewer) {
-                            pauseMedias();
-                            hz.hzViewer.hide();
-                        }
-                        if (imgFullSize) {
-                            return false;
-                        }
+                        hideKey()
                     }
                     return
                 case options.copyImageKey:
@@ -2619,6 +2605,28 @@ var hoverZoom = {
             }
         }
 
+        function closeKey() {
+            viewerLocked = false;
+            if (hz.hzViewer) {
+                stopMedias();
+                hz.hzViewer.hide();
+            }
+            if (imgFullSize) {
+                return false;
+            }
+        }
+
+        function hideKey(){
+            hideKeyDown = true;
+            if (hz.hzViewer) {
+                pauseMedias();
+                hz.hzViewer.hide();
+            }
+            if (imgFullSize) {
+                return false;
+            }
+        }
+
         function documentOnKeyDown(event) {
             // Skips if an input controlled is focused
             if (event.target && ['INPUT','TEXTAREA','SELECT'].indexOf(event.target.tagName) > -1) {
@@ -2653,27 +2661,13 @@ var hoverZoom = {
             // close key (close zoomed image) is pressed down
             // => zoomed image is closed immediately
             if (keyCode === options.closeKey) {
-                viewerLocked = false;
-                if (hz.hzViewer) {
-                    stopMedias();
-                    hz.hzViewer.hide();
-                }
-                if (imgFullSize) {
-                    return false;
-                }
+                closeKey()
             }
 
             // hide key (hide zoomed image) is pressed down
             // => zoomed image remains hidden until key is released
             if (keyCode === options.hideKey && !hideKeyDown) {
-                hideKeyDown = true;
-                if (hz.hzViewer) {
-                    pauseMedias();
-                    hz.hzViewer.hide();
-                }
-                if (imgFullSize) {
-                    return false;
-                }
+                hideKey()
             }
 
             // the following keys are processed only if an image is displayed
