@@ -159,14 +159,15 @@ function restoreOptions(optionsFromFactorySettings) {
 }
 
 function selKeyOnChange(event) {
-    var currSel = $(event.target);
+    let noneKey = '-5'; // sel key code for 'none'
+    let currSel = $(event.target);
     if (currSel[0].dataset.val0 == undefined) return; // event fired before init
     currSel[0].dataset.val1 = currSel.val();
     checkModification(currSel);
-    if (currSel.val() != '0') {
+    if (currSel.val() != noneKey) {
         $('.actionKey').each(function () {
             if (!$(this).is(currSel) && $(this).val() == currSel.val()) {
-                $(this).val('0');
+                $(this).val(noneKey);
                 $(this)[0].dataset.val1 = $(this).val();
                 checkModification($(this));
             }
