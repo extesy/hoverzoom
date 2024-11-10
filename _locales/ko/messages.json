@@ -636,31 +636,31 @@
         "description": "[options] Page section for supported audio formats"
     },
     "optSectionImportExportSettings": {
-        "message": "Import/Export",
+        "message": "가져오기/내보내기",
         "description": "[options] Page section for import/export"
     },
     "optSectionImportExportSettingsTooltip": {
-        "message": "Press export to get a string of your current settings. Press import to load your pasted settings",
+        "message": "내보내기를 눌러 현재 설정을 문자열로 받을 수 있습니다. 가져오기를 눌러 붙여넣은 설정을 불러옵니다.",
         "description": "[options] Tooltip for input and export options"
     },
     "optImportExportTextArea": {
-        "message": "Paste your saved settings here",
+        "message": "여기에 저장한 설정을 붙여넣기",
         "description": "[options] Placeholder for import and export text area"
     },
     "optButtonImportSettings": {
-        "message": "Import",
+        "message": "가져오기",
         "description": "[options] Import a save string from the textarea"
     },
     "optButtonExportSettings": {
-        "message": "Export",
+        "message": "내보내기",
         "description": "[options] Export a save string into the textarea"
     },
     "optImport": {
-        "message": "Import Success!",
+        "message": "가져오기 성공!",
         "description": "[options] Notification after successful import to options"
     },
     "optImportFailed": {
-        "message": "Import Failed",
+        "message": "가져오기 실패",
         "description": "[options] Notification after failed import to options"
     },
     "optPageFAQ": {
