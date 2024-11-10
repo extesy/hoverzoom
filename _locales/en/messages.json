@@ -371,6 +371,26 @@
         "message": "pixels",
         "description": "[options] Unit name (pixel) for font size"
     },
+    "optBelowPositionOffset": {
+        "message": "Below offset:",
+        "description": "[options] Below offset option"
+    },
+    "optBelowPositionOffsetTooltip": {
+        "message": "Amount to offset text in the below position",
+        "description": "[options] Tooltip for below position offset"
+    },
+    "optAbovePositionOffset": {
+        "message": "Above offset:",
+        "description": "[options] Above offset option"
+    },
+    "optAbovePositionOffsetTooltip": {
+        "message": "Amount to offset text in the above position",
+        "description": "[options] Tooltip for above position offset"
+    },
+    "optOffsetUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (pixel) for offset amount"
+    },
     "optSectionDelays": {
         "message": "Delays",
         "description": "[options] Page section for delay options"

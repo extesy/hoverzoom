@@ -137,6 +137,8 @@ function saveOptions(exportSettings = false) {
     options.detailsLocation = $('#selectDetailsLocation').val();
     options.fontSize = $('#txtFontSize')[0].value;
     options.fontOutline = $('#chkFontOutline')[0].checked;
+    options.belowPositionOffset = $('#txtBelowPositionOffset')[0].value;
+    options.abovePositionOffset = $('#txtAbovePositionOffset')[0].value;
     options.displayImageLoader = $('#chkDisplayImageLoader')[0].checked;
     options.downloadFolder = $('#txtDownloadFolder')[0].value;
     options.addDownloadOrigin = $('#chkAddDownloadOrigin')[0].checked;
@@ -214,6 +216,8 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#rngFontSize').val(parseInt(options.fontSize));
     $('#txtFontSize').val(parseInt(options.fontSize));
     $('#chkFontOutline').trigger(options.fontOutline ? 'gumby.check' : 'gumby.uncheck');
+    $('#txtBelowPositionOffset').val(parseInt(options.belowPositionOffset));
+    $('#txtAbovePositionOffset').val(parseInt(options.abovePositionOffset));
 
     if (options.frameBackgroundColor == "") {
         initColorPicker('#ffffff');
@@ -536,6 +540,14 @@ function updateTxtFontSize() {
     $('#txtFontSize')[0].value = this.value;
 }
 
+function updateTxtBelowPositionOffset() {
+    $('#txtBelowPositionOffset')[0].value = this.value;
+}
+
+function updateTxtAbovePositionOffset() {
+    $('#txtAbovePositionOffset')[0].value = this.value;
+}
+
 function updateRngFontSize() {
     this.value = percentageOnChange(this.value);
     $('#rngFontSize').val(this.value);
@@ -691,6 +703,8 @@ $(function () {
     $('#txtFrameThickness').change(updateRngFrameThickness);
     $('#rngFontSize').on('input change', updateTxtFontSize);
     $('#txtFontSize').change(updateRngFontSize);
+    $('#txtBelowPositionOffset').change(updateTxtBelowPositionOffset);
+    $('#txtAbovePositionOffset').change(updateTxtAbovePositionOffset);
     $('#txtVideoPositionStep').change(percentageOnChange);
     $('.actionKey').change(selKeyOnChange);
     $('#btnAddExcludedSite').click(btnAddExcludedSiteOnClick);
