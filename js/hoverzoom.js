@@ -285,14 +285,18 @@ var hoverZoom = {
                 'display':'flex',
                 'flex-direction':'row',
                 'flex-wrap':'nowrap',
-                'align-items':'flex-end'
+                'align-items':'flex-end',
+                'position' :'relative',
+                'top':'0px'
             },
             hzBelowCss = {
                 'background':'none',
                 'display':'flex',
                 'flex-direction':'row',
                 'flex-wrap':'nowrap',
-                'align-items':'flex-start'
+                'align-items':'flex-start',
+                'position' :'relative',
+                'bottom':'0px'
             },
             hzCaptionMiscellaneousCss = {
                 'background':'none',
@@ -306,7 +310,10 @@ var hoverZoom = {
                 'display':'flex',
                 'flex-direction':'row',
                 'flex-wrap':'nowrap',
-                'min-width':'25%'
+                'min-width':'25%',
+                'position' :'relative',
+                'bottom':'0px',
+                'top':'0px'
             },
             hzGalleryInfoCss = {
                 'position':'absolute',
