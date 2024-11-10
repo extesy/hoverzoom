@@ -286,8 +286,7 @@ var hoverZoom = {
                 'flex-direction':'row',
                 'flex-wrap':'nowrap',
                 'align-items':'flex-end',
-                'position' :'relative',
-                'top':'0px'
+                'position': 'static'
             },
             hzBelowCss = {
                 'background':'none',
@@ -295,8 +294,7 @@ var hoverZoom = {
                 'flex-direction':'row',
                 'flex-wrap':'nowrap',
                 'align-items':'flex-start',
-                'position' :'relative',
-                'bottom':'0px'
+                'position': 'static'
             },
             hzCaptionMiscellaneousCss = {
                 'background':'none',
@@ -311,9 +309,6 @@ var hoverZoom = {
                 'flex-direction':'row',
                 'flex-wrap':'nowrap',
                 'min-width':'25%',
-                'position' :'relative',
-                'bottom':'0px',
-                'top':'0px'
             },
             hzGalleryInfoCss = {
                 'position':'absolute',
@@ -423,10 +418,19 @@ var hoverZoom = {
                     hzCaptionMiscellaneous.css('max-width', imgFullSize[0].clientWidth);
                 if (hzDetails)
                     hzDetails.css('max-width', imgFullSize[0].clientWidth);
-                if (hzAbove)
+                if (hzAbove) {
                     hzAbove.css('max-width', imgFullSize[0].clientWidth);
-                if (hzBelow)
+                    hzAbove.css('top', options.abovePositionOffset);
+                    hzAbove.css('bottom', options.abovePositionOffset + '%');
+                    if (options.abovePositionOffset > 0) 
+                        hzAbove.css('position', 'absolute');
+                }
+                if (hzBelow) {
                     hzBelow.css('max-width', imgFullSize[0].clientWidth);
+                    hzBelow.css('bottom', options.belowPositionOffset + '%');
+                    if (options.belowPositionOffset > 0) 
+                        hzBelow.css('position', 'absolute');
+                }
 
                 // do not display caption nor details if img is too small
                 if (imgFullSize[0].clientWidth < 50) {
