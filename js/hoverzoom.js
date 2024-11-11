@@ -1091,15 +1091,15 @@ var hoverZoom = {
                             return false;
                         }
                     }
-                    return
+                    return;
                 case options.closeKey:
                     closeKey()
-                    return
+                    return;
                 case options.hideKey:
                     if (!hideKeyDown) {
                         hideKey()
                     }
-                    return
+                    return;
                 case options.copyImageKey:
                     if (isChromiumBased) {
                         if (keyCode === options.copyImageKey) {
@@ -1161,9 +1161,9 @@ var hoverZoom = {
                 }
                 cancelSourceLoading();
                 restoreTitles();
-                return
+                return;
             } else if (event.button === 0) { // We don't need left click
-                return
+                return;
             }
 
             // Gets mouse button key from event.button
