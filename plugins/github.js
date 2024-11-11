@@ -12,12 +12,13 @@ hoverZoomPlugins.push({
             res.push(img);
         });
 
-        $('img[src*="private-user-images"]').each(function () {
+        $('img[src*="user-images"]').one('mouseover', function () {
             let img = $(this);
-            img.data('hoverZoomSrc', [img.attr('src')]);
-            res.push(img);
+            let src = img.attr('src');
+
+            hoverZoom.prepareLink(img, src)
         });
-        
+
         hoverZoom.urlReplace(res,
             'a[href*="/blob/"]',
             /\/github.com\/(.*)\/blob\/(.*\.(jpg|png|gif))/,
