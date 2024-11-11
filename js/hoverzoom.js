@@ -2636,7 +2636,7 @@ var hoverZoom = {
 
             // Toggle key is pressed down
             if (keyCode === options.toggleKey) {
-                toggleKey()
+                toggleKey();
             }
 
             // Action key (zoom image) is pressed down
@@ -2660,13 +2660,13 @@ var hoverZoom = {
             // close key (close zoomed image) is pressed down
             // => zoomed image is closed immediately
             if (keyCode === options.closeKey) {
-                closeKey()
+                closeKey();
             }
 
             // hide key (hide zoomed image) is pressed down
             // => zoomed image remains hidden until key is released
             if (keyCode === options.hideKey && !hideKeyDown) {
-                hideKey()
+                hideKey();
             }
 
             // the following keys are processed only if an image is displayed
