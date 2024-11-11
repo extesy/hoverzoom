@@ -125,7 +125,6 @@ var hoverZoom = {
             arrowUpKeyDown = false,
             arrowDownKeyDown = false,
             viewerLocked = false,
-            viewerClickTime = 0,
             zoomFactor = 1,
             zoomSpeedFactor = 1,
             pageActionShown = false,
