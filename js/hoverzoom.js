@@ -286,7 +286,6 @@ var hoverZoom = {
                 'flex-direction':'row',
                 'flex-wrap':'nowrap',
                 'align-items':'flex-end',
-                'position': 'static'
             },
             hzBelowCss = {
                 'background':'none',
@@ -294,7 +293,6 @@ var hoverZoom = {
                 'flex-direction':'row',
                 'flex-wrap':'nowrap',
                 'align-items':'flex-start',
-                'position': 'static'
             },
             hzCaptionMiscellaneousCss = {
                 'background':'none',
