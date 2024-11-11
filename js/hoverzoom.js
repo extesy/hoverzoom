@@ -419,13 +419,13 @@ var hoverZoom = {
                     hzAbove.css('max-width', imgFullSize[0].clientWidth);
                     hzAbove.css('top', options.abovePositionOffset);
                     hzAbove.css('bottom', options.abovePositionOffset + '%');
-                    if (options.abovePositionOffset > 0) 
+                    if (options.abovePositionOffset != 0) 
                         hzAbove.css('position', 'absolute');
                 }
                 if (hzBelow) {
                     hzBelow.css('max-width', imgFullSize[0].clientWidth);
                     hzBelow.css('bottom', options.belowPositionOffset + '%');
-                    if (options.belowPositionOffset > 0) 
+                    if (options.belowPositionOffset != 0) 
                         hzBelow.css('position', 'absolute');
                 }
 
