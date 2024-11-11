@@ -1015,7 +1015,7 @@ var hoverZoom = {
                     if (!imgFullSize) {
                         hz.currentLink = links;
 
-                        if (links.data().hoverZoomSrc && (options.actionKey === -5 || actionKeyDown)) {
+                        if (links.data().hoverZoomSrc && (!options.actionKey || actionKeyDown)) {
                             const src = hoverZoom.getFullUrl(links.data().hoverZoomSrc[hoverZoomSrcIndex]);
                             const audioSrc = links.data().hoverZoomAudioSrc ? hoverZoom.getFullUrl(links.data().hoverZoomAudioSrc[hoverZoomSrcIndex]) : undefined;
 
@@ -1052,7 +1052,7 @@ var hoverZoom = {
         
         function mouseButtonKeyHandler(mouseButtonKey, img) {
             const timerDelay = 150;
-            if (mouseButtonKey === -2) {
+            if (mouseButtonKey === -1) {
                 longRightPressTimer = setTimeout(longClick.bind(img), timerDelay, mouseButtonKey);
             } else {
                 longMiddlePressTimer = setTimeout(longClick.bind(img), timerDelay, mouseButtonKey);
@@ -1060,7 +1060,7 @@ var hoverZoom = {
         }
 
         function clearMouseButtonTimers(mouseButtonKey) {
-            if (mouseButtonKey === -2) {
+            if (mouseButtonKey === -1) {
                 clearTimeout(longRightPressTimer);
             } else {
                 longPress = false;
@@ -1168,7 +1168,7 @@ var hoverZoom = {
             }
 
             // Gets mouse button key from event.button
-            const mouseButtonKey = -event.button
+            const mouseButtonKey = [null,-2,-1,null,null][event.button]; // -2 is middle click, -1 is right click
             switch (mouseButtonKey) {
                 case options.actionKey:
                 case options.toggleKey:
@@ -1200,7 +1200,7 @@ var hoverZoom = {
 
         function documentMouseUp(event) {
             if (event.button === 0) return; // If left click, return
-            const mouseButtonKey = -event.button;
+            const mouseButtonKey = [null,-2,-1,null,null][event.button]; // -2 is middle click, -1 is right click
             switch (mouseButtonKey) {
                 case options.actionKey:
                     if (actionKeyDown) {
