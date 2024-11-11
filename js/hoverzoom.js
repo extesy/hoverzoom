@@ -125,7 +125,6 @@ var hoverZoom = {
             arrowUpKeyDown = false,
             arrowDownKeyDown = false,
             viewerLocked = false,
-            lockViewerClickTime = 0,
             zoomFactor = 1,
             zoomSpeedFactor = 1,
             pageActionShown = false,
@@ -1046,26 +1045,184 @@ var hoverZoom = {
             }
         }
 
+        let longRightPressTimer; // create timer
+        let longMiddlePressTimer; // creates separate timer so they don't interfere
+        let longPress = false;
+        
+        function mouseButtonKeyHandler(mouseButtonKey, img) {
+            const timerDelay = 150;
+            if (mouseButtonKey === -1) {
+                longRightPressTimer = setTimeout(longClick.bind(img), timerDelay, mouseButtonKey);
+            } else {
+                longMiddlePressTimer = setTimeout(longClick.bind(img), timerDelay, mouseButtonKey);
+            }
+        }
+
+        function clearMouseButtonTimers(mouseButtonKey) {
+            if (mouseButtonKey === -1) {
+                clearTimeout(longRightPressTimer);
+            } else {
+                longPress = false;
+                clearTimeout(longMiddlePressTimer);
+            }
+        }
+        
+        function longClick(mouseButtonKey) {
+            longPress = true;
+            switch (mouseButtonKey) {
+                case options.actionKey:
+                    actionKeyDown = true;
+                    $(this).mousemove();
+                    if (loading || imgFullSize) {
+                        return false;
+                    }
+                    break;
+                case options.lockImageKey:
+                    lockViewer();
+                    return;
+                case options.toggleKey:
+                    toggleKey()
+                    return;
+                case options.fullZoomKey:
+                    if (!fullZoomKeyDown) {
+                        fullZoomKeyDown = true;
+                        posViewer();
+                        if (imgFullSize) {
+                            return false;
+                        }
+                    }
+                    return;
+                case options.closeKey:
+                    closeKey()
+                    return;
+                case options.hideKey:
+                    if (!hideKeyDown) {
+                        hideKey()
+                    }
+                    return;
+                case options.copyImageKey:
+                    if (isChromiumBased) {
+                        if (keyCode === options.copyImageKey) {
+                            copyImage();
+                            return false;
+                        }
+                    }
+                    return false;
+                case options.copyImageUrlKey:
+                    copyLink();
+                    return false;
+                // "Previous image" key
+                case options.prevImgKey:
+                    var linkData = hz.currentLink.data();
+                    if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(-1);
+                    else changeVideoPosition(-parseInt(options.videoPositionStep));
+                    return false;
+                // "Next image" key
+                case options.nextImgKey:
+                    var linkData = hz.currentLink.data();
+                    if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(1);
+                    else changeVideoPosition(parseInt(options.videoPositionStep));
+                    return false;
+                // "Flip image" key
+                case options.flipImageKey:
+                    flipImage();
+                    return false;
+                case options.openImageInWindowKey:
+                    if (srcDetails.video) openVideoInWindow();
+                    else if (srcDetails.audio) openAudioInWindow();
+                    else openImageInWindow();
+                    return false;
+                case options.openImageInTabKey:
+                    if (srcDetails.video) openVideoInTab(event.shiftKey);
+                    else if (srcDetails.audio) openAudioInTab();
+                    else openImageInTab(event.shiftKey);
+                    return false;
+                case options.saveImageKey:
+                    saveImage();
+                    return false;
+                default:
+                    return;
+            }
+        }
+
         function documentContextMenu(event) {
-            // If it's been less than 300ms since right click, lock viewer and prevent context menu.
-            var lockElapsed = event.timeStamp - lockViewerClickTime;
-            if (imgFullSize && !viewerLocked && options.lockImageKey === -1 && lockElapsed < 300) {
-                lockViewer();
+            // If right click is a long press, prevent context menu
+            if (longPress) {
+                longPress = false;
                 event.preventDefault();
             }
         }
 
         function documentMouseDown(event) {
-            // Right click pressed and lockImageKey is set to special value for right click (-1).
-            if (imgFullSize && !viewerLocked && options.lockImageKey === -1 && event.button === 2) {
-                lockViewerClickTime = event.timeStamp;
-            } else if (imgFullSize && event.target !== hz.hzViewer[0] && event.target !== imgFullSize[0]) {
-                if (viewerLocked && event.button === 0) {
+            // if image is locked and left click is pressed outside of locked image
+            if (event.button === 0 && imgFullSize && event.target !== hz.hzViewer[0] && event.target !== imgFullSize[0]) {
+                if (viewerLocked) {
                     viewerLocked = false;
                 }
                 cancelSourceLoading();
                 restoreTitles();
+                return;
+            } else if (event.button === 0) { // We don't need left click
+                return;
             }
+
+            // Gets mouse button key from event.button
+            const mouseButtonKey = [null,-2,-1,null,null][event.button]; // -2 is middle click, -1 is right click
+            switch (mouseButtonKey) {
+                case options.actionKey:
+                case options.toggleKey:
+                case options.fullZoomKey:
+                case options.closeKey:
+                case options.hideKey:
+                    mouseButtonKeyHandler(mouseButtonKey, this);
+                    return;
+                default:
+                    // The following only trigger when image is displayed
+                    if (imgFullSize) { 
+                        switch (mouseButtonKey) {
+                            case options.lockImageKey:
+                            case options.copyImageKey:
+                            case options.copyImageUrlKey:
+                            case options.flipImageKey:
+                            case options.openImageInWindowKey:
+                            case options.openImageInTabKey:
+                            case options.saveImageKey:
+                                mouseButtonKeyHandler(mouseButtonKey);
+                                return;
+                            default:
+                                break;
+                        }
+                    }
+                    return;
+            }
+        }
+
+        function documentMouseUp(event) {
+            if (event.button === 0) return; // If left click, return
+            const mouseButtonKey = [null,-2,-1,null,null][event.button]; // -2 is middle click, -1 is right click
+            switch (mouseButtonKey) {
+                case options.actionKey:
+                    if (actionKeyDown) {
+                        actionKeyDown = false;
+                        closeHoverZoomViewer();
+                    }
+                    break;
+                case options.fullZoomKey:
+                    fullZoomKeyDown = false;
+                    $(this).mousemove();
+                    break;
+                case options.hideKey:
+                    hideKeyDown = false;
+                    if (imgFullSize) {
+                        hz.hzViewer.show();
+                        playMedias();
+                    }
+                    $(this).mousemove();
+                    break;
+                default:
+                    break;
+            }
+            clearMouseButtonTimers(mouseButtonKey);
         }
 
         // select correct font size for msg depending on img or video width
@@ -2364,6 +2521,7 @@ var hoverZoom = {
 
             $(document).contextmenu(documentContextMenu);
             $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).mouseleave(cancelSourceLoading);
+            $(document).on('mouseup', function(event) { documentMouseUp(event); })
             $(document).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
             if (options.galleriesMouseWheel) {
                 window.addEventListener('wheel', documentOnMouseWheel, {passive: false});
@@ -2431,6 +2589,43 @@ var hoverZoom = {
             }
         }
 
+        function toggleKey() {
+            options.extensionEnabled = !options.extensionEnabled;
+            if (!options.extensionEnabled) {
+                // close zoomed image or video
+                viewerLocked = false;
+                if (hz.hzViewer) {
+                    stopMedias();
+                    hz.hzViewer.hide();
+                }
+                if (imgFullSize) {
+                    return false;
+                }
+            }
+        }
+
+        function closeKey() {
+            viewerLocked = false;
+            if (hz.hzViewer) {
+                stopMedias();
+                hz.hzViewer.hide();
+            }
+            if (imgFullSize) {
+                return false;
+            }
+        }
+
+        function hideKey(){
+            hideKeyDown = true;
+            if (hz.hzViewer) {
+                pauseMedias();
+                hz.hzViewer.hide();
+            }
+            if (imgFullSize) {
+                return false;
+            }
+        }
+
         function documentOnKeyDown(event) {
             // Skips if an input controlled is focused
             if (event.target && ['INPUT','TEXTAREA','SELECT'].indexOf(event.target.tagName) > -1) {
@@ -2441,18 +2636,7 @@ var hoverZoom = {
 
             // Toggle key is pressed down
             if (keyCode === options.toggleKey) {
-                options.extensionEnabled = !options.extensionEnabled;
-                if (!options.extensionEnabled) {
-                    // close zoomed image or video
-                    viewerLocked = false;
-                    if (hz.hzViewer) {
-                        stopMedias();
-                        hz.hzViewer.hide();
-                    }
-                    if (imgFullSize) {
-                        return false;
-                    }
-                }
+                toggleKey();
             }
 
             // Action key (zoom image) is pressed down
@@ -2476,27 +2660,13 @@ var hoverZoom = {
             // close key (close zoomed image) is pressed down
             // => zoomed image is closed immediately
             if (keyCode === options.closeKey) {
-                viewerLocked = false;
-                if (hz.hzViewer) {
-                    stopMedias();
-                    hz.hzViewer.hide();
-                }
-                if (imgFullSize) {
-                    return false;
-                }
+                closeKey();
             }
 
             // hide key (hide zoomed image) is pressed down
             // => zoomed image remains hidden until key is released
             if (keyCode === options.hideKey && !hideKeyDown) {
-                hideKeyDown = true;
-                if (hz.hzViewer) {
-                    pauseMedias();
-                    hz.hzViewer.hide();
-                }
-                if (imgFullSize) {
-                    return false;
-                }
+                hideKey();
             }
 
             // the following keys are processed only if an image is displayed
