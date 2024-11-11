@@ -159,7 +159,7 @@ function restoreOptions(optionsFromFactorySettings) {
 }
 
 function selKeyOnChange(event) {
-    let noneKey = '0'; // sel key code for 'none'
+    const noneKey = '0'; // sel key code for 'none'
     let currSel = $(event.target);
     if (currSel[0].dataset.val0 == undefined) return; // event fired before init
     currSel[0].dataset.val1 = currSel.val();
