@@ -12,9 +12,9 @@ hoverZoomPlugins.push({
             res.push(img);
         });
 
-        $('img[src*="user-images"]:not(.hoverZoomMouseover)').addClass('hoverZoomMouseover').one('mouseover', function () {
-            const img = $(this);
-            const src = img.attr('src');
+        $('img[src*="user-images"]').one('mouseover', function () {
+            let img = $(this);
+            let src = img.attr('src');
 
             hoverZoom.prepareLink(img, src)
         });
