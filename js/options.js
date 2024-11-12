@@ -141,8 +141,8 @@ function saveOptions(exportSettings = false) {
     options.fontOutline = $('#chkFontOutline')[0].checked;
     options.belowPositionOffset = $('#txtBelowPositionOffset')[0].value;
     options.abovePositionOffset = $('#txtAbovePositionOffset')[0].value;
-    options.captionOpacity = $('#txtCaptionOpacity')[0].value;
-    options.detailsOpacity = $('#txtDetailsOpacity')[0].value;
+    options.captionOpacity = $('#txtCaptionOpacity')[0].value / 100;
+    options.detailsOpacity = $('#txtDetailsOpacity')[0].value / 100;
     options.displayImageLoader = $('#chkDisplayImageLoader')[0].checked;
     options.downloadFolder = $('#txtDownloadFolder')[0].value;
     options.addDownloadOrigin = $('#chkAddDownloadOrigin')[0].checked;
@@ -222,8 +222,8 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#chkFontOutline').trigger(options.fontOutline ? 'gumby.check' : 'gumby.uncheck');
     $('#txtBelowPositionOffset').val(parseFloat(options.belowPositionOffset));
     $('#txtAbovePositionOffset').val(parseFloat(options.abovePositionOffset));
-    $('#txtCaptionOpacity').val(parseInt(options.captionOpacity));
-    $('#txtDetailsOpacity').val(parseInt(options.detailsOpacity));
+    $('#txtCaptionOpacity').val(parseInt(options.captionOpacity * 100));
+    $('#txtDetailsOpacity').val(parseInt(options.detailsOpacity * 100));
 
     if (options.frameBackgroundColor == "") {
         initColorPicker('#ffffff');
