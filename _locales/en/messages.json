@@ -372,7 +372,7 @@
         "description": "[options] Unit name (pixel) for font size"
     },
     "optBelowPositionOffset": {
-        "message": "Below offset:",
+        "message": "Below position offset:",
         "description": "[options] Below offset option"
     },
     "optBelowPositionOffsetTooltip": {
@@ -380,7 +380,7 @@
         "description": "[options] Tooltip for below position offset"
     },
     "optAbovePositionOffset": {
-        "message": "Above offset:",
+        "message": "Above position offset:",
         "description": "[options] Above offset option"
     },
     "optAbovePositionOffsetTooltip": {
@@ -395,17 +395,9 @@
         "message": "Caption opacity:",
         "description": "[options] Caption opacity option"
     },
-    "optCaptionOpacityTooltip": {
-        "message": "Opacity of caption with 0% being hidden and 100% being solid",
-        "description": "[options] Tooltip for caption opacity"
-    },
     "optDetailsOpacity": {
         "message": "Details opacity:",
         "description": "[options] Details opacity option"
-    },
-    "optDetailsOpacityTooltip": {
-        "message": "Opacity of details with 0% being hidden and 100% being solid",
-        "description": "[options] Tooltip for details opacity"
     },
     "optSectionDelays": {
         "message": "Delays",
