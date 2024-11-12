@@ -411,14 +411,17 @@ var hoverZoom = {
                     imgFullSize.height(wndHeight - padding - statusBarHeight - scrollBarHeight - (hzAbove ? hzAbove.height() : 0) - (hzBelow ? hzBelow.height() : 0)).width('auto');
                 }
 
-                if (hzCaptionMiscellaneous)
+                if (hzCaptionMiscellaneous) {
                     hzCaptionMiscellaneous.css('max-width', imgFullSize[0].clientWidth);
-                if (hzDetails)
+                    hzCaptionMiscellaneous.css('opacity', options.captionOpacity);
+                }
+                if (hzDetails) {
                     hzDetails.css('max-width', imgFullSize[0].clientWidth);
+                    hzDetails.css('opacity', options.detailsOpacity);
+                }
                 if (hzAbove) {
                     hzAbove.css('max-width', imgFullSize[0].clientWidth);
-                    hzAbove.css('top', options.abovePositionOffset);
-                    hzAbove.css('bottom', options.abovePositionOffset + '%');
+                    hzAbove.css('top', options.abovePositionOffset + '%');
                     if (options.abovePositionOffset != 0) 
                         hzAbove.css('position', 'absolute');
                 }
