@@ -151,6 +151,14 @@
         "message": "None",
         "description": "[options] Details location option to disable details"
     },
+    "optDetailsGearIcon": {
+        "message": "⚙",
+        "description": "[options] Options button for changing which details are shown"
+    },
+    "optDetailsGearIconTooltip": {
+        "message": "Change which details are shown above/below the image, if enabled",
+        "description": "[options] Tooltip for changing which details are shown"
+    },
     "optFontOutline": {
         "message": "Font outline",
         "description": "[options] Outline option"
