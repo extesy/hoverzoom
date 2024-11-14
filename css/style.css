@@ -95,7 +95,6 @@ label { margin: 3px; }
 
 .drawer { 
     display: flex;
-    margin-left: 160px;
     width: fit-content;
 }
 
