@@ -107,8 +107,6 @@ label { margin: 3px; }
     width: fit-content;
 }
 
-
-
 /* Popup styling */
 body.popup { overflow: overlay; }
 body.popup.darkmode { background-color: #101010F0; } /* dark grey */
