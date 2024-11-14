@@ -78,12 +78,19 @@ label { margin: 3px; }
     margin-top: 26px;
 }
 
-.drawerBox { 
+.drawer-box { 
     margin-top: 10px;
 }
 
 .drawerBox > label div { 
     color: whitesmoke;
+}
+
+.drawer-window { 
+    display: grid;
+    grid-template-columns:repeat(3,1fr);
+    column-gap: 8px;
+    padding: 3px;
 }
 
 .drawer { 
@@ -92,12 +99,7 @@ label { margin: 3px; }
     width: fit-content;
 }
 
-.drawerWindow { 
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    column-gap: 8px;
-    padding: 3px;
-}
+
 
 /* Popup styling */
 body.popup { overflow: overlay; }
