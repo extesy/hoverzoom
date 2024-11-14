@@ -126,6 +126,11 @@ function saveOptions(exportSettings = false) {
         var id = key[0].toUpperCase() + key.substr(1);
         options[key] = parseInt($('#sel' + id).val());
     });
+    
+    $('div.drawerBox > label > input').each(function () {
+        const detailName = this.id.substring(9);
+        if ($(this)[0].checked) options['showDetail' + detailName] = true;
+    });
 
     options.addToHistory = $('#chkAddToHistory')[0].checked;
     options.allowHeadersRewrite = $('#chkAllowHeadersRewrite')[0].checked;
@@ -236,6 +241,12 @@ function restoreOptions(optionsFromFactorySettings) {
     } else {
         $('#divAmbilight').addClass('disabled');
     }
+
+    $('div.drawerBox > label > input').each(function () {
+        const detailName = this.id.substring(9);
+        let detailShown = options['showDetail' + detailName]
+        $(this).trigger(detailShown ? 'gumby.check' : 'gumby.uncheck');
+    });
 
     var plugins = $.unique(hoverZoomPlugins.map(function(plugin) {return plugin.name})).sort(Intl.Collator().compare);
     plugins.forEach(function(plugin) {
