@@ -71,6 +71,29 @@ legend {
 
 label { margin: 3px; }
 
+.large.oval.btn.default.gearIcon {
+    line-height: 25px;
+    width: 30px;
+    height: 30px;
+    margin-top: 26px;
+}
+
+.drawerBox { margin-top: 10px; }
+
+.drawer { 
+    display: flex;
+    margin-left: 160px;
+    width: fit-content;
+    color: whitesmoke;
+}
+
+.drawerWindow { 
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    column-gap: 8px;
+    padding: 3px;
+}
+
 /* Popup styling */
 body.popup { overflow: overlay; }
 body.popup.darkmode { background-color: #101010F0; } /* dark grey */
