@@ -101,6 +101,7 @@ label { margin: 3px; }
 }
 
 .drawer{ 
+    z-index: 1000;
     bottom: 14px;
     display: flex;
     width: fit-content;
