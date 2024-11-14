@@ -151,13 +151,13 @@
         "message": "None",
         "description": "[options] Details location option to disable details"
     },
-    "optDetailsGearIcon": {
-        "message": "⚙",
-        "description": "[options] Options button for changing which details are shown"
-    },
-    "optDetailsGearIconTooltip": {
+    "optDetailsCogIconTooltip": {
         "message": "Change which details are shown above/below the image, if enabled",
         "description": "[options] Tooltip for changing which details are shown"
+    },
+    "optTitleBoxDetails": {
+        "message": "Details to show:",
+        "description": "[options] Header for details selection drawer"
     },
     "optShowDetailHost": {
         "message": "Host",
