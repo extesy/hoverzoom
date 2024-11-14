@@ -100,7 +100,8 @@ label { margin: 3px; }
     grid-row-end: 1;
 }
 
-.drawer { 
+.drawer{ 
+    bottom: 14px;
     display: flex;
     width: fit-content;
 }
