@@ -284,14 +284,14 @@ var hoverZoom = {
                 'display':'flex',
                 'flex-direction':'row',
                 'flex-wrap':'nowrap',
-                'align-items':'flex-end'
+                'align-items':'flex-end',
             },
             hzBelowCss = {
                 'background':'none',
                 'display':'flex',
                 'flex-direction':'row',
                 'flex-wrap':'nowrap',
-                'align-items':'flex-start'
+                'align-items':'flex-start',
             },
             hzCaptionMiscellaneousCss = {
                 'background':'none',
@@ -305,7 +305,7 @@ var hoverZoom = {
                 'display':'flex',
                 'flex-direction':'row',
                 'flex-wrap':'nowrap',
-                'min-width':'25%'
+                'min-width':'25%',
             },
             hzGalleryInfoCss = {
                 'position':'absolute',
@@ -411,14 +411,26 @@ var hoverZoom = {
                     imgFullSize.height(wndHeight - padding - statusBarHeight - scrollBarHeight - (hzAbove ? hzAbove.height() : 0) - (hzBelow ? hzBelow.height() : 0)).width('auto');
                 }
 
-                if (hzCaptionMiscellaneous)
+                if (hzCaptionMiscellaneous) {
                     hzCaptionMiscellaneous.css('max-width', imgFullSize[0].clientWidth);
-                if (hzDetails)
+                    hzCaptionMiscellaneous.css('opacity', options.captionOpacity);
+                }
+                if (hzDetails) {
                     hzDetails.css('max-width', imgFullSize[0].clientWidth);
-                if (hzAbove)
+                    hzDetails.css('opacity', options.detailsOpacity);
+                }
+                if (hzAbove) {
                     hzAbove.css('max-width', imgFullSize[0].clientWidth);
-                if (hzBelow)
+                    hzAbove.css('top', options.abovePositionOffset + '%');
+                    if (options.abovePositionOffset != 0) 
+                        hzAbove.css('position', 'absolute');
+                }
+                if (hzBelow) {
                     hzBelow.css('max-width', imgFullSize[0].clientWidth);
+                    hzBelow.css('bottom', options.belowPositionOffset + '%');
+                    if (options.belowPositionOffset != 0) 
+                        hzBelow.css('position', 'absolute');
+                }
 
                 // do not display caption nor details if img is too small
                 if (imgFullSize[0].clientWidth < 50) {

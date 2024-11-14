@@ -139,6 +139,10 @@ function saveOptions(exportSettings = false) {
     options.detailsLocation = $('#selectDetailsLocation').val();
     options.fontSize = $('#txtFontSize')[0].value;
     options.fontOutline = $('#chkFontOutline')[0].checked;
+    options.belowPositionOffset = $('#txtBelowPositionOffset')[0].value;
+    options.abovePositionOffset = $('#txtAbovePositionOffset')[0].value;
+    options.captionOpacity = $('#txtCaptionOpacity')[0].value / 100;
+    options.detailsOpacity = $('#txtDetailsOpacity')[0].value / 100;
     options.displayImageLoader = $('#chkDisplayImageLoader')[0].checked;
     options.downloadFolder = $('#txtDownloadFolder')[0].value;
     options.addDownloadOrigin = $('#chkAddDownloadOrigin')[0].checked;
@@ -216,6 +220,10 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#rngFontSize').val(parseInt(options.fontSize));
     $('#txtFontSize').val(parseInt(options.fontSize));
     $('#chkFontOutline').trigger(options.fontOutline ? 'gumby.check' : 'gumby.uncheck');
+    $('#txtBelowPositionOffset').val(parseFloat(options.belowPositionOffset));
+    $('#txtAbovePositionOffset').val(parseFloat(options.abovePositionOffset));
+    $('#txtCaptionOpacity').val(parseInt(options.captionOpacity * 100));
+    $('#txtDetailsOpacity').val(parseInt(options.detailsOpacity * 100));
 
     if (options.frameBackgroundColor == "") {
         initColorPicker('#ffffff');
@@ -539,6 +547,21 @@ function updateTxtFontSize() {
     $('#txtFontSize')[0].value = this.value;
 }
 
+function updateTxtBelowPositionOffset() {
+    $('#txtBelowPositionOffset')[0].value = this.value;
+}
+
+function updateTxtAbovePositionOffset() {
+    $('#txtAbovePositionOffset')[0].value = this.value;
+}
+
+function updateTxtCaptionOpacity() {
+    $('#txtCaptionOpacity')[0].value = this.value;
+}
+function updateTxtDetailsOpacity() {
+    $('#txtDetailsOpacity')[0].value = this.value;
+}
+
 function updateRngFontSize() {
     this.value = percentageOnChange(this.value);
     $('#rngFontSize').val(this.value);
@@ -694,6 +717,10 @@ $(function () {
     $('#txtFrameThickness').change(updateRngFrameThickness);
     $('#rngFontSize').on('input change', updateTxtFontSize);
     $('#txtFontSize').change(updateRngFontSize);
+    $('#txtBelowPositionOffset').change(updateTxtBelowPositionOffset);
+    $('#txtAbovePositionOffset').change(updateTxtAbovePositionOffset);
+    $('#txtCaptionOpacity').change(updateTxtCaptionOpacity);
+    $('#txtDetailsOpacity').change(updateTxtDetailsOpacity);
     $('#txtVideoPositionStep').change(percentageOnChange);
     $('.actionKey').change(selKeyOnChange);
     $('#btnAddExcludedSite').click(btnAddExcludedSiteOnClick);
