@@ -71,18 +71,18 @@ legend {
 
 label { margin: 3px; }
 
-.large.oval.btn.default.gearIcon {
+.medium.oval.btn.default.cog-icon {
     line-height: 25px;
     width: 30px;
     height: 30px;
-    margin-top: 26px;
+    margin-top: 28px;
 }
 
 .drawer-box { 
     margin-top: 10px;
 }
 
-.drawerBox > label div { 
+.drawer-box > label div, .title-box > h4 { 
     color: whitesmoke;
 }
 
@@ -91,6 +91,13 @@ label { margin: 3px; }
     grid-template-columns:repeat(3,1fr);
     column-gap: 8px;
     padding: 3px;
+}
+
+.title-box {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 1;
 }
 
 .drawer { 
