@@ -159,39 +159,39 @@
         "message": "Change which details are shown above/below the image, if enabled",
         "description": "[options] Tooltip for changing which details are shown"
     },
-        "optDetailHost": {
+    "optShowDetailHost": {
         "message": "Host",
         "description": "[options] Show Host Detail"
     },
-        "optDetailFilename": {
+    "optShowDetailFilename": {
         "message": "File Name",
         "description": "[options] Show File Name Detail"
     },
-        "optDetailLastModified": {
+    "optShowDetailLastModified": {
         "message": "Last Modified",
         "description": "[options] Show Last Modified Detail"
     },
-        "optDetailExtension": {
+    "optShowDetailExtension": {
         "message": "Extension",
         "description": "[options] Show Extension Detail"
     },
-        "optDetailContentLength": {
+    "optShowDetailContentLength": {
         "message": "Content Length",
         "description": "[options] Show Content Length Detail"
     },
-        "optDetailDuration": {
+    "optShowDetailDuration": {
         "message": "Duration",
         "description": "[options] Show Duration Detail"
     },
-        "optDetailScale": {
+    "optShowDetailScale": {
         "message": "Scale",
         "description": "[options] Show Scale Detail"
     },
-        "optDetailRatio": {
+    "optShowDetailRatio": {
         "message": "Ratio",
         "description": "[options] Show Ratio Detail"
     },
-        "optDetailDimensions": {
+    "optShowDetailDimensions": {
         "message": "Dimensions",
         "description": "[options] Show Dimensions Detail"
     },
