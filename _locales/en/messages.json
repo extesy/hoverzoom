@@ -176,7 +176,7 @@
         "description": "[options] Show Extension Detail"
     },
     "optShowDetailContentLength": {
-        "message": "Content Length",
+        "message": "Media Length",
         "description": "[options] Show Content Length Detail"
     },
     "optShowDetailDuration": {
