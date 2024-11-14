@@ -78,13 +78,18 @@ label { margin: 3px; }
     margin-top: 26px;
 }
 
-.drawerBox { margin-top: 10px; }
+.drawerBox { 
+    margin-top: 10px;
+}
+
+.drawerBox > label div { 
+    color: whitesmoke;
+}
 
 .drawer { 
     display: flex;
     margin-left: 160px;
     width: fit-content;
-    color: whitesmoke;
 }
 
 .drawerWindow { 
