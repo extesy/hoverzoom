@@ -126,12 +126,17 @@ function saveOptions(exportSettings = false) {
         var id = key[0].toUpperCase() + key.substr(1);
         options[key] = parseInt($('#sel' + id).val());
     });
-    
-    $('div.drawerBox > label > input').each(function () {
-        const detailName = this.id.substring(9);
-        if ($(this)[0].checked) options['showDetail' + detailName] = true;
-    });
 
+    options.showDetailFilename = $('#chkShowDetailFilename')[0].checked;
+    options.showDetailHost = $('#chkShowDetailHost')[0].checked;
+    options.showDetailLastModified = $('#chkShowDetailLastModified')[0].checked;
+    options.showDetailExtension = $('#chkShowDetailExtension')[0].checked;
+    options.showDetailContentLength = $('#chkShowDetailContentLength')[0].checked;
+    options.showDetailDuration = $('#chkShowDetailDuration')[0].checked;
+    options.showDetailScale = $('#chkShowDetailScale')[0].checked;
+    options.showDetailRatio = $('#chkShowDetailRatio')[0].checked;
+    options.showDetailDimensions = $('#chkShowDetailDimensions')[0].checked;
+    
     options.addToHistory = $('#chkAddToHistory')[0].checked;
     options.allowHeadersRewrite = $('#chkAllowHeadersRewrite')[0].checked;
 
@@ -242,12 +247,6 @@ function restoreOptions(optionsFromFactorySettings) {
         $('#divAmbilight').addClass('disabled');
     }
 
-    $('div.drawerBox > label > input').each(function () {
-        const detailName = this.id.substring(9);
-        let detailShown = options['showDetail' + detailName]
-        $(this).trigger(detailShown ? 'gumby.check' : 'gumby.uncheck');
-    });
-
     var plugins = $.unique(hoverZoomPlugins.map(function(plugin) {return plugin.name})).sort(Intl.Collator().compare);
     plugins.forEach(function(plugin) {
         var chkName = 'chkPlugin' + plugin.replace(/[^\w\-_]/g, '').toLowerCase();
@@ -266,6 +265,16 @@ function restoreOptions(optionsFromFactorySettings) {
         var id = key[0].toUpperCase() + key.substr(1);
         $('#sel' + id).val(options[key]);
     });
+
+    $('#chkShowDetailFilename').trigger(options.showDetailFilename ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkShowDetailHost').trigger(options.showDetailHost ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkShowDetailLastModified').trigger(options.showDetailLastModified ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkShowDetailExtension').trigger(options.showDetailExtension ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkShowDetailContentLength').trigger(options.showDetailContentLength ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkShowDetailDuration').trigger(options.showDetailDuration ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkShowDetailScale').trigger(options.showDetailScale ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkShowDetailRatio').trigger(options.showDetailRatio ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkShowDetailDimensions').trigger(options.showDetailDimensions ? 'gumby.check' : 'gumby.uncheck');
 
     $('#chkAddToHistory').trigger(options.addToHistory ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAllowHeadersRewrite').trigger(options.allowHeadersRewrite ? 'gumby.check' : 'gumby.uncheck');
