@@ -71,15 +71,15 @@ legend {
 
 label { margin: 3px; }
 
-.medium.oval.btn.default.cog-icon {
-    line-height: 25px;
+.medium.oval.btn.default.icon {
     width: 30px;
     height: 30px;
-    margin-top: 28px;
+    line-height:25px;
 }
 
-.drawer-box { 
-    margin-top: 10px;
+.close-button {
+    top: 1px;
+    margin-right: 2px;
 }
 
 .drawer-box > label div, .title-box > h4 { 
@@ -89,13 +89,13 @@ label { margin: 3px; }
 .drawer-window { 
     display: grid;
     grid-template-columns:repeat(3,1fr);
-    column-gap: 8px;
-    padding: 3px;
+    column-gap: 6px;
+    padding: 2px;
 }
 
 .title-box {
     grid-column-start: 1;
-    grid-column-end: 4;
+    grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 1;
 }
