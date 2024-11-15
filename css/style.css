@@ -71,6 +71,19 @@ legend {
 
 label { margin: 3px; }
 
+.append-grid { 
+    display: grid;
+    grid-template-columns:140px repeat(5,1fr);
+}
+
+.title-box {
+    margin-left: 2px;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 4;
+}
+
 /* Popup styling */
 body.popup { overflow: overlay; }
 body.popup.darkmode { background-color: #101010F0; } /* dark grey */

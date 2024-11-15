@@ -60,6 +60,15 @@ var factorySettings = {
     useSeparateTabOrWindowForUnloadableUrls: 'window',
     captionLocation : 'below',
     detailsLocation : 'none',
+    showDetailFilename : true,
+    showDetailHost : true,
+    showDetailLastModified : true,
+    showDetailExtension : true,
+    showDetailContentLength : true,
+    showDetailDuration : true,
+    showDetailScale : true,
+    showDetailRatio : true,
+    showDetailDimensions : true,
     fontSize : 11,
     fontOutline : false,
     actionKey : 0,
@@ -151,6 +160,17 @@ function loadOptions() {
     options.downloadFilename = options.hasOwnProperty('downloadFilename') ? options.downloadFilename : factorySettings.downloadFilename;
     options.useSeparateTabOrWindowForUnloadableUrlsEnabled = options.hasOwnProperty('useSeparateTabOrWindowForUnloadableUrlsEnabled') ? options.useSeparateTabOrWindowForUnloadableUrlsEnabled : factorySettings.useSeparateTabOrWindowForUnloadableUrlsEnabled;
     options.useSeparateTabOrWindowForUnloadableUrls = options.hasOwnProperty('useSeparateTabOrWindowForUnloadableUrls') ? options.useSeparateTabOrWindowForUnloadableUrls : factorySettings.useSeparateTabOrWindowForUnloadableUrls;
+
+    // Show details options
+    options.showDetailFilename = options.hasOwnProperty('showDetailFilename') ? options.showDetailFilename : factorySettings.showDetailFilename;
+    options.showDetailHost = options.hasOwnProperty('showDetailHost') ? options.showDetailHost : factorySettings.showDetailHost;
+    options.showDetailLastModified = options.hasOwnProperty('showDetailLastModified') ? options.showDetailLastModified : factorySettings.showDetailLastModified;
+    options.showDetailExtension = options.hasOwnProperty('showDetailExtension') ? options.showDetailExtension : factorySettings.showDetailExtension;
+    options.showDetailContentLength = options.hasOwnProperty('showDetailContentLength') ? options.showDetailContentLength : factorySettings.showDetailContentLength;
+    options.showDetailDuration = options.hasOwnProperty('showDetailDuration') ? options.showDetailDuration : factorySettings.showDetailDuration;
+    options.showDetailScale = options.hasOwnProperty('showDetailScale') ? options.showDetailScale : factorySettings.showDetailScale;
+    options.showDetailRatio = options.hasOwnProperty('showDetailRatio') ? options.showDetailRatio : factorySettings.showDetailRatio;
+    options.showDetailDimensions = options.hasOwnProperty('showDetailDimensions') ? options.showDetailDimensions : factorySettings.showDetailDimensions;
 
     // Used old showCaptions option for backwards compatibility
     var showCaptions = options.hasOwnProperty('showCaptions') ? options.showCaptions : true;

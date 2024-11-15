@@ -1958,51 +1958,60 @@ var hoverZoom = {
                 if (options.detailsLocation === "below")
                     if (hzBelow.find('#hzDetails').length == 0)
                         hzDetails = $('<div/>', {id:'hzDetails'}).css(hzDetailsCss).appendTo(hzBelow);
-
-                if (hzDetails.find('#hzDetailFilename').length == 0)
-                    $('<div/>', {id:'hzDetailFilename', text:details.filename, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
-                else
-                    $('#hzDetailFilename').text(details.filename);
-
-                if (hzDetails.find('#hzDetailHost').length == 0)
-                    $('<div/>', {id:'hzDetailHost', text:details.host, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
-                else
-                    $('#hzDetailHost').text(details.host);
-
-                if (hzDetails.find('#hzDetailLastModified').length == 0)
-                    $('<div/>', {id:'hzDetailLastModified', text:details.lastModified, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
-                else
-                    $('#hzDetailLastModified').text(details.lastModified);
-
-                if (hzDetails.find('#hzDetailExtension').length == 0)
-                    $('<div/>', {id:'hzDetailExtension', text:details.extension.toUpperCase(), class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
-                else
-                    $('#hzDetailExtension').text(details.extension.toUpperCase());
-
-                if (hzDetails.find('#hzDetailContentLength').length == 0)
-                    $('<div/>', {id:'hzDetailContentLength', text:details.contentLength, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
-                else
-                    $('#hzDetailContentLength').text(details.contentLength);
-
-                if (hzDetails.find('#hzDetailDuration').length == 0)
-                    $('<div/>', {id:'hzDetailDuration', text:details.duration, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
-                else
-                    $('#hzDetailDuration').text(details.duration);
-
-                if (hzDetails.find('#hzDetailScale').length == 0)
-                    $('<div/>', {id:'hzDetailScale', text:details.scale, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
-                else
-                    $('#hzDetailScale').text(details.scale);
-
-                if (hzDetails.find('#hzDetailRatio').length == 0)
-                    $('<div/>', {id:'hzDetailRatio', text:details.ratio, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
-                else
-                    $('#hzDetailRatio').text(details.ratio);
-
-                if (hzDetails.find('#hzDetailDimensions').length == 0)
-                    $('<div/>', {id:'hzDetailDimensions', text:details.dimensions, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
-                else
-                    $('#hzDetailDimensions').text(details.dimensions);
+                if (options.showDetailFilename) {
+                    if (hzDetails.find('#hzDetailFilename').length == 0)
+                        $('<div/>', {id:'hzDetailFilename', text:details.filename, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                    else
+                        $('#hzDetailFilename').text(details.filename);
+                }
+                if (options.showDetailHost) {
+                    if (hzDetails.find('#hzDetailHost').length == 0)
+                        $('<div/>', {id:'hzDetailHost', text:details.host, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                    else
+                        $('#hzDetailHost').text(details.host);
+                }
+                if (options.showDetailLastModified) {
+                    if (hzDetails.find('#hzDetailLastModified').length == 0)
+                        $('<div/>', {id:'hzDetailLastModified', text:details.lastModified, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                    else
+                        $('#hzDetailLastModified').text(details.lastModified);
+                }
+                if (options.showDetailExtension) {
+                    if (hzDetails.find('#hzDetailExtension').length == 0)
+                        $('<div/>', {id:'hzDetailExtension', text:details.extension.toUpperCase(), class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                    else
+                        $('#hzDetailExtension').text(details.extension.toUpperCase());
+                }
+                if (options.showDetailContentLength) {
+                    if (hzDetails.find('#hzDetailContentLength').length == 0)
+                        $('<div/>', {id:'hzDetailContentLength', text:details.contentLength, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                    else
+                        $('#hzDetailContentLength').text(details.contentLength);
+                }
+                if (options.showDetailDuration) {
+                    if (hzDetails.find('#hzDetailDuration').length == 0)
+                        $('<div/>', {id:'hzDetailDuration', text:details.duration, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                    else
+                        $('#hzDetailDuration').text(details.duration);
+                }
+                if (options.showDetailScale) {
+                    if (hzDetails.find('#hzDetailScale').length == 0)
+                        $('<div/>', {id:'hzDetailScale', text:details.scale, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                    else
+                        $('#hzDetailScale').text(details.scale);
+                }
+                if (options.showDetailRatio) {
+                    if (hzDetails.find('#hzDetailRatio').length == 0)
+                        $('<div/>', {id:'hzDetailRatio', text:details.ratio, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                    else
+                        $('#hzDetailRatio').text(details.ratio);
+                }
+                if (options.showDetailDimensions) {
+                    if (hzDetails.find('#hzDetailDimensions').length == 0)
+                        $('<div/>', {id:'hzDetailDimensions', text:details.dimensions, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                    else
+                        $('#hzDetailDimensions').text(details.dimensions);
+                }
             }
         }
 
