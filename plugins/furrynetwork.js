@@ -19,7 +19,7 @@ hoverZoomPlugins.push({
             let img = $(this),
                 src = img.attr('src');
             src = src.replace('/315x315.jpg', '');
-            img.data().hoverZoomSrc = [src + '.gif', src + '.mp4'];
+            img.data().hoverZoomSrc = [src + '.gif', src + '.mp4', src + '.webm'];
             res.push(img);
         });
 
