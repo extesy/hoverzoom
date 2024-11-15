@@ -521,11 +521,11 @@
     },
     "optDetailsSelectorTooltip": {
         "message": "Select which detail(s) should show, if details are displayed",
-        "description": "[options] Tooltip for details selection drawer"
+        "description": "[options] Tooltip for details selector"
     },
     "optTitleBoxDetails": {
         "message": "Detail(s) to show:",
-        "description": "[options] Header for details selection drawer"
+        "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
         "message": "Host",
