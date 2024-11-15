@@ -151,46 +151,6 @@
         "message": "None",
         "description": "[options] Details location option to disable details"
     },
-    "optTitleBoxDetails": {
-        "message": "Details to show:",
-        "description": "[options] Header for details selection drawer"
-    },
-    "optShowDetailHost": {
-        "message": "Host",
-        "description": "[options] Show Host Detail"
-    },
-    "optShowDetailFilename": {
-        "message": "File Name",
-        "description": "[options] Show File Name Detail"
-    },
-    "optShowDetailLastModified": {
-        "message": "Last Modified",
-        "description": "[options] Show Last Modified Detail"
-    },
-    "optShowDetailExtension": {
-        "message": "Extension",
-        "description": "[options] Show Extension Detail"
-    },
-    "optShowDetailContentLength": {
-        "message": "Media Length",
-        "description": "[options] Show Content Length Detail"
-    },
-    "optShowDetailDuration": {
-        "message": "Duration",
-        "description": "[options] Show Duration Detail"
-    },
-    "optShowDetailScale": {
-        "message": "Scale",
-        "description": "[options] Show Scale Detail"
-    },
-    "optShowDetailRatio": {
-        "message": "Ratio",
-        "description": "[options] Show Ratio Detail"
-    },
-    "optShowDetailDimensions": {
-        "message": "Dimensions",
-        "description": "[options] Show Dimensions Detail"
-    },
     "optFontOutline": {
         "message": "Font outline",
         "description": "[options] Outline option"
@@ -558,6 +518,46 @@
     "optOpacityUnitName": {
         "message": "%",
         "description": "[options] Unit name (percentage) for opacity option"
+    },
+    "optTitleBoxDetails": {
+        "message": "Details to show:",
+        "description": "[options] Header for details selection drawer"
+    },
+    "optShowDetailHost": {
+        "message": "Host",
+        "description": "[options] Show Host Detail"
+    },
+    "optShowDetailFilename": {
+        "message": "File Name",
+        "description": "[options] Show File Name Detail"
+    },
+    "optShowDetailLastModified": {
+        "message": "Last Modified",
+        "description": "[options] Show Last Modified Detail"
+    },
+    "optShowDetailExtension": {
+        "message": "Extension",
+        "description": "[options] Show Extension Detail"
+    },
+    "optShowDetailContentLength": {
+        "message": "Media Length",
+        "description": "[options] Show Content Length Detail"
+    },
+    "optShowDetailDuration": {
+        "message": "Duration",
+        "description": "[options] Show Duration Detail"
+    },
+    "optShowDetailScale": {
+        "message": "Scale",
+        "description": "[options] Show Scale Detail"
+    },
+    "optShowDetailRatio": {
+        "message": "Ratio",
+        "description": "[options] Show Ratio Detail"
+    },
+    "optShowDetailDimensions": {
+        "message": "Dimensions",
+        "description": "[options] Show Dimensions Detail"
     },
     "optBelowPositionOffset": {
         "message": "Below position offset:",
