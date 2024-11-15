@@ -183,10 +183,6 @@ function loadOptions() {
     options.abovePositionOffset = options.hasOwnProperty('abovePositionOffset') ? options.abovePositionOffset : factorySettings.abovePositionOffset;
     options.captionOpacity = options.hasOwnProperty('captionOpacity') ? options.captionOpacity : factorySettings.captionOpacity;
     options.detailsOpacity = options.hasOwnProperty('detailsOpacity') ? options.detailsOpacity : factorySettings.detailsOpacity;
-    options.belowPositionOffset = options.hasOwnProperty('belowPositionOffset') ? options.belowPositionOffset : factorySettings.belowPositionOffset;
-    options.abovePositionOffset = options.hasOwnProperty('abovePositionOffset') ? options.abovePositionOffset : factorySettings.abovePositionOffset;
-    options.captionOpacity = options.hasOwnProperty('captionOpacity') ? options.captionOpacity : factorySettings.captionOpacity;
-    options.detailsOpacity = options.hasOwnProperty('detailsOpacity') ? options.detailsOpacity : factorySettings.detailsOpacity;
 
     // Action keys
     options.actionKey = options.hasOwnProperty('actionKey') ? options.actionKey : factorySettings.actionKey;
