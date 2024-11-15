@@ -77,6 +77,7 @@ label { margin: 3px; }
 }
 
 .title-box {
+    margin-left: 2px;
     grid-column-start: 1;
     grid-column-end: 1;
     grid-row-start: 1;
