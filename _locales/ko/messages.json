@@ -507,9 +507,37 @@
         "message": "확대된 이미지의 투명도:",
         "description": "[options] Zoomed pictures opacity option"
     },
+    "optCaptionOpacity": {
+        "message": "Caption opacity:",
+        "description": "[options] Caption opacity option"
+    },
+    "optDetailsOpacity": {
+        "message": "Details opacity:",
+        "description": "[options] Details opacity option"
+    },
     "optOpacityUnitName": {
         "message": "퍼센트",
         "description": "[options] Unit name (percentage) for opacity option"
+    },
+    "optBelowPositionOffset": {
+        "message": "Below position offset:",
+        "description": "[options] Below offset option"
+    },
+    "optBelowPositionOffsetTooltip": {
+        "message": "Amount to offset text in the below position",
+        "description": "[options] Tooltip for below position offset"
+    },
+    "optAbovePositionOffset": {
+        "message": "Above position offset:",
+        "description": "[options] Above offset option"
+    },
+    "optAbovePositionOffsetTooltip": {
+        "message": "Amount to offset text in the above position",
+        "description": "[options] Tooltip for above position offset"
+    },
+    "optOffsetUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (pixel) for offset amount"
     },
     "optDisplayImageLoaderTooltip": {
         "message": "사진을 불러오는 동안 로딩 아이콘을 표시합니다(초록: 로딩, 빨강: 오류). 빨간색 로딩 아이콘을 띄울지는 선택할 수 있습니다.",
