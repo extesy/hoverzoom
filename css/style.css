@@ -74,7 +74,11 @@ label { margin: 3px; }
 .medium.oval.btn.default.icon {
     width: 30px;
     height: 30px;
-    line-height:25px;
+    line-height: 25px;
+}
+
+.medium.oval.btn.default.icon > i {
+    min-width: 0px;
 }
 
 .close-button {
