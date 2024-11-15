@@ -519,6 +519,10 @@
         "message": "%",
         "description": "[options] Unit name (percentage) for opacity option"
     },
+    "optDetailsSelectorTooltip": {
+        "message": "Select which details should show above/below the image, if enabled",
+        "description": "[options] Tooltip for details selection drawer"
+    },
     "optTitleBoxDetails": {
         "message": "Details to show:",
         "description": "[options] Header for details selection drawer"
