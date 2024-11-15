@@ -71,44 +71,16 @@ legend {
 
 label { margin: 3px; }
 
-.medium.oval.btn.default.icon {
-    width: 30px;
-    height: 30px;
-    line-height: 25px;
-}
-
-.medium.oval.btn.default.icon > i {
-    min-width: 0px;
-}
-
-.close-button {
-    top: 1px;
-    margin-right: 2px;
-}
-
-.drawer-box > label div, .title-box > h4 { 
-    color: whitesmoke;
-}
-
-.drawer-window { 
+.append-grid { 
     display: grid;
-    grid-template-columns:repeat(3,1fr);
-    column-gap: 6px;
-    padding: 2px;
+    grid-template-columns:130px repeat(5,1fr);
 }
 
 .title-box {
     grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column-end: 1;
     grid-row-start: 1;
-    grid-row-end: 1;
-}
-
-.drawer{ 
-    z-index: 1000;
-    bottom: 14px;
-    display: flex;
-    width: fit-content;
+    grid-row-end: 4;
 }
 
 /* Popup styling */

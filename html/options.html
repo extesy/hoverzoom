@@ -68,11 +68,6 @@
                                             </select>
                                         </li>
                                     </div>
-                                    <div class="ttip" data-i18n-tooltip="optDetailsCogIconTooltip" style="margin-right:24px">
-                                        <div class="medium oval btn default icon toggle" href="#" gumby-trigger="#detailsPicker" style="margin-top:28px">
-                                            <i class="icon-cog"></i>
-                                        </div>
-                                    </div>
                                     <div class="ttip" data-i18n-tooltip="optFontSizeTooltip">
                                         <div class="append field" style="margin-left:10px">
                                             <label class="inline" for="txtFontSize">
@@ -89,72 +84,6 @@
                                                 <div style="display:inline" data-i18n="optFontOutline"></div>
                                             </label>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="drawer" id="detailsPicker" style="margin-left:146px">
-                                    <div class="drawer-window">
-                                        <li class="header title-box">
-                                            <h4 style="display:inline" data-i18n="optTitleBoxDetails"></h4>
-                                        </li>
-                                        <li class="field text-right close-button">
-                                            <div class="medium oval btn default icon switch" href="#" gumby-trigger="|#detailsPicker">
-                                                <i class="icon-cancel"></i>
-                                            </div>
-                                        </li>
-                                        <li class="field drawer-box">
-                                            <label class="checkbox" for="chkShowDetailFilename">
-                                                <input type="checkbox" id="chkShowDetailFilename"><span></span>
-                                                <div style="display:inline" data-i18n="optShowDetailFilename"></div>
-                                            </label>
-                                        </li>
-                                        <li class="field drawer-box">
-                                            <label class="checkbox" for="chkShowDetailHost">
-                                                <input type="checkbox" id="chkShowDetailHost"><span></span>
-                                                <div style="display:inline" data-i18n="optShowDetailHost"></div>
-                                            </label>
-                                        </li>
-                                        <li class="field drawer-box">
-                                            <label class="checkbox" for="chkShowDetailLastModified">
-                                                <input type="checkbox" id="chkShowDetailLastModified"><span></span>
-                                                <div style="display:inline" data-i18n="optShowDetailLastModified"></div>
-                                            </label>
-                                        </li>
-                                        <li class="field drawer-box">
-                                            <label class="checkbox" for="chkShowDetailExtension">
-                                                <input type="checkbox" id="chkShowDetailExtension"><span></span>
-                                                <div style="display:inline" data-i18n="optShowDetailExtension"></div>
-                                            </label>
-                                        </li>
-                                        <li class="field drawer-box">
-                                            <label class="checkbox" for="chkShowDetailContentLength">
-                                                <input type="checkbox" id="chkShowDetailContentLength"><span></span>
-                                                <div style="display:inline" data-i18n="optShowDetailContentLength"></div>
-                                            </label>
-                                        </li>
-                                        <li class="field drawer-box">
-                                            <label class="checkbox" for="chkShowDetailDuration">
-                                                <input type="checkbox" id="chkShowDetailDuration"><span></span>
-                                                <div style="display:inline" data-i18n="optShowDetailDuration"></div>
-                                            </label>
-                                        </li>
-                                        <li class="field drawer-box">
-                                            <label class="checkbox" for="chkShowDetailScale">
-                                                <input type="checkbox" id="chkShowDetailScale"><span></span>
-                                                <div style="display:inline" data-i18n="optShowDetailScale"></div>
-                                            </label>
-                                        </li>
-                                        <li class="field drawer-box">
-                                            <label class="checkbox" for="chkShowDetailRatio">
-                                                <input type="checkbox" id="chkShowDetailRatio"><span></span>
-                                                <div style="display:inline" data-i18n="optShowDetailRatio"></div>
-                                            </label>
-                                        </li>
-                                        <li class="field drawer-box">
-                                            <label class="checkbox" for="chkShowDetailDimensions">
-                                                <input type="checkbox" id="chkShowDetailDimensions"><span></span>
-                                                <div style="display:inline" data-i18n="optShowDetailDimensions"></div>
-                                            </label>
-                                        </li>
                                     </div>
                                 </div>
                                 <div class="ttip" data-i18n-tooltip="optMouseUnderlapTooltip">
@@ -514,7 +443,64 @@
                                         <div style="display:inline" data-i18n="optDetailsOpacity"></div>
                                         <input class="xnarrow text input" type="text" id="txtDetailsOpacity"><span class="adjoined xnarrow" data-i18n="optOpacityUnitName"></span>
                                     </label>
-                                </li>
+                                </li>                                    
+                                <div class="append-grid">
+                                    <div class="title-box" data-i18n="optTitleBoxDetails"></div>
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowDetailFilename">
+                                            <input type="checkbox" id="chkShowDetailFilename"><span></span>
+                                            <div style="display:inline" data-i18n="optShowDetailFilename"></div>
+                                        </label>
+                                    </li>
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowDetailHost">
+                                            <input type="checkbox" id="chkShowDetailHost"><span></span>
+                                            <div style="display:inline" data-i18n="optShowDetailHost"></div>
+                                        </label>
+                                    </li>
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowDetailLastModified">
+                                            <input type="checkbox" id="chkShowDetailLastModified"><span></span>
+                                            <div style="display:inline" data-i18n="optShowDetailLastModified"></div>
+                                        </label>
+                                    </li>
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowDetailExtension">
+                                            <input type="checkbox" id="chkShowDetailExtension"><span></span>
+                                            <div style="display:inline" data-i18n="optShowDetailExtension"></div>
+                                        </label>
+                                    </li>
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowDetailContentLength">
+                                            <input type="checkbox" id="chkShowDetailContentLength"><span></span>
+                                            <div style="display:inline" data-i18n="optShowDetailContentLength"></div>
+                                        </label>
+                                    </li>
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowDetailDuration">
+                                            <input type="checkbox" id="chkShowDetailDuration"><span></span>
+                                            <div style="display:inline" data-i18n="optShowDetailDuration"></div>
+                                        </label>
+                                    </li>
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowDetailScale">
+                                            <input type="checkbox" id="chkShowDetailScale"><span></span>
+                                            <div style="display:inline" data-i18n="optShowDetailScale"></div>
+                                        </label>
+                                    </li>
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowDetailRatio">
+                                            <input type="checkbox" id="chkShowDetailRatio"><span></span>
+                                            <div style="display:inline" data-i18n="optShowDetailRatio"></div>
+                                        </label>
+                                    </li>
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowDetailDimensions">
+                                            <input type="checkbox" id="chkShowDetailDimensions"><span></span>
+                                            <div style="display:inline" data-i18n="optShowDetailDimensions"></div>
+                                        </label>
+                                    </li>
+                                </div>
                                 <div class="ttip" data-i18n-tooltip="optBelowPositionOffsetTooltip">
                                     <li class="append field">
                                         <label class="inline" for="txtBelowPositionOffset">
