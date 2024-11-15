@@ -200,19 +200,19 @@
         "description": "[options] Tooltip for show high resolution pictures when available option"
     },
     "optGalleriesMouseWheel": {
-        "message": "Use a roda do rato para navegar nos álbuns",
+        "message": "Utilizar a roda do rato para navegar nos álbuns",
         "description": "[options] Use mousewheel to navigate albums option"
     },
     "optGalleriesMouseWheelTooltip": {
-        "message": "Navegue no álbum com a roda do rato",
+        "message": "Navega no álbum com a roda do rato",
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
     "optDisableMouseWheelForVideo": {
-        "message": "Não use a roda do rato para navegar dentro do vídeo (teclas de atalho continuarão a funcionar)",
+        "message": "Não utilizar a roda do rato para navegar dentro do vídeo (teclas de acção continuarão a funcionar)",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optDisableMouseWheelForVideoTooltip": {
-        "message": "Deslize entre os álbuns mas não salte para a frente/trás nos vídeos",
+        "message": "Desliza entre os álbuns mas não salta para a frente/trás nos vídeos",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
@@ -224,7 +224,7 @@
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
-        "message": "Utilize as teclas de atalho anterior/seguinte (ou roda do rato) para alterar a posição do vídeo para",
+        "message": "Utilizar as teclas de ação anterior/seguinte (ou a roda do rato) para alterar a posição do vídeo",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
@@ -232,7 +232,7 @@
         "description": "[options] Unit name (seconds) for changing video position option"
     },
     "optVideoPositionStepTooltip": {
-        "message": "Avance ou retroceda no vídeo para este valor de segundos",
+        "message": "Avanca ou retrocede no vídeo para este valor de segundos",
         "description": "[options] Tooltip for changing video position option"
     },
     "optMuteVideos": {
@@ -324,11 +324,11 @@
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optAutoLockImages": {
-        "message": "Automatically lock images",
+        "message": "Bloquear imagens automaticamente",
         "description": "[options] Automatically lock images option"
     },
     "optAutoLockImagesTooltip": {
-        "message": "Automatically lock images when activating Hover Zoom+",
+        "message": "As imagens são bloqueadas automaticamente ao ativar o Hover Zoom+",
         "description": "[options] Tooltip for automatically lock images option"
     },
     "optFrameBackgroundColor": {
@@ -507,9 +507,37 @@
         "message": "Opacidade das imagens ampliadas:",
         "description": "[options] Zoomed pictures opacity option"
     },
+    "optCaptionOpacity": {
+        "message": "Opacidade da legenda:",
+        "description": "[options] Caption opacity option"
+    },
+    "optDetailsOpacity": {
+        "message": "Opacidade dos detalhes:",
+        "description": "[options] Details opacity option"
+    },
     "optOpacityUnitName": {
         "message": "%",
         "description": "[options] Unit name (percentage) for opacity option"
+    },
+    "optBelowPositionOffset": {
+        "message": "Deslocação da posição abaixo:",
+        "description": "[options] Below offset option"
+    },
+    "optBelowPositionOffsetTooltip": {
+        "message": "Valor para deslocar o texto na posição abaixo",
+        "description": "[options] Tooltip for below position offset"
+    },
+    "optAbovePositionOffset": {
+        "message": "Deslocação da posição acima:",
+        "description": "[options] Above offset option"
+    },
+    "optAbovePositionOffsetTooltip": {
+        "message": "Valor para deslocar o texto na posição acima",
+        "description": "[options] Tooltip for above position offset"
+    },
+    "optOffsetUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (pixel) for offset amount"
     },
     "optDisplayImageLoaderTooltip": {
         "message": "Mostra um ícone animado enquanto carrega a imagem (verde: a carregar, vermelho: erro). O ícone vermelho é opcional.",
@@ -636,31 +664,31 @@
         "description": "[options] Page section for supported audio formats"
     },
     "optSectionImportExportSettings": {
-        "message": "Import/Export",
+        "message": "Importar/Exportar",
         "description": "[options] Page section for import/export"
     },
     "optSectionImportExportSettingsTooltip": {
-        "message": "Press export to get a string of your current settings. Press import to load your pasted settings",
+        "message": "Pressione exportar para obter uma sequência das suas definições atuais. Pressione importar para carregar as suas definições coladas",
         "description": "[options] Tooltip for input and export options"
     },
     "optImportExportTextArea": {
-        "message": "Paste your saved settings here",
+        "message": "Colar aqui as definições guardadas",
         "description": "[options] Placeholder for import and export text area"
     },
     "optButtonImportSettings": {
-        "message": "Import",
+        "message": "Importar",
         "description": "[options] Import a save string from the textarea"
     },
     "optButtonExportSettings": {
-        "message": "Export",
+        "message": "Exportar",
         "description": "[options] Export a save string into the textarea"
     },
     "optImport": {
-        "message": "Import Success!",
+        "message": "Importação bem sucedida!",
         "description": "[options] Notification after successful import to options"
     },
     "optImportFailed": {
-        "message": "Import Failed",
+        "message": "Não foi possível importar",
         "description": "[options] Notification after failed import to options"
     },
     "optPageFAQ": {
@@ -868,7 +896,7 @@
         "description": "[options] Action key description"
     },
     "optNextImgKeyTitle": {
-        "message": "Ver a imagem seguinte numa galeria",
+        "message": "Ver imagem seguinte numa galeria",
         "description": "[options] Action key title"
     },
     "optNextImgKeyDescription": {
