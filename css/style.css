@@ -73,7 +73,7 @@ label { margin: 3px; }
 
 .append-grid { 
     display: grid;
-    grid-template-columns:130px repeat(5,1fr);
+    grid-template-columns:140px repeat(5,1fr);
 }
 
 .title-box {
