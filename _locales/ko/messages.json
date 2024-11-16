@@ -112,11 +112,11 @@
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optCaptionLocation": {
-        "message": "자막 위치:",
+        "message": "캡션 위치:",
         "description": "[options] Adjust the position of the caption"
     },
     "optCaptionLocationTooltip": {
-        "message": "자막을 해당 이미지의 위/아래에 표시, 혹은 삭제",
+        "message": "캡션을 해당 이미지의 위/아래에 표시, 혹은 삭제",
         "description": "[options] Tooltip for adjusting the position of the caption"
     },
     "optCaptionLocationAbove": {
@@ -156,7 +156,7 @@
         "description": "[options] Outline option"
     },
     "optFontOutlineTooltip": {
-        "message": "활성화 시 흰 글꼴에 얇고 검은 테두리를 가진 글씨로 자막과 상세 정보를 표시",
+        "message": "활성화 시 흰 글꼴에 얇고 검은 테두리를 가진 글씨로 캡션과 상세 정보를 표시",
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
@@ -364,7 +364,7 @@
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
-        "message": "자막과 상세 정보 표시에 쓰이는 글씨의 크기",
+        "message": "캡션과 상세 정보 표시에 쓰이는 글씨의 크기",
         "description": "[options] Tooltip for font size option"
     },
     "optFontSizeUnitName": {
@@ -508,31 +508,75 @@
         "description": "[options] Zoomed pictures opacity option"
     },
     "optCaptionOpacity": {
-        "message": "Caption opacity:",
+        "message": "캡션 불투명도:",
         "description": "[options] Caption opacity option"
     },
     "optDetailsOpacity": {
-        "message": "Details opacity:",
+        "message": "상세 정보 불투명도:",
         "description": "[options] Details opacity option"
     },
     "optOpacityUnitName": {
         "message": "퍼센트",
         "description": "[options] Unit name (percentage) for opacity option"
     },
+    "optDetailsSelectorTooltip": {
+        "message": "Select which detail(s) should show, if details are displayed",
+        "description": "[options] Tooltip for details selector"
+    },
+    "optTitleBoxDetails": {
+        "message": "Detail(s) to show:",
+        "description": "[options] Title for details selector"
+    },
+    "optShowDetailHost": {
+        "message": "Host",
+        "description": "[options] Show Host Detail"
+    },
+    "optShowDetailFilename": {
+        "message": "File Name",
+        "description": "[options] Show File Name Detail"
+    },
+    "optShowDetailLastModified": {
+        "message": "Last Modified",
+        "description": "[options] Show Last Modified Detail"
+    },
+    "optShowDetailExtension": {
+        "message": "Extension",
+        "description": "[options] Show Extension Detail"
+    },
+    "optShowDetailContentLength": {
+        "message": "Media Length",
+        "description": "[options] Show Content Length Detail"
+    },
+    "optShowDetailDuration": {
+        "message": "Duration",
+        "description": "[options] Show Duration Detail"
+    },
+    "optShowDetailScale": {
+        "message": "Scale",
+        "description": "[options] Show Scale Detail"
+    },
+    "optShowDetailRatio": {
+        "message": "Ratio",
+        "description": "[options] Show Ratio Detail"
+    },
+    "optShowDetailDimensions": {
+        "message": "Dimensions",
+        "description": "[options] Show Dimensions Detail"
+    },
     "optBelowPositionOffset": {
-        "message": "Below position offset:",
+        "message": "아래쪽 간격:",
         "description": "[options] Below offset option"
     },
     "optBelowPositionOffsetTooltip": {
-        "message": "Amount to offset text in the below position",
+        "message": "아래쪽에서 글자를 떨어뜨릴 간격",
         "description": "[options] Tooltip for below position offset"
     },
     "optAbovePositionOffset": {
-        "message": "Above position offset:",
+        "message": "위쪽 간격:",
         "description": "[options] Above offset option"
     },
     "optAbovePositionOffsetTooltip": {
-        "message": "Amount to offset text in the above position",
+        "message": "위쪽에서 글자를 떨어뜨릴 간격",
         "description": "[options] Tooltip for above position offset"
     },
     "optOffsetUnitName": {
