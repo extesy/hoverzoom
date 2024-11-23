@@ -154,16 +154,15 @@ function restoreOptions(optionsFromFactorySettings) {
     actionKeys.forEach(function(key) {
         var id = key[0].toUpperCase() + key.substr(1);
         options[key] = parseInt($('#sel' + id).val());
-        if (options[key] == -3){
-            options.rightMouseActionKey = -3;
-            if (options[key] == -1) // if both selected
-                options.rightMouseActionKey = -5;
-        }
-        if (options[key] == -4) {
-            options.middleMouseActionKey = -4;
-            if (options[key] == -2) // if both selected
-                options.middleMouseActionKey = -6;
-        }
+        if (rightButtonActive && (options[key] == -1 || options[key] == -3)) // if both selected
+            options.rightTapAndHold = true;
+        else if (options[key] == -1 || options[key] == -3)
+            rightButtonActive = true;
+
+        if (middleButtonActive && (options[key] == -2 || options[key] == -4)) // if both selected
+            options.middleTapAndHold = true;
+        else if (options[key] == -2 || options[key] == -4)
+            middleButtonActive = true;
     });
 
     checkModifications();
