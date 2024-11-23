@@ -2729,6 +2729,7 @@ var hoverZoom = {
                 hz.hzViewer.hide();
             }
             if (imgFullSize) {
+                cancelSourceLoading();
                 return false;
             }
             return true
