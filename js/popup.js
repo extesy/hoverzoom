@@ -44,8 +44,8 @@ function loadKeys(sel) {
         $('<option value="-1">Right Click (Hold)</option>').appendTo(sel);
         $('<option value="-2">Middle Click (Hold)</option>').appendTo(sel);
         if (sel.attr('id') != 'selHideKey' && sel.attr('id') != 'selFullZoomKey' && sel.attr('id') != 'selActionKey'){
-            $('<option value="-1">Right Click (Tap)</option>').appendTo(sel);
-            $('<option value="-2">Middle Click (Tap)</option>').appendTo(sel);
+            $('<option value="-3">Right Click (Tap)</option>').appendTo(sel);
+            $('<option value="-4">Middle Click (Tap)</option>').appendTo(sel);
         }
     }
     if (sel.attr('id') != 'selOpenImageInTabKey')
