@@ -129,19 +129,31 @@ function saveOptions(exportSettings = false) {
     let middleButtonActive = false;
     options.rightTapAndHold = false;
     options.middleTapAndHold = false;
+    options.rightTap = false;
+    options.middleTap = false;
 
     actionKeys.forEach(function(key) {
         var id = key[0].toUpperCase() + key.substr(1);
         options[key] = parseInt($('#sel' + id).val());
-        if (rightButtonActive && (options[key] == -1 || options[key] == -3)) // if both selected
-            options.rightTapAndHold = true;
-        else if (options[key] == -1 || options[key] == -3)
-            rightButtonActive = true;
-
-        if (middleButtonActive && (options[key] == -2 || options[key] == -4)) // if both selected
-            options.middleTapAndHold = true;
-        else if (options[key] == -2 || options[key] == -4)
-            middleButtonActive = true;
+        switch (options[key]) {
+            case -3:
+                options.rightTap = true;
+            case -1:
+                if (rightButtonActive) // if both selected
+                    options.rightTapAndHold = true;
+                else
+                    rightButtonActive = true;
+                break;
+            case -4:
+                options.middleTap = true;
+            case -2:
+                if (middleButtonActive) // if both selected
+                    options.middleTapAndHold = true;
+                else
+                    middleButtonActive = true;
+                break;
+            default:
+        }
     });
 
     options.showDetailFilename = $('#chkShowDetailFilename')[0].checked;
