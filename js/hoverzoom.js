@@ -1062,20 +1062,35 @@ var hoverZoom = {
         let longPress = false;
         
         function mouseButtonKeyHandler(mouseButtonKey, img) {
-            const timerDelay = 150;
-            if (mouseButtonKey === -1) {
-                longRightPressTimer = setTimeout(longClick.bind(img), timerDelay, mouseButtonKey);
-            } else {
-                longMiddlePressTimer = setTimeout(longClick.bind(img), timerDelay, mouseButtonKey);
+            // -2 or -4 is hold or tap middle click, -1 or -3 is hold or tap right click
+            switch (mouseButtonKey) {
+                case -1:
+                    longRightPressTimer = setTimeout(longClick.bind(img), 150, mouseButtonKey);
+                    break;
+                case -2:
+                    longMiddlePressTimer = setTimeout(longClick.bind(img), 150, mouseButtonKey);
+                    break;
+                case -3:
+                    longRightPressTimer = setTimeout(longClick.bind(img), 300, mouseButtonKey);
+                    break;
+                case -4:
+                    longMiddlePressTimer = setTimeout(longClick.bind(img), 300, mouseButtonKey);
+                    break;
             }
         }
 
         function clearMouseButtonTimers(mouseButtonKey) {
-            if (mouseButtonKey === -1) {
-                clearTimeout(longRightPressTimer);
-            } else {
-                longPress = false;
-                clearTimeout(longMiddlePressTimer);
+            // -2 or -4 is hold or tap middle click, -1 or -3 is hold or tap right click
+            switch (mouseButtonKey) {
+                case -1:
+                case -3:
+                    clearTimeout(longRightPressTimer);
+                    return;
+                case -2:
+                case -4:
+                    longPress = false;
+                    clearTimeout(longMiddlePressTimer);
+                    return;
             }
         }
         
@@ -1162,6 +1177,7 @@ var hoverZoom = {
             if (longPress) {
                 longPress = false;
                 event.preventDefault();
+                return
             }
         }
 
@@ -1179,7 +1195,8 @@ var hoverZoom = {
             }
 
             // Gets mouse button key from event.button
-            const mouseButtonKey = [null,-2,-1,null,null][event.button]; // -2 is middle click, -1 is right click
+            // -2 or -4 is hold or tap middle click, -1 or -3 is hold or tap right click
+            const mouseButtonKey = [null,options.rightMouseActionKey,options.middleMouseActionKey,null,null][event.button];
             switch (mouseButtonKey) {
                 case options.actionKey:
                 case options.toggleKey:
@@ -1211,7 +1228,7 @@ var hoverZoom = {
 
         function documentMouseUp(event) {
             if (event.button === 0) return; // If left click, return
-            const mouseButtonKey = [null,-2,-1,null,null][event.button]; // -2 is middle click, -1 is right click
+            const mouseButtonKey = [null,options.rightMouseActionKey,options.middleMouseActionKey,null,null][event.button]; // -2 or -4 is middle click, -1 or -3 is right click
             switch (mouseButtonKey) {
                 case options.actionKey:
                     if (actionKeyDown) {
