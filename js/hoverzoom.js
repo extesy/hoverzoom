@@ -1115,6 +1115,7 @@ var hoverZoom = {
         }
         
         function mouseAction(mouseButtonKey,img) {
+            displayContextMenuImgFullSize = !imgFullSize;
             switch (mouseButtonKey) {
                 case options.actionKey:
                     actionKeyDown = true;
@@ -1195,8 +1196,10 @@ var hoverZoom = {
             if (longPressRight || shortPressRight) {
                 longPressRight = false;
                 shortPressRight = false;
+                if (displayContextMenuImgFullSize)
+                    return;
+                displayContextMenuImgFullSize = true; // Enables context menu for next right click
                 event.preventDefault();
-                return
             }
         }
 
@@ -1208,6 +1211,7 @@ var hoverZoom = {
                 }
                 cancelSourceLoading();
                 restoreTitles();
+                displayContextMenuImgFullSize = true
                 return;
             } else if (event.button === 0) { // We don't need left click
                 return;
