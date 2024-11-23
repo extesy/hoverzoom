@@ -1079,10 +1079,8 @@ var hoverZoom = {
         }
         
         function longClick(mouseButtonKey) {
+            if (mouseButtonKey == -1) longRightPress = true;
             switch (mouseButtonKey) {
-                case -1:
-                    longRightPress = true;
-                    break
                 case options.actionKey:
                     actionKeyDown = true;
                     $(this).mousemove();
