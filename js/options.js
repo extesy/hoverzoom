@@ -273,8 +273,6 @@ function restoreOptions(optionsFromFactorySettings) {
     actionKeys.forEach(function(key) {
         var id = key[0].toUpperCase() + key.substr(1);
         $('#sel' + id).val(options[key]);
-        if ($('#sel' + id)[0].dataset.val0 == undefined) $('#sel' + id)[0].dataset.val0 = options[key];
-        else $('#sel' + id)[0].dataset.val1 = options[key];
 
         switch (options[key]) {
             case -3:
