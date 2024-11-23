@@ -1192,7 +1192,7 @@ var hoverZoom = {
         }
 
         function documentContextMenu(event) {
-            // If right click is a long press, prevent context menu
+            // If right click is a long press or short press (if right click set to tap), prevent context menu
             if (longPressRight || shortPressRight) {
                 longPressRight = false;
                 shortPressRight = false;
