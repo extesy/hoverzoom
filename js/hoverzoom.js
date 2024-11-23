@@ -1258,7 +1258,6 @@ var hoverZoom = {
                                 mouseButtonKeyHandler(mouseButtonKey, this);
                                 return;
                             default:
-                                break;
                         }
                     }
                     return;
@@ -1285,7 +1284,6 @@ var hoverZoom = {
                                 mouseAction(mouseButtonKey, img);
                                 break;
                             default:
-                                break;
                         }
                     }
             }
