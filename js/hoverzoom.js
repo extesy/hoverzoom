@@ -1059,7 +1059,7 @@ var hoverZoom = {
 
         let longRightPressTimer; // create timer
         let longMiddlePressTimer; // creates separate timer so they don't interfere
-        let longPress = false;
+        let longRightPress = false;
         
         function mouseButtonKeyHandler(mouseButtonKey, img) {
             const timerDelay = 150;
@@ -1074,14 +1074,15 @@ var hoverZoom = {
             if (mouseButtonKey === -1) {
                 clearTimeout(longRightPressTimer);
             } else {
-                longPress = false;
                 clearTimeout(longMiddlePressTimer);
             }
         }
         
         function longClick(mouseButtonKey) {
-            longPress = true;
             switch (mouseButtonKey) {
+                case -1:
+                    longRightPress = true;
+                    break
                 case options.actionKey:
                     actionKeyDown = true;
                     $(this).mousemove();
@@ -1159,8 +1160,8 @@ var hoverZoom = {
 
         function documentContextMenu(event) {
             // If right click is a long press, prevent context menu
-            if (longPress) {
-                longPress = false;
+            if (longRightPress) {
+                longRightPress = false;
                 event.preventDefault();
             }
         }
