@@ -1088,7 +1088,6 @@ var hoverZoom = {
                     return;
                 case -2:
                 case -4:
-                    longPress = false;
                     clearTimeout(longMiddlePressTimer);
                     return;
                 default:
@@ -1112,14 +1111,14 @@ var hoverZoom = {
                     return;
                 default:
             }
-            mouseAction(mouseButtonKey).bind(this);
+            mouseAction(mouseButtonKey, this);
         }
         
-        function mouseAction(mouseButtonKey) {
+        function mouseAction(mouseButtonKey,img) {
             switch (mouseButtonKey) {
                 case options.actionKey:
                     actionKeyDown = true;
-                    $(this).mousemove();
+                    $(img).mousemove();
                     if (loading || imgFullSize) {
                         return false;
                     }
@@ -1216,13 +1215,15 @@ var hoverZoom = {
 
             // Gets mouse button key from event.button
             // -2 or -4 is hold or tap middle click, -1 or -3 is hold or tap right click
-            let mouseButtonKey = [null,options.rightMouseActionKey,options.middleMouseActionKey,null,null][event.button];
+            let rightButtonKey = options.rightTap ? -3 : -1;
+            let middleButtonKey = options.middleTap ? -4 : -2;
+            let mouseButtonKey = [null,middleButtonKey,rightButtonKey,null,null][event.button];
             
-            if (mouseButtonKey == -5) {
+            if (options.rightTapAndHold) {
                 mouseButtonKey = -1;
                 shortPressRight = true;
             }
-            if (mouseButtonKey == -6) {
+            if (options.middleTapAndHold) {
                 mouseButtonKey = -2;
                 shortPressMiddle = true;
             }
@@ -1246,7 +1247,7 @@ var hoverZoom = {
                             case options.openImageInWindowKey:
                             case options.openImageInTabKey:
                             case options.saveImageKey:
-                                mouseButtonKeyHandler(mouseButtonKey);
+                                mouseButtonKeyHandler(mouseButtonKey, this);
                                 return;
                             default:
                                 break;
@@ -1256,11 +1257,11 @@ var hoverZoom = {
             }
         }
 
-        function mouseTapHandler(mouseButtonKey) {
+        function mouseTapHandler(mouseButtonKey, img) {
             switch (mouseButtonKey) {
                 case options.toggleKey:
                 case options.closeKey:
-                    mouseAction(mouseButtonKey).bind(this);
+                    mouseAction(mouseButtonKey, img);
                     break;
                 default:
                     // The following only trigger when image is displayed
@@ -1273,8 +1274,8 @@ var hoverZoom = {
                             case options.openImageInWindowKey:
                             case options.openImageInTabKey:
                             case options.saveImageKey:
-                                mouseAction(mouseButtonKey).bind(this);
-                                return;
+                                mouseAction(mouseButtonKey, img);
+                                break;
                             default:
                                 break;
                         }
@@ -1284,18 +1285,16 @@ var hoverZoom = {
 
         function documentMouseUp(event) {
             if (event.button === 0) return; // If left click, return
-            let mouseButtonKey = [null,options.rightMouseActionKey,options.middleMouseActionKey,null,null][event.button]; // -2 or -4 is middle click, -1 or -3 is right click
-            let multiActionRightClick = false;
-            let multiActionMiddleClick = false;
-            
-            if (mouseButtonKey == -5) {
+            // -2 or -4 is middle click, -1 or -3 is right click
+            let rightButtonKey = options.rightTap ? -3 : -1;
+            let middleButtonKey = options.middleTap ? -4 : -2;
+            let mouseButtonKey = [null,middleButtonKey,rightButtonKey,null,null][event.button];
+                       
+            if (options.rightTapAndHold)
                 mouseButtonKey = -1;
-                multiActionRightClick = true;
-            }
-            if (mouseButtonKey == -6) {
+            if (options.middleTapAndHold)
                 mouseButtonKey = -2;
-                multiActionMiddleClick = true
-            }
+            
             switch (mouseButtonKey) {
                 case options.actionKey:
                     if (actionKeyDown) {
@@ -1318,10 +1317,10 @@ var hoverZoom = {
                 default:
                     break;
             }
-            if ((mouseButtonKey == -3 || multiActionRightClick) && shortPressRight)
-                mouseTapHandler(-3);
-            if ((mouseButtonKey == -4 || multiActionMiddleClick) && shortPressMiddle)
-                mouseTapHandler(-4);
+            if ((mouseButtonKey == -3 || options.rightTapAndHold) && shortPressRight)
+                mouseTapHandler(-3, this);
+            if ((mouseButtonKey == -4 || options.middleTapAndHold) && shortPressMiddle)
+                mouseTapHandler(-4, this);
             
             clearMouseButtonTimers(mouseButtonKey);
         }
