@@ -125,10 +125,16 @@ function saveOptions(exportSettings = false) {
         var self = $(this);
         if (!self.is(':checked')) options.disabledPlugins.push(self.attr('id').substr('chkPlugin'.length));
     });
+    options.rightMouseActionKey == -1;
+    options.middleMouseActionKey == -2;
 
     actionKeys.forEach(function(key) {
         var id = key[0].toUpperCase() + key.substr(1);
         options[key] = parseInt($('#sel' + id).val());
+        if (options[key] == -3)
+            options.rightMouseActionKey == -3;
+        if (options[key] == -4)
+            options.middleMouseActionKey == -4;
     });
 
     options.showDetailFilename = $('#chkShowDetailFilename')[0].checked;
