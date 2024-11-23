@@ -1256,6 +1256,32 @@ var hoverZoom = {
             }
         }
 
+        function mouseTapHandler(mouseButtonKey) {
+            switch (mouseButtonKey) {
+                case options.toggleKey:
+                case options.closeKey:
+                    mouseAction(mouseButtonKey).bind(this);
+                    break;
+                default:
+                    // The following only trigger when image is displayed
+                    if (imgFullSize) { 
+                        switch (mouseButtonKey) {
+                            case options.lockImageKey:
+                            case options.copyImageKey:
+                            case options.copyImageUrlKey:
+                            case options.flipImageKey:
+                            case options.openImageInWindowKey:
+                            case options.openImageInTabKey:
+                            case options.saveImageKey:
+                                mouseAction(mouseButtonKey).bind(this);
+                                return;
+                            default:
+                                break;
+                        }
+                    }
+            }
+        }
+
         function documentMouseUp(event) {
             if (event.button === 0) return; // If left click, return
             let mouseButtonKey = [null,options.rightMouseActionKey,options.middleMouseActionKey,null,null][event.button]; // -2 or -4 is middle click, -1 or -3 is right click
@@ -1292,8 +1318,11 @@ var hoverZoom = {
                 default:
                     break;
             }
-            if (mouseButtonKey == -3 || multiActionRightClick)
-            if (mouseButtonKey == -4 || multiActionMiddleClick)
+            if ((mouseButtonKey == -3 || multiActionRightClick) && shortPressRight)
+                mouseTapHandler(-3);
+            if ((mouseButtonKey == -4 || multiActionMiddleClick) && shortPressMiddle)
+                mouseTapHandler(-4);
+            
             clearMouseButtonTimers(mouseButtonKey);
         }
 
