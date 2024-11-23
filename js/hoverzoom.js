@@ -1058,24 +1058,24 @@ var hoverZoom = {
         }
 
         let longRightPressTimer; // create timer
-        let longMiddlePressTimer; // creates separate timer so they don't interfere
-        let longPress = false;
+        let longMiddlePressTimer; 
+        let longPressRight = false;
+        let shortPressRight = false;
+        let shortPressMiddle = false;
         
         function mouseButtonKeyHandler(mouseButtonKey, img) {
+            const timerDuration = 150;
             // -2 or -4 is hold or tap middle click, -1 or -3 is hold or tap right click
             switch (mouseButtonKey) {
                 case -1:
-                    longRightPressTimer = setTimeout(longClick.bind(img), 150, mouseButtonKey);
+                case -3:
+                    longRightPressTimer = setTimeout(longClick.bind(img), timerDuration, mouseButtonKey);
                     break;
                 case -2:
-                    longMiddlePressTimer = setTimeout(longClick.bind(img), 150, mouseButtonKey);
-                    break;
-                case -3:
-                    longRightPressTimer = setTimeout(longClick.bind(img), 300, mouseButtonKey);
-                    break;
                 case -4:
-                    longMiddlePressTimer = setTimeout(longClick.bind(img), 300, mouseButtonKey);
+                    longMiddlePressTimer = setTimeout(longClick.bind(img), timerDuration, mouseButtonKey);
                     break;
+                default:
             }
         }
 
@@ -1091,11 +1091,31 @@ var hoverZoom = {
                     longPress = false;
                     clearTimeout(longMiddlePressTimer);
                     return;
+                default:
             }
         }
         
         function longClick(mouseButtonKey) {
-            longPress = true;
+            switch (mouseButtonKey) {
+                case -1:
+                    longPressRight = true;
+                    shortPressRight = false;
+                    break;
+                case -2:
+                    shortPressMiddle = false;
+                    break
+                case -3:
+                    shortPressRight = false;
+                    return;
+                case -4:
+                    shortPressMiddle = false;
+                    return;
+                default:
+            }
+            mouseAction(mouseButtonKey).bind(this);
+        }
+        
+        function mouseAction(mouseButtonKey) {
             switch (mouseButtonKey) {
                 case options.actionKey:
                     actionKeyDown = true;
@@ -1168,14 +1188,14 @@ var hoverZoom = {
                     saveImage();
                     return false;
                 default:
-                    return;
             }
         }
 
         function documentContextMenu(event) {
             // If right click is a long press, prevent context menu
-            if (longPress) {
-                longPress = false;
+            if (longPressRight || shortPressRight) {
+                longPressRight = false;
+                shortPressRight = false;
                 event.preventDefault();
                 return
             }
@@ -1196,7 +1216,17 @@ var hoverZoom = {
 
             // Gets mouse button key from event.button
             // -2 or -4 is hold or tap middle click, -1 or -3 is hold or tap right click
-            const mouseButtonKey = [null,options.rightMouseActionKey,options.middleMouseActionKey,null,null][event.button];
+            let mouseButtonKey = [null,options.rightMouseActionKey,options.middleMouseActionKey,null,null][event.button];
+            
+            if (mouseButtonKey == -5) {
+                mouseButtonKey = -1;
+                shortPressRight = true;
+            }
+            if (mouseButtonKey == -6) {
+                mouseButtonKey = -2;
+                shortPressMiddle = true;
+            }
+
             switch (mouseButtonKey) {
                 case options.actionKey:
                 case options.toggleKey:
@@ -1228,7 +1258,18 @@ var hoverZoom = {
 
         function documentMouseUp(event) {
             if (event.button === 0) return; // If left click, return
-            const mouseButtonKey = [null,options.rightMouseActionKey,options.middleMouseActionKey,null,null][event.button]; // -2 or -4 is middle click, -1 or -3 is right click
+            let mouseButtonKey = [null,options.rightMouseActionKey,options.middleMouseActionKey,null,null][event.button]; // -2 or -4 is middle click, -1 or -3 is right click
+            let multiActionRightClick = false;
+            let multiActionMiddleClick = false;
+            
+            if (mouseButtonKey == -5) {
+                mouseButtonKey = -1;
+                multiActionRightClick = true;
+            }
+            if (mouseButtonKey == -6) {
+                mouseButtonKey = -2;
+                multiActionMiddleClick = true
+            }
             switch (mouseButtonKey) {
                 case options.actionKey:
                     if (actionKeyDown) {
@@ -1251,6 +1292,8 @@ var hoverZoom = {
                 default:
                     break;
             }
+            if (mouseButtonKey == -3 || multiActionRightClick)
+            if (mouseButtonKey == -4 || multiActionMiddleClick)
             clearMouseButtonTimers(mouseButtonKey);
         }
 
