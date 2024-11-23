@@ -43,8 +43,8 @@ function loadKeys(sel) {
     $('<option value="-1">Right Click (Hold)</option>').appendTo(sel);
     $('<option value="-2">Middle Click (Hold)</option>').appendTo(sel);
     if (sel.attr('id') != 'selHideKey' && sel.attr('id') != 'selFullZoomKey' && sel.attr('id') != 'selActionKey'){
-        $('<option value="-3">Right Click (Tap)</option>').appendTo(sel);
-        $('<option value="-4">Middle Click (Tap)</option>').appendTo(sel);
+        $('<option value="-3">Right Click (Click)</option>').appendTo(sel);
+        $('<option value="-4">Middle Click (Click)</option>').appendTo(sel);
     }
     if (sel.attr('id') != 'selOpenImageInTabKey')
         $('<option value="16">Shift</option>').appendTo(sel);
@@ -93,7 +93,7 @@ function saveOptions() {
         if (excludedSiteIndex > -1)
             options.excludedSites.splice(excludedSiteIndex, 1);
     }
-    
+
     actionKeys.forEach(function(key) {
         var id = key[0].toUpperCase() + key.substr(1);
         options[key] = parseInt($('#sel' + id).val());
