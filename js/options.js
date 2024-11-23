@@ -123,35 +123,10 @@ function saveOptions(exportSettings = false) {
         var self = $(this);
         if (!self.is(':checked')) options.disabledPlugins.push(self.attr('id').substr('chkPlugin'.length));
     });
-    let rightButtonActive = false;
-    let middleButtonActive = false;
-    options.rightTapAndHold = false;
-    options.middleTapAndHold = false;
-    options.rightTap = false;
-    options.middleTap = false;
 
     actionKeys.forEach(function(key) {
         var id = key[0].toUpperCase() + key.substr(1);
         options[key] = parseInt($('#sel' + id).val());
-        switch (options[key]) {
-            case -3:
-                options.rightTap = true;
-            case -1:
-                if (rightButtonActive) // if both selected
-                    options.rightTapAndHold = true;
-                else
-                    rightButtonActive = true;
-                break;
-            case -4:
-                options.middleTap = true;
-            case -2:
-                if (middleButtonActive) // if both selected
-                    options.middleTapAndHold = true;
-                else
-                    middleButtonActive = true;
-                break;
-            default:
-        }
     });
 
     options.showDetailFilename = $('#chkShowDetailFilename')[0].checked;
@@ -287,10 +262,39 @@ function restoreOptions(optionsFromFactorySettings) {
     for (var i = 0; i < options.excludedSites.length; i++) {
         appendExcludedSite(options.excludedSites[i], false);
     }
+    
+    let rightButtonActive = false;
+    let middleButtonActive = false;
+    options.rightTapAndHold = false;
+    options.middleTapAndHold = false;
+    options.rightTap = false;
+    options.middleTap = false;
 
     actionKeys.forEach(function(key) {
         var id = key[0].toUpperCase() + key.substr(1);
         $('#sel' + id).val(options[key]);
+        if ($('#sel' + id)[0].dataset.val0 == undefined) $('#sel' + id)[0].dataset.val0 = options[key];
+        else $('#sel' + id)[0].dataset.val1 = options[key];
+
+        switch (options[key]) {
+            case -3:
+                options.rightTap = true;
+            case -1:
+                if (rightButtonActive) // if both selected
+                    options.rightTapAndHold = true;
+                else
+                    rightButtonActive = true;
+                break;
+            case -4:
+                options.middleTap = true;
+            case -2:
+                if (middleButtonActive) // if both selected
+                    options.middleTapAndHold = true;
+                else
+                    middleButtonActive = true;
+                break;
+            default:
+        }
     });
 
     $('#chkShowDetailFilename').trigger(options.showDetailFilename ? 'gumby.check' : 'gumby.uncheck');

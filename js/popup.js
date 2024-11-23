@@ -93,6 +93,7 @@ function saveOptions() {
         if (excludedSiteIndex > -1)
             options.excludedSites.splice(excludedSiteIndex, 1);
     }
+    
     let rightButtonActive = false;
     let middleButtonActive = false;
     options.rightTapAndHold = false;
@@ -174,18 +175,38 @@ function restoreOptions(optionsFromFactorySettings) {
         }
     });
 
+    let rightButtonActive = false;
+    let middleButtonActive = false;
+    options.rightTapAndHold = false;
+    options.middleTapAndHold = false;
+    options.rightTap = false;
+    options.middleTap = false;
+
     actionKeys.forEach(function(key) {
         var id = key[0].toUpperCase() + key.substr(1);
-        options[key] = parseInt($('#sel' + id).val());
-        if (rightButtonActive && (options[key] == -1 || options[key] == -3)) // if both selected
-            options.rightTapAndHold = true;
-        else if (options[key] == -1 || options[key] == -3)
-            rightButtonActive = true;
+        $('#sel' + id).val(options[key]);
+        if ($('#sel' + id)[0].dataset.val0 == undefined) $('#sel' + id)[0].dataset.val0 = options[key];
+        else $('#sel' + id)[0].dataset.val1 = options[key];
 
-        if (middleButtonActive && (options[key] == -2 || options[key] == -4)) // if both selected
-            options.middleTapAndHold = true;
-        else if (options[key] == -2 || options[key] == -4)
-            middleButtonActive = true;
+        switch (options[key]) {
+            case -3:
+                options.rightTap = true;
+            case -1:
+                if (rightButtonActive) // if both selected
+                    options.rightTapAndHold = true;
+                else
+                    rightButtonActive = true;
+                break;
+            case -4:
+                options.middleTap = true;
+            case -2:
+                if (middleButtonActive) // if both selected
+                    options.middleTapAndHold = true;
+                else
+                    middleButtonActive = true;
+                break;
+            default:
+        }
     });
 
     checkModifications();
