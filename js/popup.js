@@ -153,9 +153,17 @@ function restoreOptions(optionsFromFactorySettings) {
 
     actionKeys.forEach(function(key) {
         var id = key[0].toUpperCase() + key.substr(1);
-        $('#sel' + id).val(options[key]);
-        if ($('#sel' + id)[0].dataset.val0 == undefined) $('#sel' + id)[0].dataset.val0 = options[key];
-        else $('#sel' + id)[0].dataset.val1 = options[key];
+        options[key] = parseInt($('#sel' + id).val());
+        if (options[key] == -3){
+            options.rightMouseActionKey = -3;
+            if (options[key] == -1) // if both selected
+                options.rightMouseActionKey = -5;
+        }
+        if (options[key] == -4) {
+            options.middleMouseActionKey = -4;
+            if (options[key] == -2) // if both selected
+                options.middleMouseActionKey = -6;
+        }
     });
 
     checkModifications();

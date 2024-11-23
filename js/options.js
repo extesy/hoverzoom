@@ -132,14 +132,14 @@ function saveOptions(exportSettings = false) {
         var id = key[0].toUpperCase() + key.substr(1);
         options[key] = parseInt($('#sel' + id).val());
         if (options[key] == -3){
-            options.rightMouseActionKey == -3;
+            options.rightMouseActionKey = -3;
             if (options[key] == -1) // if both selected
-                options.rightMouseActionKey == -5;
+                options.rightMouseActionKey = -5;
         }
         if (options[key] == -4) {
-            options.middleMouseActionKey == -4;
+            options.middleMouseActionKey = -4;
             if (options[key] == -2) // if both selected
-                options.middleMouseActionKey == -6;
+                options.middleMouseActionKey = -6;
         }
     });
 
