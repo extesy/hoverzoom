@@ -1127,9 +1127,10 @@ var hoverZoom = {
                 case options.lockImageKey:
                     lockViewer();
                     return;
-                case options.toggleKey:
-                    toggleKey()
-                    return;
+                case options.toggleKey: {
+                    let returnStatement = toggleKey() ? true : false;
+                    return returnStatement;
+                }
                 case options.fullZoomKey:
                     if (!fullZoomKeyDown) {
                         fullZoomKeyDown = true;
@@ -1139,14 +1140,17 @@ var hoverZoom = {
                         }
                     }
                     return;
-                case options.closeKey:
-                    closeKey()
-                    return;
-                case options.hideKey:
+                case options.closeKey: {
+                    let returnStatement = closeKey() ? true : false;
+                    return returnStatement;
+                }
+                case options.hideKey: {
                     if (!hideKeyDown) {
-                        hideKey()
+                        let returnStatement = hideKey() ? true : false;
+                        return returnStatement;
                     }
                     return;
+                }
                 case options.copyImageKey:
                     if (isChromiumBased) {
                         if (keyCode === options.copyImageKey) {
@@ -2714,6 +2718,7 @@ var hoverZoom = {
                 if (imgFullSize) {
                     return false;
                 }
+                return true
             }
         }
 
@@ -2726,6 +2731,7 @@ var hoverZoom = {
             if (imgFullSize) {
                 return false;
             }
+            return true
         }
 
         function hideKey(){
@@ -2737,6 +2743,7 @@ var hoverZoom = {
             if (imgFullSize) {
                 return false;
             }
+            return true
         }
 
         function documentOnKeyDown(event) {
@@ -2749,7 +2756,8 @@ var hoverZoom = {
 
             // Toggle key is pressed down
             if (keyCode === options.toggleKey) {
-                toggleKey();
+                let returnStatement = toggleKey() ? true : false;
+                return returnStatement;
             }
 
             // Action key (zoom image) is pressed down
@@ -2773,13 +2781,15 @@ var hoverZoom = {
             // close key (close zoomed image) is pressed down
             // => zoomed image is closed immediately
             if (keyCode === options.closeKey) {
-                closeKey();
+                let returnStatement = closeKey() ? true : false;
+                return returnStatement;
             }
 
             // hide key (hide zoomed image) is pressed down
             // => zoomed image remains hidden until key is released
             if (keyCode === options.hideKey && !hideKeyDown) {
-                hideKey();
+                let returnStatement = hideKey() ? true : false;
+                return returnStatement;
             }
 
             // the following keys are processed only if an image is displayed
