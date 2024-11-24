@@ -125,6 +125,7 @@ var hoverZoom = {
             arrowUpKeyDown = false,
             arrowDownKeyDown = false,
             viewerLocked = false,
+            lockViewerClickTime = 0,
             zoomFactor = 1,
             zoomSpeedFactor = 1,
             pageActionShown = false,
@@ -284,14 +285,14 @@ var hoverZoom = {
                 'display':'flex',
                 'flex-direction':'row',
                 'flex-wrap':'nowrap',
-                'align-items':'flex-end',
+                'align-items':'flex-end'
             },
             hzBelowCss = {
                 'background':'none',
                 'display':'flex',
                 'flex-direction':'row',
                 'flex-wrap':'nowrap',
-                'align-items':'flex-start',
+                'align-items':'flex-start'
             },
             hzCaptionMiscellaneousCss = {
                 'background':'none',
@@ -305,7 +306,7 @@ var hoverZoom = {
                 'display':'flex',
                 'flex-direction':'row',
                 'flex-wrap':'nowrap',
-                'min-width':'25%',
+                'min-width':'25%'
             },
             hzGalleryInfoCss = {
                 'position':'absolute',
@@ -411,26 +412,14 @@ var hoverZoom = {
                     imgFullSize.height(wndHeight - padding - statusBarHeight - scrollBarHeight - (hzAbove ? hzAbove.height() : 0) - (hzBelow ? hzBelow.height() : 0)).width('auto');
                 }
 
-                if (hzCaptionMiscellaneous) {
+                if (hzCaptionMiscellaneous)
                     hzCaptionMiscellaneous.css('max-width', imgFullSize[0].clientWidth);
-                    hzCaptionMiscellaneous.css('opacity', options.captionOpacity);
-                }
-                if (hzDetails) {
+                if (hzDetails)
                     hzDetails.css('max-width', imgFullSize[0].clientWidth);
-                    hzDetails.css('opacity', options.detailsOpacity);
-                }
-                if (hzAbove) {
+                if (hzAbove)
                     hzAbove.css('max-width', imgFullSize[0].clientWidth);
-                    hzAbove.css('top', options.abovePositionOffset + '%');
-                    if (options.abovePositionOffset != 0) 
-                        hzAbove.css('position', 'absolute');
-                }
-                if (hzBelow) {
+                if (hzBelow)
                     hzBelow.css('max-width', imgFullSize[0].clientWidth);
-                    hzBelow.css('bottom', options.belowPositionOffset + '%');
-                    if (options.belowPositionOffset != 0) 
-                        hzBelow.css('position', 'absolute');
-                }
 
                 // do not display caption nor details if img is too small
                 if (imgFullSize[0].clientWidth < 50) {
@@ -496,13 +485,9 @@ var hoverZoom = {
                 }
 
                 // width adjustment
-                const fullZoom = options.mouseUnderlap ||  viewerLocked;
-                const fullZoomKey = fullZoomKeyDown;
+                var fullZoom = options.mouseUnderlap || fullZoomKeyDown || viewerLocked;
                 if (viewerLocked) {
                     imgFullSize.width(srcDetails.naturalWidth * zoomFactor);
-                } else if (fullZoomKey) {
-                    // naturalWidth replaced with wndWidth to make image fill window
-                    imgFullSize.width(Math.min(wndWidth, wndWidth - padding - 2 * scrollBarWidth)); 
                 } else if (fullZoom) {
                     imgFullSize.width(Math.min(srcDetails.naturalWidth * zoomFactor, wndWidth - padding - 2 * scrollBarWidth));
                 } else if (displayOnRight) {
@@ -633,10 +618,6 @@ var hoverZoom = {
         }
 
         function isAudioLink(url) {
-            if (url.indexOf('.audio') !== -1) {
-                return true;
-            }
-
             if (url.lastIndexOf('?') > 0)
                 url = url.substring(0, url.lastIndexOf('?'));
             const ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
@@ -1067,183 +1048,26 @@ var hoverZoom = {
             }
         }
 
-        let longRightPressTimer; // create timer
-        let longMiddlePressTimer; // creates separate timer so they don't interfere
-        let longRightPress = false;
-        
-        function mouseButtonKeyHandler(mouseButtonKey, img) {
-            const timerDelay = 150;
-            if (mouseButtonKey === -1) {
-                longRightPressTimer = setTimeout(longClick.bind(img), timerDelay, mouseButtonKey);
-            } else {
-                longMiddlePressTimer = setTimeout(longClick.bind(img), timerDelay, mouseButtonKey);
-            }
-        }
-
-        function clearMouseButtonTimers(mouseButtonKey) {
-            if (mouseButtonKey === -1) {
-                clearTimeout(longRightPressTimer);
-            } else {
-                clearTimeout(longMiddlePressTimer);
-            }
-        }
-        
-        function longClick(mouseButtonKey) {
-            if (mouseButtonKey == -1) longRightPress = true;
-            switch (mouseButtonKey) {
-                case options.actionKey:
-                    actionKeyDown = true;
-                    $(this).mousemove();
-                    if (loading || imgFullSize) {
-                        return false;
-                    }
-                    break;
-                case options.lockImageKey:
-                    lockViewer();
-                    return;
-                case options.toggleKey:
-                    toggleKey()
-                    return;
-                case options.fullZoomKey:
-                    if (!fullZoomKeyDown) {
-                        fullZoomKeyDown = true;
-                        posViewer();
-                        if (imgFullSize) {
-                            return false;
-                        }
-                    }
-                    return;
-                case options.closeKey:
-                    closeKey()
-                    return;
-                case options.hideKey:
-                    if (!hideKeyDown) {
-                        hideKey()
-                    }
-                    return;
-                case options.copyImageKey:
-                    if (isChromiumBased) {
-                        if (keyCode === options.copyImageKey) {
-                            copyImage();
-                            return false;
-                        }
-                    }
-                    return false;
-                case options.copyImageUrlKey:
-                    copyLink();
-                    return false;
-                // "Previous image" key
-                case options.prevImgKey:
-                    var linkData = hz.currentLink.data();
-                    if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(-1);
-                    else changeVideoPosition(-parseInt(options.videoPositionStep));
-                    return false;
-                // "Next image" key
-                case options.nextImgKey:
-                    var linkData = hz.currentLink.data();
-                    if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(1);
-                    else changeVideoPosition(parseInt(options.videoPositionStep));
-                    return false;
-                // "Flip image" key
-                case options.flipImageKey:
-                    flipImage();
-                    return false;
-                case options.openImageInWindowKey:
-                    if (srcDetails.video) openVideoInWindow();
-                    else if (srcDetails.audio) openAudioInWindow();
-                    else openImageInWindow();
-                    return false;
-                case options.openImageInTabKey:
-                    if (srcDetails.video) openVideoInTab(event.shiftKey);
-                    else if (srcDetails.audio) openAudioInTab();
-                    else openImageInTab(event.shiftKey);
-                    return false;
-                case options.saveImageKey:
-                    saveImage();
-                    return false;
-                default:
-                    return;
-            }
-        }
-
         function documentContextMenu(event) {
-            // If right click is a long press, prevent context menu
-            if (longRightPress) {
-                longRightPress = false;
+            // If it's been less than 300ms since right click, lock viewer and prevent context menu.
+            var lockElapsed = event.timeStamp - lockViewerClickTime;
+            if (imgFullSize && !viewerLocked && options.lockImageKey === -1 && lockElapsed < 300) {
+                lockViewer();
                 event.preventDefault();
             }
         }
 
         function documentMouseDown(event) {
-            // if image is locked and left click is pressed outside of locked image
-            if (event.button === 0 && imgFullSize && event.target !== hz.hzViewer[0] && event.target !== imgFullSize[0]) {
-                if (viewerLocked) {
+            // Right click pressed and lockImageKey is set to special value for right click (-1).
+            if (imgFullSize && !viewerLocked && options.lockImageKey === -1 && event.button === 2) {
+                lockViewerClickTime = event.timeStamp;
+            } else if (imgFullSize && event.target !== hz.hzViewer[0] && event.target !== imgFullSize[0]) {
+                if (viewerLocked && event.button === 0) {
                     viewerLocked = false;
                 }
                 cancelSourceLoading();
                 restoreTitles();
-                return;
-            } else if (event.button === 0) { // We don't need left click
-                return;
             }
-
-            // Gets mouse button key from event.button
-            const mouseButtonKey = [null,-2,-1,null,null][event.button]; // -2 is middle click, -1 is right click
-            switch (mouseButtonKey) {
-                case options.actionKey:
-                case options.toggleKey:
-                case options.fullZoomKey:
-                case options.closeKey:
-                case options.hideKey:
-                    mouseButtonKeyHandler(mouseButtonKey, this);
-                    return;
-                default:
-                    // The following only trigger when image is displayed
-                    if (imgFullSize) { 
-                        switch (mouseButtonKey) {
-                            case options.lockImageKey:
-                            case options.copyImageKey:
-                            case options.copyImageUrlKey:
-                            case options.flipImageKey:
-                            case options.openImageInWindowKey:
-                            case options.openImageInTabKey:
-                            case options.saveImageKey:
-                                mouseButtonKeyHandler(mouseButtonKey);
-                                return;
-                            default:
-                                break;
-                        }
-                    }
-                    return;
-            }
-        }
-
-        function documentMouseUp(event) {
-            if (event.button === 0) return; // If left click, return
-            const mouseButtonKey = [null,-2,-1,null,null][event.button]; // -2 is middle click, -1 is right click
-            switch (mouseButtonKey) {
-                case options.actionKey:
-                    if (actionKeyDown) {
-                        actionKeyDown = false;
-                        closeHoverZoomViewer();
-                    }
-                    break;
-                case options.fullZoomKey:
-                    fullZoomKeyDown = false;
-                    $(this).mousemove();
-                    break;
-                case options.hideKey:
-                    hideKeyDown = false;
-                    if (imgFullSize) {
-                        hz.hzViewer.show();
-                        playMedias();
-                    }
-                    $(this).mousemove();
-                    break;
-                default:
-                    break;
-            }
-            clearMouseButtonTimers(mouseButtonKey);
         }
 
         // select correct font size for msg depending on img or video width
@@ -1360,7 +1184,7 @@ var hoverZoom = {
                         return;
                     }
 
-                    var src = (srcDetails.audioUrl ? srcDetails.audioUrl : srcDetails.url).replace('.audio', '');
+                    var src = (srcDetails.audioUrl ? srcDetails.audioUrl : srcDetails.url);
 
                     // audio controls are displayed on top of an image provided by extension: 'images/spectrogram.png'
                     srcDetails.url = chrome.extension.getURL('images/spectrogram.png');
@@ -1372,7 +1196,7 @@ var hoverZoom = {
                     audio.controls = true; // controls always visible even if not locked
                     audio.autoplay = true;
                     audio.volume = options.audioVolume;
-                    audio.src = srcDetails.audioUrl;
+                    audio.src = src;
                     audioControls = $(audio).appendTo(hz.hzViewer);
 
                     audio.addEventListener('error', srcFullSizeOnError);
@@ -1759,11 +1583,6 @@ var hoverZoom = {
 
         function displayFullSizeImage() {
             cLog('displayFullSizeImage');
-
-            // if autoLockImages option is checked
-            if (options.autoLockImages)
-                viewerLocked = true;
-
             // check focus
             let focus = document.hasFocus();
 
@@ -1967,60 +1786,51 @@ var hoverZoom = {
                 if (options.detailsLocation === "below")
                     if (hzBelow.find('#hzDetails').length == 0)
                         hzDetails = $('<div/>', {id:'hzDetails'}).css(hzDetailsCss).appendTo(hzBelow);
-                if (options.showDetailFilename) {
-                    if (hzDetails.find('#hzDetailFilename').length == 0)
-                        $('<div/>', {id:'hzDetailFilename', text:details.filename, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
-                    else
-                        $('#hzDetailFilename').text(details.filename);
-                }
-                if (options.showDetailHost) {
-                    if (hzDetails.find('#hzDetailHost').length == 0)
-                        $('<div/>', {id:'hzDetailHost', text:details.host, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
-                    else
-                        $('#hzDetailHost').text(details.host);
-                }
-                if (options.showDetailLastModified) {
-                    if (hzDetails.find('#hzDetailLastModified').length == 0)
-                        $('<div/>', {id:'hzDetailLastModified', text:details.lastModified, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
-                    else
-                        $('#hzDetailLastModified').text(details.lastModified);
-                }
-                if (options.showDetailExtension) {
-                    if (hzDetails.find('#hzDetailExtension').length == 0)
-                        $('<div/>', {id:'hzDetailExtension', text:details.extension.toUpperCase(), class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
-                    else
-                        $('#hzDetailExtension').text(details.extension.toUpperCase());
-                }
-                if (options.showDetailContentLength) {
-                    if (hzDetails.find('#hzDetailContentLength').length == 0)
-                        $('<div/>', {id:'hzDetailContentLength', text:details.contentLength, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
-                    else
-                        $('#hzDetailContentLength').text(details.contentLength);
-                }
-                if (options.showDetailDuration) {
-                    if (hzDetails.find('#hzDetailDuration').length == 0)
-                        $('<div/>', {id:'hzDetailDuration', text:details.duration, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
-                    else
-                        $('#hzDetailDuration').text(details.duration);
-                }
-                if (options.showDetailScale) {
-                    if (hzDetails.find('#hzDetailScale').length == 0)
-                        $('<div/>', {id:'hzDetailScale', text:details.scale, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
-                    else
-                        $('#hzDetailScale').text(details.scale);
-                }
-                if (options.showDetailRatio) {
-                    if (hzDetails.find('#hzDetailRatio').length == 0)
-                        $('<div/>', {id:'hzDetailRatio', text:details.ratio, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
-                    else
-                        $('#hzDetailRatio').text(details.ratio);
-                }
-                if (options.showDetailDimensions) {
-                    if (hzDetails.find('#hzDetailDimensions').length == 0)
-                        $('<div/>', {id:'hzDetailDimensions', text:details.dimensions, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
-                    else
-                        $('#hzDetailDimensions').text(details.dimensions);
-                }
+
+                if (hzDetails.find('#hzDetailFilename').length == 0)
+                    $('<div/>', {id:'hzDetailFilename', text:details.filename, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                else
+                    $('#hzDetailFilename').text(details.filename);
+
+                if (hzDetails.find('#hzDetailHost').length == 0)
+                    $('<div/>', {id:'hzDetailHost', text:details.host, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                else
+                    $('#hzDetailHost').text(details.host);
+
+                if (hzDetails.find('#hzDetailLastModified').length == 0)
+                    $('<div/>', {id:'hzDetailLastModified', text:details.lastModified, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                else
+                    $('#hzDetailLastModified').text(details.lastModified);
+
+                if (hzDetails.find('#hzDetailExtension').length == 0)
+                    $('<div/>', {id:'hzDetailExtension', text:details.extension.toUpperCase(), class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                else
+                    $('#hzDetailExtension').text(details.extension.toUpperCase());
+
+                if (hzDetails.find('#hzDetailContentLength').length == 0)
+                    $('<div/>', {id:'hzDetailContentLength', text:details.contentLength, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                else
+                    $('#hzDetailContentLength').text(details.contentLength);
+
+                if (hzDetails.find('#hzDetailDuration').length == 0)
+                    $('<div/>', {id:'hzDetailDuration', text:details.duration, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                else
+                    $('#hzDetailDuration').text(details.duration);
+
+                if (hzDetails.find('#hzDetailScale').length == 0)
+                    $('<div/>', {id:'hzDetailScale', text:details.scale, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                else
+                    $('#hzDetailScale').text(details.scale);
+
+                if (hzDetails.find('#hzDetailRatio').length == 0)
+                    $('<div/>', {id:'hzDetailRatio', text:details.ratio, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                else
+                    $('#hzDetailRatio').text(details.ratio);
+
+                if (hzDetails.find('#hzDetailDimensions').length == 0)
+                    $('<div/>', {id:'hzDetailDimensions', text:details.dimensions, class:'hzDetail'}).css(hzDetailCss).prependTo(hzDetails);
+                else
+                    $('#hzDetailDimensions').text(details.dimensions);
             }
         }
 
@@ -2136,7 +1946,7 @@ var hoverZoom = {
             // if video comes with distinct url for audio then extension = video's extension
             details.extension = getExtensionFromUrl(srcDetails.audio && !srcDetails.video ? srcDetails.audioUrl : srcDetails.url, srcDetails.video, srcDetails.playlist, srcDetails.audio);
             details.host = srcDetails.host;
-            let filename = getFilename();
+            let filename = getDownloadFilename();
             if (filename) details.filename = filename;
             let duration = (srcDetails.audio && !srcDetails.video ? getDurationFromAudio() : getDurationFromVideo());
             if (duration) details.duration = duration.replace(/ /g, ':');
@@ -2218,7 +2028,7 @@ var hoverZoom = {
                     // Skip if the image has the same URL as the thumbnail.
                     if (linkData.hoverZoomSrc && linkData.hoverZoomSrc.length) {
                         var url = linkData.hoverZoomSrc[0],
-                            skip = (link.is('img') && url === link.attr('src'));
+                            skip = url === link.attr('src');
                         if (!skip) {
                             link.find('img[src]').each(function () {
                                 if (this.src === url) {
@@ -2536,7 +2346,7 @@ var hoverZoom = {
             // for instance, on TripAdvisor:
             // img's src placeholder is replaced by real img url stored in data-lazyurl as user scrolls down
             $(document).on('scroll mousewheel', function() {
-                let scrollTop = window.scrollY || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
                 if (scrollTop < lastScrollTop) {
                     lastScrollTop = scrollTop < 0 ? 0 : scrollTop; // For Mobile or negative scrolling
                 } else if (scrollTop > lastScrollTop + deltaMin) {
@@ -2551,7 +2361,6 @@ var hoverZoom = {
 
             $(document).contextmenu(documentContextMenu);
             $(document).mousemove(documentMouseMove).mousedown(documentMouseDown).mouseleave(cancelSourceLoading);
-            $(document).on('mouseup', function(event) { documentMouseUp(event); })
             $(document).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
             if (options.galleriesMouseWheel) {
                 window.addEventListener('wheel', documentOnMouseWheel, {passive: false});
@@ -2619,43 +2428,6 @@ var hoverZoom = {
             }
         }
 
-        function toggleKey() {
-            options.extensionEnabled = !options.extensionEnabled;
-            if (!options.extensionEnabled) {
-                // close zoomed image or video
-                viewerLocked = false;
-                if (hz.hzViewer) {
-                    stopMedias();
-                    hz.hzViewer.hide();
-                }
-                if (imgFullSize) {
-                    return false;
-                }
-            }
-        }
-
-        function closeKey() {
-            viewerLocked = false;
-            if (hz.hzViewer) {
-                stopMedias();
-                hz.hzViewer.hide();
-            }
-            if (imgFullSize) {
-                return false;
-            }
-        }
-
-        function hideKey(){
-            hideKeyDown = true;
-            if (hz.hzViewer) {
-                pauseMedias();
-                hz.hzViewer.hide();
-            }
-            if (imgFullSize) {
-                return false;
-            }
-        }
-
         function documentOnKeyDown(event) {
             // Skips if an input controlled is focused
             if (event.target && ['INPUT','TEXTAREA','SELECT'].indexOf(event.target.tagName) > -1) {
@@ -2666,7 +2438,18 @@ var hoverZoom = {
 
             // Toggle key is pressed down
             if (keyCode === options.toggleKey) {
-                toggleKey();
+                options.extensionEnabled = !options.extensionEnabled;
+                if (!options.extensionEnabled) {
+                    // close zoomed image or video
+                    viewerLocked = false;
+                    if (hz.hzViewer) {
+                        stopMedias();
+                        hz.hzViewer.hide();
+                    }
+                    if (imgFullSize) {
+                        return false;
+                    }
+                }
             }
 
             // Action key (zoom image) is pressed down
@@ -2690,13 +2473,27 @@ var hoverZoom = {
             // close key (close zoomed image) is pressed down
             // => zoomed image is closed immediately
             if (keyCode === options.closeKey) {
-                closeKey();
+                viewerLocked = false;
+                if (hz.hzViewer) {
+                    stopMedias();
+                    hz.hzViewer.hide();
+                }
+                if (imgFullSize) {
+                    return false;
+                }
             }
 
             // hide key (hide zoomed image) is pressed down
             // => zoomed image remains hidden until key is released
             if (keyCode === options.hideKey && !hideKeyDown) {
-                hideKey();
+                hideKeyDown = true;
+                if (hz.hzViewer) {
+                    pauseMedias();
+                    hz.hzViewer.hide();
+                }
+                if (imgFullSize) {
+                    return false;
+                }
             }
 
             // the following keys are processed only if an image is displayed
@@ -3249,7 +3046,7 @@ var hoverZoom = {
         function downloadResource(url, filename, callback) {
             cLog('download: ' + url);
             if (!filename) filename = url.split('\\').pop().split('/').pop();
-            if (filename.startsWith('.')) filename = 'download' + filename;
+
             // prefix with download folder if needed
             if (options.downloadFolder) {
                 cLog('options.downloadFolder: ' + options.downloadFolder);
@@ -3282,8 +3079,8 @@ var hoverZoom = {
             }
         }
 
-        // 5 types of media can be saved to disk: image, video, audio, playlist, subtitles
-        const fileMedias = {
+        // 4 types of media can be saved to disk: image, video, audio, playlist
+        const downloadMedias = {
             IMG : "IMG",
             VIDEO : "VIDEO",
             AUDIO : "AUDIO",
@@ -3291,118 +3088,89 @@ var hoverZoom = {
             SUBTITLES : "SUBTITLES"
         }
 
-        // return filename without knowing type of media displayed
-        function getFilename() {
+        // return download filename without knowing type of download
+        function getDownloadFilename() {
 
-            let filename = getFilenameByMedia(fileMedias.IMG, false);
+            let filename = getDownloadFilenameByMedia(downloadMedias.IMG);
             if (filename) return filename;
-            filename = getFilenameByMedia(fileMedias.VIDEO, false);
+            filename = getDownloadFilenameByMedia(downloadMedias.VIDEO);
             if (filename) return filename;
-            filename = getFilenameByMedia(fileMedias.AUDIO, false);
+            filename = getDownloadFilenameByMedia(downloadMedias.AUDIO);
             if (filename) return filename;
-            filename = getFilenameByMedia(fileMedias.PLAYLIST, false);
+            filename = getDownloadFilenameByMedia(downloadMedias.PLAYLIST);
             if (filename) return filename;
-            filename = getFilenameByMedia(fileMedias.SUBTITLES, false);
+            filename = getDownloadFilenameByMedia(downloadMedias.SUBTITLES);
             if (filename) return filename;
             return '';
         }
 
-        function replaceOriginalFilename(filename) {
-            if (options.replaceOriginalFilename) {
-                if (filename.indexOf('.') !== -1) filename = filename.replace(/(.*)\.(.*)/, `${options.downloadFilename}.$2`);
-                else filename = options.downloadFilename;
-            }
-            return filename;
-        }
-
-        // return original or download filename according to type of media in param
-        function getFilenameByMedia(fileMedia, download = true) {
+        // return download filename according to type of download in param
+        function getDownloadFilenameByMedia(downloadMedia) {
 
             let src, filename;
-            switch (fileMedia) {
-                case fileMedias.IMG:
-                    if (!hz.hzViewer) return undefined;
+            switch (downloadMedia) {
+                case downloadMedias.IMG:
+                    if (!hz.hzViewer) return '';
                     let img = hz.hzViewer.find('img:not(.hzPlaceholder)').get(0);
-                    if (!img) return undefined;
+                    if (!img) return '';
                     src = img.src;
                     // remove trailing / & trailing query
                     src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
                     // extract filename
                     filename = src.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
-                    if (filename === '') {
-                        filename = 'image';
-                    }
-                    if (download) {
-                        filename = replaceOriginalFilename(filename);
-                        if (filename.indexOf('.') === -1) filename = filename + '.jpg'; // add default extension for download
-                    }
+                    if (filename == '') filename = 'image';
+                    if (filename.indexOf('.') === -1) filename = filename + '.jpg';
                     return filename;
 
-                case fileMedias.VIDEO:
-                    if (!hz.hzViewer) return undefined;
+                case downloadMedias.VIDEO:
+                    if (!hz.hzViewer) return '';
                     let video = hz.hzViewer.find('video').get(0);
-                    if (!video) return undefined;
+                    if (!video) return '';
                     src = video.src;
-                    if (src.startsWith('blob:')) return undefined;
+                    if (src.startsWith('blob:')) return '';
                     // remove trailing / & trailing query
                     src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
                     // extract filename
                     filename = src.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
-                    if (filename === '') {
-                        filename = 'video';
-                    }
-                    if (download) {
-                        filename = replaceOriginalFilename(filename);
-                        if (filename.indexOf('.') === -1) filename = filename + '.mp4'; // add default extension for download
-                    }
+                    if (filename == '') filename = 'video';
+                    if (filename.indexOf('.') === -1) filename = filename + '.mp4';
                     return filename;
 
-                case fileMedias.AUDIO:
-                    if (!hz.hzViewer) return undefined;
+                case downloadMedias.AUDIO:
+                    if (!hz.hzViewer) return '';
                     let audio = hz.hzViewer.find('audio').get(0);
-                    if (!audio) return undefined;
+                    if (!audio) return '';
                     src = audio.src;
                     // remove trailing / & trailing query
                     src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
                     // extract filename
                     filename = src.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
-                    if (filename === '') {
-                        filename = 'audio';
-                    }
-                    if (download) {
-                        filename = replaceOriginalFilename(filename);
-                        if (filename.indexOf('.') === -1) filename = filename + '.mp4'; // add default extension for download
-                    }
+                    if (filename == '') filename = 'audio';
+                    if (filename.indexOf('.') === -1) filename = filename + '.mp4';
                     return filename;
 
-                case fileMedias.PLAYLIST:
-                    if (!hz.hzViewer) return undefined;
-                    if (!srcDetails.playlist) return undefined;
+                case downloadMedias.PLAYLIST:
+                    if (!hz.hzViewer) return '';
+                    if (!srcDetails.playlist) return '';
                     src = srcDetails.url;
                     // remove trailing / & trailing query
                     src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
                     // extract filename
                     filename = src.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
-                    if (download) {
-                        filename = replaceOriginalFilename(filename);
-                        filename = 'playlist-' + filename;
-                        if (filename.indexOf('.') === -1) filename = filename + '.m3u8'; // add default extension for download
-                    }
+                    filename = 'playlist-' + filename;
+                    if (filename.indexOf('.') === -1) filename = filename + '.m3u8';
                     return filename;
 
-                case fileMedias.SUBTITLES:
-                    if (!hz.hzViewer) return undefined;
-                    if (!srcDetails.subtitlesUrl) return undefined;
+                case downloadMedias.SUBTITLES:
+                    if (!hz.hzViewer) return '';
+                    if (!srcDetails.subtitlesUrl) return '';
                     src = srcDetails.subtitlesUrl;
                     // remove trailing / & trailing query
                     src = src.replace(/\/$/, '').split(/[\?!#&]/)[0];
                     // extract filename
                     filename = src.split('/').pop().split(':')[0].replace(regexForbiddenChars, '');
-                    if (download) {
-                        filename = replaceOriginalFilename(filename);
-                        filename = 'subtitles-' + filename;
-                        if (filename.indexOf('.') === -1) filename = filename + '.txt'; // add default extension for download
-                    }
+                    filename = 'subtitles-' + filename;
+                    if (filename.indexOf('.') === -1) filename = filename + '.txt';
                     return filename;
             }
             return '';
@@ -3480,32 +3248,13 @@ var hoverZoom = {
             let img = hz.hzViewer.find('img').get(0);
             if (!img) return;
             let src = img.src;
-            let filename = getFilenameByMedia(fileMedias.IMG);
+            let filename = getDownloadFilenameByMedia(downloadMedias.IMG);
             if (!filename) return;
 
-            if (options.addDownloadCaption) {
-                // prefix with caption
-                let caption = getCaption();
-                if (caption) {
-                    caption = '[' + caption + ']';
-                    filename = caption + filename;
-                }
-            }
             if (options.addDownloadSize) {
                 // prefix with size [WxH]
-                let size = '[' + getSizeImage(img) + ']';
+                let size = '[' + img.naturalWidth + 'x' + img.naturalHeight + ']';
                 filename = size + filename;
-            }
-            if (options.addDownloadIndex) {
-                let gallery = hz.currentLink.data().hoverZoomGallerySrc;
-                let index = hz.currentLink.data().hoverZoomGalleryIndex;
-                if (gallery) {
-                    index++;
-                    let indexLen = index.toString().length;
-                    let galleryLen = gallery.length.toString().length
-                    let galleryIndex = `[${index.toString().padStart(galleryLen,'0')}-${gallery.length}]`;
-                    filename = galleryIndex + filename;
-                }
             }
             if (options.addDownloadOrigin) {
                 // prefix with origin
@@ -3521,20 +3270,12 @@ var hoverZoom = {
             if (!video) return;
             let src = video.src;
             if (src.startsWith('blob:')) return;
-            let filename = getFilenameByMedia(fileMedias.VIDEO);
+            let filename = getDownloadFilenameByMedia(downloadMedias.VIDEO);
             if (!filename) return;
 
-            if (options.addDownloadCaption) {
-                // prefix with caption
-                let caption = getCaption();
-                if (caption) {
-                    caption = '[' + caption + ']';
-                    filename = caption + filename;
-                }
-            }
             if (options.addDownloadSize) {
                 // prefix with size [WxH]
-                let size = '[' + getSizeVideo(video) + ']';
+                let size = '[' + video.videoWidth + 'x' + video.videoHeight + ']';
                 filename = size + filename;
             }
             if (options.addDownloadDuration) {
@@ -3555,17 +3296,9 @@ var hoverZoom = {
             let audio = hz.hzViewer.find('audio').get(0);
             if (!audio) return;
             let src = audio.src;
-            let filename = getFilenameByMedia(fileMedias.AUDIO);
+            let filename = getDownloadFilenameByMedia(downloadMedias.AUDIO);
             if (!filename) return;
 
-            if (options.addDownloadCaption) {
-                // prefix with caption
-                let caption = getCaption();
-                if (caption) {
-                    caption = '[' + caption + ']';
-                    filename = caption + filename;
-                }
-            }
             if (options.addDownloadDuration) {
                 // prefix with duration [hh mm ss]
                 let duration = hz.secondsToHms(audio.duration);
@@ -3584,17 +3317,9 @@ var hoverZoom = {
             let video = hz.hzViewer.find('video').get(0);
             let audio = hz.hzViewer.find('audio').get(0);
             if (!video && !audio) return;
-            let filename = getFilenameByMedia(fileMedias.SUBTITLES);
+            let filename = getDownloadFilenameByMedia(downloadMedias.SUBTITLES);
             if (!filename) return;
 
-            if (options.addDownloadCaption) {
-                // prefix with caption
-                let caption = getCaption();
-                if (caption) {
-                    caption = '[' + caption + ']';
-                    filename = caption + filename;
-                }
-            }
             if (options.addDownloadOrigin) {
                 // prefix with origin
                 let origin = '[' + getOrigin() + ']';
@@ -3609,20 +3334,12 @@ var hoverZoom = {
             if (!hz.hzViewer) return;
             let video = hz.hzViewer.find('video').get(0);
             if (!video) return;
-            let filename = getFilenameByMedia(fileMedias.PLAYLIST);
+            let filename = getDownloadFilenameByMedia(downloadMedias.PLAYLIST);
             if (!filename) return;
 
-            if (options.addDownloadCaption) {
-                // prefix with caption
-                let caption = getCaption();
-                if (caption) {
-                    caption = '[' + caption + ']';
-                    filename = caption + filename;
-                }
-            }
             if (options.addDownloadSize) {
                 // prefix with size [WxH]
-                let size = '[' + getSizeVideo(video) + ']';
+                let size = '[' + video.videoWidth + 'x' + video.videoHeight + ']';
                 filename = size + filename;
             }
             if (options.addDownloadDuration) {
@@ -3636,6 +3353,12 @@ var hoverZoom = {
                 filename = origin + filename;
             }
 
+            // prefix with download folder if needed
+            if (options.downloadFolder) {
+                let downloadFolder = options.downloadFolder;
+                filename = downloadFolder + filename;
+            }
+
             // download KO: This function must be called during a user gesture => debugger must be closed
             downloadResource(srcDetails.url, filename);
             savePlaylistAsMP3MP4(filename);
@@ -3644,14 +3367,6 @@ var hoverZoom = {
         // - filename.m3u8.mp4 (video part)
         // - filename.m3u8.mp3 (audio part)
         function savePlaylistAsMP3MP4(filename) {
-            // prefix with download folder if needed
-            if (options.downloadFolder) {
-                cLog.log('options.downloadFolder: ' + options.downloadFolder);
-                let downloadFolder = options.downloadFolder;
-                filename = downloadFolder + filename;
-                cLog.log('filename: ' + filename);
-            }
-
             // audio
             if (fmp4Data['audio'].length) {
                 const blobAudio = new Blob([arrayConcat(fmp4Data['audio'])], {type:'application/octet-stream'});
@@ -3707,22 +3422,6 @@ var hoverZoom = {
         // return hostname with forbidden characters replaced by '_'
         function getOrigin() {
             return window.location.hostname.replace(regexForbiddenChars, '_');
-        }
-
-        // return displayed size (W x H)
-        function getSizeVideo(video) {
-            return video.videoWidth + 'x' + video.videoHeight;
-        }
-
-        // return displayed size (W x H)
-        function getSizeImage(img) {
-            return img.naturalWidth + 'x' + img.naturalHeight;
-        }
-
-        // return caption with forbidden characters replaced by '_'
-        function getCaption() {
-            let caption = hz.currentLink.data().hoverZoomCaption || hz.currentLink.data().hoverZoomGalleryCaption || '';
-            return caption.replace(regexForbiddenChars, '_');
         }
 
         function rotateGalleryImg(rot) {
@@ -3809,7 +3508,7 @@ var hoverZoom = {
             maxHeight(options.maxHeight);
 
             webSiteExcluded = null;
-            body100pct = (body.css('position') != 'static') || (body.css('padding-left') == '0px' && body.css('padding-right') == '0px' && body.css('margin-left') == '0px' && body.css('margin-right') == '0px' && (body.css('max-width') == 'none' || body.css('max-width') == '100%'));
+            body100pct = (body.css('position') != 'static') || (body.css('padding-left') == '0px' && body.css('padding-right') == '0px' && body.css('margin-left') == '0px' && body.css('margin-right') == '0px');
             hz.pageGenerator = $('meta[name="generator"]').attr('content');
             prepareImgLinks();
             bindEvents();
@@ -3928,7 +3627,7 @@ var hoverZoom = {
 
     // Simulates a mousemove event to force a zoom call
     displayPicFromElement:function (el, force) {
-        if (el.filter(':hover').length > 0 || force) {
+        if (el.is(':hover') || force) {
             hoverZoom.currentLink = el;
             $(document).mousemove();
         }
@@ -4077,26 +3776,28 @@ var hoverZoom = {
     prepareFromDocument:function (link, url, getSrc, isAsync = false) {
         url = url.replace('http:', location.protocol);
         chrome.runtime.sendMessage({action:'ajaxRequest', url: url, method: 'GET'}, function(data) {
-            let doc = document.implementation.createHTMLDocument();
-            doc.body.innerHTML = data;
-            const httpRefresh = doc.querySelector('meta[http-equiv="refresh"][content]');
+            var doc = document.implementation.createHTMLDocument();
+            doc.open();
+            doc.write(data);
+            doc.close();
+            var httpRefresh = doc.querySelector('meta[http-equiv="refresh"][content]');
             if (httpRefresh) {
-                let redirUrl = httpRefresh.content.substr(httpRefresh.content.toLowerCase().indexOf('url=') + 4);
+                var redirUrl = httpRefresh.content.substr(httpRefresh.content.toLowerCase().indexOf('url=') + 4);
                 if (redirUrl) {
                     redirUrl = redirUrl.replace('http:', location.protocol);
                     hoverZoom.prepareFromDocument(link, redirUrl, getSrc, isAsync);
                 }
             }
 
-            const handleSrc = function (src) {
-                if (src)
-                    hoverZoom.prepareLink(link, src);
+            var handleSrc = function (src) {
+            if (src)
+                hoverZoom.prepareLink(link, src);
             };
 
             if (isAsync) {
                 getSrc(doc, handleSrc);
             } else {
-                let src = getSrc(doc);
+                var src = getSrc(doc);
                 handleSrc(src);
             }
         });
@@ -4438,88 +4139,6 @@ var hoverZoom = {
         }
         result.openPos = result.closePos = -1;
         return result;
-    },
-
-    // Return largest src available in srcset according to width and density
-    // samples srcsets:
-    // "http://static.picto.fr/wp-content/uploads/2017/05/Grand-Trouble.jpg"
-    // "http://static.picto.fr/wp-content/uploads/2017/05/Grand-Trouble.jpg 489w, http://static.picto.fr/wp-content/uploads/2017/05/Grand-Trouble-768x1099.jpg 768w"
-    // "http://static.picto.fr/wp-content/uploads/2017/05/Grand-Trouble.jpg 1x, http://static.picto.fr/wp-content/uploads/2017/05/Grand-Trouble-768x1099.jpg 2x"
-    // "resize1-lejdd.ladmedia.fr/rcrop/620,310/img/var/europe1/storage/images/lejdd/jdd-paris/paris-le-nouveau-palais-de-justice-ou-lon-ne-peut-pas-se-garer-3627203/47706995-1-fre-FR/Paris-Le-nouveau-palais-de-justice-ou-l-on-ne-peut-pas-se-garer.jpg 620w,
-    // resize1-lejdd.ladmedia.fr/rcrop/300,150/img/var/europe1/storage/images/lejdd/jdd-paris/paris-le-nouveau-palais-de-justice-ou-lon-ne-peut-pas-se-garer-3627203/47706995-1-fre-FR/Paris-Le-nouveau-palais-de-justice-ou-l-on-ne-peut-pas-se-garer.jpg 300w,
-    // resize1-lejdd.ladmedia.fr/rcrop/710,355/img/var/europe1/storage/images/lejdd/jdd-paris/paris-le-nouveau-palais-de-justice-ou-lon-ne-peut-pas-se-garer-3627203/47706995-1-fre-FR/Paris-Le-nouveau-palais-de-justice-ou-l-on-ne-peut-pas-se-garer.jpg 710w,
-    // resize1-lejdd.ladmedia.fr/rcrop/940,470/img/var/europe1/storage/images/lejdd/jdd-paris/paris-le-nouveau-palais-de-justice-ou-lon-ne-peut-pas-se-garer-3627203/47706995-1-fre-FR/Paris-Le-nouveau-palais-de-justice-ou-l-on-ne-peut-pas-se-garer.jpg 940w"
-    // "https://video-images.vice.com/_uncategorized/1522934375314-retinite1.png?resize=400:*, https://video-images.vice.com/_uncategorized/1522934375314-retinite1.png?resize=600:* 2x"
-    // "https://www.parismatch.com/lmnr/f/webp/r/72,48,forcex,center-middle/img/var/pm/public/media/image/2024/03/31/12/2024-03-31t094641z_493903911_rc2xw6a0kxis_rtrmadp_3_britain-royals.jpg?VersionId=V90sjBHDp8nZOHJEoSwrJK3SThPIaGtD,
-    // https://www.parismatch.com/lmnr/f/webp/r/144,96,forcex,center-middle/img/var/pm/public/media/image/2024/03/31/12/2024-03-31t094641z_493903911_rc2xw6a0kxis_rtrmadp_3_britain-royals.jpg?VersionId=V90sjBHDp8nZOHJEoSwrJK3SThPIaGtD 2x"
-    getBiggestSrcFromSrcset:function(srcset) {
-
-        if (srcset == undefined)
-            return undefined;
-
-        // discard inline images
-        if (hoverZoom.isEmbeddedImg(srcset))
-            return undefined;
-
-        var src = undefined;
-        srcset = srcset.trim();
-
-        srcset = srcset.replace(/,http/g, ', http');
-        if (srcset.indexOf(", ") != -1) {
-
-            if (srcset.indexOf("x, ") != -1) { srcset = srcset.split("x, "); }
-            else if (srcset.indexOf("w, ") != -1) { srcset = srcset.split("w, "); }
-            else { srcset = srcset.split(", "); }
-
-            var urls = new Map();
-            var xws = [];
-            // separate urls and density/width
-            for (var i = 0; i < srcset.length; i++) {
-                var el = srcset[i].trim();
-                var url, xw;
-                if (el.indexOf(' ') == -1) {
-                    url =  el;
-                    xw  = "1x"; // default value
-                }
-                else {
-                    url = el.split(' ')[0];
-                    xw = el.split(' ')[1];
-                }
-                xw = xw.replace('x','').replace('w','');
-                urls.set(parseInt(xw), url);
-                xws.push(parseInt(xw));
-            }
-            // sort density/width
-            xws.sort(function(a, b){return b-a});
-            // select url associated to largest density/width
-            src = urls.get(xws[0]);
-        }
-        else {
-            srcset = srcset.trim();
-            if (srcset.indexOf(' ') == -1) { src = srcset; }
-            else {
-                src = srcset.split(' ')[0].trim();
-            }
-        }
-        return src;
-    },
-
-    emptyHoverZoomViewer:function(now) {
-        if (!hoverZoom.hzViewer) return;
-        hoverZoom.hzViewer.stop(true, true).fadeOut(now ? 0 : options.fadeDuration, function () {
-            hoverZoom.hzViewer.empty();
-        });
-    },
-
-    // In JavaScript, keys can be strings, numbers, or identifier names WITHOUT single or double quotes
-    // e.g: person = {name:"John", age:31, city:"New York"};
-    strToJavascriptObj:function(e) {
-        if (typeof e == "string") {
-            let obj = new Function("return" + e);
-            try {
-                return obj();
-            } catch {}
-        }
     }
 };
 

@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Google',
-    version:'4.1',
+    version:'4.0',
     prepareImgLinks:function (callback) {
         var res = [];
         var initData = null;
@@ -24,7 +24,7 @@ hoverZoomPlugins.push({
             /.*imgurl=([^&]+).*/,
             '$1'
         );
-
+        
         hoverZoom.urlReplace(res,
             'div[style*="background-image"]:not([style*="?"])',
             /(.*=)(.*)/,
@@ -91,8 +91,8 @@ hoverZoomPlugins.push({
             if (initData == null) {
                 if (document.scripts == undefined) return url;
                 let scripts = Array.from(document.scripts);
-                let goodScripts = scripts.filter(script => script.text.indexOf(tbnid) != -1);
-                if (goodScripts.length != 1) return url;
+                let goodScripts = scripts.filter(script => /^AF_initDataCallback\b/.test(script.text));
+                if (goodScripts.length != 2) return url;
                 initData = goodScripts.pop().text;
             }
             let tbnidq = '"' + tbnid + '",';
@@ -121,11 +121,11 @@ hoverZoomPlugins.push({
 
         // Loop through thumbnails and when possible add hrefs = images urls found in init data or hooked data
         // tbnid = thumbnail id reference
-        $('div[data-tbnid], div[data-docid]').each(function() {
+        $('div[data-tbnid]').each(function() {
 
             if ($(this).find('a.hoverZoomLink').length > 0) return;
 
-            let tbnid = this.dataset.tbnid || this.dataset.docid;
+            let tbnid = this.dataset.tbnid;
             let hrefPage = undefined;
             let url = undefined;
             let imageLink = undefined;

@@ -36,13 +36,8 @@ var factorySettings = {
     ambilightBackgroundOpacity : 0.9,
     disabledPlugins : [],
     centerImages : false,
-    autoLockImages : false,
     frameBackgroundColor: "#ffffff",
     frameThickness: 4,
-    belowPositionOffset: 0,
-    abovePositionOffset: 0,
-    captionOpacity: 1,
-    detailsOpacity: 1,
     displayImageLoader: false,
     enlargementThresholdEnabled : true,
     enlargementThreshold : 2,
@@ -54,23 +49,10 @@ var factorySettings = {
     addDownloadOrigin : false,
     addDownloadSize : false,
     addDownloadDuration : false,
-    addDownloadIndex : false,
-    addDownloadCaption : false,
-    replaceOriginalFilename : false,
-    downloadFilename : '',
     useSeparateTabOrWindowForUnloadableUrlsEnabled: false,
     useSeparateTabOrWindowForUnloadableUrls: 'window',
     captionLocation : 'below',
     detailsLocation : 'none',
-    showDetailFilename : true,
-    showDetailHost : true,
-    showDetailLastModified : true,
-    showDetailExtension : true,
-    showDetailContentLength : true,
-    showDetailDuration : true,
-    showDetailScale : true,
-    showDetailRatio : true,
-    showDetailDimensions : true,
     fontSize : 11,
     fontOutline : false,
     actionKey : 0,
@@ -144,7 +126,6 @@ function loadOptions() {
     options.ambilightBackgroundOpacity = options.hasOwnProperty('ambilightBackgroundOpacity') ? options.ambilightBackgroundOpacity : factorySettings.ambilightBackgroundOpacity;
     options.disabledPlugins = options.hasOwnProperty('disabledPlugins') ? options.disabledPlugins : factorySettings.disabledPlugins;
     options.centerImages = options.hasOwnProperty('centerImages') ? options.centerImages : factorySettings.centerImages;
-    options.autoLockImages = options.hasOwnProperty('autoLockImages') ? options.autoLockImages : factorySettings.autoLockImages;
     options.frameBackgroundColor = options.hasOwnProperty('frameBackgroundColor') ? options.frameBackgroundColor : factorySettings.frameBackgroundColor;
     options.frameThickness = options.hasOwnProperty('frameThickness') ? options.frameThickness : factorySettings.frameThickness;
     options.displayImageLoader = options.hasOwnProperty('displayImageLoader') ? options.displayImageLoader : factorySettings.displayImageLoader;
@@ -158,23 +139,8 @@ function loadOptions() {
     options.addDownloadOrigin = options.hasOwnProperty('addDownloadOrigin') ? options.addDownloadOrigin : factorySettings.addDownloadOrigin;
     options.addDownloadSize = options.hasOwnProperty('addDownloadSize') ? options.addDownloadSize : factorySettings.addDownloadSize;
     options.addDownloadDuration = options.hasOwnProperty('addDownloadDuration') ? options.addDownloadDuration : factorySettings.addDownloadDuration;
-    options.addDownloadIndex = options.hasOwnProperty('addDownloadIndex') ? options.addDownloadIndex : factorySettings.addDownloadIndex;
-    options.addDownloadCaption = options.hasOwnProperty('addDownloadCaption') ? options.addDownloadCaption : factorySettings.addDownloadCaption;
-    options.replaceOriginalFilename = options.hasOwnProperty('replaceOriginalFilename') ? options.replaceOriginalFilename : factorySettings.replaceOriginalFilename;
-    options.downloadFilename = options.hasOwnProperty('downloadFilename') ? options.downloadFilename : factorySettings.downloadFilename;
     options.useSeparateTabOrWindowForUnloadableUrlsEnabled = options.hasOwnProperty('useSeparateTabOrWindowForUnloadableUrlsEnabled') ? options.useSeparateTabOrWindowForUnloadableUrlsEnabled : factorySettings.useSeparateTabOrWindowForUnloadableUrlsEnabled;
     options.useSeparateTabOrWindowForUnloadableUrls = options.hasOwnProperty('useSeparateTabOrWindowForUnloadableUrls') ? options.useSeparateTabOrWindowForUnloadableUrls : factorySettings.useSeparateTabOrWindowForUnloadableUrls;
-
-    // Show details options
-    options.showDetailFilename = options.hasOwnProperty('showDetailFilename') ? options.showDetailFilename : factorySettings.showDetailFilename;
-    options.showDetailHost = options.hasOwnProperty('showDetailHost') ? options.showDetailHost : factorySettings.showDetailHost;
-    options.showDetailLastModified = options.hasOwnProperty('showDetailLastModified') ? options.showDetailLastModified : factorySettings.showDetailLastModified;
-    options.showDetailExtension = options.hasOwnProperty('showDetailExtension') ? options.showDetailExtension : factorySettings.showDetailExtension;
-    options.showDetailContentLength = options.hasOwnProperty('showDetailContentLength') ? options.showDetailContentLength : factorySettings.showDetailContentLength;
-    options.showDetailDuration = options.hasOwnProperty('showDetailDuration') ? options.showDetailDuration : factorySettings.showDetailDuration;
-    options.showDetailScale = options.hasOwnProperty('showDetailScale') ? options.showDetailScale : factorySettings.showDetailScale;
-    options.showDetailRatio = options.hasOwnProperty('showDetailRatio') ? options.showDetailRatio : factorySettings.showDetailRatio;
-    options.showDetailDimensions = options.hasOwnProperty('showDetailDimensions') ? options.showDetailDimensions : factorySettings.showDetailDimensions;
 
     // Used old showCaptions option for backwards compatibility
     var showCaptions = options.hasOwnProperty('showCaptions') ? options.showCaptions : true;
@@ -183,10 +149,6 @@ function loadOptions() {
     options.detailsLocation = options.hasOwnProperty('detailsLocation') ? options.detailsLocation : factorySettings.detailsLocation;
     options.fontSize = options.hasOwnProperty('fontSize') ? options.fontSize : factorySettings.fontSize;
     options.fontOutline = options.hasOwnProperty('fontOutline') ? options.fontOutline : factorySettings.fontOutline;
-    options.belowPositionOffset = options.hasOwnProperty('belowPositionOffset') ? options.belowPositionOffset : factorySettings.belowPositionOffset;
-    options.abovePositionOffset = options.hasOwnProperty('abovePositionOffset') ? options.abovePositionOffset : factorySettings.abovePositionOffset;
-    options.captionOpacity = options.hasOwnProperty('captionOpacity') ? options.captionOpacity : factorySettings.captionOpacity;
-    options.detailsOpacity = options.hasOwnProperty('detailsOpacity') ? options.detailsOpacity : factorySettings.detailsOpacity;
 
     // Action keys
     options.actionKey = options.hasOwnProperty('actionKey') ? options.actionKey : factorySettings.actionKey;

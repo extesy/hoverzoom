@@ -2,22 +2,15 @@
 hoverZoomPlugins.push({
     name:'Imgur_a',
     version:'1.5',
-    favicon:'imgur.png',
     prepareImgLinks:function (callback) {
 
         var name = this.name;
         var res = [];
 
-        var HZimgur = sessionStorage.getItem('HZimgur');
-        if (HZimgur == null) {
-            HZimgur = {};
-        } else {
-            HZimgur = JSON.parse(HZimgur);
-        }
-
         function createUrls(hash) {
             var srcs = [window.location.protocol + '//i.imgur.com/' + hash + '.jpg'];
             // Same array duplicated several times so that a retry is done if an image fails to load
+            //return srcs.concat(srcs).concat(srcs).concat(srcs);
             return srcs;
         }
 
@@ -128,34 +121,6 @@ hoverZoomPlugins.push({
             }
         }
 
-        function displayGallery(link, gallery, captions) {
-            link.data().hoverZoomSrc = undefined;
-            link.data().hoverZoomGallerySrc = gallery;
-            link.data().hoverZoomGalleryCaption = captions;
-            link.data().hoverZoomGalleryIndex = 0;
-            callback(link, name);
-            // Gallery is displayed iff the cursor is still over the link
-            if (link.data().hoverZoomMouseOver)
-                hoverZoom.displayPicFromElement(link);
-        }
-
-        /*
-          Escape JSON
-          From: https://medium.com/@akhilanand.ak01/safely-handling-escape-sequences-in-json-parsing-c6a0c4721fe1
-        */
-        function escapeJSON(json) {
-            // Unescape JSON strings to handle double-escaped characters
-            return json.replace(/\\./g, (match) => {
-                                                    switch (match) {
-                                                        case '\\"': return '"';
-                                                        case '\\n': return '\n';
-                                                        case '\\t': return '\t';
-                                                        // Add more escape sequences as needed
-                                                        default: return match[1]; // Remove the backslash
-                                                    }
-                                                });
-        }
-
         // Every sites
         $('a[href*="//imgur.com/"], a[href*="//www.imgur.com/"], a[href*="//i.imgur.com/"], a[href*="//m.imgur.com/"], a[href*="//i.stack.imgur.com/"]').each(prepareImgLink);
 
@@ -201,95 +166,6 @@ hoverZoomPlugins.push({
             /\?s=.*/,
             ''
         );
-
-        // profil picture
-        $('img[src*="imgur"]').one('mouseover', function() {
-            if ($(this).parents('a').length != 0) return;
-
-            const link = $(this);
-            const src = this.src;
-            let data = link.data();
-
-            if (data.hoverZoomMouseOver) return;
-            data.hoverZoomMouseOver = true;
-
-            link.data().hoverZoomSrc = [src];
-
-            callback(link, name);
-            // Gallery is displayed iff the cursor is still over the link
-            if (link.data().hoverZoomMouseOver)
-                hoverZoom.displayPicFromElement(link);
-
-        }).one('mouseleave', function () {
-            const link = $(this);
-            link.data().hoverZoomMouseOver = false;
-        });
-
-        // gallery
-        // sample: https://imgur.com/gallery/bees-honey-2zggnrU
-        $('a[href*="/gallery/"]').filter(function() { return (/imgur\.com\/gallery/.test($(this).prop('href'))) }).one('mouseover', function() {
-
-            const link = $(this);
-            const href = this.href;
-            let data = link.data();
-
-            if (data.hoverZoomMouseOver) return;
-            data.hoverZoomMouseOver = true;
-
-            const re = /\/gallery\/.*-(.*)/;
-            const m = href.match(re);
-            if (m == null) return;
-            const id = m[1];
-
-            // reuse previous results
-            const idData = HZimgur[id];
-            if (idData) {
-                const gallery = idData.gallery;
-                const captions = idData.captions;
-                displayGallery(link, gallery, captions);
-                return;
-            }
-
-            chrome.runtime.sendMessage({action:'ajaxGet',
-                                        url:href
-                                       }, function (response) {
-                                            if (response == null) { return; }
-
-                                            const parser = new DOMParser();
-                                            const doc = parser.parseFromString(response, "text/html");
-                                            if (doc.scripts == undefined) return;
-                                            let scripts = Array.from(doc.scripts);
-                                            scripts = scripts.filter(script => /window.postDataJSON=/.test(script.text));
-                                            if (scripts.length != 1) return;
-
-                                            const scriptText = scripts[0].text;
-                                            const index1 = scriptText.indexOf('{');
-                                            const index2 = scriptText.lastIndexOf('}');
-                                            var jsonData = scriptText.substring(index1, index2 + 1);
-
-                                            var j = undefined;
-                                            try {
-                                                jsonData = escapeJSON(jsonData);
-                                                j = JSON.parse(jsonData);
-                                                var gallery = [];
-                                                var captions = [];
-                                                j.media.forEach(i => gallery.push([i.url]));
-                                                j.media.forEach(i => {
-                                                    let caption = i.metadata.title + i.metadata.description || j.title;
-                                                    captions.push(caption);
-                                                });
-                                                HZimgur[id] = {};
-                                                HZimgur[id].gallery = gallery;
-                                                HZimgur[id].captions = captions;
-                                                sessionStorage.setItem('HZimgur', JSON.stringify(HZimgur));
-                                                displayGallery(link, gallery, captions);
-                                            } catch (e) { return; }
-                                        }
-            );
-        }).one('mouseleave', function () {
-            const link = $(this);
-            link.data().hoverZoomMouseOver = false;
-        });
 
         if (res.length) {
             callback($(res), name);
