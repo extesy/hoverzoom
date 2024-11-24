@@ -105,6 +105,7 @@ function saveOptions(exportSettings = false) {
     options.ambilightEnabled = $('#chkAmbilightEnabled')[0].checked;
     options.ambilightHaloSize = $('#txtAmbilightHaloSize')[0].value / 100;
     options.ambilightBackgroundOpacity = $('#txtAmbilightBackgroundOpacity')[0].value / 100;
+    options.statusBarClipping = $('#chkStatusBarClipping')[0].checked;
     options.centerImages = $('#chkCenterImages')[0].checked;
     options.autoLockImages = $('#chkAutoLockImages')[0].checked;
     options.frameBackgroundColor = $('#pickerFrameBackgroundColor')[0].value;
