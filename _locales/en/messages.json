@@ -315,12 +315,20 @@
         "message": "0% : transparent, 100% : black",
         "description": "[options] Tooltip for background opacity"
     },
-    "optstatusBarOverlap": {
+    "optStatusBarOverlap": {
         "message": "Allow zoomed pictures to overlap the status bar",
         "description": "[options] Allow zoomed pictures to overlap the status bar option"
     },
-    "optstatusBarOverlapTooltip": {
+    "optStatusBarOverlapTooltip": {
         "message": "Allow zoomed pictures to overlap the status bar, letting more of the window be used",
+        "description": "[options] Tooltip for allow zoomed pictures to overlap the status bar option"
+    },
+    "optHScrollBarOverlap": {
+        "message": "Allow zoomed pictures to overlap the horizontal scroll bar",
+        "description": "[options] Allow zoomed pictures to overlap the status bar option"
+    },
+    "optHScrollBarOverlapTooltip": {
+        "message": "Allow zoomed pictures to overlap the horizontal bar, letting more of the window be used",
         "description": "[options] Tooltip for allow zoomed pictures to overlap the status bar option"
     },
     "optCenterImages": {
