@@ -502,9 +502,10 @@ var hoverZoom = {
                     imgFullSize.width(srcDetails.naturalWidth * zoomFactor);
                 } else if (fullZoomKey) {
                     // naturalWidth replaced with wndWidth to make image fill window
-                    imgFullSize.width(wndWidth); 
+                    // offset subtracted to keep image within window's bounds
+                    imgFullSize.width(wndWidth - offset - padding - 2 * scrollBarWidth); 
                 } else if (fullZoom) {
-                    imgFullSize.width(Math.min(srcDetails.naturalWidth * zoomFactor, wndWidth - padding - 2 * scrollBarWidth));
+                    imgFullSize.width(Math.min(srcDetails.naturalWidth * zoomFactor, wndWidth - offset - padding - 2 * scrollBarWidth));
                 } else if (displayOnRight) {
                     if (srcDetails.naturalWidth * zoomFactor + padding > wndWidth - position.left) {
                         imgFullSize.width(wndWidth - position.left - padding + wndScrollLeft);
