@@ -325,11 +325,11 @@
     },
     "optHScrollBarOverlap": {
         "message": "Allow zoomed pictures to overlap the horizontal scroll bar",
-        "description": "[options] Allow zoomed pictures to overlap the status bar option"
+        "description": "[options] Allow zoomed pictures to overlap the horizontal scroll bar option"
     },
     "optHScrollBarOverlapTooltip": {
         "message": "Allow zoomed pictures to overlap the horizontal bar, letting more of the window be used",
-        "description": "[options] Tooltip for allow zoomed pictures to overlap the status bar option"
+        "description": "[options] Tooltip for allow zoomed pictures to overlap the horizontal scroll bar option"
     },
     "optCenterImages": {
         "message": "Center images",
