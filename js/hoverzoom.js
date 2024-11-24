@@ -503,6 +503,7 @@ var hoverZoom = {
                 } else if (fullZoomKey) {
                     // naturalWidth replaced with wndWidth to make image fill window
                     imgFullSize.width(Math.min(wndWidth, wndWidth - padding - 2 * scrollBarWidth)); 
+                    statusBarHeight = 0;
                 } else if (fullZoom) {
                     imgFullSize.width(Math.min(srcDetails.naturalWidth * zoomFactor, wndWidth - padding - 2 * scrollBarWidth));
                 } else if (displayOnRight) {
