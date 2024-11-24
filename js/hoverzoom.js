@@ -1067,12 +1067,14 @@ var hoverZoom = {
             const timerDuration = 150;
             // -2 or -4 is hold or tap middle click, -1 or -3 is hold or tap right click
             switch (mouseButtonKey) {
-                case -1:
                 case -3:
+                    shortPressRight = true;
+                case -1:
                     longRightPressTimer = setTimeout(longClick.bind(img), timerDuration, mouseButtonKey);
                     break;
-                case -2:
                 case -4:
+                    shortPressMiddle = true;
+                case -2:
                     longMiddlePressTimer = setTimeout(longClick.bind(img), timerDuration, mouseButtonKey);
                     break;
                 default:
@@ -1226,7 +1228,6 @@ var hoverZoom = {
             let rightButtonKey = options.rightTap ? -3 : -1;
             let middleButtonKey = options.middleTap ? -4 : -2;
             let mouseButtonKey = [null,middleButtonKey,rightButtonKey,null,null][event.button];
-            
             if (options.rightTapAndHold) {
                 mouseButtonKey = -1;
                 shortPressRight = true;
@@ -1321,11 +1322,12 @@ var hoverZoom = {
                     $(this).mousemove();
                     break;
                 default:
+                    if ((mouseButtonKey == -3 || options.rightTapAndHold) && shortPressRight)
+                        mouseShortClickHandler(-3, this);
+                    if ((mouseButtonKey == -4 || options.middleTapAndHold) && shortPressMiddle)
+                        mouseShortClickHandler(-4, this);
             }
-            if ((mouseButtonKey == -3 || options.rightTapAndHold) && shortPressRight)
-                mouseShortClickHandler(-3, this);
-            if ((mouseButtonKey == -4 || options.middleTapAndHold) && shortPressMiddle)
-                mouseShortClickHandler(-4, this);
+
             
             clearMouseButtonTimers(mouseButtonKey);
         }
