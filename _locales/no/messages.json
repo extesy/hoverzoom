@@ -8,15 +8,15 @@
         "description": "Short extension name"
     },
     "extDescription": {
-        "message": "Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.",
+        "message": "Forstørr bilder/videoer på alle favorittnettstedene dine (Facebook, Amazon, etc). Bare svever musen over bildet for å forstørre den.",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
     "popDisableForAllSites": {
-        "message": "Disable for all sites",
+        "message": "Deaktiver for alle sider",
         "description": "[popup] Disable the extension"
     },
     "popAllowPerSiteToggle": {
-        "message": "Allow per-site extension configuration",
+        "message": "Tillat per-område utvidelseskonfigurasjon",
         "description": "[popup] Allow per-site extension configuration"
     },
     "popDisableForSite": {
@@ -28,15 +28,15 @@
         "description": "[popup] Enables the extension for a specific site"
     },
     "popPreloadImages": {
-        "message": "Preload zoomed images",
+        "message": "Forhåndsvis zoomede bilder",
         "description": "[popup] Preload zoomed images"
     },
     "popPreloadingImages": {
-        "message": "Preloading...",
+        "message": "Laster inn...",
         "description": "[popup] Preloading zoomed images"
     },
     "popMoreOptions": {
-        "message": "More options",
+        "message": "Flere alternativer",
         "description": "[popup] More options"
     },
     "optTitle": {
@@ -323,6 +323,14 @@
         "message": "Center images as opposed to having them follow the cursor",
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
+    "optAutoLockImages": {
+        "message": "Automatically lock images",
+        "description": "[options] Automatically lock images option"
+    },
+    "optAutoLockImagesTooltip": {
+        "message": "Automatically lock images when activating Hover Zoom+",
+        "description": "[options] Tooltip for automatically lock images option"
+    },
     "optFrameBackgroundColor": {
         "message": "Frame background color:",
         "description": "[options] Frame background color option"
@@ -499,9 +507,81 @@
         "message": "Zoomed pictures opacity:",
         "description": "[options] Zoomed pictures opacity option"
     },
+    "optCaptionOpacity": {
+        "message": "Caption opacity:",
+        "description": "[options] Caption opacity option"
+    },
+    "optDetailsOpacity": {
+        "message": "Details opacity:",
+        "description": "[options] Details opacity option"
+    },
     "optOpacityUnitName": {
         "message": "%",
         "description": "[options] Unit name (percentage) for opacity option"
+    },
+    "optDetailsSelectorTooltip": {
+        "message": "Select which detail(s) should show, if details are displayed",
+        "description": "[options] Tooltip for details selector"
+    },
+    "optTitleBoxDetails": {
+        "message": "Detail(s) to show:",
+        "description": "[options] Title for details selector"
+    },
+    "optShowDetailHost": {
+        "message": "Host",
+        "description": "[options] Show Host Detail"
+    },
+    "optShowDetailFilename": {
+        "message": "File Name",
+        "description": "[options] Show File Name Detail"
+    },
+    "optShowDetailLastModified": {
+        "message": "Last Modified",
+        "description": "[options] Show Last Modified Detail"
+    },
+    "optShowDetailExtension": {
+        "message": "Extension",
+        "description": "[options] Show Extension Detail"
+    },
+    "optShowDetailContentLength": {
+        "message": "Media Length",
+        "description": "[options] Show Content Length Detail"
+    },
+    "optShowDetailDuration": {
+        "message": "Duration",
+        "description": "[options] Show Duration Detail"
+    },
+    "optShowDetailScale": {
+        "message": "Scale",
+        "description": "[options] Show Scale Detail"
+    },
+    "optShowDetailRatio": {
+        "message": "Ratio",
+        "description": "[options] Show Ratio Detail"
+    },
+    "optShowDetailDimensions": {
+        "message": "Dimensions",
+        "description": "[options] Show Dimensions Detail"
+    },
+    "optBelowPositionOffset": {
+        "message": "Below position offset:",
+        "description": "[options] Below offset option"
+    },
+    "optBelowPositionOffsetTooltip": {
+        "message": "Amount to offset text in the below position",
+        "description": "[options] Tooltip for below position offset"
+    },
+    "optAbovePositionOffset": {
+        "message": "Above position offset:",
+        "description": "[options] Above offset option"
+    },
+    "optAbovePositionOffsetTooltip": {
+        "message": "Amount to offset text in the above position",
+        "description": "[options] Tooltip for above position offset"
+    },
+    "optOffsetUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (pixel) for offset amount"
     },
     "optDisplayImageLoaderTooltip": {
         "message": "Display a little spinner as image is loading (green:loading, red:error). Red spinner is optional.",
@@ -536,15 +616,15 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images & videos to folder: Downloads/",
+        "message": "Save images, videos & audios to folder: Downloads/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Prefix original names of downloads with origin, size and/or duration for easier management",
+        "message": "Prefix original names of downloads with origin, size, duration and so on for easier management",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Rename saved images & videos by adding:",
+        "message": "Rename saved files by adding:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
@@ -570,6 +650,34 @@
     "optAddDownloadDuration": {
         "message": "duration",
         "description": "[options] Add download duration option"
+    },
+    "optAddDownloadIndexTooltip": {
+        "message": "Add index of image in gallery (e.g: third image out of ten: 03-10)",
+        "description": "[options] Tooltip for add download index option"
+    },
+    "optAddDownloadIndex": {
+        "message": "index",
+        "description": "[options] Add download index option"
+    },
+    "optAddDownloadCaptionTooltip": {
+        "message": "Add caption (e.g: Mona Lisa by Leonardo da Vinci)",
+        "description": "[options] Tooltip for add download caption option"
+    },
+    "optAddDownloadCaption": {
+        "message": "caption",
+        "description": "[options] Add download caption option"
+    },
+    "optDownloadReplaceOriginalFilenameTooltip": {
+        "message": "Replace original filename or remove it if no value supplied (extension is preserved)",
+        "description": "[options] Tooltip for replace original filename when downloading option"
+    },
+    "optDownloadReplaceOriginalFilenamePlaceholder": {
+        "message": "Example: fullsize_image",
+        "description": "[options] Placeholder for download folder option"
+    },
+    "optDownloadReplaceOriginalFilename": {
+        "message": "On save, replace original filename by:",
+        "description": "[options] Replace original filename when downloading option"
     },
     "optSectionTroubleshooting": {
         "message": "Troubleshooting",
@@ -598,6 +706,34 @@
     "optSupportedAudioFormats": {
         "message": "Audio :",
         "description": "[options] Page section for supported audio formats"
+    },
+    "optSectionImportExportSettings": {
+        "message": "Import/Export",
+        "description": "[options] Page section for import/export"
+    },
+    "optSectionImportExportSettingsTooltip": {
+        "message": "Press export to get a string of your current settings. Press import to load your pasted settings",
+        "description": "[options] Tooltip for input and export options"
+    },
+    "optImportExportTextArea": {
+        "message": "Paste your saved settings here",
+        "description": "[options] Placeholder for import and export text area"
+    },
+    "optButtonImportSettings": {
+        "message": "Import",
+        "description": "[options] Import a save string from the textarea"
+    },
+    "optButtonExportSettings": {
+        "message": "Export",
+        "description": "[options] Export a save string into the textarea"
+    },
+    "optImport": {
+        "message": "Import Success!",
+        "description": "[options] Notification after successful import to options"
+    },
+    "optImportFailed": {
+        "message": "Import Failed",
+        "description": "[options] Notification after failed import to options"
     },
     "optPageFAQ": {
         "message": "FAQ",

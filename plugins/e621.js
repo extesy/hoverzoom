@@ -1,16 +1,18 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'e621',
-    version:'0.3',
+    version:'0.4',
     prepareImgLinks:function (callback) {
         var res = [];
 
         // use data-file-url attribute if available
         $('[data-file-url]').each(function () {
             var _this = $(this);
-            var img = _this.find('img');
-            img.data().hoverZoomSrc = [_this.attr('data-file-url')];
-            res.push(img);
+            var link = _this.find('a');
+            if (link.length) {
+                link.data().hoverZoomSrc = [_this.attr('data-file-url')];
+                res.push(link);    
+            }
         });
 
         // some guessing is still needed when no data-file-url attribute is available

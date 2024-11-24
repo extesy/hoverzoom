@@ -200,19 +200,19 @@
         "description": "[options] Tooltip for show high resolution pictures when available option"
     },
     "optGalleriesMouseWheel": {
-        "message": "Use a roda do rato para navegar nos álbuns",
+        "message": "Utilizar a roda do rato para navegar nos álbuns",
         "description": "[options] Use mousewheel to navigate albums option"
     },
     "optGalleriesMouseWheelTooltip": {
-        "message": "Navegue no álbum com a roda do rato",
+        "message": "Navega no álbum com a roda do rato",
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
     "optDisableMouseWheelForVideo": {
-        "message": "Não use a roda do rato para navegar dentro do vídeo (teclas de atalho continuarão a funcionar)",
+        "message": "Não utilizar a roda do rato para navegar dentro do vídeo (teclas de acção continuarão a funcionar)",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optDisableMouseWheelForVideoTooltip": {
-        "message": "Deslize entre os álbuns mas não salte para a frente/trás nos vídeos",
+        "message": "Desliza entre os álbuns mas não salta para a frente/trás nos vídeos",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
@@ -224,7 +224,7 @@
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
-        "message": "Utilize as teclas de atalho anterior/seguinte (ou roda do rato) para alterar a posição do vídeo para",
+        "message": "Utilizar as teclas de ação anterior/seguinte (ou a roda do rato) para alterar a posição do vídeo",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
@@ -232,7 +232,7 @@
         "description": "[options] Unit name (seconds) for changing video position option"
     },
     "optVideoPositionStepTooltip": {
-        "message": "Avance ou retroceda no vídeo para este valor de segundos",
+        "message": "Avanca ou retrocede no vídeo para este valor de segundos",
         "description": "[options] Tooltip for changing video position option"
     },
     "optMuteVideos": {
@@ -322,6 +322,14 @@
     "optCenterImagesTooltip": {
         "message": "Centra as imagens ao invés delas seguirem o ponteiro do rato",
         "description": "[options] Tooltip for center images in the middle of the page option"
+    },
+    "optAutoLockImages": {
+        "message": "Bloquear imagens automaticamente",
+        "description": "[options] Automatically lock images option"
+    },
+    "optAutoLockImagesTooltip": {
+        "message": "As imagens são bloqueadas automaticamente ao ativar o Hover Zoom+",
+        "description": "[options] Tooltip for automatically lock images option"
     },
     "optFrameBackgroundColor": {
         "message": "Cor de fundo para a moldura:",
@@ -499,9 +507,81 @@
         "message": "Opacidade das imagens ampliadas:",
         "description": "[options] Zoomed pictures opacity option"
     },
+    "optCaptionOpacity": {
+        "message": "Opacidade da legenda:",
+        "description": "[options] Caption opacity option"
+    },
+    "optDetailsOpacity": {
+        "message": "Opacidade dos detalhes:",
+        "description": "[options] Details opacity option"
+    },
     "optOpacityUnitName": {
         "message": "%",
         "description": "[options] Unit name (percentage) for opacity option"
+    },
+    "optDetailsSelectorTooltip": {
+        "message": "Select which detail(s) should show, if details are displayed",
+        "description": "[options] Tooltip for details selector"
+    },
+    "optTitleBoxDetails": {
+        "message": "Detail(s) to show:",
+        "description": "[options] Title for details selector"
+    },
+    "optShowDetailHost": {
+        "message": "Host",
+        "description": "[options] Show Host Detail"
+    },
+    "optShowDetailFilename": {
+        "message": "File Name",
+        "description": "[options] Show File Name Detail"
+    },
+    "optShowDetailLastModified": {
+        "message": "Last Modified",
+        "description": "[options] Show Last Modified Detail"
+    },
+    "optShowDetailExtension": {
+        "message": "Extension",
+        "description": "[options] Show Extension Detail"
+    },
+    "optShowDetailContentLength": {
+        "message": "Media Length",
+        "description": "[options] Show Content Length Detail"
+    },
+    "optShowDetailDuration": {
+        "message": "Duration",
+        "description": "[options] Show Duration Detail"
+    },
+    "optShowDetailScale": {
+        "message": "Scale",
+        "description": "[options] Show Scale Detail"
+    },
+    "optShowDetailRatio": {
+        "message": "Ratio",
+        "description": "[options] Show Ratio Detail"
+    },
+    "optShowDetailDimensions": {
+        "message": "Dimensions",
+        "description": "[options] Show Dimensions Detail"
+    },
+    "optBelowPositionOffset": {
+        "message": "Deslocação da posição abaixo:",
+        "description": "[options] Below offset option"
+    },
+    "optBelowPositionOffsetTooltip": {
+        "message": "Valor para deslocar o texto na posição abaixo",
+        "description": "[options] Tooltip for below position offset"
+    },
+    "optAbovePositionOffset": {
+        "message": "Deslocação da posição acima:",
+        "description": "[options] Above offset option"
+    },
+    "optAbovePositionOffsetTooltip": {
+        "message": "Valor para deslocar o texto na posição acima",
+        "description": "[options] Tooltip for above position offset"
+    },
+    "optOffsetUnitName": {
+        "message": "%",
+        "description": "[options] Unit name (pixel) for offset amount"
     },
     "optDisplayImageLoaderTooltip": {
         "message": "Mostra um ícone animado enquanto carrega a imagem (verde: a carregar, vermelho: erro). O ícone vermelho é opcional.",
@@ -528,7 +608,7 @@
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
-        "message": "As subpastas, se necessário, serão automaticamente criadas",
+        "message": "Se necessário, serão criadas subpasta(s)",
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
@@ -536,15 +616,15 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Guardar as imagens e os vídeos na pasta: Transferências/",
+        "message": "Guardar imagens, vídeos e áudios numa pasta: Transferências/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Prefixo nomes originais de transferências com fonte, tamanho e/ou duração para uma gestão mais fácil",
+        "message": "Prefixar os nomes originais das transferências com a origem, tamanho, duração, etc., para uma gestão mais fácil",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Renomear imagens e vídeos guardados ao adicionar:",
+        "message": "Mudar o nome dos ficheiros guardados adicionando:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
@@ -570,6 +650,34 @@
     "optAddDownloadDuration": {
         "message": "duração",
         "description": "[options] Add download duration option"
+    },
+    "optAddDownloadIndexTooltip": {
+        "message": "Adicionar o índice da imagem na galeria (por exemplo: terceira imagem de dez: 03-10)",
+        "description": "[options] Tooltip for add download index option"
+    },
+    "optAddDownloadIndex": {
+        "message": "índice",
+        "description": "[options] Add download index option"
+    },
+    "optAddDownloadCaptionTooltip": {
+        "message": "Adicionar legenda (por exemplo: Mona Lisa de Leonardo da Vinci)",
+        "description": "[options] Tooltip for add download caption option"
+    },
+    "optAddDownloadCaption": {
+        "message": "legenda",
+        "description": "[options] Add download caption option"
+    },
+    "optDownloadReplaceOriginalFilenameTooltip": {
+        "message": "Substitui o nome do ficheiro original ou remove-o se não for fornecido nenhum valor (a extensão é preservada)",
+        "description": "[options] Tooltip for replace original filename when downloading option"
+    },
+    "optDownloadReplaceOriginalFilenamePlaceholder": {
+        "message": "Exemplo: fullsize_image",
+        "description": "[options] Placeholder for download folder option"
+    },
+    "optDownloadReplaceOriginalFilename": {
+        "message": "Ao guardar, substituir o nome do ficheiro original por:",
+        "description": "[options] Replace original filename when downloading option"
     },
     "optSectionTroubleshooting": {
         "message": "Resolução de problemas",
@@ -598,6 +706,34 @@
     "optSupportedAudioFormats": {
         "message": "Áudio :",
         "description": "[options] Page section for supported audio formats"
+    },
+    "optSectionImportExportSettings": {
+        "message": "Importar/Exportar",
+        "description": "[options] Page section for import/export"
+    },
+    "optSectionImportExportSettingsTooltip": {
+        "message": "Pressione exportar para obter uma sequência das suas definições atuais. Pressione importar para carregar as suas definições coladas",
+        "description": "[options] Tooltip for input and export options"
+    },
+    "optImportExportTextArea": {
+        "message": "Colar aqui as definições guardadas",
+        "description": "[options] Placeholder for import and export text area"
+    },
+    "optButtonImportSettings": {
+        "message": "Importar",
+        "description": "[options] Import a save string from the textarea"
+    },
+    "optButtonExportSettings": {
+        "message": "Exportar",
+        "description": "[options] Export a save string into the textarea"
+    },
+    "optImport": {
+        "message": "Importação bem sucedida!",
+        "description": "[options] Notification after successful import to options"
+    },
+    "optImportFailed": {
+        "message": "Não foi possível importar",
+        "description": "[options] Notification after failed import to options"
     },
     "optPageFAQ": {
         "message": "FAQ",
@@ -804,7 +940,7 @@
         "description": "[options] Action key description"
     },
     "optNextImgKeyTitle": {
-        "message": "Ver a imagem seguinte numa galeria",
+        "message": "Ver imagem seguinte numa galeria",
         "description": "[options] Action key title"
     },
     "optNextImgKeyDescription": {
