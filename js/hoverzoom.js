@@ -543,8 +543,8 @@ var hoverZoom = {
                 if (position.top > maxTop) {
                     position.top = maxTop;
                 }
-                if (position.top < wndScrollTop + 0.5 * padding) {
-                    position.top = wndScrollTop + 0.5 * padding;
+                if (position.top < wndScrollTop) {
+                    position.top = wndScrollTop;
                 }
 
                 if (options.ambilightEnabled) {
