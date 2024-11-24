@@ -320,7 +320,7 @@
         "description": "[options] Allow zoomed pictures to overlap the status bar option"
     },
     "optstatusBarOverlapTooltip": {
-        "message": "Allow zoomed pictures to overlap the status bar, allowing for more of the window to be used.",
+        "message": "Allow zoomed pictures to overlap the status bar, letting more of the window be used",
         "description": "[options] Tooltip for allow zoomed pictures to overlap the status bar option"
     },
     "optCenterImages": {
