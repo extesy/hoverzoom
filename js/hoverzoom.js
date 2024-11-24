@@ -1328,7 +1328,6 @@ var hoverZoom = {
                         mouseShortClickHandler(-4, this);
             }
 
-            
             clearMouseButtonTimers(mouseButtonKey);
         }
 
