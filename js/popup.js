@@ -151,10 +151,10 @@ function restoreOptions(optionsFromFactorySettings) {
 
     let rightButtonActive = false;
     let middleButtonActive = false;
-    options.rightTapAndHold = false;
-    options.middleTapAndHold = false;
-    options.rightTap = false;
-    options.middleTap = false;
+    options.rightShortClickAndHold = false;
+    options.middleShortClickAndHold = false;
+    options.rightShortClick = false;
+    options.middleShortClick = false;
 
     actionKeys.forEach(function(key) {
         var id = key[0].toUpperCase() + key.substr(1);
@@ -164,18 +164,18 @@ function restoreOptions(optionsFromFactorySettings) {
 
         switch (options[key]) {
             case -3:
-                options.rightTap = true;
+                options.rightShortClick = true;
             case -1:
                 if (rightButtonActive) // if both selected
-                    options.rightTapAndHold = true;
+                    options.rightShortClickAndHold = true;
                 else
                     rightButtonActive = true;
                 break;
             case -4:
-                options.middleTap = true;
+                options.middleShortClick = true;
             case -2:
                 if (middleButtonActive) // if both selected
-                    options.middleTapAndHold = true;
+                    options.middleShortClickAndHold = true;
                 else
                     middleButtonActive = true;
                 break;

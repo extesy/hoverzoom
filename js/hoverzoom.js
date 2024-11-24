@@ -1065,7 +1065,7 @@ var hoverZoom = {
         
         function mouseButtonKeyHandler(mouseButtonKey, img) {
             const timerDuration = 150;
-            // -2 or -4 is hold or tap middle click, -1 or -3 is hold or tap right click
+            // -2 or -4 is hold or short middle click, -1 or -3 is hold or short right click
             switch (mouseButtonKey) {
                 case -3:
                     shortPressRight = true;
@@ -1082,7 +1082,7 @@ var hoverZoom = {
         }
 
         function clearMouseButtonTimers(mouseButtonKey) {
-            // -2 or -4 is hold or tap middle click, -1 or -3 is hold or tap right click
+            // -2 or -4 is hold or short middle click, -1 or -3 is hold or short right click
             switch (mouseButtonKey) {
                 case -1:
                 case -3:
@@ -1198,7 +1198,7 @@ var hoverZoom = {
         }
 
         function documentContextMenu(event) {
-            // If right click is a long press or short press (if right click set to tap), prevent context menu
+            // If right click is a long press or short press (if right click set to short), prevent context menu
             if (longPressRight || shortPressRight) {
                 longPressRight = false;
                 shortPressRight = false;
@@ -1224,15 +1224,15 @@ var hoverZoom = {
             }
 
             // Gets mouse button key from event.button
-            // -2 or -4 is hold or tap middle click, -1 or -3 is hold or tap right click
-            let rightButtonKey = options.rightTap ? -3 : -1;
-            let middleButtonKey = options.middleTap ? -4 : -2;
+            // -2 or -4 is hold or short middle click, -1 or -3 is hold or short right click
+            let rightButtonKey = options.rightShortClick ? -3 : -1;
+            let middleButtonKey = options.middleShortClick ? -4 : -2;
             let mouseButtonKey = [null,middleButtonKey,rightButtonKey,null,null][event.button];
-            if (options.rightTapAndHold) {
+            if (options.rightShortClickAndHold) {
                 mouseButtonKey = -1;
                 shortPressRight = true;
             }
-            if (options.middleTapAndHold) {
+            if (options.middleShortClickAndHold) {
                 mouseButtonKey = -2;
                 shortPressMiddle = true;
             }
@@ -1293,13 +1293,13 @@ var hoverZoom = {
         function documentMouseUp(event) {
             if (event.button === 0) return; // If left click, return
             // -2 or -4 is middle click, -1 or -3 is right click
-            let rightButtonKey = options.rightTap ? -3 : -1;
-            let middleButtonKey = options.middleTap ? -4 : -2;
+            let rightButtonKey = options.rightShortClick ? -3 : -1;
+            let middleButtonKey = options.middleShortClick ? -4 : -2;
             let mouseButtonKey = [null,middleButtonKey,rightButtonKey,null,null][event.button];
             
-            if (options.rightTapAndHold && !shortPressRight)
+            if (options.rightShortClickAndHold && !shortPressRight)
                 mouseButtonKey = -1;
-            if (options.middleTapAndHold && !shortPressMiddle)
+            if (options.middleShortClickAndHold && !shortPressMiddle)
                 mouseButtonKey = -2;
             
             switch (mouseButtonKey) {
@@ -1322,9 +1322,9 @@ var hoverZoom = {
                     $(this).mousemove();
                     break;
                 default:
-                    if ((mouseButtonKey == -3 || options.rightTapAndHold) && shortPressRight)
+                    if ((mouseButtonKey == -3 || options.rightShortClickAndHold) && shortPressRight)
                         mouseShortClickHandler(-3, this);
-                    if ((mouseButtonKey == -4 || options.middleTapAndHold) && shortPressMiddle)
+                    if ((mouseButtonKey == -4 || options.middleShortClickAndHold) && shortPressMiddle)
                         mouseShortClickHandler(-4, this);
             }
 
@@ -4503,15 +4503,15 @@ var hoverZoom = {
     // return:
     // => positions (0-based) of matching brackets if found e.g: { 100, 155 }
     // => { -1, -1 } if no matching brackets found
-    matchBrackets:function(data, dataPosition, validOpenBrackets) {
-        let openPosition = dataPosition; // start searching at closest position
+    matchBrackets:function(data, daShortClickosition, validOpenBrackets) {
+        let openPosition = daShortClickosition; // start searching at closest position
         let result = {};
-        // move left step-by-step from dataPosition until an enclosing match is found
+        // move left step-by-step from daShortClickosition until an enclosing match is found
         while (openPosition >= 0) {
             let closePosition = matchBracket(data, openPosition);
             if (closePosition < 0) {
                 openPosition = openPosition - 1; // move left
-            } else if (closePosition < dataPosition) {
+            } else if (closePosition < daShortClickosition) {
                 // matching brackets found but they do not enclose target data position so go on searching
                 openPosition = openPosition - 1; // move left
             } else {
