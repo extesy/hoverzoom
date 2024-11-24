@@ -178,6 +178,14 @@
                                         </label>
                                     </li>
                                 </div>
+                                <div class="ttip" data-i18n-tooltip="optAutoLockImagesTooltip">
+                                    <li class="field">
+                                        <label class="checkbox" for="chkAutoLockImages">
+                                            <input type="checkbox" id="chkAutoLockImages"><span></span>
+                                            <div style="display:inline" data-i18n="optAutoLockImages"></div>
+                                        </label>
+                                    </li>
+                                </div>
                                 <div id="divFrame" style="display:flex">
                                     <div class="ttip" data-i18n-tooltip="optFrameBackgroundColorTooltip">
                                         <li class="field">
@@ -440,6 +448,91 @@
                                         <input class="xnarrow text input" type="text" id="txtPicturesOpacity"><span class="adjoined xnarrow" data-i18n="optOpacityUnitName"></span>
                                     </label>
                                 </li>
+                                <li class="append field">
+                                    <label class="inline" for="txtCaptionOpacity">
+                                        <div style="display:inline" data-i18n="optCaptionOpacity"></div>
+                                        <input class="xnarrow text input" type="text" id="txtCaptionOpacity"><span class="adjoined xnarrow" data-i18n="optOpacityUnitName"></span>
+                                    </label>
+                                </li>
+                                <li class="append field">
+                                    <label class="inline" for="txtDetailsOpacity">
+                                        <div style="display:inline" data-i18n="optDetailsOpacity"></div>
+                                        <input class="xnarrow text input" type="text" id="txtDetailsOpacity"><span class="adjoined xnarrow" data-i18n="optOpacityUnitName"></span>
+                                    </label>
+                                </li>                                    
+                                <div class="append-grid ttip" data-i18n-tooltip="optDetailsSelectorTooltip">
+                                    <div class="title-box" data-i18n="optTitleBoxDetails"></div>
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowDetailFilename">
+                                            <input type="checkbox" id="chkShowDetailFilename"><span></span>
+                                            <div style="display:inline" data-i18n="optShowDetailFilename"></div>
+                                        </label>
+                                    </li>
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowDetailHost">
+                                            <input type="checkbox" id="chkShowDetailHost"><span></span>
+                                            <div style="display:inline" data-i18n="optShowDetailHost"></div>
+                                        </label>
+                                    </li>
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowDetailLastModified">
+                                            <input type="checkbox" id="chkShowDetailLastModified"><span></span>
+                                            <div style="display:inline" data-i18n="optShowDetailLastModified"></div>
+                                        </label>
+                                    </li>
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowDetailExtension">
+                                            <input type="checkbox" id="chkShowDetailExtension"><span></span>
+                                            <div style="display:inline" data-i18n="optShowDetailExtension"></div>
+                                        </label>
+                                    </li>
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowDetailContentLength">
+                                            <input type="checkbox" id="chkShowDetailContentLength"><span></span>
+                                            <div style="display:inline" data-i18n="optShowDetailContentLength"></div>
+                                        </label>
+                                    </li>
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowDetailDuration">
+                                            <input type="checkbox" id="chkShowDetailDuration"><span></span>
+                                            <div style="display:inline" data-i18n="optShowDetailDuration"></div>
+                                        </label>
+                                    </li>
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowDetailScale">
+                                            <input type="checkbox" id="chkShowDetailScale"><span></span>
+                                            <div style="display:inline" data-i18n="optShowDetailScale"></div>
+                                        </label>
+                                    </li>
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowDetailRatio">
+                                            <input type="checkbox" id="chkShowDetailRatio"><span></span>
+                                            <div style="display:inline" data-i18n="optShowDetailRatio"></div>
+                                        </label>
+                                    </li>
+                                    <li class="field">
+                                        <label class="checkbox" for="chkShowDetailDimensions">
+                                            <input type="checkbox" id="chkShowDetailDimensions"><span></span>
+                                            <div style="display:inline" data-i18n="optShowDetailDimensions"></div>
+                                        </label>
+                                    </li>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optBelowPositionOffsetTooltip">
+                                    <li class="append field">
+                                        <label class="inline" for="txtBelowPositionOffset">
+                                            <div style="display:inline" data-i18n="optBelowPositionOffset"></div>
+                                            <input class="xnarrow text input" type="text" id="txtBelowPositionOffset"><span class="adjoined xnarrow" data-i18n="optOffsetUnitName"></span>
+                                        </label>
+                                    </li>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optAbovePositionOffsetTooltip">
+                                    <li class="append field">
+                                        <label class="inline" for="txtAbovePositionOffset">
+                                            <div style="display:inline" data-i18n="optAbovePositionOffset"></div>
+                                            <input class="xnarrow text input" type="text" id="txtAbovePositionOffset"><span class="adjoined xnarrow" data-i18n="optOffsetUnitName"></span>
+                                        </label>
+                                    </li>
+                                </div>
                                 <div class="ttip" data-i18n-tooltip="optDisplayImageLoaderTooltip">
                                     <li class="field">
                                         <label class="checkbox" for="chkDisplayImageLoader">
@@ -464,7 +557,7 @@
                                     </div>
                                     <div class="ttip" data-i18n-tooltip="optAddDownloadOriginTooltip">
                                         <div class="field">
-                                            <label class="checkbox" style="padding-right:100px" for="chkAddDownloadOrigin">
+                                            <label class="checkbox" style="padding-right:10px" for="chkAddDownloadOrigin">
                                                 <input type="checkbox" id="chkAddDownloadOrigin"><span></span>
                                                 <div style="display:inline" data-i18n="optAddDownloadOrigin"></div>
                                             </label>
@@ -472,7 +565,7 @@
                                     </div>
                                    <div class="ttip" data-i18n-tooltip="optAddDownloadSizeTooltip">
                                         <div class="field">
-                                            <label class="checkbox" style="padding-right:100px" for="chkAddDownloadSize">
+                                            <label class="checkbox" style="padding-right:10px" for="chkAddDownloadSize">
                                                 <input type="checkbox" id="chkAddDownloadSize"><span></span>
                                                 <div style="display:inline" data-i18n="optAddDownloadSize"></div>
                                             </label>
@@ -480,12 +573,37 @@
                                     </div>
                                     <div class="ttip" data-i18n-tooltip="optAddDownloadDurationTooltip">
                                         <div class="field">
-                                            <label class="checkbox" for="chkAddDownloadDuration">
+                                            <label class="checkbox" style="padding-right:10px" for="chkAddDownloadDuration">
                                                 <input type="checkbox" id="chkAddDownloadDuration"><span></span>
                                                 <div style="display:inline" data-i18n="optAddDownloadDuration"></div>
                                             </label>
                                         </div>
                                     </div>
+                                    <div class="ttip" data-i18n-tooltip="optAddDownloadIndexTooltip">
+                                        <div class="field">
+                                            <label class="checkbox" style="padding-right:10px" for="chkAddDownloadIndex">
+                                                <input type="checkbox" id="chkAddDownloadIndex"><span></span>
+                                                <div style="display:inline" data-i18n="optAddDownloadIndex"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="ttip" data-i18n-tooltip="optAddDownloadCaptionTooltip">
+                                        <div class="field">
+                                            <label class="checkbox" for="chkAddDownloadCaption">
+                                                <input type="checkbox" id="chkAddDownloadCaption"><span></span>
+                                                <div style="display:inline" data-i18n="optAddDownloadCaption"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ttip" data-i18n-tooltip="optDownloadReplaceOriginalFilenameTooltip">
+                                    <li class="append field">
+                                        <label class="checkbox inline" style="padding-right:10px" for="chkDownloadReplaceOriginalFilename">
+                                            <input type="checkbox" id="chkDownloadReplaceOriginalFilename"><span></span>
+                                            <div style="display:inline" data-i18n="optDownloadReplaceOriginalFilename"></div>
+                                        </label>
+                                        <input class="normal text input" type="text" id="txtDownloadReplaceOriginalFilename" data-i18n-placeholder="optDownloadReplaceOriginalFilenamePlaceholder">
+                                    </li>
                                 </div>
                             </ul>
                         </fieldset>
@@ -546,6 +664,19 @@
                                         <div class="btn default badge format"><a href="https://wikipedia.org/wiki/WAV" target="_blank" rel="noopener noreferrer">WAV</a></div>
                                     </div>
                                 </li>
+                            </ul>
+                        </fieldset>
+                        <fieldset>
+                            <legend data-i18n="optSectionImportExportSettings"></legend>
+                            <ul>
+                                <div class="ttip" data-i18n-tooltip="optSectionImportExportSettingsTooltip">
+                                    <div class="field">
+                                        <textarea class="input textarea" rows="5" id="txtBoxImportExportSettings" data-i18n-placeholder="optImportExportTextArea"></textarea>
+                                        <div style="display:block; justify-content:flex-start; gap:10px;">
+                                            <div class="btn default"><a href="#" id="btnImportSettings" data-i18n="optButtonImportSettings"></a></div>
+                                            <div class="btn default"><a href="#" id="btnExportSettings" data-i18n="optButtonExportSettings"></a></div>
+                                    </div>
+                                </div>
                             </ul>
                         </fieldset>
                     </form>

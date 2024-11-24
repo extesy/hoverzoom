@@ -47,12 +47,15 @@ function initActionKeys() {
 
 function loadKeys(sel) {
     $('<option value="0">None</option>').appendTo(sel);
-    if (sel.attr('id') != 'lockImageKey')
+    if (sel.attr('id') != 'selPrevImgKey' || sel.attr('id') != 'selNextImgKey'){
         $('<option value="-1">Right Click</option>').appendTo(sel);
+        $('<option value="-2">Middle Click</option>').appendTo(sel);
+    }
     if (sel.attr('id') != 'selOpenImageInTabKey')
         $('<option value="16">Shift</option>').appendTo(sel);
     $('<option value="17">Ctrl</option>').appendTo(sel);
     $('<option value="18">Alt</option>').appendTo(sel);
+    $('<option value="13">Enter</option>').appendTo(sel);
     if (navigator.appVersion.indexOf('Macintosh') > -1) {
         $('<option value="91">Command</option>').appendTo(sel);
     }
@@ -77,7 +80,7 @@ function loadKeys(sel) {
 
 // Saves options to localStorage.
 // TODO: Migrate to https://developer.chrome.com/extensions/storage
-function saveOptions() {
+function saveOptions(exportSettings = false) {
     options.extensionEnabled = $('#chkExtensionEnabled')[0].checked;
     options.darkMode = $('#chkDarkMode')[0].checked;
     options.zoomFactor = $('#txtZoomFactor')[0].value;
@@ -105,6 +108,7 @@ function saveOptions() {
     options.ambilightHaloSize = $('#txtAmbilightHaloSize')[0].value / 100;
     options.ambilightBackgroundOpacity = $('#txtAmbilightBackgroundOpacity')[0].value / 100;
     options.centerImages = $('#chkCenterImages')[0].checked;
+    options.autoLockImages = $('#chkAutoLockImages')[0].checked;
     options.frameBackgroundColor = $('#pickerFrameBackgroundColor')[0].value;
     options.frameThickness = $('#txtFrameThickness')[0].value;
 
@@ -125,6 +129,16 @@ function saveOptions() {
         options[key] = parseInt($('#sel' + id).val());
     });
 
+    options.showDetailFilename = $('#chkShowDetailFilename')[0].checked;
+    options.showDetailHost = $('#chkShowDetailHost')[0].checked;
+    options.showDetailLastModified = $('#chkShowDetailLastModified')[0].checked;
+    options.showDetailExtension = $('#chkShowDetailExtension')[0].checked;
+    options.showDetailContentLength = $('#chkShowDetailContentLength')[0].checked;
+    options.showDetailDuration = $('#chkShowDetailDuration')[0].checked;
+    options.showDetailScale = $('#chkShowDetailScale')[0].checked;
+    options.showDetailRatio = $('#chkShowDetailRatio')[0].checked;
+    options.showDetailDimensions = $('#chkShowDetailDimensions')[0].checked;
+    
     options.addToHistory = $('#chkAddToHistory')[0].checked;
     options.allowHeadersRewrite = $('#chkAllowHeadersRewrite')[0].checked;
 
@@ -137,20 +151,31 @@ function saveOptions() {
     options.detailsLocation = $('#selectDetailsLocation').val();
     options.fontSize = $('#txtFontSize')[0].value;
     options.fontOutline = $('#chkFontOutline')[0].checked;
+    options.belowPositionOffset = $('#txtBelowPositionOffset')[0].value;
+    options.abovePositionOffset = $('#txtAbovePositionOffset')[0].value;
+    options.captionOpacity = $('#txtCaptionOpacity')[0].value / 100;
+    options.detailsOpacity = $('#txtDetailsOpacity')[0].value / 100;
     options.displayImageLoader = $('#chkDisplayImageLoader')[0].checked;
     options.downloadFolder = $('#txtDownloadFolder')[0].value;
     options.addDownloadOrigin = $('#chkAddDownloadOrigin')[0].checked;
     options.addDownloadSize = $('#chkAddDownloadSize')[0].checked;
-    options.debug = $('#chkEnableDebug')[0].checked;
     options.addDownloadDuration = $('#chkAddDownloadDuration')[0].checked;
+    options.addDownloadIndex = $('#chkAddDownloadIndex')[0].checked;
+    options.addDownloadCaption = $('#chkAddDownloadCaption')[0].checked;
+    options.replaceOriginalFilename = $('#chkDownloadReplaceOriginalFilename')[0].checked;
+    options.downloadFilename = $('#txtDownloadReplaceOriginalFilename')[0].value;
+    options.debug = $('#chkEnableDebug')[0].checked;
     options.useSeparateTabOrWindowForUnloadableUrlsEnabled = $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled')[0].checked;
     options.useSeparateTabOrWindowForUnloadableUrls = $('#selectUseSeparateTabOrWindowForUnloadableUrls').val();
 
-    localStorage.options = JSON.stringify(options);
+    if (exportSettings) { 
+        $('#txtBoxImportExportSettings').val(JSON.stringify(options));
+    } else {
+        localStorage.options = JSON.stringify(options);
 
-    sendOptions(options);
-    restoreOptions();
-
+        sendOptions(options);
+        restoreOptions();
+    }
     return false;
 }
 
@@ -200,6 +225,7 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#rngAmbilightBackgroundOpacity').val(parseInt(options.ambilightBackgroundOpacity * 100));
     $('#txtAmbilightBackgroundOpacity').val(parseInt(options.ambilightBackgroundOpacity * 100));
     $('#chkCenterImages').trigger(options.centerImages ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkAutoLockImages').trigger(options.autoLockImages ? 'gumby.check' : 'gumby.uncheck');
     $('#pickerFrameBackgroundColor').val(options.frameBackgroundColor);
     $('#rngFrameThickness').val(parseInt(options.frameThickness));
     $('#txtFrameThickness').val(parseInt(options.frameThickness));
@@ -208,6 +234,10 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#rngFontSize').val(parseInt(options.fontSize));
     $('#txtFontSize').val(parseInt(options.fontSize));
     $('#chkFontOutline').trigger(options.fontOutline ? 'gumby.check' : 'gumby.uncheck');
+    $('#txtBelowPositionOffset').val(parseFloat(options.belowPositionOffset));
+    $('#txtAbovePositionOffset').val(parseFloat(options.abovePositionOffset));
+    $('#txtCaptionOpacity').val(parseInt(options.captionOpacity * 100));
+    $('#txtDetailsOpacity').val(parseInt(options.detailsOpacity * 100));
 
     if (options.frameBackgroundColor == "") {
         initColorPicker('#ffffff');
@@ -240,6 +270,16 @@ function restoreOptions(optionsFromFactorySettings) {
         $('#sel' + id).val(options[key]);
     });
 
+    $('#chkShowDetailFilename').trigger(options.showDetailFilename ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkShowDetailHost').trigger(options.showDetailHost ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkShowDetailLastModified').trigger(options.showDetailLastModified ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkShowDetailExtension').trigger(options.showDetailExtension ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkShowDetailContentLength').trigger(options.showDetailContentLength ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkShowDetailDuration').trigger(options.showDetailDuration ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkShowDetailScale').trigger(options.showDetailScale ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkShowDetailRatio').trigger(options.showDetailRatio ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkShowDetailDimensions').trigger(options.showDetailDimensions ? 'gumby.check' : 'gumby.uncheck');
+
     $('#chkAddToHistory').trigger(options.addToHistory ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAllowHeadersRewrite').trigger(options.allowHeadersRewrite ? 'gumby.check' : 'gumby.uncheck');
 
@@ -259,6 +299,10 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#chkAddDownloadOrigin').trigger(options.addDownloadOrigin ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAddDownloadSize').trigger(options.addDownloadSize ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAddDownloadDuration').trigger(options.addDownloadDuration ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkAddDownloadIndex').trigger(options.addDownloadIndex ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkAddDownloadCaption').trigger(options.addDownloadCaption ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkDownloadReplaceOriginalFilename').trigger(options.replaceOriginalFilename ? 'gumby.check' : 'gumby.uncheck');
+    $('#txtDownloadReplaceOriginalFilename').val(options.downloadFilename);
     $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled').trigger(options.useSeparateTabOrWindowForUnloadableUrlsEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#selectUseSeparateTabOrWindowForUnloadableUrls').val(options.useSeparateTabOrWindowForUnloadableUrls);
     $('#chkEnableDebug').trigger(options.debug ? 'gumby.check' : 'gumby.uncheck');
@@ -351,14 +395,15 @@ function btnRemoveExcludedSiteOnClick() {
 }
 
 function selKeyOnChange(event) {
-    var currSel = $(event.target);
+    const noneKey = '0'; // sel key code for 'none'
+    let currSel = $(event.target);
     if (currSel[0].dataset.val0 == undefined) return; // event fired before init
     currSel[0].dataset.val1 = currSel.val();
     checkModification(currSel);
-    if (currSel.val() != '0') {
+    if (currSel.val() != noneKey) {
         $('.actionKey').each(function () {
             if (!$(this).is(currSel) && $(this).val() == currSel.val()) {
-                $(this).val('0');
+                $(this).val(noneKey);
                 $(this)[0].dataset.val1 = $(this).val();
                 checkModification($(this));
             }
@@ -453,11 +498,29 @@ function downloadFolderOnChange(val) {
     return this.value;
 }
 
+// validate user input
+function replaceOriginalFilenameOnChange(val) {
+    let value = (typeof val == 'string' ? val : this.value);
+    value = value.trim();
+    // remove Windows Explorer forbidden characters for file name -> : * ? " < > | /
+    value = value.replace(/[!*:?"<>|\/\\]/g, '');
+    this.value = value;
+    return this.value;
+}
+
 function updateDivAmbilight() {
     if ($('#chkAmbilightEnabled')[0].checked) {
         $('#divAmbilight').removeClass('disabled');
     } else {
         $('#divAmbilight').addClass('disabled');
+    }
+}
+
+function updateDownloadReplaceOriginalFilename() {
+    if ($('#chkDownloadReplaceOriginalFilename')[0].checked) {
+        $('#txtDownloadReplaceOriginalFilename').removeClass('disabled');
+    } else {
+        $('#txtDownloadReplaceOriginalFilename').addClass('disabled');
     }
 }
 
@@ -506,6 +569,21 @@ function updateRngFrameThickness() {
 
 function updateTxtFontSize() {
     $('#txtFontSize')[0].value = this.value;
+}
+
+function updateTxtBelowPositionOffset() {
+    $('#txtBelowPositionOffset')[0].value = this.value;
+}
+
+function updateTxtAbovePositionOffset() {
+    $('#txtAbovePositionOffset')[0].value = this.value;
+}
+
+function updateTxtCaptionOpacity() {
+    $('#txtCaptionOpacity')[0].value = this.value;
+}
+function updateTxtDetailsOpacity() {
+    $('#txtDetailsOpacity')[0].value = this.value;
 }
 
 function updateRngFontSize() {
@@ -607,6 +685,8 @@ function initColorPicker(color){
 const Saved = Symbol("saved");
 const Cancel = Symbol("cancel");
 const Reset = Symbol("reset");
+const Imported = Symbol("imported");
+const ImportFail = Symbol("importFail");
 function displayMsg(msg) {
     switch (msg)  {
         case Saved:
@@ -617,6 +697,12 @@ function displayMsg(msg) {
             break;
         case Reset:
             $('#msgtxt').removeClass().addClass('centered text-center alert info').text(chrome.i18n.getMessage('optReset')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
+            break;
+        case Imported:
+            $('#msgtxt').removeClass().addClass('centered text-center alert success').text(chrome.i18n.getMessage('optImport')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
+            break;
+        case ImportFail:
+            $('#msgtxt').removeClass().addClass('centered text-center alert danger').text(chrome.i18n.getMessage('optImportFailed')).clearQueue().animate({opacity:1}, 500).delay(5000).animate({opacity:0}, 500);
             break;
         default:
             break;
@@ -637,6 +723,8 @@ $(function () {
     $('#btnReset').click(function() { restoreOptionsFromFactorySettings(); displayMsg(Reset); return false; });
     $('#btnDisableAllPlugins').click(function() { disableAllPlugins(); return false; });
     $('#btnEnableAllPlugins').click(function() { enableAllPlugins(); return false; });
+    $('#btnImportSettings').click(function() { importSettings(); return false; });
+    $('#btnExportSettings').click(function() { exportSettings(); return false; });
     $('#chkWhiteListMode').parent().on('gumby.onChange', chkWhiteListModeOnChange);
     $('#txtZoomFactor').change(percentageOnChange);
     $('#txtPicturesOpacity').change(percentageOnChange);
@@ -653,11 +741,17 @@ $(function () {
     $('#txtFrameThickness').change(updateRngFrameThickness);
     $('#rngFontSize').on('input change', updateTxtFontSize);
     $('#txtFontSize').change(updateRngFontSize);
+    $('#txtBelowPositionOffset').change(updateTxtBelowPositionOffset);
+    $('#txtAbovePositionOffset').change(updateTxtAbovePositionOffset);
+    $('#txtCaptionOpacity').change(updateTxtCaptionOpacity);
+    $('#txtDetailsOpacity').change(updateTxtDetailsOpacity);
     $('#txtVideoPositionStep').change(percentageOnChange);
     $('.actionKey').change(selKeyOnChange);
     $('#btnAddExcludedSite').click(btnAddExcludedSiteOnClick);
     $('#btnRemoveExcludedSite').click(btnRemoveExcludedSiteOnClick);
     $('#txtDownloadFolder').change(downloadFolderOnChange);
+    $('#chkDownloadReplaceOriginalFilename').parent().on('gumby.onChange', updateDownloadReplaceOriginalFilename);
+    $('#txtDownloadReplaceOriginalFilename').change(replaceOriginalFilenameOnChange);
     $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled').parent().on('gumby.onChange', updateUseSeparateTabOrWindowForUnloadableUrls);
     $('#chkHideMouseCursor').parent().on('gumby.onChange', updateDivHideMouseCursor);
     $('#chkDarkMode').parent().on('gumby.onChange', updateDarkMode);
@@ -679,6 +773,32 @@ function disableAllPlugins() {
 
 function enableAllPlugins() {
     $('input.chkPlugin').each(function() { $(this).trigger('gumby.check'); })
+}
+
+//Checks if string is JSON. 
+//If yes, imports settings and clears textarea.
+function importSettings() {
+    let jsonImport;
+    try {
+        jsonImport = JSON.parse($('#txtBoxImportExportSettings')[0].value);
+        // Checks if a few HZ+ settings are defined to test if it's a valid HZ+ JSON
+        const jsonTest = [jsonImport.centerImages, jsonImport.fullZoomKey, jsonImport.hideMouseCursor];
+        jsonTest.forEach((variable) => {
+            if (typeof variable === 'undefined') {
+                throw new Error('Not a valid HZ+ import JSON');
+            }
+        });
+    } catch (e) {
+        displayMsg(ImportFail);
+        return false;
+    }
+    displayMsg(Imported);
+    restoreOptions({jsonImport});
+    $('#txtBoxImportExportSettings').val('');
+}
+
+function exportSettings() {
+    saveOptions(true);
 }
 
 // highlight item if modified, unhighlight if not modified

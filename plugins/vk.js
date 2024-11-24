@@ -1,28 +1,26 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'VK.com',
-    version:'1.3',
+    version:'1.4',
     prepareImgLinks:function (callback) {
 
-        var res = [];
-        var link;
+        const res = [];
 
-        $('div[data-task-click="WallPost/openPhoto"], a.page_post_thumb_wrap').each(function () {
-            var link = $(this), data = this.getAttribute('data-options');
+        $('div[data-task-click="WallPost/openPhoto"], a[data-task-click="WallPost/openPhoto"], a.page_post_thumb_wrap').each(function () {
+            let link = $(this), data = this.getAttribute('data-options');
             if (!data)
                 data = this.getAttribute('onclick');
             if (!data)
                 return;
-            var url = "";
             //parse onclick function body in order to extract alternative images urls
-            var index1 = data.indexOf('{');
-            var index2 = data.lastIndexOf('}');
-            var json = data.substring(index1, index2 + 1);
+            const index1 = data.indexOf('{');
+            const index2 = data.lastIndexOf('}');
+            const json = data.substring(index1, index2 + 1);
             if (json) {
+                let url = "";
                 try {
-                    j = JSON.parse(json);
-                    if (j.base == undefined || j.base == "") { jj = j.temp; }
-                    else { jj = j.base; }
+                    const j = JSON.parse(json);
+                    const jj = j.base === undefined || j.base === "" ? j.temp : j.base;
                     if (jj.w) url = jj.w;
                     else if (jj.z) url = jj.z;
                     else if (jj.y) url = jj.y;

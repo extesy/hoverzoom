@@ -1,7 +1,7 @@
 {
     "name": "__MSG_extName__",
     "short_name": "__MSG_extShortName__",
-    "version": "1.0.213",
+    "version": "1.0.222",
     "description": "__MSG_extDescription__",
     "homepage_url": "https://github.com/extesy/hoverzoom/",
     "author": "Oleg Anashkin",
@@ -101,6 +101,7 @@
                 "plugins/itaku_a.js",
                 "plugins/kick_a.js",
                 "plugins/lensdump_a.js",
+                "plugins/media_a.js",
                 "plugins/mediawiki_a.js",
                 "plugins/medium_a.js",
                 "plugins/niconico_a.js",
@@ -475,6 +476,7 @@
         {
             "js": ["plugins/twitter.js"],
             "matches": [
+                "*://*.x.com/*",
                 "*://*.twitter.com/*",
                 "*://*.tweetdeck.com/*"
             ]
@@ -482,6 +484,10 @@
         {
             "js": ["plugins/twitpic.js"],
             "matches": ["*://*.twitter.com/*"]
+        },
+        {
+            "js": ["plugins/gifbin.js"],
+            "matches": ["*://gifbin.com/*"]
         },
         {
             "js": ["plugins/ravelry.js"],
@@ -976,6 +982,7 @@
             "js": ["plugins/e621.js"],
             "matches": [
                 "*://*.e621.net/*",
+                "*://*.e6ai.net/*",
                 "*://*.e926.net/*",
                 "*://danbooru.donmai.us/*"
             ]
@@ -1024,6 +1031,10 @@
         {
             "js": ["plugins/furaffinity.js"],
             "matches": ["*://*.furaffinity.net/*"]
+        },
+        {
+            "js": ["plugins/furrynetwork.js"],
+            "matches": ["*://*.furrynetwork.com/*"]
         },
         {
             "js": ["plugins/alicdn.js"],
@@ -1266,6 +1277,10 @@
         {
             "js": ["plugins/artstation.js"],
             "matches": ["*://*.artstation.com/*"]
+        },
+        {
+            "js": ["plugins/artfol.js"],
+            "matches": ["*://*.artfol.co/*"]
         },
         {
             "js": ["plugins/artsper.js"],
@@ -1930,6 +1945,10 @@
             "matches": ["*://*.head-fi.org/*"]
         },
         {
+            "js": ["plugins/etejo.js"],
+            "matches": ["*://*.etejo.com/*"]
+        },
+        {
             "js": ["plugins/wildcritters.js"],
             "matches": ["*://*.wildcritters.ws/*"]
         },
@@ -1972,6 +1991,10 @@
         {
             "js": ["plugins/kleinanzeigen.js"],
             "matches": ["*://*.kleinanzeigen.de/*"]
+        },
+        {
+            "js": ["plugins/tenor.js"],
+            "matches": ["*://*.tenor.com/*"]
         },
         {
             "js": ["plugins/trakttv.js"],
@@ -2024,6 +2047,118 @@
         {
             "js": ["plugins/bluesky.js"],
             "matches": ["*://*.bsky.app/*"]
+        },
+        {
+            "js": ["plugins/onzemondial.js"],
+            "matches": ["*://*.onzemondial.com/*"]
+        },
+        {
+            "js": ["plugins/cineserie.js"],
+            "matches": ["*://*.cineserie.com/*"]
+        },
+        {
+            "js": ["plugins/opendata92.js"],
+            "matches": ["*://*.opendata.hauts-de-seine.fr/*"]
+        },
+        {
+            "js": ["plugins/nature.js"],
+            "matches": ["*://*.nature.com/*"]
+        },
+        {
+            "js": ["plugins/galerie9art.js"],
+            "matches": ["*://*.galerie9art.fr/*"]
+        },
+        {
+            "js": ["plugins/worldatlas.js"],
+            "matches": ["*://*.worldatlas.com/*"]
+        },
+        {
+            "js": ["plugins/kotnauction.js"],
+            "matches": ["*://*.kotnauction.com/*"]
+        },
+        {
+            "js": ["plugins/techradar.js"],
+            "matches": ["*://*.techradar.com/*"]
+        },
+        {
+            "js": ["plugins/feedly.js"],
+            "matches": ["*://*.feedly.com/*"]
+        },
+        {
+            "js": ["plugins/inoreader.js"],
+            "matches": ["*://*.inoreader.com/*"]
+        },
+        {
+            "js": ["plugins/unsplash.js"],
+            "matches": ["*://*.unsplash.com/*"]
+        },
+        {
+            "js": ["plugins/usarmy.js"],
+            "matches": ["*://*.defense.gov/*", "*://*.mil/*"]
+        },
+        {
+            "js": ["plugins/lacroix.js"],
+            "matches": ["*://*.la-croix.com/*"]
+        },
+        {
+            "js": ["plugins/routard.js"],
+            "matches": ["*://*.routard.com/*"]
+        },
+        {
+            "js": ["plugins/podcasts_apple.js"],
+            "matches": ["*://podcasts.apple.com/*"]
+        },
+        {
+            "js": ["plugins/apple.js"],
+            "matches": ["*://apps.apple.com/*", "*://books.apple.com/*", "*://music.apple.com/*", "*://podcasts.apple.com/*"]
+        },
+        {
+            "js": ["plugins/monuments_nationaux.js"],
+            "matches": ["*://*.monuments-nationaux.fr/*"]
+        },
+        {
+            "js": ["plugins/physorg.js"],
+            "matches": ["*://*.phys.org/*", "*://*.medicalxpress.com/*", "*://*.sciencex.com/*", "*://*.techxplore.com/*"]
+        },
+        {
+            "js": ["plugins/spotify.js"],
+            "matches": ["*://*.spotify.com/*"]
+        },
+        {
+            "js": ["plugins/songkick.js"],
+            "matches": ["*://*.songkick.com/*"]
+        },
+        {
+            "js": ["plugins/nextdoor.js"],
+            "matches": ["*://*.nextdoor.com/*"]
+        },
+        {
+            "js": ["plugins/polona.js"],
+            "matches": ["*://*.polona.pl/*"]
+        },
+        {
+            "js": ["plugins/raindrop.js"],
+            "matches": ["*://*.raindrop.io/*"]
+        },
+        {
+            "js": ["plugins/stackoverflow.js"],
+            "matches": ["*://*.stackoverflow.com/*"]
+        },
+        {
+            "js": ["plugins/uinotes.js"],
+            "matches": ["*://*.uinotes.com/*"]
+        },
+        {
+            "js": ["plugins/meiye.js"],
+            "matches": ["*://*.meiye.art/*"]
+        },
+        {
+            "js": ["plugins/lummi.js"],
+            "matches": ["*://*.lummi.ai/*"]
+        },
+        {
+            "js": ["plugins/brave.js"],
+            "matches": ["*://*.search.brave.com/*"]
         }
     ]
 }
