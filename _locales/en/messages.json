@@ -315,6 +315,14 @@
         "message": "0% : transparent, 100% : black",
         "description": "[options] Tooltip for background opacity"
     },
+    "optstatusBarOverlap": {
+        "message": "Allow zoomed pictures to overlap the status bar",
+        "description": "[options] Allow zoomed pictures to overlap the status bar option"
+    },
+    "optstatusBarOverlapTooltip": {
+        "message": "Allow zoomed pictures to overlap the status bar, allowing for more of the window to be used.",
+        "description": "[options] Tooltip for allow zoomed pictures to overlap the status bar option"
+    },
     "optCenterImages": {
         "message": "Center images",
         "description": "[options] Center images in the middle of the page option"
