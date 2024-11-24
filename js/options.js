@@ -105,7 +105,7 @@ function saveOptions(exportSettings = false) {
     options.ambilightEnabled = $('#chkAmbilightEnabled')[0].checked;
     options.ambilightHaloSize = $('#txtAmbilightHaloSize')[0].value / 100;
     options.ambilightBackgroundOpacity = $('#txtAmbilightBackgroundOpacity')[0].value / 100;
-    options.statusBarClipping = $('#chkStatusBarClipping')[0].checked;
+    options.statusBarOverlap = $('#chkStatusBarOverlap')[0].checked;
     options.centerImages = $('#chkCenterImages')[0].checked;
     options.autoLockImages = $('#chkAutoLockImages')[0].checked;
     options.frameBackgroundColor = $('#pickerFrameBackgroundColor')[0].value;
@@ -221,7 +221,7 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#txtAmbilightHaloSize').val(parseInt(options.ambilightHaloSize * 100));
     $('#rngAmbilightBackgroundOpacity').val(parseInt(options.ambilightBackgroundOpacity * 100));
     $('#txtAmbilightBackgroundOpacity').val(parseInt(options.ambilightBackgroundOpacity * 100));
-    $('#chkStatusBarClipping').trigger(options.statusBarClipping ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkStatusBarOverlap').trigger(options.statusBarOverlap ? 'gumby.check' : 'gumby.uncheck');
     $('#chkCenterImages').trigger(options.centerImages ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAutoLockImages').trigger(options.autoLockImages ? 'gumby.check' : 'gumby.uncheck');
     $('#pickerFrameBackgroundColor').val(options.frameBackgroundColor);
