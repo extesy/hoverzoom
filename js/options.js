@@ -82,6 +82,7 @@ function saveOptions() {
     options.darkMode = $('#chkDarkMode')[0].checked;
     options.zoomFactor = $('#txtZoomFactor')[0].value;
     options.maxWidth = $('#txtMaxWidth')[0].value;
+    options.maxHeight = $('#txtMaxHeight')[0].value;
     options.zoomVideos = $('#chkZoomVideos')[0].checked;
     options.videoPositionStep = $('#txtVideoPositionStep')[0].value;
     options.muteVideos = $('#chkMuteVideos')[0].checked;
@@ -172,6 +173,7 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#chkDarkMode').trigger(options.darkMode ? 'gumby.check' : 'gumby.uncheck');
     $('#txtZoomFactor')[0].value = options.zoomFactor;
     $('#txtMaxWidth')[0].value = options.maxWidth;
+    $('#txtMaxHeight')[0].value = options.maxHeight;
     $('#chkZoomVideos').trigger(options.zoomVideos ? 'gumby.check' : 'gumby.uncheck');
     $('#txtVideoPositionStep')[0].value = options.videoPositionStep;
     $('#chkMuteVideos').trigger(options.muteVideos ? 'gumby.check' : 'gumby.uncheck');

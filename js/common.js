@@ -3,6 +3,7 @@ var factorySettings = {
     darkMode : false,
     zoomFactor : 1,
     maxWidth : 0,
+    maxHeight : 0,
     zoomVideos : true,
     videoPositionStep : 10,
     muteVideos : false,
@@ -89,6 +90,7 @@ function loadOptions() {
     options.darkMode = options.hasOwnProperty('darkMode') ? options.darkMode : factorySettings.darkMode;
     options.zoomFactor = options.hasOwnProperty('zoomFactor') ? options.zoomFactor : factorySettings.zoomFactor;
     options.maxWidth = options.hasOwnProperty('maxWidth') ? options.maxWidth : factorySettings.maxWidth;
+    options.maxHeight = options.hasOwnProperty('maxHeight') ? options.maxHeight : factorySettings.maxHeight;
     options.zoomVideos = options.hasOwnProperty('zoomVideos') ? options.zoomVideos : factorySettings.zoomVideos;
     options.videoPositionStep = options.hasOwnProperty('videoPositionStep') ? options.videoPositionStep : factorySettings.videoPositionStep;
     options.muteVideos = options.hasOwnProperty('muteVideos') ? options.muteVideos : factorySettings.muteVideos;
