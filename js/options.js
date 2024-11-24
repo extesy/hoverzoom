@@ -220,6 +220,7 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#txtAmbilightHaloSize').val(parseInt(options.ambilightHaloSize * 100));
     $('#rngAmbilightBackgroundOpacity').val(parseInt(options.ambilightBackgroundOpacity * 100));
     $('#txtAmbilightBackgroundOpacity').val(parseInt(options.ambilightBackgroundOpacity * 100));
+    $('#chkStatusBarClipping').trigger(options.statusBarClipping ? 'gumby.check' : 'gumby.uncheck');
     $('#chkCenterImages').trigger(options.centerImages ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAutoLockImages').trigger(options.autoLockImages ? 'gumby.check' : 'gumby.uncheck');
     $('#pickerFrameBackgroundColor').val(options.frameBackgroundColor);
