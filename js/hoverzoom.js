@@ -1264,7 +1264,7 @@ var hoverZoom = {
             }
         }
 
-        function mouseTapHandler(mouseButtonKey, img) {
+        function mouseShortClickHandler(mouseButtonKey, img) {
             switch (mouseButtonKey) {
                 case options.toggleKey:
                 case options.closeKey:
@@ -1324,9 +1324,9 @@ var hoverZoom = {
                     break;
             }
             if ((mouseButtonKey == -3 || options.rightTapAndHold) && shortPressRight)
-                mouseTapHandler(-3, this);
+                mouseShortClickHandler(-3, this);
             if ((mouseButtonKey == -4 || options.middleTapAndHold) && shortPressMiddle)
-                mouseTapHandler(-4, this);
+                mouseShortClickHandler(-4, this);
             
             clearMouseButtonTimers(mouseButtonKey);
         }
