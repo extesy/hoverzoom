@@ -1295,10 +1295,10 @@ var hoverZoom = {
             let rightButtonKey = options.rightTap ? -3 : -1;
             let middleButtonKey = options.middleTap ? -4 : -2;
             let mouseButtonKey = [null,middleButtonKey,rightButtonKey,null,null][event.button];
-                       
-            if (options.rightTapAndHold)
+            
+            if (options.rightTapAndHold && !shortPressRight)
                 mouseButtonKey = -1;
-            if (options.middleTapAndHold)
+            if (options.middleTapAndHold && !shortPressMiddle)
                 mouseButtonKey = -2;
             
             switch (mouseButtonKey) {
@@ -1321,7 +1321,6 @@ var hoverZoom = {
                     $(this).mousemove();
                     break;
                 default:
-                    break;
             }
             if ((mouseButtonKey == -3 || options.rightTapAndHold) && shortPressRight)
                 mouseShortClickHandler(-3, this);
