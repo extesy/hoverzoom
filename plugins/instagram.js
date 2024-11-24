@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Instagram',
-    version:'0.7',
+    version:'0.6',
     favicon:'instagram.svg',
     prepareImgLinks:function (callback) {
 
@@ -105,13 +105,11 @@ hoverZoomPlugins.push({
         // TBD
 
         // header reels
-        $('div[role="button"] img:not(div[role="presentation"] img)').on('mouseover', function() {
+        $('header div[role="button"] img').on('mouseover', function() {
             if (document.location.href.match('(following|followers)')) return;
             // extract image src (e.g: 321365237_536711615164811_1593293938921078231_n.jpg)
             const imgSrc = this.src.replace(/.*?([^\/]{1,}\.jpg)(\?.*)?/, '$1');
             const link = $(this);
-            if (link.data().hoverZoomMouseOver) return;
-            link.data().hoverZoomMouseOver = true;
 
             // resuse previous result
             if (link.data().hoverZoomInstagramUserId == userId) {
@@ -145,16 +143,11 @@ hoverZoomPlugins.push({
                                                 link.data().hoverZoomGalleryCaption = captions;
                                                 link.data().hoverZoomInstagramGalleryCaption = captions;
                                                 callback(link, pluginName);
-                                                // Media is displayed iff the cursor is still over the media
-                                                if (link.data().hoverZoomMouseOver)
-                                                    hoverZoom.displayPicFromElement(link);
+                                                hoverZoom.displayPicFromElement(link);
                                             } catch {}
 
                                         }
                                     );
-        }).on('mouseleave', function() {
-            const link = $(this);
-            link.data().hoverZoomMouseOver = false;
         });
 
         // highlighted reels
@@ -164,8 +157,6 @@ hoverZoomPlugins.push({
             // image src will be used as a key to find reels id
             const imgSrc = this.src.replace(/.*?([^\/]{1,}\.jpg)(\?.*)?/, '$1');
             const link = $(this);
-            if (link.data().hoverZoomMouseOver) return;
-            link.data().hoverZoomMouseOver = true;
 
             // resuse previous result
             if (link.data().hoverZoomInstagramUserId == userId) {
@@ -222,25 +213,18 @@ hoverZoomPlugins.push({
                                                 link.data().hoverZoomGalleryCaption = captions;
                                                 link.data().hoverZoomInstagramGalleryCaption = captions;
                                                 callback(link, pluginName);
-                                                // Media is displayed iff the cursor is still over the media
-                                                if (link.data().hoverZoomMouseOver)
-                                                    hoverZoom.displayPicFromElement(link);
+                                                hoverZoom.displayPicFromElement(link);
                                             } catch {}
                                         });
-        }).on('mouseleave', function() {
-            const link = $(this);
-            link.data().hoverZoomMouseOver = false;
         });
 
         // profiles
         // sample 1: https://www.instagram.com/therock/
         // sample 2: https://www.instagram.com/ronaldo_sites/reels/
-        $('a[href]').filter(function() { return (!/(\/reel\/|\/p\/)/.test($(this).prop('href'))) }).on('mouseover', function() {
+        $('a[href]:not(.hoverZoomMouseover)').filter(function() { return (!/(\/reel\/|\/p\/)/.test($(this).prop('href'))) }).addClass('hoverZoomMouseover').one('mouseover', function() {
 
-            const href = this.href;
-            const link = $(this);
-            if (link.data().hoverZoomMouseOver) return;
-            link.data().hoverZoomMouseOver = true;
+            var href = this.href;
+            var link = $(this);
 
             const re = /instagram\.com\/([^/]{1,})\//
             const m = href.replace('reels/', '').match(re);
@@ -285,25 +269,18 @@ hoverZoomPlugins.push({
                                                     sessionStorage.setItem('instagramUsersData', JSON.stringify(instagramUsersData));
                                                 }
                                                 callback(link, pluginName);
-                                                // Media is displayed iff the cursor is still over the media
-                                                if (link.data().hoverZoomMouseOver)
-                                                    hoverZoom.displayPicFromElement(link);
+                                                hoverZoom.displayPicFromElement(link);
                                             } catch { }
                                         }
             );
-        }).on('mouseleave', function() {
-            const link = $(this);
-            link.data().hoverZoomMouseOver = false;
         });
 
         // pictures & videos
         // sample: https://www.instagram.com/p/ClpZbUIpNvx/
-        $('a[href*="/p/"], a[href*="/reel/"]').on('mouseover', function() {
+        $('a[href*="/p/"]:not(.hoverZoomMouseover), a[href*="/reel/"]:not(.hoverZoomMouseover)').addClass('hoverZoomMouseover').one('mouseover', function() {
 
             const href = this.href;
             const link = $(this);
-            if (link.data().hoverZoomMouseOver) return;
-            link.data().hoverZoomMouseOver = true;
 
             const re = /\/(p|reel)\/([^/]{1,})/
             const m = href.match(re);
@@ -367,15 +344,10 @@ hoverZoomPlugins.push({
                                                 }
                                                 displayMedia(link, items0);
                                                 callback(link, pluginName);
-                                                // Media is displayed iff the cursor is still over the media
-                                                if (link.data().hoverZoomMouseOver)
-                                                    hoverZoom.displayPicFromElement(link);
+                                                hoverZoom.displayPicFromElement(link);
                                             } catch { }
                                         }
             );
-        }).on('mouseleave', function() {
-            const link = $(this);
-            link.data().hoverZoomMouseOver = false;
         });
 
         // display all kind of media (images, videos, carousel)

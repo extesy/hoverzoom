@@ -158,9 +158,8 @@ hoverZoomPlugins.push({
             try {
                 let j = JSON.parse(response);
                 let rootUrl = j.miniProfile.picture["com.linkedin.common.VectorImage"].rootUrl;
-                let artifacts = j.miniProfile.picture["com.linkedin.common.VectorImage"].artifacts;
-                artifacts.sort((a, b) => b.width - a.width);
-                let largestPicture = artifacts[0].fileIdentifyingUrlPathSegment;
+                let nbPictures = j.miniProfile.picture["com.linkedin.common.VectorImage"].artifacts.length;
+                let largestPicture = j.miniProfile.picture["com.linkedin.common.VectorImage"].artifacts[nbPictures - 1].fileIdentifyingUrlPathSegment;
                 let fullsizeUrl = rootUrl + largestPicture;
                 let caption = j.firstName + " " + j.lastName + " - " + j.headline;
 

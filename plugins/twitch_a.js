@@ -58,7 +58,7 @@ hoverZoomPlugins.push({
                 let signature = r.data.clip.playbackAccessToken.signature;
                 let token = r.data.clip.playbackAccessToken.value;
                 let t = JSON.parse(token);
-                let clip_uri = r.data.clip.videoQualities[0].sourceURL;
+                let clip_uri = t.clip_uri;
                 let fullsizeUrl = clip_uri + '?sig=' + signature + '&token=' + encodeURIComponent(token);
 
                 fullsizeUrl += '.video';

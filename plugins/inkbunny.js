@@ -3,28 +3,28 @@ hoverZoomPlugins.push({
     name:'Inkbunny',
     version:'0.1',
     prepareImgLinks:function (callback) {
-        let res = [];
+        var res = [];
 
         $('a[href*="s/"]').filter(function() {
             return /s\/\d+(-p\d+)?(-latest)?(-?#pictop)?\/?$/.test($(this).attr('href'));
         }).one('mouseover', function() {
-            let link = $(this);
-            let url = link.attr('href');
-            $.ajax('https://inkbunny.net' + url).done(function(response) {
+            var link = $(this),
+                url = link.attr('href');
+            $.ajax(url).done(function(response) {
                 prepareSrc(link, response);
-                const multipageContainer = $('#files_area ~ div', response);
-                const firstPage = url.replace(/^(.*s\/\d+).*$/, '$1');
-                const multipageLinks = $('a[href*="' + firstPage + '"]:has(img)', multipageContainer);
+                var multipageContainer = $('#files_area ~ div', response),
+                    firstPage = url.replace(/^(.*s\/\d+).*$/, '$1'),
+                    multipageLinks = $('a[href*="' + firstPage + '"]:has(img)', multipageContainer);
 
                 if (multipageLinks.length) {
                     link.data().hoverZoomGallerySrc = [];
                     link.data().hoverZoomGalleryCaption = [];
-                    let startIndex = url.replace(/^(.*s\/\d+)-p(\d+)?.*$/, '$2');
+                    var startIndex = url.replace(/^(.*s\/\d+)-p(\d+)?.*$/, '$2');
 
                     if (startIndex === url) {
-                        const updated = $('[style*="/overlays/updated.png"]', link);
+                        var updated = $('[style*="/overlays/updated.png"]', link);
                         if (updated.length) {
-                            const highlightedImg = $('div ~ a[href*="' + firstPage + '"]:has(img)', multipageContainer);
+                            var highlightedImg = $('div ~ a[href*="' + firstPage + '"]:has(img)', multipageContainer);
                             startIndex = highlightedImg.attr('href').replace(/^(.*s\/\d+)-p(\d+)?.*$/, '$2');
                             startIndex = parseInt(startIndex) - 1;
                         } else {
@@ -35,7 +35,7 @@ hoverZoomPlugins.push({
                     }
                     link.data().hoverZoomGalleryIndex = startIndex;
 
-                    let i = 0, loopData = {
+                    var i = 0, loopData = {
                         start: mod(startIndex - 2, multipageLinks.length),
                         end: mod(startIndex + 2, multipageLinks.length) };
                     link.on('wheel', {arg1: loopData, arg2: multipageLinks}, onMouseWheel);
@@ -46,7 +46,7 @@ hoverZoomPlugins.push({
                     }).on('keydown', {arg1: loopData, arg2: multipageLinks}, onKeyDown);
                     link.focus();
                     multipageLinks.each(function() {
-                        const multipageLink = $(this);
+                        var multipageLink = $(this);
                         link.data().hoverZoomGallerySrc.push([]);
                         link.data().hoverZoomGalleryCaption.push(link.data().hoverZoomCaption);
                         if (multipageLinks.length > 4) {
@@ -66,15 +66,15 @@ hoverZoomPlugins.push({
         });
 
         function prepareSrc(link, response) {
-            const fullImg = $('a[href*="files/full/"]', response);
+            var fullImg = $('a[href*="files/full/"]', response);
             if (fullImg.length && /\.(png|jpg|gif)$/.test(fullImg.attr('href'))) {
                 link.data().hoverZoomSrc = [fullImg.attr('href')];
             } else {
-                const screenImg = $('img[src*="files/screen/"]', response);
+                var screenImg = $('img[src*="files/screen/"]', response);
                 if (screenImg.length) {
                     link.data().hoverZoomSrc = [screenImg.attr('src')];
                 } else {
-                    const thumbSrc = link.find('img').attr('src');
+                    var thumbSrc = link.find('img').attr('src');
                     if (!(/_noncustom\.\w+$/.test(thumbSrc)))
                         link.data().hoverZoomSrc = [thumbSrc.replace(/thumbnails\/\w+/, 'thumbnails/huge')];
                     else
@@ -85,16 +85,16 @@ hoverZoomPlugins.push({
         }
 
         function prepareMultipageSrcAsync(link, multipageLink, i) {
-            $.ajax('https://inkbunny.net' + multipageLink.attr('href')).done(function(response) {
-                const fullImg = $('a[href*="files/full/"]', response);
+            $.ajax(multipageLink.attr('href')).done(function(response) {
+                var fullImg = $('a[href*="files/full/"]', response);
                 if (fullImg.length && /\.(png|jpg|gif)$/.test(fullImg.attr('href'))) {
                     link.data().hoverZoomGallerySrc[i] = [fullImg.attr('href')];
                 } else {
-                    const screenImg = $('img[src*="files/screen/"]', response);
+                    var screenImg = $('img[src*="files/screen/"]', response);
                     if (screenImg.length) {
                         link.data().hoverZoomGallerySrc[i] = [screenImg.attr('src')];
                     } else {
-                        const thumbSrc = multipageLink.find('img').attr('src');
+                        var thumbSrc = multipageLink.find('img').attr('src');
                         if (!(/_noncustom\.\w+$/.test(thumbSrc)))
                             link.data().hoverZoomGallerySrc[i] = [thumbSrc.replace(/thumbnails\/\w+/, 'thumbnails/huge')];
                         else
@@ -121,8 +121,8 @@ hoverZoomPlugins.push({
         }
 
         function onMouseWheel(event) {
-            const loopData = event.data.arg1;
-            const multipageLinks = event.data.arg2;
+            var loopData = event.data.arg1,
+                multipageLinks = event.data.arg2;
             if (event.originalEvent.wheelDeltaY > 0)
                 multipageSrcHelper(loopData, multipageLinks, -1);
             else if (event.originalEvent.wheelDeltaY < 0)
@@ -130,8 +130,8 @@ hoverZoomPlugins.push({
         }
 
         function onKeyDown(event) {
-            const loopData = event.data.arg1;
-            const multipageLinks = event.data.arg2;
+            var loopData = event.data.arg1,
+                multipageLinks = event.data.arg2;
             if (event.which == options.prevImgKey)
                 multipageSrcHelper(loopData, multipageLinks, -1);
             else if (event.which == options.nextImgKey)
@@ -139,11 +139,11 @@ hoverZoomPlugins.push({
         }
 
         function multipageSrcHelper(loopData, multipageLinks, rot) {
-            const totalLinks = multipageLinks.length;
-            const link = hoverZoom.currentLink;
-            let data = link.data();
-            let nextIndex = mod(data.hoverZoomGalleryIndex + rot, totalLinks);
-            let loadIndex = mod(data.hoverZoomGalleryIndex + 3 * rot, totalLinks);
+            var totalLinks = multipageLinks.length,
+                link = hoverZoom.currentLink,
+                data = link.data(),
+                nextIndex = mod(data.hoverZoomGalleryIndex + rot, totalLinks),
+                loadIndex = mod(data.hoverZoomGalleryIndex + 3 * rot, totalLinks);
             if (!data.hoverZoomGallerySrc[nextIndex].length) {
                 data.hoverZoomGalleryIndex = mod(data.hoverZoomGalleryIndex - rot, totalLinks);
                 return;

@@ -160,7 +160,7 @@
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
-        "message": "تمديد الصور المكبرة أسفل مؤشر الفأرة",
+        "message": "Étendre les images de zoom sous le pointeur de la souris",
         "description": "[options] Extend zoomed images below the mouse cursor option"
     },
     "optMouseUnderlapTooltip": {
@@ -200,15 +200,15 @@
         "description": "[options] Tooltip for show high resolution pictures when available option"
     },
     "optGalleriesMouseWheel": {
-        "message": "استخدم عجلة الفأرة للتنقل بين الألبومات",
+        "message": "استخدم عجلة الماوس للتنقل بين الألبومات",
         "description": "[options] Use mousewheel to navigate albums option"
     },
     "optGalleriesMouseWheelTooltip": {
-        "message": "تصفح الألبوم باستخدام عجلة الفأرة",
+        "message": "تصفح الألبوم باستخدام عجلة الماوس",
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
     "optDisableMouseWheelForVideo": {
-        "message": "لا تستخدم عجلة الفأرة للتنقل داخل الفيديو (ستظل مفاتيح الإجراءات تعمل)",
+        "message": "لا تستخدم عجلة الماوس للتصفح داخل الفيديو ( المفاتيح الأخرى ستظل تعمل)",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optDisableMouseWheelForVideoTooltip": {
@@ -224,7 +224,7 @@
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
-        "message": "استخدم مفاتيح الإجراء السابق / التالي (أو عجلة الفأرة) لتغيير موضع الفيديو بواسطة",
+        "message": "استخدم مفاتيح الإجراء السابق / التالي (أو عجلة الماوس) لتغيير موضع الفيديو من خلال",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
@@ -323,14 +323,6 @@
         "message": "توسيط الصور بدلاً من جعلها تتبع المؤشر",
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
-    "optAutoLockImages": {
-        "message": "Automatically lock images",
-        "description": "[options] Automatically lock images option"
-    },
-    "optAutoLockImagesTooltip": {
-        "message": "Automatically lock images when activating Hover Zoom+",
-        "description": "[options] Tooltip for automatically lock images option"
-    },
     "optFrameBackgroundColor": {
         "message": "لون خلفية الإطار:",
         "description": "[options] Frame background color option"
@@ -408,15 +400,15 @@
         "description": "[options] Zoom speed Part 3"
     },
     "optZoomSpeed_P4": {
-        "message": " أثناء التمرير للتكبير",
+        "message": " while scrolling to zoom",
         "description": "[options] Zoom speed Part 4"
     },
     "optZoomSpeed_P41": {
-        "message": "أسرع",
+        "message": "faster",
         "description": "[options] Zoom speed Part 41"
     },
     "optZoomSpeed_P42": {
-        "message": "أبطأ",
+        "message": "slower",
         "description": "[options] Zoom speed Part 42"
     },
     "optPagePlugins": {
@@ -460,7 +452,7 @@
         "description": "[options] Button for adding a site on sites option page"
     },
     "optPageActionKeys": {
-        "message": "مفاتيح الإجراءات",
+        "message": "مفاتيح العمل",
         "description": "[options] Page title for action key options"
     },
     "optPageAdvanced": {
@@ -496,92 +488,20 @@
         "description": "[options] Enable albums support option"
     },
     "optEnableNoFocusMsg": {
-        "message": "تمكين رسالة تركيز overlay مفاتيح الإجراءات",
+        "message": "وضع رسالة تحذير عند فقدان التركيز على الصفحة",
         "description": "[options] Enable Action Keys focus overlay message option"
     },
     "optEnableNoFocusMsgTooltip": {
-        "message": "في بعض الأحيان مفاتيح الإجراءات لا تعمل ، ويحدث هذه عادةً عندما تفقد الصفحة التركيز. إذا تم تحديد الخِيار ، فسيتم عرض رسالة تحذير (مرة واحدة فقط).",
+        "message": "في بعض الأحيان لا تعمل بعض المفاتيح، يحدث هذا عادة عندما تخرج من الصفحة. إذا تم تحديد الخيار، سيتم عرض رسالة تحذير (مرة واحدة فقط).",
         "description": "[options] Tooltip for enable Action Keys focus overlay message option"
     },
     "optPicturesOpacity": {
         "message": "تكبير عتامة الصور:",
         "description": "[options] Zoomed pictures opacity option"
     },
-    "optCaptionOpacity": {
-        "message": "Caption opacity:",
-        "description": "[options] Caption opacity option"
-    },
-    "optDetailsOpacity": {
-        "message": "Details opacity:",
-        "description": "[options] Details opacity option"
-    },
     "optOpacityUnitName": {
         "message": "%",
         "description": "[options] Unit name (percentage) for opacity option"
-    },
-    "optDetailsSelectorTooltip": {
-        "message": "Select which detail(s) should show, if details are displayed",
-        "description": "[options] Tooltip for details selector"
-    },
-    "optTitleBoxDetails": {
-        "message": "Detail(s) to show:",
-        "description": "[options] Title for details selector"
-    },
-    "optShowDetailHost": {
-        "message": "Host",
-        "description": "[options] Show Host Detail"
-    },
-    "optShowDetailFilename": {
-        "message": "File Name",
-        "description": "[options] Show File Name Detail"
-    },
-    "optShowDetailLastModified": {
-        "message": "Last Modified",
-        "description": "[options] Show Last Modified Detail"
-    },
-    "optShowDetailExtension": {
-        "message": "Extension",
-        "description": "[options] Show Extension Detail"
-    },
-    "optShowDetailContentLength": {
-        "message": "Media Length",
-        "description": "[options] Show Content Length Detail"
-    },
-    "optShowDetailDuration": {
-        "message": "Duration",
-        "description": "[options] Show Duration Detail"
-    },
-    "optShowDetailScale": {
-        "message": "Scale",
-        "description": "[options] Show Scale Detail"
-    },
-    "optShowDetailRatio": {
-        "message": "Ratio",
-        "description": "[options] Show Ratio Detail"
-    },
-    "optShowDetailDimensions": {
-        "message": "Dimensions",
-        "description": "[options] Show Dimensions Detail"
-    },
-    "optBelowPositionOffset": {
-        "message": "Below position offset:",
-        "description": "[options] Below offset option"
-    },
-    "optBelowPositionOffsetTooltip": {
-        "message": "Amount to offset text in the below position",
-        "description": "[options] Tooltip for below position offset"
-    },
-    "optAbovePositionOffset": {
-        "message": "Above position offset:",
-        "description": "[options] Above offset option"
-    },
-    "optAbovePositionOffsetTooltip": {
-        "message": "Amount to offset text in the above position",
-        "description": "[options] Tooltip for above position offset"
-    },
-    "optOffsetUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (pixel) for offset amount"
     },
     "optDisplayImageLoaderTooltip": {
         "message": "عرض شعار صغير أثناء تحميل الصور. الشعار الأحمر اختياري ويدل على عدم قدرة تحميل الصورة.",
@@ -616,15 +536,15 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "",
+        "message": "حفظ الصور والفيديوهات في مجلد:",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "بدء اسماء التنزيلات بالمصدر, أو الحجم, أو / و المدة, لتسهيل إدارة التنزيلات",
+        "message": "بدء اسماء التتزيلات بالمصدر, أو الحجم, أو / و المدة, لتسهيل إدارة التنزيلات",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "إعادة تسمية الملفات المحفوظة بإضافة:",
+        "message": "إعادة تسمية الصور والمقاطع المحفوظة عن طريق إضافة:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
@@ -650,34 +570,6 @@
     "optAddDownloadDuration": {
         "message": "المدة",
         "description": "[options] Add download duration option"
-    },
-    "optAddDownloadIndexTooltip": {
-        "message": "إضافة فهرس الصورة في المعرض (على سبيل المثال: الصورة الثالثة من أصل عشرة: 03-10)",
-        "description": "[options] Tooltip for add download index option"
-    },
-    "optAddDownloadIndex": {
-        "message": "فهرس",
-        "description": "[options] Add download index option"
-    },
-    "optAddDownloadCaptionTooltip": {
-        "message": "إضافة شرح (على سبيل المثال: الموناليزا لليوناردو دافنشي)",
-        "description": "[options] Tooltip for add download caption option"
-    },
-    "optAddDownloadCaption": {
-        "message": "شرح",
-        "description": "[options] Add download caption option"
-    },
-    "optDownloadReplaceOriginalFilenameTooltip": {
-        "message": "استبدال اسم الملف الأصلي أو إزالته إذا لم يتم تحديد الأسم (يتم الاحتفاظ بالامتداد)",
-        "description": "[options] Tooltip for replace original filename when downloading option"
-    },
-    "optDownloadReplaceOriginalFilenamePlaceholder": {
-        "message": "مثال: الصورة كاملة_الحجم",
-        "description": "[options] Placeholder for download folder option"
-    },
-    "optDownloadReplaceOriginalFilename": {
-        "message": "عند الحفظ، استبدل اسم الملف الأصلي ب:",
-        "description": "[options] Replace original filename when downloading option"
     },
     "optSectionTroubleshooting": {
         "message": "استكشاف المشاكل وإصلاحها",
@@ -706,34 +598,6 @@
     "optSupportedAudioFormats": {
         "message": "الصوت:",
         "description": "[options] Page section for supported audio formats"
-    },
-    "optSectionImportExportSettings": {
-        "message": "Import/Export",
-        "description": "[options] Page section for import/export"
-    },
-    "optSectionImportExportSettingsTooltip": {
-        "message": "Press export to get a string of your current settings. Press import to load your pasted settings",
-        "description": "[options] Tooltip for input and export options"
-    },
-    "optImportExportTextArea": {
-        "message": "Paste your saved settings here",
-        "description": "[options] Placeholder for import and export text area"
-    },
-    "optButtonImportSettings": {
-        "message": "Import",
-        "description": "[options] Import a save string from the textarea"
-    },
-    "optButtonExportSettings": {
-        "message": "Export",
-        "description": "[options] Export a save string into the textarea"
-    },
-    "optImport": {
-        "message": "Import Success!",
-        "description": "[options] Notification after successful import to options"
-    },
-    "optImportFailed": {
-        "message": "Import Failed",
-        "description": "[options] Notification after failed import to options"
     },
     "optPageFAQ": {
         "message": "الأسئلة المتكررة",
@@ -764,7 +628,7 @@
         "description": "[options] FAQ Question 2"
     },
     "optFAQ_A2_1": {
-        "message": "في الإعدادات -> العام-> التأخير، قم بتفعيل \"إخفاء مؤشر الفأرة\"",
+        "message": "في الإعدادات -> العام-> التأخير، قم بتفعيل \"إخفاء مؤشر الماوس\"",
         "description": "[options] FAQ Answer 2 part 1"
     },
     "optFAQ_SaveAndReload": {
@@ -800,11 +664,11 @@
         "description": "[options] FAQ Answer 4 part 2"
     },
     "optFAQ_Q5": {
-        "message": "مفاتيح الإجراءات لا تعمل!",
+        "message": "المفاتيح لا تعمل!",
         "description": "[options] FAQ Question 5"
     },
     "optFAQ_A5_1": {
-        "message": "في بعض الأحيان مفاتيح الإجراءات لا تعمل ، ويحدث هذه عادةً عندما تفقد الصفحة التركيز.",
+        "message": "في بعض الأحيان مفاتيح الإجراءات تنقطع، وهذا يحدث عادة عندما تخرج من الصفحة.",
         "description": "[options] FAQ Answer 5 part 1"
     },
     "optFAQ_A5_2": {
@@ -812,7 +676,7 @@
         "description": "[options] FAQ Answer 5 part 2"
     },
     "optFAQ_A5_3": {
-        "message": "في الإعدادات -> المتقدمة، يمكنك تنشيط \"تمكين رسالة تركيز overlay مفاتيح الإجراءات\"، لتحصل على رسالة تحذير عند فقدان التركيز.",
+        "message": "في الإعدادات -> المتقدمة، يمكنك تنشيط \"وضع رسالة تحذير عند فقدان التركيز على الصفحة\"، بعد ذلك ستحصل على رسالة تحذير عند الخروج من الصفحة.",
         "description": "[options] FAQ Answer 5 part 3"
     },
     "optFAQ_Q6": {
@@ -832,11 +696,11 @@
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optFAQ_Q7": {
-        "message": "أحوم فوق صورة أو مقطع فيديو ولكن في بعض الأحيان لا يحدث شيء!",
+        "message": "I hover an image or video but sometimes nothing happens!",
         "description": "[options] FAQ Question 7"
     },
     "optFAQ_A7": {
-        "message": "مرر لأسفل أو انقر في أي مكان على الصفحة لإيقاظ HoverZoom +!",
+        "message": "Scroll down or click anywhere on page to wake up HoverZoom+!",
         "description": "[options] FAQ Answer 7"
     },
     "optPixelsUnitName": {
@@ -848,7 +712,7 @@
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "إذا تم تعيين مفتاح ما ، فسيكون Hover Zoom + نشطًا فقط عند الضغط على هذا المفتاح.",
+        "message": "If a key is set, HoverZoom+ will be active only when this key is held down.",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
@@ -864,7 +728,7 @@
         "description": "[options] Action key title"
     },
     "optCloseKeyDescription": {
-        "message": "اضغط على هذا المفتاح لإغلاق الصورة المكبرة أو الفيديو.",
+        "message": "اضغط على هذا الزر لإغلاق الصورة المكبرة أو المقطع.",
         "description": "[options] Action key description"
     },
     "optHideKeyTitle": {
@@ -872,7 +736,7 @@
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "يؤدي الضغط باستمرار على هذا المفتاح إلى إخفاء الصورة المكبرة أو مقطع الفيديو. استخدمه عندما تخفي الصورة العناصر التي يتم عرضها أيضًا عند تمرير الفأرة.",
+        "message": "الضغط على هذا المفتاح يخفي الصورة المكبرة مؤقتا.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -880,7 +744,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "اضغط على هذا المفتاح لفتح الصورة أو الفيديو الذي تعرضه حاليا في نافذة جديدة. اضغط على هذا المفتاح مرة أخرى لإغلاق النافذة.",
+        "message": "اضغط على هذا المفتاح لفتح الصورة التي تعرضها حاليًا في نافذة جديدة. اضغط على هذا المفتاح مرة أخرى لإغلاق النافذة.",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
@@ -888,7 +752,7 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "اضغط على هذا المفتاح لفتح الصورة أو الفيديو الذي تعرضه حاليا في علامة تبويب جديدة. اضغط على هذا المفتاح مرة أخرى لإغلاق التبويب. مفتاح Shift+key يفتح الصورة في علامة تبويب الخلفية.",
+        "message": "اضغط على هذا المفتاح لفتح الصورة التي تعرضها حاليًا في لسان جديد. اضغط على هذا المفتاح مرة أخرى لإغلاق اللسان. المفتاح [Shift+الزر] يفتح الصورة في لسان في الخلفية.",
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
@@ -896,7 +760,7 @@
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "اضغط على هذا المفتاح لقفل الصورة أو الفيديو في وسط الصفحة، مما يسمح لك بالتكبير/التكبير. اضغط على مفتاح الإغلاق أو اضغط خارج الصورة لفتح القفل.",
+        "message": "اضغط على هذا الزر لتثبيت الصورة أو المقطع في وَسَط الصفحة، مما يسمح لك بتكبيرها. اضغط على مفتاح الإغلاق أو اضغط خارج الصورة لإزالة التثبيت.",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -904,15 +768,15 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "اضغط على هذا المفتاح لحفظ الصورة أو الفيديو الذي تعرضه حاليا.",
+        "message": "اضغط على هذا المفتاح لحفظ الصورة التي تعرضها حاليًا.",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
-        "message": "تفعيل التكبير الكامل",
+        "message": "Activer le zoom complet",
         "description": "[options] Action key title"
     },
     "optFullZoomKeyDescription": {
-        "message": "عند الضغط على هذا المفتاح ، يتم عرض الصورة باستخدام كل المساحة المتاحة. مفيدة للصور عالية الدِّقَّة فقط.",
+        "message": "عند الضغط على هذا المفتاح ، يتم عرض الصورة باستخدام كل المساحة المتاحة. مفيدة للصور عالية الدقة فقط.",
         "description": "[options] Action key description"
     },
     "optCopyImageKeyTitle": {
@@ -936,15 +800,15 @@
         "description": "[options] Action key title"
     },
     "optPrevImgKeyDescription": {
-        "message": "اضغط على هذا المفتاح لعرض الصورة السابقة في المَعْرِض.",
+        "message": "اضغط على هذا المفتاح لعرض الصورة السابقة في المعرض.",
         "description": "[options] Action key description"
     },
     "optNextImgKeyTitle": {
-        "message": "عرض الصورة التالية في مَعْرِض",
+        "message": "عرض الصورة التالية في معرض",
         "description": "[options] Action key title"
     },
     "optNextImgKeyDescription": {
-        "message": "اضغط على هذا المفتاح لعرض الصورة التالية في مَعْرِض.",
+        "message": "اضغط على هذا المفتاح لعرض الصورة التالية في معرض.",
         "description": "[options] Action key description"
     },
     "optFlipImageKeyTitle": {
@@ -976,7 +840,7 @@
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     },
     "msgClickPageToActivateActionKeys": {
-        "message": "انقر في أي مكان على الصفحة لتنشيط مفاتيح الإجراءات",
+        "message": "انقر في أي مكان على الصفحة لتنشيط الأزرار.",
         "description": "Action keys are active only if page is focused"
     }
 }

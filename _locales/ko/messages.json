@@ -112,11 +112,11 @@
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optCaptionLocation": {
-        "message": "캡션 위치:",
+        "message": "자막 위치:",
         "description": "[options] Adjust the position of the caption"
     },
     "optCaptionLocationTooltip": {
-        "message": "캡션을 해당 이미지의 위/아래에 표시, 혹은 삭제",
+        "message": "자막을 해당 이미지의 위/아래에 표시, 혹은 삭제",
         "description": "[options] Tooltip for adjusting the position of the caption"
     },
     "optCaptionLocationAbove": {
@@ -156,7 +156,7 @@
         "description": "[options] Outline option"
     },
     "optFontOutlineTooltip": {
-        "message": "활성화 시 흰 글꼴에 얇고 검은 테두리를 가진 글씨로 캡션과 상세 정보를 표시",
+        "message": "활성화 시 흰 글꼴에 얇고 검은 테두리를 가진 글씨로 자막과 상세 정보를 표시",
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
@@ -323,14 +323,6 @@
         "message": "사진이 커서를 따라 이동하도록 하는 대신 중앙에 배치",
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
-    "optAutoLockImages": {
-        "message": "이미지 자동으로 잠금",
-        "description": "[options] Automatically lock images option"
-    },
-    "optAutoLockImagesTooltip": {
-        "message": "호버 줌+ 활성화 시 이미지를 자동으로 잠그기",
-        "description": "[options] Tooltip for automatically lock images option"
-    },
     "optFrameBackgroundColor": {
         "message": "액자 배경색:",
         "description": "[options] Frame background color option"
@@ -364,7 +356,7 @@
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
-        "message": "캡션과 상세 정보 표시에 쓰이는 글씨의 크기",
+        "message": "자막과 상세 정보 표시에 쓰이는 글씨의 크기",
         "description": "[options] Tooltip for font size option"
     },
     "optFontSizeUnitName": {
@@ -507,81 +499,9 @@
         "message": "확대된 이미지의 투명도:",
         "description": "[options] Zoomed pictures opacity option"
     },
-    "optCaptionOpacity": {
-        "message": "캡션 불투명도:",
-        "description": "[options] Caption opacity option"
-    },
-    "optDetailsOpacity": {
-        "message": "상세 정보 불투명도:",
-        "description": "[options] Details opacity option"
-    },
     "optOpacityUnitName": {
         "message": "퍼센트",
         "description": "[options] Unit name (percentage) for opacity option"
-    },
-    "optDetailsSelectorTooltip": {
-        "message": "Select which detail(s) should show, if details are displayed",
-        "description": "[options] Tooltip for details selector"
-    },
-    "optTitleBoxDetails": {
-        "message": "Detail(s) to show:",
-        "description": "[options] Title for details selector"
-    },
-    "optShowDetailHost": {
-        "message": "Host",
-        "description": "[options] Show Host Detail"
-    },
-    "optShowDetailFilename": {
-        "message": "File Name",
-        "description": "[options] Show File Name Detail"
-    },
-    "optShowDetailLastModified": {
-        "message": "Last Modified",
-        "description": "[options] Show Last Modified Detail"
-    },
-    "optShowDetailExtension": {
-        "message": "Extension",
-        "description": "[options] Show Extension Detail"
-    },
-    "optShowDetailContentLength": {
-        "message": "Media Length",
-        "description": "[options] Show Content Length Detail"
-    },
-    "optShowDetailDuration": {
-        "message": "Duration",
-        "description": "[options] Show Duration Detail"
-    },
-    "optShowDetailScale": {
-        "message": "Scale",
-        "description": "[options] Show Scale Detail"
-    },
-    "optShowDetailRatio": {
-        "message": "Ratio",
-        "description": "[options] Show Ratio Detail"
-    },
-    "optShowDetailDimensions": {
-        "message": "Dimensions",
-        "description": "[options] Show Dimensions Detail"
-    },
-    "optBelowPositionOffset": {
-        "message": "아래쪽 간격:",
-        "description": "[options] Below offset option"
-    },
-    "optBelowPositionOffsetTooltip": {
-        "message": "아래쪽에서 글자를 떨어뜨릴 간격",
-        "description": "[options] Tooltip for below position offset"
-    },
-    "optAbovePositionOffset": {
-        "message": "위쪽 간격:",
-        "description": "[options] Above offset option"
-    },
-    "optAbovePositionOffsetTooltip": {
-        "message": "위쪽에서 글자를 떨어뜨릴 간격",
-        "description": "[options] Tooltip for above position offset"
-    },
-    "optOffsetUnitName": {
-        "message": "%",
-        "description": "[options] Unit name (pixel) for offset amount"
     },
     "optDisplayImageLoaderTooltip": {
         "message": "사진을 불러오는 동안 로딩 아이콘을 표시합니다(초록: 로딩, 빨강: 오류). 빨간색 로딩 아이콘을 띄울지는 선택할 수 있습니다.",
@@ -616,15 +536,15 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "사진, 동영상 및 오디오를 저장할 폴더: Downloads/",
+        "message": "폴더에 사진 및 동영상 저장하기: Downloads/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "파일을 보다 쉽게 관리할 수 있도록 출처, 크기, 길이 등을 파일 이름 앞에 붙입니다",
+        "message": "파일을 보다 쉽게 관리할 수 있도록 출처, 크기, 기간을 파일 이름 앞에 붙입니다",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "저장한 파일의 이름에 문자 추가:",
+        "message": "저장한 사진과 동영상의 파일 이름에 문자 추가:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
@@ -650,34 +570,6 @@
     "optAddDownloadDuration": {
         "message": "길이",
         "description": "[options] Add download duration option"
-    },
-    "optAddDownloadIndexTooltip": {
-        "message": "갤러리 내 이미지의 색인 추가 (예를 들어, 열 개 중 세 번째 이미지라면: 03-10)",
-        "description": "[options] Tooltip for add download index option"
-    },
-    "optAddDownloadIndex": {
-        "message": "색인",
-        "description": "[options] Add download index option"
-    },
-    "optAddDownloadCaptionTooltip": {
-        "message": "캡션 추가 (예: 레오나르도 다빈치의 모나리자)",
-        "description": "[options] Tooltip for add download caption option"
-    },
-    "optAddDownloadCaption": {
-        "message": "캡션",
-        "description": "[options] Add download caption option"
-    },
-    "optDownloadReplaceOriginalFilenameTooltip": {
-        "message": "원본 파일명을 바꾸거나 값이 없는 경우 제거합니다 (확장자는 유지)",
-        "description": "[options] Tooltip for replace original filename when downloading option"
-    },
-    "optDownloadReplaceOriginalFilenamePlaceholder": {
-        "message": "예시: fullsize_image",
-        "description": "[options] Placeholder for download folder option"
-    },
-    "optDownloadReplaceOriginalFilename": {
-        "message": "저장할 때 원본 파일명을 다음으로 교체:",
-        "description": "[options] Replace original filename when downloading option"
     },
     "optSectionTroubleshooting": {
         "message": "문제 해결",
@@ -706,34 +598,6 @@
     "optSupportedAudioFormats": {
         "message": "소리:",
         "description": "[options] Page section for supported audio formats"
-    },
-    "optSectionImportExportSettings": {
-        "message": "가져오기/내보내기",
-        "description": "[options] Page section for import/export"
-    },
-    "optSectionImportExportSettingsTooltip": {
-        "message": "내보내기를 눌러 현재 설정을 문자열로 받을 수 있습니다. 가져오기를 눌러 붙여넣은 설정을 불러옵니다.",
-        "description": "[options] Tooltip for input and export options"
-    },
-    "optImportExportTextArea": {
-        "message": "여기에 저장한 설정을 붙여넣기",
-        "description": "[options] Placeholder for import and export text area"
-    },
-    "optButtonImportSettings": {
-        "message": "가져오기",
-        "description": "[options] Import a save string from the textarea"
-    },
-    "optButtonExportSettings": {
-        "message": "내보내기",
-        "description": "[options] Export a save string into the textarea"
-    },
-    "optImport": {
-        "message": "가져오기 성공!",
-        "description": "[options] Notification after successful import to options"
-    },
-    "optImportFailed": {
-        "message": "가져오기 실패",
-        "description": "[options] Notification after failed import to options"
     },
     "optPageFAQ": {
         "message": "FAQ",

@@ -48,13 +48,13 @@ hoverZoomPlugins.push({
         // videos
         //         href: https://kick.com/video/bed2156f-e0ac-48e3-9d63-11581b9aa614
         // => video url: https://stream.kick.com/ivs/v1/196233775518/1J3T5DLBzrog/2023/3/19/4/33/FqB89JgRJg0c/media/hls/master.m3u8
-        $('a[href]').filter(function() { return (/kick\.com\/\S*\/videos\//.test($(this).prop('href'))) }).one('mouseover', function() {
+        $('a[href]').filter(function() { return (/kick\.com\/video\//.test($(this).prop('href'))) }).one('mouseover', function() {
             const href = this.href;
             var link = $(this);
             if (link.data().hoverZoomMouseOver) return;
             link.data().hoverZoomMouseOver = true;
 
-            const re = /kick\.com\/\S*\/videos\/(.*)/;   // video id (e.g. d1f27b01-abd8-47f2-a52a-5b2c22044d3b)
+            const re = /kick\.com\/video\/(.*)/;   // video id (e.g. d1f27b01-abd8-47f2-a52a-5b2c22044d3b)
             m = href.match(re);
             if (m == undefined) return;
             const videoId = m[1];
