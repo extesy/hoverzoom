@@ -576,6 +576,7 @@ function updateTxtFontSize() {
 function updateTxtImagePaddingSize() {
     $('#txtImagePaddingSize')[0].value = this.value;
 }
+
 function updateTxtBelowPositionOffset() {
     $('#txtBelowPositionOffset')[0].value = this.value;
 }
