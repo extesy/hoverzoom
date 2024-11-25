@@ -527,7 +527,7 @@ var hoverZoom = {
 
                 // display viewer on the left side if the mouse is on the right
                 if (!displayOnRight) {
-                    position.left -= hz.hzViewer.width() + padding;
+                    position.left -= hz.hzViewer.width() + padding - offset;
                 }
 
                 // horizontal position adjustment if full zoom
