@@ -799,6 +799,16 @@ var hoverZoom = {
             audioControlsCss.margin = audioControlsWithVideoCss.margin = thickness + 'px';
         }
 
+        // set max width in pixels
+        function maxWidth(width) {
+            imgFullSizeCss['max-width'] = (width > 0) ? width + 'px' : 'none';
+        }
+
+        // set max height in pixels
+        function maxHeight(height) {
+            imgFullSizeCss['max-height'] = (height > 0) ? height + 'px' : 'none';
+        }
+
         // set font size in pixel(s)
         function fontSize(size) {
             size = parseInt(size);
@@ -3795,6 +3805,8 @@ var hoverZoom = {
             frameBackgroundColor(options.frameBackgroundColor);
             frameThickness(options.frameThickness);
             fontSize(options.fontSize);
+            maxWidth(options.maxWidth);
+            maxHeight(options.maxHeight);
 
             webSiteExcluded = null;
             body100pct = (body.css('position') != 'static') || (body.css('padding-left') == '0px' && body.css('padding-right') == '0px' && body.css('margin-left') == '0px' && body.css('margin-right') == '0px' && (body.css('max-width') == 'none' || body.css('max-width') == '100%'));
