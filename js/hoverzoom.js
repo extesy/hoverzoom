@@ -63,7 +63,7 @@ var hoverZoom = {
         'background':'none',
         'line-height':'0px',
         'overflow':'hidden',
-        'padding':'5px',
+        'padding': (options.imagePaddingSize / 2) + 'px',
         'position':'absolute',
         'z-index':2147483647,
         'transform':''
@@ -372,7 +372,7 @@ var hoverZoom = {
             }
 
             var offset = 20,
-                padding = 10,
+                padding = options.imagePaddingSize,
                 zoom = window.devicePixelRatio || 1.0,
                 scrollBarHeight = (!options.hScrollBarOverlap && hasScrollbarH() ? 17 / zoom : 0),
                 statusBarHeight = (!options.statusBarOverlap ? 30 / zoom : padding),
@@ -1776,7 +1776,7 @@ var hoverZoom = {
 
                 hz.hzViewer.css('overflow', 'visible');
                 hz.hzViewer.css('border', '0px');
-                hz.hzViewer.css('padding', '10px');
+                hz.hzViewer.css('padding', options.imagePaddingSize + 'px');
                 hz.hzViewer.css('box-shadow', 'none');
                 var background = $('<div/>');
                 $(background).css('width', 20 * screen.availWidth) // background canvas must be very large in case of zooming
