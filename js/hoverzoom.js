@@ -63,7 +63,7 @@ var hoverZoom = {
         'background':'none',
         'line-height':'0px',
         'overflow':'hidden',
-        'padding': (options.imagePaddingSize / 2) + 'px',
+        'padding':'5px',
         'position':'absolute',
         'z-index':2147483647,
         'transform':''
@@ -798,6 +798,11 @@ var hoverZoom = {
 
             imgFullSizeCss.borderWidth = imgFullSizeCss.borderRadius = thickness + 'px';
             audioControlsCss.margin = audioControlsWithVideoCss.margin = thickness + 'px';
+        }
+
+        // set hzWindow padding in pixel(s)
+        function imagePaddingSize(padding) {
+            hoverZoom.hzViewerCss.padding = padding + 'px';
         }
 
         // set font size in pixel(s)
@@ -3795,6 +3800,7 @@ var hoverZoom = {
 
             frameBackgroundColor(options.frameBackgroundColor);
             frameThickness(options.frameThickness);
+            imagePaddingSize(options.imagePaddingSize / 2);
             fontSize(options.fontSize);
 
             webSiteExcluded = null;
