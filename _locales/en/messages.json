@@ -348,20 +348,20 @@
         "description": "[options] Tooltip for adjust the zoomed image padding size option"
     },
     "optStatusBarOverlap": {
-        "message": "Allow zoomed pictures to overlap the status bar",
-        "description": "[options] Allow zoomed pictures to overlap the status bar option"
+        "message": "Allow zoomed images to overlap the status bar",
+        "description": "[options] Allow zoomed images to overlap the status bar option"
     },
     "optStatusBarOverlapTooltip": {
-        "message": "Allow zoomed pictures to overlap the status bar, letting more of the window be used",
-        "description": "[options] Tooltip for allow zoomed pictures to overlap the status bar option"
+        "message": "Allow zoomed images to overlap the status bar, letting more of the window be used",
+        "description": "[options] Tooltip for allow zoomed images to overlap the status bar option"
     },
     "optHScrollBarOverlap": {
-        "message": "Allow zoomed pictures to overlap the horizontal scroll bar",
-        "description": "[options] Allow zoomed pictures to overlap the horizontal scroll bar option"
+        "message": "Allow zoomed images to overlap the horizontal scroll bar",
+        "description": "[options] Allow zoomed images to overlap the horizontal scroll bar option"
     },
     "optHScrollBarOverlapTooltip": {
-        "message": "Allow zoomed pictures to overlap the horizontal bar, letting more of the window be used",
-        "description": "[options] Tooltip for allow zoomed pictures to overlap the horizontal scroll bar option"
+        "message": "Allow zoomed images to overlap the horizontal bar, letting more of the window be used",
+        "description": "[options] Tooltip for allow zoomed images to overlap the horizontal scroll bar option"
     },
     "optCenterImages": {
         "message": "Center images",
