@@ -374,8 +374,8 @@ var hoverZoom = {
             var offset = 20,
                 padding = 10,
                 zoom = window.devicePixelRatio || 1.0,
-                scrollBarHeight = (hasScrollbarH() ? 17 / zoom : 0),
-                statusBarHeight = 30 / zoom,
+                scrollBarHeight = (!options.hScrollBarOverlap && hasScrollbarH() ? 17 / zoom : 0),
+                statusBarHeight = (!options.statusBarOverlap ? 30 / zoom : padding),
                 scrollBarWidth = 17 / zoom,
                 wndWidth = innerWidth,
                 wndHeight = innerHeight,
@@ -496,15 +496,16 @@ var hoverZoom = {
                 }
 
                 // width adjustment
-                const fullZoom = options.mouseUnderlap ||  viewerLocked;
+                const fullZoom = options.mouseUnderlap || viewerLocked;
                 const fullZoomKey = fullZoomKeyDown;
                 if (viewerLocked) {
                     imgFullSize.width(srcDetails.naturalWidth * zoomFactor);
                 } else if (fullZoomKey) {
                     // naturalWidth replaced with wndWidth to make image fill window
-                    imgFullSize.width(Math.min(wndWidth, wndWidth - padding - 2 * scrollBarWidth)); 
+                    // offset subtracted to keep image within window's bounds
+                    imgFullSize.width(wndWidth - offset - padding - 2 * scrollBarWidth); 
                 } else if (fullZoom) {
-                    imgFullSize.width(Math.min(srcDetails.naturalWidth * zoomFactor, wndWidth - padding - 2 * scrollBarWidth));
+                    imgFullSize.width(Math.min(srcDetails.naturalWidth * zoomFactor, wndWidth - offset - padding - 2 * scrollBarWidth));
                 } else if (displayOnRight) {
                     if (srcDetails.naturalWidth * zoomFactor + padding > wndWidth - position.left) {
                         imgFullSize.width(wndWidth - position.left - padding + wndScrollLeft);
@@ -543,8 +544,8 @@ var hoverZoom = {
                 if (position.top > maxTop) {
                     position.top = maxTop;
                 }
-                if (position.top < wndScrollTop + 0.5 * padding) {
-                    position.top = wndScrollTop + 0.5 * padding;
+                if (position.top < wndScrollTop) {
+                    position.top = wndScrollTop;
                 }
 
                 if (options.ambilightEnabled) {

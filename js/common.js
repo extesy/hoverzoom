@@ -35,6 +35,8 @@ var factorySettings = {
     ambilightHaloSize : 0.1,
     ambilightBackgroundOpacity : 0.9,
     disabledPlugins : [],
+    statusBarOverlap : false,
+    hScrollBarOverlap : false,
     centerImages : false,
     autoLockImages : false,
     frameBackgroundColor: "#ffffff",
@@ -143,6 +145,8 @@ function loadOptions() {
     options.ambilightHaloSize = options.hasOwnProperty('ambilightHaloSize') ? options.ambilightHaloSize : factorySettings.ambilightHaloSize;
     options.ambilightBackgroundOpacity = options.hasOwnProperty('ambilightBackgroundOpacity') ? options.ambilightBackgroundOpacity : factorySettings.ambilightBackgroundOpacity;
     options.disabledPlugins = options.hasOwnProperty('disabledPlugins') ? options.disabledPlugins : factorySettings.disabledPlugins;
+    options.statusBarOverlap = options.hasOwnProperty('statusBarOverlap') ? options.statusBarOverlap : factorySettings.statusBarOverlap;
+    options.hScrollBarOverlap = options.hasOwnProperty('hScrollBarOverlap') ? options.hScrollBarOverlap : factorySettings.hScrollBarOverlap;
     options.centerImages = options.hasOwnProperty('centerImages') ? options.centerImages : factorySettings.centerImages;
     options.autoLockImages = options.hasOwnProperty('autoLockImages') ? options.autoLockImages : factorySettings.autoLockImages;
     options.frameBackgroundColor = options.hasOwnProperty('frameBackgroundColor') ? options.frameBackgroundColor : factorySettings.frameBackgroundColor;
