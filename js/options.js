@@ -235,7 +235,8 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#rngFontSize').val(parseInt(options.fontSize));
     $('#txtFontSize').val(parseInt(options.fontSize));
     $('#chkFontOutline').trigger(options.fontOutline ? 'gumby.check' : 'gumby.uncheck');
-    $('#txtImagePaddingSize').val(parseFloat(options.imagePaddingSize));
+    $('#rngImagePaddingSize').val(parseInt(options.imagePaddingSize));
+    $('#txtImagePaddingSize').val(parseInt(options.imagePaddingSize));
     $('#txtBelowPositionOffset').val(parseFloat(options.belowPositionOffset));
     $('#txtAbovePositionOffset').val(parseFloat(options.abovePositionOffset));
     $('#txtCaptionOpacity').val(parseInt(options.captionOpacity * 100));
@@ -577,6 +578,11 @@ function updateTxtImagePaddingSize() {
     $('#txtImagePaddingSize')[0].value = this.value;
 }
 
+function updateRngImagePaddingSize() {
+    this.value = percentageOnChange(this.value);
+    $('#rngImagePaddingSize').val(this.value);
+}
+
 function updateTxtBelowPositionOffset() {
     $('#txtBelowPositionOffset')[0].value = this.value;
 }
@@ -747,6 +753,7 @@ $(function () {
     $('#txtFrameThickness').change(updateRngFrameThickness);
     $('#rngFontSize').on('input change', updateTxtFontSize);
     $('#txtFontSize').change(updateRngFontSize);
+    $('#rngImagePaddingSize').on('input change', updateTxtImagePaddingSize);
     $('#txtImagePaddingSize').change(updateTxtImagePaddingSize);
     $('#txtBelowPositionOffset').change(updateTxtBelowPositionOffset);
     $('#txtAbovePositionOffset').change(updateTxtAbovePositionOffset);
