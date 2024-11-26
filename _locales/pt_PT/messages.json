@@ -111,6 +111,26 @@
         "message": "Multiplica o tamanho das imagens ampliadas por este valor",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
+    "optMaxWidth": {
+        "message": "Definir a largura máxima das imagens com zoom:",
+        "description": "[options] Adjust the size of zoomed images option"
+    },
+    "optMaxWidthTooltip": {
+        "message": "Define a largura máxima das imagens com zoom por este valor (se 0, então não há largura máxima)",
+        "description": "[options] Tooltip for adjust the size of zoomed images option"
+    },
+    "optMaxHeight": {
+        "message": "Definir a altura máxima das imagens com zoom:",
+        "description": "[options] Adjust the size of zoomed images option"
+    },
+    "optMaxHeightTooltip": {
+        "message": "Define a altura máxima das imagens com zoom por este valor (se 0, então não há altura máxima)",
+        "description": "[options] Tooltip for adjust the size of zoomed images option"
+    },
+    "optMaxSizeUnitName": {
+        "message": "px",
+        "description": "[options] Unit name (px) for zoomed images size option"
+    },
     "optCaptionLocation": {
         "message": "Posição da legenda:",
         "description": "[options] Adjust the position of the caption"
