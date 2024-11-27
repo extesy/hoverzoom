@@ -443,7 +443,7 @@ var hoverZoom = {
                         hzBelow.css('position', 'absolute');
                 }
 
-                // do not display caption nor details if img is too small
+                // do not display caption nor details if img is too small, or if full zoom key is pressed
                 if (imgFullSize[0].clientWidth < 50 || fullZoomKey) {
                     if (hzAbove) hzAbove.hide();
                     if (hzBelow) hzBelow.hide();
