@@ -107,6 +107,7 @@ function saveOptions(exportSettings = false) {
     options.ambilightEnabled = $('#chkAmbilightEnabled')[0].checked;
     options.ambilightHaloSize = $('#txtAmbilightHaloSize')[0].value / 100;
     options.ambilightBackgroundOpacity = $('#txtAmbilightBackgroundOpacity')[0].value / 100;
+    options.imagePaddingSize = $('#txtImagePaddingSize')[0].value;
     options.statusBarOverlap = $('#chkStatusBarOverlap')[0].checked;
     options.hScrollBarOverlap = $('#chkHScrollBarOverlap')[0].checked;
     options.centerImages = $('#chkCenterImages')[0].checked;
@@ -238,6 +239,8 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#rngFontSize').val(parseInt(options.fontSize));
     $('#txtFontSize').val(parseInt(options.fontSize));
     $('#chkFontOutline').trigger(options.fontOutline ? 'gumby.check' : 'gumby.uncheck');
+    $('#rngImagePaddingSize').val(parseInt(options.imagePaddingSize));
+    $('#txtImagePaddingSize').val(parseInt(options.imagePaddingSize));
     $('#txtBelowPositionOffset').val(parseFloat(options.belowPositionOffset));
     $('#txtAbovePositionOffset').val(parseFloat(options.abovePositionOffset));
     $('#txtCaptionOpacity').val(parseInt(options.captionOpacity * 100));
@@ -575,6 +578,15 @@ function updateTxtFontSize() {
     $('#txtFontSize')[0].value = this.value;
 }
 
+function updateTxtImagePaddingSize() {
+    $('#txtImagePaddingSize')[0].value = this.value;
+}
+
+function updateRngImagePaddingSize() {
+    this.value = percentageOnChange(this.value);
+    $('#rngImagePaddingSize').val(this.value);
+}
+
 function updateTxtBelowPositionOffset() {
     $('#txtBelowPositionOffset')[0].value = this.value;
 }
@@ -745,6 +757,8 @@ $(function () {
     $('#txtFrameThickness').change(updateRngFrameThickness);
     $('#rngFontSize').on('input change', updateTxtFontSize);
     $('#txtFontSize').change(updateRngFontSize);
+    $('#rngImagePaddingSize').on('input change', updateTxtImagePaddingSize);
+    $('#txtImagePaddingSize').change(updateTxtImagePaddingSize);
     $('#txtBelowPositionOffset').change(updateTxtBelowPositionOffset);
     $('#txtAbovePositionOffset').change(updateTxtAbovePositionOffset);
     $('#txtCaptionOpacity').change(updateTxtCaptionOpacity);

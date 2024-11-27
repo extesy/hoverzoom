@@ -372,7 +372,7 @@ var hoverZoom = {
             }
 
             var offset = 20,
-                padding = 10,
+                padding = Math.max(options.imagePaddingSize, 0), // prevents imagePaddingSize from going below 0 when set to 0
                 zoom = window.devicePixelRatio || 1.0,
                 scrollBarHeight = (!options.hScrollBarOverlap && hasScrollbarH() ? 17 / zoom : 0),
                 statusBarHeight = (!options.statusBarOverlap ? 30 / zoom : padding),
@@ -527,7 +527,7 @@ var hoverZoom = {
 
                 // display viewer on the left side if the mouse is on the right
                 if (!displayOnRight) {
-                    position.left -= hz.hzViewer.width() + padding;
+                    position.left -= hz.hzViewer.width() + padding - offset;
                 }
 
                 // horizontal position adjustment if full zoom
@@ -544,8 +544,8 @@ var hoverZoom = {
                 if (position.top > maxTop) {
                     position.top = maxTop;
                 }
-                if (position.top < wndScrollTop) {
-                    position.top = wndScrollTop;
+                if (position.top < wndScrollTop + padding) {
+                    position.top = wndScrollTop + padding;
                 }
 
                 if (options.ambilightEnabled) {
@@ -1786,7 +1786,7 @@ var hoverZoom = {
 
                 hz.hzViewer.css('overflow', 'visible');
                 hz.hzViewer.css('border', '0px');
-                hz.hzViewer.css('padding', '10px');
+                hz.hzViewer.css('padding', options.imagePaddingSize + 'px');
                 hz.hzViewer.css('box-shadow', 'none');
                 var background = $('<div/>');
                 $(background).css('width', 20 * screen.availWidth) // background canvas must be very large in case of zooming
