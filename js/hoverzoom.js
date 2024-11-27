@@ -558,6 +558,9 @@ var hoverZoom = {
                 if (position.top < wndScrollTop + padding) {
                     position.top = wndScrollTop + padding;
                 }
+                if (fullZoomKey && position.top == wndScrollTop + padding) {
+                    position.top = wndScrollTop + padding / 1.5;
+                }
 
                 if (options.ambilightEnabled) {
                     updateAmbilight();
