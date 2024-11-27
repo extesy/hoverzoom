@@ -404,11 +404,22 @@ var hoverZoom = {
                 if (hzBelow)
                     hzBelow.css('max-width', 0);
 
+                // hides caption and details to fill window more with image when fullZoomKey is pressed
+                const fullZoomKey = fullZoomKeyDown;
+                const hzAboveHeight = fullZoomKey ? 0 : hzAbove.height();
+                const hzBelowHeight = fullZoomKey ? 0 : hzBelow.height();
+
+                // needed so height adjusts properly when fullZoomKey is released
+                if (!fullZoomKey) {
+                    if (hzAbove) hzAbove.show();
+                    if (hzBelow) hzBelow.show();
+                }
+
                 // this is looped 10x max just in case something goes wrong, to avoid freezing the process
                 let i = 0;
 
                 while (!viewerLocked && hz.hzViewer.height() > wndHeight - statusBarHeight - scrollBarHeight && i++ < 10) {
-                    imgFullSize.height(wndHeight - padding - statusBarHeight - scrollBarHeight - (hzAbove ? hzAbove.height() : 0) - (hzBelow ? hzBelow.height() : 0)).width('auto');
+                    imgFullSize.height(wndHeight - padding - statusBarHeight - scrollBarHeight - options.frameThickness - (hzAbove ? hzAboveHeight : 0) - (hzBelow ? hzBelowHeight : 0)).width('auto');
                 }
 
                 if (hzCaptionMiscellaneous) {
@@ -433,7 +444,7 @@ var hoverZoom = {
                 }
 
                 // do not display caption nor details if img is too small
-                if (imgFullSize[0].clientWidth < 50) {
+                if (imgFullSize[0].clientWidth < 50 || fullZoomKey) {
                     if (hzAbove) hzAbove.hide();
                     if (hzBelow) hzBelow.hide();
                 } else {
