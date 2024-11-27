@@ -531,7 +531,7 @@ var hoverZoom = {
                 }
 
                 // horizontal position adjustment if full zoom
-                if (fullZoom) {
+                if (fullZoom || fullZoomKey) {
                     if (displayOnRight) {
                         position.left = Math.min(position.left, wndScrollLeft + wndWidth - hz.hzViewer.width() - padding - 2 * scrollBarWidth);
                     } else {
