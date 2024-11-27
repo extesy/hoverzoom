@@ -406,8 +406,8 @@ var hoverZoom = {
 
                 // hides caption and details to fill window more with image when fullZoomKey is pressed
                 const fullZoomKey = fullZoomKeyDown;
-                const hzAboveHeight = fullZoomKey ? 0 : hzAbove.height();
-                const hzBelowHeight = fullZoomKey ? 0 : hzBelow.height();
+                const hzAboveHeight = fullZoomKey ? padding : hzAbove.height();
+                const hzBelowHeight = fullZoomKey ? padding : hzBelow.height();
 
                 // needed so height adjusts properly when fullZoomKey is released
                 if (!fullZoomKey) {
