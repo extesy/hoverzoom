@@ -800,11 +800,6 @@ var hoverZoom = {
             audioControlsCss.margin = audioControlsWithVideoCss.margin = thickness + 'px';
         }
 
-        // set hzWindow padding in pixel(s)
-        function imagePaddingSize(padding) {
-            hoverZoom.hzViewerCss.padding = padding + 'px';
-        }
-
         // set max width in pixels
         function maxWidth(width) {
             imgFullSizeCss['max-width'] = (width > 0) ? width + 'px' : 'none';
@@ -3810,7 +3805,6 @@ var hoverZoom = {
 
             frameBackgroundColor(options.frameBackgroundColor);
             frameThickness(options.frameThickness);
-            imagePaddingSize(options.imagePaddingSize / 2);
             fontSize(options.fontSize);
             maxWidth(options.maxWidth);
             maxHeight(options.maxHeight);
