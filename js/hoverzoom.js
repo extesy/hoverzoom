@@ -406,11 +406,12 @@ var hoverZoom = {
 
                 // hides caption and details to fill window more with image when fullZoomKey is pressed
                 const fullZoomKey = fullZoomKeyDown;
-                const hzAboveHeight = fullZoomKey ? padding : hzAbove.height();
-                const hzBelowHeight = fullZoomKey ? padding : hzBelow.height();
+                const hideDetailsandCaptions = options.fullZoomHidesDetailsCaptions;
+                const hzAboveHeight = (fullZoomKey && hideDetailsandCaptions) ? padding : hzAbove.height();
+                const hzBelowHeight = (fullZoomKey && hideDetailsandCaptions) ? padding : hzBelow.height();
 
                 // needed so height adjusts properly when fullZoomKey is released
-                if (!fullZoomKey) {
+                if (!fullZoomKey && hideDetailsandCaptions) {
                     if (hzAbove) hzAbove.show();
                     if (hzBelow) hzBelow.show();
                 }
@@ -444,7 +445,7 @@ var hoverZoom = {
                 }
 
                 // do not display caption nor details if img is too small, or if full zoom key is pressed
-                if (imgFullSize[0].clientWidth < 50 || fullZoomKey) {
+                if (imgFullSize[0].clientWidth < 50 || (fullZoomKey && hideDetailsandCaptions)) {
                     if (hzAbove) hzAbove.hide();
                     if (hzBelow) hzBelow.hide();
                 } else {
