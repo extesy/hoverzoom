@@ -540,7 +540,7 @@ var hoverZoom = {
                 }
 
                 // vertical position adjustments
-                var maxTop = wndScrollTop + wndHeight - hz.hzViewer.height() - padding - statusBarHeight - scrollBarHeight;
+                const maxTop = wndScrollTop + wndHeight - hz.hzViewer.height() - padding - statusBarHeight - scrollBarHeight;
                 if (position.top > maxTop) {
                     position.top = maxTop;
                 }
