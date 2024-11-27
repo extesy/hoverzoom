@@ -335,6 +335,34 @@
         "message": "0 %: prozorno, 100 %: črno",
         "description": "[options] Tooltip for background opacity"
     },
+    "optImagePaddingSize": {
+        "message": "Image padding size:",
+        "description": "[options] Adjust the zoomed image padding size option"
+    },
+    "optImagePaddingSizeUnitName": {
+        "message": "pixels",
+        "description": "[options] Unit name (pixels) for zoomed images padding option"
+    },
+    "optImagePaddingSizeTooltip": {
+        "message": "Changes the padding size for zoomed images. Padding determines how close the image can get to the edge of the viewing window",
+        "description": "[options] Tooltip for adjust the zoomed image padding size option"
+    },
+    "optStatusBarOverlap": {
+        "message": "Allow zoomed images to overlap the status bar",
+        "description": "[options] Allow zoomed images to overlap the status bar option"
+    },
+    "optStatusBarOverlapTooltip": {
+        "message": "Allow zoomed images to overlap the status bar, letting more of the window be used",
+        "description": "[options] Tooltip for allow zoomed images to overlap the status bar option"
+    },
+    "optHScrollBarOverlap": {
+        "message": "Allow zoomed images to overlap the horizontal scroll bar",
+        "description": "[options] Allow zoomed images to overlap the horizontal scroll bar option"
+    },
+    "optHScrollBarOverlapTooltip": {
+        "message": "Allow zoomed images to overlap the horizontal bar, letting more of the window be used",
+        "description": "[options] Tooltip for allow zoomed images to overlap the horizontal scroll bar option"
+    },
     "optCenterImages": {
         "message": "Slike v središču",
         "description": "[options] Center images in the middle of the page option"
