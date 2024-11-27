@@ -419,7 +419,7 @@ var hoverZoom = {
                 let i = 0;
 
                 while (!viewerLocked && hz.hzViewer.height() > wndHeight - statusBarHeight - scrollBarHeight && i++ < 10) {
-                    imgFullSize.height(wndHeight - padding - statusBarHeight - scrollBarHeight - options.frameThickness - (hzAbove ? hzAboveHeight : 0) - (hzBelow ? hzBelowHeight : 0)).width('auto');
+                    imgFullSize.height(wndHeight - padding - statusBarHeight - scrollBarHeight - (hzAbove ? hzAboveHeight : 0) - (hzBelow ? hzBelowHeight : 0)).width('auto');
                 }
 
                 if (hzCaptionMiscellaneous) {
