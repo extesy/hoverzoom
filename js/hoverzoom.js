@@ -372,7 +372,7 @@ var hoverZoom = {
             }
 
             var offset = 20,
-                padding = Math.max(options.imagePaddingSize, 0), // prevents imagePaddingSize from going to negatives when it's 0
+                padding = Math.max(options.imagePaddingSize, 0), // prevents imagePaddingSize from going below 0 when set to 0
                 zoom = window.devicePixelRatio || 1.0,
                 scrollBarHeight = (!options.hScrollBarOverlap && hasScrollbarH() ? 17 / zoom : 0),
                 statusBarHeight = (!options.statusBarOverlap ? 30 / zoom : padding),
