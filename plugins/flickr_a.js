@@ -84,45 +84,6 @@ var hoverZoomPluginFlickerA = {
             var res = [];
             res.push(link);
             callback($(res), this.name);
-        } else {
-            link.mouseenter(function () {
-                data.hoverZoomMouseOver = true;
-                if (data.hoverZoomFlickrApiCalled) {
-                    return;
-                }
-                data.hoverZoomFlickrApiCalled = true;
-                //var apiKey = '0bb8ac4ab9a737b644c407ba8f59e9e7';
-                //var apiKey = '26a8c097b4cc3237a4efad4df5f8fc7a';
-                const apiKey = '9bb671af308f509d0c82146cbc936b3c';
-                var requestUrl = 'https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=' + apiKey + '&photo_id=' + photoId + '&format=json&nojsoncallback=1';
-                chrome.runtime.sendMessage({action:'ajaxGet', url:requestUrl}, function (response) {
-                    var rsp = JSON.parse(response);
-                    if (rsp.stat != 'ok') {
-                        console.warn('[HoverZoom] Flickr API call failed. Photo ID: ' + photoId + '. Error #' + rsp.code + ': ' + rsp.message);
-                        return;
-                    }
-                    var src = '';
-                    // sort by height
-                    let sortedsizes = rsp.sizes.size.sort(function(a,b) { if (parseInt(a.height) > parseInt(b.height)) return -1; if (parseInt(a.height) < parseInt(b.height)) return 1; return 0; })
-                    src = sortedsizes[0].source;
-                    if (src != '') {
-                        data.hoverZoomSrc = [src];
-                        link.addClass('hoverZoomLink');
-
-                        var res = [];
-                        res.push(link);
-                        callback($(res), this.name);
-                        // Image is displayed if the cursor is still over the link
-                        if (data.hoverZoomMouseOver)
-                            hoverZoom.displayPicFromElement(link);
-
-                        // Items are stored to lessen API calls
-                        localStorage[cachePrefix + photoId] = src;
-                    }
-                });
-            }).mouseleave(function () {
-                    data.hoverZoomMouseOver = false;
-                });
         }
     }
 };
