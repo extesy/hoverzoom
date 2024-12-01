@@ -372,10 +372,10 @@ var hoverZoom = {
             }
 
             var offset = 20,
-                padding = 10,
+                padding = Math.max(options.imagePaddingSize, 0), // prevents imagePaddingSize from going below 0 when set to 0
                 zoom = window.devicePixelRatio || 1.0,
-                scrollBarHeight = (hasScrollbarH() ? 17 / zoom : 0),
-                statusBarHeight = 30 / zoom,
+                scrollBarHeight = (!options.hScrollBarOverlap && hasScrollbarH() ? 17 / zoom : 0),
+                statusBarHeight = (!options.statusBarOverlap ? 30 / zoom : padding),
                 scrollBarWidth = 17 / zoom,
                 wndWidth = innerWidth,
                 wndHeight = innerHeight,
@@ -496,15 +496,16 @@ var hoverZoom = {
                 }
 
                 // width adjustment
-                const fullZoom = options.mouseUnderlap ||  viewerLocked;
+                const fullZoom = options.mouseUnderlap || viewerLocked;
                 const fullZoomKey = fullZoomKeyDown;
                 if (viewerLocked) {
                     imgFullSize.width(srcDetails.naturalWidth * zoomFactor);
                 } else if (fullZoomKey) {
                     // naturalWidth replaced with wndWidth to make image fill window
-                    imgFullSize.width(Math.min(wndWidth, wndWidth - padding - 2 * scrollBarWidth)); 
+                    // offset subtracted to keep image within window's bounds
+                    imgFullSize.width(wndWidth - offset - padding - 2 * scrollBarWidth); 
                 } else if (fullZoom) {
-                    imgFullSize.width(Math.min(srcDetails.naturalWidth * zoomFactor, wndWidth - padding - 2 * scrollBarWidth));
+                    imgFullSize.width(Math.min(srcDetails.naturalWidth * zoomFactor, wndWidth - offset - padding - 2 * scrollBarWidth));
                 } else if (displayOnRight) {
                     if (srcDetails.naturalWidth * zoomFactor + padding > wndWidth - position.left) {
                         imgFullSize.width(wndWidth - position.left - padding + wndScrollLeft);
@@ -526,7 +527,7 @@ var hoverZoom = {
 
                 // display viewer on the left side if the mouse is on the right
                 if (!displayOnRight) {
-                    position.left -= hz.hzViewer.width() + padding;
+                    position.left -= hz.hzViewer.width() + padding - offset;
                 }
 
                 // horizontal position adjustment if full zoom
@@ -543,8 +544,8 @@ var hoverZoom = {
                 if (position.top > maxTop) {
                     position.top = maxTop;
                 }
-                if (position.top < wndScrollTop + 0.5 * padding) {
-                    position.top = wndScrollTop + 0.5 * padding;
+                if (position.top < wndScrollTop + padding) {
+                    position.top = wndScrollTop + padding;
                 }
 
                 if (options.ambilightEnabled) {
@@ -797,6 +798,16 @@ var hoverZoom = {
 
             imgFullSizeCss.borderWidth = imgFullSizeCss.borderRadius = thickness + 'px';
             audioControlsCss.margin = audioControlsWithVideoCss.margin = thickness + 'px';
+        }
+
+        // set max width in pixels
+        function maxWidth(width) {
+            imgFullSizeCss['max-width'] = (width > 0) ? width + 'px' : 'none';
+        }
+
+        // set max height in pixels
+        function maxHeight(height) {
+            imgFullSizeCss['max-height'] = (height > 0) ? height + 'px' : 'none';
         }
 
         // set font size in pixel(s)
@@ -1059,7 +1070,7 @@ var hoverZoom = {
 
         let longRightPressTimer; // create timer
         let longMiddlePressTimer; // creates separate timer so they don't interfere
-        let longPress = false;
+        let longRightPress = false;
         
         function mouseButtonKeyHandler(mouseButtonKey, img) {
             const timerDelay = 150;
@@ -1074,13 +1085,12 @@ var hoverZoom = {
             if (mouseButtonKey === -1) {
                 clearTimeout(longRightPressTimer);
             } else {
-                longPress = false;
                 clearTimeout(longMiddlePressTimer);
             }
         }
         
         function longClick(mouseButtonKey) {
-            longPress = true;
+            if (mouseButtonKey == -1) longRightPress = true;
             switch (mouseButtonKey) {
                 case options.actionKey:
                     actionKeyDown = true;
@@ -1159,8 +1169,8 @@ var hoverZoom = {
 
         function documentContextMenu(event) {
             // If right click is a long press, prevent context menu
-            if (longPress) {
-                longPress = false;
+            if (longRightPress) {
+                longRightPress = false;
                 event.preventDefault();
             }
         }
@@ -1776,7 +1786,7 @@ var hoverZoom = {
 
                 hz.hzViewer.css('overflow', 'visible');
                 hz.hzViewer.css('border', '0px');
-                hz.hzViewer.css('padding', '10px');
+                hz.hzViewer.css('padding', options.imagePaddingSize + 'px');
                 hz.hzViewer.css('box-shadow', 'none');
                 var background = $('<div/>');
                 $(background).css('width', 20 * screen.availWidth) // background canvas must be very large in case of zooming
@@ -3796,6 +3806,8 @@ var hoverZoom = {
             frameBackgroundColor(options.frameBackgroundColor);
             frameThickness(options.frameThickness);
             fontSize(options.fontSize);
+            maxWidth(options.maxWidth);
+            maxHeight(options.maxHeight);
 
             webSiteExcluded = null;
             body100pct = (body.css('position') != 'static') || (body.css('padding-left') == '0px' && body.css('padding-right') == '0px' && body.css('margin-left') == '0px' && body.css('margin-right') == '0px' && (body.css('max-width') == 'none' || body.css('max-width') == '100%'));

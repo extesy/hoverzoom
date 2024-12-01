@@ -2,6 +2,8 @@ var factorySettings = {
     extensionEnabled : true,
     darkMode : false,
     zoomFactor : 1,
+    maxWidth : 0,
+    maxHeight : 0,
     zoomVideos : true,
     videoPositionStep : 10,
     muteVideos : false,
@@ -33,6 +35,9 @@ var factorySettings = {
     ambilightHaloSize : 0.1,
     ambilightBackgroundOpacity : 0.9,
     disabledPlugins : [],
+    imagePaddingSize : 10,
+    statusBarOverlap : false,
+    hScrollBarOverlap : false,
     centerImages : false,
     autoLockImages : false,
     frameBackgroundColor: "#ffffff",
@@ -105,6 +110,8 @@ function loadOptions() {
     options.extensionEnabled = options.hasOwnProperty('extensionEnabled') ? options.extensionEnabled : factorySettings.extensionEnabled;
     options.darkMode = options.hasOwnProperty('darkMode') ? options.darkMode : factorySettings.darkMode;
     options.zoomFactor = options.hasOwnProperty('zoomFactor') ? options.zoomFactor : factorySettings.zoomFactor;
+    options.maxWidth = options.hasOwnProperty('maxWidth') ? options.maxWidth : factorySettings.maxWidth;
+    options.maxHeight = options.hasOwnProperty('maxHeight') ? options.maxHeight : factorySettings.maxHeight;
     options.zoomVideos = options.hasOwnProperty('zoomVideos') ? options.zoomVideos : factorySettings.zoomVideos;
     options.videoPositionStep = options.hasOwnProperty('videoPositionStep') ? options.videoPositionStep : factorySettings.videoPositionStep;
     options.muteVideos = options.hasOwnProperty('muteVideos') ? options.muteVideos : factorySettings.muteVideos;
@@ -139,6 +146,9 @@ function loadOptions() {
     options.ambilightHaloSize = options.hasOwnProperty('ambilightHaloSize') ? options.ambilightHaloSize : factorySettings.ambilightHaloSize;
     options.ambilightBackgroundOpacity = options.hasOwnProperty('ambilightBackgroundOpacity') ? options.ambilightBackgroundOpacity : factorySettings.ambilightBackgroundOpacity;
     options.disabledPlugins = options.hasOwnProperty('disabledPlugins') ? options.disabledPlugins : factorySettings.disabledPlugins;
+    options.imagePaddingSize = options.hasOwnProperty('imagePaddingSize') ? options.imagePaddingSize : factorySettings.imagePaddingSize;
+    options.statusBarOverlap = options.hasOwnProperty('statusBarOverlap') ? options.statusBarOverlap : factorySettings.statusBarOverlap;
+    options.hScrollBarOverlap = options.hasOwnProperty('hScrollBarOverlap') ? options.hScrollBarOverlap : factorySettings.hScrollBarOverlap;
     options.centerImages = options.hasOwnProperty('centerImages') ? options.centerImages : factorySettings.centerImages;
     options.autoLockImages = options.hasOwnProperty('autoLockImages') ? options.autoLockImages : factorySettings.autoLockImages;
     options.frameBackgroundColor = options.hasOwnProperty('frameBackgroundColor') ? options.frameBackgroundColor : factorySettings.frameBackgroundColor;

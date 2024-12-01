@@ -84,6 +84,8 @@ function saveOptions(exportSettings = false) {
     options.extensionEnabled = $('#chkExtensionEnabled')[0].checked;
     options.darkMode = $('#chkDarkMode')[0].checked;
     options.zoomFactor = $('#txtZoomFactor')[0].value;
+    options.maxWidth = $('#txtMaxWidth')[0].value;
+    options.maxHeight = $('#txtMaxHeight')[0].value;
     options.zoomVideos = $('#chkZoomVideos')[0].checked;
     options.videoPositionStep = $('#txtVideoPositionStep')[0].value;
     options.muteVideos = $('#chkMuteVideos')[0].checked;
@@ -105,6 +107,9 @@ function saveOptions(exportSettings = false) {
     options.ambilightEnabled = $('#chkAmbilightEnabled')[0].checked;
     options.ambilightHaloSize = $('#txtAmbilightHaloSize')[0].value / 100;
     options.ambilightBackgroundOpacity = $('#txtAmbilightBackgroundOpacity')[0].value / 100;
+    options.imagePaddingSize = $('#txtImagePaddingSize')[0].value;
+    options.statusBarOverlap = $('#chkStatusBarOverlap')[0].checked;
+    options.hScrollBarOverlap = $('#chkHScrollBarOverlap')[0].checked;
     options.centerImages = $('#chkCenterImages')[0].checked;
     options.autoLockImages = $('#chkAutoLockImages')[0].checked;
     options.frameBackgroundColor = $('#pickerFrameBackgroundColor')[0].value;
@@ -195,6 +200,8 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#chkExtensionEnabled').trigger(options.extensionEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#chkDarkMode').trigger(options.darkMode ? 'gumby.check' : 'gumby.uncheck');
     $('#txtZoomFactor')[0].value = options.zoomFactor;
+    $('#txtMaxWidth')[0].value = options.maxWidth;
+    $('#txtMaxHeight')[0].value = options.maxHeight;
     $('#chkZoomVideos').trigger(options.zoomVideos ? 'gumby.check' : 'gumby.uncheck');
     $('#txtVideoPositionStep')[0].value = options.videoPositionStep;
     $('#chkMuteVideos').trigger(options.muteVideos ? 'gumby.check' : 'gumby.uncheck');
@@ -220,6 +227,8 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#txtAmbilightHaloSize').val(parseInt(options.ambilightHaloSize * 100));
     $('#rngAmbilightBackgroundOpacity').val(parseInt(options.ambilightBackgroundOpacity * 100));
     $('#txtAmbilightBackgroundOpacity').val(parseInt(options.ambilightBackgroundOpacity * 100));
+    $('#chkStatusBarOverlap').trigger(options.statusBarOverlap ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkHScrollBarOverlap').trigger(options.hScrollBarOverlap ? 'gumby.check' : 'gumby.uncheck');
     $('#chkCenterImages').trigger(options.centerImages ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAutoLockImages').trigger(options.autoLockImages ? 'gumby.check' : 'gumby.uncheck');
     $('#pickerFrameBackgroundColor').val(options.frameBackgroundColor);
@@ -230,6 +239,8 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#rngFontSize').val(parseInt(options.fontSize));
     $('#txtFontSize').val(parseInt(options.fontSize));
     $('#chkFontOutline').trigger(options.fontOutline ? 'gumby.check' : 'gumby.uncheck');
+    $('#rngImagePaddingSize').val(parseInt(options.imagePaddingSize));
+    $('#txtImagePaddingSize').val(parseInt(options.imagePaddingSize));
     $('#txtBelowPositionOffset').val(parseFloat(options.belowPositionOffset));
     $('#txtAbovePositionOffset').val(parseFloat(options.abovePositionOffset));
     $('#txtCaptionOpacity').val(parseInt(options.captionOpacity * 100));
@@ -567,6 +578,15 @@ function updateTxtFontSize() {
     $('#txtFontSize')[0].value = this.value;
 }
 
+function updateTxtImagePaddingSize() {
+    $('#txtImagePaddingSize')[0].value = this.value;
+}
+
+function updateRngImagePaddingSize() {
+    this.value = percentageOnChange(this.value);
+    $('#rngImagePaddingSize').val(this.value);
+}
+
 function updateTxtBelowPositionOffset() {
     $('#txtBelowPositionOffset')[0].value = this.value;
 }
@@ -737,6 +757,8 @@ $(function () {
     $('#txtFrameThickness').change(updateRngFrameThickness);
     $('#rngFontSize').on('input change', updateTxtFontSize);
     $('#txtFontSize').change(updateRngFontSize);
+    $('#rngImagePaddingSize').on('input change', updateTxtImagePaddingSize);
+    $('#txtImagePaddingSize').change(updateTxtImagePaddingSize);
     $('#txtBelowPositionOffset').change(updateTxtBelowPositionOffset);
     $('#txtAbovePositionOffset').change(updateTxtAbovePositionOffset);
     $('#txtCaptionOpacity').change(updateTxtCaptionOpacity);
