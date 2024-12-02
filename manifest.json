@@ -408,6 +408,7 @@
                 "*://*.amazon.ca/*",
                 "*://*.amazon.cn/*",
                 "*://*.amazon.de/*",
+                "*://*.amazon.eg/*",
                 "*://*.amazon.es/*",
                 "*://*.amazon.fr/*",
                 "*://*.amazon.co.jp/*",
