@@ -1,14 +1,15 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Flickr',
-    version:'1.3',
+    version:'1.4',
+    favicon:'flickr.svg',
     prepareImgLinks:function (callback) {
         cLog('Plug-In: ' + this.name);
 
         var name = this.name;
         var res = [];
 
-        var enableApiCalls = true;
+        var enableApiCalls = false;
         var modelExport = null;
         var modelExportJson = null;
         var hookedData = null;
@@ -41,7 +42,7 @@ hoverZoomPlugins.push({
                     this.addEventListener('load', function() {
                         try {
                             // filter responses
-                            if (/url/.test(this.responseText)) {
+                            if (/secret/.test(this.responseText)) {
 
                                 // store response as plain text in a sessionStorage for later usage by plug-in
                                 // responses are concatenated & separated by this tag: <HOOKED_DATA_SPLITTER>
@@ -293,6 +294,10 @@ hoverZoomPlugins.push({
             return valueWithUrl;
         }
 
+        const regexImg = /\/([0-9]{4,})_[0-9a-f]{4,}/; //sample: //live.staticflickr.com/8154/7179847951_1e25e9d7e8_z.jpg -> 7179847951
+        const regexImgBuddy = /buddyicons\/([0-9]{4,}@N[0-9]{1,})/; //sample: //live.staticflickr.com/456/buddyicons/71402340@N00_r.jpg?1485566646#71402340@N00 -> 71402340@N00
+        const regexImgCover = /coverphoto\/([0-9]{4,}@N[0-9]{1,})/; //sample: //live.staticflickr.com/5549/coverphoto/71402340@N00_h.jpg?1478371839#71402340@N00 -> 71402340@N00
+
         // sample urls:
         // live.staticflickr.com/8154/7179847951_1e25e9d7e8_z.jpg
         // https://i0.wp.com/live.staticflickr.com/65535/49917571842_b85341933a_c.jpg?resize=450%2C300
@@ -303,17 +308,14 @@ hoverZoomPlugins.push({
         function fetchPhoto(link, url) {
 
             // extract photo id from url
-            let regexImg = /\/([0-9]{4,})_[0-9a-f]{4,}/; //sample: //live.staticflickr.com/8154/7179847951_1e25e9d7e8_z.jpg -> 7179847951
             let matchesImg = url.match(regexImg);
             let idImg = null;
             if (matchesImg) idImg = matchesImg.length > 1 ? matchesImg[1] : null;
 
-            let regexImgBuddy = /buddyicons\/([0-9]{4,}@N[0-9]{1,})/; //sample: //live.staticflickr.com/456/buddyicons/71402340@N00_r.jpg?1485566646#71402340@N00 -> 71402340@N00
             let matchesImgBuddy = url.match(regexImgBuddy);
             let idImgBuddy = null;
             if (matchesImgBuddy) idImgBuddy = matchesImgBuddy.length > 1 ? matchesImgBuddy[1] : null;
 
-            let regexImgCover = /coverphoto\/([0-9]{4,}@N[0-9]{1,})/; //sample: //live.staticflickr.com/5549/coverphoto/71402340@N00_h.jpg?1478371839#71402340@N00 -> 71402340@N00
             let matchesImgCover = url.match(regexImgCover);
             let idImgCover = null;
             if (matchesImgCover) idImgCover = matchesImgCover.length > 1 ? matchesImgCover[1] : null;
@@ -487,39 +489,110 @@ hoverZoomPlugins.push({
                 }
             }
         }
-        
-        // maps & expos images
-        hoverZoom.urlReplace(res,
-            'img[src]',
-            /_[sq].jpg/,
-            '_b.jpg'
-        );
 
-        // remove resize constraint
-        // sample: https://i0.wp.com/live.staticflickr.com/4097/4930864108_cd9fcb7a57_b.jpg?resize=450%2C300
-        hoverZoom.urlReplace(res,
-            'img[src]',
-            /\?resize.*/,
-            ''
-        );
-        
-        $('img[src]:not(.hoverZoomPI1)').addClass('hoverZoomPI1').each(function() {
 
-            // extract url from link
-            let link = $(this);
-            let url = link[0].src;
-            fetchPhoto(link, url);
+
+
+        // load href and extract photo url
+        function loadHref(link, href) {
+
+            chrome.runtime.sendMessage({action:'ajaxGet', url:href}, function (response) {
+
+                if (response == null) { return; }
+
+                const index1 = response.indexOf('{"photoModel":');
+                if (index1 === -1) { return; }
+                const index2 = hoverZoom.matchBracket(response, index1); // find closing "}"
+                const usefulData = response.substring(index1, index2 + 1);
+                try {
+                    const responseJson = JSON.parse(usefulData);
+                    const fullsize = responseJson.photoModel.descendingSizes[0].url;
+                    const caption = `${responseJson.photoModel.title} - ${responseJson.photoModel.description}`;
+                    link.data().hoverZoomSrc = [fullsize];
+                    link.data().hoverZoomCaption = caption;
+                    var res = [];
+                    res.push(link);
+                    callback($(res), name);
+                    // Image is displayed if the cursor is still over the link
+                    if (link.data().hoverZoomMouseOver)
+                        hoverZoom.displayPicFromElement(link);
+
+                } catch (e) { return; }
+            });
+        }
+
+        // links
+        // samples:
+        // https://www.flickr.com/photos/wouters_wildlife_photography/41115777661/in/album-72157627890400624
+        // https://www.flickr.com/photos/wouters_wildlife_photography/52029810743/in/photostream/
+        // https://www.flickr.com/photos/davidsphotobook/54141695644
+        // https://www.flickr.com/photos/wimboonfotografie/
+        // https://www.flickr.com/photos/cirdan-travels/54093501508/
+        // https://www.flickr.com/photos/michafink/archives/date-posted/2023/02/05/
+        // https://www.flickr.com/photos/michafink/52670316192/
+        // https://www.flickr.com/photos/99548464@N08/54130477150/in/faves-191962934@N02/
+
+        $('a[href*="/photos/"]').one('mouseover', function() {
+            const link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
+            const href = this.href;
+            loadHref(link, href);
+
+        }).one('mouseleave', function() {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
 
-        $('[style*=url]:not(.hoverZoomPI2)').addClass('hoverZoomPI2').each(function() {
+        // maps
+        // sample: https://live.staticflickr.com/65535/54143491984_5d617ca1cf_s.jpg => id: 54143491984
 
-            // extract url from link
-            let link = $(this);
-            let backgroundImage = link[0].style.backgroundImage;
-            let reUrl = /.*url\s*\(\s*(.*)\s*\).*/i
+        $('img[src*="live.staticflickr.com"]').one('mouseover', function() {
+            const link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
+            const src = this.src;
+
+            let matchesImg = src.match(regexImg);
+            let idImg = null;
+            if (matchesImg) idImg = matchesImg.length > 1 ? matchesImg[1] : null;
+            if (!idImg) return;
+
+            // search for idImg among hooked data
+            let hd = hookedDataJsonA.find(j => j.photos?.photo.find(i => i.id == idImg));
+            if (!hd) return;
+            let photo = hd.photos.photo.find(i => i.id == idImg);
+            let owner = photo.owner;
+
+            // build href
+            let href = `https://www.flickr.com/photos/${owner}/${idImg}`;   // e.g: https://www.flickr.com/photos/129119557@N08/54168104017
+            loadHref(link, href);
+        }).one('mouseleave', function() {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
+        });
+
+        // avatars
+        //   sample: https://farm66.staticflickr.com/65535/buddyicons/199331830@N02.jpg
+        // fullsize: https://farm66.staticflickr.com/65535/buddyicons/199331830@N02_r.jpg
+
+        $('[style*=url]').each(function() {
+            var link = $(this);
+            // extract url from style
+            var backgroundImage = this.style.backgroundImage;
+            const reUrl = /.*url\s*\(\s*(.*)\s*\).*/i
             backgroundImage = backgroundImage.replace(reUrl, '$1');
-            let url = backgroundImage.replace(/^['"]/,"").replace(/['"]+$/,""); // remove leading & trailing quotes
-            fetchPhoto(link, url);
+            // remove leading & trailing quotes
+            var backgroundImageUrl = backgroundImage.replace(/^['"]/, "").replace(/['"]+$/, "");
+
+            var fullsizeUrl = backgroundImageUrl.replace(/(\/buddyicons\/\d+@N\d+).*/, '$1_r.jpg');
+            if (fullsizeUrl != backgroundImageUrl) {
+                if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
+                if (link.data().hoverZoomSrc.indexOf(fullsizeUrl) == -1) {
+                    link.data().hoverZoomSrc.unshift(fullsizeUrl);
+                    res.push(link);
+                }
+            }
         });
 
         callback($(res), name);
