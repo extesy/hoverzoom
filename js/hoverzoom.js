@@ -4515,15 +4515,15 @@ var hoverZoom = {
     // return:
     // => positions (0-based) of matching brackets if found e.g: { 100, 155 }
     // => { -1, -1 } if no matching brackets found
-    matchBrackets:function(data, daShortClickosition, validOpenBrackets) {
-        let openPosition = daShortClickosition; // start searching at closest position
+    matchBrackets:function(data, dataPosition, validOpenBrackets) {
+        let openPosition = dataPosition; // start searching at closest position
         let result = {};
-        // move left step-by-step from daShortClickosition until an enclosing match is found
+        // move left step-by-step from dataPosition until an enclosing match is found
         while (openPosition >= 0) {
             let closePosition = matchBracket(data, openPosition);
             if (closePosition < 0) {
                 openPosition = openPosition - 1; // move left
-            } else if (closePosition < daShortClickosition) {
+            } else if (closePosition < dataPosition) {
                 // matching brackets found but they do not enclose target data position so go on searching
                 openPosition = openPosition - 1; // move left
             } else {
