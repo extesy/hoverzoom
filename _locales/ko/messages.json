@@ -576,39 +576,39 @@
         "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
-        "message": "Host",
+        "message": "호스트",
         "description": "[options] Show Host Detail"
     },
     "optShowDetailFilename": {
-        "message": "File Name",
+        "message": "파일 이름",
         "description": "[options] Show File Name Detail"
     },
     "optShowDetailLastModified": {
-        "message": "Last Modified",
+        "message": "수정일",
         "description": "[options] Show Last Modified Detail"
     },
     "optShowDetailExtension": {
-        "message": "Extension",
+        "message": "확장자",
         "description": "[options] Show Extension Detail"
     },
     "optShowDetailContentLength": {
-        "message": "Media Length",
+        "message": "미디어 길이",
         "description": "[options] Show Content Length Detail"
     },
     "optShowDetailDuration": {
-        "message": "Duration",
+        "message": "재생 시간",
         "description": "[options] Show Duration Detail"
     },
     "optShowDetailScale": {
-        "message": "Scale",
+        "message": "척도",
         "description": "[options] Show Scale Detail"
     },
     "optShowDetailRatio": {
-        "message": "Ratio",
+        "message": "비율",
         "description": "[options] Show Ratio Detail"
     },
     "optShowDetailDimensions": {
-        "message": "Dimensions",
+        "message": "치수",
         "description": "[options] Show Dimensions Detail"
     },
     "optBelowPositionOffset": {
