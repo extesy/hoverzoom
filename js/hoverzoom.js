@@ -1143,7 +1143,7 @@ var hoverZoom = {
         }
         
         function mouseAction(mouseButtonKey,img) {
-            displayContextMenuImgFullSize = !imgFullSize;
+            displayContextMenuImgFullSize = !imgFullSize || hideKeyDown;
             switch (mouseButtonKey) {
                 case options.actionKey:
                     actionKeyDown = true;
@@ -1228,8 +1228,10 @@ var hoverZoom = {
             if (longPressRight || shortPressRight) {
                 longPressRight = false;
                 shortPressRight = false;
-                if (displayContextMenuImgFullSize)
+                if (displayContextMenuImgFullSize) {
+                    hideKeyDown = false; // releases hideKey if it was held down
                     return;
+                }
                 displayContextMenuImgFullSize = true; // Enables context menu for next right click
                 event.preventDefault();
             }
