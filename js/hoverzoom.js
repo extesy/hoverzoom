@@ -1153,8 +1153,8 @@ var hoverZoom = {
                     }
                     break;
                 case options.lockImageKey:
-                    lockViewer();
-                    return;
+                    lockImageKey();
+                    return false;
                 case options.toggleKey: {
                     let returnStatement = toggleKey() ? true : false;
                     return returnStatement;
@@ -2759,7 +2759,7 @@ var hoverZoom = {
             return true
         }
 
-        function hideKey(){
+        function hideKey() {
             hideKeyDown = true;
             if (hz.hzViewer) {
                 pauseMedias();
@@ -2769,6 +2769,25 @@ var hoverZoom = {
                 return false;
             }
             return true
+        }
+
+        function lockImageKey() {
+            if (!viewerLocked) {
+                let width = imgFullSize.width() || imgFullSize[0].width;
+                zoomFactorFit = width / srcDetails.naturalWidth;
+                lockViewer();
+            }
+            else {
+                if (zoomFactor > 1.1 * zoomFactorFit || zoomFactor < 0.9 * zoomFactorFit) {
+                    // restore zoom factor such as img or video fits screen size
+                    zoomFactor = zoomFactorFit || parseInt(options.zoomFactor);
+                } else {
+                    // zoom factor = default
+                    zoomFactor = parseInt(options.zoomFactor);
+                }
+                posViewer();
+                panLockedViewer(event);
+            }
         }
 
         function documentOnKeyDown(event) {
@@ -2827,22 +2846,7 @@ var hoverZoom = {
                 }
                 // "Lock image" key
                 if (keyCode === options.lockImageKey) {
-                    if (!viewerLocked) {
-                        let width = imgFullSize.width() || imgFullSize[0].width;
-                        zoomFactorFit = width / srcDetails.naturalWidth;
-                        lockViewer();
-                    }
-                    else {
-                        if (zoomFactor > 1.1 * zoomFactorFit || zoomFactor < 0.9 * zoomFactorFit) {
-                            // restore zoom factor such as img or video fits screen size
-                            zoomFactor = zoomFactorFit || parseInt(options.zoomFactor);
-                        } else {
-                            // zoom factor = default
-                            zoomFactor = parseInt(options.zoomFactor);
-                        }
-                        posViewer();
-                        panLockedViewer(event);
-                    }
+                    lockImageKey();
                     return false;
                 }
                 // "Copy image" key
