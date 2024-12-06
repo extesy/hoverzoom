@@ -404,11 +404,23 @@ var hoverZoom = {
                 if (hzBelow)
                     hzBelow.css('max-width', 0);
 
+                // hides caption and details to fill window more with image when fullZoomKey is pressed
+                const fullZoomKey = fullZoomKeyDown;
+                const hideDetailsandCaptions = options.fullZoomHidesDetailsCaptions;
+                const hzAboveHeight = (fullZoomKey && hideDetailsandCaptions) ? padding : hzAbove.height();
+                const hzBelowHeight = (fullZoomKey && hideDetailsandCaptions) ? padding : hzBelow.height();
+
+                // needed so height adjusts properly when fullZoomKey is released
+                if (!fullZoomKey && hideDetailsandCaptions) {
+                    if (hzAbove) hzAbove.show();
+                    if (hzBelow) hzBelow.show();
+                }
+
                 // this is looped 10x max just in case something goes wrong, to avoid freezing the process
                 let i = 0;
 
                 while (!viewerLocked && hz.hzViewer.height() > wndHeight - statusBarHeight - scrollBarHeight && i++ < 10) {
-                    imgFullSize.height(wndHeight - padding - statusBarHeight - scrollBarHeight - (hzAbove ? hzAbove.height() : 0) - (hzBelow ? hzBelow.height() : 0)).width('auto');
+                    imgFullSize.height(wndHeight - padding - statusBarHeight - scrollBarHeight - (hzAbove ? hzAboveHeight : 0) - (hzBelow ? hzBelowHeight : 0)).width('auto');
                 }
 
                 if (hzCaptionMiscellaneous) {
@@ -432,8 +444,8 @@ var hoverZoom = {
                         hzBelow.css('position', 'absolute');
                 }
 
-                // do not display caption nor details if img is too small
-                if (imgFullSize[0].clientWidth < 50) {
+                // do not display caption nor details if img is too small, or if full zoom key is pressed
+                if (imgFullSize[0].clientWidth < 50 || (fullZoomKey && hideDetailsandCaptions)) {
                     if (hzAbove) hzAbove.hide();
                     if (hzBelow) hzBelow.hide();
                 } else {
@@ -531,7 +543,7 @@ var hoverZoom = {
                 }
 
                 // horizontal position adjustment if full zoom
-                if (fullZoom) {
+                if (fullZoom || fullZoomKey) {
                     if (displayOnRight) {
                         position.left = Math.min(position.left, wndScrollLeft + wndWidth - hz.hzViewer.width() - padding - 2 * scrollBarWidth);
                     } else {
@@ -540,12 +552,15 @@ var hoverZoom = {
                 }
 
                 // vertical position adjustments
-                var maxTop = wndScrollTop + wndHeight - hz.hzViewer.height() - padding - statusBarHeight - scrollBarHeight;
+                const maxTop = wndScrollTop + wndHeight - hz.hzViewer.height() - padding - statusBarHeight - scrollBarHeight;
                 if (position.top > maxTop) {
                     position.top = maxTop;
                 }
                 if (position.top < wndScrollTop + padding) {
                     position.top = wndScrollTop + padding;
+                }
+                if (fullZoomKey && position.top == wndScrollTop + padding) {
+                    position.top = wndScrollTop + padding / 1.5;
                 }
 
                 if (options.ambilightEnabled) {

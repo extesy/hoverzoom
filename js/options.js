@@ -110,6 +110,7 @@ function saveOptions(exportSettings = false) {
     options.ambilightHaloSize = $('#txtAmbilightHaloSize')[0].value / 100;
     options.ambilightBackgroundOpacity = $('#txtAmbilightBackgroundOpacity')[0].value / 100;
     options.imagePaddingSize = $('#txtImagePaddingSize')[0].value;
+    options.fullZoomHidesDetailsCaptions = $('#chkFullZoomHidesDetailsCaptions')[0].checked;
     options.statusBarOverlap = $('#chkStatusBarOverlap')[0].checked;
     options.hScrollBarOverlap = $('#chkHScrollBarOverlap')[0].checked;
     options.centerImages = $('#chkCenterImages')[0].checked;
@@ -229,6 +230,7 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#txtAmbilightHaloSize').val(parseInt(options.ambilightHaloSize * 100));
     $('#rngAmbilightBackgroundOpacity').val(parseInt(options.ambilightBackgroundOpacity * 100));
     $('#txtAmbilightBackgroundOpacity').val(parseInt(options.ambilightBackgroundOpacity * 100));
+    $('#chkFullZoomHidesDetailsCaptions').trigger(options.fullZoomHidesDetailsCaptions ? 'gumby.check' : 'gumby.uncheck');
     $('#chkStatusBarOverlap').trigger(options.statusBarOverlap ? 'gumby.check' : 'gumby.uncheck');
     $('#chkHScrollBarOverlap').trigger(options.hScrollBarOverlap ? 'gumby.check' : 'gumby.uncheck');
     $('#chkCenterImages').trigger(options.centerImages ? 'gumby.check' : 'gumby.uncheck');
