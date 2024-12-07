@@ -1242,7 +1242,7 @@ var hoverZoom = {
                 }
                 cancelSourceLoading();
                 restoreTitles();
-                displayContextMenuImgFullSize = true
+                displayContextMenuImgFullSize = true;
                 return;
             } else if (event.button === 0) { // We don't need left click
                 return;
@@ -2742,7 +2742,7 @@ var hoverZoom = {
                 if (imgFullSize) {
                     return false;
                 }
-                return true
+                return true;
             }
         }
 
@@ -2756,7 +2756,7 @@ var hoverZoom = {
                 cancelSourceLoading();
                 return false;
             }
-            return true
+            return true;
         }
 
         function hideKey() {
@@ -2768,7 +2768,7 @@ var hoverZoom = {
             if (imgFullSize) {
                 return false;
             }
-            return true
+            return true;
         }
 
         function lockImageKey(event) {
