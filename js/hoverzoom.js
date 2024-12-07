@@ -1083,9 +1083,10 @@ var hoverZoom = {
             }
         }
 
-        let longRightPressTimer; // create timer
+        // create right and middle button timers to handle them separately
+        let longRightPressTimer;
         let longMiddlePressTimer; 
-        let longPressRight = false;
+        // TODO: Prevent middle click from triggering when it's an action key
         let shortPressRight = false;
         let shortPressMiddle = false;
         
@@ -1127,7 +1128,6 @@ var hoverZoom = {
         function longClick(mouseButtonKey, event) {
             switch (mouseButtonKey) {
                 case -1:
-                    longPressRight = true;
                     shortPressRight = false;
                     break;
                 case -2:
@@ -1226,17 +1226,12 @@ var hoverZoom = {
         }
 
         function documentContextMenu(event) {
-            // If right click is a long press or short press (if right click set to short), prevent context menu
-            if (longPressRight || shortPressRight) {
-                longPressRight = false;
-                shortPressRight = false;
-                if (displayContextMenuImgFullSize) {
-                    hideKeyDown = false; // releases hideKey if it was held down
-                    return;
-                }
-                displayContextMenuImgFullSize = true; // Enables context menu for next right click
-                event.preventDefault();
+            if (displayContextMenuImgFullSize) {
+                hideKeyDown = false; // releases hideKey if it was held down
+                return;
             }
+            displayContextMenuImgFullSize = true; // Enables context menu for next right click
+            event.preventDefault();
         }
 
         function documentMouseDown(event) {
