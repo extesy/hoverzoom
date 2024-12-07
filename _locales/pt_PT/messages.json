@@ -347,14 +347,6 @@
         "message": "Changes the padding size for zoomed images. Padding determines how close the image can get to the edge of the viewing window",
         "description": "[options] Tooltip for adjust the zoomed image padding size option"
     },
-    "optFullZoomHidesDetailsCaptions": {
-        "message": "Full zoom key hides details and captions",
-        "description": "[options] Full zoom key hides details and captions option"
-    },
-    "optFullZoomHidesDetailsCaptionsTooltip": {
-        "message": "When pressing full zoom, details and captions will be hidden, allowing the image able to expand more vertically",
-        "description": "[options] Tooltip for full zoom key hides details and captions option"
-    },
     "optStatusBarOverlap": {
         "message": "Allow zoomed images to overlap the status bar",
         "description": "[options] Allow zoomed images to overlap the status bar option"
