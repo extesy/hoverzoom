@@ -1331,6 +1331,7 @@ var hoverZoom = {
                 case options.actionKey:
                     if (actionKeyDown) {
                         actionKeyDown = false;
+                        displayContextMenuImgFullSize = !imgFullSize ? true : false;
                         closeHoverZoomViewer();
                     }
                     break;
