@@ -1112,10 +1112,12 @@ var hoverZoom = {
             switch (mouseButtonKey) {
                 case -1:
                 case -3:
+                    shortPressRight = false;
                     clearTimeout(longRightPressTimer);
                     return;
                 case -2:
                 case -4:
+                    shortPressMiddle = false;
                     clearTimeout(longMiddlePressTimer);
                     return;
                 default:
