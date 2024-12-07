@@ -1089,19 +1089,19 @@ var hoverZoom = {
         let shortPressRight = false;
         let shortPressMiddle = false;
         
-        function mouseButtonKeyHandler(mouseButtonKey, img) {
+        function mouseButtonKeyHandler(mouseButtonKey, img, event) {
             const timerDuration = 150;
             // -2 or -4 is hold or short middle click, -1 or -3 is hold or short right click
             switch (mouseButtonKey) {
                 case -3:
                     shortPressRight = true;
                 case -1:
-                    longRightPressTimer = setTimeout(longClick.bind(img), timerDuration, mouseButtonKey);
+                    longRightPressTimer = setTimeout(longClick.bind(img), timerDuration, mouseButtonKey, event);
                     break;
                 case -4:
                     shortPressMiddle = true;
                 case -2:
-                    longMiddlePressTimer = setTimeout(longClick.bind(img), timerDuration, mouseButtonKey);
+                    longMiddlePressTimer = setTimeout(longClick.bind(img), timerDuration, mouseButtonKey, event);
                     break;
                 default:
             }
@@ -1122,7 +1122,7 @@ var hoverZoom = {
             }
         }
         
-        function longClick(mouseButtonKey) {
+        function longClick(mouseButtonKey, event) {
             switch (mouseButtonKey) {
                 case -1:
                     longPressRight = true;
@@ -1139,10 +1139,10 @@ var hoverZoom = {
                     return;
                 default:
             }
-            mouseAction(mouseButtonKey, this);
+            mouseAction(mouseButtonKey, this, event);
         }
         
-        function mouseAction(mouseButtonKey,img) {
+        function mouseAction(mouseButtonKey, img, event) {
             displayContextMenuImgFullSize = !imgFullSize || hideKeyDown;
             switch (mouseButtonKey) {
                 case options.actionKey:
@@ -1153,7 +1153,7 @@ var hoverZoom = {
                     }
                     break;
                 case options.lockImageKey:
-                    lockImageKey();
+                    lockImageKey(event);
                     return false;
                 case options.toggleKey: {
                     let returnStatement = toggleKey() ? true : false;
@@ -1271,7 +1271,7 @@ var hoverZoom = {
                 case options.fullZoomKey:
                 case options.closeKey:
                 case options.hideKey:
-                    mouseButtonKeyHandler(mouseButtonKey, this);
+                    mouseButtonKeyHandler(mouseButtonKey, this, event);
                     return;
                 default:
                     // The following only trigger when image is displayed
@@ -1284,7 +1284,7 @@ var hoverZoom = {
                             case options.openImageInWindowKey:
                             case options.openImageInTabKey:
                             case options.saveImageKey:
-                                mouseButtonKeyHandler(mouseButtonKey, this);
+                                mouseButtonKeyHandler(mouseButtonKey, this, event);
                                 return;
                             default:
                         }
@@ -1293,11 +1293,11 @@ var hoverZoom = {
             }
         }
 
-        function mouseShortClickHandler(mouseButtonKey, img) {
+        function mouseShortClickHandler(mouseButtonKey, img, event) {
             switch (mouseButtonKey) {
                 case options.toggleKey:
                 case options.closeKey:
-                    mouseAction(mouseButtonKey, img);
+                    mouseAction(mouseButtonKey, img, event);
                     break;
                 default:
                     // The following only trigger when image is displayed
@@ -1310,7 +1310,7 @@ var hoverZoom = {
                             case options.openImageInWindowKey:
                             case options.openImageInTabKey:
                             case options.saveImageKey:
-                                mouseAction(mouseButtonKey, img);
+                                mouseAction(mouseButtonKey, img, event);
                                 break;
                             default:
                         }
@@ -1351,9 +1351,9 @@ var hoverZoom = {
                     break;
                 default:
                     if ((mouseButtonKey == -3 || options.rightShortClickAndHold) && shortPressRight)
-                        mouseShortClickHandler(-3, this);
+                        mouseShortClickHandler(-3, this, event);
                     if ((mouseButtonKey == -4 || options.middleShortClickAndHold) && shortPressMiddle)
-                        mouseShortClickHandler(-4, this);
+                        mouseShortClickHandler(-4, this, event);
             }
 
             clearMouseButtonTimers(mouseButtonKey);
@@ -2773,7 +2773,7 @@ var hoverZoom = {
             return true
         }
 
-        function lockImageKey() {
+        function lockImageKey(event) {
             if (!viewerLocked) {
                 let width = imgFullSize.width() || imgFullSize[0].width;
                 zoomFactorFit = width / srcDetails.naturalWidth;
@@ -2848,7 +2848,7 @@ var hoverZoom = {
                 }
                 // "Lock image" key
                 if (keyCode === options.lockImageKey) {
-                    lockImageKey();
+                    lockImageKey(event);
                     return false;
                 }
                 // "Copy image" key
