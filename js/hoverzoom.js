@@ -1231,6 +1231,7 @@ var hoverZoom = {
                 hideKeyDown = false; // releases hideKey if it was held down
                 return;
             }
+            $(this).mousemove();
             event.preventDefault();
         }
 
@@ -1340,7 +1341,6 @@ var hoverZoom = {
                     break;
                 case options.fullZoomKey:
                     fullZoomKeyDown = false;
-                    $(this).mousemove();
                     break;
                 case options.hideKey:
                     hideKeyDown = false;
@@ -1348,7 +1348,6 @@ var hoverZoom = {
                         hz.hzViewer.show();
                         playMedias();
                     }
-                    $(this).mousemove();
                     break;
                 default:
                     if ((mouseButtonKey == -3 || options.rightShortClickAndHold) && shortPressRight)
