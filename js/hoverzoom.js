@@ -1231,7 +1231,7 @@ var hoverZoom = {
                 hideKeyDown = false; // releases hideKey if it was held down
                 return;
             }
-            $(this).mousemove();
+            preventDefaultMouseAction = false;
             event.preventDefault();
         }
 
