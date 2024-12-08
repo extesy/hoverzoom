@@ -1147,6 +1147,8 @@ var hoverZoom = {
         
         function mouseAction(mouseButtonKey, img, event) {
             preventDefaultMouseAction = imgFullSize || !hideKeyDown;
+            //prevent middle mouse button from firing
+            if (event.button === 1) document.addEventListener("auxclick", middleMouseClickEvent);
             switch (mouseButtonKey) {
                 case options.actionKey:
                     actionKeyDown = true;
@@ -1160,6 +1162,7 @@ var hoverZoom = {
                     return false;
                 case options.toggleKey: {
                     let returnStatement = toggleKey() ? true : false;
+                    if (returnStatement) preventDefaultMouseAction = true;
                     return returnStatement;
                 }
                 case options.fullZoomKey:
@@ -1327,9 +1330,6 @@ var hoverZoom = {
                 mouseButtonKey = -1;
             if (options.middleShortClickAndHold && !shortPressMiddle)
                 mouseButtonKey = -2;
-
-            //prevent middle mouse button from firing
-            document.addEventListener("auxclick", middleMouseClickEvent);
             
             switch (mouseButtonKey) {
                 case options.actionKey:
