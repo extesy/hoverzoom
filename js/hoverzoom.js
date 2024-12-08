@@ -1086,8 +1086,8 @@ var hoverZoom = {
         // create right and middle button timers to handle them separately
         let longRightPressTimer;
         let longMiddlePressTimer;
-        // TODO: Prevent middle click from triggering when it's an action key
         let preventDefaultMouseAction;
+        // for if user releases mouse button before timer goes off
         let shortPressRight = false;
         let shortPressMiddle = false;
         
@@ -1095,14 +1095,12 @@ var hoverZoom = {
             const timerDuration = 150;
             // -2 or -4 is hold or short middle click, -1 or -3 is hold or short right click
             switch (mouseButtonKey) {
-                case -3:
-                    shortPressRight = true;
                 case -1:
+                case -3:
                     longRightPressTimer = setTimeout(longClick.bind(img), timerDuration, mouseButtonKey, event);
                     break;
-                case -4:
-                    shortPressMiddle = true;
                 case -2:
+                case -4:
                     longMiddlePressTimer = setTimeout(longClick.bind(img), timerDuration, mouseButtonKey, event);
                     break;
                 default:
@@ -1141,6 +1139,7 @@ var hoverZoom = {
                     shortPressMiddle = false;
                     return;
                 default:
+                    return;
             }
             mouseAction(mouseButtonKey, this, event);
         }
@@ -1257,13 +1256,13 @@ var hoverZoom = {
             let rightButtonKey = options.rightShortClick ? -3 : -1;
             let middleButtonKey = options.middleShortClick ? -4 : -2;
             let mouseButtonKey = [null,middleButtonKey,rightButtonKey,null,null][event.button];
-            if (options.rightShortClickAndHold) {
-                mouseButtonKey = -1;
+            if (mouseButtonKey === -3) {
                 shortPressRight = true;
+                if (options.rightShortClickAndHold) mouseButtonKey = -1;
             }
-            if (options.middleShortClickAndHold) {
-                mouseButtonKey = -2;
+            if (mouseButtonKey === -4) {
                 shortPressMiddle = true;
+                if (options.middleShortClickAndHold) mouseButtonKey = -2;
             }
 
             switch (mouseButtonKey) {
@@ -1326,9 +1325,9 @@ var hoverZoom = {
             let middleButtonKey = options.middleShortClick ? -4 : -2;
             let mouseButtonKey = [null,middleButtonKey,rightButtonKey,null,null][event.button];
             
-            if (options.rightShortClickAndHold && !shortPressRight)
+            if (options.rightShortClickAndHold && !shortPressRight && mouseButtonKey === -3)
                 mouseButtonKey = -1;
-            if (options.middleShortClickAndHold && !shortPressMiddle)
+            if (options.middleShortClickAndHold && !shortPressMiddle && mouseButtonKey === -4)
                 mouseButtonKey = -2;
             
             switch (mouseButtonKey) {
@@ -1357,7 +1356,6 @@ var hoverZoom = {
                     if ((mouseButtonKey == -4 || options.middleShortClickAndHold) && shortPressMiddle)
                         mouseShortClickHandler(-4, this, event);
             }
-
             clearMouseButtonTimers(mouseButtonKey);
         }
 
