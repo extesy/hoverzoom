@@ -1341,6 +1341,7 @@ var hoverZoom = {
                     break;
                 case options.fullZoomKey:
                     fullZoomKeyDown = false;
+                    $(document).mousemove();
                     break;
                 case options.hideKey:
                     hideKeyDown = false;
@@ -1348,6 +1349,7 @@ var hoverZoom = {
                         hz.hzViewer.show();
                         playMedias();
                     }
+                    $(document).mousemove();
                     break;
                 default:
                     if ((mouseButtonKey == -3 || options.rightShortClickAndHold) && shortPressRight)
@@ -1361,7 +1363,6 @@ var hoverZoom = {
 
         function middleMouseClickEvent(event) {
             if (event.button === 1 && preventDefaultMouseAction) {
-                $(this).mousemove();
                 event.preventDefault();
             }
         }
