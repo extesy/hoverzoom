@@ -1085,8 +1085,9 @@ var hoverZoom = {
 
         // create right and middle button timers to handle them separately
         let longRightPressTimer;
-        let longMiddlePressTimer; 
+        let longMiddlePressTimer;
         // TODO: Prevent middle click from triggering when it's an action key
+        let preventDefaultMouseAction;
         let shortPressRight = false;
         let shortPressMiddle = false;
         
@@ -1145,7 +1146,7 @@ var hoverZoom = {
         }
         
         function mouseAction(mouseButtonKey, img, event) {
-            displayContextMenuImgFullSize = !imgFullSize || hideKeyDown;
+            preventDefaultMouseAction = imgFullSize || !hideKeyDown;
             switch (mouseButtonKey) {
                 case options.actionKey:
                     actionKeyDown = true;
@@ -1226,11 +1227,10 @@ var hoverZoom = {
         }
 
         function documentContextMenu(event) {
-            if (displayContextMenuImgFullSize) {
+            if (!preventDefaultMouseAction) {
                 hideKeyDown = false; // releases hideKey if it was held down
                 return;
             }
-            displayContextMenuImgFullSize = true; // Enables context menu for next right click
             event.preventDefault();
         }
 
@@ -1242,7 +1242,7 @@ var hoverZoom = {
                 }
                 cancelSourceLoading();
                 restoreTitles();
-                displayContextMenuImgFullSize = true;
+                preventDefaultMouseAction = false;
                 return;
             } else if (event.button === 0) { // We don't need left click
                 return;
@@ -1326,12 +1326,15 @@ var hoverZoom = {
                 mouseButtonKey = -1;
             if (options.middleShortClickAndHold && !shortPressMiddle)
                 mouseButtonKey = -2;
+
+            //prevent middle mouse button from firing
+            document.addEventListener("auxclick", middleMouseClickEvent);
             
             switch (mouseButtonKey) {
                 case options.actionKey:
                     if (actionKeyDown) {
                         actionKeyDown = false;
-                        displayContextMenuImgFullSize = !imgFullSize ? true : false;
+                        preventDefaultMouseAction = imgFullSize ? true : false;
                         closeHoverZoomViewer();
                     }
                     break;
@@ -1355,6 +1358,13 @@ var hoverZoom = {
             }
 
             clearMouseButtonTimers(mouseButtonKey);
+        }
+
+        function middleMouseClickEvent(event) {
+            if (event.button === 1 && preventDefaultMouseAction) {
+                $(this).mousemove();
+                event.preventDefault();
+            }
         }
 
         // select correct font size for msg depending on img or video width
