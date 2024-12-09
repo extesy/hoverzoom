@@ -1098,11 +1098,11 @@ var hoverZoom = {
                 case -1:
                 case -3:
                     longRightPressTimer = setTimeout(longClick.bind(img), timerDuration, mouseButtonKey, event);
-                    break;
+                    return;
                 case -2:
                 case -4:
                     longMiddlePressTimer = setTimeout(longClick.bind(img), timerDuration, mouseButtonKey, event);
-                    break;
+                    return;
                 default:
             }
         }
