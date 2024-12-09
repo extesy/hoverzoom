@@ -11,7 +11,7 @@ var factorySettings = {
     videoVolume : 0.25,
     playAudio : false,
     audioVolume : 0.25,
-    mouseClickHoldTime : 150,
+    mouseClickHoldTime : 250,
     pageActionEnabled : true,
     showHighRes : true,
     galleriesMouseWheel : true,

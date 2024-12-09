@@ -42,7 +42,7 @@ function loadKeys(sel) {
     $('<option value="0">None</option>').appendTo(sel);
     $('<option value="-1">Right Click (Hold)</option>').appendTo(sel);
     $('<option value="-2">Middle Click (Hold)</option>').appendTo(sel);
-    if (sel.attr('id') != 'selHideKey' && sel.attr('id') != 'selFullZoomKey' && sel.attr('id') != 'selActionKey'){
+    if (sel.attr('id') != 'selHideKey' && sel.attr('id') != 'selFullZoomKey' && sel.attr('id') != 'selActionKey' && sel.attr('id') != 'selToggleKey') {
         $('<option value="-3">Right Click</option>').appendTo(sel);
         $('<option value="-4">Middle Click</option>').appendTo(sel);
     }
