@@ -1316,8 +1316,8 @@ var hoverZoom = {
         function documentMouseUp(event) {
             if (event.button === 0) return; // If left click, return
             // -2 or -4 is middle click, -1 or -3 is right click
-            let rightButtonKey = (!options.rightShortClickAndHold && options.rightShortClick) ? -3 : -1;
-            let middleButtonKey = (!options.middleShortClickAndHold && options.middleShortClick) ? -4 : -2;
+            let rightButtonKey = ((shortPressRight || !options.rightShortClickAndHold) && options.rightShortClick) ? -3 : -1;
+            let middleButtonKey = ((shortPressMiddle || !options.middleShortClickAndHold) && options.middleShortClick) ? -4 : -2;
             let mouseButtonKey = [null,middleButtonKey,rightButtonKey,null,null][event.button];
             
             switch (mouseButtonKey) {
@@ -1341,10 +1341,8 @@ var hoverZoom = {
                     $(document).mousemove();
                     break;
                 default:
-                    if ((mouseButtonKey == -3 || options.rightShortClickAndHold) && shortPressRight)
-                        mouseShortClickHandler(-3, this, event);
-                    if ((mouseButtonKey == -4 || options.middleShortClickAndHold) && shortPressMiddle)
-                        mouseShortClickHandler(-4, this, event);
+                    if ((mouseButtonKey == -3 && shortPressRight) || (mouseButtonKey == -4 && shortPressMiddle))
+                        mouseShortClickHandler(mouseButtonKey, this, event);
             }
             clearMouseButtonTimers(mouseButtonKey);
         }
