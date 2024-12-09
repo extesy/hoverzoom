@@ -1092,7 +1092,7 @@ var hoverZoom = {
         let shortPressMiddle = false;
         
         function mouseButtonKeyHandler(mouseButtonKey, img, event) {
-            const timerDuration = 150;
+            const timerDuration = options.mouseClickHoldTime;
             // -2 or -4 is hold or short middle click, -1 or -3 is hold or short right click
             switch (mouseButtonKey) {
                 case -1:
