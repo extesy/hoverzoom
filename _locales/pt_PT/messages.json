@@ -176,7 +176,7 @@
         "description": "[options] Outline option"
     },
     "optFontOutlineTooltip": {
-        "message": "Se esta opção estiver selecionada, use fonte branca + borda preta fina para legendas e detalhes",
+        "message": "Se estiver selecionada: utilize fonte branca + borda preta fina para legendas e detalhes",
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
@@ -208,7 +208,7 @@
         "description": "[options] Show zoomed pictures while loading option"
     },
     "optShowWhileLoadingTooltip": {
-        "message": "As imagens ampliadas vão ser mostradas antes de carregarem totalmente",
+        "message": "A imagem ampliada será apresentada antes de ser totalmente carregada",
         "description": "[options] Tooltip for show zoomed pictures while loading option"
     },
     "optShowHighRes": {
@@ -252,7 +252,7 @@
         "description": "[options] Unit name (seconds) for changing video position option"
     },
     "optVideoPositionStepTooltip": {
-        "message": "Avanca ou retrocede no vídeo para este valor de segundos",
+        "message": "Avança ou retrocede o vídeo para este valor de segundos",
         "description": "[options] Tooltip for changing video position option"
     },
     "optMuteVideos": {
@@ -336,39 +336,39 @@
         "description": "[options] Tooltip for background opacity"
     },
     "optImagePaddingSize": {
-        "message": "Image padding size:",
+        "message": "Tamanho do preenchimento da imagem:",
         "description": "[options] Adjust the zoomed image padding size option"
     },
     "optImagePaddingSizeUnitName": {
-        "message": "pixels",
+        "message": "píxeis",
         "description": "[options] Unit name (pixels) for zoomed images padding option"
     },
     "optImagePaddingSizeTooltip": {
-        "message": "Changes the padding size for zoomed images. Padding determines how close the image can get to the edge of the viewing window",
+        "message": "Altera o tamanho do preenchimento para imagens com zoom. O preenchimento determina o quão perto a imagem pode chegar da borda da janela de visualização",
         "description": "[options] Tooltip for adjust the zoomed image padding size option"
     },
     "optFullZoomHidesDetailsCaptions": {
-        "message": "Full zoom key hides details and captions",
+        "message": "A tecla de ampliação total oculta os detalhes e as legendas",
         "description": "[options] Full zoom key hides details and captions option"
     },
     "optFullZoomHidesDetailsCaptionsTooltip": {
-        "message": "When pressing full zoom, details and captions will be hidden, allowing the image able to expand more vertically",
+        "message": "Ao pressionar a ampliação completa, os detalhes e as legendas serão ocultados, permitindo que a imagem se expanda mais verticalmente",
         "description": "[options] Tooltip for full zoom key hides details and captions option"
     },
     "optStatusBarOverlap": {
-        "message": "Allow zoomed images to overlap the status bar",
+        "message": "Permitir que as imagens ampliadas se sobreponham à barra de estado",
         "description": "[options] Allow zoomed images to overlap the status bar option"
     },
     "optStatusBarOverlapTooltip": {
-        "message": "Allow zoomed images to overlap the status bar, letting more of the window be used",
+        "message": "Permite que as imagens ampliadas se sobreponham à barra de estado, permitindo a utilização de mais espaço da janela",
         "description": "[options] Tooltip for allow zoomed images to overlap the status bar option"
     },
     "optHScrollBarOverlap": {
-        "message": "Allow zoomed images to overlap the horizontal scroll bar",
+        "message": "Permitir que as imagens ampliadas se sobreponham à barra de deslocamento horizontal",
         "description": "[options] Allow zoomed images to overlap the horizontal scroll bar option"
     },
     "optHScrollBarOverlapTooltip": {
-        "message": "Allow zoomed images to overlap the horizontal bar, letting more of the window be used",
+        "message": "Permite que as imagens ampliadas se sobreponham à barra horizontal, permitindo a utilização de mais espaço da janela",
         "description": "[options] Tooltip for allow zoomed images to overlap the horizontal scroll bar option"
     },
     "optCenterImages": {
@@ -556,7 +556,7 @@
         "description": "[options] Enable Action Keys focus overlay message option"
     },
     "optEnableNoFocusMsgTooltip": {
-        "message": "Às vezes, as Teclas de Atalho aprentam estar inoperacionais, isto costuma acontecer quando a página perdeu o foco. Se a opção estiver ativada, será apresentada uma mensagem de aviso (apenas uma vez).",
+        "message": "Por vezes, as Teclas de Atalho parecem estar inoperacionais, o que acontece normalmente quando a página perde o foco. Se a opção estiver selecionada, será apresentada uma mensagem de aviso (apenas uma vez).",
         "description": "[options] Tooltip for enable Action Keys focus overlay message option"
     },
     "optPicturesOpacity": {
@@ -576,47 +576,47 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optDetailsSelectorTooltip": {
-        "message": "Select which detail(s) should show, if details are displayed",
+        "message": "Selecionar o(s) detalhe(s) que deve(m) ser mostrado(s), se os detalhes forem apresentados",
         "description": "[options] Tooltip for details selector"
     },
     "optTitleBoxDetails": {
-        "message": "Detail(s) to show:",
+        "message": "Detalhe(s) a mostrar:",
         "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
-        "message": "Host",
+        "message": "Servidor",
         "description": "[options] Show Host Detail"
     },
     "optShowDetailFilename": {
-        "message": "File Name",
+        "message": "Nome do ficheiro",
         "description": "[options] Show File Name Detail"
     },
     "optShowDetailLastModified": {
-        "message": "Last Modified",
+        "message": "Última modificação",
         "description": "[options] Show Last Modified Detail"
     },
     "optShowDetailExtension": {
-        "message": "Extension",
+        "message": "Extensão",
         "description": "[options] Show Extension Detail"
     },
     "optShowDetailContentLength": {
-        "message": "Media Length",
+        "message": "Comprimento da multimédia",
         "description": "[options] Show Content Length Detail"
     },
     "optShowDetailDuration": {
-        "message": "Duration",
+        "message": "Duração",
         "description": "[options] Show Duration Detail"
     },
     "optShowDetailScale": {
-        "message": "Scale",
+        "message": "Escala",
         "description": "[options] Show Scale Detail"
     },
     "optShowDetailRatio": {
-        "message": "Ratio",
+        "message": "Rácio",
         "description": "[options] Show Ratio Detail"
     },
     "optShowDetailDimensions": {
-        "message": "Dimensions",
+        "message": "Dimensões",
         "description": "[options] Show Dimensions Detail"
     },
     "optBelowPositionOffset": {
@@ -852,7 +852,7 @@
         "description": "[options] FAQ Answer 4 part 1"
     },
     "optFAQ_A4_2": {
-        "message": "A imagem ou o vídeo são agora exibidos em tamanho real. Pode ampliar ou reduzir o zoom usando a roda do rato.",
+        "message": "A imagem ou o vídeo é agora apresentado em tamanho real. Pode ampliar ou reduzir o zoom utilizando a roda do rato.",
         "description": "[options] FAQ Answer 4 part 2"
     },
     "optFAQ_Q5": {
@@ -928,7 +928,7 @@
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Pressione esta tecla para esconder a imagem ou o vídeo ampliado. Utilize-a quando a imagem oculta elementos que também são exibidos ao passar o rato.",
+        "message": "Pressione esta tecla para ocultar a imagem ou o vídeo ampliado. Utilize-a quando a imagem oculta elementos que também são apresentados ao passar o rato.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -968,7 +968,7 @@
         "description": "[options] Action key title"
     },
     "optFullZoomKeyDescription": {
-        "message": "Quando esta tecla é pressionada, a imagem é exibida usando todo o espaço disponível. Útil apenas para imagens de alta resolução.",
+        "message": "Quando esta tecla é pressionada, a imagem é apresentada utilizando todo o espaço disponível. Útil apenas para imagens de alta resolução.",
         "description": "[options] Action key description"
     },
     "optCopyImageKeyTitle": {
@@ -1024,7 +1024,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Versão $1 (última atualização: $2) - © 2014-2022 Oleg Anashkin",
+        "message": "Versão $1 (última atualização: $2) - © 2014-2025 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
