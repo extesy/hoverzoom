@@ -1253,17 +1253,12 @@ var hoverZoom = {
 
             // Gets mouse button key from event.button
             // -2 or -4 is hold or short middle click, -1 or -3 is hold or short right click
-            let rightButtonKey = options.rightShortClick ? -3 : -1;
-            let middleButtonKey = options.middleShortClick ? -4 : -2;
+            let rightButtonKey = (!options.rightShortClickAndHold && options.rightShortClick) ? -3 : -1;
+            let middleButtonKey = (!options.middleShortClickAndHold && options.middleShortClick) ? -4 : -2;
             let mouseButtonKey = [null,middleButtonKey,rightButtonKey,null,null][event.button];
-            if (mouseButtonKey === -3) {
-                shortPressRight = true;
-                if (options.rightShortClickAndHold) mouseButtonKey = -1;
-            }
-            if (mouseButtonKey === -4) {
-                shortPressMiddle = true;
-                if (options.middleShortClickAndHold) mouseButtonKey = -2;
-            }
+
+            if (mouseButtonKey === rightButtonKey) shortPressRight = true;
+            if (mouseButtonKey === middleButtonKey) shortPressMiddle = true;
 
             switch (mouseButtonKey) {
                 case options.actionKey:
@@ -1321,14 +1316,9 @@ var hoverZoom = {
         function documentMouseUp(event) {
             if (event.button === 0) return; // If left click, return
             // -2 or -4 is middle click, -1 or -3 is right click
-            let rightButtonKey = options.rightShortClick ? -3 : -1;
-            let middleButtonKey = options.middleShortClick ? -4 : -2;
+            let rightButtonKey = (!options.rightShortClickAndHold && options.rightShortClick) ? -3 : -1;
+            let middleButtonKey = (!options.middleShortClickAndHold && options.middleShortClick) ? -4 : -2;
             let mouseButtonKey = [null,middleButtonKey,rightButtonKey,null,null][event.button];
-            
-            if (options.rightShortClickAndHold && !shortPressRight && mouseButtonKey === -3)
-                mouseButtonKey = -1;
-            if (options.middleShortClickAndHold && !shortPressMiddle && mouseButtonKey === -4)
-                mouseButtonKey = -2;
             
             switch (mouseButtonKey) {
                 case options.actionKey:
