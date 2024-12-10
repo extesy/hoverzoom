@@ -1093,63 +1093,40 @@ var hoverZoom = {
         let shortPressRight = false;
         let shortPressMiddle = false;
         
-        function mouseButtonKeyHandler(mouseButtonKey, img, event) {
-            const timerDuration = options.mouseClickHoldTime;
-            // -2 or -4 is hold or short middle click, -1 or -3 is hold or short right click
-            switch (mouseButtonKey) {
+        function documentContextMenu(event) {
+            if (!preventDefaultContext || hideKeyDown) {
+                hideKeyDown = false; // releases hideKey if it was held down
+                return;
+            }
+            event.preventDefault();
+        }
+
+        function middleMouseClickEvent(event) {
+            if (event.button === 1 && preventDefaultAuxClick && !hideKeyDown) {
+                event.preventDefault();
+            }
+        }
+        
+        function preventDefaultMouseAction(disableDefault, button){
+            switch (button) {
                 case -1:
                 case -3:
-                    longRightPressTimer = setTimeout(longClick.bind(img), timerDuration, mouseButtonKey, event);
-                    return;
+                    if (disableDefault !== "get")
+                        preventDefaultContext = disableDefault;
+                    return preventDefaultContext;
                 case -2:
                 case -4:
-                    longMiddlePressTimer = setTimeout(longClick.bind(img), timerDuration, mouseButtonKey, event);
-                    return;
+                    if (disableDefault !== "get")
+                        preventDefaultAuxClick = disableDefault;
+                    return preventDefaultAuxClick;
                 default:
+                    preventDefaultContext = disableDefault;
+                    preventDefaultAuxClick = disableDefault;
             }
         }
 
-        function clearMouseButtonTimers(mouseButtonKey) {
-            // -2 or -4 is hold or short middle click, -1 or -3 is hold or short right click
-            switch (mouseButtonKey) {
-                case -1:
-                case -3:
-                    shortPressRight = false;
-                    clearTimeout(longRightPressTimer);
-                    break;
-                case -2:
-                case -4:
-                    shortPressMiddle = false;
-                    clearTimeout(longMiddlePressTimer);
-                    break;
-                default:
-            }
-            // enables mouse button after a delay so it doesn't trigger if previously disabled
-            setTimeout(() => {setPreventDefaultMouseAction(false, mouseButtonKey)}, 10);
-        }
-        
-        function longClick(mouseButtonKey, event) {
-            switch (mouseButtonKey) {
-                case -1:
-                    shortPressRight = false;
-                    break;
-                case -2:
-                    shortPressMiddle = false;
-                    break
-                case -3:
-                    shortPressRight = false;
-                    return;
-                case -4:
-                    shortPressMiddle = false;
-                    return;
-                default:
-                    return;
-            }
-            mouseAction(mouseButtonKey, this, event);
-        }
-        
         function mouseAction(mouseButtonKey, img, event) {
-            setPreventDefaultMouseAction((imgFullSize || !hideKeyDown) ? true : false, mouseButtonKey);
+            preventDefaultMouseAction((imgFullSize || !hideKeyDown) ? true : false, mouseButtonKey);
             //prevent middle mouse button from firing when action key is used
             if (event.button === 1) document.addEventListener("auxclick", middleMouseClickEvent);
             switch (mouseButtonKey) {
@@ -1231,6 +1208,42 @@ var hoverZoom = {
             }
         }
 
+        function longClick(mouseButtonKey, event) {
+            switch (mouseButtonKey) {
+                case -1:
+                    shortPressRight = false;
+                    break;
+                case -2:
+                    shortPressMiddle = false;
+                    break
+                case -3:
+                    shortPressRight = false;
+                    return;
+                case -4:
+                    shortPressMiddle = false;
+                    return;
+                default:
+                    return;
+            }
+            mouseAction(mouseButtonKey, this, event);
+        }
+
+        function mouseButtonKeyHandler(mouseButtonKey, img, event) {
+            const timerDuration = options.mouseClickHoldTime;
+            // -2 or -4 is hold or short middle click, -1 or -3 is hold or short right click
+            switch (mouseButtonKey) {
+                case -1:
+                case -3:
+                    longRightPressTimer = setTimeout(longClick.bind(img), timerDuration, mouseButtonKey, event);
+                    return;
+                case -2:
+                case -4:
+                    longMiddlePressTimer = setTimeout(longClick.bind(img), timerDuration, mouseButtonKey, event);
+                    return;
+                default:
+            }
+        }
+
         function documentMouseDown(event) {
             // if image is locked and left click is pressed outside of locked image
             if (event.button === 0 && imgFullSize && event.target !== hz.hzViewer[0] && event.target !== imgFullSize[0]) {
@@ -1239,7 +1252,7 @@ var hoverZoom = {
                 }
                 cancelSourceLoading();
                 restoreTitles();
-                setPreventDefaultMouseAction(false);
+                preventDefaultMouseAction(false);
                 return;
             } else if (event.button === 0) { // We don't need left click
                 return;
@@ -1306,6 +1319,26 @@ var hoverZoom = {
             }
         }
 
+        function clearMouseButtonTimers(mouseButtonKey) {
+            // -2 or -4 is hold or short middle click, -1 or -3 is hold or short right click
+            switch (mouseButtonKey) {
+                case -1:
+                case -3:
+                    shortPressRight = false;
+                    clearTimeout(longRightPressTimer);
+                    break;
+                case -2:
+                case -4:
+                    shortPressMiddle = false;
+                    clearTimeout(longMiddlePressTimer);
+                    break;
+                default:
+            }
+            // enables mouse button after a delay so it doesn't trigger if previously disabled
+            if (preventDefaultMouseAction("get", mouseButtonKey) == true) 
+                setTimeout(() => {preventDefaultMouseAction(false, mouseButtonKey)}, 10);
+        }
+
         function documentMouseUp(event) {
             if (event.button === 0) return; // If left click, return
             // -2 or -4 is middle click, -1 or -3 is right click
@@ -1317,7 +1350,7 @@ var hoverZoom = {
                 case options.actionKey:
                     if (actionKeyDown) {
                         actionKeyDown = false;
-                        setPreventDefaultMouseAction(imgFullSize ? true : false, mouseButtonKey);
+                        preventDefaultMouseAction(imgFullSize ? true : false, mouseButtonKey);
                         closeHoverZoomViewer();
                     }
                     break;
@@ -1339,34 +1372,6 @@ var hoverZoom = {
                     }
             }
             clearMouseButtonTimers(mouseButtonKey);
-        }
-
-        function documentContextMenu(event) {
-            if (!preventDefaultContext || hideKeyDown) {
-                hideKeyDown = false; // releases hideKey if it was held down
-                return;
-            }
-            event.preventDefault();
-        }
-
-        function middleMouseClickEvent(event) {
-            if (event.button === 1 && preventDefaultAuxClick && !hideKeyDown) {
-                event.preventDefault();
-            }
-        }
-
-        function setPreventDefaultMouseAction(disableDefault, button){
-            switch (button) {
-                case -1:
-                case -3:
-                    preventDefaultContext = disableDefault;
-                case -2:
-                case -4:
-                    preventDefaultAuxClick = disableDefault;
-                default:
-                    preventDefaultContext = disableDefault;
-                    preventDefaultAuxClick = disableDefault;
-            }
         }
 
         // select correct font size for msg depending on img or video width
