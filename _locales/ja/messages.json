@@ -1024,7 +1024,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "バージョン1（最終更新：2ドル） - © 2014-2022 Oleg Anashkin",
+        "message": "Version $1 (last update: $2) - © 2014-$3 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
