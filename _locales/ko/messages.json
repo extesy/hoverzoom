@@ -112,19 +112,19 @@
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxWidth": {
-        "message": "Set max width of zoomed images:",
+        "message": "확대된 이미지의 최대 너비 설정:",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optMaxWidthTooltip": {
-        "message": "Set max width of zoomed images by this amount (if 0 then no max width)",
+        "message": "확대된 이미지의 최대 너비를 이만큼으로 설정합니다 (0이면 최대 너비 없음)",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxHeight": {
-        "message": "Set max height of zoomed images:",
+        "message": "확대된 이미지의 최대 높이 설정:",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optMaxHeightTooltip": {
-        "message": "Set max height of zoomed images by this amount (if 0 then no max height)",
+        "message": "확대된 이미지의 최대 높이를 이만큼으로 설정합니다 (0이면 최대 높이 없음)",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxSizeUnitName": {
@@ -336,39 +336,39 @@
         "description": "[options] Tooltip for background opacity"
     },
     "optImagePaddingSize": {
-        "message": "Image padding size:",
+        "message": "이미지 여백 크기:",
         "description": "[options] Adjust the zoomed image padding size option"
     },
     "optImagePaddingSizeUnitName": {
-        "message": "pixels",
+        "message": "픽셀",
         "description": "[options] Unit name (pixels) for zoomed images padding option"
     },
     "optImagePaddingSizeTooltip": {
-        "message": "Changes the padding size for zoomed images. Padding determines how close the image can get to the edge of the viewing window",
+        "message": "확대된 이미지의 여백 크기를 변경합니다. 여백은 이미지가 표시 창의 테두리에 얼마나 가까이 다가갈 수 있는지를 결정합니다.",
         "description": "[options] Tooltip for adjust the zoomed image padding size option"
     },
     "optFullZoomHidesDetailsCaptions": {
-        "message": "Full zoom key hides details and captions",
+        "message": "전체 확대 시 상세 정보와 캡션 숨김",
         "description": "[options] Full zoom key hides details and captions option"
     },
     "optFullZoomHidesDetailsCaptionsTooltip": {
-        "message": "When pressing full zoom, details and captions will be hidden, allowing the image able to expand more vertically",
+        "message": "전체 확대 시, 이미지를 수직으로 더 크게 확대할 수 있도록 상세 정보와 캡션을 숨깁니다",
         "description": "[options] Tooltip for full zoom key hides details and captions option"
     },
     "optStatusBarOverlap": {
-        "message": "Allow zoomed images to overlap the status bar",
+        "message": "확대된 이미지가 상태 표시줄과 겹치도록 허용",
         "description": "[options] Allow zoomed images to overlap the status bar option"
     },
     "optStatusBarOverlapTooltip": {
-        "message": "Allow zoomed images to overlap the status bar, letting more of the window be used",
+        "message": "확대된 이미지가 상태 표시줄과 겹치도록 허용해 창의 더 많은 부분을 사용할 수 있게 합니다",
         "description": "[options] Tooltip for allow zoomed images to overlap the status bar option"
     },
     "optHScrollBarOverlap": {
-        "message": "Allow zoomed images to overlap the horizontal scroll bar",
+        "message": "확대된 이미지가 가로 스크롤 막대와 겹치도록 허용",
         "description": "[options] Allow zoomed images to overlap the horizontal scroll bar option"
     },
     "optHScrollBarOverlapTooltip": {
-        "message": "Allow zoomed images to overlap the horizontal bar, letting more of the window be used",
+        "message": "확대된 이미지가 가로 스크롤 바와 겹치도록 허용해 창의 더 많은 부분을 사용할 수 있게 합니다",
         "description": "[options] Tooltip for allow zoomed images to overlap the horizontal scroll bar option"
     },
     "optCenterImages": {
@@ -576,11 +576,11 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optDetailsSelectorTooltip": {
-        "message": "Select which detail(s) should show, if details are displayed",
+        "message": "상세 정보를 표시하는 경우, 어떤 상세 정보를 표시할지 선택합니다",
         "description": "[options] Tooltip for details selector"
     },
     "optTitleBoxDetails": {
-        "message": "Detail(s) to show:",
+        "message": "표시할 상세 정보:",
         "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
@@ -1024,7 +1024,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "버전 $1 (최근 업데이트: $2) - © 2014-2022 Oleg Anashkin",
+        "message": "버전 $1 (최근 업데이트: $2) - © 2014-$3 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {

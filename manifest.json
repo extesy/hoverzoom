@@ -2160,6 +2160,10 @@
         {
             "js": ["plugins/brave.js"],
             "matches": ["*://*.search.brave.com/*"]
+        },
+        {
+            "js": ["plugins/civitai.js"],
+            "matches": ["*://*.civitai.com/*"]
         }
     ]
 }

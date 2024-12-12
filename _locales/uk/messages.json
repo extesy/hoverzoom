@@ -1024,7 +1024,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Версія $1 (останнє оновлення: $2) - ©️ 2014-2022 Олег Анашкін",
+        "message": "Версія $1 (останнє оновлення: $2) - © 2014-$3 Олег Анашкін",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {

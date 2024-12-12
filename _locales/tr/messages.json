@@ -112,19 +112,19 @@
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxWidth": {
-        "message": "Set max width of zoomed images:",
+        "message": "Yakınlaştırılmış resimlerin maksimum genişliğini ayarlayın:",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optMaxWidthTooltip": {
-        "message": "Set max width of zoomed images by this amount (if 0 then no max width)",
+        "message": "Yakınlaştırılmış resimlerin maksimum genişliğini bu miktarda ayarlayın (0 ise maksimum genişlik yok)",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxHeight": {
-        "message": "Set max height of zoomed images:",
+        "message": "Yakınlaştırılmış resimlerin maksimum yüksekliğini ayarlayın:",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optMaxHeightTooltip": {
-        "message": "Set max height of zoomed images by this amount (if 0 then no max height)",
+        "message": "Yakınlaştırılmış resimlerin maksimum yüksekliğini bu miktarda ayarlayın (0 ise maksimum yükseklik yok)",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxSizeUnitName": {
@@ -176,7 +176,7 @@
         "description": "[options] Outline option"
     },
     "optFontOutlineTooltip": {
-        "message": "İşaretliyse : beyaz yazı tipi + detaylar ve altyazı için ince siyah kenar kullan",
+        "message": "İşaretliyse: başlık ve ayrıntılar için beyaz yazı tipi + ince siyah kenarlık kullanın",
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
@@ -324,7 +324,7 @@
         "description": "[options] Tooltip for size of halo"
     },
     "optAmbilightBackgroundOpacity": {
-        "message": "Arkaplan Şeffaflığı: ",
+        "message": "Arkaplan Şeffaflığı :",
         "description": "[options] Background opacity option"
     },
     "optAmbilightBackgroundOpacityUnitName": {
@@ -336,39 +336,39 @@
         "description": "[options] Tooltip for background opacity"
     },
     "optImagePaddingSize": {
-        "message": "Image padding size:",
+        "message": "Görüntü dolgu boyutu:",
         "description": "[options] Adjust the zoomed image padding size option"
     },
     "optImagePaddingSizeUnitName": {
-        "message": "pixels",
+        "message": "pikseller",
         "description": "[options] Unit name (pixels) for zoomed images padding option"
     },
     "optImagePaddingSizeTooltip": {
-        "message": "Changes the padding size for zoomed images. Padding determines how close the image can get to the edge of the viewing window",
+        "message": "Yakınlaştırılmış görüntüler için dolgu boyutunu değiştirir. Dolgu, resmin görüntüleme penceresinin kenarına ne kadar yaklaşabileceğini belirler",
         "description": "[options] Tooltip for adjust the zoomed image padding size option"
     },
     "optFullZoomHidesDetailsCaptions": {
-        "message": "Full zoom key hides details and captions",
+        "message": "Tam yakınlaştırma tuşu ayrıntıları ve başlıkları gizler",
         "description": "[options] Full zoom key hides details and captions option"
     },
     "optFullZoomHidesDetailsCaptionsTooltip": {
-        "message": "When pressing full zoom, details and captions will be hidden, allowing the image able to expand more vertically",
+        "message": "Tam yakınlaştırmaya basıldığında, ayrıntılar ve başlıklar gizlenerek resmin dikey olarak daha fazla genişleyebilmesini sağlar",
         "description": "[options] Tooltip for full zoom key hides details and captions option"
     },
     "optStatusBarOverlap": {
-        "message": "Allow zoomed images to overlap the status bar",
+        "message": "Yakınlaştırılmış resimlerin durum çubuğuyla örtüşmesine izin ver",
         "description": "[options] Allow zoomed images to overlap the status bar option"
     },
     "optStatusBarOverlapTooltip": {
-        "message": "Allow zoomed images to overlap the status bar, letting more of the window be used",
+        "message": "Yakınlaştırılmış resimlerin durum çubuğuyla örtüşmesine izin vererek pencerenin daha fazla kullanılmasını sağlayın",
         "description": "[options] Tooltip for allow zoomed images to overlap the status bar option"
     },
     "optHScrollBarOverlap": {
-        "message": "Allow zoomed images to overlap the horizontal scroll bar",
+        "message": "Yakınlaştırılmış resimlerin yatay kaydırma çubuğuyla örtüşmesine izin ver",
         "description": "[options] Allow zoomed images to overlap the horizontal scroll bar option"
     },
     "optHScrollBarOverlapTooltip": {
-        "message": "Allow zoomed images to overlap the horizontal bar, letting more of the window be used",
+        "message": "Yakınlaştırılmış resimlerin yatay çubukla örtüşmesine izin vererek pencerenin daha fazla kullanılmasını sağlayın",
         "description": "[options] Tooltip for allow zoomed images to overlap the horizontal scroll bar option"
     },
     "optCenterImages": {
@@ -380,11 +380,11 @@
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optAutoLockImages": {
-        "message": "Automatically lock images",
+        "message": "Resimleri otomatik olarak kilitle",
         "description": "[options] Automatically lock images option"
     },
     "optAutoLockImagesTooltip": {
-        "message": "Automatically lock images when activating Hover Zoom+",
+        "message": "Hover Zoom+ etkinleştirildiğinde resimleri otomatik olarak kilitle",
         "description": "[options] Tooltip for automatically lock images option"
     },
     "optFrameBackgroundColor": {
@@ -416,7 +416,7 @@
         "description": "[options] Unit name (pixel) for frame thickness"
     },
     "optFontSize": {
-        "message": "Yazı boyutu: ",
+        "message": "Yazı boyutu:",
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
@@ -564,11 +564,11 @@
         "description": "[options] Zoomed pictures opacity option"
     },
     "optCaptionOpacity": {
-        "message": "Caption opacity:",
+        "message": "Başlık opaklığı:",
         "description": "[options] Caption opacity option"
     },
     "optDetailsOpacity": {
-        "message": "Details opacity:",
+        "message": "Ayrıntılar opaklığı:",
         "description": "[options] Details opacity option"
     },
     "optOpacityUnitName": {
@@ -576,63 +576,63 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optDetailsSelectorTooltip": {
-        "message": "Select which detail(s) should show, if details are displayed",
+        "message": "Ayrıntılar görüntüleniyorsa hangi ayrıntı(lar)ın gösterileceğini seçin",
         "description": "[options] Tooltip for details selector"
     },
     "optTitleBoxDetails": {
-        "message": "Detail(s) to show:",
+        "message": "Gösterilecek detay(lar):",
         "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
-        "message": "Host",
+        "message": "Sunucu",
         "description": "[options] Show Host Detail"
     },
     "optShowDetailFilename": {
-        "message": "File Name",
+        "message": "Dosya Adı",
         "description": "[options] Show File Name Detail"
     },
     "optShowDetailLastModified": {
-        "message": "Last Modified",
+        "message": "Son Düzenleme",
         "description": "[options] Show Last Modified Detail"
     },
     "optShowDetailExtension": {
-        "message": "Extension",
+        "message": "Eklenti",
         "description": "[options] Show Extension Detail"
     },
     "optShowDetailContentLength": {
-        "message": "Media Length",
+        "message": "Medya Uzunluğu",
         "description": "[options] Show Content Length Detail"
     },
     "optShowDetailDuration": {
-        "message": "Duration",
+        "message": "Süre",
         "description": "[options] Show Duration Detail"
     },
     "optShowDetailScale": {
-        "message": "Scale",
+        "message": "Ölçek",
         "description": "[options] Show Scale Detail"
     },
     "optShowDetailRatio": {
-        "message": "Ratio",
+        "message": "Oran",
         "description": "[options] Show Ratio Detail"
     },
     "optShowDetailDimensions": {
-        "message": "Dimensions",
+        "message": "Ölçüler",
         "description": "[options] Show Dimensions Detail"
     },
     "optBelowPositionOffset": {
-        "message": "Below position offset:",
+        "message": "Aşağı konuma kaydırma:",
         "description": "[options] Below offset option"
     },
     "optBelowPositionOffsetTooltip": {
-        "message": "Amount to offset text in the below position",
+        "message": "Metni aşağı konuma kaydırmak için miktar",
         "description": "[options] Tooltip for below position offset"
     },
     "optAbovePositionOffset": {
-        "message": "Above position offset:",
+        "message": "Yukarı konuma kaydırma:",
         "description": "[options] Above offset option"
     },
     "optAbovePositionOffsetTooltip": {
-        "message": "Amount to offset text in the above position",
+        "message": "Metni yukarı konuma kaydırmak için miktar",
         "description": "[options] Tooltip for above position offset"
     },
     "optOffsetUnitName": {
@@ -672,15 +672,15 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images, videos & audios to folder: Downloads/",
+        "message": "Resimleri, videoları & sesleri şu klasöre kaydet: İndirilenler/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Prefix original names of downloads with origin, size, duration and so on for easier management",
+        "message": "Daha kolay yönetim için indirmelerin orijinal adlarını kaynak, boyut, süre vb. ile önekleyin",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Rename saved files by adding:",
+        "message": "Kaydedilen dosyaları ekleyerek yeniden adlandırın:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
@@ -708,31 +708,31 @@
         "description": "[options] Add download duration option"
     },
     "optAddDownloadIndexTooltip": {
-        "message": "Add index of image in gallery (e.g: third image out of ten: 03-10)",
+        "message": "Galeriyedeki resme dizin ekleyin (ör: on resimden üçüncüsü: 03-10)",
         "description": "[options] Tooltip for add download index option"
     },
     "optAddDownloadIndex": {
-        "message": "index",
+        "message": "dizin",
         "description": "[options] Add download index option"
     },
     "optAddDownloadCaptionTooltip": {
-        "message": "Add caption (e.g: Mona Lisa by Leonardo da Vinci)",
+        "message": "Resim yazısı ekleyin (ör: Leonardo da Vinci'nin Mona Lisa'sı)",
         "description": "[options] Tooltip for add download caption option"
     },
     "optAddDownloadCaption": {
-        "message": "caption",
+        "message": "başlık",
         "description": "[options] Add download caption option"
     },
     "optDownloadReplaceOriginalFilenameTooltip": {
-        "message": "Replace original filename or remove it if no value supplied (extension is preserved)",
+        "message": "Asıl dosya adını değiştirin veya değer sağlanmadıysa kaldırın (uzantı korunur)",
         "description": "[options] Tooltip for replace original filename when downloading option"
     },
     "optDownloadReplaceOriginalFilenamePlaceholder": {
-        "message": "Example: fullsize_image",
+        "message": "Örnek: fullsize_image",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadReplaceOriginalFilename": {
-        "message": "On save, replace original filename by:",
+        "message": "Kaydederken, asıl dosya adını şu şekilde değiştirin:",
         "description": "[options] Replace original filename when downloading option"
     },
     "optSectionTroubleshooting": {
@@ -764,31 +764,31 @@
         "description": "[options] Page section for supported audio formats"
     },
     "optSectionImportExportSettings": {
-        "message": "Import/Export",
+        "message": "İçe Aktar/Dışa Aktar",
         "description": "[options] Page section for import/export"
     },
     "optSectionImportExportSettingsTooltip": {
-        "message": "Press export to get a string of your current settings. Press import to load your pasted settings",
+        "message": "Mevcut ayarlarınızın bir dizesini almak için dışa aktar düğmesine basın. Yapıştırdığınız ayarları yüklemek için içe aktara basın",
         "description": "[options] Tooltip for input and export options"
     },
     "optImportExportTextArea": {
-        "message": "Paste your saved settings here",
+        "message": "Kayıtlı ayarlarınızı buraya yapıştırın",
         "description": "[options] Placeholder for import and export text area"
     },
     "optButtonImportSettings": {
-        "message": "Import",
+        "message": "İçe Aktar",
         "description": "[options] Import a save string from the textarea"
     },
     "optButtonExportSettings": {
-        "message": "Export",
+        "message": "Dışa Aktar",
         "description": "[options] Export a save string into the textarea"
     },
     "optImport": {
-        "message": "Import Success!",
+        "message": "İçe Aktarma Başarılı!",
         "description": "[options] Notification after successful import to options"
     },
     "optImportFailed": {
-        "message": "Import Failed",
+        "message": "İçe Aktarma Başarısız",
         "description": "[options] Notification after failed import to options"
     },
     "optPageFAQ": {
@@ -1024,7 +1024,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Versiyon $1 (Son Güncelleme: $2) - © 2014-2022 Oleg Anashkin",
+        "message": "Versiyon $1 (Son Güncelleme: $2) - © 2014-$3 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
