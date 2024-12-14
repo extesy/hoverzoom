@@ -112,19 +112,19 @@
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxWidth": {
-        "message": "Set max width of zoomed images:",
+        "message": "Maximale Breite gezoomter Bilder festlegen:",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optMaxWidthTooltip": {
-        "message": "Set max width of zoomed images by this amount (if 0 then no max width)",
+        "message": "Maximale Breite von gezoomten Bildern (0 für keine Breitenbeschränkung)",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxHeight": {
-        "message": "Set max height of zoomed images:",
+        "message": "Maximale Höhe gezoomter Bilder festlegen:",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optMaxHeightTooltip": {
-        "message": "Set max height of zoomed images by this amount (if 0 then no max height)",
+        "message": "Maximale Höhe von gezoomten Bildern (0 für keine Höhenbeschränkung)",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxSizeUnitName": {
@@ -336,39 +336,39 @@
         "description": "[options] Tooltip for background opacity"
     },
     "optImagePaddingSize": {
-        "message": "Image padding size:",
+        "message": "Bild Abstandsgröße:",
         "description": "[options] Adjust the zoomed image padding size option"
     },
     "optImagePaddingSizeUnitName": {
-        "message": "pixels",
+        "message": "Pixel",
         "description": "[options] Unit name (pixels) for zoomed images padding option"
     },
     "optImagePaddingSizeTooltip": {
-        "message": "Changes the padding size for zoomed images. Padding determines how close the image can get to the edge of the viewing window",
+        "message": "Ändert den Abstand für gezoomte Bilder. Abstand zum Ansichtsfensterrahmen.",
         "description": "[options] Tooltip for adjust the zoomed image padding size option"
     },
     "optFullZoomHidesDetailsCaptions": {
-        "message": "Full zoom key hides details and captions",
+        "message": "Voller Zoom versteckt Details und Bildunterschriften",
         "description": "[options] Full zoom key hides details and captions option"
     },
     "optFullZoomHidesDetailsCaptionsTooltip": {
-        "message": "When pressing full zoom, details and captions will be hidden, allowing the image able to expand more vertically",
+        "message": "Wenn voller Zoom aktiviert wird, dann werden Details und Bilduntertitel versteckt. Das Bild selbst kann vertikal mehr Platz einnehmen.",
         "description": "[options] Tooltip for full zoom key hides details and captions option"
     },
     "optStatusBarOverlap": {
-        "message": "Allow zoomed images to overlap the status bar",
+        "message": "Erlaube gezoomten Bildern die Statusbar zu überlappen",
         "description": "[options] Allow zoomed images to overlap the status bar option"
     },
     "optStatusBarOverlapTooltip": {
-        "message": "Allow zoomed images to overlap the status bar, letting more of the window be used",
+        "message": "Erlaube gezoomten Bildern die Statusbar zu überlappen, um mehr Fläche des Fensters zu verwenden",
         "description": "[options] Tooltip for allow zoomed images to overlap the status bar option"
     },
     "optHScrollBarOverlap": {
-        "message": "Allow zoomed images to overlap the horizontal scroll bar",
+        "message": "Erlaube gezoomten Bildern den horizontalen Scrollbalken zu überlappen",
         "description": "[options] Allow zoomed images to overlap the horizontal scroll bar option"
     },
     "optHScrollBarOverlapTooltip": {
-        "message": "Allow zoomed images to overlap the horizontal bar, letting more of the window be used",
+        "message": "Erlaube gezoomten Bildern den horizontalen Scrollbalken zu überlappen, um mehr Fläche des Fensters zu verwenden",
         "description": "[options] Tooltip for allow zoomed images to overlap the horizontal scroll bar option"
     },
     "optCenterImages": {
@@ -380,11 +380,11 @@
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optAutoLockImages": {
-        "message": "Automatically lock images",
+        "message": "Bilder automatisch festsetzen",
         "description": "[options] Automatically lock images option"
     },
     "optAutoLockImagesTooltip": {
-        "message": "Automatically lock images when activating Hover Zoom+",
+        "message": "Setze Bilder automatisch fest wenn Hover Zoom+ aktiviert wird",
         "description": "[options] Tooltip for automatically lock images option"
     },
     "optFrameBackgroundColor": {
@@ -564,11 +564,11 @@
         "description": "[options] Zoomed pictures opacity option"
     },
     "optCaptionOpacity": {
-        "message": "Caption opacity:",
+        "message": "Betitelung Transparenz:",
         "description": "[options] Caption opacity option"
     },
     "optDetailsOpacity": {
-        "message": "Details opacity:",
+        "message": "Details Transparenz:",
         "description": "[options] Details opacity option"
     },
     "optOpacityUnitName": {
@@ -576,11 +576,11 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optDetailsSelectorTooltip": {
-        "message": "Select which detail(s) should show, if details are displayed",
+        "message": "Auswahl der Details die angezeigt werden, wenn Details angezeigt werden",
         "description": "[options] Tooltip for details selector"
     },
     "optTitleBoxDetails": {
-        "message": "Detail(s) to show:",
+        "message": "Anzuzeigende Details:",
         "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
@@ -588,27 +588,27 @@
         "description": "[options] Show Host Detail"
     },
     "optShowDetailFilename": {
-        "message": "File Name",
+        "message": "Dateiname",
         "description": "[options] Show File Name Detail"
     },
     "optShowDetailLastModified": {
-        "message": "Last Modified",
+        "message": "Zuletzt Geändert",
         "description": "[options] Show Last Modified Detail"
     },
     "optShowDetailExtension": {
-        "message": "Extension",
+        "message": "Erweiterung",
         "description": "[options] Show Extension Detail"
     },
     "optShowDetailContentLength": {
-        "message": "Media Length",
+        "message": "Medium Länge",
         "description": "[options] Show Content Length Detail"
     },
     "optShowDetailDuration": {
-        "message": "Duration",
+        "message": "Laufzeit",
         "description": "[options] Show Duration Detail"
     },
     "optShowDetailScale": {
-        "message": "Scale",
+        "message": "Skalierung",
         "description": "[options] Show Scale Detail"
     },
     "optShowDetailRatio": {
@@ -616,7 +616,7 @@
         "description": "[options] Show Ratio Detail"
     },
     "optShowDetailDimensions": {
-        "message": "Dimensions",
+        "message": "Dimensionen",
         "description": "[options] Show Dimensions Detail"
     },
     "optBelowPositionOffset": {
