@@ -321,18 +321,20 @@ function restoreOptions(optionsFromFactorySettings) {
             case -3:
                 options.rightShortClick = true;
             case -1:
-                if (rightButtonActive) // if both selected
+                if (rightButtonActive) { // if both selected
                     options.rightShortClickAndHold = true;
-                else
+                } else {
                     rightButtonActive = true;
+                }
                 break;
             case -4:
                 options.middleShortClick = true;
             case -2:
-                if (middleButtonActive) // if both selected
+                if (middleButtonActive) { // if both selected
                     options.middleShortClickAndHold = true;
-                else
+                } else {
                     middleButtonActive = true;
+                }
                 break;
             default:
         }

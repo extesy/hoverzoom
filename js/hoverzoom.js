@@ -1102,21 +1102,24 @@ var hoverZoom = {
         }
 
         function middleMouseClickEvent(event) {
-            if (event.button === 1 && preventDefaultAuxClick && !hideKeyDown)
+            if (event.button === 1 && preventDefaultAuxClick && !hideKeyDown) {
                 event.preventDefault();
+            }
         }
         
         function preventDefaultMouseAction(disableDefault, button){
             switch (button) {
                 case -1:
                 case -3:
-                    if (disableDefault !== "get")
+                    if (disableDefault !== "get") {
                         preventDefaultContext = disableDefault;
+                    }
                     return preventDefaultContext;
                 case -2:
                 case -4:
-                    if (disableDefault !== "get")
+                    if (disableDefault !== "get") {
                         preventDefaultAuxClick = disableDefault;
+                    }
                     return preventDefaultAuxClick;
                 default:
                     preventDefaultContext = disableDefault;
@@ -1334,8 +1337,9 @@ var hoverZoom = {
                 default:
             }
             // enables mouse button after a delay so it doesn't trigger if previously disabled
-            if (preventDefaultMouseAction("get", mouseButtonKey) == true) 
+            if (preventDefaultMouseAction("get", mouseButtonKey) == true) {
                 setTimeout(() => {preventDefaultMouseAction(false, mouseButtonKey)}, 10);
+            }
         }
 
         function documentMouseUp(event) {
@@ -1377,7 +1381,7 @@ var hoverZoom = {
         function getMsgFontSize() {
             let w = 0;
             let img = hz.hzViewer.find('img').get(0);
-            if (img) w = $(img).width()
+            if (img) w = $(img).width();
             let video = hz.hzViewer.find('video').get(0);
             if (video) w = $(video).width();
 
