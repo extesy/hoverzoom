@@ -1102,9 +1102,8 @@ var hoverZoom = {
         }
 
         function middleMouseClickEvent(event) {
-            if (event.button === 1 && preventDefaultAuxClick && !hideKeyDown) {
+            if (event.button === 1 && preventDefaultAuxClick && !hideKeyDown)
                 event.preventDefault();
-            }
         }
         
         function preventDefaultMouseAction(disableDefault, button){
