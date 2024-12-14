@@ -131,9 +131,36 @@ function saveOptions(exportSettings = false) {
         if (!self.is(':checked')) options.disabledPlugins.push(self.attr('id').substr('chkPlugin'.length));
     });
 
+    let rightButtonActive = false;
+    let middleButtonActive = false;
+    options.rightShortClickAndHold = false;
+    options.middleShortClickAndHold = false;
+    options.rightShortClick = false;
+    options.middleShortClick = false;
+
     actionKeys.forEach(function(key) {
-        var id = key[0].toUpperCase() + key.substr(1);
+        var id = key[0].toUpperCase() + key.substring(1);
         options[key] = parseInt($('#sel' + id).val());
+
+        switch (options[key]) {
+            case -3:
+                options.rightShortClick = true;
+            case -1:
+                if (rightButtonActive) // if both selected
+                    options.rightShortClickAndHold = true;
+                else
+                rightButtonActive = true;
+                break;
+            case -4:
+                options.middleShortClick = true;
+            case -2:
+                if (middleButtonActive) // if both selected
+                    options.middleShortClickAndHold = true;
+                else
+                middleButtonActive = true;
+                break;
+            default:
+        }
     });
 
     options.showDetailFilename = $('#chkShowDetailFilename')[0].checked;
@@ -278,7 +305,7 @@ function restoreOptions(optionsFromFactorySettings) {
     for (var i = 0; i < options.excludedSites.length; i++) {
         appendExcludedSite(options.excludedSites[i], false);
     }
-    
+
     let rightButtonActive = false;
     let middleButtonActive = false;
     options.rightShortClickAndHold = false;
@@ -287,7 +314,7 @@ function restoreOptions(optionsFromFactorySettings) {
     options.middleShortClick = false;
 
     actionKeys.forEach(function(key) {
-        var id = key[0].toUpperCase() + key.substr(1);
+        var id = key[0].toUpperCase() + key.substring(1);
         $('#sel' + id).val(options[key]);
 
         switch (options[key]) {
