@@ -1259,8 +1259,8 @@ var hoverZoom = {
 
             // Gets mouse button key from event.button
             // -2 or -4 is hold or short middle click, -1 or -3 is hold or short right click
-            let rightButtonKey = (!options.rightShortClickAndHold && options.rightShortClick) ? -3 : -1;
-            let middleButtonKey = (!options.middleShortClickAndHold && options.middleShortClick) ? -4 : -2;
+            const  rightButtonKey = (!options.rightShortClickAndHold && options.rightShortClick) ? -3 : -1;
+            const  middleButtonKey = (!options.middleShortClickAndHold && options.middleShortClick) ? -4 : -2;
             let mouseButtonKey = [null,middleButtonKey,rightButtonKey,null,null][event.button];
 
             if (mouseButtonKey === rightButtonKey) shortPressRight = true;
@@ -1341,8 +1341,8 @@ var hoverZoom = {
         function documentMouseUp(event) {
             if (event.button === 0) return; // If left click, return
             // -2 or -4 is middle click, -1 or -3 is right click
-            let rightButtonKey = ((shortPressRight || !options.rightShortClickAndHold) && options.rightShortClick) ? -3 : -1;
-            let middleButtonKey = ((shortPressMiddle || !options.middleShortClickAndHold) && options.middleShortClick) ? -4 : -2;
+            const rightButtonKey = ((shortPressRight || !options.rightShortClickAndHold) && options.rightShortClick) ? -3 : -1;
+            const middleButtonKey = ((shortPressMiddle || !options.middleShortClickAndHold) && options.middleShortClick) ? -4 : -2;
             let mouseButtonKey = [null,middleButtonKey,rightButtonKey,null,null][event.button];
             
             switch (mouseButtonKey) {
