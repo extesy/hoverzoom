@@ -2,10 +2,6 @@
 
 First off, we're thrilled that you're interested in contributing to HoverZoom! 🌟 We're constantly looking for talented individuals like you to help us make HoverZoom even better. 😄
 
-### Getting Started 🚀
-
-Before you start contributing, please take a moment to review our code of conduct: [Code of Conduct](LICENSE).
-
 ### How to Contribute 🤝
 
 It's super easy to start contributing to HoverZoom. Just follow these simple steps:
@@ -24,7 +20,7 @@ It's super easy to start contributing to HoverZoom. Just follow these simple ste
 
 4. **Work on Your Contribution** 🛠️
 
-   Make your awesome contributions to HoverZoom on your branch. Write code, fix bugs, add features, or improve documentation. Don't forget to add tests if applicable!
+   Make your awesome contributions to HoverZoom on your branch. Write code, fix bugs, add features, or improve documentation.
 
 5. **Commit Your Changes** ✅
 
@@ -52,6 +48,6 @@ We want to keep HoverZoom's code clean and consistent. Please follow our coding 
 
 ### Contributors 💪
 
-We appreciate every contribution, big or small! Your name will be added to our list of amazing contributors in the README file.
+We appreciate every contribution, big or small!
 
 Thank you for being a part of HoverZoom! We can't wait to see what amazing things we can build together. Happy coding! 🚁💻🌟
