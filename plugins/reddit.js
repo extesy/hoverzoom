@@ -127,21 +127,13 @@ hoverZoomPlugins.push({
       });
     });
 
-    // Supports images in sh.reddit compact view
+    // Supports images in sh.reddit
     $('shreddit-post[content-href*="//i.redd.it"]').one('mouseover', function () {
       let post = $(this);
       let link = post.attr('content-href');
-      let thumbnail = post.find('div[slot*="thumbnail"]:first-child');
-      
+      // Thumbnail selector changes if we're in card view or compact view
+      let thumbnail = (post.attr('view-type') === 'compactView') ? post.find('div[slot*="thumbnail"]:first-child') : post.find('img.i18n-post-media-img');      
       hoverZoom.prepareLink(thumbnail, link);
-    });
-    
-    // Supports images in sh.reddit card view 
-    $('img.i18n-post-media-img').one('mouseover', function () {
-      let post = $(this);
-      let link = post.attr('content-href');
-
-      hoverZoom.prepareLink(post, link);
     });
 
     // Supports videos in sh.reddit card view 
@@ -219,7 +211,7 @@ hoverZoomPlugins.push({
     // supports sh.reddit compact view galleries
     $('shreddit-post[content-href*="//www.reddit.com/gallery/"]').one('mouseover', function () {
       let post = $(this);
-      if (post.data().hoverZoomMouseOver) return;
+      if (post.data().hoverZoomMouseOver || post.attr('view-type') === "cardView") return;
       post.data().hoverZoomMouseOver = true;
       let galleryid = post.attr('id');
       let thumbnail = post.find('div[slot*="thumbnail"]:first-child'); //finds thumbnail
