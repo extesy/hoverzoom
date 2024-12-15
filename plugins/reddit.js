@@ -129,16 +129,16 @@ hoverZoomPlugins.push({
 
     // Supports images in sh.reddit
     $('shreddit-post[content-href*="//i.redd.it"]').one('mouseover', function () {
-      let post = $(this);
+      const post = $(this);
       let link = post.attr('content-href');
       // Thumbnail selector changes if we're in card view or compact view
-      let thumbnail = (post.attr('view-type') === 'compactView') ? post.find('div[slot*="thumbnail"]:first-child') : post.find('img.i18n-post-media-img');      
+      let thumbnail = (post.attr('view-type') === 'compactView') ? post.find('div[slot*="thumbnail"] > div') : post.find('img.i18n-post-media-img');    
       hoverZoom.prepareLink(thumbnail, link);
     });
 
     // Supports videos in sh.reddit card view 
     $('shreddit-player-2').one('mouseover', function () {
-      let post = $(this);
+      const post = $(this);
       let src = post.attr('src');
       let packagedMedia = post.attr('packaged-media-json');
 
@@ -214,7 +214,7 @@ hoverZoomPlugins.push({
       if (post.data().hoverZoomMouseOver || post.attr('view-type') === "cardView") return;
       post.data().hoverZoomMouseOver = true;
       let galleryid = post.attr('id');
-      let thumbnail = post.find('div[slot*="thumbnail"]:first-child'); //finds thumbnail
+      let thumbnail = post.find('div[slot*="thumbnail"] > div'); //finds thumbnail
       $.get('https://www.reddit.com/by_id/' + galleryid + '.json?raw_json=1', data => processGalleryResponse(thumbnail, data));
     });
 
@@ -231,7 +231,7 @@ hoverZoomPlugins.push({
       let post = $(this);
       let link = post.attr('data-url') || post.attr('content-href');
       let title = post.find('a.title').text() || post.attr('post-title');
-      let hoverTargets =  post.attr('data-url') ? 'a.thumbnail,a.title' : 'div[slot*="thumbnail"]:first-child'
+      let hoverTargets =  post.attr('data-url') ? 'a.thumbnail,a.title' : 'div[slot*="thumbnail"] > div'
       post.find(hoverTargets).each(function() {
         let img = $(this);
         // Use /DASH_600_K as a default if for any reason the ajax request below doesn't find a valid link
