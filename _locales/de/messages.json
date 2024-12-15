@@ -447,6 +447,18 @@
         "message": "sek",
         "description": "[options] Short form of \"second\" for delay duration"
     },
+    "optMouseClickHoldTime": {
+        "message": "Mouse click hold time:",
+        "description": "[options] Mouse click hold time option"
+    },
+    "optMouseClickHoldTimeTooltip": {
+        "message": "Amount of time required to hold a mouse click action key before the hold action is triggered",
+        "description": "[options] Tooltip for mouse click hold time option"
+    },
+    "optClickHoldTimeUnit": {
+        "message": "milliseconds",
+        "description": "[options] Unit name (pixel) for hold time amount"
+    },
     "optSectionZoomSpeed": {
         "message": "Zoomgeschwindigkeit",
         "description": "[options] Page section for zoom speed"
@@ -620,19 +632,19 @@
         "description": "[options] Show Dimensions Detail"
     },
     "optBelowPositionOffset": {
-        "message": "Below position offset:",
+        "message": "Untere Positionsverschiebung:",
         "description": "[options] Below offset option"
     },
     "optBelowPositionOffsetTooltip": {
-        "message": "Amount to offset text in the below position",
+        "message": "Umfang, um den unterer Text in der Unten-Position verschoben wird",
         "description": "[options] Tooltip for below position offset"
     },
     "optAbovePositionOffset": {
-        "message": "Above position offset:",
+        "message": "Obere Positionsverschiebung:",
         "description": "[options] Above offset option"
     },
     "optAbovePositionOffsetTooltip": {
-        "message": "Amount to offset text in the above position",
+        "message": "Umfang, um den oberer Text in der Oben-Position verschoben wird",
         "description": "[options] Tooltip for above position offset"
     },
     "optOffsetUnitName": {
@@ -672,15 +684,15 @@
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images, videos & audios to folder: Downloads/",
+        "message": "Speichere Bilder, Videos, und Audio in das Verzeichnis: Downloads/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Prefix original names of downloads with origin, size, duration and so on for easier management",
+        "message": "Füge vor die Namen von Downloads Ursprung, Größe, Laufzeit und so weiter an",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Rename saved files by adding:",
+        "message": "Benenne gespeicherte Dateien um durch Anhängen von:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
@@ -708,31 +720,31 @@
         "description": "[options] Add download duration option"
     },
     "optAddDownloadIndexTooltip": {
-        "message": "Add index of image in gallery (e.g: third image out of ten: 03-10)",
+        "message": "Füge Index des Bildes in der Galerie hinzu (zum Beispiel 03-10 für das dritte von 10)",
         "description": "[options] Tooltip for add download index option"
     },
     "optAddDownloadIndex": {
-        "message": "index",
+        "message": "Index",
         "description": "[options] Add download index option"
     },
     "optAddDownloadCaptionTooltip": {
-        "message": "Add caption (e.g: Mona Lisa by Leonardo da Vinci)",
+        "message": "Füge eine Bildunterschrift hinzu (z.B.: Mona Lisa von Leonardo da Vinci)",
         "description": "[options] Tooltip for add download caption option"
     },
     "optAddDownloadCaption": {
-        "message": "caption",
+        "message": "Bildunterschrift",
         "description": "[options] Add download caption option"
     },
     "optDownloadReplaceOriginalFilenameTooltip": {
-        "message": "Replace original filename or remove it if no value supplied (extension is preserved)",
+        "message": "Ersetze original Dateinamen, oder entferne ihn, wenn kein Wert angegeben wird (die Dateiendung wird beibehalten)",
         "description": "[options] Tooltip for replace original filename when downloading option"
     },
     "optDownloadReplaceOriginalFilenamePlaceholder": {
-        "message": "Example: fullsize_image",
+        "message": "Beispiel: volle-größe",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadReplaceOriginalFilename": {
-        "message": "On save, replace original filename by:",
+        "message": "Beim Speichern, ersetze den original Dateinamen mit:",
         "description": "[options] Replace original filename when downloading option"
     },
     "optSectionTroubleshooting": {
@@ -768,11 +780,11 @@
         "description": "[options] Page section for import/export"
     },
     "optSectionImportExportSettingsTooltip": {
-        "message": "Press export to get a string of your current settings. Press import to load your pasted settings",
+        "message": "Betätige Export um die aktuellen Einstellungen als Text zu erhalten. Betätige Import um die eingefügten Einstellungen zu übernehmen.",
         "description": "[options] Tooltip for input and export options"
     },
     "optImportExportTextArea": {
-        "message": "Paste your saved settings here",
+        "message": "Füge deine gespeicherten Einstellungen hier ein",
         "description": "[options] Placeholder for import and export text area"
     },
     "optButtonImportSettings": {
@@ -784,11 +796,11 @@
         "description": "[options] Export a save string into the textarea"
     },
     "optImport": {
-        "message": "Import Success!",
+        "message": "Import erfolgreich!",
         "description": "[options] Notification after successful import to options"
     },
     "optImportFailed": {
-        "message": "Import Failed",
+        "message": "Import Fehlgeschlagen",
         "description": "[options] Notification after failed import to options"
     },
     "optPageFAQ": {
