@@ -447,6 +447,18 @@
         "message": "sec",
         "description": "[options] Short form of \"second\" for delay duration"
     },
+    "optMouseClickHoldTime": {
+        "message": "Mouse click hold time:",
+        "description": "[options] Mouse click hold time option"
+    },
+    "optMouseClickHoldTimeTooltip": {
+        "message": "Amount of time required to hold a mouse click action key before the hold action is triggered",
+        "description": "[options] Tooltip for mouse click hold time option"
+    },
+    "optClickHoldTimeUnit": {
+        "message": "milliseconds",
+        "description": "[options] Unit name (pixel) for hold time amount"
+    },
     "optSectionZoomSpeed": {
         "message": "Zoom speed",
         "description": "[options] Page section for zoom speed"
