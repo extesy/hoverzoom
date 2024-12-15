@@ -2,7 +2,7 @@ var options,
     hoverZoomPlugins = hoverZoomPlugins || [],
     VK_CTRL = 1024,
     VK_SHIFT = 2048,
-    actionKeys = ['actionKey', 'toggleKey', 'closeKey', 'hideKey', 'openImageInWindowKey', 'openImageInTabKey', 'lockImageKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey', 'flipImageKey', 'copyImageKey', 'copyImageUrlKey'];
+    actionKeys = ['actionKey', 'toggleKey', 'closeKey', 'hideKey', 'banKey', 'openImageInWindowKey', 'openImageInTabKey', 'lockImageKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey', 'flipImageKey', 'copyImageKey', 'copyImageUrlKey'];
 
 function getMilliseconds(ctrl) {
     var value = parseFloat(ctrl.val());
@@ -578,6 +578,11 @@ function replaceOriginalFilenameOnChange(val) {
     return this.value;
 }
 
+function btnResetAllBannedImagesOnClick() {
+    const request = {action:'resetBannedImages'};
+    chrome.runtime.sendMessage(request);
+}
+
 function updateDivAmbilight() {
     if ($('#chkAmbilightEnabled')[0].checked) {
         $('#divAmbilight').removeClass('disabled');
@@ -844,6 +849,7 @@ $(function () {
     $('#txtDownloadFolder').change(downloadFolderOnChange);
     $('#chkDownloadReplaceOriginalFilename').parent().on('gumby.onChange', updateDownloadReplaceOriginalFilename);
     $('#txtDownloadReplaceOriginalFilename').change(replaceOriginalFilenameOnChange);
+    $('#btnResetAllBannedImages').click(btnResetAllBannedImagesOnClick);
     $('#chkUseSeparateTabOrWindowForUnloadableUrlsEnabled').parent().on('gumby.onChange', updateUseSeparateTabOrWindowForUnloadableUrls);
     $('#chkHideMouseCursor').parent().on('gumby.onChange', updateDivHideMouseCursor);
     $('#chkDarkMode').parent().on('gumby.onChange', updateDarkMode);

@@ -92,10 +92,11 @@ body.popup.darkmode { background-color: #101010F0; } /* dark grey */
 .popup.darkmode table tr:nth-child(even) { background-color: #DCB200F0; } /* yellow */
 .popup table tr:nth-child(odd) { background-color: #85B7E740; } /* light blue */
 .popup.darkmode table tr:nth-child(odd) { background-color: #0360B9F0; } /* blue */
-.popup table tr td { font-size: 12px; padding-left: 5px; padding-right: 5px; padding-top: 1px; padding-bottom: 1px; border-top: 0px; color: #202020F0; }
+.popup table tr td { font-size: 10px; padding-left: 5px; padding-right: 5px; padding-top: 0px; padding-bottom: 0px; border: 0px; color: #202020F0; }
 .popup table tr td.ttip { padding-right: 30px; }
 
-.popup .picker { height: auto; padding-right: 5px; }
+
+.popup .picker { height: auto; padding: 0px; font-size: 10px; margin: 0px; }
 .popup.darkmode .picker { background-image: linear-gradient(#606060F0, #101010F0); color: #F0F0F0F0; background-color: #101010F0; }
 
 .popup .tab-content, .popup .checkbox { padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px; }

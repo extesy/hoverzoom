@@ -1070,7 +1070,20 @@ var hoverZoom = {
 
                             // if the action key has been pressed over an image, no delay is applied
                             const delay = actionKeyDown || explicitCall ? 0 : (isVideoLink(srcDetails.url) ? options.displayDelayVideo : options.displayDelay);
-                            loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
+                            
+                            if (audioSrc) {
+                                chrome.runtime.sendMessage({action:'isImageBanned', url:audioSrc}, function (result) {
+                                    if (!result) {
+                                        loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
+                                    }
+                                });
+                            } else if (src) {
+                                chrome.runtime.sendMessage({action:'isImageBanned', url:src}, function (result) {
+                                    if (!result) {
+                                        loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
+                                    }
+                                });                               
+                            }
 
                             loading = true;
                         }
@@ -2856,6 +2869,21 @@ var hoverZoom = {
                 return returnStatement;
             }
 
+            // ban key (close zoomed image + add to page's ban list) is pressed down
+            // => zoomed image is closed immediately
+            // => zoomed image url is added to page's ban list
+            if (event.which == options.banKey) {
+                hz.hzViewerLocked = viewerLocked = false;
+                if (hz.hzViewer) {
+                    stopMedias();
+                    hz.hzViewer.hide();
+                    banImage();
+                }
+                if (imgFullSize) {
+                    return false;
+                }
+            }
+
             // the following keys are processed only if an image is displayed
             if (imgFullSize) {
                 // Cancels event if an action key is held down (auto-repeat may trigger additional events)
@@ -3586,6 +3614,15 @@ var hoverZoom = {
             }
         }
 
+        // store url(s) of image, video or audio track that should not be zoomed again
+        function banImage() {
+            if (srcDetails.audioUrl) {
+                chrome.runtime.sendMessage({action:'banImage', url:srcDetails.audioUrl, location:window.location.href});
+            } else if (srcDetails.url) {
+                chrome.runtime.sendMessage({action:'banImage', url:srcDetails.url, location:window.location.href});
+            }
+        }
+        
         function saveImage() {
             saveImg();
             saveVideo();
