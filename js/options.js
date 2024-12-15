@@ -47,9 +47,11 @@ function initActionKeys() {
 
 function loadKeys(sel) {
     $('<option value="0">None</option>').appendTo(sel);
-    if (sel.attr('id') != 'selPrevImgKey' || sel.attr('id') != 'selNextImgKey'){
-        $('<option value="-1">Right Click</option>').appendTo(sel);
-        $('<option value="-2">Middle Click</option>').appendTo(sel);
+    $('<option value="-1">Right Click (Hold)</option>').appendTo(sel);
+    $('<option value="-2">Middle Click (Hold)</option>').appendTo(sel);
+    if (sel.attr('id') != 'selHideKey' && sel.attr('id') != 'selFullZoomKey' && sel.attr('id') != 'selActionKey' && sel.attr('id') != 'selToggleKey') {
+        $('<option value="-3">Right Click</option>').appendTo(sel);
+        $('<option value="-4">Middle Click</option>').appendTo(sel);
     }
     if (sel.attr('id') != 'selOpenImageInTabKey')
         $('<option value="16">Shift</option>').appendTo(sel);
@@ -93,6 +95,7 @@ function saveOptions(exportSettings = false) {
     options.videoVolume = $('#txtVideoVolume')[0].value / 100;
     options.playAudio = $('#chkPlayAudio')[0].checked;
     options.audioVolume = $('#txtAudioVolume')[0].value / 100;
+    options.mouseClickHoldTime = $('#txtMouseClickHoldTime')[0].value;
     options.mouseUnderlap = $('#chkMouseUnderlap')[0].checked;
     options.pageActionEnabled = $('#chkPageActionEnabled')[0].checked;
     options.showWhileLoading = $('#chkShowWhileLoading')[0].checked;
@@ -128,9 +131,36 @@ function saveOptions(exportSettings = false) {
         if (!self.is(':checked')) options.disabledPlugins.push(self.attr('id').substr('chkPlugin'.length));
     });
 
+    let rightButtonActive = false;
+    let middleButtonActive = false;
+    options.rightShortClickAndHold = false;
+    options.middleShortClickAndHold = false;
+    options.rightShortClick = false;
+    options.middleShortClick = false;
+
     actionKeys.forEach(function(key) {
-        var id = key[0].toUpperCase() + key.substr(1);
+        var id = key[0].toUpperCase() + key.substring(1);
         options[key] = parseInt($('#sel' + id).val());
+
+        switch (options[key]) {
+            case -3:
+                options.rightShortClick = true;
+            case -1:
+                if (rightButtonActive) // if both selected
+                    options.rightShortClickAndHold = true;
+                else
+                rightButtonActive = true;
+                break;
+            case -4:
+                options.middleShortClick = true;
+            case -2:
+                if (middleButtonActive) // if both selected
+                    options.middleShortClickAndHold = true;
+                else
+                middleButtonActive = true;
+                break;
+            default:
+        }
     });
 
     options.showDetailFilename = $('#chkShowDetailFilename')[0].checked;
@@ -212,6 +242,8 @@ function restoreOptions(optionsFromFactorySettings) {
     $('#chkPlayAudio').trigger(options.playAudio ? 'gumby.check' : 'gumby.uncheck');
     $('#rngAudioVolume').val(parseInt(options.audioVolume * 100));
     $('#txtAudioVolume').val(parseInt(options.audioVolume * 100));
+    $('#rngMouseClickHoldTime').val(parseInt(options.mouseClickHoldTime));
+    $('#txtMouseClickHoldTime').val(parseInt(options.mouseClickHoldTime));
     $('#chkMouseUnderlap').trigger(options.mouseUnderlap ? 'gumby.check' : 'gumby.uncheck');
     $('#chkPageActionEnabled').trigger(options.pageActionEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#chkShowWhileLoading').trigger(options.showWhileLoading ? 'gumby.check' : 'gumby.uncheck');
@@ -274,9 +306,38 @@ function restoreOptions(optionsFromFactorySettings) {
         appendExcludedSite(options.excludedSites[i], false);
     }
 
+    let rightButtonActive = false;
+    let middleButtonActive = false;
+    options.rightShortClickAndHold = false;
+    options.middleShortClickAndHold = false;
+    options.rightShortClick = false;
+    options.middleShortClick = false;
+
     actionKeys.forEach(function(key) {
-        var id = key[0].toUpperCase() + key.substr(1);
+        var id = key[0].toUpperCase() + key.substring(1);
         $('#sel' + id).val(options[key]);
+
+        switch (options[key]) {
+            case -3:
+                options.rightShortClick = true;
+            case -1:
+                if (rightButtonActive) { // if both selected
+                    options.rightShortClickAndHold = true;
+                } else {
+                    rightButtonActive = true;
+                }
+                break;
+            case -4:
+                options.middleShortClick = true;
+            case -2:
+                if (middleButtonActive) { // if both selected
+                    options.middleShortClickAndHold = true;
+                } else {
+                    middleButtonActive = true;
+                }
+                break;
+            default:
+        }
     });
 
     $('#chkShowDetailFilename').trigger(options.showDetailFilename ? 'gumby.check' : 'gumby.uncheck');
@@ -627,6 +688,15 @@ function updateRngAudioVolume() {
     $('#rngAudioVolume').val(this.value);
 }
 
+function updateTxtMouseClickHoldTime() {
+    $('#txtMouseClickHoldTime')[0].value = this.value;
+}
+
+function updateRngMouseClickHoldTime() {
+    this.value = percentageOnChange(this.value);
+    $('#rngMouseClickHoldTime').val(this.value);
+}
+
 function updateDarkMode() {
     if ($('#chkDarkMode')[0].checked) {
         $('body').addClass('darkmode');
@@ -750,6 +820,8 @@ $(function () {
     $('#txtVideoVolume').change(updateRngVideoVolume);
     $('#rngAudioVolume').on('input change', updateTxtAudioVolume);
     $('#txtAudioVolume').change(updateRngAudioVolume);
+    $('#rngMouseClickHoldTime').on('input change', updateTxtMouseClickHoldTime);
+    $('#txtMouseClickHoldTime').change(updateRngMouseClickHoldTime);
     $('#chkAmbilightEnabled').parent().on('gumby.onChange', updateDivAmbilight);
     $('#rngAmbilightHaloSize').on('input change', updateTxtAmbilightHaloSize);
     $('#txtAmbilightHaloSize').change(updateRngAmbilightHaloSize);

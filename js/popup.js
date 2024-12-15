@@ -40,9 +40,11 @@ function initActionKeys() {
 
 function loadKeys(sel) {
     $('<option value="0">None</option>').appendTo(sel);
-    if (sel.attr('id') != 'selPrevImgKey' || sel.attr('id') != 'selNextImgKey'){
-        $('<option value="-1">Right Click</option>').appendTo(sel);
-        $('<option value="-2">Middle Click</option>').appendTo(sel);
+    $('<option value="-1">Right Click (Hold)</option>').appendTo(sel);
+    $('<option value="-2">Middle Click (Hold)</option>').appendTo(sel);
+    if (sel.attr('id') != 'selHideKey' && sel.attr('id') != 'selFullZoomKey' && sel.attr('id') != 'selActionKey' && sel.attr('id') != 'selToggleKey') {
+        $('<option value="-3">Right Click</option>').appendTo(sel);
+        $('<option value="-4">Middle Click</option>').appendTo(sel);
     }
     if (sel.attr('id') != 'selOpenImageInTabKey')
         $('<option value="16">Shift</option>').appendTo(sel);
@@ -92,9 +94,36 @@ function saveOptions() {
             options.excludedSites.splice(excludedSiteIndex, 1);
     }
 
+    let rightButtonActive = false;
+    let middleButtonActive = false;
+    options.rightShortClickAndHold = false;
+    options.middleShortClickAndHold = false;
+    options.rightShortClick = false;
+    options.middleShortClick = false;
+
     actionKeys.forEach(function(key) {
-        var id = key[0].toUpperCase() + key.substr(1);
+        var id = key[0].toUpperCase() + key.substring(1);
         options[key] = parseInt($('#sel' + id).val());
+
+        switch (options[key]) {
+            case -3:
+                options.rightShortClick = true;
+            case -1:
+                if (rightButtonActive) // if both selected
+                    options.rightShortClickAndHold = true;
+                else
+                    rightButtonActive = true;
+                break;
+            case -4:
+                options.middleShortClick = true;
+            case -2:
+                if (middleButtonActive) // if both selected
+                    options.middleShortClickAndHold = true;
+                else
+                    middleButtonActive = true;
+                break;
+            default:
+        }
     });
 
     localStorage.options = JSON.stringify(options);
@@ -147,11 +176,40 @@ function restoreOptions(optionsFromFactorySettings) {
         }
     });
 
+    let rightButtonActive = false;
+    let middleButtonActive = false;
+    options.rightShortClickAndHold = false;
+    options.middleShortClickAndHold = false;
+    options.rightShortClick = false;
+    options.middleShortClick = false;
+
     actionKeys.forEach(function(key) {
-        var id = key[0].toUpperCase() + key.substr(1);
+        var id = key[0].toUpperCase() + key.substring(1);
         $('#sel' + id).val(options[key]);
         if ($('#sel' + id)[0].dataset.val0 == undefined) $('#sel' + id)[0].dataset.val0 = options[key];
         else $('#sel' + id)[0].dataset.val1 = options[key];
+
+        switch (options[key]) {
+            case -3:
+                options.rightShortClick = true;
+            case -1:
+                if (rightButtonActive) { // if both selected
+                    options.rightShortClickAndHold = true;
+                } else {
+                    rightButtonActive = true;
+                }
+                break;
+            case -4:
+                options.middleShortClick = true;
+            case -2:
+                if (middleButtonActive) { // if both selected
+                    options.middleShortClickAndHold = true;
+                } else {
+                    middleButtonActive = true;
+                }
+                break;
+            default:
+        }
     });
 
     checkModifications();

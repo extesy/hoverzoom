@@ -1083,43 +1083,69 @@ var hoverZoom = {
             }
         }
 
-        let longRightPressTimer; // create timer
-        let longMiddlePressTimer; // creates separate timer so they don't interfere
-        let longRightPress = false;
+        // create right and middle button timers to handle them separately
+        let longRightPressTimer;
+        let longMiddlePressTimer;
+        // allows mouse functions to be prevented separately
+        let preventDefaultContext;
+        let preventDefaultAuxClick;
+        // for if user releases mouse button before timer goes off
+        let shortPressRight = false;
+        let shortPressMiddle = false;
         
-        function mouseButtonKeyHandler(mouseButtonKey, img) {
-            const timerDelay = 150;
-            if (mouseButtonKey === -1) {
-                longRightPressTimer = setTimeout(longClick.bind(img), timerDelay, mouseButtonKey);
-            } else {
-                longMiddlePressTimer = setTimeout(longClick.bind(img), timerDelay, mouseButtonKey);
+        function documentContextMenu(event) {
+            if (!preventDefaultContext || hideKeyDown) {
+                hideKeyDown = false; // releases hideKey if it was held down
+                return;
+            }
+            event.preventDefault();
+        }
+
+        function middleMouseClickEvent(event) {
+            if (event.button === 1 && preventDefaultAuxClick && !hideKeyDown) {
+                event.preventDefault();
+            }
+        }
+        
+        function preventDefaultMouseAction(disableDefault, button){
+            switch (button) {
+                case -1:
+                case -3:
+                    if (disableDefault !== "get") {
+                        preventDefaultContext = disableDefault;
+                    }
+                    return preventDefaultContext;
+                case -2:
+                case -4:
+                    if (disableDefault !== "get") {
+                        preventDefaultAuxClick = disableDefault;
+                    }
+                    return preventDefaultAuxClick;
+                default:
+                    preventDefaultContext = disableDefault;
+                    preventDefaultAuxClick = disableDefault;
             }
         }
 
-        function clearMouseButtonTimers(mouseButtonKey) {
-            if (mouseButtonKey === -1) {
-                clearTimeout(longRightPressTimer);
-            } else {
-                clearTimeout(longMiddlePressTimer);
-            }
-        }
-        
-        function longClick(mouseButtonKey) {
-            if (mouseButtonKey == -1) longRightPress = true;
+        function mouseAction(mouseButtonKey, img, event) {
+            preventDefaultMouseAction((imgFullSize || !hideKeyDown) ? true : false, mouseButtonKey);
+            //prevent middle mouse button from firing when action key is used
+            if (event.button === 1) document.addEventListener("auxclick", middleMouseClickEvent);
             switch (mouseButtonKey) {
                 case options.actionKey:
                     actionKeyDown = true;
-                    $(this).mousemove();
+                    $(img).mousemove();
                     if (loading || imgFullSize) {
                         return false;
                     }
                     break;
                 case options.lockImageKey:
-                    lockViewer();
-                    return;
-                case options.toggleKey:
-                    toggleKey()
-                    return;
+                    lockImageKey(event);
+                    return false;
+                case options.toggleKey: {
+                    let returnStatement = toggleKey() ? true : false;
+                    return returnStatement;
+                }
                 case options.fullZoomKey:
                     if (!fullZoomKeyDown) {
                         fullZoomKeyDown = true;
@@ -1129,14 +1155,17 @@ var hoverZoom = {
                         }
                     }
                     return;
-                case options.closeKey:
-                    closeKey()
-                    return;
-                case options.hideKey:
+                case options.closeKey: {
+                    let returnStatement = closeKey() ? true : false;
+                    return returnStatement;
+                }
+                case options.hideKey: {
                     if (!hideKeyDown) {
-                        hideKey()
+                        let returnStatement = hideKey() ? true : false;
+                        return returnStatement;
                     }
                     return;
+                }
                 case options.copyImageKey:
                     if (isChromiumBased) {
                         if (keyCode === options.copyImageKey) {
@@ -1178,15 +1207,42 @@ var hoverZoom = {
                     saveImage();
                     return false;
                 default:
-                    return;
             }
         }
 
-        function documentContextMenu(event) {
-            // If right click is a long press, prevent context menu
-            if (longRightPress) {
-                longRightPress = false;
-                event.preventDefault();
+        function longClick(mouseButtonKey, event) {
+            switch (mouseButtonKey) {
+                case -1:
+                    shortPressRight = false;
+                    break;
+                case -2:
+                    shortPressMiddle = false;
+                    break
+                case -3:
+                    shortPressRight = false;
+                    return;
+                case -4:
+                    shortPressMiddle = false;
+                    return;
+                default:
+                    return;
+            }
+            mouseAction(mouseButtonKey, this, event);
+        }
+
+        function mouseButtonKeyHandler(mouseButtonKey, img, event) {
+            const timerDuration = options.mouseClickHoldTime;
+            // -2 or -4 is hold or short middle click, -1 or -3 is hold or short right click
+            switch (mouseButtonKey) {
+                case -1:
+                case -3:
+                    longRightPressTimer = setTimeout(longClick.bind(img), timerDuration, mouseButtonKey, event);
+                    return;
+                case -2:
+                case -4:
+                    longMiddlePressTimer = setTimeout(longClick.bind(img), timerDuration, mouseButtonKey, event);
+                    return;
+                default:
             }
         }
 
@@ -1198,20 +1254,28 @@ var hoverZoom = {
                 }
                 cancelSourceLoading();
                 restoreTitles();
+                preventDefaultMouseAction(false);
                 return;
             } else if (event.button === 0) { // We don't need left click
                 return;
             }
 
             // Gets mouse button key from event.button
-            const mouseButtonKey = [null,-2,-1,null,null][event.button]; // -2 is middle click, -1 is right click
+            // -2 or -4 is hold or short middle click, -1 or -3 is hold or short right click
+            const  rightButtonKey = (!options.rightShortClickAndHold && options.rightShortClick) ? -3 : -1;
+            const  middleButtonKey = (!options.middleShortClickAndHold && options.middleShortClick) ? -4 : -2;
+            let mouseButtonKey = [null,middleButtonKey,rightButtonKey,null,null][event.button];
+
+            if (mouseButtonKey === rightButtonKey) shortPressRight = true;
+            if (mouseButtonKey === middleButtonKey) shortPressMiddle = true;
+
             switch (mouseButtonKey) {
                 case options.actionKey:
                 case options.toggleKey:
                 case options.fullZoomKey:
                 case options.closeKey:
                 case options.hideKey:
-                    mouseButtonKeyHandler(mouseButtonKey, this);
+                    mouseButtonKeyHandler(mouseButtonKey, this, event);
                     return;
                 default:
                     // The following only trigger when image is displayed
@@ -1224,29 +1288,78 @@ var hoverZoom = {
                             case options.openImageInWindowKey:
                             case options.openImageInTabKey:
                             case options.saveImageKey:
-                                mouseButtonKeyHandler(mouseButtonKey);
+                                mouseButtonKeyHandler(mouseButtonKey, this, event);
                                 return;
                             default:
-                                break;
                         }
                     }
                     return;
             }
         }
 
+        function mouseShortClickHandler(mouseButtonKey, img, event) {
+            switch (mouseButtonKey) {
+                case options.closeKey:
+                    mouseAction(mouseButtonKey, img, event);
+                    break;
+                default:
+                    // The following only trigger when image is displayed
+                    if (imgFullSize) { 
+                        switch (mouseButtonKey) {
+                            case options.lockImageKey:
+                            case options.copyImageKey:
+                            case options.copyImageUrlKey:
+                            case options.flipImageKey:
+                            case options.openImageInWindowKey:
+                            case options.openImageInTabKey:
+                            case options.saveImageKey:
+                                mouseAction(mouseButtonKey, img, event);
+                                break;
+                            default:
+                        }
+                    }
+            }
+        }
+
+        function clearMouseButtonTimers(mouseButtonKey) {
+            // -2 or -4 is hold or short middle click, -1 or -3 is hold or short right click
+            switch (mouseButtonKey) {
+                case -1:
+                case -3:
+                    shortPressRight = false;
+                    clearTimeout(longRightPressTimer);
+                    break;
+                case -2:
+                case -4:
+                    shortPressMiddle = false;
+                    clearTimeout(longMiddlePressTimer);
+                    break;
+                default:
+            }
+            // enables mouse button after a delay so it doesn't trigger if previously disabled
+            if (preventDefaultMouseAction("get", mouseButtonKey) == true) {
+                setTimeout(() => {preventDefaultMouseAction(false, mouseButtonKey)}, 10);
+            }
+        }
+
         function documentMouseUp(event) {
             if (event.button === 0) return; // If left click, return
-            const mouseButtonKey = [null,-2,-1,null,null][event.button]; // -2 is middle click, -1 is right click
+            // -2 or -4 is middle click, -1 or -3 is right click
+            const rightButtonKey = ((shortPressRight || !options.rightShortClickAndHold) && options.rightShortClick) ? -3 : -1;
+            const middleButtonKey = ((shortPressMiddle || !options.middleShortClickAndHold) && options.middleShortClick) ? -4 : -2;
+            let mouseButtonKey = [null,middleButtonKey,rightButtonKey,null,null][event.button];
+            
             switch (mouseButtonKey) {
                 case options.actionKey:
                     if (actionKeyDown) {
                         actionKeyDown = false;
+                        preventDefaultMouseAction(imgFullSize ? true : false, mouseButtonKey);
                         closeHoverZoomViewer();
                     }
                     break;
                 case options.fullZoomKey:
                     fullZoomKeyDown = false;
-                    $(this).mousemove();
+                    $(document).mousemove();
                     break;
                 case options.hideKey:
                     hideKeyDown = false;
@@ -1254,10 +1367,12 @@ var hoverZoom = {
                         hz.hzViewer.show();
                         playMedias();
                     }
-                    $(this).mousemove();
+                    $(document).mousemove();
                     break;
                 default:
-                    break;
+                    if ((mouseButtonKey == -3 && shortPressRight) || (mouseButtonKey == -4 && shortPressMiddle)) {
+                        mouseShortClickHandler(mouseButtonKey, this, event);
+                    }
             }
             clearMouseButtonTimers(mouseButtonKey);
         }
@@ -1266,7 +1381,7 @@ var hoverZoom = {
         function getMsgFontSize() {
             let w = 0;
             let img = hz.hzViewer.find('img').get(0);
-            if (img) w = $(img).width()
+            if (img) w = $(img).width();
             let video = hz.hzViewer.find('video').get(0);
             if (video) w = $(video).width();
 
@@ -2648,6 +2763,7 @@ var hoverZoom = {
                     return false;
                 }
             }
+            return true;
         }
 
         function closeKey() {
@@ -2657,11 +2773,13 @@ var hoverZoom = {
                 hz.hzViewer.hide();
             }
             if (imgFullSize) {
+                cancelSourceLoading();
                 return false;
             }
+            return true;
         }
 
-        function hideKey(){
+        function hideKey() {
             hideKeyDown = true;
             if (hz.hzViewer) {
                 pauseMedias();
@@ -2669,6 +2787,26 @@ var hoverZoom = {
             }
             if (imgFullSize) {
                 return false;
+            }
+            return true;
+        }
+
+        function lockImageKey(event) {
+            if (!viewerLocked) {
+                let width = imgFullSize.width() || imgFullSize[0].width;
+                zoomFactorFit = width / srcDetails.naturalWidth;
+                lockViewer();
+            }
+            else {
+                if (zoomFactor > 1.1 * zoomFactorFit || zoomFactor < 0.9 * zoomFactorFit) {
+                    // restore zoom factor such as img or video fits screen size
+                    zoomFactor = zoomFactorFit || parseInt(options.zoomFactor);
+                } else {
+                    // zoom factor = default
+                    zoomFactor = parseInt(options.zoomFactor);
+                }
+                posViewer();
+                panLockedViewer(event);
             }
         }
 
@@ -2682,7 +2820,8 @@ var hoverZoom = {
 
             // Toggle key is pressed down
             if (keyCode === options.toggleKey) {
-                toggleKey();
+                let returnStatement = toggleKey() ? true : false;
+                return returnStatement;
             }
 
             // Action key (zoom image) is pressed down
@@ -2706,13 +2845,15 @@ var hoverZoom = {
             // close key (close zoomed image) is pressed down
             // => zoomed image is closed immediately
             if (keyCode === options.closeKey) {
-                closeKey();
+                let returnStatement = closeKey() ? true : false;
+                return returnStatement;
             }
 
             // hide key (hide zoomed image) is pressed down
             // => zoomed image remains hidden until key is released
             if (keyCode === options.hideKey && !hideKeyDown) {
-                hideKey();
+                let returnStatement = hideKey() ? true : false;
+                return returnStatement;
             }
 
             // the following keys are processed only if an image is displayed
@@ -2725,22 +2866,7 @@ var hoverZoom = {
                 }
                 // "Lock image" key
                 if (keyCode === options.lockImageKey) {
-                    if (!viewerLocked) {
-                        let width = imgFullSize.width() || imgFullSize[0].width;
-                        zoomFactorFit = width / srcDetails.naturalWidth;
-                        lockViewer();
-                    }
-                    else {
-                        if (zoomFactor > 1.1 * zoomFactorFit || zoomFactor < 0.9 * zoomFactorFit) {
-                            // restore zoom factor such as img or video fits screen size
-                            zoomFactor = zoomFactorFit || parseInt(options.zoomFactor);
-                        } else {
-                            // zoom factor = default
-                            zoomFactor = parseInt(options.zoomFactor);
-                        }
-                        posViewer();
-                        panLockedViewer(event);
-                    }
+                    lockImageKey(event);
                     return false;
                 }
                 // "Copy image" key
