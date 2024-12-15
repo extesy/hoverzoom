@@ -206,6 +206,15 @@ function onMessage(message, sender, callback) {
         case 'storeHeaderSettings':
             storeHeaderSettings(message);
             return true;
+        case 'banImage':
+            banImage(message);
+            break;
+        case 'resetBannedImages':
+            resetBannedImages();
+            break;
+        case 'isImageBanned':
+            callback(isImageBanned(message));
+            return true;
     }
 }
 
@@ -405,6 +414,42 @@ function removeWebRequestListeners() {
         chrome.webRequest.onHeadersReceived.removeListener(updateResponseHeaders);
 
     sessionStorage.removeItem('HoverZoomHeaderSettings');
+}
+
+// add url of image, video or audio track to ban list so it will not be zoomed again
+function banImage(message) {
+    const url = message.url;
+
+    // store urls to ban in background page local storage so theys are shared by all pages & will survive browser restart
+    let bannedUrls = localStorage.getItem('HoverZoomBannedUrls') || '{}';
+    try {
+        let update = false;
+        bannedUrls = JSON.parse(bannedUrls);
+        if (url && !bannedUrls[url]) {
+            bannedUrls[url] = { 'location' : message.location };
+            update = true;
+        }
+        if (update) localStorage.setItem('HoverZoomBannedUrls', JSON.stringify(bannedUrls));
+    } catch {}
+}
+
+// clear list of banned image, video or audio track urls
+function resetBannedImages() {   
+    localStorage.removeItem('HoverZoomBannedUrls');
+}
+
+// check if url of image, video or audio track belongs to ban list
+function isImageBanned(message) {
+    const url = message.url;
+    let bannedUrls = localStorage.getItem('HoverZoomBannedUrls') || '{}';
+    try {
+        bannedUrls = JSON.parse(bannedUrls);
+    } catch { return false; }
+    if (!bannedUrls[url]) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 init();

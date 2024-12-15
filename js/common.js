@@ -84,6 +84,7 @@ var factorySettings = {
     copyImageKey: 67,
     copyImageUrlKey: 85,
     hideKey : 88,
+    banKey : 66,
     openImageInWindowKey : 87,
     openImageInTabKey : 84,
     lockImageKey : 76,
@@ -205,6 +206,7 @@ function loadOptions() {
     options.copyImageKey = options.hasOwnProperty('copyImageKey') ? options.copyImageKey : factorySettings.copyImageKey;
     options.copyImageUrlKey = options.hasOwnProperty('copyImageUrlKey') ? options.copyImageUrlKey : factorySettings.copyImageUrlKey;
     options.hideKey = options.hasOwnProperty('hideKey') ? options.hideKey : factorySettings.hideKey;
+    options.banKey = options.hasOwnProperty('banKey') ? options.banKey : factorySettings.banKey;
     options.openImageInWindowKey = options.hasOwnProperty('openImageInWindowKey') ? options.openImageInWindowKey : factorySettings.openImageInWindowKey;
     options.openImageInTabKey = options.hasOwnProperty('openImageInTabKey') ? options.openImageInTabKey : factorySettings.openImageInTabKey;
     options.lockImageKey = options.hasOwnProperty('lockImageKey') ? options.lockImageKey : factorySettings.lockImageKey;

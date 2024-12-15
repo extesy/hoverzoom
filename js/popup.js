@@ -3,7 +3,7 @@ var options,
     prgPreloading, lblPreloading, aPreload,
     VK_CTRL = 1024,
     VK_SHIFT = 2048,
-    actionKeys = ['actionKey', 'toggleKey', 'closeKey', 'hideKey', 'openImageInWindowKey', 'openImageInTabKey', 'lockImageKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey', 'flipImageKey', 'copyImageKey', 'copyImageUrlKey'];
+    actionKeys = ['actionKey', 'toggleKey', 'closeKey', 'hideKey', 'banKey', 'openImageInWindowKey', 'openImageInTabKey', 'lockImageKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey', 'flipImageKey', 'copyImageKey', 'copyImageUrlKey'];
 
 function keyCodeToString(key) {
     var s = '';
