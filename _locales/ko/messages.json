@@ -747,6 +747,18 @@
         "message": "저장할 때 원본 파일명을 다음으로 교체:",
         "description": "[options] Replace original filename when downloading option"
     },
+    "optResetAllBannedImagesTooltip": {
+        "message": "After reset, all banned images, videos & audio tracks can be zoomed again",
+        "description": "[options] Tooltip for reset all banned images option"
+    },
+    "optResetAllBannedImages": {
+        "message": "Reset all banned images, videos & audio tracks",
+        "description": "[options] Reset all banned images option"
+    },
+    "optButtonResetAllBannedImages": {
+        "message": "Reset",
+        "description": "[options] Reset all banned images button"
+    },
     "optSectionTroubleshooting": {
         "message": "문제 해결",
         "description": "[options] Page section for troubleshooting"
@@ -941,6 +953,14 @@
     },
     "optHideKeyDescription": {
         "message": "이 키를 누르고 있으면 확대한 사진이나 동영상이 숨겨집니다. 사진이 다른 마우스 오버 요소를 가리는 경우 사용하십시오.",
+        "description": "[options] Action key description"
+    },
+    "optBanKeyTitle": {
+        "message": "Ban image",
+        "description": "[options] Action key title"
+    },
+    "optBanKeyDescription": {
+        "message": "Holding this key down adds the zoomed image or video to ban list. Use it when you do not want an image or video to be zoomed again on this page.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {

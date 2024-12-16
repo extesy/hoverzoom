@@ -747,6 +747,18 @@
         "message": "On save, replace original filename by:",
         "description": "[options] Replace original filename when downloading option"
     },
+    "optResetAllBannedImagesTooltip": {
+        "message": "After reset, all banned images, videos & audio tracks can be zoomed again",
+        "description": "[options] Tooltip for reset all banned images option"
+    },
+    "optResetAllBannedImages": {
+        "message": "Reset all banned images, videos & audio tracks",
+        "description": "[options] Reset all banned images option"
+    },
+    "optButtonResetAllBannedImages": {
+        "message": "Reset",
+        "description": "[options] Reset all banned images button"
+    },
     "optSectionTroubleshooting": {
         "message": "Rozwiązywanie problemów",
         "description": "[options] Page section for troubleshooting"
@@ -941,6 +953,14 @@
     },
     "optHideKeyDescription": {
         "message": "Przytrzymanie tego klawisza powoduje ukrycie powiększonego obrazu lub filmu. Użyj go, gdy obraz ukrywa elementy, które są również wyświetlane po najechaniu myszą.",
+        "description": "[options] Action key description"
+    },
+    "optBanKeyTitle": {
+        "message": "Ban image",
+        "description": "[options] Action key title"
+    },
+    "optBanKeyDescription": {
+        "message": "Holding this key down adds the zoomed image or video to ban list. Use it when you do not want an image or video to be zoomed again on this page.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
