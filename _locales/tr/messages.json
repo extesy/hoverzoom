@@ -747,6 +747,18 @@
         "message": "Kaydederken, asıl dosya adını şu şekilde değiştirin:",
         "description": "[options] Replace original filename when downloading option"
     },
+    "optResetAllBannedImagesTooltip": {
+        "message": "After reset, all banned images, videos & audio tracks can be zoomed again",
+        "description": "[options] Tooltip for reset all banned images option"
+    },
+    "optResetAllBannedImages": {
+        "message": "Reset all banned images, videos & audio tracks",
+        "description": "[options] Reset all banned images option"
+    },
+    "optButtonResetAllBannedImages": {
+        "message": "Reset",
+        "description": "[options] Reset all banned images button"
+    },
     "optSectionTroubleshooting": {
         "message": "Hata ayıklama",
         "description": "[options] Page section for troubleshooting"
@@ -941,6 +953,14 @@
     },
     "optHideKeyDescription": {
         "message": "Bu tuşa basılı tutmak yakınlaştırılmış resmi gizler. Yakınlaştırılan resim fareyi üzerine getirerek görüntülenen diğer şeylerin önüne geçtiğinde kullanın.",
+        "description": "[options] Action key description"
+    },
+    "optBanKeyTitle": {
+        "message": "Ban image",
+        "description": "[options] Action key title"
+    },
+    "optBanKeyDescription": {
+        "message": "Holding this key down adds the zoomed image or video to ban list. Use it when you do not want an image or video to be zoomed again on this page.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
