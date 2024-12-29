@@ -1156,8 +1156,19 @@ var hoverZoom = {
                     lockImageKey(event);
                     return false;
                 case options.toggleKey: {
-                    let returnStatement = toggleKey() ? true : false;
-                    return returnStatement;
+                    options.extensionEnabled = !options.extensionEnabled;
+                    if (!options.extensionEnabled) {
+                        // close zoomed image or video
+                        viewerLocked = false;
+                        if (hz.hzViewer) {
+                            stopMedias();
+                            hz.hzViewer.hide();
+                        }
+                        if (imgFullSize) {
+                            return false;
+                        }
+                    }
+                    return;
                 }
                 case options.fullZoomKey:
                     if (!fullZoomKeyDown) {
@@ -1169,13 +1180,27 @@ var hoverZoom = {
                     }
                     return;
                 case options.closeKey: {
-                    let returnStatement = closeKey() ? true : false;
-                    return returnStatement;
+                    viewerLocked = false;
+                    if (hz.hzViewer) {
+                        stopMedias();
+                        hz.hzViewer.hide();
+                    }
+                    if (imgFullSize) {
+                        cancelSourceLoading();
+                        return false;
+                    }
+                    return;
                 }
                 case options.hideKey: {
                     if (!hideKeyDown) {
-                        let returnStatement = hideKey() ? true : false;
-                        return returnStatement;
+                        hideKeyDown = true;
+                        if (hz.hzViewer) {
+                            pauseMedias();
+                            hz.hzViewer.hide();
+                        }
+                        if (imgFullSize) {
+                            return false;
+                        }
                     }
                     return;
                 }
@@ -2763,47 +2788,6 @@ var hoverZoom = {
             }
         }
 
-        function toggleKey() {
-            options.extensionEnabled = !options.extensionEnabled;
-            if (!options.extensionEnabled) {
-                // close zoomed image or video
-                viewerLocked = false;
-                if (hz.hzViewer) {
-                    stopMedias();
-                    hz.hzViewer.hide();
-                }
-                if (imgFullSize) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        function closeKey() {
-            viewerLocked = false;
-            if (hz.hzViewer) {
-                stopMedias();
-                hz.hzViewer.hide();
-            }
-            if (imgFullSize) {
-                cancelSourceLoading();
-                return false;
-            }
-            return true;
-        }
-
-        function hideKey() {
-            hideKeyDown = true;
-            if (hz.hzViewer) {
-                pauseMedias();
-                hz.hzViewer.hide();
-            }
-            if (imgFullSize) {
-                return false;
-            }
-            return true;
-        }
-
         function lockImageKey(event) {
             if (!viewerLocked) {
                 let width = imgFullSize.width() || imgFullSize[0].width;
@@ -2833,8 +2817,18 @@ var hoverZoom = {
 
             // Toggle key is pressed down
             if (keyCode === options.toggleKey) {
-                let returnStatement = toggleKey() ? true : false;
-                return returnStatement;
+                options.extensionEnabled = !options.extensionEnabled;
+                if (!options.extensionEnabled) {
+                    // close zoomed image or video
+                    viewerLocked = false;
+                    if (hz.hzViewer) {
+                        stopMedias();
+                        hz.hzViewer.hide();
+                    }
+                    if (imgFullSize) {
+                        return false;
+                    }
+                }
             }
 
             // Action key (zoom image) is pressed down
@@ -2858,15 +2852,28 @@ var hoverZoom = {
             // close key (close zoomed image) is pressed down
             // => zoomed image is closed immediately
             if (keyCode === options.closeKey) {
-                let returnStatement = closeKey() ? true : false;
-                return returnStatement;
+                viewerLocked = false;
+                if (hz.hzViewer) {
+                    stopMedias();
+                    hz.hzViewer.hide();
+                }
+                if (imgFullSize) {
+                    cancelSourceLoading();
+                    return false;
+                }
             }
 
             // hide key (hide zoomed image) is pressed down
             // => zoomed image remains hidden until key is released
             if (keyCode === options.hideKey && !hideKeyDown) {
-                let returnStatement = hideKey() ? true : false;
-                return returnStatement;
+                hideKeyDown = true;
+                if (hz.hzViewer) {
+                    pauseMedias();
+                    hz.hzViewer.hide();
+                }
+                if (imgFullSize) {
+                    return false;
+                }
             }
 
             // ban key (close zoomed image + add to page's ban list) is pressed down
