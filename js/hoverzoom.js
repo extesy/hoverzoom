@@ -1168,6 +1168,7 @@ var hoverZoom = {
                             return false;
                         }
                     }
+                    return;
                 }
                 case options.fullZoomKey:
                     if (!fullZoomKeyDown) {
@@ -1188,6 +1189,7 @@ var hoverZoom = {
                         cancelSourceLoading();
                         return false;
                     }
+                    return;
                 }
                 case options.hideKey: {
                     if (!hideKeyDown) {
