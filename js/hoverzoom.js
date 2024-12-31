@@ -1071,8 +1071,7 @@ var hoverZoom = {
                             // if the action key has been pressed over an image, no delay is applied
                             const delay = actionKeyDown || explicitCall ? 0 : (isVideoLink(srcDetails.url) ? options.displayDelayVideo : options.displayDelay);
                             
-                            // setLoadImage used to set loadHoveredImage within callback so timeout can be set outside of callback
-                            // This makes clearTimeout use the correct timeout ID
+                            /** Temporarily removing until a better fix is found
                             if (audioSrc) {
                                 chrome.runtime.sendMessage({action:'isImageBanned', url:audioSrc}, function (result) {
                                     if (!result) {
@@ -1086,7 +1085,7 @@ var hoverZoom = {
                                     }
                                 });                               
                             }
-
+                            */
                             loading = true;
                         }
                     } else {
