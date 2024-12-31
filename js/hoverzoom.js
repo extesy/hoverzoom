@@ -1073,6 +1073,8 @@ var hoverZoom = {
                             srcDetails.audioUrl = audioSrc;
                             clearTimeout(loadFullSizeImageTimeout);
                             
+                            // setLoadImage used to set loadHoveredImage within callack so timeout can be set outside of callback
+                            // This makes clearTimeout use the correct timeout ID
                             if (audioSrc) {
                                 chrome.runtime.sendMessage({action:'isImageBanned', url:audioSrc}, function (result) {
                                     setLoadImage(false);
