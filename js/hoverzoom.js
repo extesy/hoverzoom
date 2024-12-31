@@ -1070,6 +1070,7 @@ var hoverZoom = {
 
                             // if the action key has been pressed over an image, no delay is applied
                             const delay = actionKeyDown || explicitCall ? 0 : (isVideoLink(srcDetails.url) ? options.displayDelayVideo : options.displayDelay);
+                            loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
                             
                             /** Temporarily removing until a better fix is found
                             if (audioSrc) {
