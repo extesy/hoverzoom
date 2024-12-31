@@ -981,6 +981,11 @@ var hoverZoom = {
         }
 
         var lastMousePosTop = -1, lastMousePosLeft = -1, cursorHideTimeout = 0;
+        let loadHoveredImage = false;
+        
+        function setLoadImage(load) {
+            loadHoveredImage = load;
+        }
 
         function documentMouseMove(event) {
             if (!options.extensionEnabled || fullZoomKeyDown || isExcludedSite() || wnd.height() < 30 || wnd.width() < 30) {
@@ -1067,23 +1072,26 @@ var hoverZoom = {
                             srcDetails.url = src;
                             srcDetails.audioUrl = audioSrc;
                             clearTimeout(loadFullSizeImageTimeout);
-
-                            // if the action key has been pressed over an image, no delay is applied
-                            const delay = actionKeyDown || explicitCall ? 0 : (isVideoLink(srcDetails.url) ? options.displayDelayVideo : options.displayDelay);
                             
                             if (audioSrc) {
                                 chrome.runtime.sendMessage({action:'isImageBanned', url:audioSrc}, function (result) {
+                                    setLoadImage(false);
                                     if (!result) {
-                                        loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
+                                        setLoadImage(true);
                                     }
                                 });
                             } else if (src) {
                                 chrome.runtime.sendMessage({action:'isImageBanned', url:src}, function (result) {
+                                    setLoadImage(false);
                                     if (!result) {
-                                        loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
+                                        setLoadImage(true);
                                     }
                                 });                               
                             }
+                            
+                            // if the action key has been pressed over an image, no delay is applied
+                            const delay = actionKeyDown || explicitCall ? 0 : (isVideoLink(srcDetails.url) ? options.displayDelayVideo : options.displayDelay);
+                            if (loadHoveredImage) loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
 
                             loading = true;
                         }
