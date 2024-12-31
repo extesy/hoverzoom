@@ -1072,8 +1072,8 @@ var hoverZoom = {
                             const delay = actionKeyDown || explicitCall ? 0 : (isVideoLink(srcDetails.url) ? options.displayDelayVideo : options.displayDelay);
                             loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
                             
-                            /** Temporarily removing until a better fix is found
-                            if (audioSrc) {
+                             // Temporarily removing until a better fix is found
+                            /*if (audioSrc) {
                                 chrome.runtime.sendMessage({action:'isImageBanned', url:audioSrc}, function (result) {
                                     if (!result) {
                                         loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
@@ -1085,8 +1085,8 @@ var hoverZoom = {
                                         loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
                                     }
                                 });                               
-                            }
-                            */
+                            }*/
+
                             loading = true;
                         }
                     } else {
