@@ -1070,8 +1070,10 @@ var hoverZoom = {
 
                             // if the action key has been pressed over an image, no delay is applied
                             const delay = actionKeyDown || explicitCall ? 0 : (isVideoLink(srcDetails.url) ? options.displayDelayVideo : options.displayDelay);
+                            loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
                             
-                            if (audioSrc) {
+                            // Temporarily removing until a better fix is found: sendMessage is async so it can't be used to set local variables
+                            /*if (audioSrc) {
                                 chrome.runtime.sendMessage({action:'isImageBanned', url:audioSrc}, function (result) {
                                     if (!result) {
                                         loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
@@ -1083,7 +1085,7 @@ var hoverZoom = {
                                         loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
                                     }
                                 });                               
-                            }
+                            }*/
 
                             loading = true;
                         }
