@@ -80,7 +80,7 @@ function downloadFile(url, filename, conflictAction, callback) {
 function onMessage(message, sender, callback) {
     switch (message.action) {
         case 'downloadFileBlob':
-            /** 
+            /**
             * direct URL download through Chrome API might be prohibited (e.g: Pixiv)
             * workaround:
             * 1. obtain ArrayBuffer from XHR request (GET URL)
@@ -89,7 +89,7 @@ function onMessage(message, sender, callback) {
             */
 
             /*
-            * Workaround for permissions.request not returning a promise in Firefox 
+            * Workaround for permissions.request not returning a promise in Firefox
             * First checks if permissions are availble. If true, downloads file. If not, requests them.
             * Not as clean or effecient as just using 'permissions.request'.
             */
@@ -111,7 +111,7 @@ function onMessage(message, sender, callback) {
         case 'downloadFile':
             cLog('downloadFile: ' + message);
             /*
-            * Workaround for permissions.request not returning a promise in Firefox 
+            * Workaround for permissions.request not returning a promise in Firefox
             * First checks if permissions are availble. If true, downloads file. If not, requests them.
             * Not as clean or effecient as just using 'permissions.request'.
             */
@@ -212,9 +212,9 @@ function onMessage(message, sender, callback) {
         case 'resetBannedImages':
             resetBannedImages();
             break;
-        case 'isImageBanned':
-            callback(isImageBanned(message));
-            return true;
+        case 'sendBannedImages':
+            sendBannedImages();
+            break;
     }
 }
 
@@ -374,7 +374,7 @@ function updateHeaders(headers, settings) {
     return headers;
 }
 
-/** 
+/**
 * add listeners for web requests:
 * - onBeforeSendHeaders
 * - onHeadersReceived
@@ -398,7 +398,7 @@ function addWebRequestListeners() {
             chrome.webRequest.OnSendHeadersOptions.EXTRA_HEADERS,
         ].filter(Boolean));
     }
-    
+
 }
 
 /**
@@ -419,6 +419,7 @@ function removeWebRequestListeners() {
 // add url of image, video or audio track to ban list so it will not be zoomed again
 function banImage(message) {
     const url = message.url;
+    if (!url) return;
 
     // store urls to ban in background page local storage so theys are shared by all pages & will survive browser restart
     let bannedUrls = localStorage.getItem('HoverZoomBannedUrls') || '{}';
@@ -429,27 +430,38 @@ function banImage(message) {
             bannedUrls[url] = { 'location' : message.location };
             update = true;
         }
-        if (update) localStorage.setItem('HoverZoomBannedUrls', JSON.stringify(bannedUrls));
+        if (update) {
+            localStorage.setItem('HoverZoomBannedUrls', JSON.stringify(bannedUrls));
+            // send updated list to tabs
+            sendBannedImages();
+        }
     } catch {}
 }
 
 // clear list of banned image, video or audio track urls
-function resetBannedImages() {   
-    localStorage.removeItem('HoverZoomBannedUrls');
+function resetBannedImages() {
+    localStorage.setItem('HoverZoomBannedUrls', '{}');
+    // send updated list to tabs
+    sendBannedImages();
 }
 
-// check if url of image, video or audio track belongs to ban list
-function isImageBanned(message) {
-    const url = message.url;
-    let bannedUrls = localStorage.getItem('HoverZoomBannedUrls') || '{}';
+// send list of banned image, video or audio track urls to all tabs
+function sendBannedImages() {
+    let list = localStorage.getItem('HoverZoomBannedUrls') || '{}';
     try {
-        bannedUrls = JSON.parse(bannedUrls);
-    } catch { return false; }
-    if (!bannedUrls[url]) {
-        return false;
-    } else {
-        return true;
-    }
+        list = JSON.parse(list);
+    } catch { return; }
+
+    var request = {action:'bannedImagesListChanged', 'list':list};
+    chrome.windows.getAll(null, function (windows) {
+        for (var i = 0; i < windows.length; i++) {
+            chrome.tabs.query({windowId: windows[i].id}, function (tabs) {
+                for (var j = 0; j < tabs.length; j++) {
+                    chrome.tabs.sendMessage(tabs[j].id, request);
+                }
+            });
+        }
+    });
 }
 
 init();
