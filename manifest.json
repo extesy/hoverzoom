@@ -47,15 +47,15 @@
     "web_accessible_resources": [
         "images/loading.gif",
         "images/spectrogram.png",
-        "js/libs/gumby.js",
-        "js/libs/jquery-3.7.1.js",
+        "js/jquery-3.7.1.js",
+        "js/gumby.js",
         "js/common.js",
         "js/options.js"
     ],
     "content_scripts": [
         {
             "js": [
-                "js/libs/jquery-3.7.1.js",
+                "js/jquery-3.7.1.js",
                 "js/tools.js",
                 "js/plugins.js",
                 "plugins/default.js",

@@ -1,22 +1,4 @@
-/**
-* Gumby Framework
-* ---------------
-*
-* Follow @gumbycss on twitter and spread the love.
-* We worked super hard on making this awesome and released it to the web.
-* All we ask is you leave this intact. #gumbyisawesome
-*
-* Gumby Framework
-* http://gumbyframework.com
-*
-* Built with love by your friends @digitalsurgeons
-* http://www.digitalsurgeons.com
-*
-* Free to use under the MIT license.
-* http://www.opensource.org/licenses/mit-license.php
-*/
 !function($) {
-
 	'use strict';
 
 	function Gumby() {
@@ -29,7 +11,7 @@
 		this.debugMode = Boolean($('script[gumby-debug]').length);
 		this.touchDevice = false;
 		this.gumbyTouch = false;
-		this.touchEvents = 'js/libs';
+		this.touchEvents = '';
 		this.breakpoint = Number($('script[gumby-breakpoint]').attr('gumby-breakpoint')) || 768;
 		this.touchEventsLoaded = false;
 		this.uiModulesReady = false;
@@ -120,7 +102,6 @@
 		return {
 			$dom: this.$dom,
 			isOldie: this.isOldie,
-			touchEvents: this.touchEvents,
 			debugMode: this.debugMode,
 			autoInit: this.autoInit,
 			uiModules: this.uiModules,
