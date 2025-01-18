@@ -16,7 +16,10 @@
     "minimum_chrome_version": "22",
     "background": {
         "persistent": true,
-        "scripts": ["js/libs/backgroundScriptsAPIBridge.js", "js/common.js", "js/background.js"]
+        "scripts": [
+            "js/common.js",
+            "js/background.js"
+        ]
     },
     "options_ui": {
         "page": "html/options.html",
@@ -55,7 +58,6 @@
         {
             "js": [
                 "js/libs/jquery-3.2.1.js",
-                "js/libs/contentScriptsAPIBridge.js",
                 "js/tools.js",
                 "js/plugins.js",
                 "plugins/default.js",
