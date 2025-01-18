@@ -1,8 +1,6 @@
 /***
-Spectrum Colorpicker v1.8.0
-https://github.com/bgrins/spectrum
-Author: Brian Grinstead
-License: MIT
+ Spectrum Colorpicker
+ https://github.com/andersk/spectrum/blob/invalid-css2/dist/spectrum.css
 ***/
 
 .sp-container {
@@ -10,11 +8,37 @@ License: MIT
     top:0;
     left:0;
     display:inline-block;
-    *display: inline;
-    *zoom: 1;
-    /* https://github.com/bgrins/spectrum/issues/40 */
+    /* https://github.com/seballot/spectrum/issues/40 */
     z-index: 9999994;
     overflow: hidden;
+}
+.sp-original-input-container {
+    position: relative;
+    display: inline-flex;
+}
+.sp-original-input-container input {
+    margin: 0 !important;
+}
+.sp-original-input-container .sp-add-on {
+    width: 40px;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+input.spectrum.with-add-on {
+    /*padding-left: 45px;*/
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 0;
+}
+.sp-original-input-container .sp-add-on .sp-colorize {
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    cursor: pointer;
+}
+.sp-colorize-container {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==');
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='%23ccc' fill-opacity='1'%3E%3Crect x='0' y='0' width='6' height='6' /%3E%3Crect x='6' y='6' width='6' height='6' /%3E%3C/svg%3E");
 }
 .sp-container.sp-flat {
     position: relative;
@@ -30,36 +54,37 @@ License: MIT
 
 /* http://ansciath.tumblr.com/post/7347495869/css-aspect-ratio */
 .sp-top {
-  position:relative;
-  width: 100%;
-  display:inline-block;
+    position:relative;
+    width: 100%;
+    display:inline-block;
 }
 .sp-top-inner {
-   position:absolute;
-   top:0;
-   left:0;
-   bottom:0;
-   right:0;
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
 }
 .sp-color {
     position: absolute;
     top:0;
     left:0;
     bottom:0;
-    right:20%;
+    right:20px !important;
 }
 .sp-hue {
     position: absolute;
     top:0;
     right:0;
     bottom:0;
-    left:84%;
+    width: 12px;
     height: 100%;
+    left: initial !important;
 }
 
 .sp-clear-enabled .sp-hue {
-    top:33px;
-    height: 77.5%;
+    top: 15%;
+    height: 85%;
 }
 
 .sp-fill {
@@ -74,32 +99,34 @@ License: MIT
 }
 
 .sp-alpha-enabled .sp-top {
-    margin-bottom: 18px;
+    margin-bottom: 28px !important;
 }
 .sp-alpha-enabled .sp-alpha {
     display: block;
 }
 .sp-alpha-handle {
-    position:absolute;
-    top:-4px;
-    bottom: -4px;
-    width: 6px;
-    left: 50%;
+    position: absolute;
+    top: -3px;
     cursor: pointer;
-    border: 1px solid black;
-    background: white;
-    opacity: .8;
+    height: 16px;
+    border-radius: 50%;
+    width: 16px;
+    margin-right: 5px;
+    left: -2px;
+    right: 0;
+    background: #f9f9f9;
+    box-shadow: 0 0 2px 0px #3a3a3a;
 }
 .sp-alpha {
     display: none;
     position: absolute;
-    bottom: -14px;
+    bottom: -18px;
     right: 0;
     left: 0;
-    height: 8px;
+    height: 10px;
 }
 .sp-alpha-inner {
-    border: solid 1px #333;
+    border-radius: 4px;
 }
 
 .sp-clear {
@@ -112,12 +139,14 @@ License: MIT
 
 .sp-clear-enabled .sp-clear {
     display: block;
-    position:absolute;
-    top:0px;
-    right:0;
-    bottom:0;
-    left:84%;
-    height: 28px;
+    position: absolute;
+    top: 3px;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    left: initial;
+    height: 14px;
+    width: 14px;
 }
 
 /* Don't allow text selection */
@@ -161,6 +190,7 @@ License: MIT
     filter : progid:DXImageTransform.Microsoft.gradient(GradientType = 1, startColorstr='#FFFFFFFF', endColorstr='#00CC9A81');
 }
 .sp-val {
+    border-radius: 4px;
     background-image: -webkit-gradient(linear, 0 100%, 0 0, from(#000000), to(rgba(204, 154, 129, 0)));
     background-image: -webkit-linear-gradient(bottom, #000000, rgba(204, 154, 129, 0));
     background-image: -moz-linear-gradient(bottom, #000, rgba(204, 154, 129, 0));
@@ -216,7 +246,6 @@ License: MIT
 /* Clearfix hack */
 .sp-cf:before, .sp-cf:after { content: ""; display: table; }
 .sp-cf:after { clear: both; }
-.sp-cf { *zoom: 1; }
 
 /* Mobile devices, make hue slider bigger so it is easier to slide */
 @media (max-device-width: 480px) {
@@ -225,72 +254,92 @@ License: MIT
     .sp-fill { padding-top: 60%; }
 }
 .sp-dragger {
-   border-radius: 5px;
-   height: 5px;
-   width: 5px;
-   border: 1px solid #fff;
-   background: #000;
-   cursor: pointer;
-   position:absolute;
-   top:0;
-   left: 0;
+    border-radius: 5px;
+    height: 10px;
+    width: 10px;
+    border: 1px solid #fff;
+    cursor: pointer;
+    position:absolute;
+    top:0;
+    left: 0;
+    margin-left: 3px;
+    margin-top: 3px;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, .2);
 }
 .sp-slider {
     position: absolute;
-    top:0;
-    cursor:pointer;
-    height: 3px;
-    left: -1px;
-    right: -1px;
-    border: 1px solid #000;
-    background: white;
-    opacity: .8;
+    top: 0;
+    cursor: pointer;
+    height: 16px;
+    border-radius: 50%;
+    width: 16px;
+    left: -2px;
+    background: #f9f9f9;
+    box-shadow: 0 0 2px 0px #3a3a3a;
+    margin-top: 8px;
 }
 
 /*
 Theme authors:
-Here are the basic themeable display options (colors, fonts, global widths).
-See http://bgrins.github.io/spectrum/themes/ for instructions.
+Here are the basic themeable display options (colors, fonts, global widths)
 */
 
 .sp-container {
+    display: inline-flex;
     border-radius: 0;
-    background-color: #ECECEC;
-    border: solid 1px #f0c49B;
+    background-color: white;
     padding: 0;
+    border-radius: 4px;
+    color: black;
+    box-shadow: 0 0 0 1px rgba(99,114,130,.16), 0 8px 16px rgba(27,39,51,.08);
 }
 .sp-container, .sp-container button, .sp-container input, .sp-color, .sp-hue, .sp-clear {
-    font: normal 12px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+    font-size:12px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     box-sizing: border-box;
 }
 .sp-top {
-    margin-bottom: 3px;
+    margin-bottom: 10px;
 }
-.sp-color, .sp-hue, .sp-clear {
-    border: solid 1px #666;
+.sp-color, .sp-hue, .sp-clear, .sp-val, .sp-sat {
+    border-radius: 3px;
+}
+
+.sp-input-container {
+    margin-top: -5px;
+}
+.sp-input-container.sp-cf,
+.sp-initial.sp-thumb.sp-cf,
+.sp-button-container.sp-cf {
+    height: 25px;
+}
+.sp-picker-container .sp-cf {
+    margin-bottom: 10px;
+}
+
+.sp-palette-row-initial > span:first-child {
+    cursor: pointer;
 }
 
 /* Input */
-.sp-input-container {
-    float:right;
-    width: 100px;
-    margin-bottom: 4px;
-}
 .sp-initial-disabled  .sp-input-container {
     width: 100%;
 }
 .sp-input {
-   font-size: 12px !important;
-   border: 1px inset;
-   padding: 4px 5px;
-   margin: 0;
-   width: 100%;
-   background:transparent;
-   border-radius: 3px;
-   color: #222;
+    padding: 0px 5px !important;
+    margin: 0;
+    width: 100%;
+    box-shadow: none !important;
+    height: 100% !important;
+    background: transparent;
+    color: #3a3a3a;
+    border-radius: 2px !important;
+    border: 1px solid #e0e0e0 !important;
+    text-align: center;
+    font-family: monospace;
+    font-size: inherit !important;
 }
 .sp-input:focus  {
     border: 1px solid orange;
@@ -300,15 +349,12 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
     background: #fdd;
 }
 .sp-picker-container , .sp-palette-container {
-    float:left;
     position: relative;
     padding: 10px;
-    padding-bottom: 300px;
-    margin-bottom: -290px;
 }
 .sp-picker-container {
-    width: 172px;
-    border-left: solid 1px #fff;
+    width: 200px;
+    padding-bottom: 0;
 }
 
 /* Palettes */
@@ -340,7 +386,6 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 /* Initial */
 .sp-initial {
     float: left;
-    border: solid 1px #333;
 }
 .sp-initial span {
     width: 30px;
@@ -349,6 +394,13 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
     display:block;
     float:left;
     margin:0;
+
+}
+.sp-initial .spe-thumb-el.sp-thumb-active {
+    border-radius: 0 5px 5px 0;
+}
+.sp-initial .spe-thumb-el{
+   border-radius: 5px 0 0 5px;
 }
 
 .sp-initial .sp-clear-display {
@@ -356,28 +408,28 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 }
 
 /* Buttons */
-.sp-palette-button-container,
 .sp-button-container {
     float: right;
+}
+.sp-palette-button-container {
+    margin-top: 10px;
 }
 
 /* Replacer (the little preview div that shows up instead of the <input>) */
 .sp-replacer {
-    margin:0;
+    position: relative;
     overflow:hidden;
     cursor:pointer;
-    padding: 4px;
     display:inline-block;
-    *zoom: 1;
-    *display: inline;
-    border: solid 1px #91765d;
-    background: #eee;
-    color: #333;
+    border-radius: 3px;
+    border: 1px solid #aaa;
+    color: #666;
+    transition: border-color .3s;
     vertical-align: middle;
-}
-.sp-replacer:hover, .sp-replacer.sp-active {
-    border-color: #F0C49B;
-    color: #111;
+    width: 3rem;
+    height: 1.5rem;
+    margin: 0;
+    padding: 0;
 }
 .sp-replacer.sp-disabled {
     cursor:default;
@@ -385,91 +437,66 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
     color: silver;
 }
 .sp-dd {
-    padding: 2px 0;
-    height: 16px;
-    line-height: 16px;
-    float:left;
-    font-size:10px;
+    position: absolute;
+    font-size: 10px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 0 2px;
+    line-height: 1.6rem;
+    background-color: white
 }
 .sp-preview {
     position:relative;
-    width:25px;
-    height: 20px;
-    border: solid 1px #222;
-    margin-right: 5px;
+    width: 100%;
+    height: 100%;
     float:left;
     z-index: 0;
 }
-
-.sp-palette {
-    *width: 220px;
-    max-width: 220px;
+.sp-preview-inner {
+    transition: background-color .2s;
 }
+.sp-preview-inner.sp-clear-display {
+    display: none;
+}
+
+/* Color Picker */
 .sp-palette .sp-thumb-el {
-    width:16px;
+    width: 16px;
     height: 16px;
-    margin:2px 1px;
-    border: solid 1px #d0d0d0;
-}
-
-.sp-container {
-    padding-bottom:0;
+    margin: 3px;
+    border: none;
+    border-radius: 3px;
 }
 
 
 /* Buttons: http://hellohappy.org/css3-buttons/ */
 .sp-container button {
-  background-color: #eeeeee;
-  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
-  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
-  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
-  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
-  background-image: linear-gradient(to bottom, #eeeeee, #cccccc);
-  border: 1px solid #ccc;
-  border-bottom: 1px solid #bbb;
-  border-radius: 3px;
-  color: #333;
-  font-size: 14px;
-  line-height: 1;
-  padding: 5px 4px;
-  text-align: center;
-  text-shadow: 0 1px 0 #eee;
-  vertical-align: middle;
+    border-radius: 3px;
+    border: none;
+    background: transparent;
+    line-height: 1;
+    padding: 0 8px;
+    height: 25px;
+    text-transform: capitalize;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    color: #606c72;
+    font-weight: bold;
+}
+.sp-container button.sp-choose {
+    background-color: #3cab3b;
+    color: #fff;
+    margin-left: 5px;
 }
 .sp-container button:hover {
-    background-color: #dddddd;
-    background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
-    background-image: -moz-linear-gradient(top, #dddddd, #bbbbbb);
-    background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
-    background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
-    background-image: linear-gradient(to bottom, #dddddd, #bbbbbb);
-    border: 1px solid #bbb;
-    border-bottom: 1px solid #999;
-    cursor: pointer;
-    text-shadow: 0 1px 0 #ddd;
+    opacity: .8;
 }
-.sp-container button:active {
-    border: 1px solid #aaa;
-    border-bottom: 1px solid #888;
-    -webkit-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-    -moz-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-    -ms-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-    -o-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-    box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-}
-.sp-cancel {
-    font-size: 11px;
-    color: #d93f3f !important;
-    margin:0;
-    padding:2px;
-    margin-right: 5px;
-    vertical-align: middle;
-    text-decoration:none;
-
-}
-.sp-cancel:hover {
-    color: #d93f3f !important;
-    text-decoration: underline;
+.sp-container button.sp-palette-toggle {
+    width: 100%;
+    background-color: #f3f3f3;
+    margin: 0;
 }
 
 
@@ -479,29 +506,37 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 
 .sp-preview, .sp-alpha, .sp-thumb-el {
     position:relative;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==');
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='%23ccc' fill-opacity='1'%3E%3Crect x='0' y='0' width='6' height='6' /%3E%3Crect x='6' y='6' width='6' height='6' /%3E%3C/svg%3E");
 }
 .sp-preview-inner, .sp-alpha-inner, .sp-thumb-inner {
     display:block;
     position:absolute;
-    top:0;left:0;bottom:0;right:0;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
 }
 
 .sp-palette .sp-thumb-inner {
+    border-radius: 3px;
     background-position: 50% 50%;
     background-repeat: no-repeat;
 }
 
 .sp-palette .sp-thumb-light.sp-thumb-active .sp-thumb-inner {
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIVJREFUeNpiYBhsgJFMffxAXABlN5JruT4Q3wfi/0DsT64h8UD8HmpIPCWG/KemIfOJCUB+Aoacx6EGBZyHBqI+WsDCwuQ9mhxeg2A210Ntfo8klk9sOMijaURm7yc1UP2RNCMbKE9ODK1HM6iegYLkfx8pligC9lCD7KmRof0ZhjQACDAAceovrtpVBRkAAAAASUVORK5CYII=);
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIVJREFUeNpiYBhsgJFMffxAXABlN5JruT4Q3wfi/0DsT64h8UD8HmpIPCWG/KemIfOJCUB+Aoacx6EGBZyHBqI+WsDCwuQ9mhxeg2A210Ntfo8klk9sOMijaURm7yc1UP2RNCMbKE9ODK1HM6iegYLkfx8pligC9lCD7KmRof0ZhjQACDAAceovrtpVBRkAAAAASUVORK5CYII=');
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='18' height='18'%3E%3Cpath d='M9 16.172l10.594-10.594 1.406 1.406-12 12-5.578-5.578 1.406-1.406z' fill='%23000'%3E%3C/path%3E%3C/svg%3E");
 }
 
 .sp-palette .sp-thumb-dark.sp-thumb-active .sp-thumb-inner {
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAMdJREFUOE+tkgsNwzAMRMugEAahEAahEAZhEAqlEAZhEAohEAYh81X2dIm8fKpEspLGvudPOsUYpxE2BIJCroJmEW9qJ+MKaBFhEMNabSy9oIcIPwrB+afvAUFoK4H0tMaQ3XtlrggDhOVVMuT4E5MMG0FBbCEYzjYT7OxLEvIHQLY2zWwQ3D+9luyOQTfKDiFD3iUIfPk8VqrKjgAiSfGFPecrg6HN6m/iBcwiDAo7WiBeawa+Kwh7tZoSCGLMqwlSAzVDhoK+6vH4G0P5wdkAAAAASUVORK5CYII=);
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAMdJREFUOE+tkgsNwzAMRMugEAahEAahEAZhEAqlEAZhEAohEAYh81X2dIm8fKpEspLGvudPOsUYpxE2BIJCroJmEW9qJ+MKaBFhEMNabSy9oIcIPwrB+afvAUFoK4H0tMaQ3XtlrggDhOVVMuT4E5MMG0FBbCEYzjYT7OxLEvIHQLY2zWwQ3D+9luyOQTfKDiFD3iUIfPk8VqrKjgAiSfGFPecrg6HN6m/iBcwiDAo7WiBeawa+Kwh7tZoSCGLMqwlSAzVDhoK+6vH4G0P5wdkAAAAASUVORK5CYII=');
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='18' height='18'%3E%3Cpath d='M9 16.172l10.594-10.594 1.406 1.406-12 12-5.578-5.578 1.406-1.406z' fill='%23fff'%3E%3C/path%3E%3C/svg%3E");
 }
 
 .sp-clear-display {
     background-repeat:no-repeat;
     background-position: center;
-    background-image: url(data:image/gif;base64,R0lGODlhFAAUAPcAAAAAAJmZmZ2dnZ6enqKioqOjo6SkpKWlpaampqenp6ioqKmpqaqqqqurq/Hx8fLy8vT09PX19ff39/j4+Pn5+fr6+vv7+wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAP8ALAAAAAAUABQAAAihAP9FoPCvoMGDBy08+EdhQAIJCCMybCDAAYUEARBAlFiQQoMABQhKUJBxY0SPICEYHBnggEmDKAuoPMjS5cGYMxHW3IiT478JJA8M/CjTZ0GgLRekNGpwAsYABHIypcAgQMsITDtWJYBR6NSqMico9cqR6tKfY7GeBCuVwlipDNmefAtTrkSzB1RaIAoXodsABiZAEFB06gIBWC1mLVgBa0AAOw==);
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAABe0lEQVQokYXSsUtcQRTF4d8Jj+VhHSxkEQuLsEUKK0nhTBFTmLSSUhBCMCAWsmgIwWrBLk0akfwLCaSQKBJmtrIIISwpRFKIhViETScphGMzysMtvOVwvpm5d0bGNCuGWAOPgYdl6S8wSDn9b+bUhDHEKWAdeAFMANg+l/TV9ofcz6cjMIbYBvaBMds7QCqZ58CmpBNgPuV0DvAAIMyFGugWtJr7eTv38xEwkPRPErY7QDeG2LqFkjrAgu0dSd/KDVqSNmxvAZ8lfbS9AHRuYemnLWkv5XRVBrQMbAI/gTXgEzAJtJuwBVS2L2OIle03QA/4Lmkl5XQBXEqqbFcAVYFDYChpFngiqWf7l6TXKaezMt2Zkhk24THwG+jZriX9AFZvUAyxLbRke2D75O5zPAO+ADXwEtizjaRHwDvbTyUtppwOmicCHAJvbXcl9YA1SQDjtseA97YPRz7ATcUQp2y/kjRdevsjaTfldNrMjcDGBjXA3T96L7yvrgFzP69+0Ao/HAAAAABJRU5ErkJggg==');
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='14' height='14'%3E%3Cpath d='M12 20.016q3.281 0 5.648-2.367t2.367-5.648q0-2.672-1.734-4.922l-11.203 11.203q2.25 1.734 4.922 1.734zM3.984 12q0 2.672 1.734 4.922l11.203-11.203q-2.25-1.734-4.922-1.734-3.281 0-5.648 2.367t-2.367 5.648zM12 2.016q4.125 0 7.055 2.93t2.93 7.055-2.93 7.055-7.055 2.93-7.055-2.93-2.93-7.055 2.93-7.055 7.055-2.93z' fill='%23000'%3E%3C/path%3E%3C/svg%3E");
 }

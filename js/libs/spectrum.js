@@ -1,7 +1,7 @@
-// Spectrum Colorpicker v1.8.0
-// https://github.com/bgrins/spectrum
-// Author: Brian Grinstead
-// License: MIT
+/***
+ Spectrum Colorpicker
+ https://github.com/andersk/spectrum/blob/invalid-css2/dist/spectrum.js
+***/
 
 (function (factory) {
     "use strict";
@@ -26,36 +26,48 @@
         change: noop,
         show: noop,
         hide: noop,
+        onChoseValidate: noop,
 
         // Options
         color: false,
-        flat: false,
+        flat: false, // Deprecated - use type instead
+        type: '', // text, color, component or flat
         showInput: false,
-        allowEmpty: false,
+        allowEmpty: true,
         showButtons: true,
         clickoutFiresChange: true,
+        closeOnClickout: true,
         showInitial: false,
-        showPalette: false,
+        showPalette: true,
         showPaletteOnly: false,
         hideAfterPaletteSelect: false,
         togglePaletteOnly: false,
         showSelectionPalette: true,
         localStorageKey: false,
         appendTo: "body",
-        maxSelectionSize: 7,
+        maxSelectionSize: 8,
+        locale: "en",
         cancelText: "cancel",
         chooseText: "choose",
         togglePaletteMoreText: "more",
         togglePaletteLessText: "less",
         clearText: "Clear Color Selection",
-        noColorSelectedText: "No Color Selected",
-        preferredFormat: false,
+        preferredFormat: "name",
         className: "", // Deprecated - use containerClassName and replacerClassName instead.
         containerClassName: "",
         replacerClassName: "",
-        showAlpha: false,
+        showAlpha: true,
         theme: "sp-light",
-        palette: [["#ffffff", "#000000", "#ff0000", "#ff8000", "#ffff00", "#008000", "#0000ff", "#4b0082", "#9400d3"]],
+        palette: [
+            ["#000000","#444444","#5b5b5b","#999999","#bcbcbc","#eeeeee","#f3f6f4","#ffffff"],
+            ["#f44336","#744700","#ce7e00","#8fce00","#2986cc","#16537e","#6a329f","#c90076"],
+            ["#f4cccc","#fce5cd","#fff2cc","#d9ead3","#d0e0e3","#cfe2f3","#d9d2e9","#ead1dc"],
+            ["#ea9999","#f9cb9c","#ffe599","#b6d7a8","#a2c4c9","#9fc5e8","#b4a7d6","#d5a6bd"],
+            ["#e06666","#f6b26b","#ffd966","#93c47d","#76a5af","#6fa8dc","#8e7cc3","#c27ba0"],
+            ["#cc0000","#e69138","#f1c232","#6aa84f","#45818e","#3d85c6","#674ea7","#a64d79"],
+            ["#990000","#b45f06","#bf9000","#38761d","#134f5c","#0b5394","#351c75","#741b47"],
+            ["#660000","#783f04","#7f6000","#274e13","#0c343d","#073763","#20124d","#4c1130"]
+        ],
         selectionPalette: [],
         disabled: false,
         offset: null
@@ -73,10 +85,10 @@
         return contains(style.backgroundColor, 'rgba') || contains(style.backgroundColor, 'hsla');
     })(),
     replaceInput = [
-        "<div class='sp-replacer'>",
-            "<div class='sp-preview'><div class='sp-preview-inner'></div></div>",
-            "<div class='sp-dd'>&#9660;</div>",
-        "</div>"
+        "<button type='button' class='sp-replacer'>",
+            "<span class='sp-preview'><span class='sp-preview-inner'></span></span>",
+            "<span class='sp-dd'>&#9660;</span>",
+        "</button>"
     ].join(''),
     markup = (function () {
 
@@ -104,25 +116,25 @@
                             "<div class='sp-color'>",
                                 "<div class='sp-sat'>",
                                     "<div class='sp-val'>",
-                                        "<div class='sp-dragger'></div>",
+                                        "<div class='sp-dragger' tabindex='0'></div>",
                                     "</div>",
                                 "</div>",
                             "</div>",
                             "<div class='sp-clear sp-clear-display'>",
                             "</div>",
                             "<div class='sp-hue'>",
-                                "<div class='sp-slider'></div>",
+                                "<div class='sp-slider' tabindex='0'></div>",
                                 gradientFix,
                             "</div>",
                         "</div>",
-                        "<div class='sp-alpha'><div class='sp-alpha-inner'><div class='sp-alpha-handle'></div></div></div>",
+                        "<div class='sp-alpha'><div class='sp-alpha-inner'><div class='sp-alpha-handle' tabindex='0'></div></div></div>",
                     "</div>",
                     "<div class='sp-input-container sp-cf'>",
                         "<input class='sp-input' type='text' spellcheck='false'  />",
                     "</div>",
                     "<div class='sp-initial sp-thumb sp-cf'></div>",
                     "<div class='sp-button-container sp-cf'>",
-                        "<a class='sp-cancel' href='#'></a>",
+                        "<button type='button' class='sp-cancel'></button>",
                         "<button type='button' class='sp-choose'></button>",
                     "</div>",
                 "</div>",
@@ -140,15 +152,9 @@
                 c += (tinycolor.equals(color, current)) ? " sp-thumb-active" : "";
                 var formattedString = tiny.toString(opts.preferredFormat || "rgb");
                 var swatchStyle = rgbaSupport ? ("background-color:" + tiny.toRgbString()) : "filter:" + tiny.toFilter();
-                html.push('<span title="' + formattedString + '" data-color="' + tiny.toRgbString() + '" class="' + c + '"><span class="sp-thumb-inner" style="' + swatchStyle + ';" /></span>');
+                html.push('<span title="' + formattedString + '" data-color="' + tiny.toRgbString() + '" class="' + c + '" role="button" tabindex="0"><span class="sp-thumb-inner" style="' + swatchStyle + ';"></span></span>');
             } else {
-                var cls = 'sp-clear-display';
-                html.push($('<div />')
-                    .append($('<span data-color="" style="background-color:transparent;" class="' + cls + '"></span>')
-                        .attr('title', opts.noColorSelectedText)
-                    )
-                    .html()
-                );
+                html.push('<span class="sp-thumb-el sp-clear-display" role="button" tabindex="0"><span class="sp-clear-palette-only" style="background-color: transparent;"></span></span>');
             }
         }
         return "<div class='sp-cf " + className + "'>" + html.join('') + "</div>";
@@ -163,7 +169,13 @@
     }
 
     function instanceOptions(o, callbackContext) {
+        o.locale = o.locale || window.navigator.language;
+        if (o.locale) o.locale = o.locale.split('-')[0].toLowerCase(); // handle locale like "fr-FR"
+        if (o.locale != 'en' && $.spectrum.localization[o.locale]) {
+            o = $.extend({}, $.spectrum.localization[o.locale], o);
+        }
         var opts = $.extend({}, defaultOpts, o);
+
         opts.callbacks = {
             'move': bind(opts.move, callbackContext),
             'change': bind(opts.change, callbackContext),
@@ -178,7 +190,8 @@
     function spectrum(element, o) {
 
         var opts = instanceOptions(o, element),
-            flat = opts.flat,
+            type = opts.type,
+            flat = (type == 'flat'),
             showSelectionPalette = opts.showSelectionPalette,
             localStorageKey = opts.localStorageKey,
             theme = opts.theme,
@@ -204,6 +217,7 @@
             selectionPalette = opts.selectionPalette.slice(0),
             maxSelectionSize = opts.maxSelectionSize,
             draggingClass = "sp-dragging",
+            abortNextInputChange = false,
             shiftMovementDirection = null;
 
         var doc = element.ownerDocument,
@@ -228,7 +242,7 @@
             toggleButton = container.find(".sp-palette-toggle"),
             isInput = boundElement.is("input"),
             isInputTypeColor = isInput && boundElement.attr("type") === "color" && inputTypeColorSupport(),
-            shouldReplace = isInput && !flat,
+            shouldReplace = isInput && type == 'color',
             replacer = (shouldReplace) ? $(replaceInput).addClass(theme).addClass(opts.className).addClass(opts.replacerClassName) : $([]),
             offsetElement = (shouldReplace) ? replacer : boundElement,
             previewElement = replacer.find(".sp-preview-inner"),
@@ -237,8 +251,27 @@
             currentPreferredFormat = opts.preferredFormat,
             clickoutFiresChange = !opts.showButtons || opts.clickoutFiresChange,
             isEmpty = !initialColor,
-            allowEmpty = opts.allowEmpty && !isInputTypeColor;
+            allowEmpty = opts.allowEmpty;
 
+        // Element to be updated with the input color. Populated in initialize method
+        var originalInputContainer = null,
+            colorizeElement = null,
+            colorizeElementInitialColor = null,
+            colorizeElementInitialBackground = null;
+
+        //If there is a label for this element, when clicked on, show the colour picker
+        var thisId = boundElement.attr('id');
+        if(thisId !== undefined && thisId.length > 0) {
+            var label = $('label[for="'+thisId+'"]');
+            if(label.length) {
+                label.on('click', function(e){
+                    e.preventDefault();
+                    boundElement.spectrum('show');
+                    return false;
+                });
+            }
+        }
+        
         function applyOptions() {
 
             if (opts.showPaletteOnly) {
@@ -249,13 +282,19 @@
 
             if (opts.palette) {
                 palette = opts.palette.slice(0);
-                paletteArray = $.isArray(palette[0]) ? palette : [palette];
+                paletteArray = Array.isArray(palette[0]) ? palette : [palette];
                 paletteLookup = {};
                 for (var i = 0; i < paletteArray.length; i++) {
                     for (var j = 0; j < paletteArray[i].length; j++) {
                         var rgb = tinycolor(paletteArray[i][j]).toRgbString();
                         paletteLookup[rgb] = true;
                     }
+                }
+
+                // if showPaletteOnly and didn't set initialcolor
+                // set initialcolor to first palette
+                if (opts.showPaletteOnly && !initialColor) {
+                    initialColor = (palette[0][0] === '') ? palette[0][0] : Object.keys(paletteLookup)[0];
                 }
             }
 
@@ -281,9 +320,43 @@
 
             applyOptions();
 
+            originalInputContainer = $('<span class="sp-original-input-container"></span>');
+            ['margin'].forEach(function(cssProp) {
+                originalInputContainer.css(cssProp, boundElement.css(cssProp));
+            });
+            // inline-flex by default, switching to flex if needed
+            if (boundElement.css('display') == 'block') originalInputContainer.css('display', 'flex');
+
             if (shouldReplace) {
                 boundElement.after(replacer).hide();
+            } else if (type == 'text') {
+                originalInputContainer.addClass('sp-colorize-container');
+                boundElement.addClass('spectrum sp-colorize').wrap(originalInputContainer);
+            } else if (type == 'component') {
+                boundElement.addClass('spectrum').wrap(originalInputContainer);
+                var addOn = $(["<div class='sp-colorize-container sp-add-on'>",
+                    "<div class='sp-colorize'></div> ",
+                "</div>"].join(''));
+
+                var addOnWidth = boundElement.outerHeight();
+
+                // if value isn't falsy (0, null, undefined cf : https://developer.mozilla.org/en-US/docs/Glossary/Falsy)
+                if (addOnWidth) {
+                    addOn.width(addOnWidth + 'px')
+                        .css('border-radius', boundElement.css('border-radius'))
+                        .css('border', boundElement.css('border'));
+                } else {
+                    // Less js processing..
+                    addOn
+                        .css('border-radius', boundElement.css('border-radius'))
+                        .css('border', boundElement.css('border'));
+                }
+                boundElement.addClass('with-add-on').before(addOn);
             }
+
+            colorizeElement = boundElement.parent().find('.sp-colorize');
+            colorizeElementInitialColor = colorizeElement.css('color');
+            colorizeElementInitialBackground = colorizeElement.css('background-color');
 
             if (!allowEmpty) {
                 clearButton.hide();
@@ -294,7 +367,7 @@
             }
             else {
 
-                var appendTo = opts.appendTo === "parent" ? boundElement.parent() : $(opts.appendTo);
+                var appendTo = opts.appendTo === "parent" ? boundElement.parent() : $(document).find(opts.appendTo);
                 if (appendTo.length !== 1) {
                     appendTo = $("body");
                 }
@@ -304,9 +377,9 @@
 
             updateSelectionPaletteFromStorage();
 
-            offsetElement.bind("click.spectrum touchstart.spectrum", function (e) {
+            offsetElement.on("click.spectrum touchstart.spectrum", function (e) {
                 if (!disabled) {
-                    toggle();
+                    show();
                 }
 
                 e.stopPropagation();
@@ -315,23 +388,44 @@
                     e.preventDefault();
                 }
             });
+            
+            colorizeElement.on("click.spectrum touchstart.spectrum", function (e) {
+                if (!disabled) {
+                    show();
+                }
+
+                e.stopPropagation();
+            });
+
 
             if(boundElement.is(":disabled") || (opts.disabled === true)) {
                 disable();
             }
 
             // Prevent clicks from bubbling up to document.  This would cause it to be hidden.
-            container.click(stopPropagation);
+            container.on("click", stopPropagation);
+            
+            container.on("keydown", 'div[role="button"]', function(e) {
+                if (e.keyCode == 13) {
+                    e.preventDefault();
+                    $(this).click();
+                }
+            });
 
             // Handle user typed input
-            textInput.change(setFromTextInput);
-            textInput.bind("paste", function () {
-                setTimeout(setFromTextInput, 1);
+            [textInput, boundElement].forEach(function(input) {
+                input.on("change", function() { setFromTextInput(input.val()); });
+                input.on("paste", function () {
+                    setTimeout(function() { setFromTextInput(input.val()); }, 1);
+                });
+                input.on("keydown", function (e) { if (e.keyCode == 13) {
+                    setFromTextInput($(input).val());
+                    if (input == boundElement) hide();
+                } });
             });
-            textInput.keydown(function (e) { if (e.keyCode == 13) { setFromTextInput(); } });
 
             cancelButton.text(opts.cancelText);
-            cancelButton.bind("click.spectrum", function (e) {
+            cancelButton.on("click.spectrum", function (e) {
                 e.stopPropagation();
                 e.preventDefault();
                 revert();
@@ -339,7 +433,7 @@
             });
 
             clearButton.attr("title", opts.clearText);
-            clearButton.bind("click.spectrum", function (e) {
+            clearButton.on("click.spectrum", function (e) {
                 e.stopPropagation();
                 e.preventDefault();
                 isEmpty = true;
@@ -352,9 +446,15 @@
             });
 
             chooseButton.text(opts.chooseText);
-            chooseButton.bind("click.spectrum", function (e) {
+            chooseButton.on("click.spectrum", function (e) {
                 e.stopPropagation();
                 e.preventDefault();
+
+                if (typeof opts.onChoseValidate === 'function') {
+                    var colorObj = get();
+                    if (colorObj) colorObj.hex = colorObj.toString(currentPreferredFormat);
+                    opts.onChoseValidate(colorObj);
+                }
 
                 if (IE && textInput.is(":focus")) {
                     textInput.trigger('change');
@@ -367,7 +467,7 @@
             });
 
             toggleButton.text(opts.showPaletteOnly ? opts.togglePaletteMoreText : opts.togglePaletteLessText);
-            toggleButton.bind("click.spectrum", function (e) {
+            toggleButton.on("click.spectrum", function (e) {
                 e.stopPropagation();
                 e.preventDefault();
 
@@ -442,11 +542,12 @@
                 // In case color was black - update the preview UI and set the format
                 // since the set function will not run (default color is black).
                 updateUI();
-                currentPreferredFormat = opts.preferredFormat || tinycolor(initialColor).format;
-
+                currentPreferredFormat = tinycolor(initialColor).format || opts.preferredFormat;
                 addColorToSelectionPalette(initialColor);
-            }
-            else {
+            } else if (initialColor === '') {
+                set(initialColor);
+                updateUI();
+            } else {
                 updateUI();
             }
 
@@ -462,9 +563,14 @@
                 else {
                     set($(e.target).closest(".sp-thumb-el").data("color"));
                     move();
-                    updateOriginalInput(true);
+
+                    // If the picker is going to close immediately, a palette selection
+                    // is a change.  Otherwise, it's a move only.
                     if (opts.hideAfterPaletteSelect) {
-                      hide();
+                        updateOriginalInput(true);
+                        hide();
+                    } else {
+                        updateOriginalInput();
                     }
                 }
 
@@ -472,19 +578,19 @@
             }
 
             var paletteEvent = IE ? "mousedown.spectrum" : "click.spectrum touchstart.spectrum";
-            paletteContainer.delegate(".sp-thumb-el", paletteEvent, paletteElementClick);
-            initialColorContainer.delegate(".sp-thumb-el:nth-child(1)", paletteEvent, { ignore: true }, paletteElementClick);
+            paletteContainer.on(paletteEvent, ".sp-thumb-el", paletteElementClick);
+            initialColorContainer.on(paletteEvent, ".sp-thumb-el:nth-child(1)", { ignore: true }, paletteElementClick);
         }
 
         function updateSelectionPaletteFromStorage() {
 
-            if (localStorageKey && window.localStorage) {
-
+            if (localStorageKey) {
                 // Migrate old palettes over to new format.  May want to remove this eventually.
                 try {
-                    var oldPalette = window.localStorage[localStorageKey].split(",#");
+                    var localStorage = window.localStorage;
+                    var oldPalette = localStorage[localStorageKey].split(",#");
                     if (oldPalette.length > 1) {
-                        delete window.localStorage[localStorageKey];
+                        delete localStorage[localStorageKey];
                         $.each(oldPalette, function(i, c) {
                              addColorToSelectionPalette(c);
                         });
@@ -509,7 +615,7 @@
                     }
                 }
 
-                if (localStorageKey && window.localStorage) {
+                if (localStorageKey) {
                     try {
                         window.localStorage[localStorageKey] = selectionPalette.join(";");
                     }
@@ -574,19 +680,19 @@
             boundElement.trigger('dragstop.spectrum', [ get() ]);
         }
 
-        function setFromTextInput() {
-
-            var value = textInput.val();
-
+        function setFromTextInput(value) {
+            if (abortNextInputChange) { abortNextInputChange = false; return; }
             if ((value === null || value === "") && allowEmpty) {
                 set(null);
-                updateOriginalInput(true);
+                move();
+                updateOriginalInput();
             }
             else {
                 var tiny = tinycolor(value);
                 if (tiny.isValid()) {
                     set(tiny);
-                    updateOriginalInput(true);
+                    move();
+                    updateOriginalInput();
                 }
                 else {
                     textInput.addClass("sp-validation-error");
@@ -604,6 +710,7 @@
         }
 
         function show() {
+            // debugger;
             var event = $.Event('beforeShow.spectrum');
 
             if (visible) {
@@ -620,9 +727,11 @@
             hideAll();
             visible = true;
 
-            $(doc).bind("keydown.spectrum", onkeydown);
-            $(doc).bind("click.spectrum", clickout);
-            $(window).bind("resize.spectrum", resize);
+            $(doc).on("keydown.spectrum", onkeydown);
+            if (opts.closeOnClickout) $(doc).on("click.spectrum", clickout);
+            $(window).on("resize.spectrum", resize);
+            
+            replacer.attr("aria-expanded", true);
             replacer.addClass("sp-active");
             container.removeClass("sp-hidden");
 
@@ -665,10 +774,11 @@
             if (!visible || flat) { return; }
             visible = false;
 
-            $(doc).unbind("keydown.spectrum", onkeydown);
-            $(doc).unbind("click.spectrum", clickout);
-            $(window).unbind("resize.spectrum", resize);
+            $(doc).off("keydown.spectrum", onkeydown);
+            $(doc).off("click.spectrum", clickout);
+            $(window).off("resize.spectrum", resize);
 
+            replacer.attr("aria-expanded", false);
             replacer.removeClass("sp-active");
             container.addClass("sp-hidden");
 
@@ -678,6 +788,7 @@
 
         function revert() {
             set(colorOnShow, true);
+            updateOriginalInput(true);
         }
 
         function set(color, ignoreFormatChange) {
@@ -689,7 +800,7 @@
             }
 
             var newColor, newHsv;
-            if (!color && allowEmpty) {
+            if ((!color || color === undefined) && allowEmpty) {
                 isEmpty = true;
             } else {
                 isEmpty = false;
@@ -719,7 +830,7 @@
                 h: currentHue,
                 s: currentSaturation,
                 v: currentValue,
-                a: Math.round(currentAlpha * 100) / 100
+                a: Math.round(currentAlpha * 1000) / 1000
             }, { format: opts.format || currentPreferredFormat });
         }
 
@@ -802,6 +913,17 @@
             if (opts.showInput) {
                 textInput.val(displayColor);
             }
+            boundElement.val(displayColor);
+            if (opts.type == "text" || opts.type == "component") {
+                var color = realColor;
+                if (color && colorizeElement) {
+                    var textColor = (color.isLight() || color.getAlpha() < 0.4) ? 'black' : 'white';
+                    colorizeElement.css('background-color', color.toRgbString()).css('color', textColor);
+                } else {
+                    colorizeElement.css('background-color', colorizeElementInitialBackground)
+                                   .css('color', colorizeElementInitialColor);
+                }
+            }
 
             if (opts.showPalette) {
                 drawPalette();
@@ -866,12 +988,11 @@
                 addColorToSelectionPalette(color);
             }
 
-            if (isInput) {
-                boundElement.val(displayColor);
-            }
-
             if (fireCallback && hasChanged) {
                 callbacks.change(color);
+                // we trigger the change event or input, but the input change event is also binded
+                // to some spectrum processing, that we do no need
+                abortNextInputChange = true;
                 boundElement.trigger('change', [ color ]);
             }
         }
@@ -889,7 +1010,13 @@
             alphaWidth = alphaSlider.width();
             alphaSlideHelperWidth = alphaSlideHelper.width();
 
+            // Draw palette before update offset position for prevent wrong top position
+            if (opts.showPalette) {
+                drawPalette();
+            }
+
             if (!flat) {
+                container.attr("aria-haspopup", true);
                 container.css("position", "absolute");
                 if (opts.offset) {
                     container.offset(opts.offset);
@@ -900,18 +1027,22 @@
 
             updateHelperLocations();
 
-            if (opts.showPalette) {
-                drawPalette();
-            }
-
             boundElement.trigger('reflow.spectrum');
         }
 
         function destroy() {
-            boundElement.show();
-            offsetElement.unbind("click.spectrum touchstart.spectrum");
+            boundElement.show().removeClass('spectrum with-add-on sp-colorize');
+            offsetElement.off("click.spectrum touchstart.spectrum");
             container.remove();
             replacer.remove();
+            if (colorizeElement) {
+                colorizeElement.css('background-color', colorizeElementInitialBackground)
+                               .css('color', colorizeElementInitialColor);
+            }
+            var originalInputContainer = boundElement.closest('.sp-original-input-container');
+            if (originalInputContainer.length > 0) {
+                originalInputContainer.after(boundElement).remove();
+            }
             spectrums[spect.id] = null;
         }
 
@@ -928,6 +1059,11 @@
             if (optionName === "preferredFormat") {
                 currentPreferredFormat = opts.preferredFormat;
             }
+
+            if (optionName === "allowEmpty") {
+                allowEmpty = opts.allowEmpty;
+            }
+
             applyOptions();
         }
 
@@ -988,17 +1124,27 @@
         var viewWidth = docElem.clientWidth + $(doc).scrollLeft();
         var viewHeight = docElem.clientHeight + $(doc).scrollTop();
         var offset = input.offset();
-        offset.top += inputHeight;
+        var offsetLeft = offset.left;
+        var offsetTop = offset.top;
 
-        offset.left -=
-            Math.min(offset.left, (offset.left + dpWidth > viewWidth && viewWidth > dpWidth) ?
-            Math.abs(offset.left + dpWidth - viewWidth) : 0);
+        offsetTop += inputHeight;
 
-        offset.top -=
-            Math.min(offset.top, ((offset.top + dpHeight > viewHeight && viewHeight > dpHeight) ?
+        offsetLeft -=
+            Math.min(offsetLeft, (offsetLeft + dpWidth > viewWidth && viewWidth > dpWidth) ?
+            Math.abs(offsetLeft + dpWidth - viewWidth) : 0);
+
+        offsetTop -=
+            Math.min(offsetTop, ((offsetTop + dpHeight > viewHeight && viewHeight > dpHeight) ?
             Math.abs(dpHeight + inputHeight - extraY) : extraY));
 
-        return offset;
+        return {
+            top: offsetTop,
+            bottom: offset.bottom,
+            left: offsetLeft,
+            right: offset.right,
+            width: offset.width,
+            height: offset.height
+        };
     }
 
     /**
@@ -1091,7 +1237,7 @@
                     maxWidth = $(element).width();
                     offset = $(element).offset();
 
-                    $(doc).bind(duringDragEvents);
+                    $(doc).on(duringDragEvents);
                     $(doc.body).addClass("sp-dragging");
 
                     move(e);
@@ -1103,7 +1249,7 @@
 
         function stop() {
             if (dragging) {
-                $(doc).unbind(duringDragEvents);
+                $(doc).off(duringDragEvents);
                 $(doc.body).removeClass("sp-dragging");
 
                 // Wait a tick before notifying observers to allow the click event
@@ -1115,7 +1261,7 @@
             dragging = false;
         }
 
-        $(element).bind("touchstart mousedown", start);
+        $(element).on("touchstart mousedown", start);
     }
 
     function throttle(func, wait, debounce) {
@@ -1178,7 +1324,13 @@
 
         // Initializing a new instance of spectrum
         return this.spectrum("destroy").each(function () {
-            var options = $.extend({}, opts, $(this).data());
+            var options = $.extend({}, $(this).data(), opts);
+            // Infer default type from input params and deprecated options
+            if (!$(this).is('input')) options.type = 'noInput';
+            else if (options.flat || options.type == "flat") options.type = 'flat';
+            else if ($(this).attr('type') == 'color') options.type = 'color';
+            else options.type = options.type || 'component';
+
             var spect = spectrum(this, options);
             $(this).data(dataID, spect.id);
         });
@@ -1239,12 +1391,12 @@
         }
 
         var rgb = inputToRGB(color);
-        this._originalInput = color,
-        this._r = rgb.r,
-        this._g = rgb.g,
-        this._b = rgb.b,
-        this._a = rgb.a,
-        this._roundA = mathRound(100*this._a) / 100,
+        this._originalInput = color;
+        this._r = rgb.r;
+        this._g = rgb.g;
+        this._b = rgb.b;
+        this._a = rgb.a;
+        this._roundA = mathRound(1000 * this._a) / 1000;
         this._format = opts.format || rgb.format;
         this._gradientType = opts.gradientType;
 
@@ -1285,7 +1437,7 @@
         },
         setAlpha: function(value) {
             this._a = boundAlpha(value);
-            this._roundA = mathRound(100*this._a) / 100;
+            this._roundA = mathRound(1000 * this._a) / 1000;
             return this;
         },
         toHsv: function() {
@@ -1707,18 +1859,21 @@
         function rgbaToHex(r, g, b, a) {
 
             var hex = [
-                pad2(convertDecimalToHex(a)),
                 pad2(mathRound(r).toString(16)),
                 pad2(mathRound(g).toString(16)),
-                pad2(mathRound(b).toString(16))
-            ];
+                pad2(mathRound(b).toString(16)),
+                pad2(convertDecimalToHex(a))
+        ];
 
-            return hex.join("");
-        }
+        return hex.join("");
+    }
 
     // `equals`
     // Can be called with any tinycolor input
     tinycolor.equals = function (color1, color2) {
+        // empty stay empty
+        if (!color1 && !color2) { return true; }
+        // Only one of both are empty
         if (!color1 || !color2) { return false; }
         return tinycolor(color1).toRgbString() == tinycolor(color2).toRgbString();
     };
@@ -2321,3 +2476,473 @@
     });
 
 });
+
+// Spectrum Colorpicker
+// Arabic (ar) localization
+// https://github.com/seballot/spectrum
+(function ( $ ) {
+
+  var localization = $.spectrum.localization["ar"] = {
+      cancelText: "إلغاء",
+      chooseText: "إختار",
+      clearText: "إرجاع الألوان على ما كانت",
+      noColorSelectedText: "لم تختار أي لون",
+      togglePaletteMoreText: "أكثر",
+      togglePaletteLessText: "أقل"
+  };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Catalan (ca) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["ca"] = {
+        cancelText: "Cancel·lar",
+        chooseText: "Escollir",
+        clearText: "Esborrar color seleccionat",
+        noColorSelectedText: "Cap color seleccionat",
+        togglePaletteMoreText: "Més",
+        togglePaletteLessText: "Menys"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Czech (cs) localization
+// https://github.com/seballot/spectrum
+// author localization cs Pavel Laupe Dvorak pavel@pavel-dvorak.cz
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["cs"] = {
+        cancelText: "zrušit",
+        chooseText: "vybrat",
+        clearText: "Resetovat výběr barev",
+        noColorSelectedText: "Žádná barva nebyla vybrána",
+        togglePaletteMoreText: "více",
+        togglePaletteLessText: "méně"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// German (de) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["de"] = {
+        cancelText: "Abbrechen",
+        chooseText: "Wählen",
+        clearText: "Farbauswahl zurücksetzen",
+        noColorSelectedText: "Keine Farbe ausgewählt",
+        togglePaletteMoreText: "Mehr",
+        togglePaletteLessText: "Weniger"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Danish (dk) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["dk"] = {
+		cancelText: "annuller",
+		chooseText: "Vælg"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Spanish (es) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["es"] = {
+        cancelText: "Cancelar",
+        chooseText: "Elegir",
+        clearText: "Borrar color seleccionado",
+        noColorSelectedText: "Ningún color seleccionado",
+        togglePaletteMoreText: "Más",
+        togglePaletteLessText: "Menos"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Estonian (et) localization
+// https://github.com/bgrins/spectrum
+
+ (function ( $ ) {
+
+     var localization = $.spectrum.localization["et"] = {
+        cancelText: "Katkesta",
+        chooseText: "Vali",
+        clearText: "Tühista värvivalik",
+        noColorSelectedText: "Ühtki värvi pole valitud",
+        togglePaletteMoreText: "Rohkem",
+        togglePaletteLessText: "Vähem"
+    };
+
+ })( jQuery );
+
+// Spectrum Colorpicker
+// Persian (fa) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["fa"] = {
+        cancelText: "لغو",
+        chooseText: "انتخاب",
+        clearText: "تنظیم مجدد رنگ",
+        noColorSelectedText: "هیچ رنگی انتخاب نشده است!",
+        togglePaletteMoreText: "بیشتر",
+        togglePaletteLessText: "کمتر"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Finnish (fi) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["fi"] = {
+        cancelText: "Kumoa",
+        chooseText: "Valitse"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// French (fr) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["fr"] = {
+        cancelText: "Annuler",
+        chooseText: "Valider",
+        clearText: "Effacer couleur sélectionnée",
+        noColorSelectedText: "Aucune couleur sélectionnée",
+        togglePaletteMoreText: "Plus",
+        togglePaletteLessText: "Moins"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Greek (gr) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["gr"] = {
+        cancelText: "Ακύρωση",
+        chooseText: "Επιλογή",
+        clearText: "Καθαρισμός επιλεγμένου χρώματος",
+        noColorSelectedText: "Δεν έχει επιλεχθεί κάποιο χρώμα",
+        togglePaletteMoreText: "Περισσότερα",
+        togglePaletteLessText: "Λιγότερα"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Hebrew (he) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["he"] = {
+        cancelText: "בטל בחירה",
+        chooseText: "בחר צבע",
+        clearText: "אפס בחירה",
+        noColorSelectedText: "לא נבחר צבע",
+        togglePaletteMoreText: "עוד צבעים",
+        togglePaletteLessText: "פחות צבעים"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Croatian (hr) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["hr"] = {
+        cancelText: "Odustani",
+        chooseText: "Odaberi",
+        clearText: "Poništi odabir",
+        noColorSelectedText: "Niti jedna boja nije odabrana",
+        togglePaletteMoreText: "Više",
+        togglePaletteLessText: "Manje"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Hungarian (hu) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+  var localization = $.spectrum.localization["hu"] = {
+      cancelText: "Mégsem",
+      chooseText: "Mentés",
+      clearText: "A színválasztás visszaállítása",
+      noColorSelectedText: "Nincs szín kijelölve",
+      togglePaletteMoreText: "Több",
+      togglePaletteLessText: "Kevesebb"
+  };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Indonesia/Bahasa Indonesia (id) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["id"] = {
+        cancelText: "Batal",
+        chooseText: "Pilih",
+        clearText: "Hapus Pilihan Warna",
+        noColorSelectedText: "Warna Tidak Dipilih",
+        togglePaletteMoreText: "tambah",
+        togglePaletteLessText: "kurangi"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Italian (it) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["it"] = {
+		cancelText: "annulla",
+		chooseText: "scegli",
+		clearText: "Annulla selezione colore",
+		noColorSelectedText: "Nessun colore selezionato"
+	};
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Japanese (ja) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["ja"] = {
+        cancelText: "中止",
+        chooseText: "選択"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Korean (ko) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["ko"] = {
+        cancelText: "취소",
+        chooseText: "선택",
+        clearText: "선택 초기화",
+        noColorSelectedText: "선택된 색상 없음",
+        togglePaletteMoreText: "더보기",
+        togglePaletteLessText: "줄이기"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Lithuanian (lt) localization
+// https://github.com/liesislukas
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["lt"] = {
+        cancelText: "Atšaukti",
+        chooseText: "Pasirinkti",
+        clearText: "Išvalyti pasirinkimą",
+        noColorSelectedText: "Spalva nepasirinkta",
+        togglePaletteMoreText: "Daugiau",
+        togglePaletteLessText: "Mažiau"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Norwegian, Bokmål (nb-no) localization
+// https://github.com/greendimka
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["nb-no"] = {
+        cancelText: "Avbryte",
+        chooseText: "Velg",
+        clearText: "Tilbakestill",
+        noColorSelectedText: "Farge er ikke valgt",
+        togglePaletteMoreText: "Mer",
+        togglePaletteLessText: "Mindre"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Dutch (nl-nl) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["nl-nl"] = {
+        cancelText: "Annuleer",
+        chooseText: "Kies",
+        clearText: "Wis kleur selectie",
+        togglePaletteMoreText: 'Meer',
+        togglePaletteLessText: 'Minder'
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Polish (pl) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["pl"] = {
+        cancelText: "Anuluj",
+        chooseText: "Wybierz",
+        clearText: "Usuń wybór koloru",
+        noColorSelectedText: "Nie wybrano koloru",
+        togglePaletteMoreText: "Więcej",
+        togglePaletteLessText: "Mniej"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Brazilian (pt-br) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["pt-br"] = {
+        cancelText: "Cancelar",
+        chooseText: "Escolher",
+        clearText: "Limpar cor selecionada",
+        noColorSelectedText: "Nenhuma cor selecionada",
+        togglePaletteMoreText: "Mais",
+        togglePaletteLessText: "Menos"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Portuguese (pt-pt) localization
+// https://github.com/bgrins/spectrum
+
+ (function ( $ ) {
+
+     var localization = $.spectrum.localization["pt-pt"] = {
+        cancelText: "Cancelar",
+        chooseText: "Escolher",
+        clearText: "Limpar cor seleccionada",
+        noColorSelectedText: "Nenhuma cor seleccionada",
+        togglePaletteMoreText: "Mais",
+        togglePaletteLessText: "Menos"
+    };
+
+ })( jQuery );
+
+// Spectrum Colorpicker
+// Russian (ru) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["ru"] = {
+        cancelText: "Отмена",
+        chooseText: "Выбрать",
+        clearText: "Сбросить",
+        noColorSelectedText: "Цвет не выбран",
+        togglePaletteMoreText: "Ещё",
+        togglePaletteLessText: "Скрыть"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Swedish (sv) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["sv"] = {
+        cancelText: "Avbryt",
+        chooseText: "Välj"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Turkish (tr) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["tr"] = {
+		cancelText: "iptal",
+		chooseText: "tamam"
+	};
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Simplified Chinese (zh-cn) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["zh-cn"] = {
+        cancelText: "取消",
+        chooseText: "选择",
+        clearText: "清除",
+        togglePaletteMoreText: "更多选项",
+        togglePaletteLessText: "隐藏",
+        noColorSelectedText: "尚未选择任何颜色"
+    };
+
+})( jQuery );
+
+// Spectrum Colorpicker
+// Traditional Chinese (zh-tw) localization
+// https://github.com/seballot/spectrum
+
+(function ( $ ) {
+
+    var localization = $.spectrum.localization["zh-tw"] = {
+        cancelText: "取消",
+        chooseText: "選擇",
+        clearText: "清除",
+        togglePaletteMoreText: "更多選項",
+        togglePaletteLessText: "隱藏",
+        noColorSelectedText: "尚未選擇任何顏色"
+    };
+
+})( jQuery );
