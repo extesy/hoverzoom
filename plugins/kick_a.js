@@ -6,22 +6,6 @@ hoverZoomPlugins.push({
         var name = this.name;
         var res = [];
 
-        // if header(s) rewrite is allowed store headers settings that will be used for rewrite
-        if (options.allowHeadersRewrite) {
-             chrome.runtime.sendMessage({action:"storeHeaderSettings",
-                                        plugin:name,
-                                        settings:
-                                            [{"type":"request",
-                                            "skipInitiator":"kick",
-                                            "urls":["kick.com","hls.live-video.net","playback.live-video.net"],
-                                            "headers":[{"name":"referer", "value":"https://kick.com", "typeOfUpdate":"add"},{"name":"origin", "value":"https://kick.com", "typeOfUpdate":"add"}]},
-                                            {"type":"response",
-                                            "skipInitiator":"kick",
-                                            "urls":["kick.com","hls.live-video.net","playback.live-video.net"],
-                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
-                                        });
-        }
-
         // clips
         // thumbnail url: https://clips.kick.com/clips/cacd6b78-e0d8-49fa-976f-8672d35c7bfa-thumbnail.jpeg
         //   => clip url: https://clips.kick.com/clips/cacd6b78-e0d8-49fa-976f-8672d35c7bfa.mp4

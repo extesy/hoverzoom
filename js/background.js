@@ -1,4 +1,7 @@
-﻿var options;
+﻿importScripts('tools.js');
+importScripts('common.js');
+
+var options;
 
 function cLog(msg) {
     if (options.debug && msg) {
@@ -7,46 +10,56 @@ function cLog(msg) {
 }
 
 // Performs an ajax request
-function ajaxRequest(request, callback) {
+async function ajaxRequest(request, callback) {
     const response = request.response;
     const method = request.method;
     const filename = request.filename;
     const conflictAction = request.conflictAction;
-    let xhr = new XMLHttpRequest();
-    let url = request.url;
 
-    if (response === 'DOWNLOAD') xhr.responseType = 'arraybuffer';
+    // Prepare fetch options
+    const fetchOptions = {
+        method: request.method,
+        headers: {},
+        body: request.data
+    };
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                if (method === 'HEAD') {
-                    callback({url:url, headers:xhr.getAllResponseHeaders()});
-                } else {
-                    switch (response) {
-                        case 'DOWNLOAD':
-                            const blobBin = new Blob([xhr.response], {type:'application/octet-stream'});
-                            const blobUrl = URL.createObjectURL(blobBin);
-                            downloadFile(blobUrl, filename, conflictAction, callback);
-                            break;
-                        case 'URL':
-                            callback(xhr.responseURL);
-                            break;
-                        default:
-                            callback(xhr.responseText);
-                    }
-                }
-            } else {
-                callback(null);
-            }
-        }
-    }
-
-    xhr.open(request.method, request.url, true);
+    // Add headers
     for (let i in request.headers) {
-        xhr.setRequestHeader(request.headers[i].header, request.headers[i].value);
+        fetchOptions.headers[request.headers[i].header] = request.headers[i].value;
     }
-    xhr.send(request.data);
+
+    try {
+        const fetchResponse = await fetch(request.url, fetchOptions);
+
+        if (fetchResponse.ok) {
+            if (method === 'HEAD') {
+                const headers = {};
+                fetchResponse.headers.forEach((value, key) => {
+                    headers[key] = value;
+                });
+                callback({url: request.url, headers: headers});
+            } else {
+                switch (response) {
+                    case 'DOWNLOAD':
+                        const arrayBuffer = await fetchResponse.arrayBuffer();
+                        const blobBin = new Blob([arrayBuffer], {type: 'application/octet-stream'});
+                        const blobUrl = URL.createObjectURL(blobBin);
+                        downloadFile(blobUrl, filename, conflictAction, callback);
+                        break;
+                    case 'URL':
+                        callback(fetchResponse.url);
+                        break;
+                    default:
+                        const text = await fetchResponse.text();
+                        callback(text);
+                }
+            }
+        } else {
+            callback(null);
+        }
+    } catch (error) {
+        callback(null);
+    }
 }
 
 function downloadFile(url, filename, conflictAction, callback) {
@@ -157,7 +170,6 @@ function onMessage(message, sender, callback) {
             return true;
         case 'optionsChanged':
             options = message.options;
-            manageHeadersRewrite();
             break;
         case 'saveOptions':
             optionsStorageSet(message.options).then(() => {
@@ -184,7 +196,10 @@ function onMessage(message, sender, callback) {
                 message.createData.url = 'data:text/html,<img src="' + url + '">';
             }
             chrome.windows.create(message.createData, function (window) {
-                chrome.tabs.executeScript(window.tabs[0].id, {file:'js/viewWindow.js'});
+                chrome.scripting.executeScript({
+                    target: {tabId: window.tabs[0].id},
+                    files: ['js/viewWindow.js']
+                });
             });
             break;
         case 'openViewTab':
@@ -197,16 +212,23 @@ function onMessage(message, sender, callback) {
                     message.createData.url = 'data:text/html,<img src="' + url + '">';
                 }
                 chrome.tabs.create(message.createData, function (tab) {
-                    chrome.tabs.executeScript(tab.id, {file:'js/viewTab.js'});
+                    chrome.scripting.executeScript({
+                        target: {tabId: window.tabs[0].id},
+                        files: ['js/viewTab.js']
+                    });
                 });
             });
             break;
         case 'updateViewWindow':
-            chrome.windows.getCurrent(window => { chrome.windows.update(window.id, { width:message.updateData.width, height:message.updateData.height, top:message.updateData.top, left:message.updateData.left }) });
+            chrome.windows.getCurrent(window => {
+                chrome.windows.update(window.id, {
+                    width: message.updateData.width,
+                    height: message.updateData.height,
+                    top: message.updateData.top,
+                    left: message.updateData.left
+                })
+            });
             break;
-        case 'storeHeaderSettings':
-            storeHeaderSettings(message);
-            return true;
         case 'banImage':
             banImage(message);
             break;
@@ -226,12 +248,11 @@ function showPageAction(tab) {
         return;
     }
     if (!options.extensionEnabled || isExcludedSite(tab.url)) {
-        chrome.pageAction.setIcon({tabId:tab.id, path:'../images/icon19d.png'});
+        chrome.action.setIcon({tabId: tab.id, path: '../images/icon19d.png'});
     } else {
-        chrome.pageAction.setIcon({tabId:tab.id, path:'../images/icon19.png'});
+        chrome.action.setIcon({tabId: tab.id, path: '../images/icon19.png'});
     }
-    chrome.pageAction.show(tab.id);
-}
+ }
 
 async function init() {
     // Load options
@@ -239,162 +260,6 @@ async function init() {
 
     // Bind events
     chrome.runtime.onMessage.addListener(onMessage);
-
-    await manageHeadersRewrite();
-}
-
-// Add or remove web request listeners
-async function manageHeadersRewrite() {
-    if (!chrome.webRequest) return; // not supported on Firefox
-
-    if (options.allowHeadersRewrite) {
-        // check that permissions are granted, otherwise remove listeners
-        chrome.permissions.contains({permissions: ['webRequest','webRequestBlocking']}, async function (granted) {
-            if (granted)
-                addWebRequestListeners();
-            else
-                await removeWebRequestListeners();
-        });
-    } else {
-        chrome.permissions.remove({permissions: ['webRequest','webRequestBlocking']}, async function (removed) {
-            if (removed)
-                await removeWebRequestListeners();
-            else
-                addWebRequestListeners();
-        });
-    }
-}
-
-/**
-* - store request's header(s) setting(s) = modification(s) to be applied to request's header(s) just before sending request to server
-*   e.g: add/modify "Origin" header to deal with CORS limitations
-* - store response's header(s) setting(s) = modification(s) to be applied to response's header(s) just after receiving response from server
-*   e.g: add/modify "Access-Control-Allow-Origin" header so browser allows content display
-*/
-async function storeHeaderSettings(message) {
-    /**
-    * check that:
-    * - header(s) rewrite is allowed
-    * and
-    * - permissions are granted
-    */
-    if (!options.allowHeadersRewrite) {
-        return;
-    }
-
-    chrome.permissions.contains({permissions: ['webRequest','webRequestBlocking']}, function (granted) {
-        if (granted) {
-            let hoverZoomHeaderSettings = sessionStorage.getItem('HoverZoomHeaderSettings') || '[]';
-            hoverZoomHeaderSettings = JSON.parse(hoverZoomHeaderSettings);
-            let index = hoverZoomHeaderSettings.findIndex(s => s.plugin === message.plugin);
-            if (index !== -1) hoverZoomHeaderSettings.splice(index, 1); // remove old settings
-            let s = {};
-            s.plugin = message.plugin;
-            s.settings = message.settings;
-            hoverZoomHeaderSettings.push(s);
-            sessionStorage.setItem('HoverZoomHeaderSettings', JSON.stringify(hoverZoomHeaderSettings));
-        }
-    });
-}
-
-// update request header(s) just before sending
-function updateRequestHeaders(e) {
-    let settings = findHeaderSettings(e.url, "request");
-    if (!settings) return;
-
-    // check if update must be skipped because of initiator
-    if (settings.skipInitiator && e.initiator && e.initiator.indexOf(settings.skipInitiator) !== -1) return;
-
-    return { requestHeaders: updateHeaders(e.requestHeaders, settings) };
-}
-
-// update response header(s) just after receiving
-function updateResponseHeaders(e) {
-    let settings = findHeaderSettings(e.url, "response");
-    if (!settings) return;
-
-    // check if update must be skipped because of initiator
-    if (settings.skipInitiator && e.initiator && e.initiator.indexOf(settings.skipInitiator) !== -1) return;
-
-    return { responseHeaders: updateHeaders(e.responseHeaders, settings) };
-}
-
-// find header(s) setting(s) associated with url that triggered the listener
-function findHeaderSettings(url, requestOrResponse) {
-    let hoverZoomHeaderSettings = sessionStorage.getItem('HoverZoomHeaderSettings') || '[]';
-    hoverZoomHeaderSettings = JSON.parse(hoverZoomHeaderSettings);
-
-    let settings = [];
-    url = url.toLowerCase();
-    hoverZoomHeaderSettings.forEach(s => s.settings.forEach(s2 => { if (s2.type === requestOrResponse && s2.urls.find(u => url.indexOf(u) !== -1) !== undefined) settings.push(s2) }))
-    return settings[0];
-}
-
-// update header(s) according to plug-in settings
-function updateHeaders(headers, settings) {
-    settings.headers.forEach(h => {
-        /**
-        * types of update:
-        * - 'remove': remove header
-        * - 'replace': replace header; if header does not exist then do nothing
-        * - 'add': add header; if header already exists then replace it
-        */
-        if (h.typeOfUpdate === 'remove') {
-            let index = headers.findIndex(rh => rh.name.toLowerCase() === h.name.toLowerCase());
-            if (index !== -1) headers.splice(index, 1);
-        }
-        if (h.typeOfUpdate === 'replace') {
-            let index = headers.findIndex(rh => rh.name.toLowerCase() === h.name.toLowerCase());
-            if (index !== -1) headers[index] = { 'name':h.name, 'value':h.value };
-        }
-        if (h.typeOfUpdate === 'add') {
-            let index = headers.findIndex(rh => rh.name.toLowerCase() === h.name.toLowerCase());
-            if (index !== -1) headers[index] = { 'name':h.name, 'value':h.value };
-            else headers.push( { 'name':h.name, 'value':h.value } );
-        }
-    })
-    return headers;
-}
-
-/** 
-* add listeners for web requests:
-* - onBeforeSendHeaders
-* - onHeadersReceived
-* so they can be edited on-the-fly to enable API calls from plug-ins
-* https://developer.chrome.com/docs/extensions/reference/webRequest/
-* https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest
-*/
-
-function addWebRequestListeners() {
-    if (!chrome.webRequest.onBeforeSendHeaders.hasListener(updateRequestHeaders)) {
-        chrome.webRequest.onBeforeSendHeaders.addListener(updateRequestHeaders, { urls : ["<all_urls>"] }, [
-            'blocking',
-            'requestHeaders',
-            chrome.webRequest.OnSendHeadersOptions.EXTRA_HEADERS,
-        ].filter(Boolean));
-    }
-    if (!chrome.webRequest.onHeadersReceived.hasListener(updateResponseHeaders)){
-        chrome.webRequest.onHeadersReceived.addListener(updateResponseHeaders, { urls : ["<all_urls>"] }, [
-            'blocking',
-            'responseHeaders',
-            chrome.webRequest.OnSendHeadersOptions.EXTRA_HEADERS,
-        ].filter(Boolean));
-    }
-}
-
-/**
-* remove listeners for web requests:
-* - onBeforeSendHeaders
-* - onHeadersReceived
-* also remove headers settings since they are not used anymore
-*/
-async function removeWebRequestListeners() {
-    if (chrome.webRequest.onBeforeSendHeaders.hasListener(updateRequestHeaders))
-        chrome.webRequest.onBeforeSendHeaders.removeListener(updateRequestHeaders);
-    if (chrome.webRequest.onHeadersReceived.hasListener(updateResponseHeaders))
-        chrome.webRequest.onHeadersReceived.removeListener(updateResponseHeaders);
-
-    await sessionStorageRemove('HoverZoomHeaderSettings');
 }
 
 // add url of image, video or audio track to ban list so it will not be zoomed again

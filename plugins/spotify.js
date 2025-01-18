@@ -22,22 +22,6 @@ hoverZoomPlugins.push({
             HZspotify = JSON.parse(HZspotify);
         }
 
-        // if header(s) rewrite is allowed store headers settings that will be used for rewrite
-        if (options.allowHeadersRewrite) {
-              chrome.runtime.sendMessage({action:"storeHeaderSettings",
-                                        plugin:pluginName,
-                                        settings:
-                                            [{"type":"request",
-                                            "skipInitiator":"spotifydown",
-                                            "urls":["spotifydown.com"],
-                                            "headers":[{"name":"referer", "value":"https://spotifydown.com/", "typeOfUpdate":"add"}, {"name":"origin", "value":"https://spotifydown.com", "typeOfUpdate":"add"}]},
-                                            {"type":"response",
-                                            "skipInitiator":"spotify",
-                                            "urls":["spotify.com"],
-                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
-                                        });
-        }
-
         // call spotifydown API to get urls for audio tracks
         // track sample: https://open.spotify.com/intl-fr/track/7fj36UASAJfRL4pdD00OPV?si=077b59604f0c4ec0
         //  -> track id: 7fj36UASAJfRL4pdD00OPV

@@ -212,32 +212,12 @@ $(async function () {
 
     $('.actionKey').change(selKeyOnChange);
 
-    chrome.permissions.contains({permissions: ['tabs']}, function (granted) {
-        if (granted) {
-            setTabHook(options);
-            $('#chkExcludeSite').parent().on('gumby.onChange', chkExcludeSiteOnChange);
-        } else {
-            $('#lblToggle').text(chrome.i18n.getMessage('popAllowPerSiteToggle'));
-            $('#chkExcludeSite').parent().on('gumby.onChange', askTabsPermissions);
-        }
-    });
+    setTabHook(options);
+    $('#chkExcludeSite').parent().on('gumby.onChange', chkExcludeSiteOnChange);
 
     await restoreOptions();
     chrome.runtime.onMessage.addListener(onMessage);
 });
-
-function askTabsPermissions() {
-    chrome.permissions.contains({permissions: ['tabs']}, function (granted) {
-        if (!granted) {
-            chrome.permissions.request({permissions: ['tabs']}, function (granted) {
-                if (granted) {
-                    setTabHook(options);
-                    location.reload();
-                }
-            });
-        }
-    });
-}
 
 function setTabHook(options) {
     chrome.tabs.query({active: true, currentWindow: true}, function (tabArr) {
@@ -256,11 +236,6 @@ async function onMessage(message, sender, callback) {
     switch (message.action) {
         case 'optionsChanged':
             await restoreOptions();
-            break;
-        case 'askTabsPermissions':
-            chrome.permissions.request({permissions: ['tabs']}, function (granted) {
-                callback(granted);
-            });
             break;
     }
 }
