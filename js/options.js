@@ -1,7 +1,5 @@
 var options,
     hoverZoomPlugins = hoverZoomPlugins || [],
-    VK_CTRL = 1024,
-    VK_SHIFT = 2048,
     actionKeys = ['actionKey', 'toggleKey', 'closeKey', 'hideKey', 'banKey', 'openImageInWindowKey', 'openImageInTabKey', 'lockImageKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey', 'flipImageKey', 'copyImageKey', 'copyImageUrlKey'];
 
 function getMilliseconds(ctrl) {
@@ -9,24 +7,6 @@ function getMilliseconds(ctrl) {
     value = isNaN(value) ? 0 : value * 1000;
     ctrl.val(value / 1000);
     return value;
-}
-
-function keyCodeToString(key) {
-    var s = '';
-    if (key & VK_CTRL) {
-        s += 'Ctrl+';
-        key &= ~VK_CTRL;
-    }
-    if (key & VK_SHIFT) {
-        s += 'Shift+';
-        key &= ~VK_SHIFT;
-    }
-    if (key >= 65 && key < 91) {
-        s += String.fromCharCode('A'.charCodeAt(0) + key - 65);
-    } else if (key >= 112 && key < 124) {
-        s += 'F' + (key - 111);
-    }
-    return s;
 }
 
 // Options that are only enabled for Chromium-based browsers
@@ -45,44 +25,7 @@ function initActionKeys() {
     });
 }
 
-function loadKeys(sel) {
-    $('<option value="0">None</option>').appendTo(sel);
-    $('<option value="-1">Right Click (Hold)</option>').appendTo(sel);
-    $('<option value="-2">Middle Click (Hold)</option>').appendTo(sel);
-    if (sel.attr('id') != 'selHideKey' && sel.attr('id') != 'selFullZoomKey' && sel.attr('id') != 'selActionKey' && sel.attr('id') != 'selToggleKey') {
-        $('<option value="-3">Right Click</option>').appendTo(sel);
-        $('<option value="-4">Middle Click</option>').appendTo(sel);
-    }
-    if (sel.attr('id') != 'selOpenImageInTabKey')
-        $('<option value="16">Shift</option>').appendTo(sel);
-    $('<option value="17">Ctrl</option>').appendTo(sel);
-    $('<option value="18">Alt</option>').appendTo(sel);
-    $('<option value="13">Enter</option>').appendTo(sel);
-    if (navigator.appVersion.indexOf('Macintosh') > -1) {
-        $('<option value="91">Command</option>').appendTo(sel);
-    }
-    for (var i = 65; i < 91; i++) {
-        $('<option value="' + i + '">&#' + i + ';</option>').appendTo(sel);
-    }
-    for (var i = 112; i < 124; i++) {
-        $('<option value="' + i + '">F' + (i - 111) + '</option>').appendTo(sel);
-    }
-    $('<option value="27">Escape</option>').appendTo(sel);
-    $('<option value="33">Page Up</option>').appendTo(sel);
-    $('<option value="34">Page Down</option>').appendTo(sel);
-    $('<option value="35">End</option>').appendTo(sel);
-    $('<option value="36">Home</option>').appendTo(sel);
-    $('<option value="37">Left</option>').appendTo(sel);
-    $('<option value="38">Up</option>').appendTo(sel);
-    $('<option value="39">Right</option>').appendTo(sel);
-    $('<option value="40">Down</option>').appendTo(sel);
-    $('<option value="45">Insert</option>').appendTo(sel);
-    $('<option value="46">Delete</option>').appendTo(sel);
-}
-
-// Saves options to localStorage.
-// TODO: Migrate to https://developer.chrome.com/extensions/storage
-function saveOptions(exportSettings = false) {
+async function saveOptions(exportSettings = false) {
     options.extensionEnabled = $('#chkExtensionEnabled')[0].checked;
     options.darkMode = $('#chkDarkMode')[0].checked;
     options.zoomFactor = $('#txtZoomFactor')[0].value;
@@ -205,28 +148,27 @@ function saveOptions(exportSettings = false) {
     if (exportSettings) { 
         $('#txtBoxImportExportSettings').val(JSON.stringify(options));
     } else {
-        localStorage.options = JSON.stringify(options);
-
+        await optionsStorageSet(options);
         sendOptions(options);
-        restoreOptions();
+        await restoreOptions();
     }
     return false;
 }
 
-function savePermissionOptions() {
+async function savePermissionOptions() {
     options.addToHistory = $('#chkAddToHistory')[0].checked;
     options.allowHeadersRewrite = $('#chkAllowHeadersRewrite')[0].checked;
-    localStorage.options = JSON.stringify(options);
+    await optionsStorageSet(options);
 }
 
 // Restores options from factory settings
-function restoreOptionsFromFactorySettings() {
-    restoreOptions(Object.assign({}, factorySettings));
+async function restoreOptionsFromFactorySettings() {
+    await restoreOptions(Object.assign({}, factorySettings));
 }
 
-// Restores options from localStorage.
-function restoreOptions(optionsFromFactorySettings) {
-    options = optionsFromFactorySettings || loadOptions();
+// Restores options from storage
+async function restoreOptions(optionsFromFactorySettings) {
+    options = optionsFromFactorySettings || await loadOptions();
 
     $('#chkExtensionEnabled').trigger(options.extensionEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#chkDarkMode').trigger(options.darkMode ? 'gumby.check' : 'gumby.uncheck');
@@ -710,10 +652,10 @@ function updateDarkMode() {
     }
 }
 
-function onMessage(message, sender, callback) {
+async function onMessage(message, sender, callback) {
     switch (message.action) {
         case 'optionsChanged':
-            restoreOptions();
+            await restoreOptions();
             break;
     }
 }
@@ -802,18 +744,18 @@ function displayMsg(msg) {
     }
 }
 
-$(function () {
-    options = loadOptions();
+$(async function () {
+    options = await loadOptions();
     initActionKeys();
     i18n();
     chkWhiteListModeOnChange();
     initAddToHistory();
     initAllowHeadersRewrite();
     chkDarkMode();
-    $("#version").text(chrome.i18n.getMessage("optFooterVersionCopyright", [chrome.runtime.getManifest().version, localStorage['HoverZoomLastUpdate'] ? localStorage['HoverZoomLastUpdate'] : localStorage['HoverZoomInstallation'], new Date().getFullYear()]));
-    $('#btnSave').click(function() { removeModifications(); saveOptions(); displayMsg(Saved); return false; }); // "return false" needed to prevent page scroll
-    $('#btnCancel').click(function() { removeModifications(); restoreOptions(); displayMsg(Cancel); return false; });
-    $('#btnReset').click(function() { restoreOptionsFromFactorySettings(); displayMsg(Reset); return false; });
+    $("#version").text(chrome.i18n.getMessage("optFooterVersionCopyright", [chrome.runtime.getManifest().version, new Date().getFullYear()]));
+    $('#btnSave').click(function() { removeModifications(); saveOptions().then(() => displayMsg(Saved)); return false; }); // "return false" needed to prevent page scroll
+    $('#btnCancel').click(function() { removeModifications(); restoreOptions().then(() => displayMsg(Cancel)); return false; });
+    $('#btnReset').click(function() { restoreOptionsFromFactorySettings().then(() => displayMsg(Reset)); return false; });
     $('#btnDisableAllPlugins').click(function() { disableAllPlugins(); return false; });
     $('#btnEnableAllPlugins').click(function() { enableAllPlugins(); return false; });
     $('#btnImportSettings').click(function() { importSettings(); return false; });
@@ -854,7 +796,7 @@ $(function () {
     $('#chkHideMouseCursor').parent().on('gumby.onChange', updateDivHideMouseCursor);
     $('#chkDarkMode').parent().on('gumby.onChange', updateDarkMode);
 
-    restoreOptions();
+    await restoreOptions();
     loadPlugins();
 
     $('input[type=checkbox]').each(function() { $(this).parent().on('gumby.onChange', function() { updateCheckBox(this) }) });
@@ -875,7 +817,7 @@ function enableAllPlugins() {
 
 //Checks if string is JSON. 
 //If yes, imports settings and clears textarea.
-function importSettings() {
+async function importSettings() {
     let jsonImport;
     try {
         jsonImport = JSON.parse($('#txtBoxImportExportSettings')[0].value);
@@ -891,12 +833,12 @@ function importSettings() {
         return false;
     }
     displayMsg(Imported);
-    restoreOptions({jsonImport});
+    await restoreOptions({jsonImport});
     $('#txtBoxImportExportSettings').val('');
 }
 
-function exportSettings() {
-    saveOptions(true);
+async function exportSettings() {
+    await saveOptions(true);
 }
 
 // highlight item if modified, unhighlight if not modified

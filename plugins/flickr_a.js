@@ -77,14 +77,15 @@ var hoverZoomPluginFlickerA = {
         var data = link.data();
         // Check if the url was stored
         var cachePrefix = 'cache_FlickrPhoto_' + (options.showHighRes ? 'hi' : 'lo') + '_';
-        var storedUrl = localStorage[cachePrefix + photoId];
-        if (storedUrl) {
-            data.hoverZoomSrc = [storedUrl];
-            link.addClass('hoverZoomLink');
-            var res = [];
-            res.push(link);
-            callback($(res), this.name);
-        }
+        sessionStorageGet(cachePrefix + photoId, (storedUrl) => {
+            if (storedUrl) {
+                data.hoverZoomSrc = [storedUrl];
+                link.addClass('hoverZoomLink');
+                var res = [];
+                res.push(link);
+                callback($(res), this.name);
+            }
+        })
     }
 };
 hoverZoomPlugins.push(hoverZoomPluginFlickerA);

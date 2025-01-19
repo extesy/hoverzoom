@@ -17,6 +17,7 @@
     "background": {
         "persistent": true,
         "scripts": [
+            "js/tools.js",
             "js/common.js",
             "js/background.js"
         ]
@@ -35,6 +36,7 @@
     },
     "permissions": [
         "*://*/*",
+        "storage",
         "unlimitedStorage"
     ],
     "optional_permissions": [
@@ -49,6 +51,7 @@
         "images/spectrogram.png",
         "js/jquery-3.7.1.js",
         "js/gumby.js",
+        "js/tools.js",
         "js/common.js",
         "js/options.js"
     ],
@@ -2111,7 +2114,7 @@
         },
         {
             "js": ["plugins/apple.js"],
-            "matches": ["*://apps.apple.com/*", "*://books.apple.com/*", "*://music.apple.com/*", "*://podcasts.apple.com/*"]
+            "matches": ["*://apps.apple.com/*", "*://books.apple.com/*", "*://music.apple.com/*"]
         },
         {
             "js": ["plugins/monuments_nationaux.js"],
