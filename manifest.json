@@ -13,7 +13,7 @@
         "128": "images/icon128.png"
     },
     "default_locale": "en",
-    "minimum_chrome_version": "22",
+    "minimum_chrome_version": "130",
     "background": {
         "persistent": true,
         "scripts": [
