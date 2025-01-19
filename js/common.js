@@ -113,7 +113,7 @@ async function loadOptions() {
 
 // Send options to all tabs and extension pages
 function sendOptions(options) {
-    var request = {action:'optionsChanged', 'options':options};
+    var request = {action: 'optionsChanged', 'options': options};
 
     // Send options to all tabs
     chrome.windows.getAll(null, function (windows) {
