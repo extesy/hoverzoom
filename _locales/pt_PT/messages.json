@@ -448,11 +448,11 @@
         "description": "[options] Short form of \"second\" for delay duration"
     },
     "optMouseClickHoldTime": {
-        "message": "Mouse click hold time:",
+        "message": "Tempo de espera do clique do rato:",
         "description": "[options] Mouse click hold time option"
     },
     "optMouseClickHoldTimeTooltip": {
-        "message": "Amount of time required to hold a mouse click action key before the hold action is triggered",
+        "message": "Tempo necessário para manter premida uma tecla de ação de clique do rato antes de a ação de manter premida ser acionada",
         "description": "[options] Tooltip for mouse click hold time option"
     },
     "optClickHoldTimeUnit": {
@@ -1056,7 +1056,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 - © 2014-$2 Oleg Anashkin",
+        "message": "Versão $1 - © 2014-$2 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
