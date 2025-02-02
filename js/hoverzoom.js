@@ -1338,26 +1338,21 @@ var hoverZoom = {
         }
 
         function mouseShortClickHandler(mouseButtonKey, img, event) {
-            switch (mouseButtonKey) {
-                case options.closeKey:
-                    mouseAction(mouseButtonKey, img, event);
-                    break;
-                default:
-                    // The following only trigger when image is displayed
-                    if (imgFullSize) { 
-                        switch (mouseButtonKey) {
-                            case options.lockImageKey:
-                            case options.copyImageKey:
-                            case options.copyImageUrlKey:
-                            case options.flipImageKey:
-                            case options.openImageInWindowKey:
-                            case options.openImageInTabKey:
-                            case options.saveImageKey:
-                                mouseAction(mouseButtonKey, img, event);
-                                break;
-                            default:
-                        }
-                    }
+            // The following only trigger when image is displayed
+            if (imgFullSize) { 
+                switch (mouseButtonKey) {
+                    case options.lockImageKey:
+                    case options.copyImageKey:
+                    case options.copyImageUrlKey:
+                    case options.flipImageKey:
+                    case options.openImageInWindowKey:
+                    case options.openImageInTabKey:
+                    case options.saveImageKey:
+                    case options.closeKey:
+                        mouseAction(mouseButtonKey, img, event);
+                        break;
+                    default:
+                }
             }
         }
 
