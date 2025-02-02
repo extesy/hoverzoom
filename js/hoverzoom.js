@@ -1155,7 +1155,6 @@ var hoverZoom = {
                     }
                     break;
                 case options.lockImageKey:
-                    preventDefaultMouseAction(viewerLocked ? false : true, mouseButtonKey);
                     lockImageKey(event);
                     return false;
                 case options.toggleKey: {
@@ -1342,7 +1341,6 @@ var hoverZoom = {
             // The following only trigger when image is displayed
             if (imgFullSize) { 
                 switch (mouseButtonKey) {
-                    case options.lockImageKey:
                     case options.copyImageKey:
                     case options.copyImageUrlKey:
                     case options.flipImageKey:
@@ -1353,7 +1351,9 @@ var hoverZoom = {
                         mouseAction(mouseButtonKey, img, event);
                         break;
                     default:
-                }
+                        if (mouseButtonKey == options.lockImageKey && !viewerLocked)
+                            mouseAction(mouseButtonKey, img, event);
+                    }
             }
         }
 
