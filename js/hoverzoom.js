@@ -1155,6 +1155,7 @@ var hoverZoom = {
                     }
                     break;
                 case options.lockImageKey:
+                    preventDefaultMouseAction(viewerLocked ? false : true, mouseButtonKey);
                     lockImageKey(event);
                     return false;
                 case options.toggleKey: {
