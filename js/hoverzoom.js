@@ -1313,8 +1313,6 @@ var hoverZoom = {
             switch (mouseButtonKey) {
                 case options.actionKey:
                 case options.toggleKey:
-                case options.fullZoomKey:
-                case options.closeKey:
                 case options.hideKey:
                     mouseButtonKeyHandler(mouseButtonKey, this, event);
                     return;
@@ -1323,6 +1321,8 @@ var hoverZoom = {
                     if (imgFullSize) { 
                         switch (mouseButtonKey) {
                             case options.lockImageKey:
+                            case options.fullZoomKey:
+                            case options.closeKey:
                             case options.copyImageKey:
                             case options.copyImageUrlKey:
                             case options.flipImageKey:
