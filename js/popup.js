@@ -232,10 +232,10 @@ function setTabHook(options) {
     });
 }
 
-async function onMessage(message, sender, callback) {
+function onMessage(message, sender, callback) {
     switch (message.action) {
         case 'optionsChanged':
-            await restoreOptions();
+            restoreOptions();
             break;
     }
 }
