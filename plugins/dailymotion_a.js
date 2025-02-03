@@ -5,22 +5,6 @@ hoverZoomPlugins.push( {
     prepareImgLinks: function(callback) {
         var name = this.name;
 
-        // if header(s) rewrite is allowed store headers settings that will be used for rewrite
-        if (options.allowHeadersRewrite) {
-            chrome.runtime.sendMessage({action:"storeHeaderSettings",
-                                        plugin:name,
-                                        settings:
-                                            [{"type":"request",
-                                            "skipInitiator":"dailymotion",
-                                            "urls":["dailymotion.com"],
-                                            "headers":[{"name":"referer", "value":"https://www.dailymotion.com/", "typeOfUpdate":"add"}]},
-                                            {"type":"response",
-                                            "skipInitiator":"dailymotion",
-                                            "urls":["dailymotion.com", "dmcdn.net"],
-                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
-                                        });
-        }
-
         // users
         // sample: https://www.dailymotion.com/CanalplusSport
         $('a[href]').filter(function() { return (/dailymotion\.com\/[^\/]{1,}$/.test($(this).prop('href'))) }).one('mouseover', function() {

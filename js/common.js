@@ -17,7 +17,6 @@ const factorySettings = {
     galleriesMouseWheel: true,
     disableMouseWheelForVideo: false,
     addToHistory: false,
-    allowHeadersRewrite: false,
     alwaysPreload: false,
     displayDelay: 100,
     displayDelayVideo: 500,
