@@ -14,6 +14,12 @@
     },
     "default_locale": "en",
     "minimum_chrome_version": "130",
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "{92e6fe1c-6e1d-44e1-8bc6-d309e59406af}",
+            "strict_min_version": "130.0"
+        }
+    },
     "background": {
         "persistent": true,
         "scripts": [
