@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Wordpress',
-    version:'2.5',
+    version:'2.6',
     favicon:'worldpress.svg',
     prepareImgLinks:function (callback) {
 
@@ -15,13 +15,21 @@ hoverZoomPlugins.push({
         //      -> https://blind.com/wp-content/uploads/2016/09/motion_animation2.jpg
         // sample: https://www.pariszigzag.fr/wp-content/uploads/2023/05/hotel-de-matignon-@Benoit-Granier-Matignon-e1684853353287.jpeg
         //      -> https://www.pariszigzag.fr/wp-content/uploads/2023/05/hotel-de-matignon-@Benoit-Granier-Matignon.jpeg
+        // sample: https://i0.wp.com/lgbtqreads.com/wp-content/uploads/2024/12/ItsaLoveSkateRelationship-hc-c-678x1024-1.jpg?resize=199%2C300&ssl=1
+        //      -> https://i0.wp.com/lgbtqreads.com/wp-content/uploads/2024/12/ItsaLoveSkateRelationship-hc-c-678x1024-1.jpg
+        // sample: https://i0.wp.com/i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1653249383l/60405251.jpg?resize=184%2C278&ssl=1
+        //      -> https://i0.wp.com/i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1653249383l/60405251.jpg
         const re = /-\d+x\d+/ig;
         const re2 = /-e[0-9]{13}/;
         const re3 = /-(cropped|c-default|scaled)/;
 
-        $('img[src*="wp-content/"]').each(function () {
+        $('img[src*="wp-content/"], img[src*=".wp.com/i.gr-assets.com/"]').each(function () {
             const src = this.src;
-            const fullsizeUrl = src.replace(re, '').replace(re2, '').replace(re3, '');
+            const adjustFilename = src.replace(re, '').replace(re2, '').replace(re3, '');
+            const removeQueries = src.replace(/(jpg|jpeg|png|gif|webp)\?.*/, '$1');
+            const fullsizeUrl = removeQueries !== src ? removeQueries
+                                                      : adjustFilename;
+
             if (fullsizeUrl !== src) {
                 var link = $(this);
                 link.data().hoverZoomSrc = [fullsizeUrl, fullsizeUrl.replace(/jpg$/, 'jpeg')];
