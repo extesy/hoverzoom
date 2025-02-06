@@ -23,7 +23,6 @@ async function ajaxRequest(request, callback) {
         body: request.data
     };
 
-    // Add headers
     for (let i in request.headers) {
         fetchOptions.headers[request.headers[i].header] = request.headers[i].value;
     }
