@@ -55,6 +55,8 @@ const optionsStorageRemove = async (keys) => {
 };
 
 const sessionStorageGet = async (keys) => {
+  if (!chrome.storage.session)
+    return localStorageGet(keys);
   return new Promise((resolve, reject) => {
     chrome.storage.session.get(keys, function (result) {
       resolve(result);
@@ -63,6 +65,8 @@ const sessionStorageGet = async (keys) => {
 };
 
 const sessionStorageSet = async (keys) => {
+  if (!chrome.storage.session)
+    return localStorageSet(keys);
   return new Promise((resolve, reject) => {
     chrome.storage.session.set(keys, function () {
       resolve();
@@ -71,6 +75,8 @@ const sessionStorageSet = async (keys) => {
 };
 
 const sessionStorageRemove = async (keys) => {
+  if (!chrome.storage.session)
+    return localStorageRemove(keys);
   return new Promise((resolve, reject) => {
     chrome.storage.session.remove(keys, function () {
       resolve();
