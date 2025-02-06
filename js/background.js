@@ -7,46 +7,55 @@ function cLog(msg) {
 }
 
 // Performs an ajax request
-function ajaxRequest(request, callback) {
+async function ajaxRequest(request, callback) {
     const response = request.response;
     const method = request.method;
     const filename = request.filename;
     const conflictAction = request.conflictAction;
-    let xhr = new XMLHttpRequest();
-    let url = request.url;
 
-    if (response === 'DOWNLOAD') xhr.responseType = 'arraybuffer';
+    // Prepare fetch options
+    const fetchOptions = {
+        method: request.method,
+        headers: {},
+        body: request.data
+    };
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                if (method === 'HEAD') {
-                    callback({url:url, headers:xhr.getAllResponseHeaders()});
-                } else {
-                    switch (response) {
-                        case 'DOWNLOAD':
-                            const blobBin = new Blob([xhr.response], {type:'application/octet-stream'});
-                            const blobUrl = URL.createObjectURL(blobBin);
-                            downloadFile(blobUrl, filename, conflictAction, callback);
-                            break;
-                        case 'URL':
-                            callback(xhr.responseURL);
-                            break;
-                        default:
-                            callback(xhr.responseText);
-                    }
-                }
-            } else {
-                callback(null);
-            }
-        }
-    }
-
-    xhr.open(request.method, request.url, true);
     for (let i in request.headers) {
-        xhr.setRequestHeader(request.headers[i].header, request.headers[i].value);
+        fetchOptions.headers[request.headers[i].header] = request.headers[i].value;
     }
-    xhr.send(request.data);
+
+    try {
+        const fetchResponse = await fetch(request.url, fetchOptions);
+
+        if (fetchResponse.ok) {
+            if (method === 'HEAD') {
+                const headers = {};
+                fetchResponse.headers.forEach((value, key) => {
+                    headers[key] = value;
+                });
+                callback({url: request.url, headers: headers});
+            } else {
+                switch (response) {
+                    case 'DOWNLOAD':
+                        const arrayBuffer = await fetchResponse.arrayBuffer();
+                        const blobBin = new Blob([arrayBuffer], {type: 'application/octet-stream'});
+                        const blobUrl = URL.createObjectURL(blobBin);
+                        downloadFile(blobUrl, filename, conflictAction, callback);
+                        break;
+                    case 'URL':
+                        callback(fetchResponse.url);
+                        break;
+                    default:
+                        const text = await fetchResponse.text();
+                        callback(text);
+                }
+            }
+        } else {
+            callback(null);
+        }
+    } catch (error) {
+        callback(null);
+    }
 }
 
 function downloadFile(url, filename, conflictAction, callback) {
