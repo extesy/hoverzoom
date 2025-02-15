@@ -1296,7 +1296,7 @@ var hoverZoom = {
                 restoreTitles();
                 preventDefaultMouseAction(false);
                 return;
-            } else if (event.button === 0) { // We don't need left click
+            } else if (event.button !== 1 || event.button !== 2) { // We only want right and middle click
                 return;
             }
 
@@ -1379,7 +1379,7 @@ var hoverZoom = {
         }
 
         function documentMouseUp(event) {
-            if (event.button === 0) return; // If left click, return
+            if (event.button !== 1 || event.button !== 2) return; // If not right or middle click, return
             // -2 or -4 is middle click, -1 or -3 is right click
             const rightButtonKey = ((shortPressRight || !options.rightShortClickAndHold) && options.rightShortClick) ? -3 : -1;
             const middleButtonKey = ((shortPressMiddle || !options.middleShortClickAndHold) && options.middleShortClick) ? -4 : -2;
