@@ -1,0 +1,352 @@
+[
+    {
+        "id": 10,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {"header": "referer", "operation": "remove"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||redgifs.com/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 20,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {"header": "referer", "operation": "set", "value": "https://www.tiktok.com/"},
+                {"header": "origin", "operation": "set", "value": "https://www.tiktok.com/"}
+            ],
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"},
+                {"header": "Cross-Origin-Resource-Policy", "operation": "remove"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||tiktok.com/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 30,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||dmc.nico/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 40,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {"header": "referer", "operation": "set", "value": "https://www.dailymotion.com/"}
+            ],
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||dailymotion.com/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 41,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||dmcdn.net/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 50,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {"header": "referer", "operation": "set", "value": "https://rule34video.com/"}
+            ],
+        },
+        "condition": {
+            "urlFilter": "||rule34video.com/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 60,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {"header": "referer", "operation": "set", "value": "https://www.instagram.com/"}
+            ],
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||instagram.com/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 70,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {"header": "referer", "operation": "set", "value": "https://www.pixiv.net/"}
+            ],
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||pximg.net/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 80,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {"header": "referer", "operation": "set", "value": "https://www.imagefap.com/"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||moviefap.com/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 90,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||cloudfront.net/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 91,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||usher.ttvnw.net/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 100,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {"header": "referer", "operation": "set", "value": "https://www.douyin.com/"}
+            ],
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||zjcdn.com/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 110,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {"header": "referer", "operation": "set", "value": "https://spotifydown.com/"},
+                {"header": "origin", "operation": "set", "value": "https://spotifydown.com/"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||spotifydown.com/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 111,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||spotify.com/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 120,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {"header": "origin", "operation": "set", "value": "https://music.youtube.com/"}
+            ],
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||youtube.com/youtubei/v1/player",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 121,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||googlevideo.com/videoplayback/id/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 130,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {"header": "referer", "operation": "set", "value": "https://kick.com/"},
+                {"header": "origin", "operation": "set", "value": "https://kick.com/"}
+            ],
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||kick.com/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 131,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {"header": "referer", "operation": "set", "value": "https://kick.com/"},
+                {"header": "origin", "operation": "set", "value": "https://kick.com/"}
+            ],
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||hls.live-video.net/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 132,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {"header": "referer", "operation": "set", "value": "https://kick.com/"},
+                {"header": "origin", "operation": "set", "value": "https://kick.com/"}
+            ],
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||playback.live-video.net/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 140,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {"header": "referer", "operation": "set", "value": "https://xhamster.com/"}
+            ],
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||xhcdn.com/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 141,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {"header": "referer", "operation": "set", "value": "https://xhamster.com/"}
+            ],
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||doppiocdn.com/",
+            "resourceTypes": ["main_frame"]
+        }
+    },
+    {
+        "id": 142,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {"header": "referer", "operation": "set", "value": "https://xhamster.com/"}
+            ],
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||cdn13.com/",
+            "resourceTypes": ["main_frame"]
+        }
+    }
+]
