@@ -4,7 +4,7 @@
         "description": "Extension name"
     },
     "extShortName": {
-        "message": "HoverZoom",
+        "message": "Hover Zoom+",
         "description": "Short extension name"
     },
     "extDescription": {
@@ -204,7 +204,7 @@
         "description": "[options] Tooltip for show icon in address bar option"
     },
     "optShowWhileLoading": {
-        "message": "Show zoomed pictures while loading",
+        "message": "แสดงภาพที่ซูมขณะโหลด",
         "description": "[options] Show zoomed pictures while loading option"
     },
     "optShowWhileLoadingTooltip": {
@@ -596,7 +596,7 @@
         "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
-        "message": "Host",
+        "message": "โฮสต์",
         "description": "[options] Show Host Detail"
     },
     "optShowDetailFilename": {
