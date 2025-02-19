@@ -404,7 +404,7 @@
         "description": "[options] Frame background color button - Cancel"
     },
     "optFrameThickness": {
-        "message": "",
+        "message": "Frame thickness:",
         "description": "[options] Frame thickness option"
     },
     "optFrameThicknessTooltip": {
