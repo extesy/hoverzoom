@@ -1,6 +1,6 @@
 {
     "extName": {
-        "message": "เลื่อนซูม +",
+        "message": "Hover Zoom+",
         "description": "Extension name"
     },
     "extShortName": {
@@ -8,199 +8,199 @@
         "description": "Short extension name"
     },
     "extDescription": {
-        "message": "Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Simply hover your mouse over the image to enlarge it.",
+        "message": "ซูมรูปภาพ/วิดีโอบนเว็บไซต์โปรดทั้งหมดของคุณ (Facebook, Amazon ฯลฯ) เพียงลากเมาส์ไปเหนือรูปภาพเพื่อขยาย",
         "description": "Extension description in Chrome webstore (max. 132 characters)"
     },
     "popDisableForAllSites": {
-        "message": "Disable for all sites",
+        "message": "ปิดใช้งานสําหรับทุกไซต์",
         "description": "[popup] Disable the extension"
     },
     "popAllowPerSiteToggle": {
-        "message": "Allow per-site extension configuration",
+        "message": "อนุญาตให้กำหนดค่าส่วนขยายแยกตามแต่ละเว็บไซต์",
         "description": "[popup] Allow per-site extension configuration"
     },
     "popDisableForSite": {
-        "message": "Disable for $1",
+        "message": "ปิดใช้งานสำหรับเว็บไซต์นี้ $1",
         "description": "[popup] Disables the extension for a specific site"
     },
     "popEnableForSite": {
-        "message": "Enable for $1",
+        "message": "เปิดใช้งานสำหรับเว็บไซต์นี้ $1",
         "description": "[popup] Enables the extension for a specific site"
     },
     "popPreloadImages": {
-        "message": "Preload zoomed images",
+        "message": "โหลดภาพที่ซูมไว้ล่วงหน้า",
         "description": "[popup] Preload zoomed images"
     },
     "popPreloadingImages": {
-        "message": "Preloading...",
+        "message": "โหลดล่วงหน้า...",
         "description": "[popup] Preloading zoomed images"
     },
     "popMoreOptions": {
-        "message": "More options",
+        "message": "ดูตัวเลือกอื่น ๆ",
         "description": "[popup] More options"
     },
     "optTitle": {
-        "message": "Hover Zoom+ Options",
+        "message": "ตัวเลือก Hover Zoom+",
         "description": "[options] Page title"
     },
     "optButtonDisableAllPlugins": {
-        "message": "Disable all",
+        "message": "ปิดการใช้งานทั้งหมด",
         "description": "[options] disable all plugins button label"
     },
     "optButtonEnableAllPlugins": {
-        "message": "Enable all",
+        "message": "เปิดใช้งานทั้งหมด",
         "description": "[options] enable all plugins button label"
     },
     "optButtonSave": {
-        "message": "Save",
+        "message": "บันทึก",
         "description": "[options] Save button label"
     },
     "optButtonCancel": {
-        "message": "Cancel",
+        "message": "ยกเลิก",
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
-        "message": "Reset",
+        "message": "รีเซ็ต",
         "description": "[options] Reset button label"
     },
     "optSaved": {
-        "message": "Options saved. Some settings might need a page refresh.",
+        "message": "บันทึกตัวเลือกแล้ว, การตั้งค่าบางอย่างอาจต้องรีเฟรชหน้าเว็บ",
         "description": "[options] Notification after saving options"
     },
     "optCancel": {
-        "message": "Modification(s) cancelled.",
+        "message": "การปรับเปลี่ยน(s) ถูกยกเลิก",
         "description": "[options] Notification after cancelling modification(s) to options"
     },
     "optReset": {
-        "message": "Options reset to factory settings, save to apply.",
+        "message": "ตัวเลือกรีเซ็ตเป็นการตั้งค่าจากโรงงาน บันทึกเพื่อนําไปใช้",
         "description": "[options] Notification after resetting options to factory settings"
     },
     "optPageGeneral": {
-        "message": "General",
+        "message": "ทั่วไป",
         "description": "[options] Page title for general options"
     },
     "optExtensionEnabled": {
-        "message": "Enable Hover Zoom",
+        "message": "เปิดใช้งาน Hover Zoom+",
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optDarkMode": {
-        "message": "Dark mode",
+        "message": "โหมดกลางคืน",
         "description": "[options] Enable dark mode for Options & Popup"
     },
     "optSectionView": {
-        "message": "Viewer",
+        "message": "ดูผลลัพธ์",
         "description": "[options] Page section for viewer options"
     },
     "optSectionVideo": {
-        "message": "Video",
+        "message": "วีดิโอ",
         "description": "[options] Page section for video options"
     },
     "optSectionAudio": {
-        "message": "Audio",
+        "message": "เสียง",
         "description": "[options] Page section for audio options"
     },
     "optZoomFactor": {
-        "message": "Enlarge zoomed images by this factor:",
+        "message": "ขยายภาพที่ซูมแล้วโดยใช้ปัจจัยนี้:",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optZoomFactorUnitName": {
-        "message": "times",
+        "message": "เวลา",
         "description": "[options] Unit name (percentage) for zoomed images size option"
     },
     "optZoomFactorTooltip": {
-        "message": "Multiply the size of zoomed images by this amount",
+        "message": "คูณขนาดของภาพที่ซูมเข้าด้วยค่าตัวเลขนี้",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxWidth": {
-        "message": "Set max width of zoomed images:",
+        "message": "กำหนดความกว้างสูงสุดของภาพที่ซูม:",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optMaxWidthTooltip": {
-        "message": "Set max width of zoomed images by this amount (if 0 then no max width)",
+        "message": "กำหนดความกว้างสูงสุดของภาพที่ซูมด้วยค่านี้ (หากเป็น 0 แสดงว่าไม่มีการจำกัดความกว้าง)",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxHeight": {
-        "message": "Set max height of zoomed images:",
+        "message": "กำหนดความสูงสูงสุดของภาพที่ซูม:",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optMaxHeightTooltip": {
-        "message": "Set max height of zoomed images by this amount (if 0 then no max height)",
+        "message": "ตั้งค่าความสูงสูงสุดของภาพที่ซูมโดยใช้ค่าตัวเลขนี้ (ถ้าเป็น 0 จะไม่มีการจำกัดความสูงสูงสุด)",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxSizeUnitName": {
-        "message": "px",
+        "message": "พิกเซล",
         "description": "[options] Unit name (px) for zoomed images size option"
     },
     "optCaptionLocation": {
-        "message": "Caption position:",
+        "message": "ตำแหน่งคำบรรยาย:",
         "description": "[options] Adjust the position of the caption"
     },
     "optCaptionLocationTooltip": {
-        "message": "View the caption above/below the image, or not at all",
+        "message": "ดูคำบรรยายด้านบน/ด้านล่างของภาพ, หรือไม่แสดงเลยก็ได้",
         "description": "[options] Tooltip for adjusting the position of the caption"
     },
     "optCaptionLocationAbove": {
-        "message": "Above",
+        "message": "ด้านบน",
         "description": "[options] Caption location option to put captions above the image"
     },
     "optCaptionLocationBelow": {
-        "message": "Below",
+        "message": "ด้านล่าง",
         "description": "[options] Caption location option to put captions below the image"
     },
     "optCaptionLocationNone": {
-        "message": "None",
+        "message": "ไม่มี",
         "description": "[options] Caption location option to disable captions"
     },
     "optDetailsLocation": {
-        "message": "Details position:",
+        "message": "ตําแหน่งรายละเอียด:",
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
-        "message": "View details (size, format...) above/below the image, or not at all",
+        "message": "ดูรายละเอียด (ขนาด, รูปแบบ...) ด้านบน/ด้านล่างของภาพ, หรือไม่แสดงเลยก็ได้",
         "description": "[options] Tooltip for adjusting the position of details"
     },
     "optDetailsLocationAbove": {
-        "message": "Above",
+        "message": "ด้านบน",
         "description": "[options] Details location option to put details above the image"
     },
     "optDetailsLocationBelow": {
-        "message": "Below",
+        "message": "ด้านล่าง",
         "description": "[options] Details location option to put details below the image"
     },
     "optDetailsLocationNone": {
-        "message": "None",
+        "message": "ไม่มี",
         "description": "[options] Details location option to disable details"
     },
     "optFontOutline": {
-        "message": "Font outline",
+        "message": "ขอบตัวอักษร",
         "description": "[options] Outline option"
     },
     "optFontOutlineTooltip": {
-        "message": "If checked: use white font + thin black border for caption & details",
+        "message": "หากเลือกแล้ว: ใช้ฟอนต์สีขาว + ขอบสีดำบางสำหรับคำบรรยายและรายละเอียด",
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
-        "message": "Extend zoomed images below the mouse cursor",
+        "message": "ขยายภาพที่ซูมลงไปด้านล่างของเคอร์เซอร์เมาส์",
         "description": "[options] Extend zoomed images below the mouse cursor option"
     },
     "optMouseUnderlapTooltip": {
-        "message": "If unchecked, zoomed images will be resized dynamically",
+        "message": "หากไม่เลือก, ภาพที่ซูมจะถูกปรับขนาดโดยอัตโนมัติ",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
     "optHideMouseCursor": {
-        "message": "Hide mouse cursor after:",
+        "message": "ซ่อนเคอร์เซอร์เมาส์หลังจาก:",
         "description": "[options] Hide mouse cursor option"
     },
     "optHideMouseCursorTooltip": {
-        "message": "If checked, mouse cursor will be hidden after delay",
+        "message": "หากเลือก, เมาส์จะถูกซ่อนหลังจากดีเลย์",
         "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optPageActionEnabled": {
-        "message": "Show icon in address bar",
+        "message": "แสดงไอคอนในแถบที่อยู่",
         "description": "[options] Show icon in address bar option"
     },
     "optPageActionEnabledTooltip": {
-        "message": "Only when images can be zoomed",
+        "message": "เฉพาะเมื่อสามารถซูมภาพได้",
         "description": "[options] Tooltip for show icon in address bar option"
     },
     "optShowWhileLoading": {
@@ -208,71 +208,71 @@
         "description": "[options] Show zoomed pictures while loading option"
     },
     "optShowWhileLoadingTooltip": {
-        "message": "Zoomed image will be displayed before it is fully loaded",
+        "message": "ภาพที่ซูมจะถูกแสดงก่อนที่จะโหลดเสร็จสมบูรณ์",
         "description": "[options] Tooltip for show zoomed pictures while loading option"
     },
     "optShowHighRes": {
-        "message": "Show high resolution pictures when available",
+        "message": "แสดงภาพความละเอียดสูงเมื่อพร้อมใช้งาน",
         "description": "[options] Show high resolution pictures when available option"
     },
     "optShowHighResTooltip": {
-        "message": "Pictures may take more time to load",
+        "message": "รูปภาพอาจใช้เวลาในการโหลดมากขึ้น",
         "description": "[options] Tooltip for show high resolution pictures when available option"
     },
     "optGalleriesMouseWheel": {
-        "message": "Use mousewheel to navigate albums",
+        "message": "ใช้ล้อเลื่อนเพื่อนําทางอัลบั้ม",
         "description": "[options] Use mousewheel to navigate albums option"
     },
     "optGalleriesMouseWheelTooltip": {
-        "message": "Navigate album with the mouse wheel",
+        "message": "นําทางอัลบั้มด้วยล้อเลื่อนของเมาส์",
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
     "optDisableMouseWheelForVideo": {
-        "message": "Don't use mousewheel to navigate within video (action keys will still work)",
+        "message": "อย่าใช้ล้อเลื่อนเลื่อนเพื่อนําทางภายในวิดีโอ (ปุ่มการทํางานจะยังคงใช้งานได้)",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optDisableMouseWheelForVideoTooltip": {
-        "message": "Scroll through albums but don't jump forward/backward in videos",
+        "message": "เลื่อนดูอัลบั้ม แต่อย่ากระโดดไปข้างหน้า/ถอยหลังในวิดีโอ",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
-        "message": "Zoom videos",
+        "message": "ซูมวิดีโอ",
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Supported formats: 3gpp m4v mkv mp4 ogv webm",
+        "message": "รูปแบบที่รองรับ: 3gpp m4v mkv mp4 ogv webm",
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
-        "message": "Use prev/next action keys (or mousewheel) to change video position by",
+        "message": "ใช้ปุ่มการทํางานก่อนหน้า/ถัดไป (หรือล้อเลื่อน) เพื่อเปลี่ยนตําแหน่งวิดีโอโดย",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
-        "message": "sec",
+        "message": "วินาที",
         "description": "[options] Unit name (seconds) for changing video position option"
     },
     "optVideoPositionStepTooltip": {
-        "message": "Skip video back or forth for this amount of seconds",
+        "message": "ข้ามวิดีโอไปมาในระยะเวลานี้",
         "description": "[options] Tooltip for changing video position option"
     },
     "optMuteVideos": {
-        "message": "Mute zoomed videos",
+        "message": "ปิดเสียงวิดีโอที่ซูม",
         "description": "[options] Mute zoomed videos option"
     },
     "optMuteVideosTooltip": {
-        "message": "Disable sound in zoomed videos",
+        "message": "ปิดใช้งานเสียงในวิดีโอที่ซูม",
         "description": "[options] Tooltip for mute zoomed videos option"
     },
     "optVideoTimestamp": {
-        "message": "Show timestamp on videos",
+        "message": "แสดงการประทับเวลาบนวิดีโอ",
         "description": "[options] Enable timestamp / video length on videos"
     },
     "optVideoTimestampTooltip": {
-        "message": "Enable timestamp / video length on videos",
+        "message": "เปิดใช้การประทับเวลา/ความยาววิดีโอบนวิดีโอ",
         "description": "[options] Tooltip for video length countdown on videos"
     },
     "optVideoVolume": {
-        "message": "Audio volume for unmuted videos:",
+        "message": "ระดับเสียงสําหรับวิดีโอที่ไม่ได้ปิดเสียง:",
         "description": "[options] Audio volume for unmuted videos option"
     },
     "optVideoVolumeUnitName": {
@@ -280,19 +280,19 @@
         "description": "[options] Unit name (percentage) for video volume option"
     },
     "optVideoVolumeTooltip": {
-        "message": "If the video is not completely muted, set the volume to this percentage (0-100)",
+        "message": "หากวิดีโอไม่ได้ปิดเสียงอย่างสมบูรณ์, ให้ตั้งค่าระดับเสียงเป็นเปอร์เซ็นต์นี้ (0-100)",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
     },
     "optPlayAudio": {
-        "message": "Play audio sources such as MP3",
+        "message": "เล่นแหล่งเสียง เช่น MP3",
         "description": "[options] Play audio option"
     },
     "optPlayAudioTooltip": {
-        "message": "Supported formats: flac m4a mp3 oga ogg opus wav",
+        "message": "รูปแบบที่รองรับ: flac m4a mp3 oga ogg opus wav",
         "description": "[options] Tooltip for play audio option"
     },
     "optAudioVolume": {
-        "message": "Audio volume:",
+        "message": "ระดับเสียง:",
         "description": "[options] Audio volume option"
     },
     "optAudioVolumeUnitName": {
@@ -300,19 +300,19 @@
         "description": "[options] Unit name (percentage) for audio volume option"
     },
     "optAudioVolumeTooltip": {
-        "message": "Set the volume to this percentage (0-100)",
+        "message": "ตั้งค่าระดับเสียงเป็นเปอร์เซ็นต์นี้ (0-100)",
         "description": "[options] Tooltip for audio volume option"
     },
     "optEnableAmbilight": {
-        "message": "Enable ambient light behind images",
+        "message": "เปิดใช้งานแสงโดยรอบด้านหลังภาพ",
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Create a subtle glow effect similar to Philips Ambilight technology",
+        "message": "สร้างเอฟเฟกต์เรืองแสงที่ละเอียดอ่อนคล้ายกับเทคโนโลยี Philips Ambilight",
         "description": "[options] Tooltip for enable ambient light behind images option"
     },
     "optAmbilightHaloSize": {
-        "message": "Size of halo :",
+        "message": "ขนาดของรัศมี :",
         "description": "[options] Size of halo option"
     },
     "optAmbilightHaloSizeUnitName": {
@@ -320,11 +320,11 @@
         "description": "[options] Unit name (percentage) for halo size"
     },
     "optAmbilightHaloSizeTooltip": {
-        "message": "Size of halo around zoomed image (0% : no halo)",
+        "message": "ขนาดของรัศมีรอบภาพที่ซูม (0% : ไม่มีรัศมี)",
         "description": "[options] Tooltip for size of halo"
     },
     "optAmbilightBackgroundOpacity": {
-        "message": "Background opacity :",
+        "message": "ความทึบของพื้นหลัง :",
         "description": "[options] Background opacity option"
     },
     "optAmbilightBackgroundOpacityUnitName": {
@@ -332,255 +332,255 @@
         "description": "[options] Unit name (percentage) for background opacity"
     },
     "optAmbilightBackgroundOpacityTooltip": {
-        "message": "0% : transparent, 100% : black",
+        "message": "0% : โปร่งใส, 100% : สีดํา",
         "description": "[options] Tooltip for background opacity"
     },
     "optImagePaddingSize": {
-        "message": "Image padding size:",
+        "message": "ขนาดช่องว่างภายในรูปภาพ:",
         "description": "[options] Adjust the zoomed image padding size option"
     },
     "optImagePaddingSizeUnitName": {
-        "message": "pixels",
+        "message": "พิกเซล",
         "description": "[options] Unit name (pixels) for zoomed images padding option"
     },
     "optImagePaddingSizeTooltip": {
-        "message": "Changes the padding size for zoomed images. Padding determines how close the image can get to the edge of the viewing window",
+        "message": "ปรับขนาดช่องว่างรอบภาพที่ซูม, ช่องว่างจะกำหนดระยะห่างของภาพจากขอบของหน้าต่างการแสดงผล",
         "description": "[options] Tooltip for adjust the zoomed image padding size option"
     },
     "optFullZoomHidesDetailsCaptions": {
-        "message": "Full zoom key hides details and captions",
+        "message": "ปุ่มซูมเต็มที่ซ่อนรายละเอียดและคำบรรยาย",
         "description": "[options] Full zoom key hides details and captions option"
     },
     "optFullZoomHidesDetailsCaptionsTooltip": {
-        "message": "When pressing full zoom, details and captions will be hidden, allowing the image able to expand more vertically",
+        "message": "เมื่อกดซูมเต็มที่, รายละเอียดและคำบรรยายจะถูกซ่อน, เพื่อให้ภาพสามารถขยายได้มากขึ้นในแนวตั้ง",
         "description": "[options] Tooltip for full zoom key hides details and captions option"
     },
     "optStatusBarOverlap": {
-        "message": "Allow zoomed images to overlap the status bar",
+        "message": "อนุญาตให้ภาพที่ซูมทับซ้อนกับแถบสถานะ",
         "description": "[options] Allow zoomed images to overlap the status bar option"
     },
     "optStatusBarOverlapTooltip": {
-        "message": "Allow zoomed images to overlap the status bar, letting more of the window be used",
+        "message": "อนุญาตให้ภาพที่ซูมทับแถบสถานะ, เพื่อให้สามารถใช้พื้นที่ของหน้าต่างได้มากขึ้น",
         "description": "[options] Tooltip for allow zoomed images to overlap the status bar option"
     },
     "optHScrollBarOverlap": {
-        "message": "Allow zoomed images to overlap the horizontal scroll bar",
+        "message": "อนุญาตให้ภาพที่ซูมทับแถบเลื่อนแนวนอนได้",
         "description": "[options] Allow zoomed images to overlap the horizontal scroll bar option"
     },
     "optHScrollBarOverlapTooltip": {
-        "message": "Allow zoomed images to overlap the horizontal bar, letting more of the window be used",
+        "message": "อนุญาตให้ภาพที่ซูมทับแถบแนวนอนเพื่อให้สามารถใช้พื้นที่ของหน้าต่างได้มากขึ้น",
         "description": "[options] Tooltip for allow zoomed images to overlap the horizontal scroll bar option"
     },
     "optCenterImages": {
-        "message": "Center images",
+        "message": "แสดงรูปภาพตรงกลาง",
         "description": "[options] Center images in the middle of the page option"
     },
     "optCenterImagesTooltip": {
-        "message": "Center images as opposed to having them follow the cursor",
+        "message": "จัดกลางภาพแทนที่จะให้ภาพตามเคอร์เซอร์",
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optAutoLockImages": {
-        "message": "Automatically lock images",
+        "message": "ล็อคภาพโดยอัตโนมัติ",
         "description": "[options] Automatically lock images option"
     },
     "optAutoLockImagesTooltip": {
-        "message": "Automatically lock images when activating Hover Zoom+",
+        "message": "ล็อคภาพโดยอัตโนมัติเมื่อเปิดใช้งาน Hover Zoom+",
         "description": "[options] Tooltip for automatically lock images option"
     },
     "optFrameBackgroundColor": {
-        "message": "Frame background color:",
+        "message": "สีพื้นหลังของกรอบ:",
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
-        "message": "Background color for the frame the image appears in",
+        "message": "สีพื้นหลังของกรอบที่รูปภาพปรากฏ",
         "description": "[options] Tooltip for frame background color option"
     },
     "optFrameBackgroundColorChooseText": {
-        "message": "Select",
+        "message": "เลือก",
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
-        "message": "Cancel",
+        "message": "ยกเลิก",
         "description": "[options] Frame background color button - Cancel"
     },
     "optFrameThickness": {
-        "message": "Frame thickness:",
+        "message": "",
         "description": "[options] Frame thickness option"
     },
     "optFrameThicknessTooltip": {
-        "message": "Thickness of border for the frame the image appears in (0 : no frame)",
+        "message": "ความหนาของขอบสำหรับภาพปรากฏ (0 : ไม่มีขอบ)",
         "description": "[options] Tooltip for frame thickness option"
     },
     "optFrameThicknessUnitName": {
-        "message": "pixels",
+        "message": "พิกเซล",
         "description": "[options] Unit name (pixel) for frame thickness"
     },
     "optFontSize": {
-        "message": "Font size:",
+        "message": "ขนาดตัวอักษร:",
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
-        "message": "Size of font used for captions & details",
+        "message": "ขนาดของแบบอักษรที่ใช้สําหรับคําบรรยายและรายละเอียด",
         "description": "[options] Tooltip for font size option"
     },
     "optFontSizeUnitName": {
-        "message": "pixels",
+        "message": "พิกเซล",
         "description": "[options] Unit name (pixel) for font size"
     },
     "optSectionDelays": {
-        "message": "Delays",
+        "message": "ดีเลย์",
         "description": "[options] Page section for delay options"
     },
     "optDisplayDelay": {
-        "message": "Delay before displaying a picture:",
+        "message": "เพิ่มดีเลย์ก่อนแสดงภาพ:",
         "description": "[options] Delay before displaying a picture option"
     },
     "optDisplayDelayVideo": {
-        "message": "Delay before displaying a video:",
+        "message": "เพิ่มดีเลย์ก่อนแสดงวิดีโอ:",
         "description": "[options] Delay before displaying a video option"
     },
     "optFadeDuration": {
-        "message": "Fading animation duration:",
+        "message": "ระยะเวลาแอนิเมชั่นจางหายไป:",
         "description": "[options] Fading animation duration option"
     },
     "optDurationUnitName": {
-        "message": "sec",
+        "message": "วินาที",
         "description": "[options] Short form of \"second\" for delay duration"
     },
     "optMouseClickHoldTime": {
-        "message": "Mouse click hold time:",
+        "message": "เวลาคลิกเมาส์ค้างไว้:",
         "description": "[options] Mouse click hold time option"
     },
     "optMouseClickHoldTimeTooltip": {
-        "message": "Amount of time required to hold a mouse click action key before the hold action is triggered",
+        "message": "ระยะเวลาที่ต้องใช้ในการกดปุ่มการทํางานคลิกเมาส์ค้างไว้ก่อนที่การดําเนินการพักจะถูกทริกเกอร์",
         "description": "[options] Tooltip for mouse click hold time option"
     },
     "optClickHoldTimeUnit": {
-        "message": "milliseconds",
+        "message": "มิลลิวินาที",
         "description": "[options] Unit name (pixel) for hold time amount"
     },
     "optSectionZoomSpeed": {
-        "message": "Zoom speed",
+        "message": "ความเร็วในการซูม",
         "description": "[options] Page section for zoom speed"
     },
     "optZoomSpeed_P1": {
-        "message": "When an image or video is locked on screen, it can be zoomed in or out using mouse wheel.",
+        "message": "เมื่อรูปภาพหรือวิดีโอถูกล็อกบนหน้าจอ, สามารถซูมเข้าหรือออกได้โดยใช้ล้อเลื่อนของเมาส์",
         "description": "[options] Zoom speed Part 1"
     },
     "optZoomSpeed_P2": {
-        "message": "press",
+        "message": "กด",
         "description": "[options] Zoom speed Part 2"
     },
     "optZoomSpeed_P3": {
-        "message": "or",
+        "message": "หรือ",
         "description": "[options] Zoom speed Part 3"
     },
     "optZoomSpeed_P4": {
-        "message": " while scrolling to zoom",
+        "message": " ขณะเลื่อนเพื่อซูม",
         "description": "[options] Zoom speed Part 4"
     },
     "optZoomSpeed_P41": {
-        "message": "faster",
+        "message": "เร็ว",
         "description": "[options] Zoom speed Part 41"
     },
     "optZoomSpeed_P42": {
-        "message": "slower",
+        "message": "ช้า",
         "description": "[options] Zoom speed Part 42"
     },
     "optPagePlugins": {
-        "message": "Plugins",
+        "message": "ปลั๊กอิน",
         "description": "[options] Page title for plugin options"
     },
     "optPlugins": {
-        "message": "Enable/disable specific plugins",
+        "message": "เปิด/ปิดปลั๊กอินเฉพาะ",
         "description": "[options] Section which contains checkboxes for disabling plugins"
     },
     "optPageSites": {
-        "message": "Sites",
+        "message": "ไซต์",
         "description": "[options] Page title for site options"
     },
     "optSectionSitesEnabled": {
-        "message": "URLs for which Hover Zoom+ must be enabled",
+        "message": "URL ที่ต้องเปิดใช้งาน Hover Zoom+",
         "description": "[options] Page section for enabling extension for specific sites"
     },
     "optSectionSitesDisabled": {
-        "message": "URLs for which Hover Zoom+ must be disabled",
+        "message": "URL ที่ต้องปิดใช้งาน Hover Zoom+",
         "description": "[options] Page section for enabling extension for specific sites"
     },
     "optWhitelistMode": {
-        "message": "Whitelist mode",
+        "message": "โหมดรายการที่อนุญาตพิเศษ",
         "description": "[options] Whitelist mode checkbox"
     },
     "optWhitelistModeTooltip": {
-        "message": "Only enable Hover Zoom+ for the sites listed below",
+        "message": "เปิดใช้งาน Hover Zoom+ สําหรับไซต์ที่ระบุไว้ด้านล่างเท่านั้น",
         "description": "[options] Tooltip for whitelist mode checkbox"
     },
     "optSitePlaceholder": {
-        "message": "Examples: facebook.com, google.com/reader",
+        "message": "ตัวอย่าง: facebook.com, google.com/reader",
         "description": "[options] Placeholder for a site url input box"
     },
     "optSiteDisclaimer": {
-        "message": "Be aware that domain filters can overlap. Example: if you have filtered \"picasaweb.google.com\" and \"google.com\", removing \"picasaweb.google.com\" will not reactivate Picasa Web Albums, as it will still be excluded by the \"google.com\" filter.",
+        "message": "โปรดทราบว่า ฟิลเตอร์โดเมนอาจทับซ้อนกันได้ ตัวอย่างเช่น หากคุณกรอง \"picasaweb.google.com\" และ \"google.com\" การลบ \"picasaweb.google.com\" จะไม่ทำให้ Picasa Web Albums ถูกเปิดใช้งานอีกครั้ง เนื่องจากมันยังคงถูกยกเว้นโดยฟิลเตอร์ \"google.com\"",
         "description": "[options] Disclaimer on the sites option page"
     },
     "optButtonAddSite": {
-        "message": "Add",
+        "message": "เพิ่ม",
         "description": "[options] Button for adding a site on sites option page"
     },
     "optPageActionKeys": {
-        "message": "Action keys",
+        "message": "ปุ่มการทํางาน",
         "description": "[options] Page title for action key options"
     },
     "optPageAdvanced": {
-        "message": "Advanced",
+        "message": "ดึกดึก",
         "description": "[options] Page title for advanced options"
     },
     "optSectionAdvanced": {
-        "message": "Advanced options",
+        "message": "ตัวเลือกขั้นสูง",
         "description": "[options] Page section for advanced options"
     },
     "optAddToHistory": {
-        "message": "Add viewed pictures to the browser's history",
+        "message": "เพิ่มรูปภาพที่ดูลงในประวัติของเบราว์เซอร์",
         "description": "[options] Add viewed pictures to the browser's history option"
     },
     "optAllowHeadersRewriteTooltip": {
-        "message": "Useful to be able to zoom & play content from one site on another site, such as videos",
+        "message": "มีประโยชน์ในการซูมและเล่นเนื้อหาจากไซต์หนึ่งบนไซต์อื่น เช่น วิดีโอ",
         "description": "[options] Tooltip for allow rewrite of headers for HTTP(S) request or response option"
     },
     "optAllowHeadersRewrite": {
-        "message": "Allow rewrite of headers for HTTP(S) request or response",
+        "message": "อนุญาตให้เขียนส่วนหัวใหม่สําหรับคําขอหรือการตอบกลับ HTTP(S)",
         "description": "[options] Allow rewrite of headers for HTTP(S) request or response option"
     },
     "optFilterNSFW": {
-        "message": "Exclude NSFW images (Reddit only)",
+        "message": "ซ่อนภาพที่ไม่เหมาะสม (เฉพาะ Reddit)",
         "description": "[options] Exclude NSFW images (Reddit only) option"
     },
     "optAlwaysPreload": {
-        "message": "Automatically preload zoomed images",
+        "message": "โหลดภาพที่ซูมไว้ล่วงหน้าโดยอัตโนมัติ",
         "description": "[options] Automatically preload zoomed images option"
     },
     "optEnableGalleries": {
-        "message": "Enable albums support",
+        "message": "เปิดใช้งานการรองรับอัลบั้ม",
         "description": "[options] Enable albums support option"
     },
     "optEnableNoFocusMsg": {
-        "message": "Enable Action Keys focus overlay message",
+        "message": "เปิดใช้งานข้อความซ้อนทับโฟกัสของปุ่มการดำเนินการ",
         "description": "[options] Enable Action Keys focus overlay message option"
     },
     "optEnableNoFocusMsgTooltip": {
-        "message": "Sometimes Action Keys seem to be broken, this usually happens when page has lost focus. If option is checked, a warning message will be displayed (only once).",
+        "message": "บางครั้งปุ่มลัดอาจไม่ทำงาน, ซึ่งมักเกิดขึ้นเมื่อหน้าเว็บสูญเสียการโฟกัส หากเลือกตัวเลือกนี้ ข้อความเตือนจะถูกแสดง (แสดงเพียงครั้งเดียว)",
         "description": "[options] Tooltip for enable Action Keys focus overlay message option"
     },
     "optPicturesOpacity": {
-        "message": "Zoomed pictures opacity:",
+        "message": "ความทึบของภาพที่ซูม:",
         "description": "[options] Zoomed pictures opacity option"
     },
     "optCaptionOpacity": {
-        "message": "Caption opacity:",
+        "message": "ความทึบของคําบรรยายภาพ:",
         "description": "[options] Caption opacity option"
     },
     "optDetailsOpacity": {
-        "message": "Details opacity:",
+        "message": "รายละเอียดความทึบ:",
         "description": "[options] Details opacity option"
     },
     "optOpacityUnitName": {
@@ -588,11 +588,11 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optDetailsSelectorTooltip": {
-        "message": "Select which detail(s) should show, if details are displayed",
+        "message": "เลือกรายละเอียด(s) ควรแสดง, หากแสดงรายละเอียด",
         "description": "[options] Tooltip for details selector"
     },
     "optTitleBoxDetails": {
-        "message": "Detail(s) to show:",
+        "message": "รายละเอียด(s) ที่จะแสดง:",
         "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
@@ -600,51 +600,51 @@
         "description": "[options] Show Host Detail"
     },
     "optShowDetailFilename": {
-        "message": "File Name",
+        "message": "ชื่อไฟล์",
         "description": "[options] Show File Name Detail"
     },
     "optShowDetailLastModified": {
-        "message": "Last Modified",
+        "message": "แก้ไขล่าสุด",
         "description": "[options] Show Last Modified Detail"
     },
     "optShowDetailExtension": {
-        "message": "Extension",
+        "message": "การเพิ่ม",
         "description": "[options] Show Extension Detail"
     },
     "optShowDetailContentLength": {
-        "message": "Media Length",
+        "message": "ความยาวสื่อ",
         "description": "[options] Show Content Length Detail"
     },
     "optShowDetailDuration": {
-        "message": "Duration",
+        "message": "ระยะเวลา",
         "description": "[options] Show Duration Detail"
     },
     "optShowDetailScale": {
-        "message": "Scale",
+        "message": "ปรับขนาด",
         "description": "[options] Show Scale Detail"
     },
     "optShowDetailRatio": {
-        "message": "Ratio",
+        "message": "อัตราส่วน",
         "description": "[options] Show Ratio Detail"
     },
     "optShowDetailDimensions": {
-        "message": "Dimensions",
+        "message": "มิติ",
         "description": "[options] Show Dimensions Detail"
     },
     "optBelowPositionOffset": {
-        "message": "Below position offset:",
+        "message": "ปรับตำแหน่งด้านล่าง",
         "description": "[options] Below offset option"
     },
     "optBelowPositionOffsetTooltip": {
-        "message": "Amount to offset text in the below position",
+        "message": "ปริมาณที่จะเลื่อนข้อความในตำแหน่งด้านล่าง",
         "description": "[options] Tooltip for below position offset"
     },
     "optAbovePositionOffset": {
-        "message": "Above position offset:",
+        "message": "ปรับตำแหน่งด้านบน",
         "description": "[options] Above offset option"
     },
     "optAbovePositionOffsetTooltip": {
-        "message": "Amount to offset text in the above position",
+        "message": "ปริมาณที่จะเลื่อนข้อความในตำแหน่งด้านบนปริมาณที่จะเลื่อนข้อความในตำแหน่งด้านบน",
         "description": "[options] Tooltip for above position offset"
     },
     "optOffsetUnitName": {
@@ -652,419 +652,419 @@
         "description": "[options] Unit name (pixel) for offset amount"
     },
     "optDisplayImageLoaderTooltip": {
-        "message": "Display a little spinner as image is loading (green:loading, red:error). Red spinner is optional.",
+        "message": "แสดงวงแหวนเล็กๆ เมื่อภาพกำลังโหลด (เขียว: กำลังโหลด, แดง: ผิดพลาด) วงแหวนสีแดงเป็นตัวเลือก",
         "description": "[options] Tooltip for display image loader option"
     },
     "optDisplayImageLoader": {
-        "message": "Display a red spinner when image loading failed",
+        "message": "แสดงวงแหวนสีแดงเมื่อการโหลดภาพล้มเหลว",
         "description": "[options] Display image loader option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
-        "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
+        "message": "มีประโยชน์สำหรับเว็บไซต์ HTTPS เช่น Google Images ที่ป้องกันการโหลดภาพ HTTP",
         "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrls": {
-        "message": "Try to open unloadable urls in separate:",
+        "message": "ลองเปิด url ที่ไม่สามารถโหลดได้ในส่วนแยกต่างหาก:",
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
-        "message": "Tab",
+        "message": "เปิดในแท็บใหม่",
         "description": "[options] Use separate tab for unloadable urls option"
     },
     "optUseSeparateWindowForUnloadableUrls": {
-        "message": "Window",
+        "message": "เปิดในหน้าต่างใหม่",
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
-        "message": "Subfolder(s) will be created if needed",
+        "message": "จะสร้างโฟลเดอร์ย่อย(s) ถ้าจำเป็น",
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
-        "message": "Example: animals/cats",
+        "message": "ตัวอย่าง: สัตว์/แมว",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images, videos & audios to folder: Downloads/",
+        "message": "บันทึกภาพ, วิดีโอ และเสียงไปยังโฟลเดอร์: Downloads/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Prefix original names of downloads with origin, size, duration and so on for easier management",
+        "message": "เพิ่มข้อมูลแหล่งที่มา, ขนาด, เวลาเล่น และอื่นๆ หน้าชื่อไฟล์ดั้งเดิมเพื่อการจัดการที่ง่ายขึ้น",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Rename saved files by adding:",
+        "message": "ตั้งชื่อไฟล์ที่บันทึกโดยเพิ่ม:",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
-        "message": "Add origin (e.g. www.deviantart.com)",
+        "message": "เพิ่มแหล่งที่มา (e.g. www.deviantart.com)",
         "description": "[options] Tooltip for add download origin option"
     },
     "optAddDownloadOrigin": {
-        "message": "origin",
+        "message": "แหล่งที่มา",
         "description": "[options] Add download origin option"
     },
     "optAddDownloadSizeTooltip": {
-        "message": "Add size (WxH) in pixels (e.g. 1024x750)",
+        "message": "เพิ่มขนาด (กว้างxสูง) ในพิกเซล (เช่น 1024x750)",
         "description": "[options] Tooltip for add download size option"
     },
     "optAddDownloadSize": {
-        "message": "size",
+        "message": "ขนาด",
         "description": "[options] Add download size option"
     },
     "optAddDownloadDurationTooltip": {
-        "message": "Add duration (hh mm ss) of video (e.g. 00 16 35)",
+        "message": "เพิ่มเวลาเล่น (ชั่วโมง:นาที:วินาที) ของวิดีโอ (เช่น 00:16:35)",
         "description": "[options] Tooltip for add download duration option"
     },
     "optAddDownloadDuration": {
-        "message": "duration",
+        "message": "เวลาเล่น",
         "description": "[options] Add download duration option"
     },
     "optAddDownloadIndexTooltip": {
-        "message": "Add index of image in gallery (e.g: third image out of ten: 03-10)",
+        "message": "เพิ่มลำดับของภาพในแกลเลอรี (เช่น: ภาพที่สามจากทั้งหมดสิบภาพ: 03-10)",
         "description": "[options] Tooltip for add download index option"
     },
     "optAddDownloadIndex": {
-        "message": "index",
+        "message": "ลำดับ",
         "description": "[options] Add download index option"
     },
     "optAddDownloadCaptionTooltip": {
-        "message": "Add caption (e.g: Mona Lisa by Leonardo da Vinci)",
+        "message": "เพิ่มคำบรรยาย (เช่น: โมนาลิซ่า โดย เลโอนาร์โด ดา วินซี)",
         "description": "[options] Tooltip for add download caption option"
     },
     "optAddDownloadCaption": {
-        "message": "caption",
+        "message": "บรรยาย",
         "description": "[options] Add download caption option"
     },
     "optDownloadReplaceOriginalFilenameTooltip": {
-        "message": "Replace original filename or remove it if no value supplied (extension is preserved)",
+        "message": "แทนที่ชื่อไฟล์เดิมหรือลบถ้าไม่มีค่าให้ (รักษาส่วนขยายไว้)",
         "description": "[options] Tooltip for replace original filename when downloading option"
     },
     "optDownloadReplaceOriginalFilenamePlaceholder": {
-        "message": "Example: fullsize_image",
+        "message": "ตัวอย่าง: ภาพเต็มหน้าจอ",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadReplaceOriginalFilename": {
-        "message": "On save, replace original filename by:",
+        "message": "เมื่อบันทึก, แทนที่ชื่อไฟล์เดิมด้วย:",
         "description": "[options] Replace original filename when downloading option"
     },
     "optResetAllBannedImagesTooltip": {
-        "message": "After reset, all banned images, videos & audio tracks can be zoomed again",
+        "message": "หลังจากเรียกคืน การซูมภาพ, วิดีโอ และเสียงที่ถูกแบนทั้งหมดสามารถทำได้อีกครั้ง",
         "description": "[options] Tooltip for reset all banned images option"
     },
     "optResetAllBannedImages": {
-        "message": "Reset all banned images, videos & audio tracks",
+        "message": "เรียกคืนภาพ, วิดีโอ และเสียงที่ถูกแบนทั้งหมด",
         "description": "[options] Reset all banned images option"
     },
     "optButtonResetAllBannedImages": {
-        "message": "Reset",
+        "message": "รีเซ็ต",
         "description": "[options] Reset all banned images button"
     },
     "optSectionTroubleshooting": {
-        "message": "Troubleshooting",
+        "message": "การแก้ไขปัญหา",
         "description": "[options] Page section for troubleshooting"
     },
     "optEnableDebugTooltip": {
-        "message": "Display debug messages in browser's console (to open console: press F12)",
+        "message": "แสดงข้อความการตรวจสอบในคอนโซลของเบราว์เซอร์ (เพื่อเปิดคอนโซล: กด F12)",
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
-        "message": "Enable debug logging",
+        "message": "เปิดใช้งานบันทึกการตรวจสอบ",
         "description": "[options] Enable debug option"
     },
     "optSectionSupportedFormats": {
-        "message": "Supported formats",
+        "message": "รูปแบบที่รองรับ",
         "description": "[options] Page section for supported formats"
     },
     "optSupportedImageFormats": {
-        "message": "Images :",
+        "message": "ภาพ :",
         "description": "[options] Page section for supported image formats"
     },
     "optSupportedVideoFormats": {
-        "message": "Video :",
+        "message": "วิดีโอ :",
         "description": "[options] Page section for supported video formats"
     },
     "optSupportedAudioFormats": {
-        "message": "Audio :",
+        "message": "เสียง :",
         "description": "[options] Page section for supported audio formats"
     },
     "optSectionImportExportSettings": {
-        "message": "Import/Export",
+        "message": "นำเข้า/ส่งออก",
         "description": "[options] Page section for import/export"
     },
     "optSectionImportExportSettingsTooltip": {
-        "message": "Press export to get a string of your current settings. Press import to load your pasted settings",
+        "message": "กดส่งออกเพื่อรับสายของตั้งค่าปัจจุบันของคุณ กดนำเข้าเพื่อโหลดการตั้งค่าที่คุณวาง",
         "description": "[options] Tooltip for input and export options"
     },
     "optImportExportTextArea": {
-        "message": "Paste your saved settings here",
+        "message": "วางการตั้งค่าที่บันทึกไว้ที่นี่",
         "description": "[options] Placeholder for import and export text area"
     },
     "optButtonImportSettings": {
-        "message": "Import",
+        "message": "นำเข้า",
         "description": "[options] Import a save string from the textarea"
     },
     "optButtonExportSettings": {
-        "message": "Export",
+        "message": "ส่งออก",
         "description": "[options] Export a save string into the textarea"
     },
     "optImport": {
-        "message": "Import Success!",
+        "message": "นําเข้าความสําเร็จ!",
         "description": "[options] Notification after successful import to options"
     },
     "optImportFailed": {
-        "message": "Import Failed",
+        "message": "นําเข้าล้มเหลว",
         "description": "[options] Notification after failed import to options"
     },
     "optPageFAQ": {
-        "message": "FAQ",
+        "message": "คำถามที่ถามบ่อย",
         "description": "[options] Page title for FAQ"
     },
     "optSectionFAQ": {
-        "message": "Frequently Asked Questions",
+        "message": "คําถามที่พบบ่อย",
         "description": "[options] Page section for Frequently Asked Questions"
     },
     "optFAQ_Q1": {
-        "message": "I edited some options, but i see no changes.",
+        "message": "ฉันแก้ไขตัวเลือกบางอย่าง, แต่ไม่เห็นการเปลี่ยนแปลง",
         "description": "[options] FAQ Question 1"
     },
     "optFAQ_A1_1": {
-        "message": "After edition, click \"Save\" button",
+        "message": "หลังจากแก้ไขแล้ว, คลิกปุ่ม \"บันทึก\"",
         "description": "[options] FAQ Answer 1 part 1"
     },
     "optFAQ_A1_2": {
-        "message": "on bottom of Options page",
+        "message": "ที่ด้านล่างของหน้าตัวเลือก",
         "description": "[options] FAQ Answer 1 part 2"
     },
     "optFAQ_A1_3": {
-        "message": "Reload the page (F5)",
+        "message": "โหลดหน้าใหม่ (F5)",
         "description": "[options] FAQ Answer 1 part 3"
     },
     "optFAQ_Q2": {
-        "message": "I want to hide the mouse cursor on zoomed image or video.",
+        "message": "ฉันต้องการซ่อนเคอร์เซอร์เมื่อขยายภาพหรือวิดีโอ",
         "description": "[options] FAQ Question 2"
     },
     "optFAQ_A2_1": {
-        "message": "In Options -> General -> Delays, activate \"Hide mouse cursor\"",
+        "message": "ในตัวเลือก > ทั่วไป > เวลาช่วง, ให้เปิดใช้งาน \"ซ่อนเคอร์เซอร์\"",
         "description": "[options] FAQ Answer 2 part 1"
     },
     "optFAQ_SaveAndReload": {
-        "message": "Save and reload the page (F5)",
+        "message": "บันทึกและโหลดหน้าใหม่ (F5)",
         "description": "[options] FAQ Save and reload page"
     },
     "optFAQ_Q3": {
-        "message": "I need HoverZoom+ to be active for some sites only.",
+        "message": "ฉันต้องการให้ HoverZoom+ เปิดใช้งานเฉพาะเว็บไซต์บางแห่งเท่านั้น",
         "description": "[options] FAQ Question 3"
     },
     "optFAQ_A3_1": {
-        "message": "E.g. to activate HoverZoom+ on DeviantArt.com & 1X.com:",
+        "message": "เช่น เพื่อเปิดใช้งาน HoverZoom+ บน DeviantArt.com และ 1X.com:",
         "description": "[options] FAQ Answer 3 part 1"
     },
     "optFAQ_A3_2": {
-        "message": "In Options -> Sites, activate \"Whitelist mode\"",
+        "message": "ในตัวเลือก > เว็บไซต์, ให้เปิดใช้งาน \"โหมดรายชื่อขาว\"",
         "description": "[options] FAQ Answer 3 part 2"
     },
     "optFAQ_A3_3": {
-        "message": "Add DeviantArt.com & 1X.com to list of URLs (not case-sensitive)",
+        "message": "เพิ่ม DeviantArt.com และ 1X.com ลงในรายการ URL (ไม่สนใจตัวพิมพ์ใหญ่/เล็ก)",
         "description": "[options] FAQ Answer 3 part 3"
     },
     "optFAQ_Q4": {
-        "message": "I want to zoom an image or video to its original size even if larger than screen.",
+        "message": "ฉันต้องการขยายภาพหรือวิดีโอให้กลับไปที่ขนาดเดิมแม้ว่าจะใหญ่กว่าหน้าจอ",
         "description": "[options] FAQ Question 4"
     },
     "optFAQ_A4_1": {
-        "message": "Hover over an image or video then lock it on screen (default action key: \"L\")",
+        "message": "วางเมาส์เหนือภาพหรือวิดีโอแล้วล็อกไว้บนหน้าจอ (คีย์การทำงานเริ่มต้น: 'L')",
         "description": "[options] FAQ Answer 4 part 1"
     },
     "optFAQ_A4_2": {
-        "message": "Image or video is now displayed fullsize. You can zoom in or out using mousewheel.",
+        "message": "ภาพหรือวิดีโอจะแสดงแบบเต็มหน้าจอ, คุณสามารถซูมเข้าหรือออกโดยใช้ล้อเลื่อนเมาส์",
         "description": "[options] FAQ Answer 4 part 2"
     },
     "optFAQ_Q5": {
-        "message": "Action keys do not work!",
+        "message": "คีย์การทำงานไม่ทำงาน!",
         "description": "[options] FAQ Question 5"
     },
     "optFAQ_A5_1": {
-        "message": "Sometimes action keys seem to be broken, this usually happens when page has lost focus.",
+        "message": "บางครั้งคีย์การทำงานดูเหมือนจะเสียหาย, ซึ่งมักเกิดขึ้นเมื่อหน้าเว็บสูญเสียโฟกัส",
         "description": "[options] FAQ Answer 5 part 1"
     },
     "optFAQ_A5_2": {
-        "message": "Just click anywhere on page to regain focus.",
+        "message": "เพียงคลิกที่ใดก็ได้บนหน้าเพื่อรับโฟกัสกลับมา",
         "description": "[options] FAQ Answer 5 part 2"
     },
     "optFAQ_A5_3": {
-        "message": "In Options -> Advanced, you can activate \"Enable Action Keys focus overlay message\", so you'll get a warning message when focus is lost.",
+        "message": "ในตัวเลือก > ขั้นสูง, คุณสามารถเปิดใช้งาน \"เปิดใช้งานข้อความทับซ้อนโฟกัสของคีย์การทำงาน\", ดังนั้นคุณจะได้รับข้อความเตือนเมื่อสูญเสียโฟกัส",
         "description": "[options] FAQ Answer 5 part 3"
     },
     "optFAQ_Q6": {
-        "message": "Some videos do not play when opened from sites other than original ones.",
+        "message": "วิดีโอบางรายการไม่เล่นเมื่อเปิดจากเว็บไซต์อื่นที่ไม่ใช่เว็บไซต์ต้นฉบับ",
         "description": "[options] FAQ Question 6"
     },
     "optFAQ_A6_1": {
-        "message": "e.g: Dailymotion videos play in dailymotion.com, but not in Google search results.",
+        "message": "เช่น วิดีโอ Dailymotion เล่นใน dailymotion.com, แต่ไม่เล่นในผลการค้นหาของ Google",
         "description": "[options] FAQ Answer 6 part 1"
     },
     "optFAQ_A6_2": {
-        "message": "This is due to CORS restrictions, to lift them:",
+        "message": "นี่เป็นเพราะข้อจํากัดของ CORS, เพื่อยกเลิก:",
         "description": "[options] FAQ Answer 6 part 2"
     },
     "optFAQ_A6_3": {
-        "message": "In Options -> Advanced, activate \"Allow rewrite of headers for HTTP(S) request or response\"",
+        "message": "ในตัวเลือก -> ขั้นสูง, ให้เปิดใช้งาน \"อนุญาตการเขียนส่วนหัวใหม่สําหรับคําขอหรือการตอบกลับ HTTP(S)\"",
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optFAQ_Q7": {
-        "message": "I hover an image or video but sometimes nothing happens!",
+        "message": "ฉันวางเมาส์เหนือรูปภาพหรือวิดีโอ แต่บางครั้งก็ไม่มีอะไรเกิดขึ้น!",
         "description": "[options] FAQ Question 7"
     },
     "optFAQ_A7": {
-        "message": "Scroll down or click anywhere on page to wake up HoverZoom+!",
+        "message": "เลื่อนลงหรือคลิกที่ใดก็ได้บนหน้าเพื่อปลุก HoverZoom+!",
         "description": "[options] FAQ Answer 7"
     },
     "optPixelsUnitName": {
-        "message": "pixels",
+        "message": "พิกเซล",
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
-        "message": "Activate HoverZoom+",
+        "message": "เปิดใช้งาน HoverZoom+",
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "If a key is set, HoverZoom+ will be active only when this key is held down.",
+        "message": "หากตั้งค่าคีย์ HoverZoom+ จะทํางานก็ต่อเมื่อกดปุ่มนี้ค้างไว้เท่านั้น",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
-        "message": "Toggle HoverZoom+",
+        "message": "สลับ HoverZoom+",
         "description": "[options] Action key title"
     },
     "optToggleKeyDescription": {
-        "message": "Enable/disable HoverZoom+",
+        "message": "เปิด/ปิด HoverZoom+",
         "description": "[options] Action key description"
     },
     "optCloseKeyTitle": {
-        "message": "Close image",
+        "message": "ปิดภาพ",
         "description": "[options] Action key title"
     },
     "optCloseKeyDescription": {
-        "message": "Press this key to close zoomed image or video.",
+        "message": "กดปุ่มนี้เพื่อปิดภาพหรือวิดีโอที่ซูม",
         "description": "[options] Action key description"
     },
     "optHideKeyTitle": {
-        "message": "Hide image",
+        "message": "ซ่อนรูปภาพ",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
+        "message": "การกดปุ่มนี้ค้างไว้จะซ่อนรูปภาพหรือวิดีโอที่ซูม ใช้เมื่อรูปภาพซ่อนองค์ประกอบที่แสดงบนเมาส์ด้วย",
         "description": "[options] Action key description"
     },
     "optBanKeyTitle": {
-        "message": "Ban image",
+        "message": "ภาพแบน",
         "description": "[options] Action key title"
     },
     "optBanKeyDescription": {
-        "message": "Holding this key down adds the zoomed image or video to ban list. Use it when you do not want an image or video to be zoomed again on this page.",
+        "message": "การกดปุ่มนี้ค้างไว้จะเพิ่มรูปภาพหรือวิดีโอที่ซูมลงในรายการแบน, ใช้เมื่อคุณไม่ต้องการให้รูปภาพหรือวิดีโอถูกซูมอีกครั้งในหน้านี้",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
-        "message": "Open image in a new window",
+        "message": "เปิดรูปภาพในหน้าต่างใหม่",
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
+        "message": "กดปุ่มนี้เพื่อเปิดรูปภาพหรือวิดีโอที่คุณกําลังดูอยู่ในหน้าต่างใหม่ กดปุ่มนี้อีกครั้งเพื่อปิดหน้าต่าง",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
-        "message": "Open image in a new tab",
+        "message": "เปิดรูปภาพในแท็บใหม่",
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
+        "message": "กดปุ่มนี้เพื่อเปิดภาพหรือวิดีโอที่คุณกำลังดูอยู่ในแท็บใหม่, กดปุ่มนี้อีกครั้งเพื่อปิดแท็บนั้น Shift + ปุ่ม จะเปิดภาพในแท็บพื้นหลัง",
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
-        "message": "Lock image on screen",
+        "message": "ล็อคภาพบนหน้าจอ",
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
+        "message": "กดปุ่มนี้เพื่อล็อครูปภาพหรือวิดีโอที่กึ่งกลางของหน้า, ให้คุณซูมและเลื่อนไปรอบๆ กดปุ่มปิดหรือคลิกด้านนอกภาพเพื่อปลดล็อก",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
-        "message": "Save image",
+        "message": "บันทึกภาพ",
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Press this key to save the image or video you are currently viewing.",
+        "message": "กดปุ่มนี้เพื่อบันทึกภาพหรือวิดีโอที่คุณกําลังดูอยู่",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
-        "message": "Activate full zoom",
+        "message": "เปิดใช้งานการซูมเต็ม",
         "description": "[options] Action key title"
     },
     "optFullZoomKeyDescription": {
-        "message": "When this key is held down, the picture is displayed using all available space. Useful for high resolution pictures only.",
+        "message": "เมื่อกดปุ่มนี้ค้างไว้, รูปภาพจะแสดงโดยใช้พื้นที่ว่างทั้งหมด, มีประโยชน์สําหรับภาพความละเอียดสูงเท่านั้น",
         "description": "[options] Action key description"
     },
     "optCopyImageKeyTitle": {
-        "message": "Copy image to clipboard",
+        "message": "คัดลอกรูปภาพไปยังคลิปบอร์ด",
         "description": "[options] Action key title"
     },
     "optCopyImageKeyDescription": {
-        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "message": "เมื่อกดปุ่มนี้, รูปภาพจะถูกคัดลอกลงในคลิปบอร์ด",
         "description": "[options] Action key description"
     },
     "optCopyImageUrlKeyTitle": {
-        "message": "Copy image URL to clipboard",
+        "message": "คัดลอก URL ของรูปภาพไปยังคลิปบอร์ด",
         "description": "[options] Action key title"
     },
     "optCopyImageUrlKeyDescription": {
-        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
+        "message": "เมื่อกดปุ่มนี้ URL ของรูปภาพหรือวิดีโอจะถูกคัดลอกไปยังคลิปบอร์ด",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
-        "message": "View previous image in a gallery",
+        "message": "ดูภาพก่อนหน้าในแกลเลอรี",
         "description": "[options] Action key title"
     },
     "optPrevImgKeyDescription": {
-        "message": "Press this key to view the previous image in a gallery.",
+        "message": "กดปุ่มนี้เพื่อดูภาพก่อนหน้าในแกลเลอรี",
         "description": "[options] Action key description"
     },
     "optNextImgKeyTitle": {
-        "message": "View next image in a gallery",
+        "message": "ดูภาพถัดไปในแกลเลอรี",
         "description": "[options] Action key title"
     },
     "optNextImgKeyDescription": {
-        "message": "Press this key to view the next image in a gallery.",
+        "message": "กดปุ่มนี้เพื่อดูภาพถัดไปในแกลเลอรี",
         "description": "[options] Action key description"
     },
     "optFlipImageKeyTitle": {
-        "message": "Flip image",
+        "message": "พลิกภาพ",
         "description": "[options] Action key title"
     },
     "optFlipImageKeyDescription": {
-        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+        "message": "กดปุ่มนี้เพื่อสลับการพลิกภาพทั้งแนวตั้งและแนวนอน, สะดวกสำหรับการอ่านข้อความและโลโก้ในภาพหรือวิดีโอที่สะท้อนกลับ",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
-        "message": "Source code",
+        "message": "โค้ดต้นฉบับ",
         "description": "[options] Source code link in page footer"
     },
     "optFooterChangelog": {
-        "message": "Changelog",
+        "message": "บันทึกการเปลี่ยนแปลง",
         "description": "[options] Changelog link in page footer"
     },
     "optFooterReportIssue": {
-        "message": "Report a bug",
+        "message": "รายงานข้อผิดพลาด",
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 - © 2014-$2 Oleg Anashkin",
+        "message": "เวอร์ชัน $1 - © 2014-$2 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click anywhere on the page then hover again",
+        "message": "คลิกที่ใดก็ได้บนหน้าเว็บแล้ววางเมาส์เหนืออีกครั้ง",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     },
     "msgClickPageToActivateActionKeys": {
-        "message": "click anywhere on the page to activate Action Keys",
+        "message": "คลิกที่ใดก็ได้บนหน้าเพื่อเปิดใช้งานปุ่มการดําเนินการ",
         "description": "Action keys are active only if page is focused"
     }
 }
