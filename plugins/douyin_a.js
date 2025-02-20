@@ -5,22 +5,6 @@ hoverZoomPlugins.push( {
     prepareImgLinks: function(callback) {
         var name = this.name;
 
-        // if header(s) rewrite is allowed store headers settings that will be used for rewrite
-        if (options.allowHeadersRewrite) {
-             chrome.runtime.sendMessage({action:"storeHeaderSettings",
-                                        plugin:name,
-                                        settings:
-                                            [{"type":"request",
-                                            "skipInitiator":"douyin",
-                                            "urls":["zjcdn.com"],
-                                            "headers":[{"name":"referer", "value":"https://www.douyin.com/", "typeOfUpdate":"add"}]},
-                                            {"type":"response",
-                                            "skipInitiator":"douyin",
-                                            "urls":["zjcdn.com"],
-                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
-                                        });
-        }
-
         function getVideoFromPage(videoHref, videoId, link) {
 
             hoverZoom.prepareFromDocument($(link), videoHref, function (doc, callback) {

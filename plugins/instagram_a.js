@@ -7,22 +7,6 @@ hoverZoomPlugins.push({
 
         const pluginName = this.name;
 
-        // if header(s) rewrite is allowed store headers settings that will be used for rewrite
-        if (options.allowHeadersRewrite) {
-             chrome.runtime.sendMessage({action:"storeHeaderSettings",
-                                        plugin:pluginName,
-                                        settings:
-                                            [{"type":"request",
-                                            "skipInitiator":"instagram",
-                                            "urls":["instagram"],
-                                            "headers":[{"name":"referer", "value":"https://www.instagram.com/", "typeOfUpdate":"add"}]},
-                                            {"type":"response",
-                                            "skipInitiator":"instagram",
-                                            "urls":["instagram"],
-                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
-                                        });
-        }
-
         // pictures & videos
         // sample: https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=2932322572918166182
         $('a[href*="lookaside.instagram.com"]:not(.hoverZoomMouseover)').addClass('hoverZoomMouseover').one('mouseover', function() {
