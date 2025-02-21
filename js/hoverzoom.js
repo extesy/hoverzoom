@@ -3398,6 +3398,7 @@ var hoverZoom = {
 
         // extract content-Length & Last-Modified values from headers
         function parseHeaders(headers) {
+            headers = String(headers); //convert to string for .match
             let infos = {}
             let contentLength = headers.match(/content-length:(.*)/i);
             if (contentLength) {
