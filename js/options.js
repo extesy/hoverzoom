@@ -843,8 +843,7 @@ async function exportSettings() {
 }
 
 async function migrateOldSettings() {
-    //Imports old settings into options
-    //User can then see what has changed
+    //Migrates old storage settings into options
     const options = localStorage && localStorage.options ? JSON.parse(localStorage.options) : factorySettings;
     await restoreOptions(options);
     displayMsg(Imported);

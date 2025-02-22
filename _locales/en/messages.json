@@ -772,11 +772,11 @@
         "description": "[options] Enable debug option"
     },
     "optMigrateOldSettingsTooltip": {
-        "message": "Manually migrate settings from old save location. A save or refresh is needed after.",
+        "message": "Manually migrate settings from old save location. THIS WILL OVERWRITE YOUR CURRENT SETTINGS.",
         "description": "[options] Tooltip for migrate old settings"
     },
     "optMigrateOldSettings": {
-        "message": "Migrate old settings",
+        "message": "Migrate old settings (THIS WILL OVERWRITE YOUR CURRENT SETTINGS)",
         "description": "[options] Migrate old settings"
     },
     "optButtonMigrateOldSettings": {
