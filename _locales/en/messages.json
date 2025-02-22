@@ -772,12 +772,16 @@
         "description": "[options] Enable debug option"
     },
     "optMigrateOldSettingsTooltip": {
-        "message": "Manually migrate settings from old save location",
+        "message": "Manually migrate settings from old save location. A save is needed after.",
         "description": "[options] Tooltip for migrate old settings"
     },
     "optMigrateOldSettings": {
         "message": "Migrate old settings",
         "description": "[options] Migrate old settings"
+    },
+    "optButtonMigrateOldSettings": {
+        "message": "Migrate",
+        "description": "[options] Migrate old settings button"
     },
     "optSectionSupportedFormats": {
         "message": "Supported formats",
