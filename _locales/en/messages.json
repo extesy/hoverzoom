@@ -771,6 +771,14 @@
         "message": "Enable debug logging",
         "description": "[options] Enable debug option"
     },
+    "optMigrateOldSettingsTooltip": {
+        "message": "Manually migrate settings from old save location",
+        "description": "[options] Tooltip for migrate old settings"
+    },
+    "optMigrateOldSettings": {
+        "message": "Migrate old settings",
+        "description": "[options] Migrate old settings"
+    },
     "optSectionSupportedFormats": {
         "message": "Supported formats",
         "description": "[options] Page section for supported formats"
