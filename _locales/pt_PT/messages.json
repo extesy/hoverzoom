@@ -448,15 +448,15 @@
         "description": "[options] Short form of \"second\" for delay duration"
     },
     "optMouseClickHoldTime": {
-        "message": "Mouse click hold time:",
+        "message": "Tempo de espera do clique do rato:",
         "description": "[options] Mouse click hold time option"
     },
     "optMouseClickHoldTimeTooltip": {
-        "message": "Amount of time required to hold a mouse click action key before the hold action is triggered",
+        "message": "Tempo necessário para pressionar uma tecla de ação de clique do rato antes de a ação de retenção ser acionada",
         "description": "[options] Tooltip for mouse click hold time option"
     },
     "optClickHoldTimeUnit": {
-        "message": "milliseconds",
+        "message": "milissegundos",
         "description": "[options] Unit name (pixel) for hold time amount"
     },
     "optSectionZoomSpeed": {
@@ -748,15 +748,15 @@
         "description": "[options] Replace original filename when downloading option"
     },
     "optResetAllBannedImagesTooltip": {
-        "message": "After reset, all banned images, videos & audio tracks can be zoomed again",
+        "message": "Após a reposição, todas as imagens, vídeos e faixas de áudio proibidas podem ser novamente ampliadas",
         "description": "[options] Tooltip for reset all banned images option"
     },
     "optResetAllBannedImages": {
-        "message": "Reset all banned images, videos & audio tracks",
+        "message": "Repor todas as imagens, vídeos e faixas de áudio banidas",
         "description": "[options] Reset all banned images option"
     },
     "optButtonResetAllBannedImages": {
-        "message": "Reset",
+        "message": "Repor",
         "description": "[options] Reset all banned images button"
     },
     "optSectionTroubleshooting": {
@@ -956,11 +956,11 @@
         "description": "[options] Action key description"
     },
     "optBanKeyTitle": {
-        "message": "Ban image",
+        "message": "Banir imagem",
         "description": "[options] Action key title"
     },
     "optBanKeyDescription": {
-        "message": "Holding this key down adds the zoomed image or video to ban list. Use it when you do not want an image or video to be zoomed again on this page.",
+        "message": "Pressione esta tecla para adicionar a imagem ou o vídeo ampliado à lista de proibições. Utilize-a quando não quiser que uma imagem ou vídeo seja ampliado novamente nesta página.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -1056,7 +1056,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Versão $1 (última atualização: $2) - © 2014-$3 Oleg Anashkin",
+        "message": "Versão $1 - © 2014-$2 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {

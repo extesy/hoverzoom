@@ -1,0 +1,18 @@
+name: Support a new website
+description: Template for new plugin requests
+title: '[Website]: <title>'
+labels:
+  - new plugin request
+body:
+  - type: input
+    attributes:
+      label: Website
+      description: What is the URL of the website that you want supported
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Explanation
+      description: Describe why you need support for that particular website
+    validations:
+      required: true

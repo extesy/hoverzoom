@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="../css/gumby.css" />
     <link rel="stylesheet" href="../css/spectrum.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <script src="../js/libs/modernizr-2.7.1.js"></script>
 </head>
 <body class="options">
     <div class="pretty container">
@@ -596,7 +595,7 @@
                                 <div style="display:flex">
                                     <div class="ttip" data-i18n-tooltip="optRenameDownloadsTooltip">
                                         <label class="inline" for="txtRenameDownloads">
-                                            <div style="display:inline" data-i18n="optRenameDownloads"></div>
+                                            <div style="display:inline" id="txtRenameDownloads" data-i18n="optRenameDownloads"></div>
                                         </label>
                                     </div>
                                     <div class="ttip" data-i18n-tooltip="optAddDownloadOriginTooltip">
@@ -668,6 +667,12 @@
                                         </label>
                                     </li>
                                 </div>
+                                <div class="ttip" data-i18n-tooltip="optMigrateOldSettingsTooltip">
+                                    <li class="field" style="display:flex">
+                                        <div data-i18n="optMigrateOldSettings" style="padding-right:10px"></div>
+                                        <div class="btn default"><a id="btnMigrateOldSettings" data-i18n="optButtonMigrateOldSettings"></a></div> 
+                                    </li>
+                                </div>
                             </ul>
                         </fieldset>
                         <fieldset>
@@ -725,6 +730,7 @@
                                         <div style="display:block; justify-content:flex-start; gap:10px;">
                                             <div class="btn default"><a href="#" id="btnImportSettings" data-i18n="optButtonImportSettings"></a></div>
                                             <div class="btn default"><a href="#" id="btnExportSettings" data-i18n="optButtonExportSettings"></a></div>
+                                        </div>
                                     </div>
                                 </div>
                             </ul>
@@ -751,7 +757,7 @@
                                         </div>
                                     </li>
                                 </ol>
-                                <div data-i18n="optFAQ_Q2" class="faq question"/></div>
+                                <div data-i18n="optFAQ_Q2" class="faq question"></div>
                                 <ol>
                                     <li style="list-style-type:decimal">
                                         <div class="faq answer">
@@ -851,10 +857,9 @@
             </div>
         </div>
     </div>
-    <script src="../js/libs/backgroundScriptsAPIBridge.js"></script>
-    <script src="../js/libs/jquery-3.2.1.js"></script>
-    <script src="../js/libs/gumby.js"></script>
-    <script src="../js/libs/spectrum.js"></script>
+    <script src="../js/jquery-3.7.1.js"></script>
+    <script src="../js/gumby.js"></script>
+    <script src="../js/spectrum.js"></script>
     <script src="../js/tools.js"></script>
     <script src="../js/plugins.js"></script>
     <script src="../js/common.js"></script>

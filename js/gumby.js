@@ -1,22 +1,4 @@
-/**
-* Gumby Framework
-* ---------------
-*
-* Follow @gumbycss on twitter and spread the love.
-* We worked super hard on making this awesome and released it to the web.
-* All we ask is you leave this intact. #gumbyisawesome
-*
-* Gumby Framework
-* http://gumbyframework.com
-*
-* Built with love by your friends @digitalsurgeons
-* http://www.digitalsurgeons.com
-*
-* Free to use under the MIT license.
-* http://www.opensource.org/licenses/mit-license.php
-*/
 !function($) {
-
 	'use strict';
 
 	function Gumby() {
@@ -24,50 +6,20 @@
 		this.$html = this.$dom.find('html');
 		this.isOldie = !!this.$html.hasClass('oldie');
 		this.click = 'click';
-		this.onReady = this.onOldie = this.onTouch = false;
+		this.onReady = this.onOldie = false;
 		this.autoInit = $('script[gumby-init]').attr('gumby-init') === 'false' ? false : true;
 		this.debugMode = Boolean($('script[gumby-debug]').length);
-		// Fix for missing Modernizr.load() -> disable touchDevice
-		this.touchDevice = false; // !!(Modernizr.touch || window.navigator.userAgent.indexOf("Windows Phone") > 0);
+		this.touchDevice = false;
 		this.gumbyTouch = false;
-		this.touchEvents = 'js/libs';
+		this.touchEvents = '';
 		this.breakpoint = Number($('script[gumby-breakpoint]').attr('gumby-breakpoint')) || 768;
 		this.touchEventsLoaded = false;
 		this.uiModulesReady = false;
 		this.uiModules = {};
 		this.inits = {};
 
-		// jQuery mobile touch events
-		var touch = $('script[gumby-touch]').attr('gumby-touch'),
-			path = $('script[gumby-path]').attr('gumby-path');
-
-		// do not use touch events
-		if(touch === 'false') {
-			this.touchEvents = false;
-
-		// set path to jQuery mobile
-		// support touch/path attrs for backwards compatibility
-		} else {
-			if(touch) {
-				this.touchEvents = touch;
-			} else if(path) {
-				this.touchEvents = path;
-			}
-		}
-
-		// update click property to bind to click/tap
-		if(this.touchDevice) {
-			this.click += ' tap';
-		}
-
-		// add gumby-touch/gumby-no-touch classes
-		// gumby touch == touch enabled && smaller than defined breakpoint
-		if(this.touchDevice && $(window).width() < this.breakpoint) {
-			this.$html.addClass('gumby-touch');
-			this.gumbyTouch = true;
-		} else {
-			this.$html.addClass('gumby-no-touch');
-		}
+		this.$html.addClass('js');
+		this.$html.addClass('gumby-no-touch');
 
 		if(this.debugMode) {
 			this.debug('Gumby is in debug mode');
@@ -99,11 +51,6 @@
 			if(scope.isOldie && scope.onOldie) {
 				scope.onOldie();
 			}
-
-			// call touch() callback if applicable
-			if(Modernizr.touch && scope.onTouch) {
-				scope.onTouch();
-			}
 		});
 
 		return this;
@@ -117,11 +64,6 @@
 		// call oldie() callback if applicable
 		if(this.isOldie && this.onOldie) {
 			this.onOldie();
-		}
-
-		// call touch() callback if applicable
-		if(Modernizr.touch && this.onTouch) {
-			this.onTouch();
 		}
 	};
 
@@ -138,15 +80,6 @@
 	Gumby.prototype.oldie = function(code) {
 		if(code && typeof code === 'function') {
 			this.onOldie = code;
-		}
-
-		return this;
-	};
-
-	// public helper - set touch callback
-	Gumby.prototype.touch = function(code) {
-		if(code && typeof code === 'function') {
-			this.onTouch = code;
 		}
 
 		return this;
@@ -169,7 +102,6 @@
 		return {
 			$dom: this.$dom,
 			isOldie: this.isOldie,
-			touchEvents: this.touchEvents,
 			debugMode: this.debugMode,
 			autoInit: this.autoInit,
 			uiModules: this.uiModules,
@@ -1647,38 +1579,8 @@
 
 	'use strict';
 
-	// not touch device or no touch events required so auto initialize here
-	if((!Gumby.touchDevice || !Gumby.touchEvents) && Gumby.autoInit) {
+	if(Gumby.autoInit) {
 		window.Gumby.init();
-
-	// load jQuery mobile touch events
-	} else if(Gumby.touchEvents && Gumby.touchDevice) {
-		Gumby.debug('Loading jQuery mobile touch events');
-		// set timeout to 2sec
-		yepnope.errorTimeout = 2000;
-		Modernizr.load({
-			test: Modernizr.touch,
-			yep: Gumby.touchEvents+'/jquery.mobile.custom.js',
-			complete: function() {
-				// error loading jQuery mobile
-				if(!$.mobile) {
-					Gumby.error('Error loading jQuery mobile touch events');
-				}
-
-				// if not auto initializing
-				// this will allow helpers to fire when initialized
-				Gumby.touchEventsLoaded = true;
-
-				// auto initialize
-				if(Gumby.autoInit) {
-					window.Gumby.init();
-
-				// if already manually initialized then fire helpers
-				} else if(Gumby.uiModulesReady) {
-					Gumby.helpers();
-				}
-			}
-		});
 	}
 
 	// if AMD return Gumby object to define

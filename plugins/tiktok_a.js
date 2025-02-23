@@ -37,7 +37,7 @@ hoverZoomPlugins.push( {
             return "";
         }
 
-        var XDeviceID = getCookie('unique_id') || getCookie('unique_id_durable') || localStorage.local_copy_unique_id || 'd56e8463c57c7cd7';
+        var XDeviceID = getCookie('unique_id') || getCookie('unique_id_durable') || 'd56e8463c57c7cd7';
 
         function getVideo(videoId, jsonData, link) {
             try {

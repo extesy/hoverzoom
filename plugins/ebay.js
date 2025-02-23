@@ -94,7 +94,7 @@ hoverZoomPlugins.push({
                             res.push(thumb);
 
                             // Items are stored to lessen API calls
-                            //localStorage[cachePrefix + item.ItemID] = JSON.stringify({pictureUrl:url, title:item.Title});
+                            // sessionSet({cachePrefix + item.ItemID: JSON.stringify({pictureUrl:url, title:item.Title})});
                         }
                     }
 

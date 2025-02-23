@@ -771,6 +771,18 @@
         "message": "Enable debug logging",
         "description": "[options] Enable debug option"
     },
+    "optMigrateOldSettingsTooltip": {
+        "message": "Manually migrate settings from old save location. THIS WILL OVERWRITE YOUR CURRENT SETTINGS.",
+        "description": "[options] Tooltip for migrate old settings"
+    },
+    "optMigrateOldSettings": {
+        "message": "Migrate old settings (THIS WILL OVERWRITE YOUR CURRENT SETTINGS)",
+        "description": "[options] Migrate old settings"
+    },
+    "optButtonMigrateOldSettings": {
+        "message": "Migrate",
+        "description": "[options] Migrate old settings button"
+    },
     "optSectionSupportedFormats": {
         "message": "Supported formats",
         "description": "[options] Page section for supported formats"
@@ -1056,7 +1068,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 (last update: $2) - © 2014-$3 Oleg Anashkin",
+        "message": "Version $1 - © 2014-$2 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {

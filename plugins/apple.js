@@ -1,6 +1,6 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push( {
-    name: 'podcasts_apple',
+    name: 'apple',
     version: '1.0',
     prepareImgLinks: function(callback) {
         var name = this.name;

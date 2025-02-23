@@ -448,15 +448,15 @@
         "description": "[options] Short form of \"second\" for delay duration"
     },
     "optMouseClickHoldTime": {
-        "message": "Mouse click hold time:",
+        "message": "마우스 길게 누르기 시간:",
         "description": "[options] Mouse click hold time option"
     },
     "optMouseClickHoldTimeTooltip": {
-        "message": "Amount of time required to hold a mouse click action key before the hold action is triggered",
+        "message": "길게 누르기 동작이 실행될 때까지 마우스를 누르고 있어야 하는 시간",
         "description": "[options] Tooltip for mouse click hold time option"
     },
     "optClickHoldTimeUnit": {
-        "message": "milliseconds",
+        "message": "밀리초",
         "description": "[options] Unit name (pixel) for hold time amount"
     },
     "optSectionZoomSpeed": {
@@ -748,15 +748,15 @@
         "description": "[options] Replace original filename when downloading option"
     },
     "optResetAllBannedImagesTooltip": {
-        "message": "After reset, all banned images, videos & audio tracks can be zoomed again",
+        "message": "초기화한 뒤에는 차단한 사진, 동영상, 오디오 트랙을 모두 다시 확대할 수 있습니다",
         "description": "[options] Tooltip for reset all banned images option"
     },
     "optResetAllBannedImages": {
-        "message": "Reset all banned images, videos & audio tracks",
+        "message": "차단한 사진, 동영상, 오디오 트랙 모두 초기화",
         "description": "[options] Reset all banned images option"
     },
     "optButtonResetAllBannedImages": {
-        "message": "Reset",
+        "message": "초기화",
         "description": "[options] Reset all banned images button"
     },
     "optSectionTroubleshooting": {
@@ -956,11 +956,11 @@
         "description": "[options] Action key description"
     },
     "optBanKeyTitle": {
-        "message": "Ban image",
+        "message": "이미지 차단",
         "description": "[options] Action key title"
     },
     "optBanKeyDescription": {
-        "message": "Holding this key down adds the zoomed image or video to ban list. Use it when you do not want an image or video to be zoomed again on this page.",
+        "message": "이 키를 누르고 있으면 확대된 사진이나 동영상이 차단 목록에 추가됩니다. 이 페이지에서 사진 또는 동영상을 다시 확대하고 싶지 않을 때 사용하십시오.",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
@@ -1056,7 +1056,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "버전 $1 (최근 업데이트: $2) - © 2014-$3 Oleg Anashkin",
+        "message": "버전 $1 - © 2014-$2 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {

@@ -1,27 +1,6 @@
 var options,
     siteHostname,
-    prgPreloading, lblPreloading, aPreload,
-    VK_CTRL = 1024,
-    VK_SHIFT = 2048,
     actionKeys = ['actionKey', 'toggleKey', 'closeKey', 'hideKey', 'banKey', 'openImageInWindowKey', 'openImageInTabKey', 'lockImageKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey', 'flipImageKey', 'copyImageKey', 'copyImageUrlKey'];
-
-function keyCodeToString(key) {
-    var s = '';
-    if (key & VK_CTRL) {
-        s += 'Ctrl+';
-        key &= ~VK_CTRL;
-    }
-    if (key & VK_SHIFT) {
-        s += 'Shift+';
-        key &= ~VK_SHIFT;
-    }
-    if (key >= 65 && key < 91) {
-        s += String.fromCharCode('A'.charCodeAt(0) + key - 65);
-    } else if (key >= 112 && key < 124) {
-        s += 'F' + (key - 111);
-    }
-    return s;
-}
 
 // Options that are only enabled for Chromium-based browsers
 const chromiumOnly = ['copyImageKey', 'copyImageUrlKey'];
@@ -38,44 +17,7 @@ function initActionKeys() {
     });
 }
 
-function loadKeys(sel) {
-    $('<option value="0">None</option>').appendTo(sel);
-    $('<option value="-1">Right Click (Hold)</option>').appendTo(sel);
-    $('<option value="-2">Middle Click (Hold)</option>').appendTo(sel);
-    if (sel.attr('id') != 'selHideKey' && sel.attr('id') != 'selFullZoomKey' && sel.attr('id') != 'selActionKey' && sel.attr('id') != 'selToggleKey') {
-        $('<option value="-3">Right Click</option>').appendTo(sel);
-        $('<option value="-4">Middle Click</option>').appendTo(sel);
-    }
-    if (sel.attr('id') != 'selOpenImageInTabKey')
-        $('<option value="16">Shift</option>').appendTo(sel);
-    $('<option value="17">Ctrl</option>').appendTo(sel);
-    $('<option value="18">Alt</option>').appendTo(sel);
-    $('<option value="13">Enter</option>').appendTo(sel);
-    if (navigator.appVersion.indexOf('Macintosh') > -1) {
-        $('<option value="91">Command</option>').appendTo(sel);
-    }
-    for (var i = 65; i < 91; i++) {
-        $('<option value="' + i + '">&#' + i + ';</option>').appendTo(sel);
-    }
-    for (var i = 112; i < 124; i++) {
-        $('<option value="' + i + '">F' + (i - 111) + '</option>').appendTo(sel);
-    }
-    $('<option value="27">Escape</option>').appendTo(sel);
-    $('<option value="33">Page Up</option>').appendTo(sel);
-    $('<option value="34">Page Down</option>').appendTo(sel);
-    $('<option value="35">End</option>').appendTo(sel);
-    $('<option value="36">Home</option>').appendTo(sel);
-    $('<option value="37">Left</option>').appendTo(sel);
-    $('<option value="38">Up</option>').appendTo(sel);
-    $('<option value="39">Right</option>').appendTo(sel);
-    $('<option value="40">Down</option>').appendTo(sel);
-    $('<option value="45">Insert</option>').appendTo(sel);
-    $('<option value="46">Delete</option>').appendTo(sel);
-}
-
-// Saves options to localStorage.
-// TODO: Migrate to https://developer.chrome.com/extensions/storage
-function saveOptions() {
+async function saveOptions() {
 
     // Get the excluded site index if it has already been added
     var excludedSiteIndex = -1;
@@ -126,20 +68,19 @@ function saveOptions() {
         }
     });
 
-    localStorage.options = JSON.stringify(options);
+    await optionsStorageSet(options);
     sendOptions(options);
-    restoreOptions();
+    await restoreOptions();
     return false;
 }
 
 // Restores options from factory settings
-function restoreOptionsFromFactorySettings() {
-    restoreOptions(Object.assign({}, factorySettings));
+async function restoreOptionsFromFactorySettings() {
+    await restoreOptions(Object.assign({}, factorySettings));
 }
 
 // Restores options from localStorage.
-function restoreOptions(optionsFromFactorySettings) {
-
+async function restoreOptions(optionsFromFactorySettings) {
     if (optionsFromFactorySettings) {
         // only reset popup settings (actions keys & excluded site)
         // other settings are not reset
@@ -158,7 +99,7 @@ function restoreOptions(optionsFromFactorySettings) {
         });
 
     } else {
-        options = loadOptions();
+        options = await loadOptions();
     }
 
     // update display
@@ -259,15 +200,15 @@ function displayMsg(msg) {
     }
 }
 
-$(function () {
+$(async function () {
     initActionKeys();
     i18n();
-    options = loadOptions();
+    options = await loadOptions();
     chkDarkMode();
 
-    $('#btnSave').click(function() { removeModifications(); saveOptions(); displayMsg(Saved); return false; }); // "return false" needed to prevent page scroll
-    $('#btnCancel').click(function() { removeModifications(); restoreOptions(); displayMsg(Cancel); return false; });
-    $('#btnReset').click(function() { restoreOptionsFromFactorySettings(); displayMsg(Reset); return false; });
+    $('#btnSave').click(function() { removeModifications(); saveOptions().then(() => displayMsg(Saved)); return false; }); // "return false" needed to prevent page scroll
+    $('#btnCancel').click(function() { removeModifications(); restoreOptions().then(() => displayMsg(Cancel)); return false; });
+    $('#btnReset').click(function() { restoreOptionsFromFactorySettings().then(() => displayMsg(Reset)); return false; });
 
     $('.actionKey').change(selKeyOnChange);
 
@@ -281,7 +222,7 @@ $(function () {
         }
     });
 
-    restoreOptions();
+    await restoreOptions();
     chrome.runtime.onMessage.addListener(onMessage);
 });
 
