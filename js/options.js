@@ -760,6 +760,7 @@ $(async function () {
     $('#btnEnableAllPlugins').click(function() { enableAllPlugins(); return false; });
     $('#btnImportSettings').click(function() { importSettings(); return false; });
     $('#btnExportSettings').click(function() { exportSettings(); return false; });
+    $('#btnMigrateOldSettings').click(function() { migrateOldSettings(); return false; });
     $('#chkWhiteListMode').parent().on('gumby.onChange', chkWhiteListModeOnChange);
     $('#txtZoomFactor').change(percentageOnChange);
     $('#txtPicturesOpacity').change(percentageOnChange);
@@ -839,6 +840,13 @@ async function importSettings() {
 
 async function exportSettings() {
     await saveOptions(true);
+}
+
+async function migrateOldSettings() {
+    //Migrates old storage settings into options
+    const options = localStorage && localStorage.options ? JSON.parse(localStorage.options) : factorySettings;
+    await restoreOptions(options);
+    displayMsg(Imported);
 }
 
 // highlight item if modified, unhighlight if not modified
