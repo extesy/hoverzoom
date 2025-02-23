@@ -1296,10 +1296,9 @@ var hoverZoom = {
                 restoreTitles();
                 preventDefaultMouseAction(false);
                 return;
-            } else if (event.button === 0) { // We don't need left click
+            } else if (event.button !== 1 && event.button !== 2) { // We only want right and middle click
                 return;
             }
-
             // Gets mouse button key from event.button
             // -2 or -4 is hold or short middle click, -1 or -3 is hold or short right click
             const  rightButtonKey = (!options.rightShortClickAndHold && options.rightShortClick) ? -3 : -1;
@@ -1379,7 +1378,8 @@ var hoverZoom = {
         }
 
         function documentMouseUp(event) {
-            if (event.button === 0) return; // If left click, return
+            if (event.button !== 1 && event.button !== 2) // We only want right and middle click
+                return;
             // -2 or -4 is middle click, -1 or -3 is right click
             const rightButtonKey = ((shortPressRight || !options.rightShortClickAndHold) && options.rightShortClick) ? -3 : -1;
             const middleButtonKey = ((shortPressMiddle || !options.middleShortClickAndHold) && options.middleShortClick) ? -4 : -2;
@@ -3367,6 +3367,7 @@ var hoverZoom = {
 
         // extract content-Length & Last-Modified values from headers
         function parseHeaders(headers) {
+            headers = String(headers); //convert to string for .match
             let infos = {}
             let contentLength = headers.match(/content-length:(.*)/i);
             if (contentLength) {

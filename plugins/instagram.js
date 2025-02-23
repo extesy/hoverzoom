@@ -437,6 +437,10 @@ hoverZoomPlugins.push({
         // e.g: CG53Utagki0 => 2430216789653866676
         function mediaIdfromShortcode(shortcode)
         {
+            // Private accounts have a long shortcode, and it messes up the decoding
+            if (shortcode.length > 11) {
+                shortcode = shortcode.substring(0, 11);
+            }
             const o = shortcode.replace(/\S/g, m => (ig_alphabet.indexOf(m) >>> 0).toString(2).padStart(6, '0')); // base64 to binary
             return BigInt('0b' + o).toString(10); // binary to decimal
         }
