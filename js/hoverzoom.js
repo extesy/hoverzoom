@@ -2647,7 +2647,7 @@ var hoverZoom = {
         // check if url of image, video or audio track belongs to ban list
         function isImageBanned(url) {
             if (!url) return false;
-            reutrn bannedImages.has(url);
+            return bannedImages.has(url);
         }
 
         // deals with messages sent by background.js
