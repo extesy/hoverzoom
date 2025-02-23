@@ -5,19 +5,6 @@ hoverZoomPlugins.push({
     prepareImgLinks:function (callback) {
         var res = [];
 
-        // if header(s) rewrite is allowed store headers settings that will be used for rewrite
-        if (options.allowHeadersRewrite) {
-            chrome.runtime.sendMessage({action:"storeHeaderSettings",
-                                        plugin:name,
-                                        settings:
-                                            [{"type":"request",
-                                            "skipInitiator":"imagefap",
-                                            "urls":["moviefap.com"],
-                                            "headers":[{"name":"referer", "value":"https://www.imagefap.com", "typeOfUpdate":"add"}]}]
-                                        });
-        }
-
-
         // images
         // page hosting thumbnail img: https://www.imagefap.com/photo/58046625/
         // thumbnail img:              https://cdn.imagefap.com/images/mini/111/658/65819236.jpg?end=1659223634&secure=04cba344d9553fef9d3f7
