@@ -89,7 +89,7 @@ function downloadFile(url, filename, conflictAction, callback) {
 function onMessage(message, sender, callback) {
     switch (message.action) {
         case 'downloadFileBlob':
-            /** 
+            /**
             * direct URL download through Chrome API might be prohibited (e.g: Pixiv)
             * workaround:
             * 1. obtain ArrayBuffer from XHR request (GET URL)
@@ -98,7 +98,7 @@ function onMessage(message, sender, callback) {
             */
 
             /*
-            * Workaround for permissions.request not returning a promise in Firefox 
+            * Workaround for permissions.request not returning a promise in Firefox
             * First checks if permissions are availble. If true, downloads file. If not, requests them.
             * Not as clean or effecient as just using 'permissions.request'.
             */
@@ -120,7 +120,7 @@ function onMessage(message, sender, callback) {
         case 'downloadFile':
             cLog('downloadFile: ' + message);
             /*
-            * Workaround for permissions.request not returning a promise in Firefox 
+            * Workaround for permissions.request not returning a promise in Firefox
             * First checks if permissions are availble. If true, downloads file. If not, requests them.
             * Not as clean or effecient as just using 'permissions.request'.
             */
@@ -372,7 +372,7 @@ function updateHeaders(headers, settings) {
     return headers;
 }
 
-/** 
+/**
 * add listeners for web requests:
 * - onBeforeSendHeaders
 * - onHeadersReceived
@@ -416,6 +416,7 @@ async function removeWebRequestListeners() {
 // add url of image, video or audio track to ban list so it will not be zoomed again
 async function banImage(message) {
     const url = message.url;
+    if (!url) return;
 
     // store urls to ban in background page local storage so theys are shared by all pages & will survive browser restart
     let bannedUrls = (await localStorageGet('HoverZoomBannedUrls')) || '{}';
