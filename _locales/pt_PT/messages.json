@@ -771,6 +771,18 @@
         "message": "Ativar registo (log) de depuração",
         "description": "[options] Enable debug option"
     },
+    "optMigrateOldSettingsTooltip": {
+        "message": "Migre manualmente as definições da antiga localização guardada. ISTO IRÁ SUBSTITUIR AS DEFINIÇÕES ATUAIS.",
+        "description": "[options] Tooltip for migrate old settings"
+    },
+    "optMigrateOldSettings": {
+        "message": "Migrar definições antigas (ISTO IRÁ SUBSTITUIR AS DEFINIÇÕES ATUAIS.)",
+        "description": "[options] Migrate old settings"
+    },
+    "optButtonMigrateOldSettings": {
+        "message": "Migrar",
+        "description": "[options] Migrate old settings button"
+    },
     "optSectionSupportedFormats": {
         "message": "Formatos suportados",
         "description": "[options] Page section for supported formats"
