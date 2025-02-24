@@ -771,6 +771,18 @@
         "message": "Włącz rejestrowanie debugowania",
         "description": "[options] Enable debug option"
     },
+    "optMigrateOldSettingsTooltip": {
+        "message": "Manually migrate settings from old save location. THIS WILL OVERWRITE YOUR CURRENT SETTINGS.",
+        "description": "[options] Tooltip for migrate old settings"
+    },
+    "optMigrateOldSettings": {
+        "message": "Migrate old settings (THIS WILL OVERWRITE YOUR CURRENT SETTINGS)",
+        "description": "[options] Migrate old settings"
+    },
+    "optButtonMigrateOldSettings": {
+        "message": "Migrate",
+        "description": "[options] Migrate old settings button"
+    },
     "optSectionSupportedFormats": {
         "message": "Obsługiwane formaty",
         "description": "[options] Page section for supported formats"
