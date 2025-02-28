@@ -1230,6 +1230,10 @@ var hoverZoom = {
                 case options.flipImageKey:
                     flipImage();
                     return false;
+                // "Rotate image" key
+                case options.rotateImageKey:
+                    rotateImage();
+                    return false;
                 case options.openImageInWindowKey:
                     if (srcDetails.video) openVideoInWindow();
                     else if (srcDetails.audio) openAudioInWindow();
@@ -1321,6 +1325,7 @@ var hoverZoom = {
                             case options.copyImageKey:
                             case options.copyImageUrlKey:
                             case options.flipImageKey:
+                            case options.rotateImageKey:
                             case options.openImageInWindowKey:
                             case options.openImageInTabKey:
                             case options.saveImageKey:
@@ -1340,6 +1345,7 @@ var hoverZoom = {
                     case options.copyImageKey:
                     case options.copyImageUrlKey:
                     case options.flipImageKey:
+                    case options.rotateImageKey:
                     case options.openImageInWindowKey:
                     case options.openImageInTabKey:
                     case options.saveImageKey:
@@ -2945,6 +2951,11 @@ var hoverZoom = {
                     flipImage();
                     return false;
                 }
+                // "Rotate image" key
+                if (keyCode === options.rotateImageKey) {
+                    rotateImage();
+                    return false;
+                }
                 // "+" key is pressed
                 if (event.which == 107) {
                     event.preventDefault();
@@ -3630,6 +3641,27 @@ var hoverZoom = {
                 $('#hzContainer').addClass(flip);
                 addTimestampTrack(imgFullSize[0]);
             }
+        }
+
+        // rotates image 90 degrees clockwise. It does not update image border
+        function rotateImage() {
+            if (!imgFullSize) return;
+
+            if (imgFullSize.css('transform') == 'none' && hz.hzViewer.css('transform') == 'none') {
+                imgFullSize.css('transform', 'none');
+                hz.hzViewer.css('transform', 'matrix(0, 1, -1, 0, 0, 0)');
+            } else if (imgFullSize.css('transform') == 'none' && hz.hzViewer.css('transform') == 'matrix(0, 1, -1, 0, 0, 0)') {
+                imgFullSize.css('transform', 'matrix(-1, 0, 0, -1, 0, 0)');
+                hz.hzViewer.css('transform', 'none');
+            } else if (imgFullSize.css('transform') == 'matrix(-1, 0, 0, -1, 0, 0)' && hz.hzViewer.css('transform') == 'none') {
+                imgFullSize.css('transform', 'matrix(-1, 0, 0, -1, 0, 0)');
+                hz.hzViewer.css('transform', 'matrix(0, 1, -1, 0, 0, 0)');
+            } else {
+                imgFullSize.css('transform', 'none');
+                hz.hzViewer.css('transform', 'none');
+            }
+            if (options.ambilightEnabled)
+                updateAmbilight();
         }
 
         // store url(s) of image, video or audio track that should not be zoomed again

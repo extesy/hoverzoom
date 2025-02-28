@@ -96,6 +96,7 @@ const factorySettings = {
     prevImgKey: 37,
     nextImgKey: 39,
     flipImageKey: 70,
+    rotateImageKey: 82,
     closeKey: 27,
     debug: false
 }

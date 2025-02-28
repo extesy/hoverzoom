@@ -1,6 +1,6 @@
 var options,
     siteHostname,
-    actionKeys = ['actionKey', 'toggleKey', 'closeKey', 'hideKey', 'banKey', 'openImageInWindowKey', 'openImageInTabKey', 'lockImageKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey', 'flipImageKey', 'copyImageKey', 'copyImageUrlKey'];
+    actionKeys = ['actionKey', 'toggleKey', 'closeKey', 'hideKey', 'banKey', 'openImageInWindowKey', 'openImageInTabKey', 'lockImageKey', 'saveImageKey', 'fullZoomKey', 'prevImgKey', 'nextImgKey', 'flipImageKey', 'rotateImageKey', 'copyImageKey', 'copyImageUrlKey'];
 
 // Options that are only enabled for Chromium-based browsers
 const chromiumOnly = ['copyImageKey', 'copyImageUrlKey'];
