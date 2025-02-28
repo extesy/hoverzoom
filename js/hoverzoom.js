@@ -3646,19 +3646,21 @@ var hoverZoom = {
         // rotates image 90 degrees clockwise. It does not update image border
         function rotateImage() {
             if (!imgFullSize) return;
-            const transform = imgFullSize.css('transform');
-            switch (transform) {
-                case 'matrix(0, 1, -1, 0, 0, 0)':
-                    imgFullSize.css('transform', 'matrix(-1, 0, 0, -1, 0, 0)');
-                    break;
-                case 'matrix(-1, 0, 0, -1, 0, 0)':
-                    imgFullSize.css('transform', 'matrix(0, -1, 1, 0, 0, 0)');
-                    break;
-                case 'matrix(0, -1, 1, 0, 0, 0)':
-                    imgFullSize.css('transform', 'none');
-                    break;
-                default:
-                    imgFullSize.css('transform', 'matrix(0, 1, -1, 0, 0, 0)');
+            const transformImg = imgFullSize.css('transform') == 'none' ? false : true
+            const transformViewer = hz.hzViewer.css('transform') == 'none' ? false : true
+
+            if (!transformImg && !transformViewer) {
+                imgFullSize.css('transform', 'none');
+                hz.hzViewer.css('transform', 'matrix(0, 1, -1, 0, 0, 0)');
+            } else if (!transformImg && transformViewer) {
+                imgFullSize.css('transform', 'matrix(-1, 0, 0, -1, 0, 0)');
+                hz.hzViewer.css('transform', 'none');
+            } else if (transformImg && !transformViewer) {
+                imgFullSize.css('transform', 'matrix(-1, 0, 0, -1, 0, 0)');
+                hz.hzViewer.css('transform', 'matrix(0, 1, -1, 0, 0, 0)');
+            } else {
+                imgFullSize.css('transform', 'none');
+                hz.hzViewer.css('transform', 'none');
             }
             if (options.ambilightEnabled)
                 updateAmbilight();
