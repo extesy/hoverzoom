@@ -3646,16 +3646,14 @@ var hoverZoom = {
         // rotates image 90 degrees clockwise. It does not update image border
         function rotateImage() {
             if (!imgFullSize) return;
-            const transformImg = imgFullSize.css('transform') == 'none' ? false : true
-            const transformViewer = hz.hzViewer.css('transform') == 'none' ? false : true
 
-            if (!transformImg && !transformViewer) {
+            if (imgFullSize.css('transform') == 'none' && hz.hzViewer.css('transform') == 'none') {
                 imgFullSize.css('transform', 'none');
                 hz.hzViewer.css('transform', 'matrix(0, 1, -1, 0, 0, 0)');
-            } else if (!transformImg && transformViewer) {
+            } else if (imgFullSize.css('transform') == 'none' && hz.hzViewer.css('transform') == 'matrix(0, 1, -1, 0, 0, 0)') {
                 imgFullSize.css('transform', 'matrix(-1, 0, 0, -1, 0, 0)');
                 hz.hzViewer.css('transform', 'none');
-            } else if (transformImg && !transformViewer) {
+            } else if (imgFullSize.css('transform') == 'matrix(-1, 0, 0, -1, 0, 0)' && hz.hzViewer.css('transform') == 'none') {
                 imgFullSize.css('transform', 'matrix(-1, 0, 0, -1, 0, 0)');
                 hz.hzViewer.css('transform', 'matrix(0, 1, -1, 0, 0, 0)');
             } else {
