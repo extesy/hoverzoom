@@ -1055,6 +1055,14 @@
         "message": "Görüntüyü dönüşümlü olarak dikey ve yatay olarak çevirmek için bu tuşa basın. Yansıtılmış görüntülerdeki veya videolardaki metinleri ve logoları okumak için kullanışlıdır.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Kaynak kodu",
         "description": "[options] Source code link in page footer"
