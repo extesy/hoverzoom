@@ -1055,6 +1055,14 @@
         "message": "Paspauskite šį klavišą, kad pakaitomis apverstumėte vaizdą vertikaliai ir horizontaliai. Patogu skaityti tekstus ir logotipus veidrodiniuose paveikslėliuose ar vaizdo įrašuose.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Šaltinio kodas",
         "description": "[options] Source code link in page footer"
