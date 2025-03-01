@@ -1055,6 +1055,14 @@
         "message": "按此键可以交替垂直和水平翻转图像。方便阅读镜像图像或视频中的文本和徽标。",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "源代码",
         "description": "[options] Source code link in page footer"
