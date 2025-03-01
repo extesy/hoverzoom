@@ -1055,6 +1055,14 @@
         "message": "Pritisnite to tipko, da izmenično obrnete sliko navpično in vodoravno. Priročno za branje besedil in logotipov v zrcalno obrnjenih slikah ali videoposnetkih.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Izvorna koda",
         "description": "[options] Source code link in page footer"
