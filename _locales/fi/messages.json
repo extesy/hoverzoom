@@ -1055,6 +1055,14 @@
         "message": "Paina tätä näppäintä kääntääksesi kuvaa vuorotellen pysty- ja vaakasuunnassa. Kätevä, kun haluat lukea tekstejä ja logoja peilatuista kuvista tai videoista.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Lähdekoodi",
         "description": "[options] Source code link in page footer"
