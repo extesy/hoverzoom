@@ -1055,6 +1055,14 @@
         "message": "이 키를 누르면 사진이 가로, 세로 교대로 뒤집힙니다. 반전된 사진이나 동영상 속 글씨나 로고를 읽을 때 유용합니다.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "소스 코드",
         "description": "[options] Source code link in page footer"

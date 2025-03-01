@@ -1055,6 +1055,14 @@
         "message": "Pressione esta tecla para inverter a imagem verticalmente e horizontalmente. Útil para leitura de textos e logotipos em imagens ou vídeos espelhados.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Código fonte",
         "description": "[options] Source code link in page footer"

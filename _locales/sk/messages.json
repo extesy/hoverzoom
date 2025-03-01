@@ -1055,6 +1055,14 @@
         "message": "Stlačením tohto tlačidla striedavo prevrátite obraz vertikálne a horizontálne. Praktické na čítanie textov a log v zrkadlených obrázkoch alebo videách.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Zdrojový kód",
         "description": "[options] Source code link in page footer"

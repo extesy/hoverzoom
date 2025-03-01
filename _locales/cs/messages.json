@@ -1055,6 +1055,14 @@
         "message": "Stisknutím tohoto tlačítka střídavě obracíte obraz svisle a vodorovně. Hodí se pro čtení textů a log v zrcadlově otočených obrázcích nebo videích.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Zdrojový kód",
         "description": "[options] Source code link in page footer"

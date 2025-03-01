@@ -1055,6 +1055,14 @@
         "message": "Drücken Sie diese Taste, um das Bild abwechselnd vertikal und horizontal zu spiegeln. Praktisch zum Lesen von Texten und Logos in gespiegelten Bildern oder Videos.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Quelltext",
         "description": "[options] Source code link in page footer"

@@ -1055,6 +1055,14 @@
         "message": "Натисніть цей ключ, щоб по черзі повернути зображення вертикально і по горизонталі. Зручно для читання текстів та логотипу в дзеркальних зображеннях або відео.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Початковий код",
         "description": "[options] Source code link in page footer"

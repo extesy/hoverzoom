@@ -1055,6 +1055,14 @@
         "message": "Tryk på denne tast for at vende billedet skiftevis lodret og vandret. Praktisk til at læse tekster og logoer i spejlede billeder eller videoer.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Kildekode",
         "description": "[options] Source code link in page footer"

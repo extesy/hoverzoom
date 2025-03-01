@@ -1055,6 +1055,14 @@
         "message": "Pindutin ang key na ito upang salit-salit na i-flip ang imahe nang patayo at pahalang. Madaling gamitin para sa pagbabasa ng mga text at logo sa mga naka-mirror na imahe o mga video.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Source code",
         "description": "[options] Source code link in page footer"

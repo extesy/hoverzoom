@@ -1055,6 +1055,14 @@
         "message": "اضغط على هذا الزر لقلب الصورة رأسيا و أفقيا. تسهل قراءة النصوص و الشعارات في الصور أو المقاطع.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "الكود المصدري",
         "description": "[options] Source code link in page footer"

@@ -1055,6 +1055,14 @@
         "message": "Appuyer sur cette touche pour retourner alternativement l'image verticalement et horizontalement. Pratique pour lire des textes et des logos dans des images ou des vidéos en miroir.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Code source",
         "description": "[options] Source code link in page footer"

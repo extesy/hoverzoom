@@ -1055,6 +1055,14 @@
         "message": "Πατήστε αυτό το πλήκτρο για να γυρίσετε την εικόνα εναλλάξ κάθετα και οριζόντια. Χρήσιμο για την ανάγνωση κειμένων και λογότυπων σε εικόνες ή βίντεο με καθρέφτη.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Πηγαίος κώδικας",
         "description": "[options] Source code link in page footer"

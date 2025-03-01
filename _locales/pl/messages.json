@@ -1055,6 +1055,14 @@
         "message": "Naciśnij ten przycisk, aby na przemian obracać obraz w pionie i poziomie. Przydatne do czytania tekstów i logo w lustrzanych obrazach lub filmach.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Kod źródłowy",
         "description": "[options] Source code link in page footer"

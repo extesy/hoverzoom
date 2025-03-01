@@ -1055,6 +1055,14 @@
         "message": "Apăsarea acestei taste oglindește alternativ imaginea vertical și orizontal. Util pentru citit în imagini/videoclipuri oglindite.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Cod sursă",
         "description": "[options] Source code link in page footer"
