@@ -1055,6 +1055,14 @@
         "message": "このキーを押すと、画像が縦と横に交互に反転します。ミラーリングされた画像や動画内のテキストやロゴを読むのに便利です。",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "ソースコード",
         "description": "[options] Source code link in page footer"
