@@ -1055,6 +1055,14 @@
         "message": "กดปุ่มนี้เพื่อสลับการพลิกภาพทั้งแนวตั้งและแนวนอน, สะดวกสำหรับการอ่านข้อความและโลโก้ในภาพหรือวิดีโอที่สะท้อนกลับ",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "โค้ดต้นฉบับ",
         "description": "[options] Source code link in page footer"
