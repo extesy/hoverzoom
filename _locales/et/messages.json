@@ -1055,6 +1055,14 @@
         "message": "Vajutage seda klahvi pildi vaheldumisi vertikaalselt ja horisontaalselt ümberpööramiseks. Praktiline tekstide ja logode lugemiseks peegeldatud piltidel või videotes.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Allikakood",
         "description": "[options] Source code link in page footer"
