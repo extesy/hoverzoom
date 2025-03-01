@@ -2810,17 +2810,15 @@ var hoverZoom = {
                 zoomFactorFit = width / srcDetails.naturalWidth;
                 lockViewer();
             }
-            else {
-                if (zoomFactor > 1.1 * zoomFactorFit || zoomFactor < 0.9 * zoomFactorFit) {
-                    // restore zoom factor such as img or video fits screen size
-                    zoomFactor = zoomFactorFit || parseInt(options.zoomFactor);
-                } else {
-                    // zoom factor = default
-                    zoomFactor = parseInt(options.zoomFactor);
-                }
-                posViewer();
-                panLockedViewer(event);
+            if (zoomFactor > 1.1 * zoomFactorFit || zoomFactor < 0.9 * zoomFactorFit) {
+                // restore zoom factor such as img or video fits screen size
+                zoomFactor = zoomFactorFit || parseInt(options.zoomFactor);
+            } else {
+                // zoom factor = default
+                zoomFactor = parseInt(options.zoomFactor);
             }
+            posViewer();
+            panLockedViewer(event);
         }
 
         function documentOnKeyDown(event) {
