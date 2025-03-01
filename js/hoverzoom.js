@@ -3421,19 +3421,17 @@ var hoverZoom = {
 
         // extract content-Length & Last-Modified values from headers
         function parseHeaders(headers) {
-            headers = String(headers); //convert to string for .match
             let infos = {}
-            let contentLength = headers.match(/content-length:(.*)/i);
+            let contentLength = headers["content-length"];
             if (contentLength) {
-                contentLength = contentLength[1].trim();
                 if (!isNaN(contentLength) && contentLength > 0) {
                     contentLength /= 1024;
                     if (contentLength < 1000) infos.contentLength = (contentLength).toFixed(0) + ' KB';
                     else infos.contentLength = (contentLength / 1024).toFixed(1) + ' MB';
                 }
             }
-            let lastModified = headers.match(/last-modified:(.*)/i);
-            if (lastModified && lastModified[1].indexOf('01 Jan 1970') === -1) infos.lastModified = lastModified[1].trim();
+            let lastModified = headers["last-modified"];
+            if (lastModified && lastModified.indexOf('01 Jan 1970') === -1) infos.lastModified = lastModified;
             return infos;
         }
 
