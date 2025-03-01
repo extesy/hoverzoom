@@ -1055,6 +1055,14 @@
         "message": "Presione esta tecla para voltear imagen verticalmente y horizontalmente.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Código Fuente",
         "description": "[options] Source code link in page footer"
