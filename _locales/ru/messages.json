@@ -1055,6 +1055,14 @@
         "message": "Нажмите эту клавишу, чтобы попеременно перевернуть изображение по вертикали и горизонтально. Удобно для чтения текстов и логотипов в зеркальных изображениях или видео.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Исходный код",
         "description": "[options] Source code link in page footer"
