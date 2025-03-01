@@ -1055,6 +1055,14 @@
         "message": "Premere questo tasto per capovolgere alternativamente l'immagine in verticale e in orizzontale. È utile per leggere testi e loghi in immagini o video specchiati.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Codice Sorgente",
         "description": "[options] Source code link in page footer"
