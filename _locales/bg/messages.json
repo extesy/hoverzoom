@@ -1055,6 +1055,14 @@
         "message": "Натиснете този клавиш, за да обръщате последователно изображението вертикално и хоризонтално. Удобно за четене на текстове и лога в огледални изображения или видеоклипове.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Изходен код",
         "description": "[options] Source code link in page footer"
