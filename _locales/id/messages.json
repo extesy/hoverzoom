@@ -1055,6 +1055,14 @@
         "message": "Tekan tombol ini untuk membalik gambar secara vertikal dan horizontal secara bergantian. Berguna untuk membaca teks & logo dalam gambar atau video yang dicerminkan.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Sumber kode",
         "description": "[options] Source code link in page footer"
