@@ -1055,6 +1055,14 @@
         "message": "Druk op deze toets om het beeld afwisselend verticaal en horizontaal te draaien. Handig voor het lezen van teksten en logo's in gespiegelde afbeeldingen of video's.",
         "description": "[options] Action key description"
     },
+    "optrotateImageKeyTitle": {
+        "message": "Rotate image",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Press this key to rotate image.",
+        "description": "[options] Action key description"
+    },
     "optFooterSourceCode": {
         "message": "Broncode",
         "description": "[options] Source code link in page footer"
