@@ -592,7 +592,7 @@
         "description": "[options] Tooltip for details selector"
     },
     "optTitleBoxDetails": {
-        "message": "Detail(s) to show:",
+        "message": "Detail(s) shown:",
         "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
