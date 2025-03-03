@@ -592,7 +592,7 @@
         "description": "[options] Tooltip for details selector"
     },
     "optTitleBoxDetails": {
-        "message": "표시할 상세 정보:",
+        "message": "Detail(s) shown:",
         "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
@@ -612,7 +612,7 @@
         "description": "[options] Show Extension Detail"
     },
     "optShowDetailContentLength": {
-        "message": "미디어 길이",
+        "message": "Content Length",
         "description": "[options] Show Content Length Detail"
     },
     "optShowDetailDuration": {
