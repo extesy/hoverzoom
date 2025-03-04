@@ -588,11 +588,11 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optDetailsSelectorTooltip": {
-        "message": "Selecionar o(s) detalhe(s) que deve(m) ser mostrado(s), se os detalhes forem apresentados",
+        "message": "Selecionar quais detalhes devem ser mostrados, se existirem detalhes",
         "description": "[options] Tooltip for details selector"
     },
     "optTitleBoxDetails": {
-        "message": "Detail(s) shown:",
+        "message": "Detalhes a mostrar:",
         "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
@@ -612,7 +612,7 @@
         "description": "[options] Show Extension Detail"
     },
     "optShowDetailContentLength": {
-        "message": "Content Length",
+        "message": "Comprimento do conteúdo",
         "description": "[options] Show Content Length Detail"
     },
     "optShowDetailDuration": {
@@ -1056,11 +1056,11 @@
         "description": "[options] Action key description"
     },
     "optrotateImageKeyTitle": {
-        "message": "Rotate image",
+        "message": "Rodar imagem",
         "description": "[options] Action key title"
     },
     "optrotateImageKeyDescription": {
-        "message": "Press this key to rotate image.",
+        "message": "Pressione esta tecla para rodar a imagem.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
