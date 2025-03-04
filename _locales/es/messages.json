@@ -592,7 +592,7 @@
         "description": "[options] Tooltip for details selector"
     },
     "optTitleBoxDetails": {
-        "message": "Detail(s) shown:",
+        "message": "Detalle(s) mostrado:",
         "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
@@ -612,7 +612,7 @@
         "description": "[options] Show Extension Detail"
     },
     "optShowDetailContentLength": {
-        "message": "Content Length",
+        "message": "Longitud del contenido",
         "description": "[options] Show Content Length Detail"
     },
     "optShowDetailDuration": {
