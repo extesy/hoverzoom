@@ -592,7 +592,7 @@
         "description": "[options] Tooltip for details selector"
     },
     "optTitleBoxDetails": {
-        "message": "Detail(s) shown:",
+        "message": "표시되는 상세 정보:",
         "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
@@ -612,7 +612,7 @@
         "description": "[options] Show Extension Detail"
     },
     "optShowDetailContentLength": {
-        "message": "Content Length",
+        "message": "콘텐츠 길이",
         "description": "[options] Show Content Length Detail"
     },
     "optShowDetailDuration": {
@@ -772,15 +772,15 @@
         "description": "[options] Enable debug option"
     },
     "optMigrateOldSettingsTooltip": {
-        "message": "Manually migrate settings from old save location. THIS WILL OVERWRITE YOUR CURRENT SETTINGS.",
+        "message": "이전 저장 위치로부터 설정을 수동으로 이동합니다. 현재 설정을 덮어씁니다.",
         "description": "[options] Tooltip for migrate old settings"
     },
     "optMigrateOldSettings": {
-        "message": "Migrate old settings (THIS WILL OVERWRITE YOUR CURRENT SETTINGS)",
+        "message": "이전 설정을 이동합니다 (현재 설정을 덮어씁니다)",
         "description": "[options] Migrate old settings"
     },
     "optButtonMigrateOldSettings": {
-        "message": "Migrate",
+        "message": "이동",
         "description": "[options] Migrate old settings button"
     },
     "optSectionSupportedFormats": {
@@ -1056,11 +1056,11 @@
         "description": "[options] Action key description"
     },
     "optrotateImageKeyTitle": {
-        "message": "Rotate image",
+        "message": "이미지 회전",
         "description": "[options] Action key title"
     },
     "optrotateImageKeyDescription": {
-        "message": "Press this key to rotate image.",
+        "message": "이 키를 누르면 이미지를 회전합니다.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
