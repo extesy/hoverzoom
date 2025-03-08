@@ -56,6 +56,7 @@ function Logger() {
 var hoverZoom = {
 
     options:{},
+    bannedImages:{},
     currentLink:null,
     hzViewer:null,
     hzLoader:null,
@@ -131,7 +132,7 @@ var hoverZoom = {
             skipFadeIn = false,
             titledElements = null,
             body100pct = true,
-            linkRect = null;
+            linkRect = null,
             noFocusMsgAlreadyDisplayed = false;
             /*panning = true,
             panningThumb = null;*/
@@ -434,13 +435,13 @@ var hoverZoom = {
                 if (hzAbove) {
                     hzAbove.css('max-width', imgFullSize[0].clientWidth);
                     hzAbove.css('top', options.abovePositionOffset + '%');
-                    if (options.abovePositionOffset != 0) 
+                    if (options.abovePositionOffset != 0)
                         hzAbove.css('position', 'absolute');
                 }
                 if (hzBelow) {
                     hzBelow.css('max-width', imgFullSize[0].clientWidth);
                     hzBelow.css('bottom', options.belowPositionOffset + '%');
-                    if (options.belowPositionOffset != 0) 
+                    if (options.belowPositionOffset != 0)
                         hzBelow.css('position', 'absolute');
                 }
 
@@ -515,7 +516,7 @@ var hoverZoom = {
                 } else if (fullZoomKey) {
                     // naturalWidth replaced with wndWidth to make image fill window
                     // offset subtracted to keep image within window's bounds
-                    imgFullSize.width(wndWidth - offset - padding - 2 * scrollBarWidth); 
+                    imgFullSize.width(wndWidth - offset - padding - 2 * scrollBarWidth);
                 } else if (fullZoom) {
                     imgFullSize.width(Math.min(srcDetails.naturalWidth * zoomFactor, wndWidth - offset - padding - 2 * scrollBarWidth));
                 } else if (displayOnRight) {
@@ -1066,26 +1067,22 @@ var hoverZoom = {
 
                             srcDetails.url = src;
                             srcDetails.audioUrl = audioSrc;
+                            getVideoAudioSubtitlesFromUrl();
+
                             clearTimeout(loadFullSizeImageTimeout);
 
                             // if the action key has been pressed over an image, no delay is applied
                             const delay = actionKeyDown || explicitCall ? 0 : (isVideoLink(srcDetails.url) ? options.displayDelayVideo : options.displayDelay);
-                            loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
-                            
-                            // Temporarily removing until a better fix is found: sendMessage is async so it can't be used to set local variables
-                            /*if (audioSrc) {
-                                chrome.runtime.sendMessage({action:'isImageBanned', url:audioSrc}, function (result) {
-                                    if (!result) {
-                                        loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
-                                    }
-                                });
-                            } else if (src) {
-                                chrome.runtime.sendMessage({action:'isImageBanned', url:src}, function (result) {
-                                    if (!result) {
-                                        loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
-                                    }
-                                });                               
-                            }*/
+
+                            if (srcDetails.audioUrl) {
+                                if (!isImageBanned(srcDetails.audioUrl)) {
+                                    loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
+                                }
+                            } else if (srcDetails.url) {
+                                if (!isImageBanned(srcDetails.url)) {
+                                    loadFullSizeImageTimeout = setTimeout(loadFullSizeImage, delay);
+                                }
+                            }
 
                             loading = true;
                         }
@@ -1107,7 +1104,7 @@ var hoverZoom = {
         // for if user releases mouse button before timer goes off
         let shortPressRight = false;
         let shortPressMiddle = false;
-        
+
         function documentContextMenu(event) {
             if (!preventDefaultContext || hideKeyDown) {
                 hideKeyDown = false; // releases hideKey if it was held down
@@ -1121,7 +1118,7 @@ var hoverZoom = {
                 event.preventDefault();
             }
         }
-        
+
         function preventDefaultMouseAction(disableDefault, button){
             switch (button) {
                 case -1:
@@ -1233,6 +1230,10 @@ var hoverZoom = {
                 case options.flipImageKey:
                     flipImage();
                     return false;
+                // "Rotate image" key
+                case options.rotateImageKey:
+                    rotateImage();
+                    return false;
                 case options.openImageInWindowKey:
                     if (srcDetails.video) openVideoInWindow();
                     else if (srcDetails.audio) openAudioInWindow();
@@ -1316,7 +1317,7 @@ var hoverZoom = {
                     return;
                 default:
                     // The following only trigger when image is displayed
-                    if (imgFullSize) { 
+                    if (imgFullSize) {
                         switch (mouseButtonKey) {
                             case options.lockImageKey:
                             case options.fullZoomKey:
@@ -1324,6 +1325,7 @@ var hoverZoom = {
                             case options.copyImageKey:
                             case options.copyImageUrlKey:
                             case options.flipImageKey:
+                            case options.rotateImageKey:
                             case options.openImageInWindowKey:
                             case options.openImageInTabKey:
                             case options.saveImageKey:
@@ -1343,6 +1345,7 @@ var hoverZoom = {
                     case options.copyImageKey:
                     case options.copyImageUrlKey:
                     case options.flipImageKey:
+                    case options.rotateImageKey:
                     case options.openImageInWindowKey:
                     case options.openImageInTabKey:
                     case options.saveImageKey:
@@ -1384,7 +1387,7 @@ var hoverZoom = {
             const rightButtonKey = ((shortPressRight || !options.rightShortClickAndHold) && options.rightShortClick) ? -3 : -1;
             const middleButtonKey = ((shortPressMiddle || !options.middleShortClickAndHold) && options.middleShortClick) ? -4 : -2;
             let mouseButtonKey = [null,middleButtonKey,rightButtonKey,null,null][event.button];
-            
+
             switch (mouseButtonKey) {
                 case options.actionKey:
                     if (actionKeyDown) {
@@ -2248,7 +2251,6 @@ var hoverZoom = {
         }
 
         function cancelSourceLoading() {
-            cLog('cancelSourceLoading');
             loading = false;
             hz.currentLink = null;
             clearTimeout(loadFullSizeImageTimeout);
@@ -2612,11 +2614,27 @@ var hoverZoom = {
             });
         }
 
+        // get list of banned image, video or audio track urls
+        function loadBannedImages() {
+            chrome.runtime.sendMessage({action:'sendBannedImages'});
+        }
+
+        // check if url of image, video or audio track belongs to ban list
+        function isImageBanned(url) {
+            if (!url) return false;
+            // return bannedImages.has(url);
+            return false;
+        }
+
         // deals with messages sent by background.js
         function onMessage(message, sender, sendResponse) {
             if (message.action === 'optionsChanged') {
                 options = message.options;
                 applyOptions();
+            }
+
+            if (message.action === 'bannedImagesChanged') {
+                // bannedImages = message.list;
             }
         }
 
@@ -2761,17 +2779,15 @@ var hoverZoom = {
                 zoomFactorFit = width / srcDetails.naturalWidth;
                 lockViewer();
             }
-            else {
-                if (zoomFactor > 1.1 * zoomFactorFit || zoomFactor < 0.9 * zoomFactorFit) {
-                    // restore zoom factor such as img or video fits screen size
-                    zoomFactor = zoomFactorFit || parseInt(options.zoomFactor);
-                } else {
-                    // zoom factor = default
-                    zoomFactor = parseInt(options.zoomFactor);
-                }
-                posViewer();
-                panLockedViewer(event);
+            if (zoomFactor > 1.1 * zoomFactorFit || zoomFactor < 0.9 * zoomFactorFit) {
+                // restore zoom factor such as img or video fits screen size
+                zoomFactor = zoomFactorFit || parseInt(options.zoomFactor);
+            } else {
+                // zoom factor = default
+                zoomFactor = parseInt(options.zoomFactor);
             }
+            posViewer();
+            panLockedViewer(event);
         }
 
         function documentOnKeyDown(event) {
@@ -2900,6 +2916,11 @@ var hoverZoom = {
                 // "Flip image" key
                 if (keyCode === options.flipImageKey) {
                     flipImage();
+                    return false;
+                }
+                // "Rotate image" key
+                if (keyCode === options.rotateImageKey) {
+                    rotateImage();
                     return false;
                 }
                 // "+" key is pressed
@@ -3367,19 +3388,17 @@ var hoverZoom = {
 
         // extract content-Length & Last-Modified values from headers
         function parseHeaders(headers) {
-            headers = String(headers); //convert to string for .match
             let infos = {}
-            let contentLength = headers.match(/content-length:(.*)/i);
+            let contentLength = headers["content-length"];
             if (contentLength) {
-                contentLength = contentLength[1].trim();
                 if (!isNaN(contentLength) && contentLength > 0) {
                     contentLength /= 1024;
                     if (contentLength < 1000) infos.contentLength = (contentLength).toFixed(0) + ' KB';
                     else infos.contentLength = (contentLength / 1024).toFixed(1) + ' MB';
                 }
             }
-            let lastModified = headers.match(/last-modified:(.*)/i);
-            if (lastModified && lastModified[1].indexOf('01 Jan 1970') === -1) infos.lastModified = lastModified[1].trim();
+            let lastModified = headers["last-modified"];
+            if (lastModified && lastModified.indexOf('01 Jan 1970') === -1) infos.lastModified = lastModified;
             return infos;
         }
 
@@ -3589,6 +3608,27 @@ var hoverZoom = {
             }
         }
 
+        // rotates image 90 degrees clockwise. It does not update image border
+        function rotateImage() {
+            if (!imgFullSize) return;
+
+            if (imgFullSize.css('transform') == 'none' && hz.hzViewer.css('transform') == 'none') {
+                imgFullSize.css('transform', 'none');
+                hz.hzViewer.css('transform', 'matrix(0, 1, -1, 0, 0, 0)');
+            } else if (imgFullSize.css('transform') == 'none' && hz.hzViewer.css('transform') == 'matrix(0, 1, -1, 0, 0, 0)') {
+                imgFullSize.css('transform', 'matrix(-1, 0, 0, -1, 0, 0)');
+                hz.hzViewer.css('transform', 'none');
+            } else if (imgFullSize.css('transform') == 'matrix(-1, 0, 0, -1, 0, 0)' && hz.hzViewer.css('transform') == 'none') {
+                imgFullSize.css('transform', 'matrix(-1, 0, 0, -1, 0, 0)');
+                hz.hzViewer.css('transform', 'matrix(0, 1, -1, 0, 0, 0)');
+            } else {
+                imgFullSize.css('transform', 'none');
+                hz.hzViewer.css('transform', 'none');
+            }
+            if (options.ambilightEnabled)
+                updateAmbilight();
+        }
+
         // store url(s) of image, video or audio track that should not be zoomed again
         function banImage() {
             if (srcDetails.audioUrl) {
@@ -3597,7 +3637,7 @@ var hoverZoom = {
                 chrome.runtime.sendMessage({action:'banImage', url:srcDetails.url, location:window.location.href});
             }
         }
-        
+
         function saveImage() {
             saveImg();
             saveVideo();
@@ -3973,6 +4013,7 @@ var hoverZoom = {
 
         chrome.runtime.onMessage.addListener(onMessage);
         loadOptions();
+        loadBannedImages();
 
         // In case we are being used on a website that removes us from the DOM, update the internal data structure to reflect this
         var target = document.getElementsByTagName('html')[0];

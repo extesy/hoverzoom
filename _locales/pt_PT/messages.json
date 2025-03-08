@@ -580,11 +580,11 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optDetailsSelectorTooltip": {
-        "message": "Selecionar o(s) detalhe(s) que deve(m) ser mostrado(s), se os detalhes forem apresentados",
+        "message": "Selecionar quais detalhes devem ser mostrados, se existirem detalhes",
         "description": "[options] Tooltip for details selector"
     },
     "optTitleBoxDetails": {
-        "message": "Detalhe(s) a mostrar:",
+        "message": "Detalhes a mostrar:",
         "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
@@ -604,7 +604,7 @@
         "description": "[options] Show Extension Detail"
     },
     "optShowDetailContentLength": {
-        "message": "Comprimento da multimédia",
+        "message": "Comprimento do conteúdo",
         "description": "[options] Show Content Length Detail"
     },
     "optShowDetailDuration": {
@@ -762,6 +762,18 @@
     "optEnableDebug": {
         "message": "Ativar registo (log) de depuração",
         "description": "[options] Enable debug option"
+    },
+    "optMigrateOldSettingsTooltip": {
+        "message": "Migre manualmente as definições da antiga localização guardada. ISTO IRÁ SUBSTITUIR AS DEFINIÇÕES ATUAIS.",
+        "description": "[options] Tooltip for migrate old settings"
+    },
+    "optMigrateOldSettings": {
+        "message": "Migrar definições antigas (ISTO IRÁ SUBSTITUIR AS DEFINIÇÕES ATUAIS.)",
+        "description": "[options] Migrate old settings"
+    },
+    "optButtonMigrateOldSettings": {
+        "message": "Migrar",
+        "description": "[options] Migrate old settings button"
     },
     "optSectionSupportedFormats": {
         "message": "Formatos suportados",
@@ -1033,6 +1045,14 @@
     },
     "optFlipImageKeyDescription": {
         "message": "Pressione esta tecla para inverter alternadamente a imagem vertical e horizontalmente. Útil para ler textos e logotipos em imagens ou vídeos espelhados.",
+        "description": "[options] Action key description"
+    },
+    "optrotateImageKeyTitle": {
+        "message": "Rodar imagem",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "Pressione esta tecla para rodar a imagem.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {

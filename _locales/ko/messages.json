@@ -584,7 +584,7 @@
         "description": "[options] Tooltip for details selector"
     },
     "optTitleBoxDetails": {
-        "message": "표시할 상세 정보:",
+        "message": "표시되는 상세 정보:",
         "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
@@ -604,7 +604,7 @@
         "description": "[options] Show Extension Detail"
     },
     "optShowDetailContentLength": {
-        "message": "미디어 길이",
+        "message": "콘텐츠 길이",
         "description": "[options] Show Content Length Detail"
     },
     "optShowDetailDuration": {
@@ -762,6 +762,18 @@
     "optEnableDebug": {
         "message": "디버그 로깅 사용",
         "description": "[options] Enable debug option"
+    },
+    "optMigrateOldSettingsTooltip": {
+        "message": "이전 저장 위치로부터 설정을 수동으로 이동합니다. 현재 설정을 덮어씁니다.",
+        "description": "[options] Tooltip for migrate old settings"
+    },
+    "optMigrateOldSettings": {
+        "message": "이전 설정을 이동합니다 (현재 설정을 덮어씁니다)",
+        "description": "[options] Migrate old settings"
+    },
+    "optButtonMigrateOldSettings": {
+        "message": "이동",
+        "description": "[options] Migrate old settings button"
     },
     "optSectionSupportedFormats": {
         "message": "지원 형식",
@@ -1033,6 +1045,14 @@
     },
     "optFlipImageKeyDescription": {
         "message": "이 키를 누르면 사진이 가로, 세로 교대로 뒤집힙니다. 반전된 사진이나 동영상 속 글씨나 로고를 읽을 때 유용합니다.",
+        "description": "[options] Action key description"
+    },
+    "optrotateImageKeyTitle": {
+        "message": "이미지 회전",
+        "description": "[options] Action key title"
+    },
+    "optrotateImageKeyDescription": {
+        "message": "이 키를 누르면 이미지를 회전합니다.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
