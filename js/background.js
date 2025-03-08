@@ -10,7 +10,7 @@ function cLog(msg) {
 }
 
 // Performs an ajax request
-async function ajaxRequest(request, callback) {
+async function ajaxRequest(request, sendResponse) {
     const response = request.response;
     const method = request.method;
     const filename = request.filename;
@@ -36,32 +36,32 @@ async function ajaxRequest(request, callback) {
                 fetchResponse.headers.forEach((value, key) => {
                     headers[key] = value;
                 });
-                callback({url: request.url, headers: headers});
+                sendResponse({url: request.url, headers: headers});
             } else {
                 switch (response) {
                     case 'DOWNLOAD':
                         const arrayBuffer = await fetchResponse.arrayBuffer();
                         const blobBin = new Blob([arrayBuffer], {type: 'application/octet-stream'});
                         const blobUrl = URL.createObjectURL(blobBin);
-                        downloadFile(blobUrl, filename, conflictAction, callback);
+                        downloadFile(blobUrl, filename, conflictAction, sendResponse);
                         break;
                     case 'URL':
-                        callback(fetchResponse.url);
+                        sendResponse(fetchResponse.url);
                         break;
                     default:
                         const text = await fetchResponse.text();
-                        callback(text);
+                        sendResponse(text);
                 }
             }
         } else {
-            callback(null);
+            sendResponse(null);
         }
     } catch (error) {
-        callback(null);
+        sendResponse(null);
     }
 }
 
-function downloadFile(url, filename, conflictAction, callback) {
+function downloadFile(url, filename, conflictAction, sendResponse) {
     cLog('downloadFile: ' + url);
     let currentId;
     chrome.downloads.onChanged.addListener(onChanged);
@@ -82,14 +82,15 @@ function downloadFile(url, filename, conflictAction, callback) {
                 cLog('onChanged delta.error: ' + delta.error);
                 // call callback iff download failed & user did NOT cancel
                 if (delta.error.current !== 'USER_CANCELED') {
-                    callback(true);
+                    sendResponse(true);
                 }
             }
         }
     }
 }
 
-function onMessage(message, sender, callback) {
+async function onMessage(message, sender, sendResponse) {
+    options = await loadOptions();
     switch (message.action) {
         case 'downloadFileBlob':
             /**
@@ -102,61 +103,69 @@ function onMessage(message, sender, callback) {
 
             /*
             * Workaround for permissions.request not returning a promise in Firefox
-            * First checks if permissions are availble. If true, downloads file. If not, requests them.
-            * Not as clean or effecient as just using 'permissions.request'.
+            * First checks if permissions are available. If true, downloads file. If not, requests them.
+            * Not as clean or efficient as just using 'permissions.request'.
             */
             cLog('downloadFileBlob: ' + message);
             chrome.permissions.contains({permissions: ['downloads']}, (contained) => {
                 cLog('downloadFile contains: ' + contained);
+                const ajaxRequestFn = (message) => ajaxRequest({
+                    method: 'GET',
+                    response: 'DOWNLOAD',
+                    url: message.url,
+                    filename: message.filename,
+                    conflictAction: message.conflictAction,
+                    headers: message.headers
+                }, sendResponse);
                 if (contained) {
-                    ajaxRequest({method:'GET', response:'DOWNLOAD', url:message.url, filename:message.filename, conflictAction:message.conflictAction, headers:message.headers}, callback);
+                    ajaxRequestFn(message);
                 } else {
                     chrome.permissions.request({permissions: ['downloads']}, (granted) => {
                         cLog('downloadFile granted: ' + granted);
                         if (granted) {
-                            ajaxRequest({method:'GET', response:'DOWNLOAD', url:message.url, filename:message.filename, conflictAction:message.conflictAction, headers:message.headers}, callback);
+                            ajaxRequestFn(message);
                         }
                     })
                 }
             });
-            return true;
+            break;
         case 'downloadFile':
             cLog('downloadFile: ' + message);
             /*
             * Workaround for permissions.request not returning a promise in Firefox
-            * First checks if permissions are availble. If true, downloads file. If not, requests them.
-            * Not as clean or effecient as just using 'permissions.request'.
+            * First checks if permissions are available. If true, downloads file. If not, requests them.
+            * Not as clean or efficient as just using 'permissions.request'.
             */
             chrome.permissions.contains({permissions: ['downloads']}, (contained) => {
                 cLog('downloadFile contains: ' + contained);
                 if (contained) {
-                    downloadFile(message.url, message.filename, message.conflictAction, callback);
+                    downloadFile(message.url, message.filename, message.conflictAction, sendResponse);
                 } else {
                     chrome.permissions.request({permissions: ['downloads']}, (granted) => {
                         cLog('downloadFile granted: ' + granted);
                         if (granted) {
-                            downloadFile(message.url, message.filename, message.conflictAction, callback);
+                            downloadFile(message.url, message.filename, message.conflictAction, sendResponse);
                         }
                     })
                 }
             });
-            return true;
+            break;
         case 'ajaxGet':
-            ajaxRequest({url:message.url, response:message.response, method:'GET', headers:message.headers}, callback);
-            return true;
+            await ajaxRequest({url:message.url, response:message.response, method:'GET', headers:message.headers}, sendResponse);
+            break;
         case 'ajaxGetHeaders':
-            ajaxRequest({url:message.url, response:message.response, method:'HEAD'}, callback);
-            return true;
+            await ajaxRequest({url:message.url, response:message.response, method:'HEAD'}, sendResponse);
+            break;
         case 'ajaxRequest':
-            ajaxRequest(message, callback);
-            return true;
+            await ajaxRequest(message, sendResponse);
+            break;
         case 'showPageAction':
             // Firefox url is located at sender.url, copy sender.url to sender.tab.url
             if (!sender.tab.url && sender.url)
                 sender.tab.url = sender.url
             showPageAction(sender.tab);
-            callback();
-            return true;
+            sendResponse();
+            break;
         case 'addUrlToHistory':
             chrome.permissions.contains({permissions: ['history']}, function(granted) {
                 if (granted) {
@@ -165,29 +174,29 @@ function onMessage(message, sender, callback) {
             });
             break;
         case 'getOptions':
-            callback(options);
-            return true;
+            sendResponse(options);
+            break;
         case 'optionsChanged':
             options = message.options;
             break;
         case 'saveOptions':
-            optionsStorageSet(message.options).then(() => {
+            await optionsStorageSet(message.options).then(() => {
                 sendOptions(message.options);
-                callback();
+                sendResponse();
             });
             break;
         case 'setItem':
             const items = {};
             items[message.id] = message.data;
-            sessionStorageSet(items);
+            await sessionStorageSet(items);
             break;
         case 'getItem':
-            sessionStorageGet(message.id).then((result) => {
-                callback(result);
+            await sessionStorageGet(message.id).then((result) => {
+                sendResponse(result);
             });
-            return true;
+            break;
         case 'removeItem':
-            sessionStorageRemove(message.id);
+            await sessionStorageRemove(message.id);
             break;
         case 'openViewWindow':
             let url = message.createData.url;
@@ -229,16 +238,14 @@ function onMessage(message, sender, callback) {
             });
             break;
         case 'banImage':
-            banImage(message);
+            await banImage(message);
             break;
         case 'resetBannedImages':
-            resetBannedImages();
+            await resetBannedImages();
             break;
         case 'isImageBanned':
-            isImageBanned(message).then((result) => {
-                callback(result);
-            });
-            return true;
+            sendResponse(await isImageBanned(message));
+            break;
     }
 }
 
@@ -258,7 +265,10 @@ async function init() {
     options = await loadOptions();
 
     // Bind events
-    chrome.runtime.onMessage.addListener(onMessage);
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+        onMessage(request, sender, sendResponse);
+        return true;
+    });
 }
 
 // add url of image, video or audio track to ban list so it will not be zoomed again
