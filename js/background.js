@@ -271,7 +271,7 @@ async function init() {
     });
 }
 
-// add url of image, video or audio track to ban list so it will not be zoomed again
+// Add url of image, video or audio track to the banlist, so it will not be zoomed again.
 async function banImage(message) {
     const url = message.url;
     if (!url) return;
@@ -296,7 +296,7 @@ async function resetBannedImages() {
     await localStorageRemove('HoverZoomBannedUrls');
 }
 
-// check if url of image, video or audio track belongs to ban list
+// Check if url of image, video or audio track belongs to the banlist.
 async function isImageBanned(message) {
     const url = message.url;
     let bannedUrls = (await localStorageGet('HoverZoomBannedUrls')) || '{}';

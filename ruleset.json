@@ -84,7 +84,7 @@
             "type": "modifyHeaders",
             "requestHeaders": [
                 {"header": "referer", "operation": "set", "value": "https://rule34video.com/"}
-            ],
+            ]
         },
         "condition": {
             "urlFilter": "||rule34video.com/",

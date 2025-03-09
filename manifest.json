@@ -21,11 +21,10 @@
         }
     },
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "js/background.js"
     },
     "options_ui": {
         "page": "html/options.html",
-        "chrome_style": false,
         "open_in_tab": true
     },
     "action": {
