@@ -543,14 +543,6 @@
         "message": "閲覧した画像をブラウザの履歴に追加する",
         "description": "[options] Add viewed pictures to the browser's history option"
     },
-    "optAllowHeadersRewriteTooltip": {
-        "message": "動画など、あるサイトのコンテンツを別のサイトで拡大・再生できるのは便利です。",
-        "description": "[options] Tooltip for allow rewrite of headers for HTTP(S) request or response option"
-    },
-    "optAllowHeadersRewrite": {
-        "message": "HTTP(S)のリクエストやレスポンスのヘッダを書き換えることを許可する",
-        "description": "[options] Allow rewrite of headers for HTTP(S) request or response option"
-    },
     "optFilterNSFW": {
         "message": "NSFW画像を除外する（Redditのみ）",
         "description": "[options] Exclude NSFW images (Reddit only) option"

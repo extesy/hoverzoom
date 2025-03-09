@@ -543,14 +543,6 @@
         "message": "Voeg bekeken afbeeldingen toe aan de browsergeschiedenis",
         "description": "[options] Add viewed pictures to the browser's history option"
     },
-    "optAllowHeadersRewriteTooltip": {
-        "message": "Handig om inhoud van een site te kunnen inzoomen en afspelen op een andere site, zoals video's",
-        "description": "[options] Tooltip for allow rewrite of headers for HTTP(S) request or response option"
-    },
-    "optAllowHeadersRewrite": {
-        "message": "Herschrijven van headers voor HTTP(S) verzoek of antwoord toestaan",
-        "description": "[options] Allow rewrite of headers for HTTP(S) request or response option"
-    },
     "optFilterNSFW": {
         "message": "NSFW afbeeldingen uitsluiten (alleen Reddit)",
         "description": "[options] Exclude NSFW images (Reddit only) option"

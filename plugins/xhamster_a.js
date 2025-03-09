@@ -6,22 +6,6 @@ hoverZoomPlugins.push( {
     prepareImgLinks: function(callback) {
         var name = this.name;
 
-        // if header(s) rewrite is allowed store headers settings that will be used for rewrite
-        if (options.allowHeadersRewrite) {
-            chrome.runtime.sendMessage({action:"storeHeaderSettings",
-                                        plugin:name,
-                                        settings:
-                                            [{"type":"request",
-                                            "skipInitiator":"xhamster",
-                                            "urls":["xhcdn.com", "doppiocdn.com", "cdn13.com"],
-                                            "headers":[{"name":"referer", "value":"https://xhamster.com/", "typeOfUpdate":"add"}]},
-                                            {"type":"response",
-                                            "skipInitiator":"xhamster",
-                                            "urls":["xhcdn.com", "doppiocdn.com", "cdn13.com"],
-                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
-                                        });
-        }
-
         // lives hosted on xhamsterlive
         $('a[data-model-id], a[id]').filter(function() { return (/(xhamsterlive)/.test($(this).prop('href'))) }).one('mouseover', function() {
             var link = $(this);

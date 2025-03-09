@@ -18,7 +18,6 @@ function initActionKeys() {
 }
 
 async function saveOptions() {
-
     // Get the excluded site index if it has already been added
     var excludedSiteIndex = -1;
     for (var i = 0; i < options.excludedSites.length; i++) {
@@ -70,7 +69,7 @@ async function saveOptions() {
 
     await optionsStorageSet(options);
     sendOptions(options);
-    await restoreOptions();
+    // await restoreOptions();
     return false;
 }
 
@@ -212,32 +211,12 @@ $(async function () {
 
     $('.actionKey').change(selKeyOnChange);
 
-    chrome.permissions.contains({permissions: ['tabs']}, function (granted) {
-        if (granted) {
-            setTabHook(options);
-            $('#chkExcludeSite').parent().on('gumby.onChange', chkExcludeSiteOnChange);
-        } else {
-            $('#lblToggle').text(chrome.i18n.getMessage('popAllowPerSiteToggle'));
-            $('#chkExcludeSite').parent().on('gumby.onChange', askTabsPermissions);
-        }
-    });
+    setTabHook(options);
+    $('#chkExcludeSite').parent().on('gumby.onChange', chkExcludeSiteOnChange);
 
     await restoreOptions();
     chrome.runtime.onMessage.addListener(onMessage);
 });
-
-function askTabsPermissions() {
-    chrome.permissions.contains({permissions: ['tabs']}, function (granted) {
-        if (!granted) {
-            chrome.permissions.request({permissions: ['tabs']}, function (granted) {
-                if (granted) {
-                    setTabHook(options);
-                    location.reload();
-                }
-            });
-        }
-    });
-}
 
 function setTabHook(options) {
     chrome.tabs.query({active: true, currentWindow: true}, function (tabArr) {
@@ -256,11 +235,6 @@ function onMessage(message, sender, callback) {
     switch (message.action) {
         case 'optionsChanged':
             restoreOptions();
-            break;
-        case 'askTabsPermissions':
-            chrome.permissions.request({permissions: ['tabs']}, function (granted) {
-                callback(granted);
-            });
             break;
     }
 }

@@ -543,14 +543,6 @@
         "message": "Přidání prohlížených obrázků do historie prohlížeče",
         "description": "[options] Add viewed pictures to the browser's history option"
     },
-    "optAllowHeadersRewriteTooltip": {
-        "message": "Užitečná možnost zvětšovat a přehrávat obsah z jednoho webu na jiném webu, například videa.",
-        "description": "[options] Tooltip for allow rewrite of headers for HTTP(S) request or response option"
-    },
-    "optAllowHeadersRewrite": {
-        "message": "Povolení přepisu hlaviček pro požadavek nebo odpověď HTTP(S)",
-        "description": "[options] Allow rewrite of headers for HTTP(S) request or response option"
-    },
     "optFilterNSFW": {
         "message": "Vyloučení NSFW obrázků (pouze Reddit)",
         "description": "[options] Exclude NSFW images (Reddit only) option"

@@ -36,27 +36,6 @@ hoverZoomPlugins.push({
             INNERTUBE_API_KEY = innerHtml.substring(firstquoteIndex + 1, lastquoteIndex);
         }
 
-        // if header(s) rewrite is allowed store headers settings that will be used for rewrite
-        if (options.allowHeadersRewrite) {
-            chrome.runtime.sendMessage({
-                action: "storeHeaderSettings",
-                plugin: name,
-                settings:
-                    [{
-                        "type": "request",
-                        "skipInitiator": "youtube",
-                        "urls": ["youtube.com/youtubei/v1/player?key="],
-                        "headers": [{"name": "origin", "value": "https://music.youtube.com", "typeOfUpdate": "add"}]
-                    },
-                    {
-                        "type": "response",
-                        "skipInitiator": "youtube",
-                        "urls": ["youtube.com/youtubei/v1/player?key=","googlevideo.com/videoplayback/id/"],
-                        "headers": [{"name": "Access-Control-Allow-Origin", "value": "*", "typeOfUpdate": "add"}]
-                    }]
-            });
-        }
-
         $('a[href*="/watch?v="], a[href*="/shorts/"], a[href*="youtu.be"], div[ourl*="/watch?v="], div[ourl*="/shorts/"], div[ourl*="youtu.be"]').on('mouseover', function() {
             let link = $(this), href;
 
