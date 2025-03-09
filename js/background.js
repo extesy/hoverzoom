@@ -176,15 +176,6 @@ async function onMessage(message, sender, sendResponse) {
         case 'getOptions':
             sendResponse(options);
             break;
-        case 'optionsChanged':
-            options = message.options;
-            break;
-        case 'saveOptions':
-            await optionsStorageSet(message.options).then(() => {
-                sendOptions(message.options);
-                sendResponse();
-            });
-            break;
         case 'setItem':
             const items = {};
             items[message.id] = message.data;
@@ -205,7 +196,7 @@ async function onMessage(message, sender, sendResponse) {
             }
             chrome.windows.create(message.createData, function (window) {
                 chrome.scripting.executeScript({
-                    target: {tabId: window.tabs[0].id},
+                    // target: {tabId: window.tabs[0].id},
                     files: ['js/viewWindow.js']
                 });
             });
@@ -221,22 +212,22 @@ async function onMessage(message, sender, sendResponse) {
                 }
                 chrome.tabs.create(message.createData, function (tab) {
                     chrome.scripting.executeScript({
-                        target: {tabId: window.tabs[0].id},
+                        // target: {tabId: window.tabs[0].id},
                         files: ['js/viewTab.js']
                     });
                 });
             });
             break;
-        case 'updateViewWindow':
-            chrome.windows.getCurrent(window => {
-                chrome.windows.update(window.id, {
-                    width: message.updateData.width,
-                    height: message.updateData.height,
-                    top: message.updateData.top,
-                    left: message.updateData.left
-                })
-            });
-            break;
+        // case 'updateViewWindow':
+        //     chrome.windows.getCurrent(window => {
+        //         chrome.windows.update(window.id, {
+        //             width: message.updateData.width,
+        //             height: message.updateData.height,
+        //             top: message.updateData.top,
+        //             left: message.updateData.left
+        //         })
+        //     });
+        //     break;
         case 'banImage':
             await banImage(message);
             break;

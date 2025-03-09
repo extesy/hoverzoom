@@ -18,7 +18,6 @@ function initActionKeys() {
 }
 
 async function saveOptions() {
-
     // Get the excluded site index if it has already been added
     var excludedSiteIndex = -1;
     for (var i = 0; i < options.excludedSites.length; i++) {
@@ -70,7 +69,7 @@ async function saveOptions() {
 
     await optionsStorageSet(options);
     sendOptions(options);
-    await restoreOptions();
+    // await restoreOptions();
     return false;
 }
 

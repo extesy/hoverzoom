@@ -92,7 +92,7 @@ async function saveOptions(exportSettings = false) {
                 if (rightButtonActive) // if both selected
                     options.rightShortClickAndHold = true;
                 else
-                rightButtonActive = true;
+                    rightButtonActive = true;
                 break;
             case -4:
                 options.middleShortClick = true;
@@ -100,7 +100,7 @@ async function saveOptions(exportSettings = false) {
                 if (middleButtonActive) // if both selected
                     options.middleShortClickAndHold = true;
                 else
-                middleButtonActive = true;
+                    middleButtonActive = true;
                 break;
             default:
         }
@@ -149,7 +149,7 @@ async function saveOptions(exportSettings = false) {
     } else {
         await optionsStorageSet(options);
         sendOptions(options);
-        await restoreOptions();
+        // await restoreOptions();
     }
     return false;
 }

@@ -131,7 +131,7 @@ function sendOptions(options) {
     });
 
     // Send options to other extension pages
-    chrome.runtime.sendMessage(request);
+    // chrome.runtime.sendMessage(request);
 }
 
 // Return true if the url is part of an excluded site

@@ -2606,12 +2606,10 @@ var hoverZoom = {
         }
 
         function loadOptions() {
-            chrome.runtime.sendMessage({action:'getOptions'}, function (result) {
+            optionsStorageGet(factorySettings).then((result) => {
                 options = result;
-                if (options) {
-                    applyOptions();
-                }
-            });
+                applyOptions();
+            })
         }
 
         // get list of banned image, video or audio track urls
