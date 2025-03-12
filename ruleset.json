@@ -10,7 +10,7 @@
         },
         "condition": {
             "urlFilter": "||redgifs.com/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -29,7 +29,7 @@
         },
         "condition": {
             "urlFilter": "||tiktok.com/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -43,7 +43,7 @@
         },
         "condition": {
             "urlFilter": "||dmc.nico/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -60,7 +60,7 @@
         },
         "condition": {
             "urlFilter": "||dailymotion.com/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -74,7 +74,7 @@
         },
         "condition": {
             "urlFilter": "||dmcdn.net/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -88,7 +88,7 @@
         },
         "condition": {
             "urlFilter": "||rule34video.com/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -105,7 +105,7 @@
         },
         "condition": {
             "urlFilter": "||instagram.com/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -122,7 +122,7 @@
         },
         "condition": {
             "urlFilter": "||pximg.net/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -136,7 +136,7 @@
         },
         "condition": {
             "urlFilter": "||moviefap.com/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -150,7 +150,7 @@
         },
         "condition": {
             "urlFilter": "||cloudfront.net/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -164,7 +164,7 @@
         },
         "condition": {
             "urlFilter": "||usher.ttvnw.net/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -181,7 +181,7 @@
         },
         "condition": {
             "urlFilter": "||zjcdn.com/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -196,7 +196,7 @@
         },
         "condition": {
             "urlFilter": "||spotifydown.com/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -210,7 +210,7 @@
         },
         "condition": {
             "urlFilter": "||spotify.com/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -227,7 +227,7 @@
         },
         "condition": {
             "urlFilter": "||youtube.com/youtubei/v1/player",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -241,7 +241,7 @@
         },
         "condition": {
             "urlFilter": "||googlevideo.com/videoplayback/id/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -259,7 +259,7 @@
         },
         "condition": {
             "urlFilter": "||kick.com/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -277,7 +277,7 @@
         },
         "condition": {
             "urlFilter": "||hls.live-video.net/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -295,7 +295,7 @@
         },
         "condition": {
             "urlFilter": "||playback.live-video.net/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -312,7 +312,7 @@
         },
         "condition": {
             "urlFilter": "||xhcdn.com/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -329,7 +329,7 @@
         },
         "condition": {
             "urlFilter": "||doppiocdn.com/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     },
     {
@@ -346,7 +346,7 @@
         },
         "condition": {
             "urlFilter": "||cdn13.com/",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["image", "media"]
         }
     }
 ]
