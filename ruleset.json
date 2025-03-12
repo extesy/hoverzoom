@@ -109,6 +109,23 @@
         }
     },
     {
+        "id": 61,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {"header": "referer", "operation": "set", "value": "https://www.instagram.com/"}
+            ],
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||fbcdn.net/",
+            "resourceTypes": ["image", "media"]
+        }
+    },
+    {
         "id": 70,
         "priority": 1,
         "action": {

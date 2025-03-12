@@ -122,16 +122,22 @@ function sendOptions(options) {
     // Send options to all tabs
     chrome.windows.getAll(null, function (windows) {
         for (var i = 0; i < windows.length; i++) {
-            chrome.tabs.query({windowId: windows[i].id}, function (tabs) {
+            chrome.tabs.query({active: true, windowId: windows[i].id}, function (tabs) {
                 for (var j = 0; j < tabs.length; j++) {
-                    chrome.tabs.sendMessage(tabs[j].id, request);
+                    const tab = tabs[j];
+                    if (tab.url && (tab.url.startsWith('http://') || tab.url.startsWith('https://'))) {
+                        chrome.tabs.sendMessage(tab.id, request, function(response) {
+                            // Ignore errors that occur when the receiving end doesn't exist
+                            let lastError = chrome.runtime.lastError;
+                        });
+                    }
                 }
             });
         }
     });
 
     // Send options to other extension pages
-    // chrome.runtime.sendMessage(request);
+    chrome.runtime.sendMessage(request);
 }
 
 // Return true if the url is part of an excluded site
