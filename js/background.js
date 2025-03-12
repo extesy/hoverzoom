@@ -251,17 +251,6 @@ function showPageAction(tab) {
     }
  }
 
-async function init() {
-    // Load options
-    options = await loadOptions();
-
-    // Bind events
-    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-        onMessage(request, sender, sendResponse);
-        return true;
-    });
-}
-
 // Add url of image, video or audio track to the banlist, so it will not be zoomed again.
 async function banImage(message) {
     const url = message.url;
@@ -297,4 +286,8 @@ async function isImageBanned(message) {
     return bannedUrls[url];
 }
 
-init();
+// Bind events, has to be a top-level command in service worker
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    onMessage(request, sender, sendResponse);
+    return true;
+});
