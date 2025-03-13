@@ -1,5 +1,7 @@
-﻿importScripts('tools.js');
-importScripts('common.js');
+﻿if ('function' === typeof importScripts) {
+    importScripts('tools.js');
+    importScripts('common.js');
+}
 
 var options;
 
