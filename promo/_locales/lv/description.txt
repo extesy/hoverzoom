@@ -1,4 +1,4 @@
-Palieliniet attēlus/ video visās iecienītākajās vietnēs (Facebook, Amazon u. c.). Novietojiet peli virs jebkura attēla atbalstītajās vietnēs, un paplašinājums automātiski palielinās attēlu līdz pilnam izmēram, nodrošinot, ka tas joprojām iekļaujas pārlūkprogrammas logā.
+Palielina attēlus/video visās jūsu iecienītākajās vietnēs (Facebook, Amazon u. c.). Novietojiet peles kursoru virs jebkura attēla atbalstītajās vietnēs, un paplašinājums automātiski palielinās attēlu līdz to pilnajam izmēram, iekļaujoties pārlūka loga izmēros.
 
 Šī ir atvērtā koda versija sākotnējā HoverZoom paplašinājums, kas tagad ir pārņemts ar ļaunprātīgu programmatūru un dzēsts no veikala. Šajā versijā ir noņemtas visas spiegprogrammatūras, novērstas daudzas kļūdas un pievienotas jaunas funkcijas. Tajā netiek apkopoti nekādi statistikas dati. Vienīgā atļauja, kas tam nepieciešama, ir piekļūt visu vietņu datiem (lai iegūtu pilnus attēlus), un *pēc izvēles* atļaujas piekļūt pārlūkprogrammas vēsturei, lejupielādēt/izglabāt attēlus vai iegūt cilnes urls, lai konfigurētu vietnes.
 
