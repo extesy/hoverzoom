@@ -6,22 +6,6 @@ hoverZoomPlugins.push({
     prepareImgLinks: function (callback) {
         var name = this.name;
 
-        // if header(s) rewrite is allowed store headers settings that will be used for rewrite
-        if (options.allowHeadersRewrite) {
-            chrome.runtime.sendMessage({action:"storeHeaderSettings",
-                                        plugin:name,
-                                        settings:
-                                            [{"type":"request",
-                                            "skipInitiator":"pixiv",
-                                            "urls":["pximg.net"],
-                                            "headers":[{"name":"referer", "value":"https://www.pixiv.net/", "typeOfUpdate":"add"}]},
-                                            {"type":"response",
-                                            "skipInitiator":"pixiv",
-                                            "urls":["pximg.net"],
-                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
-                                        });
-        }
-
         // the element selector
         const selector = {
             thumbnail: 'a[href*="/artworks/"], a[href*="member_illust.php?mode="], a[href*="/group/"]',

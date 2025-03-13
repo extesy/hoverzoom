@@ -7,18 +7,6 @@ hoverZoomPlugins.push({
         var res = [];
         var name = this.name;
 
-        // if header(s) rewrite is allowed store headers settings that will be used for rewrite
-        if (options.allowHeadersRewrite) {
-             chrome.runtime.sendMessage({action:"storeHeaderSettings",
-                                        plugin:name,
-                                        settings:
-                                            [{"type":"response",
-                                            "skipInitiator":"twitch",
-                                            "urls":["cloudfront.net","usher.ttvnw.net"],
-                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
-                                        });
-        }
-
         hoverZoom.urlReplace(res,
             'img[src*="profile_image"]',
             /-\d+x\d+/,

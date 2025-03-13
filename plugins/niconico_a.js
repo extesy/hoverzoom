@@ -5,18 +5,6 @@ hoverZoomPlugins.push({
     prepareImgLinks:function (callback) {
         var res = [];
 
-        // if header(s) rewrite is allowed store headers settings that will be used for rewrite
-        if (options.allowHeadersRewrite) {
-             chrome.runtime.sendMessage({action:"storeHeaderSettings",
-                                        plugin:name,
-                                        settings:
-                                            [{"type":"response",
-                                            "skipInitiator":"nico",
-                                            "urls":["dmc.nico"],
-                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"}]}]
-                                        });
-        }
-
         // images (user must be logged in)
         // page hosting thumbnail img: https://seiga.nicovideo.jp/
         // thumbnail img:              https://lohas.nicoseiga.jp/thumb/10804753q?1630337080

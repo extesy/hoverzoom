@@ -5,18 +5,6 @@ hoverZoomPlugins.push( {
     prepareImgLinks: function(callback) {
         var res = [];
 
-        // if header(s) rewrite is allowed store headers settings that will be used for rewrite
-        if (options.allowHeadersRewrite) {
-            chrome.runtime.sendMessage({action:"storeHeaderSettings",
-                                        plugin:name,
-                                        settings:
-                                            [{"type":"request",
-                                            "skipInitiator":"rule34video",
-                                            "urls":["rule34video"],
-                                            "headers":[{"name":"referer", "value":"https://rule34video.com/", "typeOfUpdate":"add"}]}]
-                                        });
-        }
-
         // link:  https://rule34video.com/videos/3086641/step-by-step-of-sarada-sound-angel/
         // video: https://rule34video.com/get_file/6/e50e7782cd629cbbedad233e4b8379cd63d8c56ca4/3086000/3086641/3086641_1080p.mp4
         $('a[href*="rule34video"]').one('mouseover', function() {

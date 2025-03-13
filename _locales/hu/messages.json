@@ -543,14 +543,6 @@
         "message": "Megtekintett képek hozzáadása a böngészési előzményekhez",
         "description": "[options] Add viewed pictures to the browser's history option"
     },
-    "optAllowHeadersRewriteTooltip": {
-        "message": "Hasznos egyik weboldalról származó tartalom (pl. videók) másik weboldalon történő lejátszásához, illetve nagyításához",
-        "description": "[options] Tooltip for allow rewrite of headers for HTTP(S) request or response option"
-    },
-    "optAllowHeadersRewrite": {
-        "message": "A HTTP(S) kérés vagy válasz fejlécek átírásának engedélyezése",
-        "description": "[options] Allow rewrite of headers for HTTP(S) request or response option"
-    },
     "optFilterNSFW": {
         "message": "NSFW képek kizárása (csak a Redditen)",
         "description": "[options] Exclude NSFW images (Reddit only) option"

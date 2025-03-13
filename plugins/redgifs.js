@@ -16,20 +16,6 @@ hoverZoomPlugins.push({
             });
         }
 
-        if (options.allowHeadersRewrite) {
-            chrome.runtime.sendMessage({
-                action: "storeHeaderSettings",
-                plugin: 'custom',
-                settings:
-                    [{
-                        "skipInitiator":"redgifs",
-                        "type": "request",
-                        "urls": ["redgifs.com"],
-                        "headers": [{ "name": "referer", "typeOfUpdate": "remove" }]
-                    }]
-            });
-        }
-
         $('a[href*="redgifs.com/"]').one('mouseenter', function() {
             const link = $(this);
             const gfyId = this.href.replace(/.*redgifs.com\/(..\/)?(\w+\/)?(\w+)(?:\.\w+)?/, '$3');

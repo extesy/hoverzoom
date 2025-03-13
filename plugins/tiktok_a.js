@@ -9,22 +9,6 @@ hoverZoomPlugins.push( {
         const token1 = 'SIGI_STATE';
         const token2 = 'SIGI_RETRY';
 
-        // if header(s) rewrite is allowed store headers settings that will be used for rewrite
-        if (options.allowHeadersRewrite) {
-             chrome.runtime.sendMessage({action:"storeHeaderSettings",
-                                        plugin:name,
-                                        settings:
-                                            [{"type":"request",
-                                            "skipInitiator":"tiktok",
-                                            "urls":["tiktok.com"],
-                                            "headers":[{"name":"referer", "value":"https://www.tiktok.com/", "typeOfUpdate":"add"},{"name":"origin", "value":"https://www.tiktok.com/", "typeOfUpdate":"add"}]},
-                                            {"type":"response",
-                                            "skipInitiator":"tiktok",
-                                            "urls":["tiktok.com"],
-                                            "headers":[{"name":"Access-Control-Allow-Origin", "value":"*", "typeOfUpdate":"add"},{"name":"Cross-Origin-Resource-Policy", "typeOfUpdate":"remove"}]}]
-                                        });
-        }
-
         function getCookie(cname) {
             let name = cname + "=";
             var ca = document.cookie.split(';');
