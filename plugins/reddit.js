@@ -127,6 +127,13 @@ hoverZoomPlugins.push({
       });
     });
 
+    // Supports embedded images in sh.reddit
+    $('img[class*="max-w-[240px] min-w-[20px]"][src*="//preview.redd.it"]').one('mouseover', function () {
+      const post = $(this);
+      let link = post.attr('src');
+      hoverZoom.prepareLink(post, link);
+    });
+
     // Supports images in sh.reddit
     $('shreddit-post[content-href*="//i.redd.it"]').one('mouseover', function () {
       const post = $(this);
