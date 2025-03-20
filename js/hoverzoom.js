@@ -2860,7 +2860,7 @@ var hoverZoom = {
             // ban key (close zoomed image + add to page's ban list) is pressed down
             // => zoomed image is closed immediately
             // => zoomed image url is added to page's ban list
-            if (event.which == options.banKey) {
+            if (event.which === options.banKey) {
                 hz.hzViewerLocked = viewerLocked = false;
                 if (hz.hzViewer) {
                     stopMedias();

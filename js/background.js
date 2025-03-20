@@ -41,6 +41,13 @@ async function ajaxRequest(request, sendResponse) {
                 sendResponse({url: request.url, headers: headers});
             } else {
                 switch (response) {
+                    /**
+                     * direct URL download through Chrome API might be prohibited (e.g: Pixiv)
+                     * workaround:
+                     * 1. obtain ArrayBuffer from XHR request (GET URL)
+                     * 2. create Blob from ArrayBuffer
+                     * 3. download Blob URL through Chrome API
+                     */
                     case 'DOWNLOAD':
                         const arrayBuffer = await fetchResponse.arrayBuffer();
                         const blobBin = new Blob([arrayBuffer], {type: 'application/octet-stream'});
@@ -67,7 +74,7 @@ function downloadFile(url, filename, conflictAction, sendResponse) {
     cLog('downloadFile: ' + url);
     let currentId;
     chrome.downloads.onChanged.addListener(onChanged);
-    chrome.downloads.download({url, filename, conflictAction, saveAs: false}, id => { currentId = id });
+    chrome.downloads.download({url, filename, conflictAction}, id => { currentId = id });
 
     function onChanged(delta) {
         if (!delta) return;
@@ -95,68 +102,34 @@ async function onMessage(message, sender, sendResponse) {
     options = await loadOptions();
     switch (message.action) {
         case 'downloadFileBlob':
-            /**
-            * direct URL download through Chrome API might be prohibited (e.g: Pixiv)
-            * workaround:
-            * 1. obtain ArrayBuffer from XHR request (GET URL)
-            * 2. create Blob from ArrayBuffer
-            * 3. download Blob URL through Chrome API
-            */
-
-            /*
-            * Workaround for permissions.request not returning a promise in Firefox
-            * First checks if permissions are available. If true, downloads file. If not, requests them.
-            * Not as clean or efficient as just using 'permissions.request'.
-            */
             cLog('downloadFileBlob: ' + message);
-            chrome.permissions.contains({permissions: ['downloads']}, (contained) => {
-                cLog('downloadFile contains: ' + contained);
-                const ajaxRequestFn = (message) => ajaxRequest({
-                    method: 'GET',
-                    response: 'DOWNLOAD',
-                    url: message.url,
-                    filename: message.filename,
-                    conflictAction: message.conflictAction,
-                    headers: message.headers
-                }, sendResponse);
-                if (contained) {
-                    ajaxRequestFn(message);
-                } else {
-                    chrome.permissions.request({permissions: ['downloads']}, (granted) => {
-                        cLog('downloadFile granted: ' + granted);
-                        if (granted) {
-                            ajaxRequestFn(message);
-                        }
-                    })
-                }
-            });
+            await ajaxRequest({
+                method: 'GET',
+                response: 'DOWNLOAD',
+                url: message.url,
+                filename: message.filename,
+                conflictAction: message.conflictAction,
+                headers: message.headers
+            }, sendResponse);
             break;
         case 'downloadFile':
             cLog('downloadFile: ' + message);
-            /*
-            * Workaround for permissions.request not returning a promise in Firefox
-            * First checks if permissions are available. If true, downloads file. If not, requests them.
-            * Not as clean or efficient as just using 'permissions.request'.
-            */
-            chrome.permissions.contains({permissions: ['downloads']}, (contained) => {
-                cLog('downloadFile contains: ' + contained);
-                if (contained) {
-                    downloadFile(message.url, message.filename, message.conflictAction, sendResponse);
-                } else {
-                    chrome.permissions.request({permissions: ['downloads']}, (granted) => {
-                        cLog('downloadFile granted: ' + granted);
-                        if (granted) {
-                            downloadFile(message.url, message.filename, message.conflictAction, sendResponse);
-                        }
-                    })
-                }
-            });
+            await downloadFile(message.url, message.filename, message.conflictAction, sendResponse);
             break;
         case 'ajaxGet':
-            await ajaxRequest({url:message.url, response:message.response, method:'GET', headers:message.headers}, sendResponse);
+            await ajaxRequest({
+                method: 'GET',
+                response: message.response,
+                url: message.url,
+                headers: message.headers
+            }, sendResponse);
             break;
         case 'ajaxGetHeaders':
-            await ajaxRequest({url:message.url, response:message.response, method:'HEAD'}, sendResponse);
+            await ajaxRequest({
+                method: 'HEAD',
+                response: message.response,
+                url: message.url
+            }, sendResponse);
             break;
         case 'ajaxRequest':
             await ajaxRequest(message, sendResponse);
