@@ -1,6 +1,6 @@
 name: Feature request
 description: Template for feature requests
-title: '[Feature]: <title>'
+title: '[Feature]: '
 labels:
   - enhancement
 body:

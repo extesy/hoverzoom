@@ -1,6 +1,6 @@
 name: Support a new website
 description: Template for new plugin requests
-title: '[Website]: <title>'
+title: '[Website]: '
 labels:
   - new plugin request
 body:
