@@ -128,7 +128,9 @@ async function saveOptions(exportSettings = false) {
     options.fontSize = $('#txtFontSize')[0].value;
     options.fontOutline = $('#chkFontOutline')[0].checked;
     options.belowPositionOffset = $('#txtBelowPositionOffset')[0].value;
+    options.belowPositionOffsetUnit = $('#selectBelowUnitType').val();
     options.abovePositionOffset = $('#txtAbovePositionOffset')[0].value;
+    options.abovePositionOffsetUnit = $('#selectAboveUnitType').val();
     options.captionOpacity = $('#txtCaptionOpacity')[0].value / 100;
     options.detailsOpacity = $('#txtDetailsOpacity')[0].value / 100;
     options.displayImageLoader = $('#chkDisplayImageLoader')[0].checked;
@@ -216,7 +218,9 @@ async function restoreOptions(optionsFromFactorySettings) {
     $('#rngImagePaddingSize').val(parseInt(options.imagePaddingSize));
     $('#txtImagePaddingSize').val(parseInt(options.imagePaddingSize));
     $('#txtBelowPositionOffset').val(parseFloat(options.belowPositionOffset));
+    $('#selectBelowUnitType').val(options.belowPositionOffsetUnit);
     $('#txtAbovePositionOffset').val(parseFloat(options.abovePositionOffset));
+    $('#selectAboveUnitType').val(options.abovePositionOffsetUnit);
     $('#txtCaptionOpacity').val(parseInt(options.captionOpacity * 100));
     $('#txtDetailsOpacity').val(parseInt(options.detailsOpacity * 100));
 

@@ -552,21 +552,43 @@
                                         </label>
                                     </li>
                                 </div>
-                                <div class="ttip" data-i18n-tooltip="optBelowPositionOffsetTooltip">
-                                    <li class="append field">
-                                        <label class="inline" for="txtBelowPositionOffset">
-                                            <div style="display:inline" data-i18n="optBelowPositionOffset"></div>
-                                            <input class="xnarrow text input" type="text" id="txtBelowPositionOffset"><span class="adjoined xnarrow" data-i18n="optOffsetUnitName"></span>
-                                        </label>
-                                    </li>
+                                <div id="divBelowOffsetDetails" style="display:flex">
+                                    <div class="ttip" data-i18n-tooltip="optBelowPositionOffsetTooltip">
+                                        <li class="append field">
+                                            <label class="inline" for="txtBelowPositionOffset">
+                                                <div style="display:inline" data-i18n="optBelowPositionOffset"></div>
+                                                <input class="xnarrow text input" type="text" id="txtBelowPositionOffset" style="width: 60px"><span class="adjoined xnarrow" data-i18n="optOffsetUnitName"></span>
+                                            </label>
+                                        </li>
+                                    </div>
+                                    <div class="ttip" data-i18n-tooltip="optBelowPositionOffsetUnitTooltip">
+                                        <li class="field" style="margin-left:10px">
+                                            <div style="display:inline" data-i18n="optBelowPositionOffsetUnit"></div>
+                                            <select id="selectBelowUnitType" class="picker">
+                                                <option value="pixel" data-i18n="optBelowPositionOffsetUnitPixel"></option>
+                                                <option value="percent" data-i18n="optBelowPositionOffsetUnitPercent"></option>
+                                            </select>
+                                        </li>
+                                    </div>
                                 </div>
-                                <div class="ttip" data-i18n-tooltip="optAbovePositionOffsetTooltip">
-                                    <li class="append field">
-                                        <label class="inline" for="txtAbovePositionOffset">
-                                            <div style="display:inline" data-i18n="optAbovePositionOffset"></div>
-                                            <input class="xnarrow text input" type="text" id="txtAbovePositionOffset"><span class="adjoined xnarrow" data-i18n="optOffsetUnitName"></span>
-                                        </label>
-                                    </li>
+                                <div id="divAboveOffsetDetails" style="display:flex">
+                                    <div class="ttip" data-i18n-tooltip="optAbovePositionOffsetTooltip">
+                                        <li class="append field" >
+                                            <label class="inline" for="txtAbovePositionOffset">
+                                                <div style="display:inline" data-i18n="optAbovePositionOffset"></div>
+                                                <input class="xnarrow text input" type="text" id="txtAbovePositionOffset" style="width: 60px"><span class="adjoined xnarrow" data-i18n="optOffsetUnitName"></span>
+                                            </label>
+                                        </li>
+                                    </div>
+                                    <div class="ttip" data-i18n-tooltip="optAbovePositionOffsetUnitTooltip">
+                                        <li class="field" style="margin-left:10px">
+                                            <div style="display:inline" data-i18n="optAbovePositionOffsetUnit"></div>
+                                            <select id="selectAboveUnitType" class="picker">
+                                                <option value="pixel" data-i18n="optAbovePositionOffsetUnitPixel"></option>
+                                                <option value="percent" data-i18n="optAbovePositionOffsetUnitPercent"></option>
+                                            </select>
+                                        </li>
+                                    </div>
                                 </div>
                                 <div class="ttip" data-i18n-tooltip="optDisplayImageLoaderTooltip">
                                     <li class="field">
