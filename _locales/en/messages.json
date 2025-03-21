@@ -303,6 +303,22 @@
     "message": "Set the volume to this percentage (0-100)",
     "description": "[options] Tooltip for audio volume option"
   },
+    "optEnableViewerShadow": {
+        "message": "Enable shadow behind image viewer",
+        "description": "[options] Enable shadow behind image viewer option"
+    },
+    "optEnableViewerShadowTooltip": {
+        "message": "Adds a small shadow behind the zoomed image viewer, making it more visible from the background",
+        "description": "[options] Tooltip for enable shadow behind caption and details option"
+    },
+    "optEnableCaptionDetailShadow": {
+        "message": "Enable shadow behind caption and details",
+        "description": "[options] Enable shadow behind caption and details option"
+    },
+    "optEnableCaptionDetailShadowTooltip": {
+        "message": "Adds a small shadow any captions or details, making it pop out more from the background",
+        "description": "[options] Tooltip for enable shadow behind caption and details option"
+    },
     "optEnableAmbilight": {
         "message": "Enable ambient light behind images",
         "description": "[options] Enable ambient light behind images option"

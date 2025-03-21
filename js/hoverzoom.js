@@ -1944,6 +1944,8 @@ var hoverZoom = {
             hz.hzViewer.empty();
 
             hz.hzViewer.css('visibility', 'visible');
+            if (!options.viewerShadowEnabled)
+                imgFullSizeCss.boxShadow = 'none';
 
             if (options.ambilightEnabled) {
 
@@ -2111,7 +2113,12 @@ var hoverZoom = {
             let caption = linkData.hoverZoomCaption;
             let miscellaneous = getTextSelected();
 
-            if (caption || miscellaneous) {
+            if (!options.captionDetailShadowEnabled) { //Toggles caption and detail box shadow off if option is disabled
+                hzCaptionCss.boxShadow = 'none';
+                hzMiscellaneousCss.boxShadow = 'none';
+                hzDetailCss.boxShadow = 'none';
+            }
+            if (caption || miscellaneous) { 
                 if (options.captionLocation === "above")
                     if (hzAbove.find('#hzCaptionMiscellaneous').length == 0)
                         hzCaptionMiscellaneous = $('<div/>', {id:'hzCaptionMiscellaneous'}).css(hzCaptionMiscellaneousCss).appendTo(hzAbove);

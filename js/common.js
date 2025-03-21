@@ -31,6 +31,8 @@ const factorySettings = {
     filterNSFW: false,
     enableGalleries: true,
     enableNoFocusMsg: false,
+    viewerShadowEnabled: true,
+    captionDetailShadowEnabled: true,
     ambilightEnabled: false,
     ambilightHaloSize: 0.1,
     ambilightBackgroundOpacity: 0.9,
