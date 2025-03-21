@@ -2775,17 +2775,24 @@ var hoverZoom = {
             if (!viewerLocked) {
                 let width = imgFullSize.width() || imgFullSize[0].width;
                 zoomFactorFit = width / srcDetails.naturalWidth;
+                if (options.lockImageZoomDefaultEnabled)
+                    zoomFactor = (options.lockImageZoomFactorEnabled) ? parseInt(options.zoomFactor) : 1;
+                else
+                    zoomFactor = zoomFactorFit || parseInt(options.zoomFactor);
                 lockViewer();
             }
-            if (zoomFactor > 1.1 * zoomFactorFit || zoomFactor < 0.9 * zoomFactorFit) {
-                // restore zoom factor such as img or video fits screen size
-                zoomFactor = zoomFactorFit || parseInt(options.zoomFactor);
-            } else {
-                // zoom factor = 100%
-                zoomFactor = 1;
+            else {
+                if (zoomFactor !== zoomFactorFit) {
+                    // Makes image fits within screen
+                    zoomFactor = zoomFactorFit || parseInt(options.zoomFactor);
+                } else {
+                    // Makes image zoom to default or 100%
+                    zoomFactor = (options.lockImageZoomFactorEnabled) ? parseInt(options.zoomFactor) : 1;
+                }
+                
+                posViewer();
+                panLockedViewer(event);
             }
-            posViewer();
-            panLockedViewer(event);
         }
 
         function documentOnKeyDown(event) {

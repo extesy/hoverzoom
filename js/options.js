@@ -40,6 +40,8 @@ async function saveOptions(exportSettings = false) {
     options.audioVolume = $('#txtAudioVolume')[0].value / 100;
     options.mouseClickHoldTime = $('#txtMouseClickHoldTime')[0].value;
     options.mouseUnderlap = $('#chkMouseUnderlap')[0].checked;
+    options.lockImageZoomFactorEnabled = $('#chkLockImageZoomFactorEnabled')[0].checked;
+    options.lockImageZoomDefaultEnabled = $('#chkLockImageZoomDefaultEnabled')[0].checked;
     options.pageActionEnabled = $('#chkPageActionEnabled')[0].checked;
     options.showWhileLoading = $('#chkShowWhileLoading')[0].checked;
     options.showHighRes = $('#chkShowHighRes')[0].checked;
@@ -185,6 +187,8 @@ async function restoreOptions(optionsFromFactorySettings) {
     $('#rngMouseClickHoldTime').val(parseInt(options.mouseClickHoldTime));
     $('#txtMouseClickHoldTime').val(parseInt(options.mouseClickHoldTime));
     $('#chkMouseUnderlap').trigger(options.mouseUnderlap ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkLockImageZoomFactorEnabled').trigger(options.lockImageZoomFactorEnabled ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkLockImageZoomDefaultEnabled').trigger(options.lockImageZoomDefaultEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#chkPageActionEnabled').trigger(options.pageActionEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#chkShowWhileLoading').trigger(options.showWhileLoading ? 'gumby.check' : 'gumby.uncheck');
     $('#chkShowHighRes').trigger(options.showHighRes ? 'gumby.check' : 'gumby.uncheck');
