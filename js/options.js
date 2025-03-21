@@ -50,6 +50,8 @@ async function saveOptions(exportSettings = false) {
     options.fadeDuration = getMilliseconds($('#txtFadeDuration'));
     options.hideMouseCursor = $('#chkHideMouseCursor')[0].checked;
     options.hideMouseCursorDelay = getMilliseconds($('#txtHideMouseCursor'));
+    options.viewerShadowEnabled = $('#chkViewerShadowEnabled')[0].checked;
+    options.captionDetailShadowEnabled = $('#chkCaptionDetailShadowEnabled')[0].checked;
     options.ambilightEnabled = $('#chkAmbilightEnabled')[0].checked;
     options.ambilightHaloSize = $('#txtAmbilightHaloSize')[0].value / 100;
     options.ambilightBackgroundOpacity = $('#txtAmbilightBackgroundOpacity')[0].value / 100;
@@ -195,6 +197,8 @@ async function restoreOptions(optionsFromFactorySettings) {
     $('#txtFadeDuration').val((options.fadeDuration || 0) / 1000);
     $('#chkHideMouseCursor').trigger(options.hideMouseCursor ? 'gumby.check' : 'gumby.uncheck');
     $('#txtHideMouseCursor').val((options.hideMouseCursorDelay || 0) / 1000);
+    $('#chkViewerShadowEnabled').trigger(options.viewerShadowEnabled ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkCaptionDetailShadowEnabled').trigger(options.captionDetailShadowEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAmbilightEnabled').trigger(options.ambilightEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#rngAmbilightHaloSize').val(parseInt(options.ambilightHaloSize * 100));
     $('#txtAmbilightHaloSize').val(parseInt(options.ambilightHaloSize * 100));
