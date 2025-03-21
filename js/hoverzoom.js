@@ -2781,8 +2781,8 @@ var hoverZoom = {
                 // restore zoom factor such as img or video fits screen size
                 zoomFactor = zoomFactorFit || parseInt(options.zoomFactor);
             } else {
-                // zoom factor = default
-                zoomFactor = parseInt(options.zoomFactor);
+                // zoom factor = 100%
+                zoomFactor = 1;
             }
             posViewer();
             panLockedViewer(event);
