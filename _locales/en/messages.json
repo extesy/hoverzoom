@@ -628,7 +628,7 @@
         "description": "[options] Below offset option"
     },
     "optBelowPositionOffsetTooltip": {
-        "message": "Amount to vertically offset the text in the below position",
+        "message": "Amount to vertically offset the text in the below position (positive values move text down, negative values move text up)",
         "description": "[options] Tooltip for below position offset"
     },
     "optAbovePositionOffset": {
@@ -636,7 +636,7 @@
         "description": "[options] Above offset option"
     },
     "optAbovePositionOffsetTooltip": {
-        "message": "Amount to vertically offset the text in the above position",
+        "message": "Amount to vertically offset the text in the above position (positive values move text up, negative values move text down)",
         "description": "[options] Tooltip for above position offset"
     },
     "optOffsetUnitName": {
