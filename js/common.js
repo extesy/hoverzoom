@@ -197,6 +197,7 @@ function loadKeys(sel) {
     for (var i = 65; i < 91; i++) {
         $('<option value="' + i + '">&#' + i + ';</option>').appendTo(sel);
     }
+    $('<option value="220">\\</option>').appendTo(sel);
     for (var i = 112; i < 124; i++) {
         $('<option value="' + i + '">F' + (i - 111) + '</option>').appendTo(sel);
     }
