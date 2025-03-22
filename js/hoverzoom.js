@@ -2790,11 +2790,11 @@ var hoverZoom = {
             const zoomFactorDefault = parseInt(options.zoomFactor);
             const useZoomFactor = options.lockImageZoomFactorEnabled;
             if (!viewerLocked) {
-                const zoomDefault = options.lockImageZoomDefaultEnabled;
+                const zoomDefaultEnabled = options.lockImageZoomDefaultEnabled;
 
                 let width = imgFullSize.width() || imgFullSize[0].width;
                 zoomFactorFit = width / srcDetails.naturalWidth;
-                zoomFactor = (zoomDefault && useZoomFactor) ? zoomFactorDefault : zoomFactorFit || zoomFactorDefault;
+                zoomFactor = (zoomDefaultEnabled && useZoomFactor) ? zoomFactorDefault : zoomFactorFit || zoomFactorDefault;
                 lockViewer();
             }
             else {
