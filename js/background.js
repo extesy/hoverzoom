@@ -222,7 +222,7 @@ function showPageAction(tab) {
     if (!options.extensionEnabled || isExcludedSite(tab.url)) {
         chrome.action.setIcon({tabId: tab.id, path: '../images/icon19d.png'});
     } else {
-        chrome.action.setIcon({tabId: tab.id, path: '../images/icon19.png'});
+        chrome.action.setIcon({tabId: tab.id, path: '../images/icon19e.png'});
     }
  }
 
