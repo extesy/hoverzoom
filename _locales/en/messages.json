@@ -212,12 +212,12 @@
         "description": "[options] Tooltip for locked images start zoomed in option"
     },
     "optPageActionEnabled": {
-        "message": "Show icon in address bar",
-        "description": "[options] Show icon in address bar option"
+        "message": "Change toolbar icon when images can be zoomed",
+        "description": "[options] Change toolbar icon option"
     },
     "optPageActionEnabledTooltip": {
-        "message": "Only when images can be zoomed",
-        "description": "[options] Tooltip for show icon in address bar option"
+        "message": "Toolbar icon changes color when images can be zoomed",
+        "description": "[options] Tooltip for change toolbar icons option"
     },
     "optShowWhileLoading": {
         "message": "Show zoomed pictures while loading",
