@@ -2772,22 +2772,21 @@ var hoverZoom = {
         }
 
         function lockImageKey(event) {
+            const zoomFactorDefault = parseInt(options.zoomFactor);
+            const useZoomFactor = options.lockImageZoomFactorEnabled;
             if (!viewerLocked) {
+                const zoomDefault = options.lockImageZoomDefaultEnabled;
+
                 let width = imgFullSize.width() || imgFullSize[0].width;
                 zoomFactorFit = width / srcDetails.naturalWidth;
-                if (options.lockImageZoomDefaultEnabled)
-                    zoomFactor = (options.lockImageZoomFactorEnabled) ? parseInt(options.zoomFactor) : 1;
-                else
-                    zoomFactor = zoomFactorFit || parseInt(options.zoomFactor);
+                zoomFactor = (zoomDefault && useZoomFactor) ? zoomFactorDefault : zoomFactorFit || zoomFactorDefault;
                 lockViewer();
             }
             else {
                 if (zoomFactor !== zoomFactorFit) {
-                    // Makes image fits within screen
-                    zoomFactor = zoomFactorFit || parseInt(options.zoomFactor);
+                    zoomFactor = zoomFactorFit || zoomFactorDefault; // Makes image fits within screen
                 } else {
-                    // Makes image zoom to default or 100%
-                    zoomFactor = (options.lockImageZoomFactorEnabled) ? parseInt(options.zoomFactor) : 1;
+                    zoomFactor = (useZoomFactor) ? zoomFactorDefault : 1; // Makes image zoom to default or 100%
                 }
                 
                 posViewer();
