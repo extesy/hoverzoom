@@ -434,15 +434,23 @@ var hoverZoom = {
                 }
                 if (hzAbove) {
                     hzAbove.css('max-width', imgFullSize[0].clientWidth);
-                    hzAbove.css('top', options.abovePositionOffset + '%');
-                    if (options.abovePositionOffset != 0)
-                        hzAbove.css('position', 'absolute');
+                    if (options.abovePositionOffsetUnit === 'percent') {
+                        hzAbove.css('top', options.abovePositionOffset + '%');
+                        if (options.abovePositionOffset != 0)
+                            hzAbove.css('position', 'absolute');
+                    } else {
+                        hzAbove.css('margin-bottom', options.abovePositionOffset + 'px');
+                    }
                 }
                 if (hzBelow) {
                     hzBelow.css('max-width', imgFullSize[0].clientWidth);
-                    hzBelow.css('bottom', options.belowPositionOffset + '%');
-                    if (options.belowPositionOffset != 0)
-                        hzBelow.css('position', 'absolute');
+                    if (options.belowPositionOffsetUnit === 'percent') {
+                        hzBelow.css('bottom', options.belowPositionOffset + '%');
+                        if (options.belowPositionOffset != 0)
+                            hzBelow.css('position', 'absolute');
+                    } else {
+                        hzBelow.css('margin-top', options.belowPositionOffset + 'px');
+                    }
                 }
 
                 // do not display caption nor details if img is too small, or if full zoom key is pressed
@@ -1944,6 +1952,8 @@ var hoverZoom = {
             hz.hzViewer.empty();
 
             hz.hzViewer.css('visibility', 'visible');
+            if (!options.viewerShadowEnabled)
+                imgFullSizeCss.boxShadow = 'none';
 
             if (options.ambilightEnabled) {
 
@@ -2111,7 +2121,12 @@ var hoverZoom = {
             let caption = linkData.hoverZoomCaption;
             let miscellaneous = getTextSelected();
 
-            if (caption || miscellaneous) {
+            if (!options.captionDetailShadowEnabled) { //Toggles caption and detail box shadow off if option is disabled
+                hzCaptionCss.boxShadow = 'none';
+                hzMiscellaneousCss.boxShadow = 'none';
+                hzDetailCss.boxShadow = 'none';
+            }
+            if (caption || miscellaneous) { 
                 if (options.captionLocation === "above")
                     if (hzAbove.find('#hzCaptionMiscellaneous').length == 0)
                         hzCaptionMiscellaneous = $('<div/>', {id:'hzCaptionMiscellaneous'}).css(hzCaptionMiscellaneousCss).appendTo(hzAbove);

@@ -319,6 +319,22 @@
     "message": "Set the volume to this percentage (0-100)",
     "description": "[options] Tooltip for audio volume option"
   },
+    "optEnableViewerShadow": {
+        "message": "Enable shadow behind image viewer",
+        "description": "[options] Enable shadow behind image viewer option"
+    },
+    "optEnableViewerShadowTooltip": {
+        "message": "Adds a small shadow behind the zoomed image viewer, making it more visible from the background",
+        "description": "[options] Tooltip for enable shadow behind caption and details option"
+    },
+    "optEnableCaptionDetailShadow": {
+        "message": "Enable shadow behind caption and details",
+        "description": "[options] Enable shadow behind caption and details option"
+    },
+    "optEnableCaptionDetailShadowTooltip": {
+        "message": "Adds a small shadow any captions or details, making it pop out more from the background",
+        "description": "[options] Tooltip for enable shadow behind caption and details option"
+    },
     "optEnableAmbilight": {
         "message": "Enable ambient light behind images",
         "description": "[options] Enable ambient light behind images option"
@@ -644,7 +660,7 @@
         "description": "[options] Below offset option"
     },
     "optBelowPositionOffsetTooltip": {
-        "message": "Amount to offset text in the below position",
+        "message": "Amount to vertically offset the text in the below position (positive values move text down, negative values move text up)",
         "description": "[options] Tooltip for below position offset"
     },
     "optAbovePositionOffset": {
@@ -652,12 +668,44 @@
         "description": "[options] Above offset option"
     },
     "optAbovePositionOffsetTooltip": {
-        "message": "Amount to offset text in the above position",
+        "message": "Amount to vertically offset the text in the above position (positive values move text up, negative values move text down)",
         "description": "[options] Tooltip for above position offset"
     },
     "optOffsetUnitName": {
-        "message": "%",
+        "message": "px/%",
         "description": "[options] Unit name (pixel) for offset amount"
+    },
+    "optBelowPositionOffsetUnit": {
+        "message": "Unit Type:",
+        "description": "[options] Set unit type for below offset"
+    },
+    "optBelowPositionOffsetUnitTooltip": {
+        "message": "Choose between pixel or percentage based offset",
+        "description": "[options] Tooltip for setting unit for below position offset"
+    },
+    "optBelowPositionOffsetUnitPixel": {
+        "message": "px",
+        "description": "[options] unit type pixel"
+    },
+    "optBelowPositionOffsetUnitPercent": {
+        "message": "%",
+        "description": "[options] Unit type percent"
+    },
+    "optAbovePositionOffsetUnit": {
+        "message": "Unit Type:",
+        "description": "[options] Set unit type for above offset"
+    },
+    "optAbovePositionOffsetUnitTooltip": {
+        "message": "Choose between pixel or percentage based offset",
+        "description": "[options] Tooltip for setting unit for above position offset"
+    },
+    "optAbovePositionOffsetUnitPixel": {
+        "message": "px",
+        "description": "[options] unit type pixel"
+    },
+    "optAbovePositionOffsetUnitPercent": {
+        "message": "%",
+        "description": "[options] Unit type percent"
     },
     "optDisplayImageLoaderTooltip": {
         "message": "Display a little spinner as image is loading (green:loading, red:error). Red spinner is optional.",
