@@ -215,29 +215,6 @@ async function onMessage(message, sender, sendResponse) {
     }
 }
 
-function getImageData() { //Creates image data for icon and turns it purple
-    let canvas = document.createElement("canvas");
-    let ctx = canvas.getContext("2d");
-
-    // Create icon image
-    const icon = new Image(19,19);
-    icon.src = "https://raw.githubusercontent.com/extesy/hoverzoom/refs/heads/master/images/icon19.png";
-    
-    ctx.drawImage(icon,0,0);
-    const imageData = ctx.getImageData(0, 0, 19, 19);
-    const data = imageData.data;
-
-    // turn icon bright purple
-    for (let i = 0; i < data.length; i += 4) {
-      data[i] = data[i] + 130; // red
-      data[i + 1] = data[i + 1] + 50 ; // green
-      data[i + 2] = data[i + 2] + 150; // blue
-    }
-    ctx.putImageData(imageData, 0, 0);
-  
-    return imageData;
-}
-
 function showPageAction(tab) {
     if (!tab) {
         return;
@@ -245,7 +222,7 @@ function showPageAction(tab) {
     if (!options.extensionEnabled || isExcludedSite(tab.url)) {
         chrome.action.setIcon({tabId: tab.id, path: '../images/icon19d.png'});
     } else {
-        chrome.action.setIcon({tabId: tab.id, imageData: getImageData()});
+        chrome.action.setIcon({tabId: tab.id, path: '../images/icon19e.png'});
     }
  }
 
