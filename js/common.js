@@ -12,6 +12,8 @@ const factorySettings = {
     playAudio: false,
     audioVolume: 0.25,
     mouseClickHoldTime: 250,
+    lockImageZoomFactorEnabled: true,
+    lockImageZoomDefaultEnabled: false,
     pageActionEnabled: true,
     showHighRes: true,
     galleriesMouseWheel: true,
