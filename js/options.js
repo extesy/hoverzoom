@@ -138,6 +138,7 @@ async function saveOptions(exportSettings = false) {
     options.captionOpacity = $('#txtCaptionOpacity')[0].value / 100;
     options.detailsOpacity = $('#txtDetailsOpacity')[0].value / 100;
     options.displayImageLoader = $('#chkDisplayImageLoader')[0].checked;
+    options.copyFileNameWhenSaving = $('#chkCopyFileNameWhenSaving')[0].checked;
     options.downloadFolder = $('#txtDownloadFolder')[0].value;
     options.addDownloadOrigin = $('#chkAddDownloadOrigin')[0].checked;
     options.addDownloadSize = $('#chkAddDownloadSize')[0].checked;
@@ -309,6 +310,7 @@ async function restoreOptions(optionsFromFactorySettings) {
     $('#chkEnableGalleries').trigger(options.enableGalleries ? 'gumby.check' : 'gumby.uncheck');
     $('#chkEnableNoFocusMsg').trigger(options.enableNoFocusMsg ? 'gumby.check' : 'gumby.uncheck');
     $('#txtPicturesOpacity').val(parseInt(options.picturesOpacity * 100));
+    $('#chkCopyFileNameWhenSaving').trigger(options.copyFileNameWhenSaving ? 'gumby.check' : 'gumby.uncheck');
     $('#chkDisplayImageLoader').trigger(options.displayImageLoader ? 'gumby.check' : 'gumby.uncheck');
     $('#chkEnlargementThresholdEnabled').trigger(options.enlargementThresholdEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#selectEnlargementThreshold').val(options.enlargementThreshold);
