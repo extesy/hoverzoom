@@ -2109,9 +2109,8 @@ var hoverZoom = {
                     // Allow clicking on locked image.
                     hz.hzViewer.css('pointer-events', 'auto');
 
-                    // Recheck image size to fix zoom
-                    if (zoomDefaultEnabled)
-                        posViewer();
+                    // Recheck image size to fix image zoom and position
+                    posViewer();
                 };
             }, options.showWhileLoading ? 0 : 10)
 
