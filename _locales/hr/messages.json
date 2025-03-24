@@ -707,6 +707,14 @@
         "message": "%",
         "description": "[options] Unit type percent"
     },
+    "optUseClipboardNameWhenSavingTooltip": {
+        "message": "Use the text in the clipboard as the file name when saving an image",
+        "description": "[options] Tooltip for use clipboard text as file name option"
+    },
+    "optUseClipboardNameWhenSaving": {
+        "message": "Use clipboard text as file name",
+        "description": "[options] Use clipboard text as file name option"
+    },
     "optDisplayImageLoaderTooltip": {
         "message": "Prikaži animaciju dok se slika učitava (zeleno:učitavanje, crveno:pogreška). Crvena animacija je opcionalna.",
         "description": "[options] Tooltip for display image loader option"
