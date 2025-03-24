@@ -707,6 +707,14 @@
         "message": "%",
         "description": "[options] Unit type percent"
     },
+    "optUseClipboardNameWhenSavingTooltip": {
+        "message": "Use the text in the clipboard as the file name when saving an image",
+        "description": "[options] Tooltip for use clipboard text as file name option"
+    },
+    "optUseClipboardNameWhenSaving": {
+        "message": "Use clipboard text as file name",
+        "description": "[options] Use clipboard text as file name option"
+    },
     "optDisplayImageLoaderTooltip": {
         "message": "在加载图像时显示一个旋转器（绿色：正在加载，红色：错误）。红色旋转器是可选的。",
         "description": "[options] Tooltip for display image loader option"
