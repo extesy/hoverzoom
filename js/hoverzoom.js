@@ -2097,18 +2097,19 @@ var hoverZoom = {
                     const zoomFactorDefault = parseInt(options.zoomFactor);
                     const useZoomFactor = options.lockImageZoomFactorEnabled;
                     const zoomDefaultEnabled = options.lockImageZoomDefaultEnabled;
-                        let width = imgFullSize.width() || imgFullSize[0].width;
-                        zoomFactorFit = width / srcDetails.naturalWidth;
-                        if (zoomDefaultEnabled) {
-                            zoomFactor = (useZoomFactor) ? zoomFactorDefault : 1;
-                        } else {
-                            zoomFactor = zoomFactorFit;
-                        }
-                        viewerLocked = true;
-                        // Allow clicking on locked image.
-                        hz.hzViewer.css('pointer-events', 'auto');
-                        // Correct image size for when a locked image starts at full size
-                        posViewer();
+                    let width = imgFullSize.width() || imgFullSize[0].width;
+                    zoomFactorFit = width / srcDetails.naturalWidth;
+                    
+                    if (zoomDefaultEnabled) {
+                        zoomFactor = (useZoomFactor) ? zoomFactorDefault : 1;
+                    } else {
+                        zoomFactor = zoomFactorFit;
+                    }
+                    viewerLocked = true;
+                    // Allow clicking on locked image.
+                    hz.hzViewer.css('pointer-events', 'auto');
+                    // Correct image size for when a locked image starts at full size
+                    posViewer();
                     };
                 }, options.showWhileLoading ? 0 : 10)
 
