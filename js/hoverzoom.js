@@ -2107,7 +2107,7 @@ var hoverZoom = {
                         viewerLocked = true;
                         // Allow clicking on locked image.
                         hz.hzViewer.css('pointer-events', 'auto');
-                        // Recheck image size for when a locked image starts at full size
+                        // Correct image size for when a locked image starts at full size
                         posViewer();
                     };
                 }, options.showWhileLoading ? 0 : 10)
