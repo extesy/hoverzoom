@@ -53,7 +53,7 @@ const factorySettings = {
     abovePositionOffsetUnit: 'percent',
     captionOpacity: 1,
     detailsOpacity: 1,
-    copyFileNameWhenSaving: false,
+    useClipboardNameWhenSaving: false,
     displayImageLoader: false,
     enlargementThresholdEnabled: true,
     enlargementThreshold: 2,

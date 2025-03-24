@@ -707,13 +707,13 @@
         "message": "%",
         "description": "[options] Unit type percent"
     },
-    "optCopyFileNameWhenSavingTooltip": {
-        "message": "Copy the file name to the clipboard when saving an image",
-        "description": "[options] Tooltip for copy filename when saving option"
+    "optUseClipboardNameWhenSavingTooltip": {
+        "message": "Use text in clipboard as file name when saving an image",
+        "description": "[options] Tooltip for use text in clipboard as file name option"
     },
-    "optCopyFileNameWhenSaving": {
-        "message": "Copy filename when saving",
-        "description": "[options] Copy filename when saving option"
+    "optUseClipboardNameWhenSaving": {
+        "message": "Use text in clipboard as file name",
+        "description": "[options] Use text in clipboard as file name option"
     },
     "optDisplayImageLoaderTooltip": {
         "message": "Display a little spinner as image is loading (green:loading, red:error). Red spinner is optional.",
