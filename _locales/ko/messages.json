@@ -707,6 +707,14 @@
         "message": "%",
         "description": "[options] Unit type percent"
     },
+    "optUseClipboardNameWhenSavingTooltip": {
+        "message": "Use the text in the clipboard as the file name when saving an image",
+        "description": "[options] Tooltip for use clipboard text as file name option"
+    },
+    "optUseClipboardNameWhenSaving": {
+        "message": "Use clipboard text as file name",
+        "description": "[options] Use clipboard text as file name option"
+    },
     "optDisplayImageLoaderTooltip": {
         "message": "사진을 불러오는 동안 로딩 아이콘을 표시합니다(초록: 로딩, 빨강: 오류). 빨간색 로딩 아이콘을 띄울지는 선택할 수 있습니다.",
         "description": "[options] Tooltip for display image loader option"
