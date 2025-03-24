@@ -2101,7 +2101,7 @@ var hoverZoom = {
                     zoomFactorFit = width / srcDetails.naturalWidth;
 
                     if (zoomDefaultEnabled) {
-                        zoomFactor = (useZoomFactor) ? zoomFactorDefault : 1;
+                        zoomFactor = useZoomFactor ? zoomFactorDefault : 1;
                     } else {
                         zoomFactor = zoomFactorFit;
                     }
@@ -2812,7 +2812,7 @@ var hoverZoom = {
                 let width = imgFullSize.width() || imgFullSize[0].width;
                 zoomFactorFit = width / srcDetails.naturalWidth;
                 if (zoomDefaultEnabled) {
-                    zoomFactor = (useZoomFactor) ? zoomFactorDefault : 1;
+                    zoomFactor = useZoomFactor ? zoomFactorDefault : 1;
                 } else {
                     zoomFactor = zoomFactorFit;
                 }
@@ -2822,7 +2822,7 @@ var hoverZoom = {
                 if (zoomFactor !== zoomFactorFit) {
                     zoomFactor = zoomFactorFit || zoomFactorDefault; // Makes image fits within screen
                 } else {
-                    zoomFactor = (useZoomFactor) ? zoomFactorDefault : 1; // Makes image zoom to default or 100%
+                    zoomFactor = useZoomFactor ? zoomFactorDefault : 1; // Makes image zoom to default or 100%
                 }
                 
                 posViewer();
