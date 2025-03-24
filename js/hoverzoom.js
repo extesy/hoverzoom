@@ -3460,6 +3460,9 @@ var hoverZoom = {
                 cLog('filename: ' + filename);
             }
 
+            if (options.useClipboardNameWhenSaving)
+                filename = navigator.clipboard.readText(); // Copy the clipboard to the filename
+
             // pixiv.net: use "blob" workaround as regular download always fails
             if (url.indexOf('//i.pximg.net/') !== -1) {
                 chrome.runtime.sendMessage({action: 'downloadFileBlob',
