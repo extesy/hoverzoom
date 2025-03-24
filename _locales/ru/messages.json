@@ -412,7 +412,7 @@
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optAutoLockImages": {
-        "message": "Automatically lock images",
+        "message": "Автоматическая блокировка изображений",
         "description": "[options] Automatically lock images option"
     },
     "optAutoLockImagesTooltip": {
@@ -480,15 +480,15 @@
         "description": "[options] Short form of \"second\" for delay duration"
     },
     "optMouseClickHoldTime": {
-        "message": "Mouse click hold time:",
+        "message": "Время удержания кнопки мыши:",
         "description": "[options] Mouse click hold time option"
     },
     "optMouseClickHoldTimeTooltip": {
-        "message": "Amount of time required to hold a mouse click action key before the hold action is triggered",
+        "message": "Количество времени, необходимое для удержания клавиши мыши до срабатывания действия",
         "description": "[options] Tooltip for mouse click hold time option"
     },
     "optClickHoldTimeUnit": {
-        "message": "milliseconds",
+        "message": "миллисекунды",
         "description": "[options] Unit name (pixel) for hold time amount"
     },
     "optSectionZoomSpeed": {
@@ -620,7 +620,7 @@
         "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
-        "message": "Хозяин",
+        "message": "Хост",
         "description": "[options] Show Host Detail"
     },
     "optShowDetailFilename": {
@@ -676,11 +676,11 @@
         "description": "[options] Unit name (pixel) for offset amount"
     },
     "optBelowPositionOffsetUnit": {
-        "message": "Unit Type:",
+        "message": "Тип единицы:",
         "description": "[options] Set unit type for below offset"
     },
     "optBelowPositionOffsetUnitTooltip": {
-        "message": "Choose between pixel or percentage based offset",
+        "message": "Выберите между пикселями или смещением в процентах",
         "description": "[options] Tooltip for setting unit for below position offset"
     },
     "optBelowPositionOffsetUnitPixel": {
@@ -692,11 +692,11 @@
         "description": "[options] Unit type percent"
     },
     "optAbovePositionOffsetUnit": {
-        "message": "Unit Type:",
+        "message": "Тип единицы:",
         "description": "[options] Set unit type for above offset"
     },
     "optAbovePositionOffsetUnitTooltip": {
-        "message": "Choose between pixel or percentage based offset",
+        "message": "Выберите между пикселями или смещением в процентах",
         "description": "[options] Tooltip for setting unit for above position offset"
     },
     "optAbovePositionOffsetUnitPixel": {
@@ -792,15 +792,15 @@
         "description": "[options] Add download caption option"
     },
     "optDownloadReplaceOriginalFilenameTooltip": {
-        "message": "Replace original filename or remove it if no value supplied (extension is preserved)",
+        "message": "Заменить оригинальное название файла или удалить его, если название не указано (расширение сохраняется)",
         "description": "[options] Tooltip for replace original filename when downloading option"
     },
     "optDownloadReplaceOriginalFilenamePlaceholder": {
-        "message": "Example: fullsize_image",
+        "message": "Пример: fullsize_image",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadReplaceOriginalFilename": {
-        "message": "On save, replace original filename by:",
+        "message": "При сохранении, заменить исходное название файла на:",
         "description": "[options] Replace original filename when downloading option"
     },
     "optResetAllBannedImagesTooltip": {

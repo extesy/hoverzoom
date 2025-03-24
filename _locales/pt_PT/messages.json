@@ -196,27 +196,27 @@
         "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optLockImageZoomFactorEnabled": {
-        "message": "Use zoom factor for lock image",
+        "message": "Utilizar o fator de zoom para bloquear a imagem",
         "description": "[options] Use zoom factor for lock image option"
     },
     "optLockImageZoomFactorEnabledTooltip": {
-        "message": "Pressing the 'Lock Image' action key twice will make the image zoom to 100% by default. Enabling this instead will make it zoom by the image factor amount",
+        "message": "Se pressionar a tecla de atalho “Bloquear imagem” duas vezes, a imagem será ampliada para 100% por predefinição. Se ativar esta opção, o zoom será feito de acordo com o fator de imagem",
         "description": "[options] Tooltip for use zoom factor for lock image option"
     },
     "optLockImageZoomDefaultEnabled": {
-        "message": "Locked images start zoomed in",
+        "message": "As imagens bloqueadas começam com zoom em",
         "description": "[options] Locked images start zoomed in option"
     },
     "optLockImageZoomDefaultEnabledTooltip": {
-        "message": "Pressing the 'Lock Image' action key twice will make the image zoom by default. Enabling this instead will make it zoom by on first press",
+        "message": "Se pressionar a tecla de atalho “Bloquear imagem” duas vezes, a imagem será ampliada por predefinição. Se ativar esta opção, fará com que o zoom seja feito à primeira vez que pressionar",
         "description": "[options] Tooltip for locked images start zoomed in option"
     },
     "optPageActionEnabled": {
-        "message": "Change toolbar icon when images can be zoomed",
+        "message": "Alterar o ícone da barra de ferramentas quando as imagens puderem ser ampliadas",
         "description": "[options] Change toolbar icon option"
     },
     "optPageActionEnabledTooltip": {
-        "message": "Toolbar icon changes color when images can be zoomed",
+        "message": "O ícone da barra de ferramentas mudará de cor quando as imagens puderem ser ampliadas",
         "description": "[options] Tooltip for change toolbar icons option"
     },
     "optShowWhileLoading": {
@@ -320,7 +320,7 @@
         "description": "[options] Tooltip for audio volume option"
     },
     "optEnableViewerShadow": {
-        "message": "Enable shadow behind image viewer",
+        "message": "Ativar a sombra por trás do visualizador de imagens",
         "description": "[options] Enable shadow behind image viewer option"
     },
     "optEnableViewerShadowTooltip": {
@@ -328,7 +328,7 @@
         "description": "[options] Tooltip for enable shadow behind caption and details option"
     },
     "optEnableCaptionDetailShadow": {
-        "message": "Enable shadow behind caption and details",
+        "message": "Ativar a sombra por trás da legenda e dos detalhes",
         "description": "[options] Enable shadow behind caption and details option"
     },
     "optEnableCaptionDetailShadowTooltip": {
