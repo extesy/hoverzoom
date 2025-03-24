@@ -2099,7 +2099,7 @@ var hoverZoom = {
                     const zoomDefaultEnabled = options.lockImageZoomDefaultEnabled;
                     let width = imgFullSize.width() || imgFullSize[0].width;
                     zoomFactorFit = width / srcDetails.naturalWidth;
-                    
+
                     if (zoomDefaultEnabled) {
                         zoomFactor = (useZoomFactor) ? zoomFactorDefault : 1;
                     } else {
@@ -2108,10 +2108,12 @@ var hoverZoom = {
                     viewerLocked = true;
                     // Allow clicking on locked image.
                     hz.hzViewer.css('pointer-events', 'auto');
-                    // Correct image size for when a locked image starts at full size
-                    posViewer();
-                    };
-                }, options.showWhileLoading ? 0 : 10)
+
+                    // Recheck image size to fix zoom
+                    if (zoomDefaultEnabled)
+                        posViewer();
+                };
+            }, options.showWhileLoading ? 0 : 10)
 
             if (options.addToHistory && !chrome.extension.inIncognitoContext) {
                 chrome.runtime.sendMessage({action:'addUrlToHistory', url:srcDetails.url});
