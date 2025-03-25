@@ -1938,10 +1938,6 @@ var hoverZoom = {
         function displayFullSizeImage() {
             cLog('displayFullSizeImage');
 
-            // if autoLockImages option is checked
-            if (options.autoLockImages)
-                viewerLocked = true;
-
             // check focus
             let focus = document.hasFocus();
 
@@ -2094,8 +2090,29 @@ var hoverZoom = {
                 hz.hzViewer.hide().fadeTo(options.fadeDuration, options.picturesOpacity);
             }
 
-            // The image size is not yet available in the onload so I have to delay the positioning
-            setTimeout(posViewer, options.showWhileLoading ? 0 : 10);
+            // The image size is not yet available in the onload so I have to delay the positioning 
+            setTimeout(() => {
+                posViewer();
+                if (options.autoLockImages) {
+                    const zoomFactorDefault = parseInt(options.zoomFactor);
+                    const useZoomFactor = options.lockImageZoomFactorEnabled;
+                    const zoomDefaultEnabled = options.lockImageZoomDefaultEnabled;
+                    let width = imgFullSize.width() || imgFullSize[0].width;
+                    zoomFactorFit = width / srcDetails.naturalWidth;
+
+                    if (zoomDefaultEnabled) {
+                        zoomFactor = useZoomFactor ? zoomFactorDefault : 1;
+                    } else {
+                        zoomFactor = zoomFactorFit;
+                    }
+                    viewerLocked = true;
+                    // Allow clicking on locked image.
+                    hz.hzViewer.css('pointer-events', 'auto');
+
+                    // Recheck image size to fix image zoom and position
+                    posViewer();
+                };
+            }, options.showWhileLoading ? 0 : 10)
 
             if (options.addToHistory && !chrome.extension.inIncognitoContext) {
                 chrome.runtime.sendMessage({action:'addUrlToHistory', url:srcDetails.url});
@@ -2794,14 +2811,18 @@ var hoverZoom = {
 
                 let width = imgFullSize.width() || imgFullSize[0].width;
                 zoomFactorFit = width / srcDetails.naturalWidth;
-                zoomFactor = (zoomDefaultEnabled && useZoomFactor) ? zoomFactorDefault : zoomFactorFit || zoomFactorDefault;
+                if (zoomDefaultEnabled) {
+                    zoomFactor = useZoomFactor ? zoomFactorDefault : 1;
+                } else {
+                    zoomFactor = zoomFactorFit;
+                }
                 lockViewer();
             }
             else {
                 if (zoomFactor !== zoomFactorFit) {
                     zoomFactor = zoomFactorFit || zoomFactorDefault; // Makes image fits within screen
                 } else {
-                    zoomFactor = (useZoomFactor) ? zoomFactorDefault : 1; // Makes image zoom to default or 100%
+                    zoomFactor = useZoomFactor ? zoomFactorDefault : 1; // Makes image zoom to default or 100%
                 }
                 
                 posViewer();
