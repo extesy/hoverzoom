@@ -50,8 +50,9 @@ async function ajaxRequest(request, sendResponse) {
                      */
                     case 'DOWNLOAD':
                         const arrayBuffer = await fetchResponse.arrayBuffer();
-                        const blobBin = new Blob([arrayBuffer], {type: 'application/octet-stream'});
-                        const blobUrl = URL.createObjectURL(blobBin);
+                        const contentType = fetchResponse.headers.get('content-type') || 'application/octet-stream';
+                        const blobBin = new Blob([arrayBuffer], { type: contentType });
+                        const blobUrl = await blobToDataURI(blobBin);
                         downloadFile(blobUrl, filename, conflictAction, sendResponse);
                         break;
                     case 'URL':
@@ -66,8 +67,23 @@ async function ajaxRequest(request, sendResponse) {
             sendResponse(null);
         }
     } catch (error) {
+        cLog(error);
         sendResponse(null);
     }
+}
+
+function blobToDataURI(blob) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            resolve(reader.result); // reader.result contains the Data URI
+        };
+        reader.onerror = (error) => {
+            reject(error);
+        };
+        // Read the Blob as a Data URI (Base64 encoded)
+        reader.readAsDataURL(blob);
+    });
 }
 
 function downloadFile(url, filename, conflictAction, sendResponse) {

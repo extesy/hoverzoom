@@ -139,7 +139,7 @@
         },
         "condition": {
             "urlFilter": "||pximg.net/",
-            "resourceTypes": ["image", "media"]
+            "resourceTypes": ["image", "media", "xmlhttprequest"]
         }
     },
     {
