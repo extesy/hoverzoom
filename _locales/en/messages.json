@@ -576,8 +576,8 @@
         "description": "[options] Add viewed pictures to the browser's history option"
     },
     "optAllowMediaSaving": {
-        "message": "Allow saving media with action key",
-        "description": "[options] Allow saving media with action key option"
+        "message": "Enable saving media with action key",
+        "description": "[options] Enable saving media with action key option"
     },
     "optFilterNSFW": {
         "message": "Exclude NSFW images (Reddit only)",
@@ -1072,7 +1072,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Press this key to save the image or video you are currently viewing.",
+        "message": "Press this key to save the image or video you are currently viewing. (Requires 'Enable saving media with action key' to be checked)",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
