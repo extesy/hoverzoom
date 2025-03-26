@@ -51,7 +51,7 @@ async function ajaxRequest(request, sendResponse) {
                     case 'DOWNLOAD':
                         const arrayBuffer = await fetchResponse.arrayBuffer();
                         const contentType = fetchResponse.headers.get('content-type') || 'application/octet-stream';
-                        const blobBin = new Blob([arrayBuffer], { type: contentType }); 
+                        const blobBin = new Blob([arrayBuffer], { type: contentType });
                         const blobUrl = await createBlobUrl(blobBin);
                         downloadFile(blobUrl, filename, conflictAction, sendResponse);
                         break;
