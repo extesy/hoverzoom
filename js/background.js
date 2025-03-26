@@ -75,9 +75,7 @@ async function ajaxRequest(request, sendResponse) {
 // For ajax-based image loading, Firefox needs an Object URL, Chrome needs a Data URI
 function createBlobUrl(blobBin) {
     const isChromiumBased = !!navigator.userAgentData?.brands?.some(item => item.brand === 'Chromium');
-    const blobDataURI = blobToDataURI(blobBin);
-    const blobObjectURL = URL.createObjectURL(blobBin);
-    return isChromiumBased ? blobDataURI : blobObjectURL;
+    return isChromiumBased ? blobToDataURI(blobBin) : URL.createObjectURL(blobBin);
 }
 
 function blobToDataURI(blob) {
