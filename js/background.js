@@ -51,8 +51,9 @@ async function ajaxRequest(request, sendResponse) {
                     case 'DOWNLOAD':
                         const arrayBuffer = await fetchResponse.arrayBuffer();
                         const contentType = fetchResponse.headers.get('content-type') || 'application/octet-stream';
-                        const blobBin = new Blob([arrayBuffer], { type: contentType });
-                        const blobUrl = await blobToDataURI(blobBin);
+                        const blobBin = new Blob([arrayBuffer], { type: contentType }); 
+                        const isChromiumBased = !!navigator.userAgentData?.brands?.some(item => item.brand === 'Chromium')
+                        const blobUrl = isChromiumBased ? await blobToDataURI(blobBin) : URL.createObjectURL(blobBin);
                         downloadFile(blobUrl, filename, conflictAction, sendResponse);
                         break;
                     case 'URL':
