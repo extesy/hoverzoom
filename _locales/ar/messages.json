@@ -652,7 +652,7 @@
         "description": "[options] Show Ratio Detail"
     },
     "optShowDetailDimensions": {
-        "message": "Dimensions",
+        "message": "الأبعاد",
         "description": "[options] Show Dimensions Detail"
     },
     "optBelowPositionOffset": {
