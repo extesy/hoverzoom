@@ -37,13 +37,13 @@
     },
     "permissions": [
         "declarativeNetRequest",
-        "downloads",
         "scripting",
         "storage",
         "tabs",
         "unlimitedStorage"
     ],
     "optional_permissions": [
+        "downloads",
         "history"
     ],
     "host_permissions": [

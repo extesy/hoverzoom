@@ -575,6 +575,10 @@
         "message": "Add viewed pictures to the browser's history",
         "description": "[options] Add viewed pictures to the browser's history option"
     },
+    "optAllowMediaSaving": {
+        "message": "Allow saving media with action key",
+        "description": "[options] Allow saving media with action key option"
+    },
     "optFilterNSFW": {
         "message": "Exclude NSFW images (Reddit only)",
         "description": "[options] Exclude NSFW images (Reddit only) option"
