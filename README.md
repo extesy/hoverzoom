@@ -7,7 +7,7 @@
 
 Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Hover your mouse over any image on the [supported websites](https://github.com/extesy/hoverzoom/tree/master/plugins) and the extension will automatically enlarge the image to its full size, making sure that it still fits into the browser window.
 
-This is an open-source version of the original HoverZoom extension, which is now overrun by malware and deleted from the store. In this version all spyware has been removed, many bugs were fixed and new features were added. It doesn't collect any statistics whatsoever. The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images, or get tab URLs for per-site configuration.
+This is an open-source version of the original HoverZoom extension, which was overrun by malware and deleted from the store. In this version all spyware has been removed, many bugs were fixed and new features were added. It doesn't collect any use data whatsoever.
 
 Sometimes sites change design, and when it happens, the extension needs to be updated. Please report any issues with zooming not working by filing an issue on https://github.com/extesy/hoverzoom/issues page.
 
@@ -15,6 +15,16 @@ Sometimes sites change design, and when it happens, the extension needs to be up
 > As a proof, please see [the list](https://github.com/extesy/hoverzoom/discussions/670) of all takeover offers I have received over the last few years.**
 
 > Please help with [localizing this extension](https://crowdin.com/project/hoverzoom) to the language you are familiar with!
+
+---
+
+<a href="https://www.star-history.com/#extesy/hoverzoom&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=extesy/hoverzoom&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=extesy/hoverzoom&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=extesy/hoverzoom&type=Date" />
+ </picture>
+</a>
 
 ---
 
