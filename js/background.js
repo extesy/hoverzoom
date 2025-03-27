@@ -51,9 +51,8 @@ async function ajaxRequest(request, sendResponse) {
                     case 'DOWNLOAD':
                         const arrayBuffer = await fetchResponse.arrayBuffer();
                         const contentType = fetchResponse.headers.get('content-type') || 'application/octet-stream';
-                        const blobBin = new Blob([arrayBuffer], { type: contentType }); 
-                        const isChromiumBased = !!navigator.userAgentData?.brands?.some(item => item.brand === 'Chromium')
-                        const blobUrl = isChromiumBased ? await blobToDataURI(blobBin) : URL.createObjectURL(blobBin);
+                        const blobBin = new Blob([arrayBuffer], { type: contentType });
+                        const blobUrl = await createBlobUrl(blobBin);
                         downloadFile(blobUrl, filename, conflictAction, sendResponse);
                         break;
                     case 'URL':
@@ -71,6 +70,12 @@ async function ajaxRequest(request, sendResponse) {
         cLog(error);
         sendResponse(null);
     }
+}
+
+// For ajax-based image loading, Firefox needs an Object URL, Chrome needs a Data URI
+async function createBlobUrl(blobBin) {
+    const isChromiumBased = !!navigator.userAgentData?.brands?.some(item => item.brand === 'Chromium');
+    return isChromiumBased ? await blobToDataURI(blobBin) : URL.createObjectURL(blobBin);
 }
 
 function blobToDataURI(blob) {
