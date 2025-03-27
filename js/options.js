@@ -486,6 +486,15 @@ function initAddToHistory() {
 }
 
 function initAllowMediaSaving() {
+    // Check if permission was enabled/disabled outside of options page
+    chrome.permissions.contains({permissions: ['downloads']}, (contained) => {
+        if (contained){
+            $('#chkAllowMediaSaving').trigger('gumby.check');
+        } else {
+            $('#chkAllowMediaSaving').trigger('gumby.uncheck');
+        }
+        savePermissionOptions();
+    });
     $('#chkAllowMediaSaving').parent().on('gumby.onChange', chkAllowMediaSavingModeOnChange);
 }
 
