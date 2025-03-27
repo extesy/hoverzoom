@@ -124,7 +124,7 @@ async function onMessage(message, sender, sendResponse) {
     options = await loadOptions();
     switch (message.action) {
         case 'downloadFileBlob':
-            cLog('check for download permission');
+            cLog('check for downloads permission');
             if (options.allowMediaSaving) {
                 cLog('downloadFileBlob: ' + message);
                 await ajaxRequest({
@@ -138,7 +138,7 @@ async function onMessage(message, sender, sendResponse) {
             }
             break;
         case 'downloadFile':
-            cLog('check for download permission');
+            cLog('check for downloads permission');
             if (options.allowMediaSaving) {
                 cLog('downloadFile: ' + message);
                 await downloadFile(message.url, message.filename, message.conflictAction, sendResponse);
