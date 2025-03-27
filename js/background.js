@@ -123,25 +123,19 @@ async function onMessage(message, sender, sendResponse) {
     options = await loadOptions();
     switch (message.action) {
         case 'downloadFileBlob':
-            cLog('check for downloads permission');
-            if (options.allowMediaSaving) {
-                cLog('downloadFileBlob: ' + message);
-                await ajaxRequest({
-                    method: 'GET',
-                    response: 'DOWNLOAD',
-                    url: message.url,
-                    filename: message.filename,
-                    conflictAction: message.conflictAction,
-                    headers: message.headers
-                }, sendResponse);
-            }
+            cLog('downloadFileBlob: ' + message);
+            await ajaxRequest({
+                method: 'GET',
+                response: 'DOWNLOAD',
+                url: message.url,
+                filename: message.filename,
+                conflictAction: message.conflictAction,
+                headers: message.headers
+            }, sendResponse);
             break;
         case 'downloadFile':
-            cLog('check for downloads permission');
-            if (options.allowMediaSaving) {
-                cLog('downloadFile: ' + message);
-                await downloadFile(message.url, message.filename, message.conflictAction, sendResponse);
-            }
+            cLog('downloadFile: ' + message);
+            await downloadFile(message.url, message.filename, message.conflictAction, sendResponse);
             break;
         case 'ajaxGet':
             await ajaxRequest({
