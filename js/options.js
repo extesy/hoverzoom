@@ -121,6 +121,7 @@ async function saveOptions(exportSettings = false) {
     options.showDetailDimensions = $('#chkShowDetailDimensions')[0].checked;
     
     options.addToHistory = $('#chkAddToHistory')[0].checked;
+    options.allowMediaSaving = $('#chkAllowMediaSaving')[0].checked;
 
     options.filterNSFW = $('#chkFilterNSFW')[0].checked;
     options.alwaysPreload = $('#chkAlwaysPreload')[0].checked;
@@ -163,6 +164,7 @@ async function saveOptions(exportSettings = false) {
 
 async function savePermissionOptions() {
     options.addToHistory = $('#chkAddToHistory')[0].checked;
+    options.allowMediaSaving = $('#chkAllowMediaSaving')[0].checked;
     await optionsStorageSet(options);
 }
 
@@ -304,6 +306,7 @@ async function restoreOptions(optionsFromFactorySettings) {
     $('#chkShowDetailDimensions').trigger(options.showDetailDimensions ? 'gumby.check' : 'gumby.uncheck');
 
     $('#chkAddToHistory').trigger(options.addToHistory ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkAllowMediaSaving').trigger(options.allowMediaSaving ? 'gumby.check' : 'gumby.uncheck');
 
     $('#chkFilterNSFW').trigger(options.filterNSFW ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAlwaysPreload').trigger(options.alwaysPreload ? 'gumby.check' : 'gumby.uncheck');
@@ -458,8 +461,41 @@ function chkAddToHistoryModeOnChange() {
     }
 }
 
+function chkAllowMediaSavingModeOnChange() {
+    if ($('#chkAllowMediaSaving')[0].checked) {
+        chrome.permissions.request({permissions: ['downloads']}, function (granted) {
+            if (granted === false) {
+                $('#chkAllowMediaSaving').trigger('gumby.uncheck');
+            } else {
+                savePermissionOptions();
+            }
+        });
+    } else {
+        chrome.permissions.remove({permissions: ['downloads']}, function (removed) {
+            if (removed === false) {
+                $('#chkAllowMediaSaving').trigger('gumby.check');
+            } else {
+                savePermissionOptions();
+            }
+        });
+    }
+}
+
 function initAddToHistory() {
     $('#chkAddToHistory').parent().on('gumby.onChange', chkAddToHistoryModeOnChange);
+}
+
+function initAllowMediaSaving() {
+    // Check if permission was enabled/disabled outside of options page
+    chrome.permissions.contains({permissions: ['downloads']}, (contained) => {
+        if (contained){
+            $('#chkAllowMediaSaving').trigger('gumby.check');
+        } else {
+            $('#chkAllowMediaSaving').trigger('gumby.uncheck');
+        }
+        savePermissionOptions();
+    });
+    $('#chkAllowMediaSaving').parent().on('gumby.onChange', chkAllowMediaSavingModeOnChange);
 }
 
 function percentageOnChange(val) {
@@ -737,6 +773,7 @@ $(async function () {
     i18n();
     chkWhiteListModeOnChange();
     initAddToHistory();
+    initAllowMediaSaving();
     chkDarkMode();
     $("#version").text(chrome.i18n.getMessage("optFooterVersionCopyright", [chrome.runtime.getManifest().version, new Date().getFullYear()]));
     $('#btnSave').click(function() { removeModifications(); saveOptions().then(() => displayMsg(Saved)); return false; }); // "return false" needed to prevent page scroll

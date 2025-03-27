@@ -3682,11 +3682,16 @@ var hoverZoom = {
         }
 
         function saveImage() {
-            saveImg();
-            saveVideo();
-            saveAudio();
-            savePlaylist();
-            saveSubtitles();
+            cLog('check for media saving option');
+            if (options.allowMediaSaving) {
+                saveImg();
+                saveVideo();
+                saveAudio();
+                savePlaylist();
+                saveSubtitles();
+            } else {
+                alert('Saving media is disabled. To save media, please enable "saving media with action key" on the HoverZoom\'s advanced options page.')
+            }
         }
 
         function copyLink() {
