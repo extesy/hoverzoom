@@ -74,9 +74,6 @@ async function ajaxRequest(request, sendResponse) {
     }
 }
 
-async function createBlobUrl(blobBin) {
-}
-
 function blobToDataURI(blob) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
