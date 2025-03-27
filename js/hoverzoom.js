@@ -3690,7 +3690,7 @@ var hoverZoom = {
                 savePlaylist();
                 saveSubtitles();
             } else {
-                alert('Saving media is not enabled. Please enable saving media with action key in the Hover Zoom+ options.')
+                alert('Saving media is not enabled. To save media, please enable saving media with action key in the Hover Zoom+ options.')
             }
         }
 
