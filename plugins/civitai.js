@@ -7,8 +7,8 @@ hoverZoomPlugins.push( {
 
         hoverZoom.urlReplace(res,
             'img[src*="//image.civitai.com/"]',
-            /\/width=\d+\//,
-            '/original=true,quality=90/'
+            /width=\d+/,
+            'original=true,quality=90'
         );
 
         callback($(res), this.name);
