@@ -176,6 +176,14 @@ async function restoreOptionsFromFactorySettings() {
 // Restores options from storage
 async function restoreOptions(optionsFromFactorySettings) {
     options = optionsFromFactorySettings || await loadOptions();
+    // Check if permission was enabled/disabled outside of options page
+    chrome.permissions.contains({permissions: ['downloads']}, (contained) => {
+     if (contained){
+        options.allowMediaSaving = true;
+     } else {
+        options.allowMediaSaving = false;
+    }
+ });
 
     $('#chkExtensionEnabled').trigger(options.extensionEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#chkDarkMode').trigger(options.darkMode ? 'gumby.check' : 'gumby.uncheck');
@@ -306,6 +314,7 @@ async function restoreOptions(optionsFromFactorySettings) {
     $('#chkShowDetailDimensions').trigger(options.showDetailDimensions ? 'gumby.check' : 'gumby.uncheck');
 
     $('#chkAddToHistory').trigger(options.addToHistory ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkAllowMediaSaving').trigger(options.allowMediaSaving ? 'gumby.check' : 'gumby.uncheck');
 
     $('#chkFilterNSFW').trigger(options.filterNSFW ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAlwaysPreload').trigger(options.alwaysPreload ? 'gumby.check' : 'gumby.uncheck');
@@ -485,15 +494,6 @@ function initAddToHistory() {
 }
 
 function initAllowMediaSaving() {
-    // Check if permission was enabled/disabled outside of options page
-    chrome.permissions.contains({permissions: ['downloads']}, (contained) => {
-        if (contained){
-            $('#chkAllowMediaSaving').trigger('gumby.check');
-        } else {
-            $('#chkAllowMediaSaving').trigger('gumby.uncheck');
-        }
-        savePermissionOptions();
-    });
     $('#chkAllowMediaSaving').parent().on('gumby.onChange', chkAllowMediaSavingModeOnChange);
 }
 
