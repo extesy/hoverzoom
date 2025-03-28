@@ -575,6 +575,10 @@
         "message": "Dodajanje ogledanih slik v zgodovino brskalnika",
         "description": "[options] Add viewed pictures to the browser's history option"
     },
+    "optAllowMediaSaving": {
+        "message": "Enable saving media with action key",
+        "description": "[options] Enable saving media with action key option"
+    },
     "optFilterNSFW": {
         "message": "Izključite slike NSFW (samo Reddit)",
         "description": "[options] Exclude NSFW images (Reddit only) option"
@@ -1068,7 +1072,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Pritisnite to tipko, da shranite sliko ali videoposnetek, ki si ga trenutno ogledujete.",
+        "message": "Press this key to save the image or video you are currently viewing. (Requires 'Enable saving media with action key' to be checked)",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
