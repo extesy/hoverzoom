@@ -575,6 +575,10 @@
         "message": "将查看过的图片添加到浏览器的历史记录中",
         "description": "[options] Add viewed pictures to the browser's history option"
     },
+    "optAllowMediaSaving": {
+        "message": "Enable saving media with action key",
+        "description": "[options] Enable saving media with action key option"
+    },
     "optFilterNSFW": {
         "message": "排除工作场所不宜的图(仅适用于Reddit)",
         "description": "[options] Exclude NSFW images (Reddit only) option"
@@ -1068,7 +1072,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "按此键保存当前查看的图像或视频。",
+        "message": "Press this key to save the image or video you are currently viewing. (Requires 'Enable saving media with action key' to be checked)",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
