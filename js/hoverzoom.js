@@ -3682,16 +3682,19 @@ var hoverZoom = {
         }
 
         function saveImage() {
-            cLog('check for media saving option');
-            if (options.allowMediaSaving) {
-                saveImg();
-                saveVideo();
-                saveAudio();
-                savePlaylist();
-                saveSubtitles();
-            } else {
-                alert('Saving media is disabled. To save media, please enable "saving media with action key" on the HoverZoom\'s advanced options page.')
-            }
+            cLog('check for permission');
+            chrome.runtime.sendMessage({action:'getPermissionsContains', permissions: ['downloads']}, 
+                function(response) {
+                    if (response === true) {
+                        saveImg();
+                        saveVideo();
+                        saveAudio();
+                        savePlaylist();
+                        saveSubtitles();
+                    } else {
+                        alert('Saving media is disabled. To save media, please enable "saving media with action key" on the HoverZoom\'s advanced options page.')
+                    }            
+                });
         }
 
         function copyLink() {
