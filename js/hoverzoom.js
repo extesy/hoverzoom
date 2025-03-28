@@ -3685,18 +3685,16 @@ var hoverZoom = {
             cLog('check for permission');
             chrome.runtime.sendMessage({action:'getPermissionsContains', permissions: ['downloads']}, 
                 function(response) {
-                    options.allowMediaSaving = response;
-            });
-                
-            if (options.allowMediaSaving) {
-                saveImg();
-                saveVideo();
-                saveAudio();
-                savePlaylist();
-                saveSubtitles();
-            } else {
-                alert('Saving media is disabled. To save media, please enable "saving media with action key" on the HoverZoom\'s advanced options page.')
-            }
+                    if (response === true) {
+                        saveImg();
+                        saveVideo();
+                        saveAudio();
+                        savePlaylist();
+                        saveSubtitles();
+                    } else {
+                        alert('Saving media is disabled. To save media, please enable "saving media with action key" on the HoverZoom\'s advanced options page.')
+                    }            
+                });
         }
 
         function copyLink() {
