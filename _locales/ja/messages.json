@@ -575,6 +575,10 @@
         "message": "閲覧した画像をブラウザの履歴に追加する",
         "description": "[options] Add viewed pictures to the browser's history option"
     },
+    "optAllowMediaSaving": {
+        "message": "Enable saving media with action key",
+        "description": "[options] Enable saving media with action key option"
+    },
     "optFilterNSFW": {
         "message": "NSFW画像を除外する（Redditのみ）",
         "description": "[options] Exclude NSFW images (Reddit only) option"
@@ -1068,7 +1072,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "このキーを押すと、現在見ている画像や動画が保存されます。",
+        "message": "Press this key to save the image or video you are currently viewing. (Requires 'Enable saving media with action key' to be checked)",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
