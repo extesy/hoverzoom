@@ -575,6 +575,10 @@
         "message": "Προσθέστε τις εικόνες που είδατε στο ιστορικό του προγράμματος περιήγησης",
         "description": "[options] Add viewed pictures to the browser's history option"
     },
+    "optAllowMediaSaving": {
+        "message": "Enable saving media with action key",
+        "description": "[options] Enable saving media with action key option"
+    },
     "optFilterNSFW": {
         "message": "Εξαίρεση εικόνων NSFW (μόνο στο Reddit)",
         "description": "[options] Exclude NSFW images (Reddit only) option"
@@ -1068,7 +1072,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Πατήστε αυτό το πλήκτρο για να αποθηκεύσετε την εικόνα ή το βίντεο που βλέπετε αυτή τη στιγμή.",
+        "message": "Press this key to save the image or video you are currently viewing. (Requires 'Enable saving media with action key' to be checked)",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
