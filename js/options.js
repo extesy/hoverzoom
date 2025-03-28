@@ -306,7 +306,6 @@ async function restoreOptions(optionsFromFactorySettings) {
     $('#chkShowDetailDimensions').trigger(options.showDetailDimensions ? 'gumby.check' : 'gumby.uncheck');
 
     $('#chkAddToHistory').trigger(options.addToHistory ? 'gumby.check' : 'gumby.uncheck');
-    $('#chkAllowMediaSaving').trigger(options.allowMediaSaving ? 'gumby.check' : 'gumby.uncheck');
 
     $('#chkFilterNSFW').trigger(options.filterNSFW ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAlwaysPreload').trigger(options.alwaysPreload ? 'gumby.check' : 'gumby.uncheck');

@@ -142,6 +142,11 @@ async function onMessage(message, sender, sendResponse) {
                 headers: message.headers
             }, sendResponse);
             break;
+        case 'getPermissionsContains':
+            chrome.permissions.contains({permissions: message.permissions}, function(granted) {
+                sendResponse(granted);
+            });
+            break;
         case 'ajaxGetHeaders':
             await ajaxRequest({
                 method: 'HEAD',

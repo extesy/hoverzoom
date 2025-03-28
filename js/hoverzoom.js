@@ -3682,7 +3682,12 @@ var hoverZoom = {
         }
 
         function saveImage() {
-            cLog('check for media saving option');
+            cLog('check for permission');
+            chrome.runtime.sendMessage({action:'getPermissionsContains', permissions: ['downloads']}, 
+                function(response) {
+                    options.allowMediaSaving = response;
+            });
+                
             if (options.allowMediaSaving) {
                 saveImg();
                 saveVideo();
