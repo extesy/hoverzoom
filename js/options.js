@@ -176,14 +176,6 @@ async function restoreOptionsFromFactorySettings() {
 // Restores options from storage
 async function restoreOptions(optionsFromFactorySettings) {
     options = optionsFromFactorySettings || await loadOptions();
-    // Check if permission was enabled/disabled outside of options page
-    chrome.permissions.contains({permissions: ['downloads']}, (contained) => {
-     if (contained){
-        options.allowMediaSaving = true;
-     } else {
-        options.allowMediaSaving = false;
-    }
- });
 
     $('#chkExtensionEnabled').trigger(options.extensionEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#chkDarkMode').trigger(options.darkMode ? 'gumby.check' : 'gumby.uncheck');
@@ -494,6 +486,11 @@ function initAddToHistory() {
 }
 
 function initAllowMediaSaving() {
+    // Check if permission was enabled/disabled outside of options page
+    chrome.permissions.contains({permissions: ['downloads']}, (contained) => {
+        $('#chkAllowMediaSaving').trigger(contained ? 'gumby.check' : 'gumby.uncheck');
+        savePermissionOptions();
+    });
     $('#chkAllowMediaSaving').parent().on('gumby.onChange', chkAllowMediaSavingModeOnChange);
 }
 
