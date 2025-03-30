@@ -324,7 +324,7 @@
         "description": "[options] Enable shadow behind image viewer option"
     },
     "optEnableViewerShadowTooltip": {
-        "message": "Adds a small shadow behind the zoomed image viewer, making it more visible from the background",
+        "message": "Adiciona uma pequena sombra atrás do visualizador de imagens com zoom, tornando-o mais visível do fundo",
         "description": "[options] Tooltip for enable shadow behind caption and details option"
     },
     "optEnableCaptionDetailShadow": {
@@ -332,7 +332,7 @@
         "description": "[options] Enable shadow behind caption and details option"
     },
     "optEnableCaptionDetailShadowTooltip": {
-        "message": "Adds a small shadow any captions or details, making it pop out more from the background",
+        "message": "Adiciona uma pequena sombra a todas as legendas ou detalhes, fazendo-os sobressair mais do fundo",
         "description": "[options] Tooltip for enable shadow behind caption and details option"
     },
     "optEnableAmbilight": {
@@ -576,7 +576,7 @@
         "description": "[options] Add viewed pictures to the browser's history option"
     },
     "optAllowMediaSaving": {
-        "message": "Enable saving media with action key",
+        "message": "Ativar gravação de ficheiros multimédia com tecla de atalho",
         "description": "[options] Enable saving media with action key option"
     },
     "optFilterNSFW": {
@@ -664,7 +664,7 @@
         "description": "[options] Below offset option"
     },
     "optBelowPositionOffsetTooltip": {
-        "message": "Amount to vertically offset the text in the below position (positive values move text down, negative values move text up)",
+        "message": "Valor para deslocar verticalmente o texto na posição abaixo (valores positivos deslocam o texto para baixo, valores negativos deslocam o texto para cima)",
         "description": "[options] Tooltip for below position offset"
     },
     "optAbovePositionOffset": {
@@ -672,7 +672,7 @@
         "description": "[options] Above offset option"
     },
     "optAbovePositionOffsetTooltip": {
-        "message": "Amount to vertically offset the text in the above position (positive values move text up, negative values move text down)",
+        "message": "Valor para deslocar verticalmente o texto na posição acima (valores positivos deslocam o texto para cima, valores negativos deslocam o texto para baixo)",
         "description": "[options] Tooltip for above position offset"
     },
     "optOffsetUnitName": {
@@ -684,7 +684,7 @@
         "description": "[options] Set unit type for below offset"
     },
     "optBelowPositionOffsetUnitTooltip": {
-        "message": "Choose between pixel or percentage based offset",
+        "message": "Selecione entre deslocamento baseado em pixel ou em percentagem",
         "description": "[options] Tooltip for setting unit for below position offset"
     },
     "optBelowPositionOffsetUnitPixel": {
@@ -700,7 +700,7 @@
         "description": "[options] Set unit type for above offset"
     },
     "optAbovePositionOffsetUnitTooltip": {
-        "message": "Choose between pixel or percentage based offset",
+        "message": "Selecione entre deslocamento baseado em pixel ou em percentagem",
         "description": "[options] Tooltip for setting unit for above position offset"
     },
     "optAbovePositionOffsetUnitPixel": {
@@ -1072,7 +1072,7 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Press this key to save the image or video you are currently viewing. (Requires 'Enable saving media with action key' to be checked)",
+        "message": "Pressione esta tecla para guardar a imagem ou o vídeo que está a ver atualmente. (Requer que a opção “Ativar gravação de ficheiros multimédia com tecla de atalho” esteja ativada)",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
