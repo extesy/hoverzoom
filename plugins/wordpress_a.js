@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Wordpress',
-    version:'2.6',
+    version:'2.7',
     favicon:'worldpress.svg',
     prepareImgLinks:function (callback) {
 
@@ -19,7 +19,9 @@ hoverZoomPlugins.push({
         //      -> https://i0.wp.com/lgbtqreads.com/wp-content/uploads/2024/12/ItsaLoveSkateRelationship-hc-c-678x1024-1.jpg
         // sample: https://i0.wp.com/i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1653249383l/60405251.jpg?resize=184%2C278&ssl=1
         //      -> https://i0.wp.com/i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1653249383l/60405251.jpg
-        const re = /-\d+x\d+/ig;
+        // sample: https://cdn.arstechnica.net/wp-content/uploads/2025/04/GettyImages-512989686-300x300-1743688955.jpg
+        //      -> https://cdn.arstechnica.net/wp-content/uploads/2025/04/GettyImages-512989686.jpg
+        const re = /-\d+x\d+(-\d+)?/ig;
         const re2 = /-e[0-9]{13}/;
         const re3 = /-(cropped|c-default|scaled)/;
 
