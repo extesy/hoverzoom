@@ -2097,8 +2097,8 @@ var hoverZoom = {
                     const zoomFactorDefault = parseInt(options.zoomFactor);
                     const useZoomFactor = options.lockImageZoomFactorEnabled;
                     const zoomDefaultEnabled = options.lockImageZoomDefaultEnabled;
-                    let width = imgFullSize.width() || imgFullSize[0].width;
-                    zoomFactorFit = width / srcDetails.naturalWidth;
+                    const width = imgFullSize.width() || imgFullSize[0].width;
+                    const zoomFactorFit = width / srcDetails.naturalWidth;
 
                     if (zoomDefaultEnabled) {
                         zoomFactor = useZoomFactor ? zoomFactorDefault : 1;
@@ -2111,15 +2111,21 @@ var hoverZoom = {
 
                     // Recheck image size to fix image zoom and position
                     posViewer();
-                };
+                }
             }, options.showWhileLoading ? 0 : 10)
 
-            if (options.addToHistory && !chrome.extension.inIncognitoContext) {
-                chrome.runtime.sendMessage({action:'addUrlToHistory', url:srcDetails.url});
-                // #881: add link url to history if available, this is needed to turn hovered links purple
-                let linkUrl = hz.currentLink.prop('href');
-                if (linkUrl && linkUrl != srcDetails.url) chrome.runtime.sendMessage({action:'addUrlToHistory', url:linkUrl});
-            }
+            cLog('checking for history permission');
+            chrome.runtime.sendMessage({action:'getPermissionsContains', permissions: ['history']},
+                function(hasPermission) {
+                    if (hasPermission && !chrome.extension.inIncognitoContext) {
+                        chrome.runtime.sendMessage({action:'addUrlToHistory', url:srcDetails.url});
+                        // #881: add link url to history if available, this is needed to turn hovered links purple
+                        let linkUrl = hz.currentLink.prop('href');
+                        if (linkUrl && linkUrl != srcDetails.url)
+                            chrome.runtime.sendMessage({action:'addUrlToHistory', url:linkUrl});
+                    }
+                }
+            );
         }
 
         function displayCaptionMiscellaneousDetails() {
@@ -2806,19 +2812,18 @@ var hoverZoom = {
         function lockImageKey(event) {
             const zoomFactorDefault = parseInt(options.zoomFactor);
             const useZoomFactor = options.lockImageZoomFactorEnabled;
+            const width = imgFullSize.width() || imgFullSize[0].width;
+            const zoomFactorFit = width / srcDetails.naturalWidth;
             if (!viewerLocked) {
                 const zoomDefaultEnabled = options.lockImageZoomDefaultEnabled;
 
-                let width = imgFullSize.width() || imgFullSize[0].width;
-                zoomFactorFit = width / srcDetails.naturalWidth;
                 if (zoomDefaultEnabled) {
                     zoomFactor = useZoomFactor ? zoomFactorDefault : 1;
                 } else {
                     zoomFactor = zoomFactorFit;
                 }
                 lockViewer();
-            }
-            else {
+            } else {
                 if (zoomFactor !== zoomFactorFit) {
                     zoomFactor = zoomFactorFit || zoomFactorDefault; // Makes image fits within screen
                 } else {
@@ -3682,10 +3687,10 @@ var hoverZoom = {
         }
 
         function saveImage() {
-            cLog('check for permission');
+            cLog('checking for downloads permission');
             chrome.runtime.sendMessage({action:'getPermissionsContains', permissions: ['downloads']}, 
-                function(response) {
-                    if (response === true) {
+                function(hasPermission) {
+                    if (hasPermission === true) {
                         saveImg();
                         saveVideo();
                         saveAudio();

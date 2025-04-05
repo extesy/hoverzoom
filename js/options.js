@@ -120,9 +120,6 @@ async function saveOptions(exportSettings = false) {
     options.showDetailRatio = $('#chkShowDetailRatio')[0].checked;
     options.showDetailDimensions = $('#chkShowDetailDimensions')[0].checked;
     
-    options.addToHistory = $('#chkAddToHistory')[0].checked;
-    options.allowMediaSaving = $('#chkAllowMediaSaving')[0].checked;
-
     options.filterNSFW = $('#chkFilterNSFW')[0].checked;
     options.alwaysPreload = $('#chkAlwaysPreload')[0].checked;
     options.enableGalleries = $('#chkEnableGalleries')[0].checked;
@@ -163,8 +160,6 @@ async function saveOptions(exportSettings = false) {
 }
 
 async function savePermissionOptions() {
-    options.addToHistory = $('#chkAddToHistory')[0].checked;
-    options.allowMediaSaving = $('#chkAllowMediaSaving')[0].checked;
     await optionsStorageSet(options);
 }
 
@@ -305,9 +300,6 @@ async function restoreOptions(optionsFromFactorySettings) {
     $('#chkShowDetailRatio').trigger(options.showDetailRatio ? 'gumby.check' : 'gumby.uncheck');
     $('#chkShowDetailDimensions').trigger(options.showDetailDimensions ? 'gumby.check' : 'gumby.uncheck');
 
-    $('#chkAddToHistory').trigger(options.addToHistory ? 'gumby.check' : 'gumby.uncheck');
-    $('#chkAllowMediaSaving').trigger(options.allowMediaSaving ? 'gumby.check' : 'gumby.uncheck');
-
     $('#chkFilterNSFW').trigger(options.filterNSFW ? 'gumby.check' : 'gumby.uncheck');
     $('#chkAlwaysPreload').trigger(options.alwaysPreload ? 'gumby.check' : 'gumby.uncheck');
     $('#chkEnableGalleries').trigger(options.enableGalleries ? 'gumby.check' : 'gumby.uncheck');
@@ -441,57 +433,36 @@ function chkWhiteListModeOnChange() {
     $('#lblToggle').text(chrome.i18n.getMessage($('#chkWhiteListMode')[0].checked ? "optSectionSitesEnabled" : "optSectionSitesDisabled"));
 }
 
-function chkAddToHistoryModeOnChange() {
-    if ($('#chkAddToHistory')[0].checked) {
-        chrome.permissions.request({permissions: ['history']}, function (granted) {
-            if (granted === false) {
-                $('#chkAddToHistory').trigger('gumby.uncheck');
-            } else {
-                savePermissionOptions();
-            }
+async function chkPermissionOnChange(permission, selector) {
+    if ($(selector)[0].checked) {
+        const granted = await new Promise(resolve => {
+            chrome.permissions.request({permissions: [permission]}, resolve);
         });
+        if (granted === false) {
+            $(selector).trigger('gumby.uncheck');
+        }
     } else {
-        chrome.permissions.remove({permissions: ['history']}, function (removed) {
-            if (removed === false) {
-                $('#chkAddToHistory').trigger('gumby.check');
-            } else {
-                savePermissionOptions();
-            }
+        const removed = await new Promise(resolve => {
+            chrome.permissions.remove({permissions: [permission]}, resolve);
         });
+        if (removed === false) {
+            $(selector).trigger('gumby.check');
+        }
     }
 }
 
-function chkAllowMediaSavingModeOnChange() {
-    if ($('#chkAllowMediaSaving')[0].checked) {
-        chrome.permissions.request({permissions: ['downloads']}, function (granted) {
-            if (granted === false) {
-                $('#chkAllowMediaSaving').trigger('gumby.uncheck');
-            } else {
-                savePermissionOptions();
-            }
+async function initPermission(permission, selector) {
+    // This timeout ensures that the check is performed in a user gesture context.
+    setTimeout(async () => {
+        const contained = await new Promise(resolve => {
+            chrome.permissions.contains({ permissions: [permission] }, resolve);
         });
-    } else {
-        chrome.permissions.remove({permissions: ['downloads']}, function (removed) {
-            if (removed === false) {
-                $('#chkAllowMediaSaving').trigger('gumby.check');
-            } else {
-                savePermissionOptions();
-            }
-        });
-    }
-}
+        $(selector).trigger(contained ? 'gumby.check' : 'gumby.uncheck');
+    }, 10);
 
-function initAddToHistory() {
-    $('#chkAddToHistory').parent().on('gumby.onChange', chkAddToHistoryModeOnChange);
-}
-
-function initAllowMediaSaving() {
-    // Check if permission was enabled/disabled outside of options page
-    chrome.permissions.contains({permissions: ['downloads']}, (contained) => {
-        $('#chkAllowMediaSaving').trigger(contained ? 'gumby.check' : 'gumby.uncheck');
-        savePermissionOptions();
+    $(selector).parent().on('gumby.onChange', async function() {
+        await chkPermissionOnChange(permission, selector);
     });
-    $('#chkAllowMediaSaving').parent().on('gumby.onChange', chkAllowMediaSavingModeOnChange);
 }
 
 function percentageOnChange(val) {
@@ -768,8 +739,8 @@ $(async function () {
     initActionKeys();
     i18n();
     chkWhiteListModeOnChange();
-    initAddToHistory();
-    initAllowMediaSaving();
+    await initPermission('history', '#chkAddToHistory');
+    await initPermission('downloads', '#chkAllowMediaSaving');
     chkDarkMode();
     $("#version").text(chrome.i18n.getMessage("optFooterVersionCopyright", [chrome.runtime.getManifest().version, new Date().getFullYear()]));
     $('#btnSave').click(function() { removeModifications(); saveOptions().then(() => displayMsg(Saved)); return false; }); // "return false" needed to prevent page scroll
@@ -912,3 +883,5 @@ function removeModifications() {
     $('[data-val0]').each(function() { delete $(this)[0].dataset.val0; });
     $('[data-val1]').each(function() { delete $(this)[0].dataset.val1; });
 }
+
+

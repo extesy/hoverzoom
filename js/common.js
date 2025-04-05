@@ -18,8 +18,6 @@ const factorySettings = {
     showHighRes: true,
     galleriesMouseWheel: true,
     disableMouseWheelForVideo: false,
-    addToHistory: false,
-    allowMediaSaving: false,
     alwaysPreload: false,
     displayDelay: 100,
     displayDelayVideo: 500,
