@@ -2183,7 +2183,7 @@
         },
         {
             "js": ["plugins/civitai.js"],
-            "matches": ["*://*.civitai.com/*"]
+            "matches": ["*://*.civitai.com/*", "*://*.civitai.green/*"]
         }
     ]
 }
