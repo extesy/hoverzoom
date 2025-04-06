@@ -7,7 +7,7 @@
 
 Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Hover your mouse over any image on the [supported websites](https://github.com/extesy/hoverzoom/tree/master/plugins) and the extension will automatically enlarge the image to its full size, making sure that it still fits into the browser window.
 
-This is an open-source version of the original HoverZoom extension, which was overrun by malware and deleted from the store. In this version all spyware has been removed, many bugs were fixed and new features were added. It doesn't collect any use data whatsoever.
+This is an open-source version of the original HoverZoom extension, which was overrun by malware and deleted from the store. In this version all spyware has been removed, many bugs were fixed and new features were added. It doesn't collect any user data whatsoever.
 
 Sometimes sites change design, and when it happens, the extension needs to be updated. Please report any issues with zooming not working by filing an issue on https://github.com/extesy/hoverzoom/issues page.
 
