@@ -289,3 +289,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     onMessage(request, sender, sendResponse);
     return true;
 });
+
+// https://stackoverflow.com/questions/66618136/persistent-service-worker-in-chrome-extension
+const keepAlive = () => setInterval(chrome.runtime.getPlatformInfo, 20e3);
+chrome.runtime.onStartup.addListener(keepAlive);
+keepAlive();
