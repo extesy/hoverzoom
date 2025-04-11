@@ -3718,6 +3718,7 @@ var hoverZoom = {
                         func(blob);
                     },'image/png')
                 }
+                // Cross origin required to be set in order to convert canvas to blob
                 img.setAttribute('crossorigin', 'anonymous')
                 img.src = path;
             }
