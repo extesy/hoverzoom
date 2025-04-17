@@ -1212,12 +1212,7 @@ var hoverZoom = {
                     return;
                 }
                 case options.copyImageKey:
-                    if (isChromiumBased) {
-                        if (keyCode === options.copyImageKey) {
-                            copyImage();
-                            return false;
-                        }
-                    }
+                    copyImage();
                     return false;
                 case options.copyImageUrlKey:
                     copyLink();
@@ -2933,11 +2928,9 @@ var hoverZoom = {
                     return false;
                 }
                 // "Copy image" key
-                if (isChromiumBased) {
-                    if (keyCode === options.copyImageKey) {
-                        copyImage();
-                        return false;
-                    }
+                if (keyCode === options.copyImageKey) {
+                    copyImage();
+                    return false;
                 }
                 // "Copy image url" key
                 if (keyCode === options.copyImageUrlKey) {
@@ -3711,18 +3704,33 @@ var hoverZoom = {
         function copyImage() {
             if (! srcDetails.url) return;
             const url = srcDetails.url.replaceAll(' ', '%20');
-
-            fetch(url)
-                .then(resp => resp.blob())
-                .then(blob => blob.arrayBuffer())
-                .then(buffer => {
-                    // Lie about the data type
-                    // Note: This does not work on FireFox
-                    const blob = new Blob([buffer], {'type': 'image/png'});
-                    const item = new ClipboardItem({'image/png': blob});
-                    navigator.clipboard.write([item]);
-                });
-
+            const img = new Image;
+            const c = document.createElement('canvas');
+            const ctx = c.getContext('2d');
+            
+            // Converts an image into a blob in order to write to the clipboard
+            function setCanvasImage(path,func){
+                img.onload = function(){
+                    c.width = this.naturalWidth;
+                    c.height = this.naturalHeight;
+                    ctx.drawImage(this,0,0)
+                    c.toBlob(blob=>{
+                        func(blob);
+                    },'image/png')
+                }
+                // Cross origin required to be set in order to convert canvas to blob
+                img.setAttribute('crossorigin', 'anonymous')
+                img.src = path;
+            }
+            
+            setCanvasImage(url,(imgBlob)=>{
+                cLog('Copying image to clipboard');
+                navigator.clipboard.write([
+                    new ClipboardItem({'image/png': imgBlob})
+                ])
+                .then(e=>{cLog('Image copied to clipboard')})
+                .catch(e=>{cLog(e)})
+            })
         }
 
         function saveImg() {

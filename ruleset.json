@@ -365,5 +365,33 @@
             "urlFilter": "||cdn13.com/",
             "resourceTypes": ["image", "media"]
         }
+    },
+    {
+        "id": 150,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||bsky.app/",
+            "resourceTypes": ["image", "media"]
+        }
+    },
+    {
+        "id": 160,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "responseHeaders": [
+                {"header": "Access-Control-Allow-Origin", "operation": "set", "value": "*"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||furaffinity.net/",
+            "resourceTypes": ["image", "media"]
+        }
     }
 ]

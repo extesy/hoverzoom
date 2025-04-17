@@ -10,7 +10,7 @@ function getMilliseconds(ctrl) {
 }
 
 // Options that are only enabled for Chromium-based browsers
-const chromiumOnly = ['copyImageKey', 'copyImageUrlKey'];
+const chromiumOnly = [];
 
 function initActionKeys() {
     actionKeys
