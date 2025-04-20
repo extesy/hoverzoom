@@ -3,7 +3,7 @@
     importScripts('common.js');
 }
 
-var options;
+let options;
 
 function cLog(msg) {
     if (options.debug && msg) {
@@ -132,7 +132,7 @@ async function onMessage(message, sender, sendResponse) {
             break;
         case 'downloadFile':
             cLog('downloadFile: ' + message);
-            await downloadFile(message.url, message.filename, message.conflictAction, sendResponse);
+            downloadFile(message.url, message.filename, message.conflictAction, sendResponse);
             break;
         case 'ajaxGet':
             await ajaxRequest({
