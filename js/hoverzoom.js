@@ -635,9 +635,9 @@ var hoverZoom = {
             return (contentOverflows && overflowShown) || (alwaysShowScroll);
         }
 
-        const videoExtensions = new Set(['3gpp', 'm4v', 'mkv', 'mp4', 'ogv', 'webm']);
+        const videoExtensions = new Set(['3gpp', 'm4v', 'mkv', 'mp4', 'ogv', 'webm', 'm4s']);
         const videoExtensionsWithGif = new Set(['3gpp', 'gif', 'gifv', 'm4v', 'mkv', 'mp4', 'ogv', 'webm']);
-        const audioExtensions = new Set(['flac', 'm4a', 'mp3', 'oga', 'ogg', 'opus', 'wav']);
+        const audioExtensions = new Set(['flac', 'm4a', 'mp3', 'oga', 'ogg', 'opus', 'wav', 'm4s']);
 
         function isVideoLink(url, includeGifs = false) {
             if (url.indexOf('.video') !== -1)
