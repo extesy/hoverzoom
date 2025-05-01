@@ -256,7 +256,7 @@
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Formati supportati: 3gpp m4v mkv mp4 ogv webm",
+        "message": "Supported formats: 3gpp m4v mkv mp4 mpeg-dash ogv webm",
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
