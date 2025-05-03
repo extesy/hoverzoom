@@ -112,23 +112,23 @@
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxWidth": {
-        "message": "Set max width of zoomed images:",
+        "message": "设置缩放图像的最大宽度：",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optMaxWidthTooltip": {
-        "message": "Set max width of zoomed images by this amount (if 0 then no max width)",
+        "message": "按此值设置缩放图像的最大宽度（如果为 0，则无最大宽度）",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxHeight": {
-        "message": "Set max height of zoomed images:",
+        "message": "设置缩放图像的最大高度：",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optMaxHeightTooltip": {
-        "message": "Set max height of zoomed images by this amount (if 0 then no max height)",
+        "message": "按此值设置缩放图像的最大高度（如果为 0，则无最大高度）",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxSizeUnitName": {
-        "message": "px",
+        "message": "像素",
         "description": "[options] Unit name (px) for zoomed images size option"
     },
     "optCaptionLocation": {
