@@ -2184,6 +2184,10 @@
         {
             "js": ["plugins/civitai.js"],
             "matches": ["*://*.civitai.com/*", "*://*.civitai.green/*"]
+        },
+        {
+            "js": ["plugins/jike.js"],
+            "matches": ["*://*.ui.cn/*"]
         }
     ]
 }
