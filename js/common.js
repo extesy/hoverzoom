@@ -17,6 +17,7 @@ const factorySettings = {
     pageActionEnabled: true,
     showHighRes: true,
     galleriesMouseWheel: true,
+    galleriesLoopEnabled: true,
     disableMouseWheelForVideo: false,
     alwaysPreload: false,
     displayDelay: 100,
