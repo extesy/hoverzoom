@@ -135,7 +135,7 @@ hoverZoomPlugins.push({
 
             // Loop through image number
             for (let i = 0; i < imageCount; i++) {
-                // These are the two types of images that might be found in a pixic gallery.
+                // These are the two types of images that might be found in a Pixiv gallery.
                 // Pixiv does allow you to upload GIF files, but they don't support animated
                 // GIF, so nobody actually does this.
                 const hiResUrls = {
@@ -145,9 +145,9 @@ hoverZoomPlugins.push({
                 // Use only the master1200 thumbnail jpg by default. This URL always exists.
                 const urls = [`https://i.pximg.net/img-master/img/${data.date}/${data.id}_p${i}_master1200.jpg`]
 
-                // If the user has chosen to diplay highRes images, display the original png by default,
-                // falling back to the original jpg if that doesn't exist, and the master1200 thumbneil
-                // if, somehow, neither of the originsls exist.
+                // If the user has chosen to display highRes images, display the original PNG by default,
+                // falling back to the original jpg if that doesn't exist, and the master1200 thumbnail
+                // if, somehow, neither of the originals exist.
                 if(options.showHighRes) {
                     urls.unshift(hiResUrls.originalPNG, hiResUrls.originalJPG);
                 }
