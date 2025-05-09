@@ -63,7 +63,7 @@ hoverZoomPlugins.push({
                 return;
             }
 
-            cLog(`Fixing ${galleryUrls.length} imaages...`);
+            cLog(`Fixing ${galleryUrls.length} images...`);
 
             /**
              * Recursive function that checks for the existence of the full-size png
