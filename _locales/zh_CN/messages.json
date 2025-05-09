@@ -243,6 +243,14 @@
         "message": "使用鼠标滚轮导航相册",
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
+    "optGalleriesLoopEnabled": {
+        "message": "Loop albums",
+        "description": "[options] Loop albums option"
+    },
+    "optGalleriesLoopEnabledTooltip": {
+        "message": "When navigating past the end of an album, loop back to the start",
+        "description": "[options] Tooltip for loop albums option"
+    },
     "optDisableMouseWheelForVideo": {
         "message": "不使用鼠标滚轮在视频中导航（快捷键仍然有效）",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
@@ -372,7 +380,7 @@
         "description": "[options] Adjust the zoomed image padding size option"
     },
     "optImagePaddingSizeUnitName": {
-        "message": "pixels",
+        "message": "像素",
         "description": "[options] Unit name (pixels) for zoomed images padding option"
     },
     "optImagePaddingSizeTooltip": {
@@ -688,7 +696,7 @@
         "description": "[options] Tooltip for setting unit for below position offset"
     },
     "optBelowPositionOffsetUnitPixel": {
-        "message": "px",
+        "message": "像素",
         "description": "[options] unit type pixel"
     },
     "optBelowPositionOffsetUnitPercent": {
@@ -704,7 +712,7 @@
         "description": "[options] Tooltip for setting unit for above position offset"
     },
     "optAbovePositionOffsetUnitPixel": {
-        "message": "px",
+        "message": "像素",
         "description": "[options] unit type pixel"
     },
     "optAbovePositionOffsetUnitPercent": {
@@ -824,7 +832,7 @@
         "description": "[options] Reset all banned images option"
     },
     "optButtonResetAllBannedImages": {
-        "message": "Reset",
+        "message": "重置​​​",
         "description": "[options] Reset all banned images button"
     },
     "optSectionTroubleshooting": {
