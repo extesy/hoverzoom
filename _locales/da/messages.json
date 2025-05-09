@@ -243,6 +243,14 @@
         "message": "Bladr igennem albummer ved hjælp af musehjulet",
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
+    "optGalleriesLoopEnabled": {
+        "message": "Loop albums",
+        "description": "[options] Loop albums option"
+    },
+    "optGalleriesLoopEnabledTooltip": {
+        "message": "When navigating past the end of an album, loop back to the start",
+        "description": "[options] Tooltip for loop albums option"
+    },
     "optDisableMouseWheelForVideo": {
         "message": "Brug ikke musehjulet til at navigere i video (actions keys vil stadig fungere)",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
@@ -824,7 +832,7 @@
         "description": "[options] Reset all banned images option"
     },
     "optButtonResetAllBannedImages": {
-        "message": "Reset",
+        "message": "Nulstil",
         "description": "[options] Reset all banned images button"
     },
     "optSectionTroubleshooting": {
