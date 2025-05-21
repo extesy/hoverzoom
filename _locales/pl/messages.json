@@ -243,6 +243,14 @@
         "message": "Poruszaj się po albumie za pomocą kółka myszy",
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
+    "optGalleriesLoopEnabled": {
+        "message": "Loop albums",
+        "description": "[options] Loop albums option"
+    },
+    "optGalleriesLoopEnabledTooltip": {
+        "message": "When navigating past the end of an album, loop back to the start",
+        "description": "[options] Tooltip for loop albums option"
+    },
     "optDisableMouseWheelForVideo": {
         "message": "Nie używaj kółka myszy do nawigacji w wideo (klawisze akcji będą nadal działać)",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
@@ -256,7 +264,7 @@
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Obsługiwane formaty: 3gp m4v mkv mp4 ogv webm",
+        "message": "Supported formats: 3gpp m4v mkv mp4 mpeg-dash ogv webm",
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
@@ -824,7 +832,7 @@
         "description": "[options] Reset all banned images option"
     },
     "optButtonResetAllBannedImages": {
-        "message": "Reset",
+        "message": "Zresetuj",
         "description": "[options] Reset all banned images button"
     },
     "optSectionTroubleshooting": {

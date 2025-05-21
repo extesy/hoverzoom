@@ -9,16 +9,19 @@ hoverZoomPlugins.push({
         var apiUrl = 'https://api.redgifs.com/v2';
 
         if (!self.redgifsToken) {
-            $.get(`${apiUrl}/auth/temporary`, function(data) {
-                if (data && data.token) {
-                    self.redgifsToken = data.token;
-                }
+            chrome.runtime.sendMessage({
+                action: 'ajaxGet',
+                url: `${apiUrl}/auth/temporary`,
+            }, (response) => {
+                const data = JSON.parse(response);
+                self.redgifsToken = data?.token;
             });
         }
 
         $('a[href*="redgifs.com/"]').one('mouseenter', function() {
             const link = $(this);
             const gfyId = this.href.replace(/.*redgifs.com\/(..\/)?(\w+\/)?(\w+)(?:\.\w+)?/, '$3');
+            if (!self.redgifsToken || gfyId.indexOf('/') !== -1) return;
 
             chrome.runtime.sendMessage({
                 action: 'ajaxGet',

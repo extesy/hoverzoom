@@ -3990,8 +3990,13 @@ var hoverZoom = {
                 return; // no gallery to rotate or gallery with only one image
             }
 
-            var l = data.hoverZoomGallerySrc.length;
-            data.hoverZoomGalleryIndex = (data.hoverZoomGalleryIndex + rot + l) % l;
+            var len = data.hoverZoomGallerySrc.length;
+            if ((data.hoverZoomGalleryIndex + rot < 0 || data.hoverZoomGalleryIndex + rot >= len) && !options.galleriesLoopEnabled) {
+                // The user attempted to naviagte past the start/end of an album, but looping is disabled, so we do
+                // nothing.
+                return;
+            }
+            data.hoverZoomGalleryIndex = (data.hoverZoomGalleryIndex + rot + len) % len;
             updateImageFromGallery(link);
 
             data.hoverZoomSrcIndex = 0;
@@ -3999,7 +4004,7 @@ var hoverZoom = {
             hzGallery.text('.../' + data.hoverZoomGallerySrc.length);
 
             loadNextGalleryImage();
-            preloadGalleryImage((data.hoverZoomGalleryIndex + rot + l) % l);
+            preloadGalleryImage((data.hoverZoomGalleryIndex + rot + len) % len);
         }
 
         function loadNextGalleryImage() {

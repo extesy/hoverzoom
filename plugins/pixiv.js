@@ -48,6 +48,70 @@ hoverZoomPlugins.push({
         }
 
         /**
+         * Erases non-existent URLs from the hoverZoomGallerySrc array.
+         *
+         * This is done asynchronously, so there's no delay introduced by the checks.
+         * The first image in an album will load a bit slowly if it's a jpg (because
+         * HZ will try to the load png, fail, then fall back to the jpg), but the rest
+         * should be instant, especially with gallery preloading.
+         */
+        function fixGalleryUrls(galleryUrls, jcontainer) {
+            // If the user hasn't specified that they want to see high-res images,
+            // there's nothing for this function to do, since galleryUrls will
+            // only include master1200 thumbnails, which always exist.
+            if(!options.showHighRes) {
+                return;
+            }
+
+            cLog(`Fixing ${galleryUrls.length} images...`);
+
+            /**
+             * Recursive function that checks for the existence of the full-size png
+             * version of each image, and deletes it from hoverZoomGallerySrc if it
+             * doesn't. Then it does the same for the full-size jpg version.
+             * Then it moves on to the next image in the gallery, until the gallery
+             * processing is finished.
+             */
+            function processNext(index) {
+                // Stop recursing when we reach the end of the gallery.
+                if (index >= galleryUrls.length) {
+                    return;
+                }
+
+                cLog(`Checking if ${galleryUrls[index][0]} exists...`);
+                fetch(galleryUrls[index][0], { method: 'HEAD' })
+                    .then((response) => {
+                        if (!response.ok) {
+                            // The PNG doesn't exist, so remove it from the array.
+                            cLog(`Full-size PNG doesn't exist. Removing it for image #${index + 1}.`);
+                            galleryUrls[index].shift()
+                            // Now check the jpg, which is now the first one in the array.
+                            cLog(`Checking if ${galleryUrls[index][0]} exists...`);
+                            fetch(galleryUrls[index][0], {method: 'HEAD'})
+                                .then((response) => {
+                                    if (!response.ok) {
+                                        // Thee jpg doesn't exist either?
+                                        // Weird, but OK. Remove it, too.
+                                        galleryUrls[index].shift()
+                                        console.log(`Full-size JPG doesn't exist. Removing it for image #${index + 1}.`);
+                                    }
+                                    // The above code updated galleryUrls, so we can now replace
+                                    // hoverZoomGallerySrc with the updated version.
+                                    jcontainer.data('hoverZoomGallerySrc', galleryUrls)
+                                })
+                        }
+                    })
+                    .finally(() => {
+                        // After the image is done processing, move on to the next one in the gallery.
+                        processNext(index + 1);
+                    });
+            }
+            // Start recursing from the first image.
+            processNext(0);
+        }
+
+
+        /**
          * jQuery one listener
          * only
          */
@@ -55,7 +119,7 @@ hoverZoomPlugins.push({
         imageElements.one('mouseover', function () {
             const jcontainer = $(this)
 
-            // stop function if data already bind
+            // stop function if data already bound
             if(jcontainer.data().hoverZoomGallerySrc) return;
             const containerString = this.outerHTML
 
@@ -71,21 +135,27 @@ hoverZoomPlugins.push({
 
             // Loop through image number
             for (let i = 0; i < imageCount; i++) {
-                const url = {
-                    original: `https://i.pximg.net/img-original/img/${data.date}/${data.id}_p${i}.jpg`,
-                    regular: `https://i.pximg.net/img-master/img/${data.date}/${data.id}_p${i}_master1200.jpg`
+                // These are the two types of images that might be found in a Pixiv gallery.
+                // Pixiv does allow you to upload GIF files, but they don't support animated
+                // GIF, so nobody actually does this.
+                const hiResUrls = {
+                    originalJPG: `https://i.pximg.net/img-original/img/${data.date}/${data.id}_p${i}.jpg`,
+                    originalPNG: `https://i.pximg.net/img-original/img/${data.date}/${data.id}_p${i}.png`,
                 }
-                const urls = [url.regular]
+                // Use only the master1200 thumbnail jpg by default. This URL always exists.
+                const urls = [`https://i.pximg.net/img-master/img/${data.date}/${data.id}_p${i}_master1200.jpg`]
 
-                /**
-                 * unshift original value if options showHighRes is true
-                 * so its loaded first
-                */
+                // If the user has chosen to display highRes images, display the original PNG by default,
+                // falling back to the original jpg if that doesn't exist, and the master1200 thumbnail
+                // if, somehow, neither of the originals exist.
                 if(options.showHighRes) {
-                    urls.unshift(url.original)
+                    urls.unshift(hiResUrls.originalPNG, hiResUrls.originalJPG);
                 }
                 galleryUrls.push(urls)
             }
+
+            fixGalleryUrls(galleryUrls, jcontainer);
+
             jcontainer.data('hoverZoomGallerySrc', galleryUrls)
 
             callback($([jcontainer]))

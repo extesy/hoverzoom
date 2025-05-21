@@ -243,6 +243,14 @@
         "message": "Πλοήγηση στο άλμπουμ με τον τροχό του ποντικιού",
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
+    "optGalleriesLoopEnabled": {
+        "message": "Loop albums",
+        "description": "[options] Loop albums option"
+    },
+    "optGalleriesLoopEnabledTooltip": {
+        "message": "When navigating past the end of an album, loop back to the start",
+        "description": "[options] Tooltip for loop albums option"
+    },
     "optDisableMouseWheelForVideo": {
         "message": "Μην χρησιμοποιείτε τον τροχό του ποντικιού για να πλοηγηθείτε μέσα στο βίντεο (τα πλήκτρα ενεργειών εξακολουθούν να λειτουργούν)",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
@@ -256,7 +264,7 @@
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Υποστηριζόμενες μορφές: mp4 ogv webm",
+        "message": "Supported formats: 3gpp m4v mkv mp4 mpeg-dash ogv webm",
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
