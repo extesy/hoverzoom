@@ -46,6 +46,7 @@ async function saveOptions(exportSettings = false) {
     options.showWhileLoading = $('#chkShowWhileLoading')[0].checked;
     options.showHighRes = $('#chkShowHighRes')[0].checked;
     options.galleriesMouseWheel = $('#chkGalleriesMouseWheel')[0].checked;
+    options.galleriesLoopEnabled = $('#chkGalleriesLoopEnabled')[0].checked;
     options.disableMouseWheelForVideo = $('#chkDisableMouseWheelForVideo')[0].checked;
     options.displayDelay = getMilliseconds($('#txtDisplayDelay'));
     options.displayDelayVideo = getMilliseconds($('#txtDisplayDelayVideo'));
@@ -195,6 +196,7 @@ async function restoreOptions(optionsFromFactorySettings) {
     $('#chkShowWhileLoading').trigger(options.showWhileLoading ? 'gumby.check' : 'gumby.uncheck');
     $('#chkShowHighRes').trigger(options.showHighRes ? 'gumby.check' : 'gumby.uncheck');
     $('#chkGalleriesMouseWheel').trigger(options.galleriesMouseWheel ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkGalleriesLoopEnabled').trigger(options.galleriesLoopEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#chkDisableMouseWheelForVideo').trigger(options.disableMouseWheelForVideo ? 'gumby.check' : 'gumby.uncheck');
     $('#txtDisplayDelay').val((options.displayDelay || 0) / 1000);
     $('#txtDisplayDelayVideo').val((options.displayDelayVideo || 0) / 1000);

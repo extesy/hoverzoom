@@ -243,6 +243,14 @@
         "message": "นําทางอัลบั้มด้วยล้อเลื่อนของเมาส์",
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
+    "optGalleriesLoopEnabled": {
+        "message": "Loop albums",
+        "description": "[options] Loop albums option"
+    },
+    "optGalleriesLoopEnabledTooltip": {
+        "message": "When navigating past the end of an album, loop back to the start",
+        "description": "[options] Tooltip for loop albums option"
+    },
     "optDisableMouseWheelForVideo": {
         "message": "อย่าใช้ล้อเลื่อนเลื่อนเพื่อนําทางภายในวิดีโอ (ปุ่มการทํางานจะยังคงใช้งานได้)",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
@@ -256,7 +264,7 @@
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "รูปแบบที่รองรับ: 3gpp m4v mkv mp4 ogv webm",
+        "message": "Supported formats: 3gpp m4v mkv mp4 mpeg-dash ogv webm",
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
@@ -688,7 +696,7 @@
         "description": "[options] Tooltip for setting unit for below position offset"
     },
     "optBelowPositionOffsetUnitPixel": {
-        "message": "px",
+        "message": "พิกเซล",
         "description": "[options] unit type pixel"
     },
     "optBelowPositionOffsetUnitPercent": {
@@ -704,7 +712,7 @@
         "description": "[options] Tooltip for setting unit for above position offset"
     },
     "optAbovePositionOffsetUnitPixel": {
-        "message": "px",
+        "message": "พิกเซล",
         "description": "[options] unit type pixel"
     },
     "optAbovePositionOffsetUnitPercent": {
