@@ -3,8 +3,8 @@ hoverZoomPlugins.push({
     name:'bidspotter',
     version:'0.1',
     prepareImgLinks:function (callback) {
-        var pluginName = this.name;
-        var res = [];
+        const pluginName = this.name;
+        const res = [];
 
         // auction url sample: https://www.bidspotter.com/en-us/auction-catalogues/bscmo/catalogue-id-bscmo10173/lot-09465c01-2db7-4716-a6c3-b2a7010a5636
 
@@ -20,9 +20,9 @@ hoverZoomPlugins.push({
                 const imgs = doc.find('div.lot-details-image img[src]');
                 if (imgs.length == 0) return;
 
-                var gallery = [];
+                const gallery = [];
                 imgs.each(i => gallery.push([imgs[i].src.replace(/(.*)\?.*/, '$1')]));
-                var captions = [];
+                const captions = [];
                 imgs.each(i => captions.push([imgs[i].alt]));
 
                 link.data().hoverZoomGallerySrc = gallery;
@@ -57,7 +57,6 @@ hoverZoomPlugins.push({
             if (link.data().hoverZoomSrc == undefined) { link.data().hoverZoomSrc = [] }
             if (link.data().hoverZoomSrc.indexOf(fullsizeUrl) == -1) {
                 link.data().hoverZoomSrc.unshift(fullsizeUrl);
-                link.data().hoverZoomJikeImgUrl = fullsizeUrl;
             }
 
             callback(link, pluginName);
