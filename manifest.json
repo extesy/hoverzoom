@@ -2188,6 +2188,11 @@
         {
             "js": ["plugins/jike.js"],
             "matches": ["*://*.ui.cn/*"]
+        },
+        {
+            "js": ["plugins/bidspotter.js"],
+            "matches": ["*://*.bidspotter.com/*"],
+            "all_frames": true
         }
     ]
 }
