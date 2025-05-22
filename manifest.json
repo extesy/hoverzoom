@@ -2191,8 +2191,7 @@
         },
         {
             "js": ["plugins/bidspotter.js"],
-            "matches": ["*://*.bidspotter.com/*"],
-            "all_frames": true
+            "matches": ["*://*.bidspotter.com/*"]
         }
     ]
 }
