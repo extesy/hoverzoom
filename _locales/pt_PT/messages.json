@@ -60,7 +60,7 @@
         "description": "[options] Cancel button label"
     },
     "optButtonReset": {
-        "message": "Redefinir",
+        "message": "Repor",
         "description": "[options] Reset button label"
     },
     "optSaved": {
@@ -244,11 +244,11 @@
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
     "optGalleriesLoopEnabled": {
-        "message": "Loop albums",
+        "message": "Repetir álbuns",
         "description": "[options] Loop albums option"
     },
     "optGalleriesLoopEnabledTooltip": {
-        "message": "When navigating past the end of an album, loop back to the start",
+        "message": "Volta ao início ao chegar ao fim do álbum",
         "description": "[options] Tooltip for loop albums option"
     },
     "optDisableMouseWheelForVideo": {
@@ -264,7 +264,7 @@
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Supported formats: 3gpp m4v mkv mp4 mpeg-dash ogv webm",
+        "message": "Formatos suportados: 3gpp, m4v, mkv, mp4, mpeg-dash, ogv, webm",
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
