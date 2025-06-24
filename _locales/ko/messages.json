@@ -244,11 +244,11 @@
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
     "optGalleriesLoopEnabled": {
-        "message": "Loop albums",
+        "message": "앨범 순환",
         "description": "[options] Loop albums option"
     },
     "optGalleriesLoopEnabledTooltip": {
-        "message": "When navigating past the end of an album, loop back to the start",
+        "message": "앨범 끝을 지나서 탐색하면 처음으로 되돌아갑니다",
         "description": "[options] Tooltip for loop albums option"
     },
     "optDisableMouseWheelForVideo": {
