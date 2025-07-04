@@ -200,10 +200,8 @@ async function onMessage(message, sender, sendResponse) {
             });
             break;
         case 'openViewTab':
-            chrome.tabs.query({active: true}, function (tabs) {
-                message.createData.index = tabs[0].index;
-                if (!message.createData.active)
-                    message.createData.index++;
+            chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+                message.createData.index = tabs[0].index + 1;
                 let url = message.createData.url;
                 if (url.indexOf('facebook.com/photo/download') !== -1) {
                     message.createData.url = 'data:text/html,<img src="' + url + '">';
