@@ -54,7 +54,7 @@ hoverZoomPlugins.push({
                     if (link.data().hoverZoomMouseOver)
                         hoverZoom.displayPicFromElement(link);
                 }
-            } catch {}
+            } catch (e) { console.error('[HoverZoom+] DuckDuckGo plugin error:', e); }
         }).one('mouseleave', function() {
             const link = $(this);
             link.data().hoverZoomMouseOver = false;
