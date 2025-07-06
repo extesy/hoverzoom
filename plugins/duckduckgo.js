@@ -40,7 +40,7 @@ hoverZoomPlugins.push({
             // search fetched data for id
             try {
                 let HZduckduckgoFetch = sessionStorage.getItem('HZduckduckgoFetch');
-                if (HZduckduckgoFetch.indexOf(id) == -1) return;
+                if (!HZduckduckgoFetch || HZduckduckgoFetch.indexOf(id) == -1) return;
                 const j = JSON.parse(HZduckduckgoFetch);
                 const values = hoverZoom.getValuesInJsonObject(j, id, false, true, true); // look for a partial match & stop after 1st match
                 if (values.length == 0) return;
