@@ -29,7 +29,7 @@ if (document.querySelector('script.HZduckduckgoFetch') == undefined) { // Inject
                         }
                     
                 })
-                .catch()
+                .catch(err => console.error('[HoverZoom+] DuckDuckGo fetch hook error:', err))
             ;
             // the original response can be resolved unmodified:
             return response;
