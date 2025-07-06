@@ -14,18 +14,19 @@ if (document.querySelector('script.HZduckduckgoFetch') == undefined) { // Inject
                 .then(body => {
                     const bodyStr = JSON.stringify(body);
                     if (bodyStr.indexOf('results') != -1) {
-                        var HZduckduckgoFetch = sessionStorage.getItem('HZduckduckgoFetch') || '[]';
-                            HZduckduckgoFetch = JSON.parse(HZduckduckgoFetch);
-                            HZduckduckgoFetch.push(body);
-                            // update sessionStorage, if no more room then reset
-                            try {
-                                sessionStorage.setItem('HZduckduckgoFetch', JSON.stringify(HZduckduckgoFetch));
-                            } catch {
-                                // reset sessionStorage
-                                HZduckduckgoFetch = [];
-                                HZduckduckgoFetch.push(body);
-                                sessionStorage.setItem('HZduckduckgoFetch', JSON.stringify(HZduckduckgoFetch));
-                            }
+                        var HZduckduckgoFetch;
+                        try {
+                            HZduckduckgoFetch = JSON.parse(sessionStorage.getItem('HZduckduckgoFetch') || '[]');
+                        } catch (e) {
+                            HZduckduckgoFetch = [];
+                        }
+                        HZduckduckgoFetch.push(body);
+                        try {
+                            sessionStorage.setItem('HZduckduckgoFetch', JSON.stringify(HZduckduckgoFetch));
+                        } catch (e) {
+                            // If storage is full, reset and store only the current fetch data.
+                            sessionStorage.setItem('HZduckduckgoFetch', JSON.stringify([body]));
+                        }
                         }
                     
                 })
