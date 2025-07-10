@@ -336,7 +336,7 @@
         "description": "[options] Tooltip for enable shadow behind caption and details option"
     },
     "optEnableCaptionDetailShadow": {
-        "message": "Enable shadow behind caption and details",
+        "message": "Włącz cień za podpisem i szczegółami",
         "description": "[options] Enable shadow behind caption and details option"
     },
     "optEnableCaptionDetailShadowTooltip": {
