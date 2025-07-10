@@ -68,6 +68,12 @@
                 "js/options.js"
             ],
             "matches": ["<all_urls>"]
+        },
+        {
+            "resources": [
+                 "js/duckduckgoInjected.js"
+            ],
+            "matches": ["*://*.duckduckgo.com/*"]
         }
     ],
     "content_scripts": [
@@ -1789,6 +1795,11 @@
         {
             "js": ["plugins/qwant.js"],
             "matches": ["*://*.qwant.com/*"]
+        },
+        {
+            "js": ["js/duckduckgoInject.js"],
+            "matches": ["*://*.duckduckgo.com/*"],
+            "run_at": "document_start"
         },
         {
             "js": ["plugins/duckduckgo.js"],
