@@ -2203,6 +2203,10 @@
         {
             "js": ["plugins/bidspotter.js"],
             "matches": ["*://*.bidspotter.com/*"]
+        },
+        {
+            "js": ["plugins/nexusmods.js"],
+            "matches": ["*://*.nexusmods.com/*"]
         }
     ]
 }
