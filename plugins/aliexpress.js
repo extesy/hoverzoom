@@ -32,7 +32,7 @@ hoverZoomPlugins.push( {
 
             // list imgs under link
             const imgs = link.find('img[src*="aliexpress"]');
-            if (imgs.length == 0) return;
+            if (imgs.length === 0) return;
 
             const gallery = [];
             imgs.each(i => gallery.push([imgs[i].src.replace(reSearch, reReplace)]));
