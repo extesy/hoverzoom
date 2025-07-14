@@ -1,4 +1,4 @@
-﻿var hoverZoomPlugins = hoverZoomPlugins || [];
+var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push( {
     name: 'aliexpress',
     version: '1.0',
