@@ -2207,6 +2207,10 @@
         {
             "js": ["plugins/nexusmods.js"],
             "matches": ["*://*.nexusmods.com/*"]
+        },
+        {
+            "js": ["plugins/aliexpress.js"],
+            "matches": ["*://*.aliexpress.com/*"]
         }
     ]
 }
