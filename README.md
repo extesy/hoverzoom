@@ -28,4 +28,5 @@ Sometimes sites change design, and when it happens, the extension needs to be up
 
 ---
 
-Licensed under MIT license.
+### Powered by
+[![JetBrains logo.](https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.svg)](https://jb.gg/OpenSource)
