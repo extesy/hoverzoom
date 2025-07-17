@@ -393,5 +393,19 @@
             "urlFilter": "||furaffinity.net/",
             "resourceTypes": ["image", "media"]
         }
+    },
+    {
+        "id": 170,
+        "priority": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "requestHeaders": [
+                {"header": "referer", "operation": "remove"}
+            ]
+        },
+        "condition": {
+            "urlFilter": "||alicdn.com/",
+            "resourceTypes": ["image", "media"]
+        }
     }
 ]

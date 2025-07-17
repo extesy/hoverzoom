@@ -5,7 +5,7 @@ hoverZoomPlugins.push({
     prepareImgLinks:function (callback) {
         const res = [];
         
-        $('a > img[data-canonical-src]').each(function () {
+        $('a>img[data-canonical-src], td>img[data-canonical-src]').each(function () {
             let img = $(this);
             img.data('hoverZoomSrc', [img.attr('data-canonical-src')]);
             img.data('hoverZoomCaption', [img.attr('alt')]);
