@@ -2211,6 +2211,10 @@
         {
             "js": ["plugins/aliexpress.js"],
             "matches": ["*://*.aliexpress.com/*"]
+        },
+        {
+            "js": ["plugins/yupoo.js"],
+            "matches": ["*://*.yupoo.com/*"]
         }
     ]
 }
