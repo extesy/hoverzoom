@@ -2849,7 +2849,9 @@ var hoverZoom = {
                         hz.hzViewer.hide();
                     }
                     if (imgFullSize) {
-                        return false;
+                        event.preventDefault();
+                        event.stopImmediatePropagation();
+                        return;
                     }
                 }
             }
@@ -2859,7 +2861,9 @@ var hoverZoom = {
                 actionKeyDown = true;
                 $(this).mousemove();
                 if (loading || imgFullSize) {
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
             }
 
@@ -2868,7 +2872,9 @@ var hoverZoom = {
                 fullZoomKeyDown = true;
                 posViewer();
                 if (imgFullSize) {
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
             }
 
@@ -2882,7 +2888,9 @@ var hoverZoom = {
                 }
                 if (imgFullSize) {
                     cancelSourceLoading();
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
             }
 
@@ -2895,7 +2903,9 @@ var hoverZoom = {
                     hz.hzViewer.hide();
                 }
                 if (imgFullSize) {
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
             }
 
@@ -2910,7 +2920,9 @@ var hoverZoom = {
                     banImage();
                 }
                 if (imgFullSize) {
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
             }
 
@@ -2920,74 +2932,94 @@ var hoverZoom = {
                 if (keyCode === options.actionKey ||
                     keyCode === options.fullZoomKey ||
                     keyCode === options.hideKey) {
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
                 // "Lock image" key
                 if (keyCode === options.lockImageKey) {
                     lockImageKey(event);
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
                 // "Copy image" key
                 if (keyCode === options.copyImageKey) {
                     copyImage();
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
                 // "Copy image url" key
                 if (keyCode === options.copyImageUrlKey) {
                     copyLink();
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
                 // "Previous image" key
                 if (keyCode === options.prevImgKey) {
                     var linkData = hz.currentLink.data();
                     if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(-1);
                     else changeVideoPosition(-parseInt(options.videoPositionStep));
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
                 // "Next image" key
                 if (keyCode === options.nextImgKey) {
                     var linkData = hz.currentLink.data();
                     if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(1);
                     else changeVideoPosition(parseInt(options.videoPositionStep));
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
                 // "Flip image" key
                 if (keyCode === options.flipImageKey) {
                     flipImage();
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
                 // "Rotate image" key
                 if (keyCode === options.rotateImageKey) {
                     rotateImage();
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
                 // "+" key is pressed
                 if (event.which == 107) {
-                    event.preventDefault();
                     plusKeyDown = true;
                     zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
                 // "-" key is pressed
                 if (event.which == 109) {
-                    event.preventDefault();
                     minusKeyDown = true;
                     zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
                 // "Arrow Up" key is pressed
                 if (event.which == 38) {
-                    event.preventDefault();
                     arrowUpKeyDown = true;
                     zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
                 // "Arrow Down" key is pressed
                 if (event.which == 40) {
-                    event.preventDefault();
                     arrowDownKeyDown = true;
                     zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
             }
         }
@@ -3033,43 +3065,53 @@ var hoverZoom = {
                     if (srcDetails.video) openVideoInWindow();
                     else if (srcDetails.audio) openAudioInWindow();
                     else openImageInWindow();
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
                 // "Open image in a new tab" key
                 if (keyCode === options.openImageInTabKey) {
                     if (srcDetails.video) openVideoInTab(event.shiftKey);
                     else if (srcDetails.audio) openAudioInTab();
                     else openImageInTab(event.shiftKey);
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
                 // "Save image" key
                 if (keyCode === options.saveImageKey) {
                     saveImage();
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
                 // "+" key is released
                 if (event.which == 107) {
-                    event.preventDefault();
                     plusKeyDown = false;
                     zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
                 }
                 // "-" key is released
                 if (event.which == 109) {
-                    event.preventDefault();
                     minusKeyDown = false;
                     zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
                 }
                 // "Arrow Up" key is released
                 if (event.which == 38) {
-                    event.preventDefault();
                     arrowUpKeyDown = false;
                     zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
                 }
                 // "Arrow Down" key is released
                 if (event.which == 40) {
-                    event.preventDefault();
                     arrowDownKeyDown = false;
                     zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
                 }
             }
         }
