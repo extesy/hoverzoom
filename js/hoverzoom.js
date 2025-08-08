@@ -2928,33 +2928,28 @@ var hoverZoom = {
 
             // the following keys are processed only if an image is displayed
             if (imgFullSize) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+
                 // Cancels event if an action key is held down (auto-repeat may trigger additional events)
                 if (keyCode === options.actionKey ||
                     keyCode === options.fullZoomKey ||
                     keyCode === options.hideKey) {
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                     return;
                 }
                 // "Lock image" key
                 if (keyCode === options.lockImageKey) {
                     lockImageKey(event);
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                     return;
                 }
                 // "Copy image" key
                 if (keyCode === options.copyImageKey) {
                     copyImage();
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                     return;
                 }
                 // "Copy image url" key
                 if (keyCode === options.copyImageUrlKey) {
                     copyLink();
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                     return;
                 }
                 // "Previous image" key
@@ -2962,8 +2957,6 @@ var hoverZoom = {
                     var linkData = hz.currentLink.data();
                     if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(-1);
                     else changeVideoPosition(-parseInt(options.videoPositionStep));
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                     return;
                 }
                 // "Next image" key
@@ -2971,54 +2964,40 @@ var hoverZoom = {
                     var linkData = hz.currentLink.data();
                     if (linkData.hoverZoomGallerySrc && linkData.hoverZoomGallerySrc.length > 1) rotateGalleryImg(1);
                     else changeVideoPosition(parseInt(options.videoPositionStep));
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                     return;
                 }
                 // "Flip image" key
                 if (keyCode === options.flipImageKey) {
                     flipImage();
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                     return;
                 }
                 // "Rotate image" key
                 if (keyCode === options.rotateImageKey) {
                     rotateImage();
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                     return;
                 }
                 // "+" key is pressed
                 if (event.which == 107) {
                     plusKeyDown = true;
                     zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                     return;
                 }
                 // "-" key is pressed
                 if (event.which == 109) {
                     minusKeyDown = true;
                     zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                     return;
                 }
                 // "Arrow Up" key is pressed
                 if (event.which == 38) {
                     arrowUpKeyDown = true;
                     zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                     return;
                 }
                 // "Arrow Down" key is pressed
                 if (event.which == 40) {
                     arrowDownKeyDown = true;
                     zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                     return;
                 }
             }
@@ -3055,18 +3034,21 @@ var hoverZoom = {
                 if (imgFullSize) {
                     hz.hzViewer.show();
                     playMedias();
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
                 }
                 $(this).mousemove();
             }
             // the following keys are processed only if an image is displayed
             if (imgFullSize) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+
                 // "Open image in a new window" key
                 if (keyCode === options.openImageInWindowKey) {
                     if (srcDetails.video) openVideoInWindow();
                     else if (srcDetails.audio) openAudioInWindow();
                     else openImageInWindow();
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                     return;
                 }
                 // "Open image in a new tab" key
@@ -3074,44 +3056,32 @@ var hoverZoom = {
                     if (srcDetails.video) openVideoInTab(event.shiftKey);
                     else if (srcDetails.audio) openAudioInTab();
                     else openImageInTab(event.shiftKey);
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                     return;
                 }
                 // "Save image" key
                 if (keyCode === options.saveImageKey) {
                     saveImage();
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                     return;
                 }
                 // "+" key is released
                 if (event.which == 107) {
                     plusKeyDown = false;
                     zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                 }
                 // "-" key is released
                 if (event.which == 109) {
                     minusKeyDown = false;
                     zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                 }
                 // "Arrow Up" key is released
                 if (event.which == 38) {
                     arrowUpKeyDown = false;
                     zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                 }
                 // "Arrow Down" key is released
                 if (event.which == 40) {
                     arrowDownKeyDown = false;
                     zoomSpeedFactor = 1; // reset zoom speed factor on locked images & videos
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
                 }
             }
         }
