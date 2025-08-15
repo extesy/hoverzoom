@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'kleinanzeigen.de',
-    version:'0.2',
+    version:'0.3',
     prepareImgLinks:function (callback) {
         var pluginName = this.name;
         var res = [];
@@ -16,11 +16,11 @@ hoverZoomPlugins.push({
                 const parser = new DOMParser();
                 const doc = $(parser.parseFromString(response, "text/html"));
 
-                const metas = doc.find('div[data-ix] meta[itemProp*="contentUrl"]');
+                const srcs = doc.find('div[data-ix] img[data-imgsrc]');
                 const titles = doc.find('div[data-ix] img[title]');
-                if (metas.length == 0) return;
+                if (srcs.length == 0) return;
                 var gallery = [];
-                metas.each(i => gallery.push([metas[i].content]));
+                srcs.each(i => gallery.push([srcs[i].dataset.imgsrc]));
                 var captions = [];
                 if (gallery.length == titles.length) {
                     titles.each(i => captions.push(titles[i].title));
