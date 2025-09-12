@@ -10,7 +10,7 @@ hoverZoomPlugins.push({
         const videoRe = /\/videos\/(.*?-.*?-.*?-.*?-.*?)\//
         var res = [];
 
-        $('div.Cover-wrapper-H_F').on('mouseover', function() {
+        $('div.Cover-wrapper-H_F').on('mouseover', function(event) {
 
             const link = $(this);
             if (link.data().hoverZoomMouseOver) return;
