@@ -2215,6 +2215,10 @@
         {
             "js": ["plugins/yupoo.js"],
             "matches": ["*://*.yupoo.com/*"]
-        }
+        },
+        {
+            "js": ["plugins/pokellector.js"],
+            "matches": ["*://*.pokellector.com/*"]
+        }   
     ]
 }
