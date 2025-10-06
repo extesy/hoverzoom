@@ -448,7 +448,7 @@
         "description": "[options] Frame thickness option"
     },
     "optFrameThicknessTooltip": {
-        "message": "圖片顯示的邊框厚度 (0 : 無邊框)",
+        "message": "圖片顯示的邊框厚度 (0：無邊框)",
         "description": "[options] Tooltip for frame thickness option"
     },
     "optFrameThicknessUnitName": {
