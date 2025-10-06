@@ -872,7 +872,7 @@
         "description": "[options] Page section for supported video formats"
     },
     "optSupportedAudioFormats": {
-        "message": "音訊 ：",
+        "message": "音訊：",
         "description": "[options] Page section for supported audio formats"
     },
     "optSectionImportExportSettings": {
