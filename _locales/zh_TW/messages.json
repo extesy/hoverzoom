@@ -864,7 +864,7 @@
         "description": "[options] Page section for supported formats"
     },
     "optSupportedImageFormats": {
-        "message": "圖片 ：",
+        "message": "圖片：",
         "description": "[options] Page section for supported image formats"
     },
     "optSupportedVideoFormats": {
