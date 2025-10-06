@@ -372,7 +372,7 @@
         "description": "[options] Unit name (percentage) for background opacity"
     },
     "optAmbilightBackgroundOpacityTooltip": {
-        "message": "0% : 透明, 100% : 黑色",
+        "message": "0%：透明，100%：黑色",
         "description": "[options] Tooltip for background opacity"
     },
     "optImagePaddingSize": {
