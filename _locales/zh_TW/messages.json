@@ -112,7 +112,7 @@
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxWidth": {
-        "message": "Set max width of zoomed images:",
+        "message": "設定縮放影像的最大寬度：",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optMaxWidthTooltip": {
@@ -120,7 +120,7 @@
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxHeight": {
-        "message": "Set max height of zoomed images:",
+        "message": "設定縮放影像的最大高度：",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optMaxHeightTooltip": {
@@ -132,7 +132,7 @@
         "description": "[options] Unit name (px) for zoomed images size option"
     },
     "optCaptionLocation": {
-        "message": "Caption position:",
+        "message": "說明文字位置：",
         "description": "[options] Adjust the position of the caption"
     },
     "optCaptionLocationTooltip": {
@@ -152,7 +152,7 @@
         "description": "[options] Caption location option to disable captions"
     },
     "optDetailsLocation": {
-        "message": "Details position:",
+        "message": "詳細資料位置：",
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
@@ -176,7 +176,7 @@
         "description": "[options] Outline option"
     },
     "optFontOutlineTooltip": {
-        "message": "If checked: use white font + thin black border for caption & details",
+        "message": "如果勾選：標題和詳細資料使用白色字體 + 黑色細邊框",
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
@@ -188,7 +188,7 @@
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
     "optHideMouseCursor": {
-        "message": "Hide mouse cursor after:",
+        "message": "延遲隱藏滑鼠游標：",
         "description": "[options] Hide mouse cursor option"
     },
     "optHideMouseCursorTooltip": {
@@ -264,7 +264,7 @@
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Supported formats: 3gpp m4v mkv mp4 mpeg-dash ogv webm",
+        "message": "支援的格式：3gpp m4v mkv mp4 mpeg-dash ogv webm",
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
@@ -296,7 +296,7 @@
         "description": "[options] Tooltip for video length countdown on videos"
     },
     "optVideoVolume": {
-        "message": "Audio volume for unmuted videos:",
+        "message": "未靜音影片的音量：",
         "description": "[options] Audio volume for unmuted videos option"
     },
     "optVideoVolumeUnitName": {
@@ -312,11 +312,11 @@
         "description": "[options] Play audio option"
     },
     "optPlayAudioTooltip": {
-        "message": "Supported formats: flac m4a mp3 oga ogg opus wav",
+        "message": "支援的格式：flac m4a mp3 oga ogg opus wav",
         "description": "[options] Tooltip for play audio option"
     },
     "optAudioVolume": {
-        "message": "Audio volume:",
+        "message": "音訊音量：",
         "description": "[options] Audio volume option"
     },
     "optAudioVolumeUnitName": {
@@ -364,7 +364,7 @@
         "description": "[options] Tooltip for size of halo"
     },
     "optAmbilightBackgroundOpacity": {
-        "message": "Background opacity :",
+        "message": "背景不透明度：",
         "description": "[options] Background opacity option"
     },
     "optAmbilightBackgroundOpacityUnitName": {
@@ -372,7 +372,7 @@
         "description": "[options] Unit name (percentage) for background opacity"
     },
     "optAmbilightBackgroundOpacityTooltip": {
-        "message": "0% : transparent, 100% : black",
+        "message": "0%：透明，100%：黑色",
         "description": "[options] Tooltip for background opacity"
     },
     "optImagePaddingSize": {
@@ -428,7 +428,7 @@
         "description": "[options] Tooltip for automatically lock images option"
     },
     "optFrameBackgroundColor": {
-        "message": "Frame background color:",
+        "message": "邊框背景顏色：",
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
@@ -444,11 +444,11 @@
         "description": "[options] Frame background color button - Cancel"
     },
     "optFrameThickness": {
-        "message": "Frame thickness:",
+        "message": "邊框厚度：",
         "description": "[options] Frame thickness option"
     },
     "optFrameThicknessTooltip": {
-        "message": "Thickness of border for the frame the image appears in (0 : no frame)",
+        "message": "圖片顯示的邊框厚度 (0：無邊框)",
         "description": "[options] Tooltip for frame thickness option"
     },
     "optFrameThicknessUnitName": {
@@ -456,7 +456,7 @@
         "description": "[options] Unit name (pixel) for frame thickness"
     },
     "optFontSize": {
-        "message": "Font size:",
+        "message": "字體大小：",
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
@@ -472,11 +472,11 @@
         "description": "[options] Page section for delay options"
     },
     "optDisplayDelay": {
-        "message": "Delay before displaying a picture:",
+        "message": "顯示圖片前的延遲時間：",
         "description": "[options] Delay before displaying a picture option"
     },
     "optDisplayDelayVideo": {
-        "message": "Delay before displaying a video:",
+        "message": "顯示影片前的延遲時間：",
         "description": "[options] Delay before displaying a video option"
     },
     "optFadeDuration": {
@@ -556,11 +556,11 @@
         "description": "[options] Tooltip for whitelist mode checkbox"
     },
     "optSitePlaceholder": {
-        "message": "Examples: facebook.com, google.com/reader",
+        "message": "範例：facebook.com、google.com/reader",
         "description": "[options] Placeholder for a site url input box"
     },
     "optSiteDisclaimer": {
-        "message": "Be aware that domain filters can overlap. Example: if you have filtered \"picasaweb.google.com\" and \"google.com\", removing \"picasaweb.google.com\" will not reactivate Picasa Web Albums, as it will still be excluded by the \"google.com\" filter.",
+        "message": "請注意網域過濾器可能會重疊。例如：如果您已過濾「picasaweb.google.com」和「google.com」，移除「picasaweb.google.com」將無法重新啟動 Picasa 網路相簿，因為它仍會被「google.com」過濾器排除在外。",
         "description": "[options] Disclaimer on the sites option page"
     },
     "optButtonAddSite": {
@@ -864,7 +864,7 @@
         "description": "[options] Page section for supported formats"
     },
     "optSupportedImageFormats": {
-        "message": "Images :",
+        "message": "圖片：",
         "description": "[options] Page section for supported image formats"
     },
     "optSupportedVideoFormats": {
@@ -872,7 +872,7 @@
         "description": "[options] Page section for supported video formats"
     },
     "optSupportedAudioFormats": {
-        "message": "Audio :",
+        "message": "音訊：",
         "description": "[options] Page section for supported audio formats"
     },
     "optSectionImportExportSettings": {
