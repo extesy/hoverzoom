@@ -2219,6 +2219,10 @@
         {
             "js": ["plugins/pokellector.js"],
             "matches": ["*://*.pokellector.com/*"]
-        }   
+        },
+        {
+            "js": ["plugins/cosmos.js"],
+            "matches": ["*://*.cosmos.so/*"]
+        }
     ]
 }
