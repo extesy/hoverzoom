@@ -2223,6 +2223,10 @@
         {
             "js": ["plugins/cosmos.js"],
             "matches": ["*://*.cosmos.so/*"]
+        },
+        {
+            "js": ["plugins/printables.js"],
+            "matches": ["*://*.printables.com/*"]
         }
     ]
 }

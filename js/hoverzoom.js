@@ -1049,9 +1049,11 @@ var hoverZoom = {
                 if (links.data().hoverZoomSrc && typeof(links.data().hoverZoomSrc) !== 'undefined' &&
                     links.data().hoverZoomSrc[hoverZoomSrcIndex] &&
                     typeof(links.data().hoverZoomSrc[hoverZoomSrcIndex]) !== 'undefined') {
+
+                    const src = hoverZoom.getFullUrl(links.data().hoverZoomSrc[hoverZoomSrcIndex]);
                     // Happens when the mouse goes from an image to another without hovering the page background
-                    if (srcDetails.url && links.data().hoverZoomSrc[hoverZoomSrcIndex] !== srcDetails.url) {
-                        cLog(`hiding because ${links.data().hoverZoomSrc[hoverZoomSrcIndex]} !== ${srcDetails.url}`);
+                    if (srcDetails.url && src !== srcDetails.url) {
+                        cLog(`hiding because ${src} !== ${srcDetails.url}`);
                         closeHoverZoomViewer();
                     }
 
@@ -1062,7 +1064,6 @@ var hoverZoom = {
                         hz.currentLink = links;
 
                         if (links.data().hoverZoomSrc && (!options.actionKey || actionKeyDown)) {
-                            const src = hoverZoom.getFullUrl(links.data().hoverZoomSrc[hoverZoomSrcIndex]);
                             const audioSrc = links.data().hoverZoomAudioSrc ? hoverZoom.getFullUrl(links.data().hoverZoomAudioSrc[hoverZoomSrcIndex]) : undefined;
 
                             // only works after img has been loaded
