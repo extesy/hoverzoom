@@ -155,7 +155,7 @@ hoverZoomPlugins.push({
             if (links.length > 0) {
                 // update image link (1st link) with url
                 imageLink = links.eq(0);
-                if (url != undefined) { imageLink.attr('href', url); }
+                //if (url != undefined) { imageLink.attr('href', url); }
                 // extract a valid href (= url of page where image is displayed) from 2nd link
                 hrefPage = links.eq(1).attr('href');
             }
