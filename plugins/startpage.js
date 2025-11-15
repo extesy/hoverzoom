@@ -1,14 +1,12 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'startpage',
-    version:'0.3',
+    version:'0.4',
     prepareImgLinks:function (callback) {
 
         var name = this.name;
         var res = [];
-
-        const jsonToken1 = 'UIStartpage.AppSerpImages,';
-        const jsonToken2 = '}),';
+        const jsonToken = '{"render"';
         var spJson = undefined;
         var spData = extractJsonFromDoc();
 
@@ -16,22 +14,26 @@ hoverZoomPlugins.push({
         function extractJsonFromDoc() {
 
             const innerHTML = document.documentElement.innerHTML;
-            const index1 = innerHTML.indexOf(jsonToken1);
+            const index1 = innerHTML.indexOf(jsonToken);
             if (index1 == -1) return undefined;
-            const index2 = innerHTML.indexOf(jsonToken2, index1);
-            spJson = innerHTML.substring(index1 + jsonToken1.length, index2 + 1);
+
+            const index2 = hoverZoom.matchBracket(innerHTML, index1); // find closing "}"
+            spJson = innerHTML.substring(index1, index2 + 1);
+
             try {
-               let sp = JSON.parse(spJson);
-               return sp;
+                let sp = JSON.parse(spJson);
+                return sp;
             } catch { return undefined }
 
             return undefined;
         }
 
-        //$('link[href*="proxy-image"]:not(.hoverZoomFetched)').addClass('hoverZoomFetched').each(function () {
-        $('img[src*="proxy-image"]:not(.hoverZoomFetched)').addClass('hoverZoomFetched').each(function () {
-            let link = $(this);
-            let src = link.attr('src');
+        $('img[src*="proxy-image"]').one('mouseover', function() {
+            const link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
+
+            const src = link.attr('src');
 
             // search for thumbnail url among sp data
             if (spJson?.indexOf(src) == -1) return;
@@ -49,6 +51,15 @@ hoverZoomPlugins.push({
                 link.data().hoverZoomSrc.unshift(fullsizeUrl);
                 res.push(link);
             }
+
+            callback(link, name);
+            // Image is displayed iff cursor is still over the image
+            if (link.data().hoverZoomMouseOver)
+                hoverZoom.displayPicFromElement(link);
+
+        }).one('mouseleave', function() {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
 
         callback($(res), name);
