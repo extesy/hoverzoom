@@ -123,7 +123,7 @@ hoverZoomPlugins.push({
 
             url = media.baseUri;
             if (url) {
-                if (url.indexOf('.gif') != -1) { // GIF
+                if (url.indexOf('.gif') !== -1) { // GIF
                     url = url.replace(/\/$/, '');
                     if (token) url += '?token=' + token;
                     else if (token2) url += '?token=' + token2;
@@ -135,7 +135,8 @@ hoverZoomPlugins.push({
                     if (token) url += '?token=' + token;
                     else if (token2) url += '?token=' + token2;
                     // improve quality
-                    url = url.replace(/q_[0-9]{1,2}/, 'q_100');
+                    // url = url.replace(/q_[0-9]{1,2}/, 'q_100');
+                    // url = url.replace(/\.jpg\/v1\/fill\/.+\.jpg/, '.jpg');
                 }
             }
             return url;
