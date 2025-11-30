@@ -2227,6 +2227,10 @@
         {
             "js": ["plugins/printables.js"],
             "matches": ["*://*.printables.com/*"]
+        },
+        {
+            "js": ["plugins/erome.js"],
+            "matches": ["*://*.erome.com/*"]
         }
     ]
 }
