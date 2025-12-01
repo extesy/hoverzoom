@@ -2227,6 +2227,14 @@
         {
             "js": ["plugins/printables.js"],
             "matches": ["*://*.printables.com/*"]
+        },
+        {
+            "js": ["plugins/erome.js"],
+            "matches": ["*://*.erome.com/*"]
+        },
+        {
+            "js": ["plugins/otempo.js"],
+            "matches": ["*://*.otempo.com.br/*"]
         }
     ]
 }
