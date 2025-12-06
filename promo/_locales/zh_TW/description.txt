@@ -1,5 +1,5 @@
-Zoom images/videos on all your favorite websites (Facebook, Amazon, etc). Hover your mouse over any image on the supported websites and the extension will automatically enlarge the image to its full size, making sure that it still fits into the browser window.
+在你喜愛的所有網站（如 Facebook、Amazon 等）上放大圖片或影片。 只要將滑鼠懸停在支援網站上的任何圖片，擴充功能就會自動將圖片放大到完整尺寸，並確保圖片仍適合瀏覽器視窗。
 
-This is an open source version of the original HoverZoom extension which is now overrun by malware and deleted from store. In this version all spyware has been removed, many bugs were fixed and new features were added. It doesn't collect any statistics whatsoever. The only permission it needs is to access data on all websites (to extract full images), and *optional* permissions to access browser history, download/save images or get tab urls for per-site configuration.
+這是原始 HoverZoom 擴充功能的開源版本，原始版本如今被惡意軟體攻擊並已從商店刪除。 在此版本中，所有惡意軟體均已移除，修復了許多錯誤並新增了多項功能。 本擴充功能完全不會收集任何統計資料。 唯一需要的權限是存取所有網站資料（以擷取完整圖片），以及選用權限：存取瀏覽器歷史記錄、下載/儲存圖片，或取得分頁網址以供特定網站設定。
 
-Sometimes sites change design and when it happens, the extension needs to be updated. Please report any issues with zoom not working by using Support tab or https://github.com/extesy/hoverzoom/issues page.
+有時候網站會改版，這時擴充功能也需要進行更新。 若放大功能無法運作，請透過「支援」標籤或 https://github.com/extesy/hoverzoom/issues 頁面回報問題。
