@@ -16,7 +16,7 @@
         "description": "[popup] Disable the extension"
     },
     "popAllowPerSiteToggle": {
-        "message": "允许每个站点分别配置",
+        "message": "允許每個網站單獨擴充設定",
         "description": "[popup] Allow per-site extension configuration"
     },
     "popDisableForSite": {
@@ -32,7 +32,7 @@
         "description": "[popup] Preload zoomed images"
     },
     "popPreloadingImages": {
-        "message": "預載中...",
+        "message": "預先載入中……",
         "description": "[popup] Preloading zoomed images"
     },
     "popMoreOptions": {
@@ -44,11 +44,11 @@
         "description": "[options] Page title"
     },
     "optButtonDisableAllPlugins": {
-        "message": "禁用所有",
+        "message": "全部停用",
         "description": "[options] disable all plugins button label"
     },
     "optButtonEnableAllPlugins": {
-        "message": "启用所有",
+        "message": "全部啟用",
         "description": "[options] enable all plugins button label"
     },
     "optButtonSave": {
@@ -64,15 +64,15 @@
         "description": "[options] Reset button label"
     },
     "optSaved": {
-        "message": "设置已保存。某些设置项可能需要刷新页面才能生效。",
+        "message": "選項已儲存。某些設定可能需要重新整理頁面。",
         "description": "[options] Notification after saving options"
     },
     "optCancel": {
-        "message": "Modification(s) cancelled.",
+        "message": "修改已取消。",
         "description": "[options] Notification after cancelling modification(s) to options"
     },
     "optReset": {
-        "message": "Options reset to factory settings, save to apply.",
+        "message": "選項重設為原始設定，儲存以套用。",
         "description": "[options] Notification after resetting options to factory settings"
     },
     "optPageGeneral": {
@@ -84,11 +84,11 @@
         "description": "[options] Enable Hover Zoom+ option"
     },
     "optDarkMode": {
-        "message": "Dark mode",
+        "message": "深色模式",
         "description": "[options] Enable dark mode for Options & Popup"
     },
     "optSectionView": {
-        "message": "Viewer",
+        "message": "檢視器",
         "description": "[options] Page section for viewer options"
     },
     "optSectionVideo": {
@@ -96,35 +96,35 @@
         "description": "[options] Page section for video options"
     },
     "optSectionAudio": {
-        "message": "Audio",
+        "message": "音訊",
         "description": "[options] Page section for audio options"
     },
     "optZoomFactor": {
-        "message": "Enlarge zoomed images by this factor:",
+        "message": "將放大後的圖片尺寸再以此倍率調整：",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optZoomFactorUnitName": {
-        "message": "times",
+        "message": "次",
         "description": "[options] Unit name (percentage) for zoomed images size option"
     },
     "optZoomFactorTooltip": {
-        "message": "Multiply the size of zoomed images by this amount",
+        "message": "將放大後的圖片大小乘以這個倍率",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxWidth": {
-        "message": "設定縮放影像的最大寬度：",
+        "message": "設定縮放圖片的最大寬度：",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optMaxWidthTooltip": {
-        "message": "Set max width of zoomed images by this amount (if 0 then no max width)",
+        "message": "將放大後圖片的最大寬度設為此數值（若為 0，則不設最大寬度）",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxHeight": {
-        "message": "設定縮放影像的最大高度：",
+        "message": "設定縮放圖片的最大高度：",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optMaxHeightTooltip": {
-        "message": "Set max height of zoomed images by this amount (if 0 then no max height)",
+        "message": "將放大後圖片的最大高度設為此數值（若為 0，則不設最大高度）",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxSizeUnitName": {
@@ -132,23 +132,23 @@
         "description": "[options] Unit name (px) for zoomed images size option"
     },
     "optCaptionLocation": {
-        "message": "說明文字位置：",
+        "message": "標題位置：",
         "description": "[options] Adjust the position of the caption"
     },
     "optCaptionLocationTooltip": {
-        "message": "View the caption above/below the image, or not at all",
+        "message": "在圖片上方/下方檢視標題，或完全不檢視",
         "description": "[options] Tooltip for adjusting the position of the caption"
     },
     "optCaptionLocationAbove": {
-        "message": "Above",
+        "message": "上方",
         "description": "[options] Caption location option to put captions above the image"
     },
     "optCaptionLocationBelow": {
-        "message": "Below",
+        "message": "下方",
         "description": "[options] Caption location option to put captions below the image"
     },
     "optCaptionLocationNone": {
-        "message": "None",
+        "message": "無",
         "description": "[options] Caption location option to disable captions"
     },
     "optDetailsLocation": {
@@ -156,23 +156,23 @@
         "description": "[options] Adjust the position of details"
     },
     "optDetailsLocationTooltip": {
-        "message": "View details (size, format...) above/below the image, or not at all",
+        "message": "在圖片上方/下方檢視詳細資料（尺寸、格式...），或完全不檢視",
         "description": "[options] Tooltip for adjusting the position of details"
     },
     "optDetailsLocationAbove": {
-        "message": "Above",
+        "message": "上方",
         "description": "[options] Details location option to put details above the image"
     },
     "optDetailsLocationBelow": {
-        "message": "Below",
+        "message": "下方",
         "description": "[options] Details location option to put details below the image"
     },
     "optDetailsLocationNone": {
-        "message": "None",
+        "message": "無",
         "description": "[options] Details location option to disable details"
     },
     "optFontOutline": {
-        "message": "Font outline",
+        "message": "字型邊框",
         "description": "[options] Outline option"
     },
     "optFontOutlineTooltip": {
@@ -180,11 +180,11 @@
         "description": "[options] Tooltip for outline option"
     },
     "optMouseUnderlap": {
-        "message": "Extend zoomed images below the mouse cursor",
+        "message": "將已縮放的圖片延伸至滑鼠游標下方",
         "description": "[options] Extend zoomed images below the mouse cursor option"
     },
     "optMouseUnderlapTooltip": {
-        "message": "If unchecked, zoomed images will be resized dynamically",
+        "message": "若不勾選，縮放後的圖片將動態調整大小",
         "description": "[options] Tooltip for extend zoomed images below the mouse cursor option"
     },
     "optHideMouseCursor": {
@@ -192,31 +192,31 @@
         "description": "[options] Hide mouse cursor option"
     },
     "optHideMouseCursorTooltip": {
-        "message": "If checked, mouse cursor will be hidden after delay",
+        "message": "如果勾選，滑鼠游標將在延遲後隱藏",
         "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optLockImageZoomFactorEnabled": {
-        "message": "Use zoom factor for lock image",
+        "message": "使用縮放倍率鎖定圖片",
         "description": "[options] Use zoom factor for lock image option"
     },
     "optLockImageZoomFactorEnabledTooltip": {
-        "message": "Pressing the 'Lock Image' action key twice will make the image zoom to 100% by default. Enabling this instead will make it zoom by the image factor amount",
+        "message": "預設情況下，按下「鎖定圖片」快速鍵兩次會使圖片縮放至100%。啟用此選項將改為依照圖片縮放倍率進行縮放",
         "description": "[options] Tooltip for use zoom factor for lock image option"
     },
     "optLockImageZoomDefaultEnabled": {
-        "message": "Locked images start zoomed in",
+        "message": "開始放大時鎖定圖片",
         "description": "[options] Locked images start zoomed in option"
     },
     "optLockImageZoomDefaultEnabledTooltip": {
-        "message": "Pressing the 'Lock Image' action key twice will make the image zoom by default. Enabling this instead will make it zoom by on first press",
+        "message": "預設情況下，按兩下「鎖定圖片」快捷鍵會使圖片縮放。啟用此選項後，將改為按一次就進行縮放",
         "description": "[options] Tooltip for locked images start zoomed in option"
     },
     "optPageActionEnabled": {
-        "message": "Change toolbar icon when images can be zoomed",
+        "message": "當圖片可以縮放時，改變工具列圖示",
         "description": "[options] Change toolbar icon option"
     },
     "optPageActionEnabledTooltip": {
-        "message": "Toolbar icon changes color when images can be zoomed",
+        "message": "當圖片可以縮放時，改變工具列圖示顏色",
         "description": "[options] Tooltip for change toolbar icons option"
     },
     "optShowWhileLoading": {
@@ -224,43 +224,43 @@
         "description": "[options] Show zoomed pictures while loading option"
     },
     "optShowWhileLoadingTooltip": {
-        "message": "Zoomed image will be displayed before it is fully loaded",
+        "message": "在完全載入前就顯示圖片",
         "description": "[options] Tooltip for show zoomed pictures while loading option"
     },
     "optShowHighRes": {
-        "message": "Show high resolution pictures when available",
+        "message": "存在高解析度圖片時顯示高解析度圖片",
         "description": "[options] Show high resolution pictures when available option"
     },
     "optShowHighResTooltip": {
-        "message": "Pictures may take more time to load",
+        "message": "圖片載入可能需要較長時間",
         "description": "[options] Tooltip for show high resolution pictures when available option"
     },
     "optGalleriesMouseWheel": {
-        "message": "Use mousewheel to navigate albums",
+        "message": "使用滑鼠滾輪瀏覽相簿",
         "description": "[options] Use mousewheel to navigate albums option"
     },
     "optGalleriesMouseWheelTooltip": {
-        "message": "Navigate album with the mouse wheel",
+        "message": "使用滑鼠滾輪瀏覽相簿",
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
     "optGalleriesLoopEnabled": {
-        "message": "Loop albums",
+        "message": "循環相簿",
         "description": "[options] Loop albums option"
     },
     "optGalleriesLoopEnabledTooltip": {
-        "message": "When navigating past the end of an album, loop back to the start",
+        "message": "當瀏覽至相簿末尾時接回到開頭",
         "description": "[options] Tooltip for loop albums option"
     },
     "optDisableMouseWheelForVideo": {
-        "message": "Don't use mousewheel to navigate within video (action keys will still work)",
+        "message": "在影片內不使用滑鼠滾輪瀏覽（動作鍵仍可使用）",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optDisableMouseWheelForVideoTooltip": {
-        "message": "Scroll through albums but don't jump forward/backward in videos",
+        "message": "捲動相簿，但不會在影片中前跳/後跳",
         "description": "[options] Allows you to scroll through albums with the mousewheel but does not change behavior of GFY/Videos"
     },
     "optZoomVideos": {
-        "message": "Zoom videos",
+        "message": "縮放影片",
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
@@ -268,7 +268,7 @@
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
-        "message": "Use prev/next action keys (or mousewheel) to change video position by",
+        "message": "使用後退/前進動作鍵（或滑鼠滑輪），調整影片位置前後",
         "description": "[options] Changing video position amount option"
     },
     "optVideoPositionStepUnitName": {
@@ -276,7 +276,7 @@
         "description": "[options] Unit name (seconds) for changing video position option"
     },
     "optVideoPositionStepTooltip": {
-        "message": "Skip video back or forth for this amount of seconds",
+        "message": "以此秒數向前或向後跳過影片",
         "description": "[options] Tooltip for changing video position option"
     },
     "optMuteVideos": {
@@ -288,11 +288,11 @@
         "description": "[options] Tooltip for mute zoomed videos option"
     },
     "optVideoTimestamp": {
-        "message": "Show timestamp on videos",
+        "message": "在影片上顯示時間戳記",
         "description": "[options] Enable timestamp / video length on videos"
     },
     "optVideoTimestampTooltip": {
-        "message": "Enable timestamp / video length on videos",
+        "message": "啟用影片上的時間戳記/影片長度",
         "description": "[options] Tooltip for video length countdown on videos"
     },
     "optVideoVolume": {
@@ -304,11 +304,11 @@
         "description": "[options] Unit name (percentage) for video volume option"
     },
     "optVideoVolumeTooltip": {
-        "message": "If the video is not completely muted, set the volume to this percentage (0-100)",
+        "message": "如果影片未完全靜音，請將音量設定為此百分比 (0-100)",
         "description": "[options] Tooltip for audio volume for unmuted videos option"
     },
     "optPlayAudio": {
-        "message": "Play audio sources such as MP3",
+        "message": "播放音訊來源，例如 MP3",
         "description": "[options] Play audio option"
     },
     "optPlayAudioTooltip": {
@@ -324,35 +324,35 @@
         "description": "[options] Unit name (percentage) for audio volume option"
     },
     "optAudioVolumeTooltip": {
-        "message": "Set the volume to this percentage (0-100)",
+        "message": "將音量設定為此百分比 (0-100)",
         "description": "[options] Tooltip for audio volume option"
     },
     "optEnableViewerShadow": {
-        "message": "Enable shadow behind image viewer",
+        "message": "啟用圖片檢視器後的陰影",
         "description": "[options] Enable shadow behind image viewer option"
     },
     "optEnableViewerShadowTooltip": {
-        "message": "Adds a small shadow behind the zoomed image viewer, making it more visible from the background",
+        "message": "在已縮放的圖片檢視器後方加入一小塊陰影，使其在背景中更易看見",
         "description": "[options] Tooltip for enable shadow behind caption and details option"
     },
     "optEnableCaptionDetailShadow": {
-        "message": "Enable shadow behind caption and details",
+        "message": "啟用標題和詳細資料後方的陰影",
         "description": "[options] Enable shadow behind caption and details option"
     },
     "optEnableCaptionDetailShadowTooltip": {
-        "message": "Adds a small shadow any captions or details, making it pop out more from the background",
+        "message": "為標題或詳細資料添加陰影，使其在背景中更加突出",
         "description": "[options] Tooltip for enable shadow behind caption and details option"
     },
     "optEnableAmbilight": {
-        "message": "Enable ambient light behind images",
+        "message": "啟用圖片後方的環境光",
         "description": "[options] Enable ambient light behind images option"
     },
     "optEnableAmbilightTooltip": {
-        "message": "Create a subtle glow effect similar to Philips Ambilight technology",
+        "message": "建立類似 飛利浦Ambilight 的情境光源特效",
         "description": "[options] Tooltip for enable ambient light behind images option"
     },
     "optAmbilightHaloSize": {
-        "message": "Size of halo :",
+        "message": "光暈大小 ：",
         "description": "[options] Size of halo option"
     },
     "optAmbilightHaloSizeUnitName": {
@@ -360,11 +360,11 @@
         "description": "[options] Unit name (percentage) for halo size"
     },
     "optAmbilightHaloSizeTooltip": {
-        "message": "Size of halo around zoomed image (0% : no halo)",
+        "message": "縮放圖片周圍光暈的大小 (0% : 無光暈)",
         "description": "[options] Tooltip for size of halo"
     },
     "optAmbilightBackgroundOpacity": {
-        "message": "背景不透明度：",
+        "message": "背景不透明度 ：",
         "description": "[options] Background opacity option"
     },
     "optAmbilightBackgroundOpacityUnitName": {
@@ -372,11 +372,11 @@
         "description": "[options] Unit name (percentage) for background opacity"
     },
     "optAmbilightBackgroundOpacityTooltip": {
-        "message": "0%：透明，100%：黑色",
+        "message": "0% : 透明, 100% : 黑色",
         "description": "[options] Tooltip for background opacity"
     },
     "optImagePaddingSize": {
-        "message": "Image padding size:",
+        "message": "圖片填充大小：",
         "description": "[options] Adjust the zoomed image padding size option"
     },
     "optImagePaddingSizeUnitName": {
@@ -384,47 +384,47 @@
         "description": "[options] Unit name (pixels) for zoomed images padding option"
     },
     "optImagePaddingSizeTooltip": {
-        "message": "Changes the padding size for zoomed images. Padding determines how close the image can get to the edge of the viewing window",
+        "message": "變更縮放圖片的內邊距(padding)大小，內邊距決定圖片能多接近檢視視窗的邊緣",
         "description": "[options] Tooltip for adjust the zoomed image padding size option"
     },
     "optFullZoomHidesDetailsCaptions": {
-        "message": "Full zoom key hides details and captions",
+        "message": "完整縮放鍵隱藏詳細資訊和標題",
         "description": "[options] Full zoom key hides details and captions option"
     },
     "optFullZoomHidesDetailsCaptionsTooltip": {
-        "message": "When pressing full zoom, details and captions will be hidden, allowing the image able to expand more vertically",
+        "message": "當按下完整縮放時，詳細資訊與標題將被隱藏，使圖片能夠在垂直方向上有更大的展開空間",
         "description": "[options] Tooltip for full zoom key hides details and captions option"
     },
     "optStatusBarOverlap": {
-        "message": "Allow zoomed images to overlap the status bar",
+        "message": "允許縮放圖片與狀態列重疊",
         "description": "[options] Allow zoomed images to overlap the status bar option"
     },
     "optStatusBarOverlapTooltip": {
-        "message": "Allow zoomed images to overlap the status bar, letting more of the window be used",
+        "message": "允許縮放圖片與狀態列重疊，讓更多視窗能被使用",
         "description": "[options] Tooltip for allow zoomed images to overlap the status bar option"
     },
     "optHScrollBarOverlap": {
-        "message": "Allow zoomed images to overlap the horizontal scroll bar",
+        "message": "允許縮放圖片與水平捲動條重疊",
         "description": "[options] Allow zoomed images to overlap the horizontal scroll bar option"
     },
     "optHScrollBarOverlapTooltip": {
-        "message": "Allow zoomed images to overlap the horizontal bar, letting more of the window be used",
+        "message": "允許縮放圖片與水平捲動條重疊，讓更多視窗能被使用",
         "description": "[options] Tooltip for allow zoomed images to overlap the horizontal scroll bar option"
     },
     "optCenterImages": {
-        "message": "Center images",
+        "message": "使圖片居中",
         "description": "[options] Center images in the middle of the page option"
     },
     "optCenterImagesTooltip": {
-        "message": "Center images as opposed to having them follow the cursor",
+        "message": "使圖片居中，而不是讓圖片跟隨游標移動",
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optAutoLockImages": {
-        "message": "Automatically lock images",
+        "message": "自動鎖定圖片",
         "description": "[options] Automatically lock images option"
     },
     "optAutoLockImagesTooltip": {
-        "message": "Automatically lock images when activating Hover Zoom+",
+        "message": "啟動 Hover Zoom+ 時自動鎖定圖片",
         "description": "[options] Tooltip for automatically lock images option"
     },
     "optFrameBackgroundColor": {
@@ -432,11 +432,11 @@
         "description": "[options] Frame background color option"
     },
     "optFrameBackgroundColorTooltip": {
-        "message": "Background color for the frame the image appears in",
+        "message": "圖片顯示的邊框背景顏色",
         "description": "[options] Tooltip for frame background color option"
     },
     "optFrameBackgroundColorChooseText": {
-        "message": "Select",
+        "message": "選取",
         "description": "[options] Frame background color button - Select"
     },
     "optFrameBackgroundColorCancelText": {
@@ -448,7 +448,7 @@
         "description": "[options] Frame thickness option"
     },
     "optFrameThicknessTooltip": {
-        "message": "圖片顯示的邊框厚度 (0：無邊框)",
+        "message": "圖片顯示的邊框厚度 (0 : 無邊框)",
         "description": "[options] Tooltip for frame thickness option"
     },
     "optFrameThicknessUnitName": {
@@ -460,7 +460,7 @@
         "description": "[options] Font size option"
     },
     "optFontSizeTooltip": {
-        "message": "Size of font used for captions & details",
+        "message": "標題與詳細資料所使用的字體大小",
         "description": "[options] Tooltip for font size option"
     },
     "optFontSizeUnitName": {
@@ -480,7 +480,7 @@
         "description": "[options] Delay before displaying a video option"
     },
     "optFadeDuration": {
-        "message": "Fading animation duration:",
+        "message": "漸變動畫持續時間：",
         "description": "[options] Fading animation duration option"
     },
     "optDurationUnitName": {
@@ -488,43 +488,43 @@
         "description": "[options] Short form of \"second\" for delay duration"
     },
     "optMouseClickHoldTime": {
-        "message": "Mouse click hold time:",
+        "message": "滑鼠點選保持時間：",
         "description": "[options] Mouse click hold time option"
     },
     "optMouseClickHoldTimeTooltip": {
-        "message": "Amount of time required to hold a mouse click action key before the hold action is triggered",
+        "message": "觸發按住動作前需持續按住滑鼠的時間長度",
         "description": "[options] Tooltip for mouse click hold time option"
     },
     "optClickHoldTimeUnit": {
-        "message": "milliseconds",
+        "message": "毫秒(ms)",
         "description": "[options] Unit name (pixel) for hold time amount"
     },
     "optSectionZoomSpeed": {
-        "message": "Zoom speed",
+        "message": "縮放速度",
         "description": "[options] Page section for zoom speed"
     },
     "optZoomSpeed_P1": {
-        "message": "When an image or video is locked on screen, it can be zoomed in or out using mouse wheel.",
+        "message": "當圖片或影片鎖定於螢幕時，可使用滑鼠滾輪進行放大或縮小。",
         "description": "[options] Zoom speed Part 1"
     },
     "optZoomSpeed_P2": {
-        "message": "press",
+        "message": "按下",
         "description": "[options] Zoom speed Part 2"
     },
     "optZoomSpeed_P3": {
-        "message": "or",
+        "message": "或",
         "description": "[options] Zoom speed Part 3"
     },
     "optZoomSpeed_P4": {
-        "message": " while scrolling to zoom",
+        "message": " 捲動縮放時",
         "description": "[options] Zoom speed Part 4"
     },
     "optZoomSpeed_P41": {
-        "message": "faster",
+        "message": "更快",
         "description": "[options] Zoom speed Part 41"
     },
     "optZoomSpeed_P42": {
-        "message": "slower",
+        "message": "更慢",
         "description": "[options] Zoom speed Part 42"
     },
     "optPagePlugins": {
@@ -540,11 +540,11 @@
         "description": "[options] Page title for site options"
     },
     "optSectionSitesEnabled": {
-        "message": "URLs for which Hover Zoom+ must be enabled",
+        "message": "必須啟用 Hover Zoom+ 的 URL",
         "description": "[options] Page section for enabling extension for specific sites"
     },
     "optSectionSitesDisabled": {
-        "message": "URLs for which Hover Zoom+ must be disabled",
+        "message": "必須停用 Hover Zoom+ 的 URL",
         "description": "[options] Page section for enabling extension for specific sites"
     },
     "optWhitelistMode": {
@@ -552,7 +552,7 @@
         "description": "[options] Whitelist mode checkbox"
     },
     "optWhitelistModeTooltip": {
-        "message": "Only enable Hover Zoom+ for the sites listed below",
+        "message": "僅對下列網站啟用 Hover Zoom+",
         "description": "[options] Tooltip for whitelist mode checkbox"
     },
     "optSitePlaceholder": {
@@ -560,7 +560,7 @@
         "description": "[options] Placeholder for a site url input box"
     },
     "optSiteDisclaimer": {
-        "message": "請注意網域過濾器可能會重疊。例如：如果您已過濾「picasaweb.google.com」和「google.com」，移除「picasaweb.google.com」將無法重新啟動 Picasa 網路相簿，因為它仍會被「google.com」過濾器排除在外。",
+        "message": "請注意網域過濾器可能會重疊。例如：如果您已過濾「picasaweb.google.com」和「google.com」，移除「picasaweb.google.com」後同樣無法重新啟動 Picasa 網路相簿，因為它仍然會被「google.com」過濾器排除在外。",
         "description": "[options] Disclaimer on the sites option page"
     },
     "optButtonAddSite": {
@@ -580,15 +580,15 @@
         "description": "[options] Page section for advanced options"
     },
     "optAddToHistory": {
-        "message": "Add viewed pictures to the browser's history",
+        "message": "將瀏覽過的圖片加入瀏覽器的歷史記錄中",
         "description": "[options] Add viewed pictures to the browser's history option"
     },
     "optAllowMediaSaving": {
-        "message": "Enable saving media with action key",
+        "message": "允許使用快捷鍵儲存媒體",
         "description": "[options] Enable saving media with action key option"
     },
     "optFilterNSFW": {
-        "message": "Exclude NSFW images (Reddit only)",
+        "message": "排除 NSFW 圖片 (僅限 Reddit)",
         "description": "[options] Exclude NSFW images (Reddit only) option"
     },
     "optAlwaysPreload": {
@@ -596,15 +596,15 @@
         "description": "[options] Automatically preload zoomed images option"
     },
     "optEnableGalleries": {
-        "message": "Enable albums support",
+        "message": "啟用相簿支援",
         "description": "[options] Enable albums support option"
     },
     "optEnableNoFocusMsg": {
-        "message": "Enable Action Keys focus overlay message",
+        "message": "啟用快捷鍵失去焦點訊息",
         "description": "[options] Enable Action Keys focus overlay message option"
     },
     "optEnableNoFocusMsgTooltip": {
-        "message": "Sometimes Action Keys seem to be broken, this usually happens when page has lost focus. If option is checked, a warning message will be displayed (only once).",
+        "message": "有時候快捷鍵似乎失去作用，這通常發生在頁面失去焦點時(滑鼠點擊到到視窗以外的地方)。如果選項被勾選，則會顯示警告訊息（僅一次）。",
         "description": "[options] Tooltip for enable Action Keys focus overlay message option"
     },
     "optPicturesOpacity": {
@@ -612,11 +612,11 @@
         "description": "[options] Zoomed pictures opacity option"
     },
     "optCaptionOpacity": {
-        "message": "Caption opacity:",
+        "message": "標題不透明度：",
         "description": "[options] Caption opacity option"
     },
     "optDetailsOpacity": {
-        "message": "Details opacity:",
+        "message": "詳細資料的不透明度：",
         "description": "[options] Details opacity option"
     },
     "optOpacityUnitName": {
@@ -624,11 +624,11 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optDetailsSelectorTooltip": {
-        "message": "Select which detail(s) should show, if details are displayed",
+        "message": "如果顯示詳細資訊，選擇應該顯示哪些詳細資訊",
         "description": "[options] Tooltip for details selector"
     },
     "optTitleBoxDetails": {
-        "message": "Detail(s) shown:",
+        "message": "顯示的詳細資料：",
         "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
@@ -636,51 +636,51 @@
         "description": "[options] Show Host Detail"
     },
     "optShowDetailFilename": {
-        "message": "File Name",
+        "message": "檔名",
         "description": "[options] Show File Name Detail"
     },
     "optShowDetailLastModified": {
-        "message": "Last Modified",
+        "message": "最後修改",
         "description": "[options] Show Last Modified Detail"
     },
     "optShowDetailExtension": {
-        "message": "Extension",
+        "message": "副檔名",
         "description": "[options] Show Extension Detail"
     },
     "optShowDetailContentLength": {
-        "message": "Content Length",
+        "message": "內容長度",
         "description": "[options] Show Content Length Detail"
     },
     "optShowDetailDuration": {
-        "message": "Duration",
+        "message": "時間長度",
         "description": "[options] Show Duration Detail"
     },
     "optShowDetailScale": {
-        "message": "Scale",
+        "message": "縮放比",
         "description": "[options] Show Scale Detail"
     },
     "optShowDetailRatio": {
-        "message": "Ratio",
+        "message": "長寬比",
         "description": "[options] Show Ratio Detail"
     },
     "optShowDetailDimensions": {
-        "message": "Dimensions",
+        "message": "尺寸",
         "description": "[options] Show Dimensions Detail"
     },
     "optBelowPositionOffset": {
-        "message": "Below position offset:",
+        "message": "下方位置偏移量：",
         "description": "[options] Below offset option"
     },
     "optBelowPositionOffsetTooltip": {
-        "message": "Amount to vertically offset the text in the below position (positive values move text down, negative values move text up)",
+        "message": "文字在下方位置的垂直偏移量（正值會使文字下移，負值會使文字上移）",
         "description": "[options] Tooltip for below position offset"
     },
     "optAbovePositionOffset": {
-        "message": "Above position offset:",
+        "message": "上方位置偏移量：",
         "description": "[options] Above offset option"
     },
     "optAbovePositionOffsetTooltip": {
-        "message": "Amount to vertically offset the text in the above position (positive values move text up, negative values move text down)",
+        "message": "文字在上方位置的垂直偏移量（正值會使文字上移，負值會使文字下移）",
         "description": "[options] Tooltip for above position offset"
     },
     "optOffsetUnitName": {
@@ -688,11 +688,11 @@
         "description": "[options] Unit name (pixel) for offset amount"
     },
     "optBelowPositionOffsetUnit": {
-        "message": "Unit Type:",
+        "message": "單位類型：",
         "description": "[options] Set unit type for below offset"
     },
     "optBelowPositionOffsetUnitTooltip": {
-        "message": "Choose between pixel or percentage based offset",
+        "message": "選擇以px或%為基礎的偏移量",
         "description": "[options] Tooltip for setting unit for below position offset"
     },
     "optBelowPositionOffsetUnitPixel": {
@@ -704,11 +704,11 @@
         "description": "[options] Unit type percent"
     },
     "optAbovePositionOffsetUnit": {
-        "message": "Unit Type:",
+        "message": "單位類型：",
         "description": "[options] Set unit type for above offset"
     },
     "optAbovePositionOffsetUnitTooltip": {
-        "message": "Choose between pixel or percentage based offset",
+        "message": "選擇以px或%為基礎的偏移量",
         "description": "[options] Tooltip for setting unit for above position offset"
     },
     "optAbovePositionOffsetUnitPixel": {
@@ -720,115 +720,115 @@
         "description": "[options] Unit type percent"
     },
     "optUseClipboardNameWhenSavingTooltip": {
-        "message": "Use the text in the clipboard as the file name when saving an image",
+        "message": "儲存圖片時使用剪貼板中的文字作為檔案名稱",
         "description": "[options] Tooltip for use clipboard text as file name option"
     },
     "optUseClipboardNameWhenSaving": {
-        "message": "Use clipboard text as file name",
+        "message": "使用剪貼簿文字作為檔案名稱",
         "description": "[options] Use clipboard text as file name option"
     },
     "optDisplayImageLoaderTooltip": {
-        "message": "Display a little spinner as image is loading (green:loading, red:error). Red spinner is optional.",
+        "message": "在圖片載入時顯示一個小旋轉圖示（綠色：載入中，紅色：錯誤）。紅色旋轉圖示是可選的。",
         "description": "[options] Tooltip for display image loader option"
     },
     "optDisplayImageLoader": {
-        "message": "Display a red spinner when image loading failed",
+        "message": "圖片載入失敗時顯示紅色旋轉圖示",
         "description": "[options] Display image loader option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrlsTooltip": {
-        "message": "Useful for HTTPS sites such as Google Images that prevent loading of HTTP images",
+        "message": "適用於 HTTPS 網站，例如 Google Images，可防止載入 HTTP 圖片",
         "description": "[options] Tooltip for using separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabOrWindowForUnloadableUrls": {
-        "message": "Try to open unloadable urls in separate:",
+        "message": "嘗試在單獨的分頁或視窗中開啟無法載入的網址：",
         "description": "[options] Use separate tab or window for unloadable urls option"
     },
     "optUseSeparateTabForUnloadableUrls": {
-        "message": "Tab",
+        "message": "分頁",
         "description": "[options] Use separate tab for unloadable urls option"
     },
     "optUseSeparateWindowForUnloadableUrls": {
-        "message": "Window",
+        "message": "視窗",
         "description": "[options] Use separate window for unloadable urls option"
     },
     "optDownloadFolderTooltip": {
-        "message": "Subfolder(s) will be created if needed",
+        "message": "如果有需要將建立子資料夾",
         "description": "[options] Tooltip for download folder option"
     },
     "optDownloadFolderPlaceholder": {
-        "message": "Example: animals/cats",
+        "message": "範例：animals/cats",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadFolder": {
-        "message": "Save images, videos & audios to folder: Downloads/",
+        "message": "將圖片、影片和音訊儲存至資料夾：Downloads/",
         "description": "[options] Download folder option"
     },
     "optRenameDownloadsTooltip": {
-        "message": "Prefix original names of downloads with origin, size, duration and so on for easier management",
+        "message": "在下載的原始名稱加上來源、大小、持續時間等資訊，以便更輕鬆管理",
         "description": "[options] Tooltip for rename downloads option"
     },
     "optRenameDownloads": {
-        "message": "Rename saved files by adding:",
+        "message": "重新命名已儲存的檔案，並加入：",
         "description": "[options] Rename downloads option"
     },
     "optAddDownloadOriginTooltip": {
-        "message": "Add origin (e.g. www.deviantart.com)",
+        "message": "新增下載來源 (例如：www.deviantart.com)",
         "description": "[options] Tooltip for add download origin option"
     },
     "optAddDownloadOrigin": {
-        "message": "origin",
+        "message": "來源",
         "description": "[options] Add download origin option"
     },
     "optAddDownloadSizeTooltip": {
-        "message": "Add size (WxH) in pixels (e.g. 1024x750)",
+        "message": "新增尺寸 (寬 x 高)，單位為pixels (例如 1024x750)",
         "description": "[options] Tooltip for add download size option"
     },
     "optAddDownloadSize": {
-        "message": "size",
+        "message": "尺寸",
         "description": "[options] Add download size option"
     },
     "optAddDownloadDurationTooltip": {
-        "message": "Add duration (hh mm ss) of video (e.g. 00 16 35)",
+        "message": "新增影片的時間長度 (hh mm ss) (例如 00 16 35)",
         "description": "[options] Tooltip for add download duration option"
     },
     "optAddDownloadDuration": {
-        "message": "duration",
+        "message": "時間長度",
         "description": "[options] Add download duration option"
     },
     "optAddDownloadIndexTooltip": {
-        "message": "Add index of image in gallery (e.g: third image out of ten: 03-10)",
+        "message": "在圖庫中加入圖片索引（例如：十張圖片中的第三張：03-10）",
         "description": "[options] Tooltip for add download index option"
     },
     "optAddDownloadIndex": {
-        "message": "index",
+        "message": "索引",
         "description": "[options] Add download index option"
     },
     "optAddDownloadCaptionTooltip": {
-        "message": "Add caption (e.g: Mona Lisa by Leonardo da Vinci)",
+        "message": "新增標題 (例如：達文西的蒙娜麗莎)",
         "description": "[options] Tooltip for add download caption option"
     },
     "optAddDownloadCaption": {
-        "message": "caption",
+        "message": "標題",
         "description": "[options] Add download caption option"
     },
     "optDownloadReplaceOriginalFilenameTooltip": {
-        "message": "Replace original filename or remove it if no value supplied (extension is preserved)",
+        "message": "取代原始檔案名稱，如果沒有提供值，則移除原始檔案名稱（副檔名會保留）",
         "description": "[options] Tooltip for replace original filename when downloading option"
     },
     "optDownloadReplaceOriginalFilenamePlaceholder": {
-        "message": "Example: fullsize_image",
+        "message": "範例：fullsize_image",
         "description": "[options] Placeholder for download folder option"
     },
     "optDownloadReplaceOriginalFilename": {
-        "message": "On save, replace original filename by:",
+        "message": "儲存時，將原始檔名替換為：",
         "description": "[options] Replace original filename when downloading option"
     },
     "optResetAllBannedImagesTooltip": {
-        "message": "After reset, all banned images, videos & audio tracks can be zoomed again",
+        "message": "重設之後，所有被禁止的圖片、影片和音訊都可以重新縮放",
         "description": "[options] Tooltip for reset all banned images option"
     },
     "optResetAllBannedImages": {
-        "message": "Reset all banned images, videos & audio tracks",
+        "message": "重設所有被禁止的圖片、影片和音訊",
         "description": "[options] Reset all banned images option"
     },
     "optButtonResetAllBannedImages": {
@@ -836,35 +836,35 @@
         "description": "[options] Reset all banned images button"
     },
     "optSectionTroubleshooting": {
-        "message": "Troubleshooting",
+        "message": "疑難排解",
         "description": "[options] Page section for troubleshooting"
     },
     "optEnableDebugTooltip": {
-        "message": "Display debug messages in browser's console (to open console: press F12)",
+        "message": "在瀏覽器的控制台顯示debug訊息（開啟控制台：按 F12）",
         "description": "[options] Tooltip for enable debug option"
     },
     "optEnableDebug": {
-        "message": "Enable debug logging",
+        "message": "啟用除錯日誌",
         "description": "[options] Enable debug option"
     },
     "optMigrateOldSettingsTooltip": {
-        "message": "Manually migrate settings from old save location. THIS WILL OVERWRITE YOUR CURRENT SETTINGS.",
+        "message": "從舊的儲存位置手動轉移設定。\"這將會覆蓋您目前的設定\"。",
         "description": "[options] Tooltip for migrate old settings"
     },
     "optMigrateOldSettings": {
-        "message": "Migrate old settings (THIS WILL OVERWRITE YOUR CURRENT SETTINGS)",
+        "message": "轉移舊設定 (這將會覆寫您目前的設定)",
         "description": "[options] Migrate old settings"
     },
     "optButtonMigrateOldSettings": {
-        "message": "Migrate",
+        "message": "轉移",
         "description": "[options] Migrate old settings button"
     },
     "optSectionSupportedFormats": {
-        "message": "Supported formats",
+        "message": "支援的格式",
         "description": "[options] Page section for supported formats"
     },
     "optSupportedImageFormats": {
-        "message": "圖片：",
+        "message": "影像 ：",
         "description": "[options] Page section for supported image formats"
     },
     "optSupportedVideoFormats": {
@@ -872,139 +872,139 @@
         "description": "[options] Page section for supported video formats"
     },
     "optSupportedAudioFormats": {
-        "message": "音訊：",
+        "message": "音訊 ：",
         "description": "[options] Page section for supported audio formats"
     },
     "optSectionImportExportSettings": {
-        "message": "Import/Export",
+        "message": "匯入/匯出",
         "description": "[options] Page section for import/export"
     },
     "optSectionImportExportSettingsTooltip": {
-        "message": "Press export to get a string of your current settings. Press import to load your pasted settings",
+        "message": "按匯出可取得目前的設定字串。按載入來載入貼上的設定字串",
         "description": "[options] Tooltip for input and export options"
     },
     "optImportExportTextArea": {
-        "message": "Paste your saved settings here",
+        "message": "在此貼上您儲存的設定",
         "description": "[options] Placeholder for import and export text area"
     },
     "optButtonImportSettings": {
-        "message": "Import",
+        "message": "匯入",
         "description": "[options] Import a save string from the textarea"
     },
     "optButtonExportSettings": {
-        "message": "Export",
+        "message": "匯出",
         "description": "[options] Export a save string into the textarea"
     },
     "optImport": {
-        "message": "Import Success!",
+        "message": "匯入成功！",
         "description": "[options] Notification after successful import to options"
     },
     "optImportFailed": {
-        "message": "Import Failed",
+        "message": "匯入失敗",
         "description": "[options] Notification after failed import to options"
     },
     "optPageFAQ": {
-        "message": "FAQ",
+        "message": "常見問題",
         "description": "[options] Page title for FAQ"
     },
     "optSectionFAQ": {
-        "message": "Frequently Asked Questions",
+        "message": "常見問題",
         "description": "[options] Page section for Frequently Asked Questions"
     },
     "optFAQ_Q1": {
-        "message": "I edited some options, but i see no changes.",
+        "message": "我編輯了一些選項，但沒看到任何變更。",
         "description": "[options] FAQ Question 1"
     },
     "optFAQ_A1_1": {
-        "message": "After edition, click \"Save\" button",
+        "message": "變更完成後，按「儲存」按鈕",
         "description": "[options] FAQ Answer 1 part 1"
     },
     "optFAQ_A1_2": {
-        "message": "on bottom of Options page",
+        "message": "在選項頁面底部",
         "description": "[options] FAQ Answer 1 part 2"
     },
     "optFAQ_A1_3": {
-        "message": "Reload the page (F5)",
+        "message": "重新載入頁面 (F5)",
         "description": "[options] FAQ Answer 1 part 3"
     },
     "optFAQ_Q2": {
-        "message": "I want to hide the mouse cursor on zoomed image or video.",
+        "message": "我想在縮放的圖片或影片上隱藏滑鼠游標。",
         "description": "[options] FAQ Question 2"
     },
     "optFAQ_A2_1": {
-        "message": "In Options -> General -> Delays, activate \"Hide mouse cursor\"",
+        "message": "在選項 -> 一般 -> 延遲，啟動 「隱藏滑鼠游標」",
         "description": "[options] FAQ Answer 2 part 1"
     },
     "optFAQ_SaveAndReload": {
-        "message": "Save and reload the page (F5)",
+        "message": "儲存並重新載入頁面 (F5)",
         "description": "[options] FAQ Save and reload page"
     },
     "optFAQ_Q3": {
-        "message": "I need HoverZoom+ to be active for some sites only.",
+        "message": "",
         "description": "[options] FAQ Question 3"
     },
     "optFAQ_A3_1": {
-        "message": "E.g. to activate HoverZoom+ on DeviantArt.com & 1X.com:",
+        "message": "例如：在 DeviantArt.com & 1X.com 上啟動 HoverZoom+：",
         "description": "[options] FAQ Answer 3 part 1"
     },
     "optFAQ_A3_2": {
-        "message": "In Options -> Sites, activate \"Whitelist mode\"",
+        "message": "在選項 -> 網站中，啟用 「白名單模式」",
         "description": "[options] FAQ Answer 3 part 2"
     },
     "optFAQ_A3_3": {
-        "message": "Add DeviantArt.com & 1X.com to list of URLs (not case-sensitive)",
+        "message": "將 DeviantArt.com & 1X.com 加入 URL 清單 (不區分大小寫)",
         "description": "[options] FAQ Answer 3 part 3"
     },
     "optFAQ_Q4": {
-        "message": "I want to zoom an image or video to its original size even if larger than screen.",
+        "message": "我想要縮放圖片或影片到原始大小，即使大於螢幕。",
         "description": "[options] FAQ Question 4"
     },
     "optFAQ_A4_1": {
-        "message": "Hover over an image or video then lock it on screen (default action key: \"L\")",
+        "message": "將滑鼠移至圖片或影片後鎖定在螢幕上（預設快捷鍵：\"L\"）",
         "description": "[options] FAQ Answer 4 part 1"
     },
     "optFAQ_A4_2": {
-        "message": "Image or video is now displayed fullsize. You can zoom in or out using mousewheel.",
+        "message": "圖片或影片現在以全尺寸顯示。您可以使用滑鼠滾輪放大或縮小。",
         "description": "[options] FAQ Answer 4 part 2"
     },
     "optFAQ_Q5": {
-        "message": "Action keys do not work!",
+        "message": "快捷鍵失去作用！",
         "description": "[options] FAQ Question 5"
     },
     "optFAQ_A5_1": {
-        "message": "Sometimes action keys seem to be broken, this usually happens when page has lost focus.",
+        "message": "有時候快捷鍵似乎會失去作用，這通常發生在頁面失去焦點時。",
         "description": "[options] FAQ Answer 5 part 1"
     },
     "optFAQ_A5_2": {
-        "message": "Just click anywhere on page to regain focus.",
+        "message": "只要按一下頁面上的任何地方，即可重新獲得焦點。",
         "description": "[options] FAQ Answer 5 part 2"
     },
     "optFAQ_A5_3": {
-        "message": "In Options -> Advanced, you can activate \"Enable Action Keys focus overlay message\", so you'll get a warning message when focus is lost.",
+        "message": "在「選項」->「進階」中，您可以啟用「啟用快捷鍵失去焦點訊息」，這樣當焦點遺失時，您將會收到警告訊息。",
         "description": "[options] FAQ Answer 5 part 3"
     },
     "optFAQ_Q6": {
-        "message": "Some videos do not play when opened from sites other than original ones.",
+        "message": "從原始網站以外的網站開啟某些影片時無法播放。",
         "description": "[options] FAQ Question 6"
     },
     "optFAQ_A6_1": {
-        "message": "e.g: Dailymotion videos play in dailymotion.com, but not in Google search results.",
+        "message": "例如：Dailymotion影片可在dailymotion.com播放，但無法在Google搜尋結果中播放。",
         "description": "[options] FAQ Answer 6 part 1"
     },
     "optFAQ_A6_2": {
-        "message": "This is due to CORS restrictions, to lift them:",
+        "message": "這是由於 CORS 限制，要解除限制：",
         "description": "[options] FAQ Answer 6 part 2"
     },
     "optFAQ_A6_3": {
-        "message": "In Options -> Advanced, activate \"Allow rewrite of headers for HTTP(S) request or response\"",
+        "message": "在選項 -> 進階中，啟用 「允許重寫 HTTP(S) 請求或回應的標頭」",
         "description": "[options] FAQ Answer 6 part 3"
     },
     "optFAQ_Q7": {
-        "message": "I hover an image or video but sometimes nothing happens!",
+        "message": "我懸停在圖片或影片上，但有時候什麼都不會發生！",
         "description": "[options] FAQ Question 7"
     },
     "optFAQ_A7": {
-        "message": "Scroll down or click anywhere on page to wake up HoverZoom+!",
+        "message": "向下捲動或點擊頁面上任何地方，即可喚醒 HoverZoom+！",
         "description": "[options] FAQ Answer 7"
     },
     "optPixelsUnitName": {
@@ -1012,51 +1012,51 @@
         "description": "[options] Unit name (pixels)"
     },
     "optActionKeyTitle": {
-        "message": "Activate HoverZoom+",
+        "message": "啟動 Hover Zoom+",
         "description": "[options] Action key title"
     },
     "optActionKeyDescription": {
-        "message": "If a key is set, HoverZoom+ will be active only when this key is held down.",
+        "message": "如果設定了按鍵，Hover Zoom+ 只有在按住此按鍵時才會啟動。",
         "description": "[options] Action key description"
     },
     "optToggleKeyTitle": {
-        "message": "Toggle HoverZoom+",
+        "message": "切換 Hover Zoom+",
         "description": "[options] Action key title"
     },
     "optToggleKeyDescription": {
-        "message": "Enable/disable HoverZoom+",
+        "message": "啟用/停用 Hover Zoom+",
         "description": "[options] Action key description"
     },
     "optCloseKeyTitle": {
-        "message": "Close image",
+        "message": "關閉圖片",
         "description": "[options] Action key title"
     },
     "optCloseKeyDescription": {
-        "message": "Press this key to close zoomed image or video.",
+        "message": "按此鍵關閉縮放的圖片或影片。",
         "description": "[options] Action key description"
     },
     "optHideKeyTitle": {
-        "message": "Hide image",
+        "message": "隱藏圖片",
         "description": "[options] Action key title"
     },
     "optHideKeyDescription": {
-        "message": "Holding this key down hides the zoomed image or video. Use it when the picture hides elements that are also displayed on mouseover.",
+        "message": "按住此鍵可隱藏縮放的圖片或影片。使用時圖片隱藏的元素也會在滑鼠移動時顯示。",
         "description": "[options] Action key description"
     },
     "optBanKeyTitle": {
-        "message": "Ban image",
+        "message": "禁止圖片",
         "description": "[options] Action key title"
     },
     "optBanKeyDescription": {
-        "message": "Holding this key down adds the zoomed image or video to ban list. Use it when you do not want an image or video to be zoomed again on this page.",
+        "message": "按住此鍵會將已縮放的圖片或影片加入禁止清單。當您不想讓圖片或影片在此頁面上再次縮放時，請使用此鍵。",
         "description": "[options] Action key description"
     },
     "optOpenImageInWindowKeyTitle": {
-        "message": "Open image in a new window",
+        "message": "在新分頁中開啟圖片",
         "description": "[options] Action key title"
     },
     "optOpenImageInWindowKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new window. Press this key again to close the window.",
+        "message": "按下此鍵可在新視窗中開啟目前正在檢視的圖片或影片。再按一次此鍵可關閉視窗。",
         "description": "[options] Action key description"
     },
     "optOpenImageInTabKeyTitle": {
@@ -1064,15 +1064,15 @@
         "description": "[options] Action key title"
     },
     "optOpenImageInTabKeyDescription": {
-        "message": "Press this key to open the image or video you are currently viewing in a new tab. Press this key again to close the tab. Shift+key opens the image in a background tab.",
+        "message": "按下此鍵可在新分頁中開啟目前正在檢視的圖片或影片。再按一次此鍵可關閉分頁。Shift+此鍵可在背景分頁中開啟圖片。",
         "description": "[options] Action key description"
     },
     "optLockImageKeyTitle": {
-        "message": "Lock image on screen",
+        "message": "在螢幕上鎖定影像",
         "description": "[options] Action key title"
     },
     "optLockImageKeyDescription": {
-        "message": "Press this key to lock the image or video in the center of the page, allowing you to zoom and pan around. Press close key or click outside the image to unlock.",
+        "message": "按下此鍵可將圖片或影片鎖定在頁面中央，讓您可以縮放或平移。按下關閉鍵或在影像外按一下即可解除鎖定。",
         "description": "[options] Action key description"
     },
     "optSaveImageKeyTitle": {
@@ -1080,63 +1080,63 @@
         "description": "[options] Action key title"
     },
     "optSaveImageKeyDescription": {
-        "message": "Press this key to save the image or video you are currently viewing. (Requires 'Enable saving media with action key' to be checked)",
+        "message": "按下此鍵可儲存目前正在檢視的圖片或視訊。(需要勾選「啟用動作鍵儲存媒體」)",
         "description": "[options] Action key description"
     },
     "optFullZoomKeyTitle": {
-        "message": "Activate full zoom",
+        "message": "啟動完全縮放",
         "description": "[options] Action key title"
     },
     "optFullZoomKeyDescription": {
-        "message": "When this key is held down, the picture is displayed using all available space. Useful for high resolution pictures only.",
+        "message": "按住此鍵時，圖片會使用所有可用空間顯示。僅對高解析度圖片有用。",
         "description": "[options] Action key description"
     },
     "optCopyImageKeyTitle": {
-        "message": "Copy image to clipboard",
+        "message": "複製圖片到剪貼簿",
         "description": "[options] Action key title"
     },
     "optCopyImageKeyDescription": {
-        "message": "When this key is pressed, the image is copied into the clipboard.",
+        "message": "按下此鍵時，圖片會複製到剪貼簿。",
         "description": "[options] Action key description"
     },
     "optCopyImageUrlKeyTitle": {
-        "message": "Copy image URL to clipboard",
+        "message": "複製圖片URL到剪貼簿",
         "description": "[options] Action key title"
     },
     "optCopyImageUrlKeyDescription": {
-        "message": "When this key is pressed, the image's or video's URL is copied into the clipboard.",
+        "message": "按下此鍵時，圖片或影片的URL會複製到剪貼簿。",
         "description": "[options] Action key description"
     },
     "optPrevImgKeyTitle": {
-        "message": "View previous image in a gallery",
+        "message": "在圖庫中檢視上一張圖片",
         "description": "[options] Action key title"
     },
     "optPrevImgKeyDescription": {
-        "message": "Press this key to view the previous image in a gallery.",
+        "message": "按下此鍵可檢視圖庫中的上一張圖片。",
         "description": "[options] Action key description"
     },
     "optNextImgKeyTitle": {
-        "message": "View next image in a gallery",
+        "message": "檢視圖庫中的下一張圖片",
         "description": "[options] Action key title"
     },
     "optNextImgKeyDescription": {
-        "message": "Press this key to view the next image in a gallery.",
+        "message": "按此鍵可檢視圖庫中的下一張圖片。",
         "description": "[options] Action key description"
     },
     "optFlipImageKeyTitle": {
-        "message": "Flip image",
+        "message": "翻轉影像",
         "description": "[options] Action key title"
     },
     "optFlipImageKeyDescription": {
-        "message": "Press this key to alternately flip image vertically and horizontally. Handy for reading texts & logos in mirrored images or videos.",
+        "message": "按下此鍵可交替垂直和水平翻轉影像。方便閱讀鏡射圖片或影片中的文字和標誌。",
         "description": "[options] Action key description"
     },
     "optrotateImageKeyTitle": {
-        "message": "Rotate image",
+        "message": "旋轉圖片",
         "description": "[options] Action key title"
     },
     "optrotateImageKeyDescription": {
-        "message": "Press this key to rotate image.",
+        "message": "按下此鍵可旋轉圖片。",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
@@ -1144,7 +1144,7 @@
         "description": "[options] Source code link in page footer"
     },
     "optFooterChangelog": {
-        "message": "Changelog",
+        "message": "更新日誌",
         "description": "[options] Changelog link in page footer"
     },
     "optFooterReportIssue": {
@@ -1156,11 +1156,11 @@
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
-        "message": "click anywhere on the page then hover again",
+        "message": "點選頁面上的任何地方，然後再懸停",
         "description": "User must interact with the document first to play video: https://goo.gl/xX8pDD"
     },
     "msgClickPageToActivateActionKeys": {
-        "message": "click anywhere on the page to activate Action Keys",
+        "message": "點選頁面上任何地方以啟動快捷鍵",
         "description": "Action keys are active only if page is focused"
     }
 }
