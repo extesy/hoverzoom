@@ -137,9 +137,11 @@ hoverZoomPlugins.push({
                     src = video_list?.V_720P?.url || video_list?.V_EXP7?.url || video_list?.V_EXP6?.url || video_list?.V_EXP5?.url || video_list?.V_EXP4?.url || video_list?.V_EXP3?.url || video_list?.V_HLSV4?.url || video_list?.V_HLSV3_MOBILE?.url;
                 }
 
-                if (src == undefined) {
-                    src = images.orig.url;
+                if (src === undefined) {
+                    src = images?.orig?.url;
                 }
+
+                if (!src) return;
 
                 link.data().hoverZoomSrc = [src];
                 link.data().hoverZoomCaption = caption;
