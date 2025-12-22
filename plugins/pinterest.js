@@ -109,10 +109,9 @@ hoverZoomPlugins.push({
                 const doc = parser.parseFromString(response, "text/html");
 
                 if (doc.scripts == undefined) return;
-                let scripts = Array.from(doc.scripts);
-                scripts = scripts.filter(script => script.id === "__PWS_INITIAL_PROPS__");
-                if (scripts.length != 1) return;
-                const jObj = JSON.parse(scripts[0].text);
+                const script = Array.from(doc.scripts).find(s => s.id === '__PWS_INITIAL_PROPS__');
+                if (!script) return;
+                const jObj = JSON.parse(script.text);
                 const pinData = jObj.initialReduxState.pins[pin];
                 if (!pinData) return;
                 const videos = pinData.videos;
