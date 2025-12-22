@@ -113,10 +113,12 @@ hoverZoomPlugins.push({
                 scripts = scripts.filter(script => script.id === "__PWS_INITIAL_PROPS__");
                 if (scripts.length != 1) return;
                 const jObj = JSON.parse(scripts[0].text);
-                const videos = jObj.initialReduxState.pins[pin].videos;
-                const images = jObj.initialReduxState.pins[pin].images;
-                const story_pin_data = jObj.initialReduxState.pins[pin].story_pin_data;
-                const caption = jObj.initialReduxState.pins[pin].rich_metadata?.title || jObj.initialReduxState.pins[pin].title || jObj.initialReduxState.pins[pin].seo_title;
+                const pinData = jObj.initialReduxState.pins[pin];
+                if (!pinData) return;
+                const videos = pinData.videos;
+                const images = pinData.images;
+                const story_pin_data = pinData.story_pin_data;
+                const caption = pinData.rich_metadata?.title || pinData.title || pinData.seo_title;
                 let video_list = undefined;
                 let src = undefined;
 
