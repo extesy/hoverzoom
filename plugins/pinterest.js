@@ -1,23 +1,30 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'Pinterest',
-    version: '0.3',
+    name: 'Pinterest',
+    version: '0.4',
     prepareImgLinks: function (callback) {
 
-        $('div[data-test-id="pinWrapper"]').one('mouseover', function() {
-            var link = $(this),
-                data = link.data();
-            if (data.hoverZoomSrc) return;
+        var pluginName = this.name;
+        var res = [];
+
+        //$('div[data-test-id="pinWrapper"]').one('mouseover', function() {
+        $('a:not([href*="/pin/"])').one('mouseover', function() {
+            const link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
+
             var img = link.find('img[srcset]');
             if (img.length === 1 || img.length === 2) {
                 var srcset = img.attr('srcset').split(" ");
                 link.data().hoverZoomSrc = [srcset[srcset.length - 2]];
-                data.hoverZoomCaption = img.attr('alt');
+                link.data().hoverZoomCaption = img.attr('alt');
                 link.addClass('hoverZoomLink');
             }
+        }).one('mouseleave', function() {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
 
-        var res = [];
         var patches = [ '/280x280/', '/736x/', '/originals/' ];
 
         // avatars
@@ -69,6 +76,84 @@ hoverZoomPlugins.push({
                     }
                 }
             });
+        });
+
+        // links to images and videos
+        // sample: https://fr.pinterest.com/pin/877427939880031610/
+        // pin:    877427939880031610
+        // sample: https://fr.pinterest.com/pin/Ac5MASQywei3ijdxsTiDRdgBe1skBCgTSBBbYumTvofSKDUrdj6Zl85OBOD_GcZnCl2tixq83MlHUtwTYzfnJjw/
+        // pin:    Ac5MASQywei3ijdxsTiDRdgBe1skBCgTSBBbYumTvofSKDUrdj6Zl85OBOD_GcZnCl2tixq83MlHUtwTYzfnJjw
+        $('a[href*="/pin/"]').one('mouseover', function() {
+            const link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
+
+            const href = this.href;
+            const re = /\/pin\/([^\/]{1,})/
+            const m = href.match(re);
+            if (m == undefined) return;
+            const pin = m[1];
+
+            // resuse previous result
+            if (link.data().hoverZoomPin == pin) {
+                link.data().hoverZoomSrc = [link.data().hoverZoomPinUrl];
+                link.data().hoverZoomCaption = link.data().hoverZoomPinCaption;
+                return;
+            }
+
+            chrome.runtime.sendMessage({action:'ajaxGet', url:href}, function (response) {
+
+                if (response == null) { return; }
+
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(response, "text/html");
+
+                if (doc.scripts == undefined) return;
+                let scripts = Array.from(doc.scripts);
+                scripts = scripts.filter(script => script.id === "__PWS_INITIAL_PROPS__");
+                if (scripts.length != 1) return;
+                const jObj = JSON.parse(scripts[0].text);
+                const videos = jObj.initialReduxState.pins[pin].videos;
+                const images = jObj.initialReduxState.pins[pin].images;
+                const story_pin_data = jObj.initialReduxState.pins[pin].story_pin_data;
+                const caption = jObj.initialReduxState.pins[pin].rich_metadata?.title || jObj.initialReduxState.pins[pin].title || jObj.initialReduxState.pins[pin].seo_title;
+                let video_list = undefined;
+                let src = undefined;
+
+                if (videos) {
+                    video_list = videos.video_list;
+                } else if (story_pin_data) {
+                    video_list = story_pin_data?.pages[0]?.video?.video_list;
+                    if (video_list == undefined) {
+                        //check blocks
+                        video_list = story_pin_data?.pages[0]?.blocks[0]?.video?.video_list;
+                    }
+                }
+
+                if (video_list) {
+                    // MP4 or HLS format
+                    src = video_list?.V_720P?.url || video_list?.V_EXP7?.url || video_list?.V_EXP6?.url || video_list?.V_EXP5?.url || video_list?.V_EXP4?.url || video_list?.V_EXP3?.url || video_list?.V_HLSV4?.url || video_list?.V_HLSV3_MOBILE?.url;
+                }
+
+                if (src == undefined) {
+                    src = images.orig.url;
+                }
+
+                link.data().hoverZoomSrc = [src];
+                link.data().hoverZoomCaption = caption;
+                link.data().hoverZoomPin = pin;
+                link.data().hoverZoomPinUrl = src;
+                link.data().hoverZoomPinCaption = caption;
+
+                res = [link];
+                callback($(res), pluginName);
+                // Image/video is displayed iff cursor is still over the image/video
+                if (link.data().hoverZoomMouseOver)
+                    hoverZoom.displayPicFromElement(link);
+            });
+        }).one('mouseleave', function() {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
         });
 
         callback($(res), this.name);
