@@ -91,7 +91,7 @@ hoverZoomPlugins.push({
             const href = this.href;
             const re = /\/pin\/([^\/]{1,})/
             const m = href.match(re);
-            if (m == undefined) return;
+            if (!m) return;
             const pin = m[1];
 
             // resuse previous result
