@@ -2,9 +2,8 @@ var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'listal',
     version:'0.1',
-    prepareImgLinks:function (callback) {
 
-        var pluginName = this.name;
+    prepareImgLinks:function (callback) {
         var res = [];
 
         // https://www.listal.com/
