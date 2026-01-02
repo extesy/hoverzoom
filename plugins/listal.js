@@ -39,6 +39,6 @@ hoverZoomPlugins.push({
             '/1600/'
         );
 
-        callback($(res), name);
+        callback($(res), this.name);
     }
 });
