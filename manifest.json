@@ -2235,6 +2235,10 @@
         {
             "js": ["plugins/otempo.js"],
             "matches": ["*://*.otempo.com.br/*"]
+        },
+        {
+            "js": ["plugins/listal.js"],
+            "matches": ["*://*.listal.com/*"]
         }
     ]
 }
