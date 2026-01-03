@@ -1,12 +1,12 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Google',
-    version:'4.1',
+    version:'5.0',
     prepareImgLinks:function (callback) {
         var res = [];
         var initData = null;
-        var hookedData = sessionStorage.getItem('hookedData');
-        sessionStorage.removeItem('hookedData');
+        var hookedData = sessionStorage.getItem('hoverZoomXHROpenData');
+        sessionStorage.removeItem('hoverZoomXHROpenData');
 
         // Google+ full page viewer
         if (location.search.indexOf('pid=') > -1) {
@@ -31,36 +31,12 @@ hoverZoomPlugins.push({
             '$1s0'
         );
 
-        // Hook Google 'Open' XMLHttpRequests to catch data & metadata associated with pictures displayed
-        // These requests are issued by client side to Google servers in order to obtain new data when user scrolls down
-        // Hooked data is stored in sessionStorage
-        if ($('script.hoverZoomHook').length == 0) { // Inject hook script in document if not already there
-            var hookScript = document.createElement('script');
-            hookScript.type = 'text/javascript';
-            hookScript.text = `if (typeof oldXHROpen !== 'function') { // Hook only once!
-                oldXHROpen = window.XMLHttpRequest.prototype.open;
-                window.XMLHttpRequest.prototype.open = function(method, url, async, user, password) {
-                    // catch responses
-                    this.addEventListener('load', function() {
-                        try {
-                            // store response as plain text in a sessionStorage for later usage by plug-in
-                            let storedHookedData = sessionStorage.getItem('hookedData');
-                            if (storedHookedData == undefined) sessionStorage.setItem('hookedData', this.responseText);
-                            else sessionStorage.setItem('hookedData', storedHookedData + this.responseText);
-
-                            // Add & remove empty <a> element to/from DOM to trigger HoverZoom,
-                            // so data & metadata just added to DOM in <script> element can be exploited
-                            let fakeA = document.createElement('a');
-                            (document.head || document.documentElement).appendChild(fakeA);
-                            (document.head || document.documentElement).removeChild(fakeA);
-                        } catch {}
-                    });
-                    // Proceed with original function
-                    return oldXHROpen.apply(this, arguments);
-                }
-            }`;
-            hookScript.classList.add('hoverZoomHook');
-            (document.head || document.documentElement).appendChild(hookScript);
+        // Hook 'Open' XMLHttpRequests to catch data & metadata associated with pictures
+        // Hooked data is stored in sessionStorage for later use by plug-in
+        if ($('script.hoverZoomXHROpen').length == 0) { // Inject hook script in document if not already there
+            const injectedScript = document.createElement('script');
+            injectedScript.src = chrome.runtime.getURL('js/hoverZoomXHROpen.js');
+            (document.head || document.documentElement).appendChild(injectedScript);
         }
 
         function cleanUrl(url) {
