@@ -826,7 +826,7 @@ async function importSettings() {
         return false;
     }
     displayMsg(Imported);
-    await restoreOptions({jsonImport});
+    await restoreOptions(jsonImport);
     $('#txtBoxImportExportSettings').val('');
 }
 
