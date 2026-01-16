@@ -1,7 +1,7 @@
-﻿var hoverZoomPlugins = hoverZoomPlugins || [];
+var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'LinkedIn',
-    version:'0.3',
+    version:'0.4',
     prepareImgLinks:function (callback) {
 
         var JSESSIONIDCookie = getCookie("JSESSIONID").replace(/"/g, '');
@@ -101,16 +101,31 @@ hoverZoomPlugins.push({
 
             if (storedUrl == null) {
 
-                // call Linkedin API
+                // Use Dash Profiles API
                 $.ajax({
                     type: "GET",
                     dataType: 'text',
                     beforeSend: function(request) {
                         request.setRequestHeader("csrf-token", JSESSIONIDCookie);
+                        request.setRequestHeader("accept", "application/vnd.linkedin.normalized+json+2.1");
+                        request.setRequestHeader("x-li-lang", "en_US");
+                        request.setRequestHeader("x-restli-protocol-version", "2.0.0");
                     },
-                    url: "https://www.linkedin.com/voyager/api/identity/profiles/" + profileName,
+                    url: "https://www.linkedin.com/voyager/api/identity/dash/profiles?q=memberIdentity&memberIdentity=" + profileName + "&decorationId=com.linkedin.voyager.dash.deco.identity.profile.FullProfileWithEntities-93",
                     success: function(response) { extractProfilePhoto(link, profileName, response); },
-                    error: function(response) { }
+                    error: function(response) {
+                        // Fallback to old API if dash fails
+                        $.ajax({
+                            type: "GET",
+                            dataType: 'text',
+                            beforeSend: function(request) {
+                                request.setRequestHeader("csrf-token", JSESSIONIDCookie);
+                            },
+                            url: "https://www.linkedin.com/voyager/api/identity/profiles/" + profileName,
+                            success: function(response) { extractProfilePhotoLegacy(link, profileName, response); },
+                            error: function(response) { }
+                        });
+                    }
                 });
 
             } else {
@@ -157,6 +172,75 @@ hoverZoomPlugins.push({
 
             try {
                 let j = JSON.parse(response);
+
+                // New Dash API response structure
+                let rootUrl = null;
+                let artifacts = null;
+                let firstName = '';
+                let lastName = '';
+                let headline = '';
+
+                // Extract from included array (Dash API format)
+                if (j.included) {
+                    for (let item of j.included) {
+                        // Look for profile picture
+                        if (item.profilePicture && item.profilePicture.displayImageReference) {
+                            let vi = item.profilePicture.displayImageReference.vectorImage;
+                            if (vi && vi.rootUrl && vi.artifacts) {
+                                rootUrl = vi.rootUrl;
+                                artifacts = vi.artifacts;
+                                firstName = item.firstName || '';
+                                lastName = item.lastName || '';
+                                headline = item.headline || '';
+                                break;
+                            }
+                        }
+                        // Alternative structure
+                        if (item.$type && item.$type.includes("Profile") && item.profilePicture) {
+                            let pic = item.profilePicture;
+                            if (pic.displayImageReference && pic.displayImageReference.vectorImage) {
+                                let vi = pic.displayImageReference.vectorImage;
+                                rootUrl = vi.rootUrl;
+                                artifacts = vi.artifacts;
+                                firstName = item.firstName || '';
+                                lastName = item.lastName || '';
+                                headline = item.headline || '';
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (rootUrl && artifacts) {
+                    artifacts.sort((a, b) => (b.width || 0) - (a.width || 0));
+                    let largestPicture = artifacts[0].fileIdentifyingUrlPathSegment;
+                    let fullsizeUrl = rootUrl + largestPicture;
+                    let caption = firstName + " " + lastName + (headline ? " - " + headline : "");
+
+                    let data = link.data();
+                    if (data.hoverZoomSrc == undefined) {
+                        data.hoverZoomSrc = [];
+                    }
+                    data.hoverZoomSrc.unshift(fullsizeUrl);
+                    data.hoverZoomCaption = caption.trim();
+
+                    // store url & caption
+                    sessionStorage.setItem(profileName + "_url", fullsizeUrl);
+                    sessionStorage.setItem(profileName + "_caption", caption.trim());
+                    callback(link, name);
+                    hoverZoom.displayPicFromElement(link);
+                }
+
+            } catch(e) {
+                console.log("Dash API parse error:", e);
+            }
+
+        }
+
+        function extractProfilePhotoLegacy(link, profileName, response)  {
+
+            try {
+                let j = JSON.parse(response);
                 let rootUrl = j.miniProfile.picture["com.linkedin.common.VectorImage"].rootUrl;
                 let artifacts = j.miniProfile.picture["com.linkedin.common.VectorImage"].artifacts;
                 artifacts.sort((a, b) => b.width - a.width);
@@ -177,7 +261,9 @@ hoverZoomPlugins.push({
                 callback(link, name);
                 hoverZoom.displayPicFromElement(link);
 
-            } catch {}
+            } catch(e) {
+                console.log("Legacy API parse error:", e);
+            }
 
         }
 
