@@ -4,6 +4,7 @@ hoverZoomPlugins.push({
     version:'0.4',
     prepareImgLinks:function (callback) {
 
+        var pluginName = this.name;
         var JSESSIONIDCookie = getCookie("JSESSIONID").replace(/"/g, '');
 
         // individuals
@@ -71,7 +72,7 @@ hoverZoomPlugins.push({
                 data.hoverZoomSrc.unshift(storedUrl);
                 data.hoverZoomCaption = storedCaption;
                 res.push(link);
-                callback(link, name);
+                callback(link, pluginName);
             }
         }
 
@@ -137,7 +138,7 @@ hoverZoomPlugins.push({
                 data.hoverZoomCaption = storedCaption;
                 res.push(link);
 
-                callback(link, name);
+                callback(link, pluginName);
             }
         }
 
@@ -161,7 +162,7 @@ hoverZoomPlugins.push({
                 // store url & caption
                 sessionStorage.setItem(companyId + "_url", fullsizeUrl);
                 sessionStorage.setItem(companyId + "_caption", caption);
-                callback(link, name);
+                callback(link, pluginName);
                 hoverZoom.displayPicFromElement(link);
 
             } catch {}
@@ -183,30 +184,21 @@ hoverZoomPlugins.push({
                 // Extract from included array (Dash API format)
                 if (j.included) {
                     for (let item of j.included) {
-                        // Look for profile picture
+
+                        let vi = null;
                         if (item.profilePicture && item.profilePicture.displayImageReference) {
-                            let vi = item.profilePicture.displayImageReference.vectorImage;
-                            if (vi && vi.rootUrl && vi.artifacts) {
-                                rootUrl = vi.rootUrl;
-                                artifacts = vi.artifacts;
-                                firstName = item.firstName || '';
-                                lastName = item.lastName || '';
-                                headline = item.headline || '';
-                                break;
-                            }
+                            vi = item.profilePicture.displayImageReference.vectorImage;
+                        } else if (item.$type && item.$type.includes("Profile") && item.profilePicture && item.profilePicture.displayImageReference) {
+                            vi = item.profilePicture.displayImageReference.vectorImage;
                         }
-                        // Alternative structure
-                        if (item.$type && item.$type.includes("Profile") && item.profilePicture) {
-                            let pic = item.profilePicture;
-                            if (pic.displayImageReference && pic.displayImageReference.vectorImage) {
-                                let vi = pic.displayImageReference.vectorImage;
-                                rootUrl = vi.rootUrl;
-                                artifacts = vi.artifacts;
-                                firstName = item.firstName || '';
-                                lastName = item.lastName || '';
-                                headline = item.headline || '';
-                                break;
-                            }
+
+                        if (vi && vi.rootUrl && vi.artifacts) {
+                            rootUrl = vi.rootUrl;
+                            artifacts = vi.artifacts;
+                            firstName = item.firstName || '';
+                            lastName = item.lastName || '';
+                            headline = item.headline || '';
+                            break;
                         }
                     }
                 }
@@ -227,7 +219,7 @@ hoverZoomPlugins.push({
                     // store url & caption
                     sessionStorage.setItem(profileName + "_url", fullsizeUrl);
                     sessionStorage.setItem(profileName + "_caption", caption.trim());
-                    callback(link, name);
+                    callback(link, pluginName);
                     hoverZoom.displayPicFromElement(link);
                 }
 
@@ -258,7 +250,7 @@ hoverZoomPlugins.push({
                 // store url & caption
                 sessionStorage.setItem(profileName + "_url", fullsizeUrl);
                 sessionStorage.setItem(profileName + "_caption", caption);
-                callback(link, name);
+                callback(link, pluginName);
                 hoverZoom.displayPicFromElement(link);
 
             } catch(e) {
