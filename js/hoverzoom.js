@@ -4785,6 +4785,24 @@ var hoverZoom = {
                 return obj();
             } catch {}
         }
+    },
+    
+    // Parse cookie and return value associated to cname: cname=value
+    // Return "" if not found
+    getCookie:function(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.toLowerCase().indexOf(name.toLowerCase()) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
     }
 };
 

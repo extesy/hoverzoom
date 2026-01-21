@@ -2426,6 +2426,10 @@
         {
             "js": ["plugins/listal.js"],
             "matches": ["*://*.listal.com/*"]
+        },
+        {
+            "js": ["plugins/sankaku.js"],
+            "matches": ["*://*.sankaku.app/*"]
         }
     ]
 }
