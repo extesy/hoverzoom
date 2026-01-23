@@ -1344,7 +1344,7 @@ var hoverZoom = {
 
         function mouseShortClickHandler(mouseButtonKey, img, event) {
             // The following only trigger when image is displayed
-            if (imgFullSize) { 
+            if (imgFullSize) {
                 switch (mouseButtonKey) {
                     case options.copyImageKey:
                     case options.copyImageUrlKey:
@@ -2086,7 +2086,7 @@ var hoverZoom = {
                 hz.hzViewer.hide().fadeTo(options.fadeDuration, options.picturesOpacity);
             }
 
-            // The image size is not yet available in the onload so I have to delay the positioning 
+            // The image size is not yet available in the onload so I have to delay the positioning
             setTimeout(() => {
                 posViewer();
                 if (options.autoLockImages) {
@@ -2145,7 +2145,7 @@ var hoverZoom = {
                 hzMiscellaneousCss.boxShadow = 'none';
                 hzDetailCss.boxShadow = 'none';
             }
-            if (caption || miscellaneous) { 
+            if (caption || miscellaneous) {
                 if (options.captionLocation === "above")
                     if (hzAbove.find('#hzCaptionMiscellaneous').length == 0)
                         hzCaptionMiscellaneous = $('<div/>', {id:'hzCaptionMiscellaneous'}).css(hzCaptionMiscellaneousCss).appendTo(hzAbove);
@@ -2825,7 +2825,7 @@ var hoverZoom = {
                 } else {
                     zoomFactor = useZoomFactor ? zoomFactorDefault : 1; // Makes image zoom to default or 100%
                 }
-                
+
                 posViewer();
                 panLockedViewer(event);
             }
@@ -3682,7 +3682,7 @@ var hoverZoom = {
 
         function saveImage() {
             cLog('checking for downloads permission');
-            chrome.runtime.sendMessage({action:'getPermissionsContains', permissions: ['downloads']}, 
+            chrome.runtime.sendMessage({action:'getPermissionsContains', permissions: ['downloads']},
                 function(hasPermission) {
                     if (hasPermission === true) {
                         saveImg();
@@ -3692,7 +3692,7 @@ var hoverZoom = {
                         saveSubtitles();
                     } else {
                         alert('Saving media is disabled. To save media, please enable "saving media with action key" on the HoverZoom\'s advanced options page.')
-                    }            
+                    }
                 });
         }
 
@@ -3708,7 +3708,7 @@ var hoverZoom = {
             const img = new Image;
             const c = document.createElement('canvas');
             const ctx = c.getContext('2d');
-            
+
             // Converts an image into a blob in order to write to the clipboard
             function setCanvasImage(path,func){
                 img.onload = function(){
@@ -3723,7 +3723,7 @@ var hoverZoom = {
                 img.setAttribute('crossorigin', 'anonymous')
                 img.src = path;
             }
-            
+
             setCanvasImage(url,(imgBlob)=>{
                 cLog('Copying image to clipboard');
                 navigator.clipboard.write([
@@ -4785,6 +4785,21 @@ var hoverZoom = {
                 return obj();
             } catch {}
         }
+    },
+
+    // Parse cookie and return value associated to cname: cname=value
+    // Return "" if not found
+    getCookie:function(cname) {
+        const name = `${cname.toLowerCase()}=`;
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookies = decodedCookie.split(';');
+        for (const cookie of cookies) {
+            const trimmedCookie = cookie.trim();
+            if (trimmedCookie.toLowerCase().startsWith(name)) {
+                return trimmedCookie.substring(name.length);
+            }
+        }
+        return "";
     }
 };
 
