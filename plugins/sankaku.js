@@ -141,11 +141,7 @@ hoverZoomPlugins.push({
         function getBook(link, id) {
 
             const apiCall = `https://sankakuapi.com/pools/${id}`;
-
-            // Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMjgwMjQsInN1Ykx2bCI6MCwibGV2ZWwiOjIwLCJpc3MiOiJodHRwczovL2NhcGktdjIuc2Fua2FrdWNvbXBsZXguY29tIiwidHlwZSI6IkJlYXJlciIsImF1ZCI6ImNvbXBsZXgiLCJzY29wZSI6ImNvbXBsZXgiLCJpYXQiOjE3Njc0NjgyMDYsImV4cCI6MTc2ODA3MzAwNn0.LpMG_KdnMXUPXyEesN_kiZ6vy32ZjA9U1i78DKh3pkg
-
             const accessToken = hoverZoom.getCookie("accessToken").replace(/"/g, '');
-            console.log('accessToken cookie:' + accessToken);
 
             chrome.runtime.sendMessage({action:'ajaxGet',
                                         url:apiCall,
@@ -155,8 +151,8 @@ hoverZoomPlugins.push({
                 try {
                     const j = JSON.parse(response);
 
-                    var gallery = [];
-                    var captions = [];
+                    let gallery = [];
+                    let captions = [];
 
                     j?.posts.map(p => { gallery.push([...new Set([p?.file_url, p?.sample_url, p?.preview_url])]); captions.push(j?.name || j?.name_en || j?.name_ja); });
                     link.data().hoverZoomGallerySrc = gallery;
