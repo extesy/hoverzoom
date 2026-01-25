@@ -88,6 +88,92 @@ hoverZoomPlugins.push({
             link.data().hoverZoomGalleryCaption = captions;
         });
 
+        // series
+        // sample: https://sankaku.app/fr/series/Be8M5QJMzvJ?volumeIndex=0
+        //         https://sankaku.app/fr/series/Be8M5QJMzvJ?volumeIndex=1
+        $('a[href*="/series/"]').one('mouseover', function() {
+            const link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
+
+            const re = /.*\/series\/([^\?\/]{1,})\?volumeIndex=(\d+)/
+            const m = this.href.match(re);
+            if (!m) return;
+            const seriesId = m[1];
+            const volumeId = m[2];
+
+            const apiCall = 'https://sankakuapi.com/graphql';
+
+            const accessToken = hoverZoom.getCookie("accessToken").replace(/"/g, '');
+
+            chrome.runtime.sendMessage({action:'ajaxRequest',
+                                        method:'POST',
+                                        url:apiCall,
+                                        headers:[{"header":"authorization", "value":"Bearer " + accessToken},{"header":"Content-Type","value":"application/json"}],
+                                        data:`{"query":"query Series($seriesId: StringOrInt!) {seriesV2(id: $seriesId) {pools {id name author {id name displayName} nameEn nameJa sequenceV2(seriesId: $seriesId)}}}","variables":{"seriesId":"${seriesId}"},"operationName":"Series"}`},
+                                        function (response) {
+
+                if (response == null) { return; }
+                try {
+                    const j = JSON.parse(response);
+
+                    // extract book id from series
+                    const bookId = j?.data?.seriesV2?.pools[volumeId]?.id;
+                    if (bookId == null) { return; }
+                    handleSankakuLink('books', bookId => `https://sankakuapi.com/pools/${bookId}`, (link, j) => {
+                        let gallery = [];
+                        let captions = [];
+                        j?.posts.map(p => { gallery.push([p?.file_url || p?.sample_url || p?.preview_url]); captions.push(j?.name || j?.name_en || j?.name_ja); });
+                        link.data().hoverZoomGallerySrc = gallery;
+                        link.data().hoverZoomGalleryCaption = captions;
+                    });
+                } catch (error) {
+                     cLog(`Error processing Sankaku series link: ${error}`);
+                     return;
+                }
+            });
+
+        }).one('mouseleave', function() {
+            const link = $(this);
+            link.data().hoverZoomMouseOver = false;
+        });
+
+        function getBook(link, id) {
+
+            const apiCall = `https://sankakuapi.com/pools/${id}`;
+
+            // Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMwMjgwMjQsInN1Ykx2bCI6MCwibGV2ZWwiOjIwLCJpc3MiOiJodHRwczovL2NhcGktdjIuc2Fua2FrdWNvbXBsZXguY29tIiwidHlwZSI6IkJlYXJlciIsImF1ZCI6ImNvbXBsZXgiLCJzY29wZSI6ImNvbXBsZXgiLCJpYXQiOjE3Njc0NjgyMDYsImV4cCI6MTc2ODA3MzAwNn0.LpMG_KdnMXUPXyEesN_kiZ6vy32ZjA9U1i78DKh3pkg
+
+            const accessToken = hoverZoom.getCookie("accessToken").replace(/"/g, '');
+            console.log('accessToken cookie:' + accessToken);
+
+            chrome.runtime.sendMessage({action:'ajaxGet',
+                                        url:apiCall,
+                                        headers:[{"header":"authorization", "value":"Bearer " + accessToken},{"header":"Content-Type","value":"application/json"}]}, function (response) {
+
+                if (response == null) { return; }
+                try {
+                    const j = JSON.parse(response);
+
+                    var gallery = [];
+                    var captions = [];
+
+                    j?.posts.map(p => { gallery.push([...new Set([p?.file_url, p?.sample_url, p?.preview_url])]); captions.push(j?.name || j?.name_en || j?.name_ja); });
+                    link.data().hoverZoomGallerySrc = gallery;
+                    link.data().hoverZoomGalleryCaption = captions;
+
+                    res = [link];
+                    callback($(res), pluginName);
+                    // Image is displayed iff cursor is still over the image
+                    if (link.data().hoverZoomMouseOver)
+                        hoverZoom.displayPicFromElement(link);
+                } catch (error) {
+                    cLog(`Error processing Sankaku books link: ${error}`);
+                    return;
+                }
+            });
+        }
+
         callback($(res), pluginName);
     }
 });
