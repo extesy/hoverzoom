@@ -50,9 +50,11 @@ hoverZoomPlugins.push({
                 // load link
                 hoverZoom.prepareFromDocument(link, this.href, function (doc, callback) {
                     // check if the target link redirects to the same document
-                    const current = document.head.querySelector('link[rel="canonical"]').href;
-                    const canonical = doc.head.querySelector('link[rel="canonical"]').href;
-                    if (canonical === current)
+                    // #1725 : handle missing canonical link(s)
+                    const current = document.head.querySelector('link[rel="canonical"]')?.href;
+                    const canonical = doc.head.querySelector('link[rel="canonical"]')?.href;
+                                        
+                    if (canonical && current && canonical === current)
                         return
                     // default media
                     var ogImg = doc.head.querySelector('meta[property="og:image"]');
