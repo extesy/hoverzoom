@@ -2786,7 +2786,7 @@ var hoverZoom = {
                 posViewer();
                 panLockedViewer(event);
             } else {
-                if (now - lastScrollTime < 350) { 
+                if (now - lastScrollTime < options.scrollWheelCooldown) { 
                     event.preventDefault();
                     return;
                 }
