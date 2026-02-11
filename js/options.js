@@ -39,6 +39,7 @@ async function saveOptions(exportSettings = false) {
     options.playAudio = $('#chkPlayAudio')[0].checked;
     options.audioVolume = $('#txtAudioVolume')[0].value / 100;
     options.mouseClickHoldTime = $('#txtMouseClickHoldTime')[0].value;
+    options.scrollWheelCooldown = $('#txtScrollWheelCooldown')[0].value;
     options.mouseUnderlap = $('#chkMouseUnderlap')[0].checked;
     options.lockImageZoomFactorEnabled = $('#chkLockImageZoomFactorEnabled')[0].checked;
     options.lockImageZoomDefaultEnabled = $('#chkLockImageZoomDefaultEnabled')[0].checked;
@@ -189,6 +190,8 @@ async function restoreOptions(optionsFromFactorySettings) {
     $('#txtAudioVolume').val(parseInt(options.audioVolume * 100));
     $('#rngMouseClickHoldTime').val(parseInt(options.mouseClickHoldTime));
     $('#txtMouseClickHoldTime').val(parseInt(options.mouseClickHoldTime));
+    $('#rngScrollWheelCooldown').val(parseInt(options.scrollWheelCooldown));
+    $('#txtScrollWheelCooldown').val(parseInt(options.scrollWheelCooldown));
     $('#chkMouseUnderlap').trigger(options.mouseUnderlap ? 'gumby.check' : 'gumby.uncheck');
     $('#chkLockImageZoomFactorEnabled').trigger(options.lockImageZoomFactorEnabled ? 'gumby.check' : 'gumby.uncheck');
     $('#chkLockImageZoomDefaultEnabled').trigger(options.lockImageZoomDefaultEnabled ? 'gumby.check' : 'gumby.uncheck');
@@ -636,6 +639,15 @@ function updateRngMouseClickHoldTime() {
     $('#rngMouseClickHoldTime').val(this.value);
 }
 
+function updateTxtScrollWheelCooldown() {
+    $('#txtScrollWheelCooldown')[0].value = this.value;
+}
+
+function updateRngScrollWheelCooldown() {
+    this.value = integerOnChange(this.value);
+    $('#rngScrollWheelCooldown').val(this.value);
+}
+
 function updateDarkMode() {
     if ($('#chkDarkMode')[0].checked) {
         $('body').addClass('darkmode');
@@ -762,6 +774,8 @@ $(async function () {
     $('#txtAudioVolume').change(updateRngAudioVolume);
     $('#rngMouseClickHoldTime').on('input change', updateTxtMouseClickHoldTime);
     $('#txtMouseClickHoldTime').change(updateRngMouseClickHoldTime);
+    $('#rngScrollWheelCooldown').on('input change', updateTxtScrollWheelCooldown);
+    $('#txtScrollWheelCooldown').change(updateRngScrollWheelCooldown);
     $('#chkAmbilightEnabled').parent().on('gumby.onChange', updateDivAmbilight);
     $('#rngAmbilightHaloSize').on('input change', updateTxtAmbilightHaloSize);
     $('#txtAmbilightHaloSize').change(updateRngAmbilightHaloSize);
@@ -885,5 +899,3 @@ function removeModifications() {
     $('[data-val0]').each(function() { delete $(this)[0].dataset.val0; });
     $('[data-val1]').each(function() { delete $(this)[0].dataset.val1; });
 }
-
-
