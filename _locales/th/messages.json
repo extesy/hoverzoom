@@ -499,6 +499,18 @@
         "message": "มิลลิวินาที",
         "description": "[options] Unit name (pixel) for hold time amount"
     },
+    "optScrollWheelCooldown": {
+        "message": "Scrollwheel cooldown:",
+        "description": "[options] Mouse scroll wheel cooldown"
+    },
+    "optScrollWheelCooldownTooltip": {
+        "message": "Amount of time required between mouse scroll events before another action is triggered",
+        "description": "[options] Tooltip for mouse scrollwheel delay"
+    },
+    "optScrollWheelCooldownUnit": {
+        "message": "มิลลิวินาที",
+        "description": "[options] Unit name (pixel) for hold time amount"
+    },
     "optSectionZoomSpeed": {
         "message": "ความเร็วในการซูม",
         "description": "[options] Page section for zoom speed"
