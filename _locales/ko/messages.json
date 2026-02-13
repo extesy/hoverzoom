@@ -500,11 +500,11 @@
         "description": "[options] Unit name (pixel) for hold time amount"
     },
     "optScrollWheelCooldown": {
-        "message": "Scrollwheel cooldown:",
+        "message": "스크롤 대기 시간:",
         "description": "[options] Mouse scroll wheel cooldown"
     },
     "optScrollWheelCooldownTooltip": {
-        "message": "Amount of time required between mouse scroll events before another action is triggered",
+        "message": "또다른 동작을 실행하기 전, 스크롤 이벤트 사이에 요구되는 시간 간격",
         "description": "[options] Tooltip for mouse scrollwheel delay"
     },
     "optScrollWheelCooldownUnit": {
