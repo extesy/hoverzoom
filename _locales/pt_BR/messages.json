@@ -112,19 +112,19 @@
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxWidth": {
-        "message": "Set max width of zoomed images:",
+        "message": "Define a largura máxima das imagens ampliadas:",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optMaxWidthTooltip": {
-        "message": "Set max width of zoomed images by this amount (if 0 then no max width)",
+        "message": "Define a largura máxima das imagens ampliadas de acordo com esse valor (se for 0, não haverá largura máxima)",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxHeight": {
-        "message": "Set max height of zoomed images:",
+        "message": "Define a altura máxima das imagens ampliadas:",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optMaxHeightTooltip": {
-        "message": "Set max height of zoomed images by this amount (if 0 then no max height)",
+        "message": "Define a altura máxima das imagens ampliadas de acordo com esse valor (se for 0, não haverá altura máxima)",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxSizeUnitName": {
@@ -196,7 +196,7 @@
         "description": "[options] Tooltip for hide mouse cursor option"
     },
     "optLockImageZoomFactorEnabled": {
-        "message": "Use zoom factor for lock image",
+        "message": "Usar o fator de ampliação para a imagem de bloqueio",
         "description": "[options] Use zoom factor for lock image option"
     },
     "optLockImageZoomFactorEnabledTooltip": {
@@ -212,11 +212,11 @@
         "description": "[options] Tooltip for locked images start zoomed in option"
     },
     "optPageActionEnabled": {
-        "message": "Change toolbar icon when images can be zoomed",
+        "message": "Altera o ícone da barra de ferramentas quando as imagens podem ser ampliadas",
         "description": "[options] Change toolbar icon option"
     },
     "optPageActionEnabledTooltip": {
-        "message": "Toolbar icon changes color when images can be zoomed",
+        "message": "O ícone da barra de ferramentas muda de cor quando as imagens podem ser ampliadas",
         "description": "[options] Tooltip for change toolbar icons option"
     },
     "optShowWhileLoading": {
@@ -264,7 +264,7 @@
         "description": "[options] Zoom videos option"
     },
     "optZoomVideosTooltip": {
-        "message": "Supported formats: 3gpp m4v mkv mp4 mpeg-dash ogv webm",
+        "message": "Formatos suportados: 3gpp, m4v, mkv, mp4, mpeg-dash, ogv, webm",
         "description": "[options] Tooltip for zoom videos option"
     },
     "optVideoPositionStep": {
@@ -328,7 +328,7 @@
         "description": "[options] Tooltip for audio volume option"
     },
     "optEnableViewerShadow": {
-        "message": "Enable shadow behind image viewer",
+        "message": "Ativar a sombra atrás do visualizador de imagens",
         "description": "[options] Enable shadow behind image viewer option"
     },
     "optEnableViewerShadowTooltip": {
@@ -376,7 +376,7 @@
         "description": "[options] Tooltip for background opacity"
     },
     "optImagePaddingSize": {
-        "message": "Image padding size:",
+        "message": "Tamanho do preenchimento da imagem:",
         "description": "[options] Adjust the zoomed image padding size option"
     },
     "optImagePaddingSizeUnitName": {
@@ -420,11 +420,11 @@
         "description": "[options] Tooltip for center images in the middle of the page option"
     },
     "optAutoLockImages": {
-        "message": "Automatically lock images",
+        "message": "Bloquear imagens automaticamente",
         "description": "[options] Automatically lock images option"
     },
     "optAutoLockImagesTooltip": {
-        "message": "Automatically lock images when activating Hover Zoom+",
+        "message": "Bloquear imagens automaticamente quando ativar o Hover Zoom+",
         "description": "[options] Tooltip for automatically lock images option"
     },
     "optFrameBackgroundColor": {
@@ -496,7 +496,7 @@
         "description": "[options] Tooltip for mouse click hold time option"
     },
     "optClickHoldTimeUnit": {
-        "message": "milliseconds",
+        "message": "milissegundos",
         "description": "[options] Unit name (pixel) for hold time amount"
     },
     "optScrollWheelCooldown": {
@@ -508,7 +508,7 @@
         "description": "[options] Tooltip for mouse scrollwheel delay"
     },
     "optScrollWheelCooldownUnit": {
-        "message": "milliseconds",
+        "message": "milissegundos",
         "description": "[options] Unit name (pixel) for hold time amount"
     },
     "optSectionZoomSpeed": {
@@ -596,7 +596,7 @@
         "description": "[options] Add viewed pictures to the browser's history option"
     },
     "optAllowMediaSaving": {
-        "message": "Enable saving media with action key",
+        "message": "Ativar o salvamento de mídia com a tecla de ação",
         "description": "[options] Enable saving media with action key option"
     },
     "optFilterNSFW": {
@@ -624,11 +624,11 @@
         "description": "[options] Zoomed pictures opacity option"
     },
     "optCaptionOpacity": {
-        "message": "Caption opacity:",
+        "message": "Opacidade da legenda:",
         "description": "[options] Caption opacity option"
     },
     "optDetailsOpacity": {
-        "message": "Details opacity:",
+        "message": "Opacidade dos detalhes:",
         "description": "[options] Details opacity option"
     },
     "optOpacityUnitName": {
@@ -636,51 +636,51 @@
         "description": "[options] Unit name (percentage) for opacity option"
     },
     "optDetailsSelectorTooltip": {
-        "message": "Select which detail(s) should show, if details are displayed",
+        "message": "Selecione quais detalhes devem ser exibidos, se os detalhes forem exibidos",
         "description": "[options] Tooltip for details selector"
     },
     "optTitleBoxDetails": {
-        "message": "Detail(s) shown:",
+        "message": "Detalhe(s) mostrado(s):",
         "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
-        "message": "Host",
+        "message": "Servidor",
         "description": "[options] Show Host Detail"
     },
     "optShowDetailFilename": {
-        "message": "File Name",
+        "message": "Nome do Arquivo",
         "description": "[options] Show File Name Detail"
     },
     "optShowDetailLastModified": {
-        "message": "Last Modified",
+        "message": "Última Modificação",
         "description": "[options] Show Last Modified Detail"
     },
     "optShowDetailExtension": {
-        "message": "Extension",
+        "message": "Extensão",
         "description": "[options] Show Extension Detail"
     },
     "optShowDetailContentLength": {
-        "message": "Content Length",
+        "message": "Tamanho do Conteúdo",
         "description": "[options] Show Content Length Detail"
     },
     "optShowDetailDuration": {
-        "message": "Duration",
+        "message": "Duração",
         "description": "[options] Show Duration Detail"
     },
     "optShowDetailScale": {
-        "message": "Scale",
+        "message": "Escala",
         "description": "[options] Show Scale Detail"
     },
     "optShowDetailRatio": {
-        "message": "Ratio",
+        "message": "Proporção",
         "description": "[options] Show Ratio Detail"
     },
     "optShowDetailDimensions": {
-        "message": "Dimensions",
+        "message": "Dimensões",
         "description": "[options] Show Dimensions Detail"
     },
     "optBelowPositionOffset": {
-        "message": "Below position offset:",
+        "message": "Deslocamento da posição inferior:",
         "description": "[options] Below offset option"
     },
     "optBelowPositionOffsetTooltip": {
@@ -700,11 +700,11 @@
         "description": "[options] Unit name (pixel) for offset amount"
     },
     "optBelowPositionOffsetUnit": {
-        "message": "Unit Type:",
+        "message": "Tipo de unidade:",
         "description": "[options] Set unit type for below offset"
     },
     "optBelowPositionOffsetUnitTooltip": {
-        "message": "Choose between pixel or percentage based offset",
+        "message": "Escolha entre deslocamento baseado em pixel ou porcentagem",
         "description": "[options] Tooltip for setting unit for below position offset"
     },
     "optBelowPositionOffsetUnitPixel": {
@@ -716,11 +716,11 @@
         "description": "[options] Unit type percent"
     },
     "optAbovePositionOffsetUnit": {
-        "message": "Unit Type:",
+        "message": "Tipo de unidade:",
         "description": "[options] Set unit type for above offset"
     },
     "optAbovePositionOffsetUnitTooltip": {
-        "message": "Choose between pixel or percentage based offset",
+        "message": "Escolha entre deslocamento baseado em pixel ou porcentagem",
         "description": "[options] Tooltip for setting unit for above position offset"
     },
     "optAbovePositionOffsetUnitPixel": {
@@ -732,11 +732,11 @@
         "description": "[options] Unit type percent"
     },
     "optUseClipboardNameWhenSavingTooltip": {
-        "message": "Use the text in the clipboard as the file name when saving an image",
+        "message": "Use o texto da área de transferência como o nome do arquivo ao salvar uma imagem",
         "description": "[options] Tooltip for use clipboard text as file name option"
     },
     "optUseClipboardNameWhenSaving": {
-        "message": "Use clipboard text as file name",
+        "message": "Usar o texto da área de transferência como nome de arquivo",
         "description": "[options] Use clipboard text as file name option"
     },
     "optDisplayImageLoaderTooltip": {
@@ -860,7 +860,7 @@
         "description": "[options] Enable debug option"
     },
     "optMigrateOldSettingsTooltip": {
-        "message": "Manually migrate settings from old save location. THIS WILL OVERWRITE YOUR CURRENT SETTINGS.",
+        "message": "Migrar manualmente as configurações do local de salvamento antigo. ISSO SUBSTITUIRÁ SUAS CONFIGURAÇÕES ATUAIS.",
         "description": "[options] Tooltip for migrate old settings"
     },
     "optMigrateOldSettings": {
@@ -888,7 +888,7 @@
         "description": "[options] Page section for supported audio formats"
     },
     "optSectionImportExportSettings": {
-        "message": "Import/Export",
+        "message": "Importar/Exportar",
         "description": "[options] Page section for import/export"
     },
     "optSectionImportExportSettingsTooltip": {
@@ -896,23 +896,23 @@
         "description": "[options] Tooltip for input and export options"
     },
     "optImportExportTextArea": {
-        "message": "Paste your saved settings here",
+        "message": "Cole suas configurações salvas aqui",
         "description": "[options] Placeholder for import and export text area"
     },
     "optButtonImportSettings": {
-        "message": "Import",
+        "message": "Importar",
         "description": "[options] Import a save string from the textarea"
     },
     "optButtonExportSettings": {
-        "message": "Export",
+        "message": "Exportar",
         "description": "[options] Export a save string into the textarea"
     },
     "optImport": {
-        "message": "Import Success!",
+        "message": "Importação bem sucedida!",
         "description": "[options] Notification after successful import to options"
     },
     "optImportFailed": {
-        "message": "Import Failed",
+        "message": "Falha na importação",
         "description": "[options] Notification after failed import to options"
     },
     "optPageFAQ": {
@@ -1144,11 +1144,11 @@
         "description": "[options] Action key description"
     },
     "optrotateImageKeyTitle": {
-        "message": "Rotate image",
+        "message": "Girar imagem",
         "description": "[options] Action key title"
     },
     "optrotateImageKeyDescription": {
-        "message": "Press this key to rotate image.",
+        "message": "Pressione essa tecla para girar a imagem.",
         "description": "[options] Action key description"
     },
     "optFooterSourceCode": {
@@ -1164,7 +1164,7 @@
         "description": "[options] Report a bug link in page footer"
     },
     "optFooterVersionCopyright": {
-        "message": "Version $1 - © 2014-$2 Oleg Anashkin",
+        "message": "Versão $1 - © 2014-$2 Oleg Anashkin",
         "description": "[options] Copyright and version number in page footer"
     },
     "msgClickPageToPlayVideo": {
