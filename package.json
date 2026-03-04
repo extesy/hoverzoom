@@ -21,6 +21,9 @@
     "eslint": "^7.18.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
-    "web-ext": "^7.6.2"
+    "web-ext": "^9.3.0"
+  },
+  "overrides": {
+    "ajv": "^8.18.0"
   }
 }
