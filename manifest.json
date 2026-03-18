@@ -261,6 +261,39 @@
                 "*://*.google.vu/*",
                 "*://*.google.ws/*"
             ]
+        },
+        {
+            "resources": [
+                "js/hoverZoomVintedFetch.js"
+            ],
+            "matches": [
+                "*://*.vinted.com/*",
+                "*://*.vinted.at/*",
+                "*://*.vinted.be/*",
+                "*://*.vinted.co.uk/*",
+                "*://*.vinted.cz/*",
+                "*://*.vinted.de/*",
+                "*://*.vinted.dk/*",
+                "*://*.vinted.ee/*",
+                "*://*.vinted.es/*",
+                "*://*.vinted.fi/*",
+                "*://*.vinted.fr/*",
+                "*://*.vinted.gr/*",
+                "*://*.vinted.hr/*",
+                "*://*.vinted.hu/*",
+                "*://*.vinted.ie/*",
+                "*://*.vinted.it/*",
+                "*://*.vinted.lt/*",
+                "*://*.vinted.lu/*",
+                "*://*.vinted.lv/*",
+                "*://*.vinted.nl/*",
+                "*://*.vinted.pl/*",
+                "*://*.vinted.pt/*",
+                "*://*.vinted.ro/*",
+                "*://*.vinted.se/*",
+                "*://*.vinted.si/*",
+                "*://*.vinted.sk/*"
+            ]
         }
     ],
     "content_scripts": [
@@ -2430,6 +2463,37 @@
         {
             "js": ["plugins/sankaku.js"],
             "matches": ["*://*.sankaku.app/*"]
+        },
+        {
+            "js": ["plugins/vinted.js"],
+            "matches": [
+                "*://*.vinted.com/*",
+                "*://*.vinted.at/*",
+                "*://*.vinted.be/*",
+                "*://*.vinted.co.uk/*",
+                "*://*.vinted.cz/*",
+                "*://*.vinted.de/*",
+                "*://*.vinted.dk/*",
+                "*://*.vinted.ee/*",
+                "*://*.vinted.es/*",
+                "*://*.vinted.fi/*",
+                "*://*.vinted.fr/*",
+                "*://*.vinted.gr/*",
+                "*://*.vinted.hr/*",
+                "*://*.vinted.hu/*",
+                "*://*.vinted.ie/*",
+                "*://*.vinted.it/*",
+                "*://*.vinted.lt/*",
+                "*://*.vinted.lu/*",
+                "*://*.vinted.lv/*",
+                "*://*.vinted.nl/*",
+                "*://*.vinted.pl/*",
+                "*://*.vinted.pt/*",
+                "*://*.vinted.ro/*",
+                "*://*.vinted.se/*",
+                "*://*.vinted.si/*",
+                "*://*.vinted.sk/*"
+            ]
         }
     ]
 }
