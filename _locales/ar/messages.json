@@ -112,23 +112,23 @@
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxWidth": {
-        "message": "Set max width of zoomed images:",
+        "message": "تعيين الحد الأقصى لعرض الصور المكبرة:",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optMaxWidthTooltip": {
-        "message": "Set max width of zoomed images by this amount (if 0 then no max width)",
+        "message": "تعيين الحد الأقصى لعرض الصور المكبرة بهذا المقدار (إذا كان 0 فلا يوجد حد أقصى للعرض)",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxHeight": {
-        "message": "Set max height of zoomed images:",
+        "message": "تعيين الحد الأقصى لارتفاع الصور المكبرة:",
         "description": "[options] Adjust the size of zoomed images option"
     },
     "optMaxHeightTooltip": {
-        "message": "Set max height of zoomed images by this amount (if 0 then no max height)",
+        "message": "تعيين الحد الأقصى لارتفاع الصور المكبرة بهذا المقدار (إذا كان 0 فلا يوجد حد أقصى للارتفاع)",
         "description": "[options] Tooltip for adjust the size of zoomed images option"
     },
     "optMaxSizeUnitName": {
-        "message": "px",
+        "message": "بكسل",
         "description": "[options] Unit name (px) for zoomed images size option"
     },
     "optCaptionLocation": {
@@ -328,19 +328,19 @@
         "description": "[options] Tooltip for audio volume option"
     },
     "optEnableViewerShadow": {
-        "message": "Enable shadow behind image viewer",
+        "message": "تمكين الظل خلف عارض الصور",
         "description": "[options] Enable shadow behind image viewer option"
     },
     "optEnableViewerShadowTooltip": {
-        "message": "Adds a small shadow behind the zoomed image viewer, making it more visible from the background",
+        "message": "يضيف ظلًا صغيرًا خلف عارض الصور المكبّرة، مما يجعله أكثر وضوحًا من الخلفية",
         "description": "[options] Tooltip for enable shadow behind caption and details option"
     },
     "optEnableCaptionDetailShadow": {
-        "message": "Enable shadow behind caption and details",
+        "message": "تمكين التظليل خلف التسمية التوضيحية والتفاصيل",
         "description": "[options] Enable shadow behind caption and details option"
     },
     "optEnableCaptionDetailShadowTooltip": {
-        "message": "Adds a small shadow any captions or details, making it pop out more from the background",
+        "message": "يضيف ظلًا صغيرًا لأي تسميات توضيحية أو تفاصيل، مما يجعلها تبرز أكثر من الخلفية",
         "description": "[options] Tooltip for enable shadow behind caption and details option"
     },
     "optEnableAmbilight": {
@@ -376,7 +376,7 @@
         "description": "[options] Tooltip for background opacity"
     },
     "optImagePaddingSize": {
-        "message": "Image padding size:",
+        "message": "المسافة حول الصورة:",
         "description": "[options] Adjust the zoomed image padding size option"
     },
     "optImagePaddingSizeUnitName": {
@@ -384,11 +384,11 @@
         "description": "[options] Unit name (pixels) for zoomed images padding option"
     },
     "optImagePaddingSizeTooltip": {
-        "message": "Changes the padding size for zoomed images. Padding determines how close the image can get to the edge of the viewing window",
+        "message": "يغير حجم المسافة حول الصورة. المسافة حول الصورة تحدد المسافة بين أطراف الصورة وحافة نافذة عرض الصور",
         "description": "[options] Tooltip for adjust the zoomed image padding size option"
     },
     "optFullZoomHidesDetailsCaptions": {
-        "message": "Full zoom key hides details and captions",
+        "message": "مفتاح التكبير الكامل يخفي التفاصيل والتسميات التوضيحية",
         "description": "[options] Full zoom key hides details and captions option"
     },
     "optFullZoomHidesDetailsCaptionsTooltip": {
@@ -624,11 +624,11 @@
         "description": "[options] Zoomed pictures opacity option"
     },
     "optCaptionOpacity": {
-        "message": "Caption opacity:",
+        "message": "وضوح التسميات التوضيحية:",
         "description": "[options] Caption opacity option"
     },
     "optDetailsOpacity": {
-        "message": "Details opacity:",
+        "message": "وضوح التفاصيل:",
         "description": "[options] Details opacity option"
     },
     "optOpacityUnitName": {
@@ -644,15 +644,15 @@
         "description": "[options] Title for details selector"
     },
     "optShowDetailHost": {
-        "message": "Host",
+        "message": "المستضيف",
         "description": "[options] Show Host Detail"
     },
     "optShowDetailFilename": {
-        "message": "File Name",
+        "message": "اسم الملف",
         "description": "[options] Show File Name Detail"
     },
     "optShowDetailLastModified": {
-        "message": "Last Modified",
+        "message": "آخر تعديل",
         "description": "[options] Show Last Modified Detail"
     },
     "optShowDetailExtension": {
@@ -664,11 +664,11 @@
         "description": "[options] Show Content Length Detail"
     },
     "optShowDetailDuration": {
-        "message": "Duration",
+        "message": "المدة",
         "description": "[options] Show Duration Detail"
     },
     "optShowDetailScale": {
-        "message": "Scale",
+        "message": "الحجم",
         "description": "[options] Show Scale Detail"
     },
     "optShowDetailRatio": {
