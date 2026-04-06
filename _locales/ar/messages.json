@@ -672,7 +672,7 @@
         "description": "[options] Show Scale Detail"
     },
     "optShowDetailRatio": {
-        "message": "Ratio",
+        "message": "النسبة",
         "description": "[options] Show Ratio Detail"
     },
     "optShowDetailDimensions": {
