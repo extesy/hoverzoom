@@ -5,8 +5,8 @@ hoverZoomPlugins.push({
     prepareImgLinks:function (callback) {
         var res = [];
 
-        var reFullsize = /(.*)\/(.*?)\.([^\/]*?)\.(gif|jpe?g|png)$/;
-        var reReplace = '$1/$2.$4';
+        var reFullsize = /^(.*\/)([^\/.]+)\.[^\/.]+\.(gif|jpe?g|png)$/;
+        var reReplace = '$1$2.$3';
 
         hoverZoom.urlReplace(res,
             'img[src]',
