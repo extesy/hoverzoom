@@ -2414,7 +2414,7 @@
         },
         {
             "js": ["plugins/civitai.js"],
-            "matches": ["*://*.civitai.com/*", "*://*.civitai.green/*"]
+            "matches": ["*://*.civitai.com/*", "*://*.civitai.green/*", "*://*.civitai.red/*"]
         },
         {
             "js": ["plugins/jike.js"],
