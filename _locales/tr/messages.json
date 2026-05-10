@@ -500,11 +500,11 @@
         "description": "[options] Unit name (pixel) for hold time amount"
     },
     "optScrollWheelCooldown": {
-        "message": "Scrollwheel cooldown:",
+        "message": "Kaydırma bekleme süresi:",
         "description": "[options] Mouse scroll wheel cooldown"
     },
     "optScrollWheelCooldownTooltip": {
-        "message": "Amount of time required between mouse scroll events before another action is triggered",
+        "message": "Başka bir eylem tetiklenmeden önce fare tekerleği kaydırma olayları arasında gereken süre",
         "description": "[options] Tooltip for mouse scrollwheel delay"
     },
     "optScrollWheelCooldownUnit": {
