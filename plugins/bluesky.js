@@ -1,7 +1,7 @@
 ﻿var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push( {
     name: 'bluesky_a',
-    version: '1.0',
+    version: '1.1',
     prepareImgLinks: function(callback) {
         const name = this.name;
         var res = [];
@@ -10,9 +10,9 @@ hoverZoomPlugins.push( {
         // sample:   https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:y7uaje2eyoamgdh7ie7zko6i/bafkreiargh3ss4az2s27xmo2lpfbdvqkfqxfyapfnbagdq57frfz3qlz4e@jpeg
         // fullsize: https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:y7uaje2eyoamgdh7ie7zko6i/bafkreiargh3ss4az2s27xmo2lpfbdvqkfqxfyapfnbagdq57frfz3qlz4e@jpeg
         hoverZoom.urlReplace(res,
-            'img[src*="cdn.bsky.app/img/feed_thumbnail/"], img[src*="cdn.bsky.app/img/banner/"], img[src*="cdn.bsky.app/img/avatar/"]',
-            ['/feed_thumbnail/', '/banner/', '/avatar/'],
-            ['/feed_fullsize/', '/feed_fullsize/', '/feed_fullsize/']
+            'img[src*="cdn.bsky.app/img/feed_thumbnail/"], img[src*="cdn.bsky.app/img/banner/"], img[src*="cdn.bsky.app/img/avatar/"], img[src*="cdn.bsky.app/img/avatar_thumbnail/"]',
+            ['/feed_thumbnail/', '/banner/', '/avatar/', '/avatar_thumbnail/'],
+            ['/feed_fullsize/', '/feed_fullsize/', '/feed_fullsize/', '/feed_fullsize/']
         );
 
         callback($(res), name);
