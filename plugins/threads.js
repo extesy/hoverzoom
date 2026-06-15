@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'Threads',
-    version: '0.3',
+    version: '0.5',
     prepareImgLinks: function (callback) {
         const name = this.name;
         var res = [];
@@ -35,6 +35,42 @@ hoverZoomPlugins.push({
                 link = img;
             }
             link.data().hoverZoomSrc = [this.src + '#hz'];
+            res.push(link[0]);
+        });
+
+        // Video posts autoplay an inline <video>; we zoom to its stream. currentSrc
+        // is usually a directly-playable progressive url; MSE blob: sources can't be
+        // reused so they're skipped. The ".video" suffix is the core's marker for a
+        // video stream.
+        //
+        // Threads lays a click/gesture overlay (div[role="presentation"]) over the
+        // video as a *sibling*, so that overlay — not the <video> — receives the
+        // hover, and the mousemove handler only looks at event.target's ancestors.
+        // The class therefore has to sit on the lowest common ancestor of the video
+        // and the overlay: climb the video's ancestors until one also contains that
+        // overlay. Falls back to the <video> itself.
+        $('video').each(function () {
+            var video = this;
+            var url = video.currentSrc || video.src;
+            if (!/^https?:/.test(url)) {
+                return;
+            }
+            var link = $(video);
+            for (var anc = video.parentElement, hops = 0; anc && hops < 15; anc = anc.parentElement, hops++) {
+                var overlays = anc.querySelectorAll('div[role="presentation"]');
+                var found = false;
+                for (var i = 0; i < overlays.length; i++) {
+                    if (!video.contains(overlays[i]) && !overlays[i].contains(video)) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found) {
+                    link = $(anc);
+                    break;
+                }
+            }
+            link.data().hoverZoomSrc = [url + '.video'];
             res.push(link[0]);
         });
 
