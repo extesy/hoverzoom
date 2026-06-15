@@ -52,11 +52,14 @@ hoverZoomPlugins.push({
         $('video').each(function () {
             var video = this;
             var url = video.currentSrc || video.src;
-            if (!/^https?:/.test(url)) {
+            if (!url || !/^https?:/.test(url)) {
                 return;
             }
             var link = $(video);
-            for (var anc = video.parentElement, hops = 0; anc && hops < 15; anc = anc.parentElement, hops++) {
+            // The common ancestor is a handful of levels up (measured ~8 on a real
+            // post, in a small ~19-node media wrapper); cap the climb so a video with
+            // no nearby overlay doesn't walk up into the feed/body and scan it.
+            for (var anc = video.parentElement, hops = 0; anc && hops < 10; anc = anc.parentElement, hops++) {
                 var overlays = anc.querySelectorAll('div[role="presentation"]');
                 var found = false;
                 for (var i = 0; i < overlays.length; i++) {
