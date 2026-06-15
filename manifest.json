@@ -2301,6 +2301,13 @@
             "matches": ["*://*.bsky.app/*"]
         },
         {
+            "js": ["plugins/threads.js"],
+            "matches": [
+                "*://*.threads.com/*",
+                "*://*.threads.net/*"
+            ]
+        },
+        {
             "js": ["plugins/onzemondial.js"],
             "matches": ["*://*.onzemondial.com/*"]
         },
