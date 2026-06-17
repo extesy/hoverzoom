@@ -44,11 +44,14 @@ hoverZoomPlugins.push({
         // video stream.
         //
         // Threads lays a click/gesture overlay (div[role="presentation"]) over the
-        // video as a *sibling*, so that overlay — not the <video> — receives the
-        // hover, and the mousemove handler only looks at event.target's ancestors.
-        // The class therefore has to sit on the lowest common ancestor of the video
-        // and the overlay: climb the video's ancestors until one also contains that
-        // overlay. Falls back to the <video> itself.
+        // video as a *sibling*, so the overlay — not the <video> — receives the hover
+        // (the mousemove handler only looks at event.target's ancestors). That overlay
+        // is sized exactly to the video, so attaching to it makes hovering the video
+        // fire while leaving the surrounding blank space inert. We identify it as the
+        // sibling-branch presentation div whose box coincides with the video's — a
+        // bare common-ancestor climb is unreliable, it can land on a wrapper larger
+        // than the video (which then zooms on blank space) or on an unrelated overlay.
+        // Falls back to the <video> itself.
         $('video').each(function () {
             var video = this;
             var url = video.currentSrc || video.src;
@@ -56,21 +59,27 @@ hoverZoomPlugins.push({
                 return;
             }
             var link = $(video);
-            // The common ancestor is a handful of levels up (measured ~8 on a real
-            // post, in a small ~19-node media wrapper); cap the climb so a video with
-            // no nearby overlay doesn't walk up into the feed/body and scan it.
-            for (var anc = video.parentElement, hops = 0; anc && hops < 10; anc = anc.parentElement, hops++) {
-                var overlays = anc.querySelectorAll('div[role="presentation"]');
-                var found = false;
-                for (var i = 0; i < overlays.length; i++) {
-                    if (!video.contains(overlays[i]) && !overlays[i].contains(video)) {
-                        found = true;
+            var vb = video.getBoundingClientRect();
+            if (vb.width && vb.height) {
+                for (var anc = video.parentElement, hops = 0; anc && hops < 10; anc = anc.parentElement, hops++) {
+                    var cands = anc.querySelectorAll('div[role="presentation"]');
+                    var overlay = null;
+                    for (var i = 0; i < cands.length; i++) {
+                        var c = cands[i];
+                        if (video.contains(c) || c.contains(video)) {
+                            continue;
+                        }
+                        var cb = c.getBoundingClientRect();
+                        if (Math.abs(cb.left - vb.left) < 4 && Math.abs(cb.top - vb.top) < 4 &&
+                            Math.abs(cb.width - vb.width) < 4 && Math.abs(cb.height - vb.height) < 4) {
+                            overlay = c;
+                            break;
+                        }
+                    }
+                    if (overlay) {
+                        link = $(overlay);
                         break;
                     }
-                }
-                if (found) {
-                    link = $(anc);
-                    break;
                 }
             }
             link.data().hoverZoomSrc = [url + '.video'];
