@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'Threads',
-    version: '0.5',
+    version: '0.6',
     prepareImgLinks: function (callback) {
         const name = this.name;
         var res = [];
@@ -44,11 +44,14 @@ hoverZoomPlugins.push({
         // video stream.
         //
         // Threads lays a click/gesture overlay (div[role="presentation"]) over the
-        // video as a *sibling*, so that overlay — not the <video> — receives the
-        // hover, and the mousemove handler only looks at event.target's ancestors.
-        // The class therefore has to sit on the lowest common ancestor of the video
-        // and the overlay: climb the video's ancestors until one also contains that
-        // overlay. Falls back to the <video> itself.
+        // video as a *sibling*, so the overlay — not the <video> — receives the hover
+        // (the mousemove handler only looks at event.target's ancestors). That overlay
+        // is sized exactly to the video, so attaching to it makes hovering the video
+        // fire while leaving the surrounding blank space inert. We identify it as the
+        // sibling-branch presentation div whose box coincides with the video's — a
+        // bare common-ancestor climb is unreliable, it can land on a wrapper larger
+        // than the video (which then zooms on blank space) or on an unrelated overlay.
+        // Falls back to the <video> itself.
         $('video').each(function () {
             var video = this;
             var url = video.currentSrc || video.src;
@@ -56,21 +59,40 @@ hoverZoomPlugins.push({
                 return;
             }
             var link = $(video);
-            // The common ancestor is a handful of levels up (measured ~8 on a real
-            // post, in a small ~19-node media wrapper); cap the climb so a video with
-            // no nearby overlay doesn't walk up into the feed/body and scan it.
-            for (var anc = video.parentElement, hops = 0; anc && hops < 10; anc = anc.parentElement, hops++) {
-                var overlays = anc.querySelectorAll('div[role="presentation"]');
-                var found = false;
-                for (var i = 0; i < overlays.length; i++) {
-                    if (!video.contains(overlays[i]) && !overlays[i].contains(video)) {
-                        found = true;
-                        break;
+            var vb = video.getBoundingClientRect();
+            if (vb.width && vb.height) {
+                var coincides = function (b) {
+                    return Math.abs(b.left - vb.left) < 4 && Math.abs(b.top - vb.top) < 4 &&
+                        Math.abs(b.width - vb.width) < 4 && Math.abs(b.height - vb.height) < 4;
+                };
+                // The overlay lives in a sibling branch of the video's path, so climb
+                // the ancestors and look only at the branches we step past (children
+                // other than the one we came up) — each node is examined at most once,
+                // never re-querying a subtree that grows as we climb. The overlay is
+                // absolutely positioned over the video, so its ancestors' boxes don't
+                // reflect its position; we match on the candidate's own box instead.
+                // getBoundingClientRect runs only on the presentation candidates.
+                var overlay = null;
+                for (var anc = video.parentElement, child = video, hops = 0;
+                     anc && hops < 10 && !overlay;
+                     child = anc, anc = anc.parentElement, hops++) {
+                    for (var i = 0; i < anc.children.length && !overlay; i++) {
+                        var sib = anc.children[i];
+                        if (sib === child) {
+                            continue;
+                        }
+                        var cands = sib.matches('div[role="presentation"]') ? [sib]
+                            : sib.querySelectorAll('div[role="presentation"]');
+                        for (var j = 0; j < cands.length; j++) {
+                            if (coincides(cands[j].getBoundingClientRect())) {
+                                overlay = cands[j];
+                                break;
+                            }
+                        }
                     }
                 }
-                if (found) {
-                    link = $(anc);
-                    break;
+                if (overlay) {
+                    link = $(overlay);
                 }
             }
             link.data().hoverZoomSrc = [url + '.video'];
