@@ -66,13 +66,12 @@ hoverZoomPlugins.push({
                         Math.abs(b.width - vb.width) < 4 && Math.abs(b.height - vb.height) < 4;
                 };
                 // The overlay lives in a sibling branch of the video's path, so climb
-                // the ancestors and look only at the branches we step past — never the
-                // path already walked and never re-querying a growing subtree, so each
-                // node is examined at most once. A sibling whose box doesn't even cover
-                // the video can't hold the (video-sized) overlay, so it's skipped
-                // without descending — this prunes unrelated siblings such as other
-                // feed posts. getBoundingClientRect then runs only on the few remaining
-                // presentation candidates.
+                // the ancestors and look only at the branches we step past (children
+                // other than the one we came up) — each node is examined at most once,
+                // never re-querying a subtree that grows as we climb. The overlay is
+                // absolutely positioned over the video, so its ancestors' boxes don't
+                // reflect its position; we match on the candidate's own box instead.
+                // getBoundingClientRect runs only on the presentation candidates.
                 var overlay = null;
                 for (var anc = video.parentElement, child = video, hops = 0;
                      anc && hops < 10 && !overlay;
@@ -80,11 +79,6 @@ hoverZoomPlugins.push({
                     for (var i = 0; i < anc.children.length && !overlay; i++) {
                         var sib = anc.children[i];
                         if (sib === child) {
-                            continue;
-                        }
-                        var sb = sib.getBoundingClientRect();
-                        if (sb.left > vb.left + 2 || sb.top > vb.top + 2 ||
-                            sb.right < vb.right - 2 || sb.bottom < vb.bottom - 2) {
                             continue;
                         }
                         var cands = sib.matches('div[role="presentation"]') ? [sib]
