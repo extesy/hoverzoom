@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'Threads',
-    version: '0.5',
+    version: '0.6',
     prepareImgLinks: function (callback) {
         const name = this.name;
         var res = [];
@@ -61,25 +61,44 @@ hoverZoomPlugins.push({
             var link = $(video);
             var vb = video.getBoundingClientRect();
             if (vb.width && vb.height) {
-                for (var anc = video.parentElement, hops = 0; anc && hops < 10; anc = anc.parentElement, hops++) {
-                    var cands = anc.querySelectorAll('div[role="presentation"]');
-                    var overlay = null;
-                    for (var i = 0; i < cands.length; i++) {
-                        var c = cands[i];
-                        if (video.contains(c) || c.contains(video)) {
+                var coincides = function (b) {
+                    return Math.abs(b.left - vb.left) < 4 && Math.abs(b.top - vb.top) < 4 &&
+                        Math.abs(b.width - vb.width) < 4 && Math.abs(b.height - vb.height) < 4;
+                };
+                // The overlay lives in a sibling branch of the video's path, so climb
+                // the ancestors and look only at the branches we step past — never the
+                // path already walked and never re-querying a growing subtree, so each
+                // node is examined at most once. A sibling whose box doesn't even cover
+                // the video can't hold the (video-sized) overlay, so it's skipped
+                // without descending — this prunes unrelated siblings such as other
+                // feed posts. getBoundingClientRect then runs only on the few remaining
+                // presentation candidates.
+                var overlay = null;
+                for (var anc = video.parentElement, child = video, hops = 0;
+                     anc && hops < 10 && !overlay;
+                     child = anc, anc = anc.parentElement, hops++) {
+                    for (var i = 0; i < anc.children.length && !overlay; i++) {
+                        var sib = anc.children[i];
+                        if (sib === child) {
                             continue;
                         }
-                        var cb = c.getBoundingClientRect();
-                        if (Math.abs(cb.left - vb.left) < 4 && Math.abs(cb.top - vb.top) < 4 &&
-                            Math.abs(cb.width - vb.width) < 4 && Math.abs(cb.height - vb.height) < 4) {
-                            overlay = c;
-                            break;
+                        var sb = sib.getBoundingClientRect();
+                        if (sb.left > vb.left + 2 || sb.top > vb.top + 2 ||
+                            sb.right < vb.right - 2 || sb.bottom < vb.bottom - 2) {
+                            continue;
+                        }
+                        var cands = sib.matches('div[role="presentation"]') ? [sib]
+                            : sib.querySelectorAll('div[role="presentation"]');
+                        for (var j = 0; j < cands.length; j++) {
+                            if (coincides(cands[j].getBoundingClientRect())) {
+                                overlay = cands[j];
+                                break;
+                            }
                         }
                     }
-                    if (overlay) {
-                        link = $(overlay);
-                        break;
-                    }
+                }
+                if (overlay) {
+                    link = $(overlay);
                 }
             }
             link.data().hoverZoomSrc = [url + '.video'];
