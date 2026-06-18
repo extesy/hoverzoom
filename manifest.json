@@ -2472,6 +2472,10 @@
             "matches": ["*://*.sankaku.app/*"]
         },
         {
+            "js": ["plugins/theguardian.js"],
+            "matches": ["*://*.theguardian.com/*"]
+        },
+        {
             "js": ["plugins/vinted.js"],
             "matches": [
                 "*://*.vinted.com/*",
