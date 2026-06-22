@@ -324,6 +324,38 @@ var hoverZoom = {
                 'overflow':'hidden',
                 'vertical-align':'top',
                 'horizontal-align':'right'
+            },
+            hzPlaybackProgressCss = {
+                'position':'absolute',
+                'z-index':'2147483647',
+                'left':'8px',
+                'right':'8px',
+                'bottom':'8px',
+                'height':'14px',
+                'border-radius':'7px',
+                'background':'rgba(0, 0, 0, 0.55)',
+                'box-shadow':'0 1px 3px rgba(0, 0, 0, 0.65)',
+                'overflow':'hidden',
+                'pointer-events':'none'
+            },
+            hzPlaybackProgressFillCss = {
+                'width':'0%',
+                'height':'100%',
+                'background':'rgba(255, 122, 24, 0.9)'
+            },
+            hzPlaybackProgressTimeCss = {
+                'position':'absolute',
+                'left':'0',
+                'right':'0',
+                'top':'0',
+                'height':'14px',
+                'line-height':'14px',
+                'font':'menu',
+                'font-size':'10px',
+                'font-weight':'bold',
+                'color':'white',
+                'text-align':'center',
+                'text-shadow':'1px 1px 2px black'
             };
 
         // needed to flip text tracks on videos
@@ -1936,6 +1968,49 @@ var hoverZoom = {
             $(msgDiv).appendTo(hz.hzViewer.hzContainer);
         }
 
+        function formatPlaybackTime(seconds) {
+            seconds = Math.max(0, Math.floor(seconds || 0));
+            let hours = Math.floor(seconds / 3600);
+            let minutes = Math.floor((seconds - hours * 3600) / 60);
+            let secs = seconds % 60;
+
+            if (hours > 0) {
+                return hours + ':' + String(minutes).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+            }
+            return minutes + ':' + String(secs).padStart(2, '0');
+        }
+
+        function addPlaybackProgress(video) {
+            $('#hzPlaybackProgress').remove();
+
+            let progress = $('<div/>', {id:'hzPlaybackProgress'}).css(hzPlaybackProgressCss).hide();
+            let fill = $('<div/>', {id:'hzPlaybackProgressFill'}).css(hzPlaybackProgressFillCss).appendTo(progress);
+            let time = $('<div/>', {id:'hzPlaybackProgressTime'}).css(hzPlaybackProgressTimeCss).appendTo(progress);
+            progress.appendTo(hz.hzViewer.hzContainer);
+
+            function updatePlaybackProgress() {
+                let duration = video.duration;
+                if (!isFinite(duration) || duration <= 0) {
+                    progress.hide();
+                    return;
+                }
+
+                let currentTime = Math.min(Math.max(video.currentTime || 0, 0), duration);
+                let percent = currentTime / duration * 100;
+                fill.css('width', percent.toFixed(2) + '%');
+                time.text(formatPlaybackTime(currentTime) + ' / ' + formatPlaybackTime(duration));
+                progress.show();
+            }
+
+            video.addEventListener('loadedmetadata', updatePlaybackProgress);
+            video.addEventListener('durationchange', updatePlaybackProgress);
+            video.addEventListener('timeupdate', updatePlaybackProgress);
+            video.addEventListener('seeked', updatePlaybackProgress);
+            video.addEventListener('play', updatePlaybackProgress);
+            video.addEventListener('pause', updatePlaybackProgress);
+            updatePlaybackProgress();
+        }
+
         function displayFullSizeImage() {
             cLog('displayFullSizeImage');
 
@@ -1997,6 +2072,8 @@ var hoverZoom = {
             // - display also audio controls if needed (distinct sources for audio & video)
             let video = hz.hzViewer.find('video')[0];
             if (video) {
+                addPlaybackProgress(video);
+
                 let audio = null;
                 if (audioControls)
                     audio = audioControls[0];
