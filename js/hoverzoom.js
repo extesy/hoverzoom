@@ -1999,7 +1999,7 @@ var hoverZoom = {
 
             function updatePlaybackProgress() {
                 let duration = video.duration;
-                if (!isFinite(duration) || duration <= 0) {
+                if (!isFinite(duration) || duration <= 0 || viewerLocked) {
                     progress.hide();
                     return;
                 }
