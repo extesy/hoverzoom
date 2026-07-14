@@ -1983,6 +1983,15 @@ var hoverZoom = {
         function addPlaybackProgress(video) {
             $('#hzPlaybackProgress').remove();
 
+            if (video.hzUpdatePlaybackProgress) {
+                video.removeEventListener('loadedmetadata', video.hzUpdatePlaybackProgress);
+                video.removeEventListener('durationchange', video.hzUpdatePlaybackProgress);
+                video.removeEventListener('timeupdate', video.hzUpdatePlaybackProgress);
+                video.removeEventListener('seeked', video.hzUpdatePlaybackProgress);
+                video.removeEventListener('play', video.hzUpdatePlaybackProgress);
+                video.removeEventListener('pause', video.hzUpdatePlaybackProgress);
+            }
+
             let progress = $('<div/>', {id:'hzPlaybackProgress'}).css(hzPlaybackProgressCss).hide();
             let fill = $('<div/>', {id:'hzPlaybackProgressFill'}).css(hzPlaybackProgressFillCss).appendTo(progress);
             let time = $('<div/>', {id:'hzPlaybackProgressTime'}).css(hzPlaybackProgressTimeCss).appendTo(progress);
@@ -2002,6 +2011,7 @@ var hoverZoom = {
                 progress.show();
             }
 
+            video.hzUpdatePlaybackProgress = updatePlaybackProgress;
             video.addEventListener('loadedmetadata', updatePlaybackProgress);
             video.addEventListener('durationchange', updatePlaybackProgress);
             video.addEventListener('timeupdate', updatePlaybackProgress);
