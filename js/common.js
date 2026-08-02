@@ -8,6 +8,7 @@ const factorySettings = {
     videoPositionStep: 10,
     muteVideos: false,
     videoTimestamp: false,
+    videoPlaybackProgress: false,
     videoVolume: 0.25,
     playAudio: false,
     audioVolume: 0.25,

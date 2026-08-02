@@ -2082,7 +2082,9 @@ var hoverZoom = {
             // - display also audio controls if needed (distinct sources for audio & video)
             let video = hz.hzViewer.find('video')[0];
             if (video) {
-                addPlaybackProgress(video);
+                if (options.videoPlaybackProgress) {
+                    addPlaybackProgress(video);
+                }
 
                 let audio = null;
                 if (audioControls)

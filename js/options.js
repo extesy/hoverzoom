@@ -35,6 +35,7 @@ async function saveOptions(exportSettings = false) {
     options.videoPositionStep = $('#txtVideoPositionStep')[0].value;
     options.muteVideos = $('#chkMuteVideos')[0].checked;
     options.videoTimestamp = $('#chkVideoTimestamp')[0].checked;
+    options.videoPlaybackProgress = $('#chkVideoPlaybackProgress')[0].checked;
     options.videoVolume = $('#txtVideoVolume')[0].value / 100;
     options.playAudio = $('#chkPlayAudio')[0].checked;
     options.audioVolume = $('#txtAudioVolume')[0].value / 100;
@@ -183,6 +184,7 @@ async function restoreOptions(optionsFromFactorySettings) {
     $('#txtVideoPositionStep')[0].value = options.videoPositionStep;
     $('#chkMuteVideos').trigger(options.muteVideos ? 'gumby.check' : 'gumby.uncheck');
     $('#chkVideoTimestamp').trigger(options.videoTimestamp ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkVideoPlaybackProgress').trigger(options.videoPlaybackProgress ? 'gumby.check' : 'gumby.uncheck');
     $('#rngVideoVolume').val(parseInt(options.videoVolume * 100));
     $('#txtVideoVolume').val(parseInt(options.videoVolume * 100));
     $('#chkPlayAudio').trigger(options.playAudio ? 'gumby.check' : 'gumby.uncheck');
