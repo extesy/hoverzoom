@@ -295,6 +295,14 @@
         "message": "타임스탬프 / 동영상 길이 표시",
         "description": "[options] Tooltip for video length countdown on videos"
     },
+    "optVideoPlaybackProgress": {
+        "message": "동영상에 재생 상태 표시",
+        "description": "[options] Enable playback progress overlay on videos"
+    },
+    "optVideoPlaybackProgressTooltip": {
+        "message": "동영상에 재생 시간, 총 길이, 재생 막대를 표시합니다",
+        "description": "[options] Tooltip for video playback progress overlay"
+    },
     "optVideoVolume": {
         "message": "동영상의 소리 크기",
         "description": "[options] Audio volume for unmuted videos option"
