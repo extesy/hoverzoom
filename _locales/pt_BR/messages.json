@@ -295,6 +295,14 @@
         "message": "Ativar data e hora / duração nos vídeos",
         "description": "[options] Tooltip for video length countdown on videos"
     },
+    "optVideoPlaybackProgress": {
+        "message": "Show playback progress on videos",
+        "description": "[options] Enable playback progress overlay on videos"
+    },
+    "optVideoPlaybackProgressTooltip": {
+        "message": "Show elapsed time, total duration, and a progress bar on videos",
+        "description": "[options] Tooltip for video playback progress overlay"
+    },
     "optVideoVolume": {
         "message": "Volume de áudio para vídeos não silenciados:",
         "description": "[options] Audio volume for unmuted videos option"
