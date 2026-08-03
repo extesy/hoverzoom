@@ -295,6 +295,14 @@
         "message": "啟用影片上的時間戳記/影片長度",
         "description": "[options] Tooltip for video length countdown on videos"
     },
+    "optVideoPlaybackProgress": {
+        "message": "Show playback progress on videos",
+        "description": "[options] Enable playback progress overlay on videos"
+    },
+    "optVideoPlaybackProgressTooltip": {
+        "message": "Show elapsed time, total duration, and a progress bar on videos",
+        "description": "[options] Tooltip for video playback progress overlay"
+    },
     "optVideoVolume": {
         "message": "未靜音影片的音量：",
         "description": "[options] Audio volume for unmuted videos option"
