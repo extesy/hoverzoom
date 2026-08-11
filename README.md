@@ -18,11 +18,11 @@ Sometimes sites change design, and when it happens, the extension needs to be up
 
 ---
 
-<a href="https://www.star-history.com/#extesy/hoverzoom&Date">
+<a href="https://star-history.dera.page/#extesy/hoverzoom&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=extesy/hoverzoom&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=extesy/hoverzoom&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=extesy/hoverzoom&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=extesy/hoverzoom&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=extesy/hoverzoom&type=Date" />
+   <img alt="Star History Chart" src="https://star-history.dera.page/svg?repos=extesy/hoverzoom&type=Date" />
  </picture>
 </a>
 
