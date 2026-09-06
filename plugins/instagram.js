@@ -1,430 +1,148 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
-    name:'Instagram',
-    version:'0.7',
-    favicon:'instagram.svg',
-    prepareImgLinks:function (callback) {
-
+    name: 'Instagram',
+    version: '0.8',
+    favicon: 'instagram.svg',
+    prepareImgLinks: function (callback) {
         const pluginName = this.name;
         var res = [];
 
-        function sortResults(obj, prop, asc) {
-            obj.sort(function(a, b) {
-                if (asc) {
-                    return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
-                } else {
-                    return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+        function getBestFromSrcset(srcset) {
+            if (!srcset || typeof srcset !== 'string') return null;
+            var parts = srcset.split(/,\s+(?=https?:)/);
+            var candidates = [];
+            for (var i = 0; i < parts.length; i++) {
+                var p = parts[i].trim().split(/\s+/);
+                if (p[0]) {
+                    var width = p[1] ? parseInt(p[1], 10) : 0;
+                    if (!width) {
+                        var m = p[0].match(/_s(\d+)x/);
+                        if (m) width = parseInt(m[1], 10);
+                    }
+                    candidates.push({ url: p[0], width: width });
                 }
-            });
+            }
+            candidates.sort(function (a, b) { return b.width - a.width; });
+            return candidates[0] ? candidates[0].url : null;
         }
 
-        // find user name, user id, user fullname, reels highlights
-        //    sample: https://www.instagram.com/wants_a_meme/reels/
-        //  user name: wants_a_meme
-        // => user id: 54909864326
-
-        var userName, userId, userFullname;
-        const m = document.location.href.match(/instagram\.com\/([^/]{1,})/);
-        if (m) {
-            userName = m[1];
-            if (!['instagram|explore|reels|stories|p'].includes(userName)) {
-
-                var instagramUsersData = sessionStorage.getItem('instagramUsersData') || '{}';
-                try {
-                    instagramUsersData = JSON.parse(instagramUsersData);
-                    if (instagramUsersData[userName]) {
-                        userId = instagramUsersData[userName].data.user.id;
-                        userFullname = instagramUsersData[userName].data.user.full_name;
-                    }
-                } catch {}
-
-                if (!userId && !userFullname) {
-                    chrome.runtime.sendMessage({action:'ajaxGet',
-                                                url:'https://www.instagram.com/api/v1/users/web_profile_info/?username=' + userName,
-                                                headers:[{"header":"X-IG-App-ID","value":"936619743392459"}],
-                                                }, function (response) {
-
-                                                    try {
-                                                        const o = JSON.parse(response);
-                                                        userId = o.data.user.id;
-                                                        userFullname = o.data.user.full_name;
-                                                        // store user data
-                                                        instagramUsersData[userName] = o;
-                                                        try {
-                                                            sessionStorage.setItem('instagramUsersData', JSON.stringify(instagramUsersData));
-                                                        } catch {
-                                                            // reset sessionStorage
-                                                            let instagramUserData = instagramUsersData[userName];
-                                                            instagramUsersData = {};
-                                                            instagramUsersData[userName] = instagramUserData;
-                                                            sessionStorage.setItem('instagramUsersData', JSON.stringify(instagramUsersData));
-                                                        }
-                                                        getUserReelsHighlights();
-                                                    } catch { }
-                                                }
-                    )
-                } else {
-                    var instagramUsersReelsHighlights = sessionStorage.getItem('instagramUsersReelsHighlights') || '{}';
-                    try {
-                        instagramUsersReelsHighlights = JSON.parse(instagramUsersReelsHighlights);
-                        if (!instagramUsersReelsHighlights[userId]) {
-                            getUserReelsHighlights();
-                        }
-                    } catch {}
-                }
+        function getBestImageUrl(imgObj, displayUrl, displayResources) {
+            if (imgObj && Array.isArray(imgObj.candidates) && imgObj.candidates.length) {
+                var sorted = imgObj.candidates.slice().sort(function (a, b) {
+                    return (b.width * (b.height || b.width)) - (a.width * (a.height || a.width));
+                });
+                return sorted[0].url;
             }
+            if (Array.isArray(displayResources) && displayResources.length) {
+                var sortedRes = displayResources.slice().sort(function (a, b) {
+                    return (b.config_width * (b.config_height || b.config_width)) - (a.config_width * (a.config_height || a.config_width));
+                });
+                return sortedRes[0].src;
+            }
+            return displayUrl || null;
         }
 
-        function getUserReelsHighlights() {
-            if (! userId) return;
-            chrome.runtime.sendMessage({action:'ajaxGet',
-                                        url:'https://www.instagram.com/graphql/query/?query_hash=d4d88dc1500312af6f937f7b804c68c3&variables={"user_id":"' + userId + '","include_chaining":true,"include_reel":false,"include_suggested_users":false,"include_logged_out_extras":false,"include_highlight_reels":true,"include_live_status":false}',
-                                        headers:[{"header":"X-IG-App-ID","value":"936619743392459"}],
-                                        }, function (response) {
-
-                                            var instagramUsersReelsHighlights = sessionStorage.getItem('instagramUsersReelsHighlights') || '{}';
-                                            try {
-                                                instagramUsersReelsHighlights = JSON.parse(instagramUsersReelsHighlights);
-                                                // store reels data
-                                                instagramUsersReelsHighlights[userId] = JSON.parse(response);
-                                                try {
-                                                    sessionStorage.setItem('instagramUsersReelsHighlights', JSON.stringify(instagramUsersReelsHighlights));
-                                                } catch {
-                                                    // reset sessionStorage
-                                                    let instagramUserReelsHighlights = instagramUsersReelsHighlights[userId];
-                                                    instagramUsersReelsHighlights = {};
-                                                    instagramUsersReelsHighlights[userId] = instagramUserReelsHighlights;
-                                                    sessionStorage.setItem('instagramUsersReelsHighlights', JSON.stringify(instagramUsersReelsHighlights));
-                                                }
-                                            } catch {}
-                                        });
+        function getBestVideoUrl(videoVersions, videoUrl) {
+            if (Array.isArray(videoVersions) && videoVersions.length) {
+                var sorted = videoVersions.slice().sort(function (a, b) {
+                    return (b.width * (b.height || b.width)) - (a.width * (a.height || a.width));
+                });
+                return sorted[0].url;
+            }
+            return videoUrl || null;
         }
 
-        // audio
-        // sample: https://www.instagram.com/reels/audio/492466295586301/
-        // TBD
-
-        // header reels
-        $('div[role="button"] img:not(div[role="presentation"] img)').on('mouseover', function() {
-            if (document.location.href.match('(following|followers)')) return;
-            // extract image src (e.g: 321365237_536711615164811_1593293938921078231_n.jpg)
-            const imgSrc = this.src.replace(/.*?([^\/]{1,}\.jpg)(\?.*)?/, '$1');
-            const link = $(this);
-            if (link.data().hoverZoomMouseOver) return;
-            link.data().hoverZoomMouseOver = true;
-
-            // resuse previous result
-            if (link.data().hoverZoomInstagramUserId == userId) {
-                if (link.data().hoverZoomInstagramGallerySrc) {
-                    link.data().hoverZoomGallerySrc = link.data().hoverZoomInstagramGallerySrc;
-                    if (link.data().hoverZoomInstagramGalleryCaption) {
-                        link.data().hoverZoomGalleryCaption = link.data().hoverZoomInstagramGalleryCaption;
-                    }
-                }
-                return;
+        function parseMediaNode(node) {
+            var caption = '';
+            if (node.caption) {
+                caption = typeof node.caption === 'string' ? node.caption : (node.caption.text || '');
+            } else if (node.edge_media_to_caption && node.edge_media_to_caption.edges && node.edge_media_to_caption.edges[0]) {
+                caption = node.edge_media_to_caption.edges[0].node.text || '';
+            } else if (node.accessibility_caption) {
+                caption = node.accessibility_caption;
             }
 
-            link.data().hoverZoomInstagramUserId = userId;
-            link.data().hoverZoomGallerySrc = undefined;
-            link.data().hoverZoomGalleryCaption = undefined;
-
-            chrome.runtime.sendMessage({action:'ajaxGet',
-                                        url:'https://www.instagram.com/api/v1/feed/reels_media/?reel_ids=' + userId,
-                                        headers:[{"header":"X-IG-App-ID","value":"936619743392459"}],
-                                        }, function (response) {
-
-                                            try {
-                                                const o = JSON.parse(response);
-                                                var gallery = [];
-                                                var captions = [];
-                                                // reels might mix images & videos
-                                                const reels = o.reels_media[0].items;
-                                                reels.map(r => { gallery.push([r.video_versions ? r.video_versions[0].url : r.image_versions2.candidates[0].url]); captions.push(r.caption ?? userFullname); });
-                                                link.data().hoverZoomGallerySrc = gallery;
-                                                link.data().hoverZoomInstagramGallerySrc = gallery;
-                                                link.data().hoverZoomGalleryCaption = captions;
-                                                link.data().hoverZoomInstagramGalleryCaption = captions;
-                                                callback(link, pluginName);
-                                                // Media is displayed iff the cursor is still over the media
-                                                if (link.data().hoverZoomMouseOver)
-                                                    hoverZoom.displayPicFromElement(link);
-                                            } catch {}
-
-                                        }
-                                    );
-        }).on('mouseleave', function() {
-            const link = $(this);
-            link.data().hoverZoomMouseOver = false;
-        });
-
-        // highlighted reels
-        $('div[role="presentation"] img').on('mouseover', function() {
-            if (document.location.href.match('(following|followers)')) return;
-            // extract image src (e.g: 321365237_536711615164811_1593293938921078231_n.jpg)
-            // image src will be used as a key to find reels id
-            const imgSrc = this.src.replace(/.*?([^\/]{1,}\.jpg)(\?.*)?/, '$1');
-            const link = $(this);
-            if (link.data().hoverZoomMouseOver) return;
-            link.data().hoverZoomMouseOver = true;
-
-            // resuse previous result
-            if (link.data().hoverZoomInstagramUserId == userId) {
-                if (link.data().hoverZoomInstagramGallerySrc) {
-                    link.data().hoverZoomGallerySrc = link.data().hoverZoomInstagramGallerySrc;
-                    if (link.data().hoverZoomInstagramGalleryCaption) {
-                        link.data().hoverZoomGalleryCaption = link.data().hoverZoomInstagramGalleryCaption;
-                    }
-                }
-                return;
+            var carouselItems = node.carousel_media;
+            if (!carouselItems && node.edge_sidecar_to_children && node.edge_sidecar_to_children.edges) {
+                carouselItems = node.edge_sidecar_to_children.edges.map(function (e) { return e.node; });
             }
 
-            // clean previous result
-            link.data().hoverZoomInstagramUserId = userId;
-            link.data().hoverZoomGallerySrc = undefined;
-            link.data().hoverZoomGalleryCaption = undefined;
-
-            // lookup sessionStorage
-            var instagramUsersReelsHighlights = sessionStorage.getItem('instagramUsersReelsHighlights') || '{}';
-            var reels;
-            try {
-                instagramUsersReelsHighlights = JSON.parse(instagramUsersReelsHighlights);
-                reels = instagramUsersReelsHighlights[userId];
-            } catch { return; }
-
-            // find reel_ids associated to img
-            var reel_ids = undefined;
-            try {
-                const values = hoverZoom.getValuesInJsonObject(reels, imgSrc, false, true, true); // look for a partial match & stop after 1st match
-                if (values.length == 0) {
-                    return;
-                }
-                // extract object containing id
-                const o = hoverZoom.getJsonObjectFromPath(reels, values[0].path.substring(0, values[0].path.substring(0, values[0].path.lastIndexOf('[')).lastIndexOf('[')));
-                reel_ids = o.id;
-            } catch {}
-
-            if (!reel_ids) return;
-
-            chrome.runtime.sendMessage({action:'ajaxGet',
-                                        url:'https://www.instagram.com/api/v1/feed/reels_media/?reel_ids=highlight:' + reel_ids,
-                                        headers:[{"header":"X-IG-App-ID","value":"936619743392459"}],
-                                        }, function (response) {
-
-                                            try {
-                                                const o = JSON.parse(response);
-                                                var gallery = [];
-                                                var captions = [];
-                                                // reels might mix images & videos
-                                                const reels = o.reels_media[0].items;
-                                                reels.map(r => { gallery.push([r.video_versions ? r.video_versions[0].url : r.image_versions2.candidates[0].url]); captions.push(r.caption ?? userFullname); });
-                                                link.data().hoverZoomGallerySrc = gallery;
-                                                link.data().hoverZoomInstagramGallerySrc = gallery;
-                                                link.data().hoverZoomGalleryCaption = captions;
-                                                link.data().hoverZoomInstagramGalleryCaption = captions;
-                                                callback(link, pluginName);
-                                                // Media is displayed iff the cursor is still over the media
-                                                if (link.data().hoverZoomMouseOver)
-                                                    hoverZoom.displayPicFromElement(link);
-                                            } catch {}
-                                        });
-        }).on('mouseleave', function() {
-            const link = $(this);
-            link.data().hoverZoomMouseOver = false;
-        });
-
-        // profiles
-        // sample 1: https://www.instagram.com/therock/
-        // sample 2: https://www.instagram.com/ronaldo_sites/reels/
-        $('a[href]').filter(function() { return (!/(\/reel\/|\/p\/)/.test($(this).prop('href'))) }).on('mouseover', function() {
-
-            const href = this.href;
-            const link = $(this);
-            if (link.data().hoverZoomMouseOver) return;
-            link.data().hoverZoomMouseOver = true;
-
-            const re = /instagram\.com\/([^/]{1,})\//
-            const m = href.replace('reels/', '').match(re);
-            if (m == null) return;
-            const username = m[1];
-
-            // clean previous result
-            link.data().hoverZoomSrc = [];
-
-            // lookup sessionStorage
-            var instagramUsersData = sessionStorage.getItem('instagramUsersData') || '{}';
-            try {
-                instagramUsersData = JSON.parse(instagramUsersData);
-                if (instagramUsersData[username]) {
-                    link.data().hoverZoomSrc = [instagramUsersData[username].data.user.profile_pic_url_hd];
-                    link.data().hoverZoomCaption = instagramUsersData[username].data.user.full_name;
-                    hoverZoom.displayPicFromElement(link);
-                    return;
-                }
-            } catch {}
-
-            // username not found in sessionStorage => proceed with api call
-            chrome.runtime.sendMessage({action:'ajaxGet',
-                                        url:'https://www.instagram.com/api/v1/users/web_profile_info/?username=' + username,
-                                        headers:[{"header":"X-IG-App-ID","value":"936619743392459"}],
-                                        }, function (response) {
-
-                                            try {
-                                                const o = JSON.parse(response);
-                                                const profileUrl = o.data.user.profile_pic_url_hd;
-                                                link.data().hoverZoomSrc = [profileUrl];
-                                                link.data().hoverZoomCaption = o.data.user.full_name;
-                                                // store user data
-                                                instagramUsersData[username] = o;
-                                                try {
-                                                    sessionStorage.setItem('instagramUsersData', JSON.stringify(instagramUsersData));
-                                                } catch {
-                                                    // reset sessionStorage
-                                                    let instagramUserData = instagramUsersData[username];
-                                                    instagramUsersData = {};
-                                                    instagramUsersData[username] = instagramUserData;
-                                                    sessionStorage.setItem('instagramUsersData', JSON.stringify(instagramUsersData));
-                                                }
-                                                callback(link, pluginName);
-                                                // Media is displayed iff the cursor is still over the media
-                                                if (link.data().hoverZoomMouseOver)
-                                                    hoverZoom.displayPicFromElement(link);
-                                            } catch { }
-                                        }
-            );
-        }).on('mouseleave', function() {
-            const link = $(this);
-            link.data().hoverZoomMouseOver = false;
-        });
-
-        // pictures & videos
-        // sample: https://www.instagram.com/p/ClpZbUIpNvx/
-        $('a[href*="/p/"], a[href*="/reel/"]').on('mouseover', function() {
-
-            const href = this.href;
-            const link = $(this);
-            if (link.data().hoverZoomMouseOver) return;
-            link.data().hoverZoomMouseOver = true;
-
-            const re = /\/(p|reel)\/([^/]{1,})/
-            const m = href.match(re);
-            if (m == null) return;
-            const shortcode = m[2];
-
-            let mediaId = undefined;
-
-            // lookup sessionStorage
-            let instagramMediaData = sessionStorage.getItem('instagramMediaData') || '{}';
-            try {
-                instagramMediaData = JSON.parse(instagramMediaData);
-                if (instagramMediaData[shortcode]) {
-                    const items0 = instagramMediaData[shortcode];
-                    displayMedia(link, items0);
-                    callback(link, pluginName);
-                    return;
-                } else {
-                    // find media id associated to shortcode in user data
-                    let instagramUsersData = sessionStorage.getItem('instagramUsersData') || '{}';
-                    instagramUsersData = JSON.parse(instagramUsersData);
-                    if (instagramUsersData[userName]) {
-
-                        const values = hoverZoom.getValuesInJsonObject(instagramUsersData[userName], shortcode, true, true, true); // look for a full match & stop after 1st match
-                        if (values.length) {
-                            // extract object containing media id
-                            const o = hoverZoom.getJsonObjectFromPath(instagramUsersData[userName], values[0].path.substring(0, values[0].path.lastIndexOf('[')));
-                            mediaId = o.id;
-                        }
+            if (Array.isArray(carouselItems) && carouselItems.length > 0) {
+                var gallery = [];
+                var captions = [];
+                for (var i = 0; i < carouselItems.length; i++) {
+                    var item = carouselItems[i];
+                    var vUrl = getBestVideoUrl(item.video_versions, item.video_url);
+                    if (vUrl) {
+                        gallery.push([vUrl + '.video']);
+                    } else {
+                        var iUrl = getBestImageUrl(item.image_versions2, item.display_url, item.display_resources);
+                        if (iUrl) gallery.push([iUrl]);
                     }
+                    captions.push(caption);
                 }
-            } catch {}
-
-            if (mediaId === undefined) {
-                // compute media id from shortcode
-                mediaId = mediaIdfromShortcode(shortcode);
+                if (gallery.length > 0) {
+                    return {
+                        type: 'carousel',
+                        gallery: gallery,
+                        captions: captions,
+                        caption: caption
+                    };
+                }
             }
 
-            // clean previous result
-            link.data().hoverZoomSrc = [];
+            var videoUrl = getBestVideoUrl(node.video_versions, node.video_url);
+            if (videoUrl && (node.is_video || node.media_type === 2 || node.video_versions)) {
+                return {
+                    type: 'video',
+                    url: videoUrl + '.video',
+                    caption: caption
+                };
+            }
 
-            chrome.runtime.sendMessage({action:'ajaxGet',
-                                        url:`https://www.instagram.com/api/v1/media/${mediaId}/info/`,
-                                        headers:[{"header":"X-IG-App-ID","value":"936619743392459"}],
-                                        }, function (response) {
+            var imgUrl = getBestImageUrl(node.image_versions2, node.display_url, node.display_resources);
+            if (imgUrl) {
+                return {
+                    type: 'image',
+                    url: imgUrl,
+                    caption: caption
+                };
+            }
 
-                                            try {
-                                                const o = JSON.parse(response);
-                                                const items0 = o.items[0];
-                                                // store media data
-                                                var instagramMediaData = sessionStorage.getItem('instagramMediaData') || '{}';
-                                                instagramMediaData = JSON.parse(instagramMediaData);
-                                                instagramMediaData[shortcode] = items0;
-                                                try {
-                                                    sessionStorage.setItem('instagramMediaData', JSON.stringify(instagramMediaData));
-                                                } catch {
-                                                    // reset sessionStorage
-                                                    instagramMediaData = {};
-                                                    instagramMediaData[shortcode] = items0;
-                                                    sessionStorage.setItem('instagramMediaData', JSON.stringify(instagramMediaData));
-                                                }
-                                                displayMedia(link, items0);
-                                                callback(link, pluginName);
-                                                // Media is displayed iff the cursor is still over the media
-                                                if (link.data().hoverZoomMouseOver)
-                                                    hoverZoom.displayPicFromElement(link);
-                                            } catch { }
-                                        }
-            );
-        }).on('mouseleave', function() {
-            const link = $(this);
-            link.data().hoverZoomMouseOver = false;
-        });
+            return null;
+        }
 
-        // display all kind of media (images, videos, carousel)
-        function displayMedia(link, items0, callback) {
+        function processMediaObject(node, map) {
+            if (!node || typeof node !== 'object') return;
 
-            const videos = items0.video_versions;
-            const images = items0.image_versions2;
-            const carousel = items0.carousel_media;
-            if (videos) {
-                // extract best quality video url
-                //sortResults(videos, 'width', false);
-                const videoUrl = videos[0].url + '.video';
+            var shortcode = node.shortcode || node.code;
+            var id = node.id || node.pk;
 
-                // try to extract audio url (might not be present)
-                let audioUrl;
-                try {
-                    if (items0.clips_metadata.original_sound_info) {
-                        audioUrl = items0.clips_metadata.original_sound_info.progressive_download_url + '.audiomuted'; // there is already a soundtrack in video, this one is only for download
-                    } else if (items0.clips_metadata.music_info) {
-                        audioUrl = items0.clips_metadata.music_info.music_asset_info.progressive_download_url + '.audiomuted'; // there is already a soundtrack in video, this one is only for download
+            var hasMedia = node.carousel_media || node.edge_sidecar_to_children ||
+                           node.image_versions2 || node.display_url || node.display_resources ||
+                           node.video_versions || node.video_url;
+
+            if (hasMedia && (shortcode || id)) {
+                var postData = parseMediaNode(node);
+                if (postData) {
+                    if (shortcode) map[shortcode] = postData;
+                    if (id) {
+                        var cleanId = String(id).split('_')[0];
+                        map[cleanId] = postData;
                     }
-                } catch {}
+                }
+            }
 
-                // try to extract subtitles url (might not be present)
-                let subtitlesUrl;
-                try {
-                    if (items0.video_subtitles_uri) subtitlesUrl = items0.video_subtitles_uri + '.subtitles';
-                } catch {}
-
-                let videoAudioSubtitlesUrl = videoUrl;
-                if (audioUrl) videoAudioSubtitlesUrl += '_' + audioUrl;
-                if (subtitlesUrl) videoAudioSubtitlesUrl += '_' + subtitlesUrl;
-                link.data().hoverZoomCaption = (items0.caption ? items0.caption.text : (items0.accessibility_caption ? items0.accessibility_caption : items0.user.full_name));
-                if (callback) callback(videoAudioSubtitlesUrl);
-                else link.data().hoverZoomSrc = [videoAudioSubtitlesUrl];
-            } else if (carousel) {
-                let gallery = [];
-                let captions = [];
-                const caption = (items0.caption ? items0.caption.text : (items0.accessibility_caption ? items0.accessibility_caption : items0.user.full_name));
-                // carousel might mix images & videos
-                carousel.map(c => { gallery.push([c.video_versions ? c.video_versions[0].url : c.image_versions2.candidates[0].url]); captions.push(caption ?? ''); });
-                link.data().hoverZoomGalleryCaption = captions;
-                if (callback) callback(gallery);
-                else link.data().hoverZoomGallerySrc = gallery;
-            } else if (images) {
-                const imagesUrl = images.candidates[0].url;
-                link.data().hoverZoomCaption = (items0.caption ? items0.caption.text : (items0.accessibility_caption ? items0.accessibility_caption : items0.user.full_name));
-                if (callback) callback(imagesUrl);
-                else link.data().hoverZoomSrc = [imagesUrl];
+            if (Array.isArray(node)) {
+                for (var i = 0; i < node.length; i++) {
+                    processMediaObject(node[i], map);
+                }
+            } else {
+                for (var key in node) {
+                    if (Object.prototype.hasOwnProperty.call(node, key) && node[key] && typeof node[key] === 'object') {
+                        processMediaObject(node[key], map);
+                    }
+                }
             }
         }
 
@@ -433,16 +151,475 @@ hoverZoomPlugins.push({
         const numbers = '0123456789';
         const ig_alphabet = upper + lower + numbers + '-_';
 
-        // compute media id from shortcode
-        // e.g: CG53Utagki0 => 2430216789653866676
-        function mediaIdfromShortcode(shortcode)
-        {
-            // Private accounts have a long shortcode, and it messes up the decoding
+        function mediaIdfromShortcode(shortcode) {
+            if (!shortcode) return '';
             if (shortcode.length > 11) {
                 shortcode = shortcode.substring(0, 11);
             }
-            const o = shortcode.replace(/\S/g, m => (ig_alphabet.indexOf(m) >>> 0).toString(2).padStart(6, '0')); // base64 to binary
-            return BigInt('0b' + o).toString(10); // binary to decimal
+            const o = shortcode.replace(/\S/g, m => (ig_alphabet.indexOf(m) >>> 0).toString(2).padStart(6, '0'));
+            return BigInt('0b' + o).toString(10);
         }
+
+        var mediaMap = {};
+        try {
+            var stored = sessionStorage.getItem('hzInstagramMedia');
+            if (stored) mediaMap = JSON.parse(stored);
+        } catch (e) {}
+
+        // Scan any SSR JSON scripts already present in the document
+        $('script[type="application/json"]').each(function () {
+            try {
+                var j = JSON.parse(this.textContent);
+                processMediaObject(j, mediaMap);
+            } catch (e) {}
+        });
+
+        // Inject page-world hook for fetch and XMLHttpRequest to capture API responses
+        if ($('script.hoverZoomHookIG').length === 0) {
+            var hookScript = document.createElement('script');
+            hookScript.type = 'text/javascript';
+            hookScript.className = 'hoverZoomHookIG';
+
+            var nonceEl = document.querySelector('script[nonce]');
+            var nonce = nonceEl ? (nonceEl.nonce || nonceEl.getAttribute('nonce')) : '';
+            if (nonce) {
+                hookScript.setAttribute('nonce', nonce);
+                hookScript.nonce = nonce;
+            }
+
+            hookScript.text = `(${function () {
+                if (window.__hzInstagramHooked) return;
+                window.__hzInstagramHooked = true;
+
+                var hookMediaMap = {};
+                try {
+                    var st = sessionStorage.getItem('hzInstagramMedia');
+                    if (st) hookMediaMap = JSON.parse(st);
+                } catch (e) {}
+
+                function getBestImageUrl(imgObj, displayUrl, displayResources) {
+                    if (imgObj && Array.isArray(imgObj.candidates) && imgObj.candidates.length) {
+                        var sorted = imgObj.candidates.slice().sort(function (a, b) {
+                            return (b.width * (b.height || b.width)) - (a.width * (a.height || a.width));
+                        });
+                        return sorted[0].url;
+                    }
+                    if (Array.isArray(displayResources) && displayResources.length) {
+                        var sortedRes = displayResources.slice().sort(function (a, b) {
+                            return (b.config_width * (b.config_height || b.config_width)) - (a.config_width * (a.config_height || a.config_width));
+                        });
+                        return sortedRes[0].src;
+                    }
+                    return displayUrl || null;
+                }
+
+                function getBestVideoUrl(videoVersions, videoUrl) {
+                    if (Array.isArray(videoVersions) && videoVersions.length) {
+                        var sorted = videoVersions.slice().sort(function (a, b) {
+                            return (b.width * (b.height || b.width)) - (a.width * (a.height || a.width));
+                        });
+                        return sorted[0].url;
+                    }
+                    return videoUrl || null;
+                }
+
+                function parseMediaNode(node) {
+                    var caption = '';
+                    if (node.caption) {
+                        caption = typeof node.caption === 'string' ? node.caption : (node.caption.text || '');
+                    } else if (node.edge_media_to_caption && node.edge_media_to_caption.edges && node.edge_media_to_caption.edges[0]) {
+                        caption = node.edge_media_to_caption.edges[0].node.text || '';
+                    } else if (node.accessibility_caption) {
+                        caption = node.accessibility_caption;
+                    }
+
+                    var carouselItems = node.carousel_media;
+                    if (!carouselItems && node.edge_sidecar_to_children && node.edge_sidecar_to_children.edges) {
+                        carouselItems = node.edge_sidecar_to_children.edges.map(function (e) { return e.node; });
+                    }
+
+                    if (Array.isArray(carouselItems) && carouselItems.length > 0) {
+                        var gallery = [];
+                        var captions = [];
+                        for (var i = 0; i < carouselItems.length; i++) {
+                            var item = carouselItems[i];
+                            var vUrl = getBestVideoUrl(item.video_versions, item.video_url);
+                            if (vUrl) {
+                                gallery.push([vUrl + '.video']);
+                            } else {
+                                var iUrl = getBestImageUrl(item.image_versions2, item.display_url, item.display_resources);
+                                if (iUrl) gallery.push([iUrl]);
+                            }
+                            captions.push(caption);
+                        }
+                        if (gallery.length > 0) {
+                            return {
+                                type: 'carousel',
+                                gallery: gallery,
+                                captions: captions,
+                                caption: caption
+                            };
+                        }
+                    }
+
+                    var videoUrl = getBestVideoUrl(node.video_versions, node.video_url);
+                    if (videoUrl && (node.is_video || node.media_type === 2 || node.video_versions)) {
+                        return {
+                            type: 'video',
+                            url: videoUrl + '.video',
+                            caption: caption
+                        };
+                    }
+
+                    var imgUrl = getBestImageUrl(node.image_versions2, node.display_url, node.display_resources);
+                    if (imgUrl) {
+                        return {
+                            type: 'image',
+                            url: imgUrl,
+                            caption: caption
+                        };
+                    }
+
+                    return null;
+                }
+
+                function processMediaObject(node, map) {
+                    if (!node || typeof node !== 'object') return;
+
+                    var shortcode = node.shortcode || node.code;
+                    var id = node.id || node.pk;
+
+                    var hasMedia = node.carousel_media || node.edge_sidecar_to_children ||
+                                   node.image_versions2 || node.display_url || node.display_resources ||
+                                   node.video_versions || node.video_url;
+
+                    if (hasMedia && (shortcode || id)) {
+                        var postData = parseMediaNode(node);
+                        if (postData) {
+                            if (shortcode) map[shortcode] = postData;
+                            if (id) {
+                                var cleanId = String(id).split('_')[0];
+                                map[cleanId] = postData;
+                            }
+                        }
+                    }
+
+                    if (Array.isArray(node)) {
+                        for (var i = 0; i < node.length; i++) {
+                            processMediaObject(node[i], map);
+                        }
+                    } else {
+                        for (var key in node) {
+                            if (Object.prototype.hasOwnProperty.call(node, key) && node[key] && typeof node[key] === 'object') {
+                                processMediaObject(node[key], map);
+                            }
+                        }
+                    }
+                }
+
+                function notifyMedia() {
+                    try {
+                        var keys = Object.keys(hookMediaMap);
+                        if (keys.length > 300) {
+                            for (var i = 0; i < keys.length - 300; i++) {
+                                delete hookMediaMap[keys[i]];
+                            }
+                        }
+                        document.dispatchEvent(new CustomEvent('hzInstagramMediaData', {
+                            detail: JSON.stringify(hookMediaMap)
+                        }));
+                        sessionStorage.setItem('hzInstagramMedia', JSON.stringify(hookMediaMap));
+                    } catch (e) {}
+                }
+
+                function processIncoming(data) {
+                    if (!data || typeof data !== 'object') return;
+                    var beforeCount = Object.keys(hookMediaMap).length;
+                    processMediaObject(data, hookMediaMap);
+                    if (Object.keys(hookMediaMap).length > beforeCount) {
+                        notifyMedia();
+                    }
+                }
+
+                if (typeof window.fetch === 'function') {
+                    var origFetch = window.fetch;
+                    window.fetch = function () {
+                        var promise = origFetch.apply(this, arguments);
+                        promise.then(function (response) {
+                            try {
+                                var clone = response.clone();
+                                clone.json().then(function (data) {
+                                    processIncoming(data);
+                                }).catch(function () {});
+                            } catch (e) {}
+                        }).catch(function () {});
+                        return promise;
+                    };
+                }
+
+                if (window.XMLHttpRequest && window.XMLHttpRequest.prototype) {
+                    var origOpen = window.XMLHttpRequest.prototype.open;
+                    window.XMLHttpRequest.prototype.open = function () {
+                        this.addEventListener('load', function () {
+                            try {
+                                var text = this.responseText;
+                                if (text && (text.indexOf('image_versions2') !== -1 || text.indexOf('display_url') !== -1 || text.indexOf('carousel_media') !== -1 || text.indexOf('video_versions') !== -1)) {
+                                    processIncoming(JSON.parse(text));
+                                }
+                            } catch (e) {}
+                        });
+                        return origOpen.apply(this, arguments);
+                    };
+                }
+
+                document.addEventListener('hzInstagramFetchRequest', function (e) {
+                    try {
+                        var req = JSON.parse(e.detail);
+                        if (!req || !req.shortcode) return;
+                        if (hookMediaMap[req.shortcode]) {
+                            notifyMedia();
+                            return;
+                        }
+                        var url = '/p/' + req.shortcode + '/?__a=1&__d=dis';
+                        window.fetch(url, {
+                            headers: {
+                                'X-IG-App-ID': '936619743392459',
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        }).then(function (r) { return r.json(); }).then(function (data) {
+                            processIncoming(data);
+                        }).catch(function () {
+                            if (req.mediaId) {
+                                window.fetch('/api/v1/media/' + req.mediaId + '/info/', {
+                                    headers: { 'X-IG-App-ID': '936619743392459' }
+                                }).then(function (r) { return r.json(); }).then(function (data) {
+                                    processIncoming(data);
+                                }).catch(function () {});
+                            }
+                        });
+                    } catch (err) {}
+                });
+
+                if (Object.keys(hookMediaMap).length > 0) {
+                    notifyMedia();
+                }
+            }.toString()})();`;
+
+            (document.head || document.documentElement).appendChild(hookScript);
+        }
+
+        // Listen for media extracted by page hook
+        document.addEventListener('hzInstagramMediaData', function (e) {
+            try {
+                var incoming = JSON.parse(e.detail);
+                Object.assign(mediaMap, incoming);
+
+                // Update active hovered element if currently hovering
+                $('.hoverZoomLink').each(function () {
+                    var el = $(this);
+                    if (el.data().hoverZoomMouseOver) {
+                        var sc = el.data().hoverZoomShortcode;
+                        if (sc && mediaMap[sc]) {
+                            applyMediaToElement(el, mediaMap[sc]);
+                            hoverZoom.displayPicFromElement(el);
+                        }
+                    }
+                });
+            } catch (err) {}
+        });
+
+        function applyMediaToElement(el, postData) {
+            if (!postData) return;
+            if (postData.type === 'carousel' && postData.gallery && postData.gallery.length > 0) {
+                el.data().hoverZoomGallerySrc = postData.gallery;
+                el.data().hoverZoomGalleryIndex = 0;
+                el.data().hoverZoomGalleryCaption = postData.captions;
+                el.data().hoverZoomSrc = postData.gallery[0];
+                el.data().hoverZoomCaption = postData.captions ? postData.captions[0] : (postData.caption || '');
+            } else if (postData.type === 'video' && postData.url) {
+                el.data().hoverZoomSrc = [postData.url];
+                el.data().hoverZoomCaption = postData.caption || '';
+                el.data().hoverZoomGallerySrc = undefined;
+            } else if (postData.url) {
+                el.data().hoverZoomSrc = [postData.url];
+                el.data().hoverZoomCaption = postData.caption || '';
+                el.data().hoverZoomGallerySrc = undefined;
+            }
+        }
+
+        function requestPostData(shortcode) {
+            if (!shortcode) return;
+            var mediaId = mediaIdfromShortcode(shortcode);
+            document.dispatchEvent(new CustomEvent('hzInstagramFetchRequest', {
+                detail: JSON.stringify({ shortcode: shortcode, mediaId: mediaId })
+            }));
+        }
+
+        // Helper to bind mouseover / mouseleave on target
+        function bindHover(el, shortcode) {
+            if (el.data().hoverZoomBound) return;
+            el.data().hoverZoomBound = true;
+            if (shortcode) el.data().hoverZoomShortcode = shortcode;
+
+            el.on('mouseover', function () {
+                var link = $(this);
+                link.data().hoverZoomMouseOver = true;
+                var sc = link.data().hoverZoomShortcode;
+                if (sc) {
+                    if (mediaMap[sc]) {
+                        applyMediaToElement(link, mediaMap[sc]);
+                    } else {
+                        requestPostData(sc);
+                    }
+                }
+            }).on('mouseleave', function () {
+                $(this).data().hoverZoomMouseOver = false;
+            });
+        }
+
+        // 1. Feed posts (<article>)
+        $('article').each(function () {
+            var article = $(this);
+            var postLink = article.find('a[href*="/p/"], a[href*="/reel/"]').first();
+            var shortcode = null;
+            if (postLink.length) {
+                var m = postLink.attr('href').match(/\/(p|reel)\/([^/?#]+)/);
+                if (m) shortcode = m[2];
+            }
+
+            // Media in feed: photos or carousel
+            var images = article.find('img[src*="cdninstagram.com"], img[src*="fbcdn.net"], img[srcset]').filter(function () {
+                return $(this).closest('header').length === 0;
+            });
+
+            images.each(function () {
+                var img = $(this);
+                var target = img.closest('div[role="button"], div:has(> img)');
+                if (!target.length) target = img;
+
+                bindHover(target, shortcode);
+                bindHover(img, shortcode);
+
+                if (shortcode && mediaMap[shortcode]) {
+                    applyMediaToElement(target, mediaMap[shortcode]);
+                    applyMediaToElement(img, mediaMap[shortcode]);
+                } else {
+                    // Check for multiple slides in DOM
+                    var slides = [];
+                    var captions = [];
+                    article.find('ul li img, div[role="presentation"] img').each(function () {
+                        var sBest = getBestFromSrcset($(this).attr('srcset')) || this.src;
+                        if (sBest && !slides.some(function (s) { return s[0] === (sBest + '#hz'); })) {
+                            slides.push([sBest + '#hz']);
+                            captions.push($(this).attr('alt') || '');
+                        }
+                    });
+
+                    if (slides.length > 1) {
+                        target.data().hoverZoomGallerySrc = slides;
+                        target.data().hoverZoomGalleryIndex = 0;
+                        target.data().hoverZoomGalleryCaption = captions;
+                        target.data().hoverZoomSrc = slides[0];
+                        target.data().hoverZoomCaption = captions[0] || '';
+
+                        img.data().hoverZoomGallerySrc = slides;
+                        img.data().hoverZoomGalleryIndex = 0;
+                        img.data().hoverZoomGalleryCaption = captions;
+                        img.data().hoverZoomSrc = slides[0];
+                        img.data().hoverZoomCaption = captions[0] || '';
+                    } else {
+                        var bestUrl = getBestFromSrcset(img.attr('srcset')) || img.attr('src');
+                        if (bestUrl) {
+                            var cap = img.attr('alt') || '';
+                            target.data().hoverZoomSrc = [bestUrl + '#hz'];
+                            target.data().hoverZoomCaption = cap;
+                            img.data().hoverZoomSrc = [bestUrl + '#hz'];
+                            img.data().hoverZoomCaption = cap;
+                        }
+                    }
+                }
+
+                res.push(target[0]);
+                res.push(img[0]);
+            });
+
+            // Video in feed
+            article.find('video').each(function () {
+                var video = this;
+                var url = video.currentSrc || video.src;
+                if (!url || !/^https?:/.test(url)) return;
+                var vTarget = $(video);
+                bindHover(vTarget, shortcode);
+                if (shortcode && mediaMap[shortcode] && mediaMap[shortcode].url) {
+                    vTarget.data().hoverZoomSrc = [mediaMap[shortcode].url];
+                } else {
+                    vTarget.data().hoverZoomSrc = [url + '.video'];
+                }
+                res.push(vTarget[0]);
+            });
+        });
+
+        // 2. Post links (profile grid, explore, individual post pages)
+        $('a[href*="/p/"], a[href*="/reel/"]').each(function () {
+            var link = $(this);
+            var m = link.prop('href').match(/\/(p|reel)\/([^/?#]+)/);
+            if (!m) return;
+            var shortcode = m[2];
+
+            bindHover(link, shortcode);
+
+            var img = link.find('img').first();
+            if (shortcode && mediaMap[shortcode]) {
+                applyMediaToElement(link, mediaMap[shortcode]);
+            } else if (img.length) {
+                var bestUrl = getBestFromSrcset(img.attr('srcset')) || img.attr('src');
+                if (bestUrl) {
+                    link.data().hoverZoomSrc = [bestUrl + '#hz'];
+                    link.data().hoverZoomCaption = img.attr('alt') || link.attr('aria-label') || '';
+                }
+            }
+
+            res.push(link[0]);
+        });
+
+        // 3. User profile avatars
+        $('a[href]').filter(function () {
+            return (!/(\/reel\/|\/p\/|\/explore\/|\/stories\/)/.test($(this).prop('href')));
+        }).each(function () {
+            var link = $(this);
+            var img = link.find('img').first();
+            if (!img.length) return;
+
+            var bestUrl = getBestFromSrcset(img.attr('srcset')) || img.attr('src');
+            if (bestUrl) {
+                link.data().hoverZoomSrc = [bestUrl + '#hz'];
+                link.data().hoverZoomCaption = img.attr('alt') || '';
+                res.push(link[0]);
+            }
+        });
+
+        // 5. Header reels & highlights (stories)
+
+        $('div[role="button"] img:not(div[role="presentation"] img)').on('mouseover', function () {
+            if (document.location.href.match('(following|followers)')) return;
+            const link = $(this);
+            if (link.data().hoverZoomMouseOver) return;
+            link.data().hoverZoomMouseOver = true;
+
+            if (link.data().hoverZoomInstagramGallerySrc) {
+                link.data().hoverZoomGallerySrc = link.data().hoverZoomInstagramGallerySrc;
+                link.data().hoverZoomGalleryCaption = link.data().hoverZoomInstagramGalleryCaption;
+                return;
+            }
+
+            var bestUrl = getBestFromSrcset(link.attr('srcset')) || link.attr('src');
+            if (bestUrl) {
+                link.data().hoverZoomSrc = [bestUrl + '#hz'];
+            }
+        }).on('mouseleave', function () {
+            $(this).data().hoverZoomMouseOver = false;
+        });
+
+        callback($(res), pluginName);
     }
 });
