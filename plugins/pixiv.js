@@ -1,7 +1,7 @@
-﻿var hoverZoomPlugins = hoverZoomPlugins || [];
+var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'Pixiv',
-    version:'3.2',
+    version:'3.3',
     favicon:'pixiv.svg',
     prepareImgLinks: function (callback) {
         var name = this.name;
@@ -12,21 +12,90 @@ hoverZoomPlugins.push({
         }
 
         /**
-         * extract image count from html string
-         * Example :
+         * extract image count from html string or element
+         * Example:
          * html string : ...-fzXfOs bAzGJS">25</span></div>...
-         * Captures:
-         * Group 1 : 25
+         * Modern Pixiv: <div class="sc-3d47d1c6-0 DJkUK"><span><span><svg viewBox="0 0 9 10" ...>...</svg></span></span><span>2</span></div>
          */
-        //
         const imageCountRegex = />(\d+)<\/span/
-        function getImgCount(containerStr) {
-            const match = containerStr.match(imageCountRegex)
-            if(match != null) {
-                // Parse the String
-                return parseInt(match[1])
+        function getImgCount(linkOrStr, containerStr) {
+            let link = null;
+            let str = '';
+
+            if (typeof linkOrStr === 'string') {
+                str = linkOrStr;
+            } else if (linkOrStr) {
+                link = linkOrStr.jquery ? linkOrStr[0] : (linkOrStr[0] || linkOrStr);
+                str = containerStr || (link && link.outerHTML) || '';
             }
-            return 1
+
+            // 1. Check link's own HTML (legacy layout / artist hover popup)
+            if (str) {
+                const match = str.match(imageCountRegex);
+                if (match != null && parseInt(match[1], 10) > 1) {
+                    return parseInt(match[1], 10);
+                }
+            }
+
+            if (!link) return 1;
+
+            const jlink = $(link);
+
+            // 2. Check sibling overlay elements (modern Pixiv thumbnail overlay)
+            const siblings = jlink.siblings();
+            for (let i = 0; i < siblings.length; i++) {
+                const sib = $(siblings[i]);
+                const svgs = sib.find('svg');
+                for (let j = 0; j < svgs.length; j++) {
+                    const svg = $(svgs[j]);
+                    const badge = svg.closest('div, span');
+                    const text = badge.text().trim();
+                    if (/^\d+$/.test(text) && parseInt(text, 10) > 1) {
+                        return parseInt(text, 10);
+                    }
+                    const nextSpan = svg.closest('span').next('span');
+                    if (nextSpan.length && /^\d+$/.test(nextSpan.text().trim()) && parseInt(nextSpan.text().trim(), 10) > 1) {
+                        return parseInt(nextSpan.text().trim(), 10);
+                    }
+                }
+                const sibHtml = siblings[i].outerHTML || '';
+                const match = sibHtml.match(imageCountRegex);
+                if (match != null && parseInt(match[1], 10) > 1) {
+                    return parseInt(match[1], 10);
+                }
+            }
+
+            // 3. Check parent thumbnail container (e.g. div.group or BaseThumbnailFlex)
+            const container = jlink.closest('div[class*="group"], [class*="Thumbnail"], [class*="thumbnail"], [class*="Card"], [class*="card"]');
+            if (container.length) {
+                const svgs = container.find('svg');
+                for (let i = 0; i < svgs.length; i++) {
+                    const svg = $(svgs[i]);
+                    const viewBox = svg.attr('viewBox') || '';
+                    const d = svg.find('path').attr('d') || '';
+                    const isAlbumIcon = viewBox.indexOf('9 10') !== -1 || d.indexOf('M8 3V2') !== -1 || d.indexOf('H4V4h5v5Z') !== -1;
+
+                    const badge = svg.closest('div, span');
+                    const text = badge.text().trim();
+                    if (/^\d+$/.test(text)) {
+                        const count = parseInt(text, 10);
+                        if (count > 1 || isAlbumIcon) return count;
+                    }
+                    const nextSpan = svg.closest('span').next('span');
+                    if (nextSpan.length && /^\d+$/.test(nextSpan.text().trim())) {
+                        const count = parseInt(nextSpan.text().trim(), 10);
+                        if (count > 1 || isAlbumIcon) return count;
+                    }
+                }
+
+                const containerHtml = container[0].outerHTML || '';
+                const svgWithSpanMatch = containerHtml.match(/<svg[^>]*>[\s\S]*?<\/svg>[\s\S]*?<span>(\d+)<\/span>/);
+                if (svgWithSpanMatch && parseInt(svgWithSpanMatch[1], 10) > 1) {
+                    return parseInt(svgWithSpanMatch[1], 10);
+                }
+            }
+
+            return 1;
         }
 
         /**
@@ -123,14 +192,17 @@ hoverZoomPlugins.push({
             if(jcontainer.data().hoverZoomGallerySrc) return;
             const containerString = this.outerHTML
 
-            const data = getData(containerString)
+            let data = getData(containerString)
+            if (!data && this.parentElement) {
+                data = getData(this.parentElement.outerHTML)
+            }
             // abort if the data not found
             if(!data) {
                 return;
             }
 
             // get the image count
-            const imageCount = getImgCount(containerString)
+            const imageCount = getImgCount(this, containerString)
             const galleryUrls = []
 
             // Loop through image number
@@ -205,10 +277,99 @@ hoverZoomPlugins.push({
 
         // single images (not included in a gallery)
         hoverZoom.urlReplace(res,
-            'a:not([href*="/artworks/"]):not([href*="member_illust.php?mode="]):not([href*="/group/"]) img[src], a:not([href*="/artworks/"]):not([href*="member_illust.php?mode="]):not([href*="/group/"]) div[src], [style*="url"]',
+            'a:not([href*="/artworks/"]):not([href*="member_illust.php?mode="]):not([href*="/group/"]):not([href*="/collections/"]) img[src], a:not([href*="/artworks/"]):not([href*="member_illust.php?mode="]):not([href*="/group/"]):not([href*="/collections/"]) div[src], [style*="url"]',
             /\.pximg\.net\/.*?\/.*?\/(.*)/,
             '.pximg.net/$1'
         );
+
+        // collections
+        // sample:   https://www.pixiv.net/collections/17156483879539367649
+        $('a[href*="/collections/"]').filter(function() { return (/\/collections\/\d+/.test($(this).attr('href'))) }).one('mouseover', function() {
+            var link = $(this);
+            if (link.data().hoverZoomGallerySrc || link.data().hoverZoomLoading) return;
+
+            var re = /\/collections\/(\d+)/;
+            var m = link.attr('href').match(re);
+            if (m == null) return;
+            var id = m[1];
+            var url = "https://www.pixiv.net/ajax/collection/" + id;
+
+            link.data().hoverZoomLoading = true;
+
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: url,
+                success: function(response) {
+                    try {
+                        const illusts = response && response.body && response.body.thumbnails && response.body.thumbnails.illust;
+                        if (!illusts || !illusts.length) return;
+
+                        var gallery = [];
+                        var captions = [];
+
+                        for (var i = 0; i < illusts.length; i++) {
+                            var illust = illusts[i];
+                            var data = getData(illust.url || '') || (illust.urls && (getData(illust.urls['1200x1200'] || '') || getData(illust.urls['540x540'] || '')));
+                            var pageCount = illust.pageCount || 1;
+
+                            for (var p = 0; p < pageCount; p++) {
+                                var urls = [];
+                                if (data) {
+                                    var masterUrl = `https://i.pximg.net/img-master/img/${data.date}/${data.id}_p${p}_master1200.jpg`;
+                                    urls.push(masterUrl);
+                                    if (options.showHighRes) {
+                                        var originalPNG = `https://i.pximg.net/img-original/img/${data.date}/${data.id}_p${p}.png`;
+                                        var originalJPG = `https://i.pximg.net/img-original/img/${data.date}/${data.id}_p${p}.jpg`;
+                                        urls.unshift(originalPNG, originalJPG);
+                                    }
+                                } else if (illust.urls && illust.urls['1200x1200']) {
+                                    urls.push(illust.urls['1200x1200'].replace(/_p\d+_/, `_p${p}_`));
+                                } else if (illust.url) {
+                                    urls.push(illust.url);
+                                }
+
+                                if (urls.length) {
+                                    gallery.push(urls);
+                                    var caption = illust.title || '';
+                                    if (illust.userName) {
+                                        caption += (caption ? ' - ' : '') + illust.userName;
+                                    }
+                                    if (pageCount > 1) {
+                                        caption += ` (${p + 1}/${pageCount})`;
+                                    }
+                                    captions.push(caption);
+                                }
+                            }
+                        }
+
+                        if (gallery.length) {
+                            var card = link.closest('[data-ga4-label="thumbnail"], div[class*="flex"]');
+                            var links = card.length ? card.find('a[href*="/collections/' + id + '"]') : link;
+
+                            fixGalleryUrls(gallery, links);
+
+                            links.removeData('hoverZoomSrc');
+                            links.data('hoverZoomGallerySrc', gallery);
+                            if (captions.length) {
+                                links.data('hoverZoomGalleryCaption', captions);
+                            }
+                            links.data('hoverZoomGalleryIndex', 0);
+
+                            callback(links, name);
+                            hoverZoom.displayPicFromElement(link);
+                        }
+                    } catch (e) {
+                        cLog(e);
+                    } finally {
+                        link.data().hoverZoomLoading = false;
+                    }
+                },
+                error: function() {
+                    link.data().hoverZoomLoading = false;
+                }
+            });
+        });
 
         // live streams
         // sample: https://sketch.pixiv.net/@silvercoin1911/lives/1317584211526544880
