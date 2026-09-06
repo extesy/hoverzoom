@@ -1353,6 +1353,7 @@
         {
             "js": ["plugins/yandex.js"],
             "matches": [
+                "*://*.ya.ru/*",
                 "*://*.yandex.at/*",
                 "*://*.yandex.au/*",
                 "*://*.yandex.be/*",
