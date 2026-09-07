@@ -38,6 +38,12 @@ hoverZoomPlugins.push({
             }
         }
 
+        function ensureHzUrl(url) {
+            if (!url || typeof url !== 'string') return url;
+            if (url.endsWith('#hz') || url.endsWith('.video')) return url;
+            return url + '#hz';
+        }
+
         function getBestFromSrcset(srcset) {
             if (!srcset || typeof srcset !== 'string') return null;
             var parts = srcset.split(/,\s+(?=https?:)/);
@@ -113,7 +119,7 @@ hoverZoomPlugins.push({
                         gallery.push([vUrl + '.video']);
                     } else {
                         var iUrl = getBestImageUrl(item.image_versions2, item.display_url, item.display_resources);
-                        if (iUrl) gallery.push([iUrl]);
+                        if (iUrl) gallery.push([ensureHzUrl(iUrl)]);
                     }
                     captions.push(caption);
                 }
@@ -140,7 +146,7 @@ hoverZoomPlugins.push({
             if (imgUrl) {
                 return {
                     type: 'image',
-                    url: imgUrl,
+                    url: ensureHzUrl(imgUrl),
                     caption: caption
                 };
             }
@@ -185,7 +191,7 @@ hoverZoomPlugins.push({
                             gallery.push([vUrl + '.video']);
                         } else {
                             var iUrl = getBestImageUrl(it.image_versions2, it.display_url, it.display_resources);
-                            if (iUrl) gallery.push([iUrl]);
+                            if (iUrl) gallery.push([ensureHzUrl(iUrl)]);
                         }
                         var cap = (it.caption && (typeof it.caption === 'string' ? it.caption : it.caption.text)) || (username || '');
                         captions.push(cap);
@@ -213,7 +219,7 @@ hoverZoomPlugins.push({
                         if (iUrl) {
                             storyData = {
                                 type: 'image',
-                                url: iUrl,
+                                url: ensureHzUrl(iUrl),
                                 caption: cap
                             };
                         }
@@ -308,17 +314,20 @@ hoverZoomPlugins.push({
         function applyMediaToElement(el, postData) {
             if (!postData) return;
             if (postData.type === 'carousel' && postData.gallery && postData.gallery.length > 0) {
-                el.data().hoverZoomGallerySrc = postData.gallery;
+                var ensuredGallery = postData.gallery.map(function (slide) {
+                    return slide.map(ensureHzUrl);
+                });
+                el.data().hoverZoomGallerySrc = ensuredGallery;
                 el.data().hoverZoomGalleryCaption = postData.captions;
                 var currIdx = el.data().hoverZoomGalleryIndex;
-                if (typeof currIdx !== 'number' || currIdx < 0 || currIdx >= postData.gallery.length) {
+                if (typeof currIdx !== 'number' || currIdx < 0 || currIdx >= ensuredGallery.length) {
                     currIdx = 0;
                     el.data().hoverZoomGalleryIndex = 0;
                 }
-                el.data().hoverZoomSrc = postData.gallery[currIdx];
+                el.data().hoverZoomSrc = ensuredGallery[currIdx];
                 el.data().hoverZoomCaption = (postData.captions && postData.captions[currIdx]) ? postData.captions[currIdx] : (postData.caption || '');
             } else if (postData.url) {
-                el.data().hoverZoomSrc = [postData.url];
+                el.data().hoverZoomSrc = [ensureHzUrl(postData.url)];
                 el.data().hoverZoomCaption = postData.caption || '';
                 el.data().hoverZoomGallerySrc = undefined;
                 el.data().hoverZoomGalleryIndex = undefined;
@@ -329,7 +338,7 @@ hoverZoomPlugins.push({
         function applyPostMediaIfNew(el, shortcode, postData) {
             if (!shortcode || !postData) return false;
             var currUrl = el.data().hoverZoomSrc && el.data().hoverZoomSrc[0];
-            var newUrl = postData.url || (postData.gallery && postData.gallery[0] && postData.gallery[0][0]);
+            var newUrl = postData.url ? ensureHzUrl(postData.url) : (postData.gallery && postData.gallery[0] && ensureHzUrl(postData.gallery[0][0]));
             if (el.data().hoverZoomAppliedShortcode !== shortcode || currUrl !== newUrl) {
                 el.data().hoverZoomAppliedShortcode = shortcode;
                 applyMediaToElement(el, postData);
@@ -340,10 +349,20 @@ hoverZoomPlugins.push({
 
         function matchStoryUsername(text) {
             if (!text || typeof text !== 'string') return null;
-            var m = text.match(/^([^'’\n]+)['’]s\s+(?:story|profile picture)/i) ||
+            var m = text.match(/^([^'’\n]+)['’]s\s+(?:story|stories|profile picture|profile photo)/i) ||
                     text.match(/(?:story by|stories by|story of)\s+([a-zA-Z0-9._]+)/i) ||
-                    text.match(/^([a-zA-Z0-9._]+)['’]s/i);
+                    text.match(/^(?:story|stories)\s+by\s+([a-zA-Z0-9._]+)/i);
             return m ? m[1].trim() : null;
+        }
+
+        function isAvatarImg(img) {
+            if (!img || !img.length) return false;
+            var alt = img.attr('alt') || '';
+            if (/profile picture|profile photo/i.test(alt) || /['’]s\s+(?:story|stories|profile picture)/i.test(alt)) return true;
+            var src = img.attr('src') || '';
+            if (/\/t51\.\d+-19\/|profile_pic/i.test(src)) return true;
+            if (img.closest('header, [role="button"]:has(canvas), [role="link"]:has(canvas)').length > 0) return true;
+            return false;
         }
 
         var mediaMap = {};
@@ -386,6 +405,7 @@ hoverZoomPlugins.push({
 
                 const ig_alphabet = '${ig_alphabet}';
 
+                ${ensureHzUrl}
                 ${shortcodeFromMediaId}
                 ${getBestImageUrl}
                 ${getBestVideoUrl}
@@ -502,36 +522,49 @@ hoverZoomPlugins.push({
             (document.head || document.documentElement).appendChild(hookScript);
         }
 
-        // Listen for media extracted by page hook
-        document.addEventListener('hzInstagramMediaData', function (e) {
-            try {
-                var incoming = JSON.parse(e.detail);
-                Object.assign(mediaMap, incoming);
+        // Listen for media extracted by page hook and scroll (bind only once)
+        if (!window.__hzInstagramEventsBound) {
+            window.__hzInstagramEventsBound = true;
 
-                // Update active hovered element if currently hovering
-                $('.hoverZoomLink').each(function () {
-                    var el = $(this);
-                    if (el.data().hoverZoomMouseOver) {
+            document.addEventListener('hzInstagramMediaData', function (e) {
+                try {
+                    var incoming = JSON.parse(e.detail);
+                    Object.assign(mediaMap, incoming);
+
+                    // Update active hovered element if currently hovering
+                    $('.hoverZoomLink').filter(':hover').each(function () {
+                        var el = $(this);
+                        if (!el.data().hoverZoomMouseOver) return;
                         var sc = el.data().hoverZoomShortcode;
                         var user = el.data().hoverZoomStoryUser;
                         var postData = getPostFromMap(mediaMap, sc) || getStoryFromMap(mediaMap, user);
                         if (postData) {
                             if (sc) {
                                 if (applyPostMediaIfNew(el, sc, postData)) {
-                                    hoverZoom.displayPicFromElement(el, true);
+                                    hoverZoom.displayPicFromElement(el);
                                 }
                             } else if (user) {
-                                if (el.data().hoverZoomAppliedStoryUser !== user || !el.data().hoverZoomGallerySrc) {
+                                var currUrl = el.data().hoverZoomSrc && el.data().hoverZoomSrc[0];
+                                var newUrl = postData.url ? ensureHzUrl(postData.url) : (postData.gallery && postData.gallery[0] && ensureHzUrl(postData.gallery[0][0]));
+                                if (el.data().hoverZoomAppliedStoryUser !== user || currUrl !== newUrl) {
                                     el.data().hoverZoomAppliedStoryUser = user;
                                     applyMediaToElement(el, postData);
-                                    hoverZoom.displayPicFromElement(el, true);
+                                    hoverZoom.displayPicFromElement(el);
                                 }
                             }
                         }
+                    });
+                } catch (err) {}
+            });
+
+            $(window).on('scroll', function () {
+                $('.hoverZoomLink').each(function () {
+                    if (!$(this).is(':hover')) {
+                        $(this).data().hoverZoomMouseOver = false;
                     }
                 });
-            } catch (err) {}
-        });
+            });
+        }
 
         function requestPostData(shortcode) {
             if (!shortcode) return;
@@ -566,7 +599,7 @@ hoverZoomPlugins.push({
                 var sc = link.data().hoverZoomShortcode;
                 if (sc) {
                     var postData = getPostFromMap(mediaMap, sc);
-                    if (postData && (postData.type === 'video' || (!nativeVideo && postData.url))) {
+                    if (postData && (postData.type === 'video' || (!nativeVideo && (postData.url || postData.gallery)))) {
                         applyPostMediaIfNew(link, sc, postData);
                     } else {
                         requestPostData(sc);
@@ -611,13 +644,32 @@ hoverZoomPlugins.push({
                 }
             }
 
+            // Feed post author avatar
+            var avatarImg = article.find('img').filter(function () {
+                return isAvatarImg($(this));
+            }).first();
+            if (avatarImg.length) {
+                var avTarget = avatarImg.closest('div[role="button"], span[role="link"], a');
+                if (!avTarget.length) avTarget = avatarImg;
+                var avBest = getBestFromSrcset(avatarImg.attr('srcset')) || avatarImg.attr('src');
+                if (avBest) {
+                    avTarget.data().hoverZoomSrc = [avBest + '#hz'];
+                    avTarget.data().hoverZoomCaption = avatarImg.attr('alt') || '';
+                    avatarImg.data().hoverZoomSrc = [avBest + '#hz'];
+                    avatarImg.data().hoverZoomCaption = avatarImg.attr('alt') || '';
+                    if (res.indexOf(avTarget[0]) === -1) res.push(avTarget[0]);
+                    if (res.indexOf(avatarImg[0]) === -1) res.push(avatarImg[0]);
+                }
+            }
+
             var video = article.find('video').first();
             if (video.length) {
                 var vEl = video[0];
-                var vTarget = video.closest('div[role="button"], div:has(> video), div:has(> div > video)');
+                var vTarget = video.closest('div._aagu');
+                if (!vTarget.length) vTarget = video.closest('div[role="button"], div:has(> div > video), div:has(> video)');
                 if (!vTarget.length) vTarget = video.parent();
                 var posterImg = article.find('img[src*="cdninstagram.com"], img[src*="fbcdn.net"], img[srcset]').filter(function () {
-                    return $(this).closest('header').length === 0;
+                    return !isAvatarImg($(this)) && $(this).closest('header').length === 0;
                 }).first();
 
                 bindHover(vTarget, shortcode, vEl);
@@ -641,27 +693,28 @@ hoverZoomPlugins.push({
                         var bestUrl = getBestFromSrcset(posterImg.attr('srcset')) || posterImg.attr('src');
                         if (bestUrl) {
                             var cap = posterImg.attr('alt') || '';
-                            vTarget.data().hoverZoomSrc = [bestUrl + '#hz'];
+                            vTarget.data().hoverZoomSrc = [ensureHzUrl(bestUrl)];
                             vTarget.data().hoverZoomCaption = cap;
-                            video.data().hoverZoomSrc = [bestUrl + '#hz'];
+                            video.data().hoverZoomSrc = [ensureHzUrl(bestUrl)];
                             video.data().hoverZoomCaption = cap;
-                            posterImg.data().hoverZoomSrc = [bestUrl + '#hz'];
+                            posterImg.data().hoverZoomSrc = [ensureHzUrl(bestUrl)];
                             posterImg.data().hoverZoomCaption = cap;
                         }
                     }
                 }
 
-                res.push(vTarget[0]);
-                res.push(video[0]);
-                if (posterImg.length) res.push(posterImg[0]);
+                if (vTarget.data().hoverZoomSrc && res.indexOf(vTarget[0]) === -1) res.push(vTarget[0]);
+                if (video.data().hoverZoomSrc && res.indexOf(video[0]) === -1) res.push(video[0]);
+                if (posterImg.length && posterImg.data().hoverZoomSrc && res.indexOf(posterImg[0]) === -1) res.push(posterImg[0]);
             } else {
                 var images = article.find('img[src*="cdninstagram.com"], img[src*="fbcdn.net"], img[srcset]').filter(function () {
-                    return $(this).closest('header').length === 0;
+                    return !isAvatarImg($(this)) && $(this).closest('header').length === 0;
                 });
 
                 images.each(function () {
                     var img = $(this);
-                    var target = img.closest('div[role="button"], div:has(> img)');
+                    var target = img.closest('div._aagu');
+                    if (!target.length) target = img.closest('div[role="button"], div:has(> div > img), div:has(> img)');
                     if (!target.length) target = img;
 
                     bindHover(target, shortcode);
@@ -674,10 +727,12 @@ hoverZoomPlugins.push({
                     } else {
                         var slides = [];
                         var captions = [];
-                        article.find('ul li img, div[role="presentation"] img').each(function () {
+                        article.find('ul li img, div[role="presentation"] img').filter(function () {
+                            return !isAvatarImg($(this));
+                        }).each(function () {
                             var sBest = getBestFromSrcset($(this).attr('srcset')) || this.src;
-                            if (sBest && !slides.some(function (s) { return s[0] === (sBest + '#hz'); })) {
-                                slides.push([sBest + '#hz']);
+                            if (sBest && !slides.some(function (s) { return s[0] === ensureHzUrl(sBest); })) {
+                                slides.push([ensureHzUrl(sBest)]);
                                 captions.push($(this).attr('alt') || '');
                             }
                         });
@@ -699,16 +754,16 @@ hoverZoomPlugins.push({
                             var bestUrl = getBestFromSrcset(img.attr('srcset')) || img.attr('src');
                             if (bestUrl) {
                                 var cap = img.attr('alt') || '';
-                                target.data().hoverZoomSrc = [bestUrl + '#hz'];
+                                target.data().hoverZoomSrc = [ensureHzUrl(bestUrl)];
                                 target.data().hoverZoomCaption = cap;
-                                img.data().hoverZoomSrc = [bestUrl + '#hz'];
+                                img.data().hoverZoomSrc = [ensureHzUrl(bestUrl)];
                                 img.data().hoverZoomCaption = cap;
                             }
                         }
                     }
 
-                    res.push(target[0]);
-                    res.push(img[0]);
+                    if ((target.data().hoverZoomSrc || target.data().hoverZoomGallerySrc) && res.indexOf(target[0]) === -1) res.push(target[0]);
+                    if ((img.data().hoverZoomSrc || img.data().hoverZoomGallerySrc) && res.indexOf(img[0]) === -1) res.push(img[0]);
                 });
             }
         });
@@ -733,7 +788,7 @@ hoverZoomPlugins.push({
                 if (img.length) {
                     var bestUrl = getBestFromSrcset(img.attr('srcset')) || img.attr('src');
                     if (bestUrl) {
-                        link.data().hoverZoomSrc = [bestUrl + '#hz'];
+                        link.data().hoverZoomSrc = [ensureHzUrl(bestUrl)];
                         link.data().hoverZoomCaption = img.attr('alt') || link.attr('aria-label') || '';
                     }
                 } else if (video.length) {
@@ -744,7 +799,9 @@ hoverZoomPlugins.push({
                 }
             }
 
-            res.push(link[0]);
+            if (link.data().hoverZoomSrc || link.data().hoverZoomGallerySrc) {
+                res.push(link[0]);
+            }
         });
 
         // 3. User profile avatars
@@ -757,7 +814,7 @@ hoverZoomPlugins.push({
 
             var bestUrl = getBestFromSrcset(img.attr('srcset')) || img.attr('src');
             if (bestUrl) {
-                link.data().hoverZoomSrc = [bestUrl + '#hz'];
+                link.data().hoverZoomSrc = [ensureHzUrl(bestUrl)];
                 link.data().hoverZoomCaption = img.attr('alt') || '';
                 res.push(link[0]);
             }
@@ -775,10 +832,11 @@ hoverZoomPlugins.push({
                 if (m && m[1] && m[1] !== 'highlights') return m[1];
             }
 
-            // 2. aria-label on target or its parents/children
+            // 2. aria-label on target or its immediate button/link
             var candidates = [
                 target.attr('aria-label'),
-                target.closest('[aria-label]').attr('aria-label'),
+                target.parent().attr('aria-label'),
+                target.closest('div[role="button"], button, a').attr('aria-label'),
                 target.find('[aria-label]').first().attr('aria-label')
             ];
             for (var i = 0; i < candidates.length; i++) {
@@ -793,10 +851,10 @@ hoverZoomPlugins.push({
                 if (u) return u;
             }
 
-            // 4. Look for text in adjacent/child span with valid username format
-            var container = target.closest('li, div[role="button"], div[role="menuitem"]');
+            // 4. Look for text in adjacent/child span in story list item
+            var container = target.closest('li, a[href*="/stories/"]');
             if (container.length) {
-                var textSpans = container.find('span, div').filter(function () {
+                var textSpans = container.find('span').filter(function () {
                     var t = $(this).text().trim();
                     return t && !t.includes(' ') && !t.includes('\n') && /^[a-zA-Z0-9._]{1,30}$/.test(t);
                 });
@@ -823,45 +881,49 @@ hoverZoomPlugins.push({
             return { postData: postData, username: username };
         }
 
-        var storyImgs = $('a[href*="/stories/"], div[role="button"] img:not(article img):not(div[role="presentation"] img):not(a[href*="/p/"] img):not(a[href*="/reel/"] img), div[role="menuitem"] img:not(a[href*="/p/"] img):not(a[href*="/reel/"] img), li[role="menuitem"] img');
+        var storyImgs = $('a[href*="/stories/"], header [role="button"] img, ul div[role="button"] img, [aria-label*="stor" i] img, div[role="menuitem"] img, li[role="menuitem"] img');
         storyImgs.each(function () {
             var el = $(this);
-            if (el.closest('a[href*="/p/"], a[href*="/reel/"]').length) return;
-            var target = el.closest('div[role="button"], div[role="menuitem"], li[role="menuitem"], a[href*="/stories/"]');
+            if (el.closest('article, a[href*="/p/"], a[href*="/reel/"], a[href*="/reels/"]').length) return;
+            var target = el.closest('a[href*="/stories/"], div[role="button"], button');
             if (!target.length) target = el;
-            if (target.closest('a[href*="/p/"], a[href*="/reel/"]').length) return;
+            if (target.closest('article, a[href*="/p/"], a[href*="/reel/"], a[href*="/reels/"]').length) return;
+
+            var story = getStoryData(target);
+            var isExplicitStory = target.is('a[href*="/stories/"]') || target.closest('a[href*="/stories/"]').length > 0;
+            if (!story.username && !story.postData && !isExplicitStory) return;
 
             function bindStoryTarget(node) {
                 if (node.data().hoverZoomStoryBound) return;
                 node.data().hoverZoomStoryBound = true;
 
-                node.on('mouseover', function () {
+                node.on('mouseenter mouseover', function () {
                     if (document.location.href.match('(following|followers)')) return;
                     var link = $(this);
                     link.data().hoverZoomMouseOver = true;
 
-                    var story = getStoryData(link);
-                    if (story.username) {
-                        if (link.data().hoverZoomStoryUser !== story.username) {
-                            link.data().hoverZoomStoryUser = story.username;
+                    var s = getStoryData(link);
+                    if (s.username) {
+                        if (link.data().hoverZoomStoryUser !== s.username) {
+                            link.data().hoverZoomStoryUser = s.username;
                             link.data().hoverZoomSrc = undefined;
                             link.data().hoverZoomGallerySrc = undefined;
                             link.data().hoverZoomCaption = undefined;
                         }
                     }
 
-                    if (story.postData) {
-                        applyMediaToElement(link, story.postData);
+                    if (s.postData) {
+                        applyMediaToElement(link, s.postData);
                     } else {
                         var img = link.is('img') ? link : link.find('img').first();
-                        var bestUrl = getBestFromSrcset(img.attr('srcset')) || img.attr('src');
+                        var bestUrl = img.length ? (getBestFromSrcset(img.attr('srcset')) || img.attr('src')) : null;
                         if (bestUrl) {
-                            link.data().hoverZoomSrc = [bestUrl + '#hz'];
+                            link.data().hoverZoomSrc = [ensureHzUrl(bestUrl)];
                             link.data().hoverZoomGallerySrc = undefined;
                         }
-                        if (story.username) {
+                        if (s.username) {
                             document.dispatchEvent(new CustomEvent('hzInstagramStoryRequest', {
-                                detail: JSON.stringify({ username: story.username })
+                                detail: JSON.stringify({ username: s.username })
                             }));
                         } else {
                             document.dispatchEvent(new CustomEvent('hzInstagramStoryRequest', {
@@ -875,28 +937,30 @@ hoverZoomPlugins.push({
             }
 
             bindStoryTarget(target);
-            bindStoryTarget(el);
 
-            var story = getStoryData(target);
             if (story.username) {
                 target.data().hoverZoomStoryUser = story.username;
-                el.data().hoverZoomStoryUser = story.username;
             }
             if (story.postData) {
                 applyMediaToElement(target, story.postData);
-                applyMediaToElement(el, story.postData);
             } else {
-                var bestUrl = getBestFromSrcset(el.attr('srcset')) || el.attr('src');
+                var img = target.is('img') ? target : target.find('img').first();
+                var bestUrl = img.length ? (getBestFromSrcset(img.attr('srcset')) || img.attr('src')) : null;
                 if (bestUrl) {
-                    target.data().hoverZoomSrc = [bestUrl + '#hz'];
-                    el.data().hoverZoomSrc = [bestUrl + '#hz'];
+                    target.data().hoverZoomSrc = [ensureHzUrl(bestUrl)];
                 }
             }
 
-            res.push(target[0]);
-            res.push(el[0]);
+            if (target.data().hoverZoomSrc || target.data().hoverZoomGallerySrc) {
+                res.push(target[0]);
+            }
         });
 
-        callback($(res), pluginName);
+        var validRes = res.filter(function (el) {
+            var d = $(el).data();
+            return Boolean((d.hoverZoomSrc && d.hoverZoomSrc.length) || (d.hoverZoomGallerySrc && d.hoverZoomGallerySrc.length));
+        });
+
+        callback($(validRes), pluginName);
     }
 });
