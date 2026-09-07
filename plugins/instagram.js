@@ -278,6 +278,55 @@ hoverZoomPlugins.push({
             }
         }
 
+        function getPostFromMap(map, shortcode) {
+            if (!shortcode) return null;
+            return map[shortcode] || map[mediaIdfromShortcode(shortcode)] || null;
+        }
+
+        function getStoryFromMap(map, username) {
+            if (!username) return null;
+            var uLow = String(username).toLowerCase();
+            return map['story_' + uLow] || map[uLow] || map['story_' + username] || map[username] || null;
+        }
+
+        function applyMediaToElement(el, postData) {
+            if (!postData) return;
+            if (postData.type === 'carousel' && postData.gallery && postData.gallery.length > 0) {
+                el.data().hoverZoomGallerySrc = postData.gallery;
+                el.data().hoverZoomGalleryCaption = postData.captions;
+                var currIdx = el.data().hoverZoomGalleryIndex;
+                if (typeof currIdx !== 'number' || currIdx < 0 || currIdx >= postData.gallery.length) {
+                    currIdx = 0;
+                    el.data().hoverZoomGalleryIndex = 0;
+                }
+                el.data().hoverZoomSrc = postData.gallery[currIdx];
+                el.data().hoverZoomCaption = (postData.captions && postData.captions[currIdx]) ? postData.captions[currIdx] : (postData.caption || '');
+            } else if (postData.url) {
+                el.data().hoverZoomSrc = [postData.url];
+                el.data().hoverZoomCaption = postData.caption || '';
+                el.data().hoverZoomGallerySrc = undefined;
+                el.data().hoverZoomGalleryIndex = undefined;
+                el.data().hoverZoomGalleryCaption = undefined;
+            }
+        }
+
+        function applyPostMediaIfNew(el, shortcode, postData) {
+            if (shortcode && postData && el.data().hoverZoomAppliedShortcode !== shortcode) {
+                el.data().hoverZoomAppliedShortcode = shortcode;
+                applyMediaToElement(el, postData);
+                return true;
+            }
+            return false;
+        }
+
+        function matchStoryUsername(text) {
+            if (!text || typeof text !== 'string') return null;
+            var m = text.match(/^([^'’\n]+)['’]s\s+(?:story|profile picture)/i) ||
+                    text.match(/(?:story by|stories by|story of)\s+([a-zA-Z0-9._]+)/i) ||
+                    text.match(/^([a-zA-Z0-9._]+)['’]s/i);
+            return m ? m[1].trim() : null;
+        }
+
         var mediaMap = {};
         try {
             var stored = sessionStorage.getItem('hzInstagramMedia');
@@ -306,7 +355,7 @@ hoverZoomPlugins.push({
                 hookScript.nonce = nonce;
             }
 
-            hookScript.text = `(${function () {
+            hookScript.text = `(function () {
                 if (window.__hzInstagramHooked) return;
                 window.__hzInstagramHooked = true;
 
@@ -316,248 +365,14 @@ hoverZoomPlugins.push({
                     if (st) hookMediaMap = JSON.parse(st);
                 } catch (e) {}
 
-                const lower = 'abcdefghijklmnopqrstuvwxyz';
-                const upper = lower.toUpperCase();
-                const numbers = '0123456789';
-                const ig_alphabet = upper + lower + numbers + '-_';
+                const ig_alphabet = '${ig_alphabet}';
 
-                function shortcodeFromMediaId(mediaId) {
-                    if (!mediaId) return '';
-                    try {
-                        let idBig = BigInt(String(mediaId).split('_')[0].replace(/^POLARIS_/, ''));
-                        if (idBig <= 0n) return '';
-                        let sc = '';
-                        while (idBig > 0n) {
-                            let remainder = Number(idBig % 64n);
-                            idBig = idBig / 64n;
-                            sc = ig_alphabet[remainder] + sc;
-                        }
-                        return sc;
-                    } catch (e) {
-                        return '';
-                    }
-                }
-
-                function getBestImageUrl(imgObj, displayUrl, displayResources) {
-                    if (imgObj && Array.isArray(imgObj.candidates) && imgObj.candidates.length) {
-                        var sorted = imgObj.candidates.slice().sort(function (a, b) {
-                            return (b.width * (b.height || b.width)) - (a.width * (a.height || a.width));
-                        });
-                        return sorted[0].url;
-                    }
-                    if (Array.isArray(displayResources) && displayResources.length) {
-                        var sortedRes = displayResources.slice().sort(function (a, b) {
-                            return (b.config_width * (b.config_height || b.config_width)) - (a.config_width * (a.config_height || a.config_width));
-                        });
-                        return sortedRes[0].src;
-                    }
-                    return displayUrl || null;
-                }
-
-                function getBestVideoUrl(videoVersions, videoUrl) {
-                    if (Array.isArray(videoVersions) && videoVersions.length) {
-                        var sorted = videoVersions.slice().sort(function (a, b) {
-                            return (b.width * (b.height || b.width)) - (a.width * (a.height || a.width));
-                        });
-                        return sorted[0].url;
-                    }
-                    return videoUrl || null;
-                }
-
-                function parseMediaNode(node) {
-                    var caption = '';
-                    if (node.caption) {
-                        caption = typeof node.caption === 'string' ? node.caption : (node.caption.text || '');
-                    } else if (node.edge_media_to_caption && node.edge_media_to_caption.edges && node.edge_media_to_caption.edges[0]) {
-                        caption = node.edge_media_to_caption.edges[0].node.text || '';
-                    } else if (node.accessibility_caption) {
-                        caption = node.accessibility_caption;
-                    }
-
-                    var carouselItems = node.carousel_media;
-                    if (!carouselItems && node.edge_sidecar_to_children && node.edge_sidecar_to_children.edges) {
-                        carouselItems = node.edge_sidecar_to_children.edges.map(function (e) { return e.node; });
-                    }
-
-                    if (Array.isArray(carouselItems) && carouselItems.length > 0) {
-                        var gallery = [];
-                        var captions = [];
-                        for (var i = 0; i < carouselItems.length; i++) {
-                            var item = carouselItems[i];
-                            var vUrl = getBestVideoUrl(item.video_versions, item.video_url);
-                            if (vUrl) {
-                                gallery.push([vUrl + '.video']);
-                            } else {
-                                var iUrl = getBestImageUrl(item.image_versions2, item.display_url, item.display_resources);
-                                if (iUrl) gallery.push([iUrl]);
-                            }
-                            captions.push(caption);
-                        }
-                        if (gallery.length > 0) {
-                            return {
-                                type: 'carousel',
-                                gallery: gallery,
-                                captions: captions,
-                                caption: caption
-                            };
-                        }
-                    }
-
-                    var videoUrl = getBestVideoUrl(node.video_versions, node.video_url);
-                    if (videoUrl && (node.is_video || node.media_type === 2 || node.video_versions)) {
-                        return {
-                            type: 'video',
-                            url: videoUrl + '.video',
-                            caption: caption
-                        };
-                    }
-
-                    var imgUrl = getBestImageUrl(node.image_versions2, node.display_url, node.display_resources);
-                    if (imgUrl) {
-                        return {
-                            type: 'image',
-                            url: imgUrl,
-                            caption: caption
-                        };
-                    }
-
-                    return null;
-                }
-
-                function processStoriesTray(data, map) {
-                    if (!data || typeof data !== 'object') return;
-
-                    var tray = data.tray || data.reels_media || (data.data && data.data.reels_media);
-                    if (!tray && data.reels && typeof data.reels === 'object') {
-                        tray = Object.values(data.reels);
-                    }
-                    if (!Array.isArray(tray)) {
-                        if (data.items && data.user) {
-                            tray = [data];
-                        } else {
-                            return;
-                        }
-                    }
-
-                    for (var i = 0; i < tray.length; i++) {
-                        var reel = tray[i];
-                        if (!reel || typeof reel !== 'object') continue;
-                        var user = reel.user;
-                        var items = reel.items;
-                        if (!Array.isArray(items) || items.length === 0) continue;
-
-                        var username = user && (user.username || user.pk);
-                        var userId = user && (user.pk || user.id);
-                        var profilePic = user && (user.profile_pic_url || user.profile_picture);
-
-                        var storyData = null;
-                        if (items.length > 1) {
-                            var gallery = [];
-                            var captions = [];
-                            for (var j = 0; j < items.length; j++) {
-                                var it = items[j];
-                                var vUrl = getBestVideoUrl(it.video_versions, it.video_url);
-                                if (vUrl && (it.is_video || it.media_type === 2 || it.video_versions)) {
-                                    gallery.push([vUrl + '.video']);
-                                } else {
-                                    var iUrl = getBestImageUrl(it.image_versions2, it.display_url, it.display_resources);
-                                    if (iUrl) gallery.push([iUrl]);
-                                }
-                                var cap = (it.caption && (typeof it.caption === 'string' ? it.caption : it.caption.text)) || (username || '');
-                                captions.push(cap);
-                            }
-                            if (gallery.length > 0) {
-                                storyData = {
-                                    type: 'carousel',
-                                    gallery: gallery,
-                                    captions: captions,
-                                    caption: captions[0]
-                                };
-                            }
-                        } else if (items.length === 1) {
-                            var single = items[0];
-                            var vUrl = getBestVideoUrl(single.video_versions, single.video_url);
-                            var cap = (single.caption && (typeof single.caption === 'string' ? single.caption : single.caption.text)) || (username || '');
-                            if (vUrl && (single.is_video || single.media_type === 2 || single.video_versions)) {
-                                storyData = {
-                                    type: 'video',
-                                    url: vUrl + '.video',
-                                    caption: cap
-                                };
-                            } else {
-                                var iUrl = getBestImageUrl(single.image_versions2, single.display_url, single.display_resources);
-                                if (iUrl) {
-                                    storyData = {
-                                        type: 'image',
-                                        url: iUrl,
-                                        caption: cap
-                                    };
-                                }
-                            }
-                        }
-
-                        if (storyData) {
-                            if (username) {
-                                var uLow = String(username).toLowerCase();
-                                map['story_' + uLow] = storyData;
-                                map[uLow] = storyData;
-                                map['story_' + username] = storyData;
-                                map[username] = storyData;
-                            }
-                            if (userId) {
-                                map['story_' + userId] = storyData;
-                                map[String(userId)] = storyData;
-                            }
-                            if (profilePic && typeof profilePic === 'string') {
-                                var mPic = profilePic.replace(/.*?([^\/?#]+\.jpg).*/, '$1');
-                                if (mPic) map[mPic] = storyData;
-                            }
-                        }
-                    }
-                }
-
-                function processMediaObject(node, map) {
-                    if (!node || typeof node !== 'object') return;
-
-                    var cleanId = null;
-                    var rawId = node.pk || node.id;
-                    if (rawId) {
-                        var sId = String(rawId);
-                        if (sId.startsWith('POLARIS_')) {
-                            sId = sId.substring(8);
-                        }
-                        cleanId = sId.split('_')[0];
-                    }
-
-                    var shortcode = node.shortcode || node.code;
-                    if (!shortcode && cleanId && /^\d+$/.test(cleanId)) {
-                        shortcode = shortcodeFromMediaId(cleanId);
-                    }
-
-                    var hasMedia = node.carousel_media || node.edge_sidecar_to_children ||
-                                   node.image_versions2 || node.display_url || node.display_resources ||
-                                   node.video_versions || node.video_url;
-
-                    if (hasMedia && (shortcode || cleanId)) {
-                        var postData = parseMediaNode(node);
-                        if (postData) {
-                            if (shortcode) map[shortcode] = postData;
-                            if (cleanId) map[cleanId] = postData;
-                        }
-                    }
-
-                    if (Array.isArray(node)) {
-                        for (var i = 0; i < node.length; i++) {
-                            processMediaObject(node[i], map);
-                        }
-                    } else {
-                        for (var key in node) {
-                            if (Object.prototype.hasOwnProperty.call(node, key) && node[key] && typeof node[key] === 'object') {
-                                processMediaObject(node[key], map);
-                            }
-                        }
-                    }
-                }
+                ${shortcodeFromMediaId}
+                ${getBestImageUrl}
+                ${getBestVideoUrl}
+                ${parseMediaNode}
+                ${processStoriesTray}
+                ${processMediaObject}
 
                 function notifyMedia() {
                     try {
@@ -615,6 +430,19 @@ hoverZoomPlugins.push({
                     };
                 }
 
+                function fetchIG(url, onFail) {
+                    window.fetch(url, {
+                        headers: {
+                            'X-IG-App-ID': '936619743392459',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    }).then(function (r) { return r.json(); }).then(function (data) {
+                        processIncoming(data);
+                    }).catch(function (err) {
+                        if (typeof onFail === 'function') onFail(err);
+                    });
+                }
+
                 document.addEventListener('hzInstagramFetchRequest', function (e) {
                     try {
                         var req = JSON.parse(e.detail);
@@ -624,34 +452,13 @@ hoverZoomPlugins.push({
                             return;
                         }
                         if (req.mediaId) {
-                            window.fetch('/api/v1/media/' + req.mediaId + '/info/', {
-                                headers: {
-                                    'X-IG-App-ID': '936619743392459',
-                                    'X-Requested-With': 'XMLHttpRequest'
-                                }
-                            }).then(function (r) { return r.json(); }).then(function (data) {
-                                processIncoming(data);
-                            }).catch(function () {
+                            fetchIG('/api/v1/media/' + req.mediaId + '/info/', function () {
                                 if (req.shortcode) {
-                                    window.fetch('/p/' + req.shortcode + '/?__a=1&__d=dis', {
-                                        headers: {
-                                            'X-IG-App-ID': '936619743392459',
-                                            'X-Requested-With': 'XMLHttpRequest'
-                                        }
-                                    }).then(function (r) { return r.json(); }).then(function (data) {
-                                        processIncoming(data);
-                                    }).catch(function () {});
+                                    fetchIG('/p/' + req.shortcode + '/?__a=1&__d=dis');
                                 }
                             });
                         } else if (req.shortcode) {
-                            window.fetch('/p/' + req.shortcode + '/?__a=1&__d=dis', {
-                                headers: {
-                                    'X-IG-App-ID': '936619743392459',
-                                    'X-Requested-With': 'XMLHttpRequest'
-                                }
-                            }).then(function (r) { return r.json(); }).then(function (data) {
-                                processIncoming(data);
-                            }).catch(function () {});
+                            fetchIG('/p/' + req.shortcode + '/?__a=1&__d=dis');
                         }
                     } catch (err) {}
                 });
@@ -659,61 +466,17 @@ hoverZoomPlugins.push({
                 document.addEventListener('hzInstagramStoryRequest', function (e) {
                     try {
                         var req = e.detail ? JSON.parse(e.detail) : {};
-                        if (req.userId) {
-                            window.fetch('/api/v1/feed/reels_media/?reel_ids=' + encodeURIComponent(req.userId), {
-                                headers: {
-                                    'X-IG-App-ID': '936619743392459',
-                                    'X-Requested-With': 'XMLHttpRequest'
-                                }
-                            }).then(function (r) { return r.json(); }).then(function (data) {
-                                processIncoming(data);
-                            }).catch(function () {});
-                        } else {
-                            window.fetch('/api/v1/feed/reels_tray/', {
-                                headers: {
-                                    'X-IG-App-ID': '936619743392459',
-                                    'X-Requested-With': 'XMLHttpRequest'
-                                }
-                            }).then(function (r) { return r.json(); }).then(function (data) {
-                                processIncoming(data);
-                            }).catch(function () {});
-                        }
+                        var url = req.userId ? ('/api/v1/feed/reels_media/?reel_ids=' + encodeURIComponent(req.userId)) : '/api/v1/feed/reels_tray/';
+                        fetchIG(url);
                     } catch (err) {}
                 });
 
                 if (Object.keys(hookMediaMap).length > 0) {
                     notifyMedia();
                 }
-            }.toString()})();`;
+            })();`;
 
             (document.head || document.documentElement).appendChild(hookScript);
-        }
-
-        function applyMediaToElement(el, postData) {
-            if (!postData) return;
-            if (postData.type === 'carousel' && postData.gallery && postData.gallery.length > 0) {
-                el.data().hoverZoomGallerySrc = postData.gallery;
-                el.data().hoverZoomGalleryCaption = postData.captions;
-                var currIdx = el.data().hoverZoomGalleryIndex;
-                if (typeof currIdx !== 'number' || currIdx < 0 || currIdx >= postData.gallery.length) {
-                    currIdx = 0;
-                    el.data().hoverZoomGalleryIndex = 0;
-                }
-                el.data().hoverZoomSrc = postData.gallery[currIdx];
-                el.data().hoverZoomCaption = (postData.captions && postData.captions[currIdx]) ? postData.captions[currIdx] : (postData.caption || '');
-            } else if (postData.type === 'video' && postData.url) {
-                el.data().hoverZoomSrc = [postData.url];
-                el.data().hoverZoomCaption = postData.caption || '';
-                el.data().hoverZoomGallerySrc = undefined;
-                el.data().hoverZoomGalleryIndex = undefined;
-                el.data().hoverZoomGalleryCaption = undefined;
-            } else if (postData.url) {
-                el.data().hoverZoomSrc = [postData.url];
-                el.data().hoverZoomCaption = postData.caption || '';
-                el.data().hoverZoomGallerySrc = undefined;
-                el.data().hoverZoomGalleryIndex = undefined;
-                el.data().hoverZoomGalleryCaption = undefined;
-            }
         }
 
         // Listen for media extracted by page hook
@@ -728,13 +491,10 @@ hoverZoomPlugins.push({
                     if (el.data().hoverZoomMouseOver) {
                         var sc = el.data().hoverZoomShortcode;
                         var user = el.data().hoverZoomStoryUser;
-                        var postData = (sc && (mediaMap[sc] || mediaMap[mediaIdfromShortcode(sc)])) ||
-                                       (user && (mediaMap['story_' + user.toLowerCase()] || mediaMap[user.toLowerCase()] || mediaMap['story_' + user] || mediaMap[user]));
+                        var postData = getPostFromMap(mediaMap, sc) || getStoryFromMap(mediaMap, user);
                         if (postData) {
                             if (sc) {
-                                if (el.data().hoverZoomAppliedShortcode !== sc) {
-                                    el.data().hoverZoomAppliedShortcode = sc;
-                                    applyMediaToElement(el, postData);
+                                if (applyPostMediaIfNew(el, sc, postData)) {
                                     hoverZoom.displayPicFromElement(el);
                                 }
                             } else if (user) {
@@ -769,12 +529,9 @@ hoverZoomPlugins.push({
                 link.data().hoverZoomMouseOver = true;
                 var sc = link.data().hoverZoomShortcode;
                 if (sc) {
-                    var postData = mediaMap[sc] || mediaMap[mediaIdfromShortcode(sc)];
+                    var postData = getPostFromMap(mediaMap, sc);
                     if (postData) {
-                        if (link.data().hoverZoomAppliedShortcode !== sc) {
-                            link.data().hoverZoomAppliedShortcode = sc;
-                            applyMediaToElement(link, postData);
-                        }
+                        applyPostMediaIfNew(link, sc, postData);
                     } else {
                         requestPostData(sc);
                     }
@@ -807,16 +564,10 @@ hoverZoomPlugins.push({
                 bindHover(target, shortcode);
                 bindHover(img, shortcode);
 
-                var postData = (shortcode && (mediaMap[shortcode] || mediaMap[mediaIdfromShortcode(shortcode)]));
+                var postData = getPostFromMap(mediaMap, shortcode);
                 if (postData) {
-                    if (target.data().hoverZoomAppliedShortcode !== shortcode) {
-                        target.data().hoverZoomAppliedShortcode = shortcode;
-                        applyMediaToElement(target, postData);
-                    }
-                    if (img.data().hoverZoomAppliedShortcode !== shortcode) {
-                        img.data().hoverZoomAppliedShortcode = shortcode;
-                        applyMediaToElement(img, postData);
-                    }
+                    applyPostMediaIfNew(target, shortcode, postData);
+                    applyPostMediaIfNew(img, shortcode, postData);
                 } else {
                     // Check for multiple slides in DOM
                     var slides = [];
@@ -829,22 +580,19 @@ hoverZoomPlugins.push({
                         }
                     });
 
-                    if (slides.length > 1) {
-                        target.data().hoverZoomGallerySrc = slides;
-                        target.data().hoverZoomGalleryCaption = captions;
-                        var tIdx = target.data().hoverZoomGalleryIndex;
-                        if (typeof tIdx !== 'number' || tIdx < 0 || tIdx >= slides.length) tIdx = 0;
-                        target.data().hoverZoomGalleryIndex = tIdx;
-                        target.data().hoverZoomSrc = slides[tIdx];
-                        target.data().hoverZoomCaption = captions[tIdx] || '';
+                    function setElementSlides(node) {
+                        node.data().hoverZoomGallerySrc = slides;
+                        node.data().hoverZoomGalleryCaption = captions;
+                        var idx = node.data().hoverZoomGalleryIndex;
+                        if (typeof idx !== 'number' || idx < 0 || idx >= slides.length) idx = 0;
+                        node.data().hoverZoomGalleryIndex = idx;
+                        node.data().hoverZoomSrc = slides[idx];
+                        node.data().hoverZoomCaption = captions[idx] || '';
+                    }
 
-                        img.data().hoverZoomGallerySrc = slides;
-                        img.data().hoverZoomGalleryCaption = captions;
-                        var iIdx = img.data().hoverZoomGalleryIndex;
-                        if (typeof iIdx !== 'number' || iIdx < 0 || iIdx >= slides.length) iIdx = 0;
-                        img.data().hoverZoomGalleryIndex = iIdx;
-                        img.data().hoverZoomSrc = slides[iIdx];
-                        img.data().hoverZoomCaption = captions[iIdx] || '';
+                    if (slides.length > 1) {
+                        setElementSlides(target);
+                        setElementSlides(img);
                     } else {
                         var bestUrl = getBestFromSrcset(img.attr('srcset')) || img.attr('src');
                         if (bestUrl) {
@@ -868,7 +616,7 @@ hoverZoomPlugins.push({
                 if (!url || !/^https?:/.test(url)) return;
                 var vTarget = $(video);
                 bindHover(vTarget, shortcode);
-                var postData = (shortcode && (mediaMap[shortcode] || mediaMap[mediaIdfromShortcode(shortcode)]));
+                var postData = getPostFromMap(mediaMap, shortcode);
                 if (postData && postData.url) {
                     vTarget.data().hoverZoomSrc = [postData.url];
                 } else {
@@ -884,16 +632,12 @@ hoverZoomPlugins.push({
             var m = link.prop('href').match(/\/(p|reel)\/([^/?#]+)/);
             if (!m) return;
             var shortcode = m[2];
-            var mediaId = mediaIdfromShortcode(shortcode);
 
             bindHover(link, shortcode);
 
-            var postData = (shortcode && mediaMap[shortcode]) || (mediaId && mediaMap[mediaId]);
+            var postData = getPostFromMap(mediaMap, shortcode);
             if (postData) {
-                if (link.data().hoverZoomAppliedShortcode !== shortcode) {
-                    link.data().hoverZoomAppliedShortcode = shortcode;
-                    applyMediaToElement(link, postData);
-                }
+                applyPostMediaIfNew(link, shortcode, postData);
             } else {
                 var img = link.find('img[src*="cdninstagram"], img[src*="fbcdn"], img[srcset], img[src]').first();
                 if (!img.length) img = link.find('img').first();
@@ -950,27 +694,15 @@ hoverZoomPlugins.push({
                 target.find('[aria-label]').first().attr('aria-label')
             ];
             for (var i = 0; i < candidates.length; i++) {
-                var label = candidates[i];
-                if (label) {
-                    var m1 = label.match(/^([^'’\n]+)['’]s\s+(?:story|profile picture)/i);
-                    if (m1) return m1[1].trim();
-                    var m2 = label.match(/(?:story by|stories by|story of)\s+([a-zA-Z0-9._]+)/i);
-                    if (m2) return m2[1].trim();
-                    var m3 = label.match(/^([a-zA-Z0-9._]+)['’]s/i);
-                    if (m3) return m3[1].trim();
-                }
+                var u = matchStoryUsername(candidates[i]);
+                if (u) return u;
             }
 
             // 3. img alt
             var img = target.is('img') ? target : target.find('img').first();
             if (img.length) {
-                var alt = img.attr('alt');
-                if (alt) {
-                    var ma1 = alt.match(/^([^'’\n]+)['’]s\s+(?:story|profile picture)/i);
-                    if (ma1) return ma1[1].trim();
-                    var ma2 = alt.match(/^([a-zA-Z0-9._]+)['’]s/i);
-                    if (ma2) return ma2[1].trim();
-                }
+                var u = matchStoryUsername(img.attr('alt'));
+                if (u) return u;
             }
 
             // 4. Look for text in adjacent/child span with valid username format
@@ -990,12 +722,7 @@ hoverZoomPlugins.push({
 
         function getStoryData(target) {
             var username = extractStoryUsername(target);
-            var postData = null;
-            if (username) {
-                var uLow = username.toLowerCase();
-                postData = mediaMap['story_' + uLow] || mediaMap[uLow] ||
-                           mediaMap['story_' + username] || mediaMap[username];
-            }
+            var postData = getStoryFromMap(mediaMap, username);
             if (!postData) {
                 var img = target.is('img') ? target : target.find('img').first();
                 if (img.length && img.attr('src')) {
