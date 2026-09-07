@@ -73,14 +73,19 @@ hoverZoomPlugins.push({
             return displayUrl || null;
         }
 
-        function getBestVideoUrl(videoVersions, videoUrl) {
+        function getBestVideoUrl(videoVersions, videoUrl, dashManifest) {
             if (Array.isArray(videoVersions) && videoVersions.length) {
                 var sorted = videoVersions.slice().sort(function (a, b) {
                     return (b.width * (b.height || b.width)) - (a.width * (a.height || a.width));
                 });
                 return sorted[0].url;
             }
-            return videoUrl || null;
+            if (videoUrl) return videoUrl;
+            if (dashManifest && typeof dashManifest === 'string') {
+                var m = dashManifest.match(/<BaseURL>([^<]+)<\/BaseURL>/i);
+                if (m) return m[1].replace(/&amp;/g, '&');
+            }
+            return null;
         }
 
         function parseMediaNode(node) {
@@ -103,7 +108,7 @@ hoverZoomPlugins.push({
                 var captions = [];
                 for (var i = 0; i < carouselItems.length; i++) {
                     var item = carouselItems[i];
-                    var vUrl = getBestVideoUrl(item.video_versions, item.video_url);
+                    var vUrl = getBestVideoUrl(item.video_versions, item.video_url, item.video_dash_manifest || item.dash_manifest);
                     if (vUrl) {
                         gallery.push([vUrl + '.video']);
                     } else {
@@ -122,7 +127,7 @@ hoverZoomPlugins.push({
                 }
             }
 
-            var videoUrl = getBestVideoUrl(node.video_versions, node.video_url);
+            var videoUrl = getBestVideoUrl(node.video_versions, node.video_url, node.video_dash_manifest || node.dash_manifest);
             if (videoUrl && (node.is_video || node.media_type === 2 || node.video_versions)) {
                 return {
                     type: 'video',
@@ -260,8 +265,19 @@ hoverZoomPlugins.push({
             if (hasMedia && (shortcode || cleanId)) {
                 var postData = parseMediaNode(node);
                 if (postData) {
-                    if (shortcode) map[shortcode] = postData;
-                    if (cleanId) map[cleanId] = postData;
+                    var isKnownVideo = node.is_video || node.media_type === 2;
+                    if (!isKnownVideo || postData.type === 'video') {
+                        if (shortcode) {
+                            if (!map[shortcode] || postData.type === 'video' || postData.type === 'carousel' || map[shortcode].type === 'image') {
+                                map[shortcode] = postData;
+                            }
+                        }
+                        if (cleanId) {
+                            if (!map[cleanId] || postData.type === 'video' || postData.type === 'carousel' || map[cleanId].type === 'image') {
+                                map[cleanId] = postData;
+                            }
+                        }
+                    }
                 }
             }
 
@@ -311,7 +327,10 @@ hoverZoomPlugins.push({
         }
 
         function applyPostMediaIfNew(el, shortcode, postData) {
-            if (shortcode && postData && el.data().hoverZoomAppliedShortcode !== shortcode) {
+            if (!shortcode || !postData) return false;
+            var currUrl = el.data().hoverZoomSrc && el.data().hoverZoomSrc[0];
+            var newUrl = postData.url || (postData.gallery && postData.gallery[0] && postData.gallery[0][0]);
+            if (el.data().hoverZoomAppliedShortcode !== shortcode || currUrl !== newUrl) {
                 el.data().hoverZoomAppliedShortcode = shortcode;
                 applyMediaToElement(el, postData);
                 return true;
@@ -454,11 +473,15 @@ hoverZoomPlugins.push({
                         if (req.mediaId) {
                             fetchIG('/api/v1/media/' + req.mediaId + '/info/', function () {
                                 if (req.shortcode) {
-                                    fetchIG('/p/' + req.shortcode + '/?__a=1&__d=dis');
+                                    fetchIG('/p/' + req.shortcode + '/?__a=1&__d=dis', function () {
+                                        fetchIG('/reel/' + req.shortcode + '/?__a=1&__d=dis');
+                                    });
                                 }
                             });
                         } else if (req.shortcode) {
-                            fetchIG('/p/' + req.shortcode + '/?__a=1&__d=dis');
+                            fetchIG('/p/' + req.shortcode + '/?__a=1&__d=dis', function () {
+                                fetchIG('/reel/' + req.shortcode + '/?__a=1&__d=dis');
+                            });
                         }
                     } catch (err) {}
                 });
@@ -495,13 +518,13 @@ hoverZoomPlugins.push({
                         if (postData) {
                             if (sc) {
                                 if (applyPostMediaIfNew(el, sc, postData)) {
-                                    hoverZoom.displayPicFromElement(el);
+                                    hoverZoom.displayPicFromElement(el, true);
                                 }
                             } else if (user) {
                                 if (el.data().hoverZoomAppliedStoryUser !== user || !el.data().hoverZoomGallerySrc) {
                                     el.data().hoverZoomAppliedStoryUser = user;
                                     applyMediaToElement(el, postData);
-                                    hoverZoom.displayPicFromElement(el);
+                                    hoverZoom.displayPicFromElement(el, true);
                                 }
                             }
                         }
@@ -519,121 +542,187 @@ hoverZoomPlugins.push({
         }
 
         // Helper to bind mouseover / mouseleave on target
-        function bindHover(el, shortcode) {
+        function bindHover(el, shortcode, nativeVideo) {
             if (el.data().hoverZoomBound) return;
             el.data().hoverZoomBound = true;
             if (shortcode) el.data().hoverZoomShortcode = shortcode;
 
-            el.on('mouseover', function () {
+            el.on('mouseenter mouseover', function () {
                 var link = $(this);
+                var wasOver = link.data().hoverZoomMouseOver;
                 link.data().hoverZoomMouseOver = true;
+
+                if (nativeVideo && typeof nativeVideo.pause === 'function') {
+                    clearTimeout(nativeVideo._hzResumeTimeout);
+                    if (!wasOver) {
+                        nativeVideo._hzHoverCount = (nativeVideo._hzHoverCount || 0) + 1;
+                    }
+                    if (!nativeVideo.paused) {
+                        nativeVideo._hzWasPlaying = true;
+                        nativeVideo.pause();
+                    }
+                }
+
                 var sc = link.data().hoverZoomShortcode;
                 if (sc) {
                     var postData = getPostFromMap(mediaMap, sc);
-                    if (postData) {
+                    if (postData && (postData.type === 'video' || (!nativeVideo && postData.url))) {
                         applyPostMediaIfNew(link, sc, postData);
                     } else {
                         requestPostData(sc);
                     }
                 }
             }).on('mouseleave', function () {
-                $(this).data().hoverZoomMouseOver = false;
+                var link = $(this);
+                if (!link.data().hoverZoomMouseOver) return;
+                link.data().hoverZoomMouseOver = false;
+
+                if (nativeVideo && typeof nativeVideo.play === 'function') {
+                    nativeVideo._hzHoverCount = Math.max(0, (nativeVideo._hzHoverCount || 1) - 1);
+                    if (nativeVideo._hzHoverCount === 0 && nativeVideo._hzWasPlaying) {
+                        clearTimeout(nativeVideo._hzResumeTimeout);
+                        nativeVideo._hzResumeTimeout = setTimeout(function () {
+                            if (nativeVideo._hzHoverCount === 0 && nativeVideo._hzWasPlaying) {
+                                nativeVideo._hzWasPlaying = false;
+                                nativeVideo.play().catch(function () {});
+                            }
+                        }, 50);
+                    }
+                }
             });
         }
 
         // 1. Feed posts (<article>)
         $('article').each(function () {
             var article = $(this);
-            var postLink = article.find('a[href*="/p/"], a[href*="/reel/"]').first();
             var shortcode = null;
-            if (postLink.length) {
-                var m = postLink.attr('href').match(/\/(p|reel)\/([^/?#]+)/);
-                if (m) shortcode = m[2];
+            article.find('a[href*="/p/"], a[href*="/reel/"], a[href*="/reels/"]').each(function () {
+                var m = ($(this).attr('href') || '').match(/\/(p|reel|reels)\/([^/?#]+)/);
+                if (m && m[2]) {
+                    shortcode = m[2];
+                    return false;
+                }
+            });
+            if (!shortcode) {
+                var timeLink = article.find('time').closest('a');
+                if (timeLink.length) {
+                    var m = (timeLink.attr('href') || '').match(/\/(p|reel|reels)\/([^/?#]+)/);
+                    if (m && m[2]) shortcode = m[2];
+                }
             }
 
-            // Media in feed: photos or carousel
-            var images = article.find('img[src*="cdninstagram.com"], img[src*="fbcdn.net"], img[srcset]').filter(function () {
-                return $(this).closest('header').length === 0;
-            });
+            var video = article.find('video').first();
+            if (video.length) {
+                var vEl = video[0];
+                var vTarget = video.closest('div[role="button"], div:has(> video), div:has(> div > video)');
+                if (!vTarget.length) vTarget = video.parent();
+                var posterImg = article.find('img[src*="cdninstagram.com"], img[src*="fbcdn.net"], img[srcset]').filter(function () {
+                    return $(this).closest('header').length === 0;
+                }).first();
 
-            images.each(function () {
-                var img = $(this);
-                var target = img.closest('div[role="button"], div:has(> img)');
-                if (!target.length) target = img;
-
-                bindHover(target, shortcode);
-                bindHover(img, shortcode);
+                bindHover(vTarget, shortcode, vEl);
+                bindHover(video, shortcode, vEl);
+                if (posterImg.length) bindHover(posterImg, shortcode, vEl);
 
                 var postData = getPostFromMap(mediaMap, shortcode);
-                if (postData) {
-                    applyPostMediaIfNew(target, shortcode, postData);
-                    applyPostMediaIfNew(img, shortcode, postData);
+                var directVideoUrl = (vEl.currentSrc && /^https?:/.test(vEl.currentSrc) && !/^blob:/.test(vEl.currentSrc)) ? (vEl.currentSrc + '.video') : null;
+
+                if (postData && postData.url && postData.type === 'video') {
+                    applyPostMediaIfNew(vTarget, shortcode, postData);
+                    applyPostMediaIfNew(video, shortcode, postData);
+                    if (posterImg.length) applyPostMediaIfNew(posterImg, shortcode, postData);
+                } else if (directVideoUrl) {
+                    vTarget.data().hoverZoomSrc = [directVideoUrl];
+                    video.data().hoverZoomSrc = [directVideoUrl];
+                    if (posterImg.length) posterImg.data().hoverZoomSrc = [directVideoUrl];
                 } else {
-                    // Check for multiple slides in DOM
-                    var slides = [];
-                    var captions = [];
-                    article.find('ul li img, div[role="presentation"] img').each(function () {
-                        var sBest = getBestFromSrcset($(this).attr('srcset')) || this.src;
-                        if (sBest && !slides.some(function (s) { return s[0] === (sBest + '#hz'); })) {
-                            slides.push([sBest + '#hz']);
-                            captions.push($(this).attr('alt') || '');
-                        }
-                    });
-
-                    function setElementSlides(node) {
-                        node.data().hoverZoomGallerySrc = slides;
-                        node.data().hoverZoomGalleryCaption = captions;
-                        var idx = node.data().hoverZoomGalleryIndex;
-                        if (typeof idx !== 'number' || idx < 0 || idx >= slides.length) idx = 0;
-                        node.data().hoverZoomGalleryIndex = idx;
-                        node.data().hoverZoomSrc = slides[idx];
-                        node.data().hoverZoomCaption = captions[idx] || '';
-                    }
-
-                    if (slides.length > 1) {
-                        setElementSlides(target);
-                        setElementSlides(img);
-                    } else {
-                        var bestUrl = getBestFromSrcset(img.attr('srcset')) || img.attr('src');
+                    if (shortcode) requestPostData(shortcode);
+                    if (posterImg.length) {
+                        var bestUrl = getBestFromSrcset(posterImg.attr('srcset')) || posterImg.attr('src');
                         if (bestUrl) {
-                            var cap = img.attr('alt') || '';
-                            target.data().hoverZoomSrc = [bestUrl + '#hz'];
-                            target.data().hoverZoomCaption = cap;
-                            img.data().hoverZoomSrc = [bestUrl + '#hz'];
-                            img.data().hoverZoomCaption = cap;
+                            var cap = posterImg.attr('alt') || '';
+                            vTarget.data().hoverZoomSrc = [bestUrl + '#hz'];
+                            vTarget.data().hoverZoomCaption = cap;
+                            video.data().hoverZoomSrc = [bestUrl + '#hz'];
+                            video.data().hoverZoomCaption = cap;
+                            posterImg.data().hoverZoomSrc = [bestUrl + '#hz'];
+                            posterImg.data().hoverZoomCaption = cap;
                         }
                     }
                 }
 
-                res.push(target[0]);
-                res.push(img[0]);
-            });
-
-            // Video in feed
-            article.find('video').each(function () {
-                var video = this;
-                var url = video.currentSrc || video.src;
-                if (!url || !/^https?:/.test(url)) return;
-                var vTarget = $(video);
-                bindHover(vTarget, shortcode);
-                var postData = getPostFromMap(mediaMap, shortcode);
-                if (postData && postData.url) {
-                    vTarget.data().hoverZoomSrc = [postData.url];
-                } else {
-                    vTarget.data().hoverZoomSrc = [url + '.video'];
-                }
                 res.push(vTarget[0]);
-            });
+                res.push(video[0]);
+                if (posterImg.length) res.push(posterImg[0]);
+            } else {
+                var images = article.find('img[src*="cdninstagram.com"], img[src*="fbcdn.net"], img[srcset]').filter(function () {
+                    return $(this).closest('header').length === 0;
+                });
+
+                images.each(function () {
+                    var img = $(this);
+                    var target = img.closest('div[role="button"], div:has(> img)');
+                    if (!target.length) target = img;
+
+                    bindHover(target, shortcode);
+                    bindHover(img, shortcode);
+
+                    var postData = getPostFromMap(mediaMap, shortcode);
+                    if (postData) {
+                        applyPostMediaIfNew(target, shortcode, postData);
+                        applyPostMediaIfNew(img, shortcode, postData);
+                    } else {
+                        var slides = [];
+                        var captions = [];
+                        article.find('ul li img, div[role="presentation"] img').each(function () {
+                            var sBest = getBestFromSrcset($(this).attr('srcset')) || this.src;
+                            if (sBest && !slides.some(function (s) { return s[0] === (sBest + '#hz'); })) {
+                                slides.push([sBest + '#hz']);
+                                captions.push($(this).attr('alt') || '');
+                            }
+                        });
+
+                        function setElementSlides(node) {
+                            node.data().hoverZoomGallerySrc = slides;
+                            node.data().hoverZoomGalleryCaption = captions;
+                            var idx = node.data().hoverZoomGalleryIndex;
+                            if (typeof idx !== 'number' || idx < 0 || idx >= slides.length) idx = 0;
+                            node.data().hoverZoomGalleryIndex = idx;
+                            node.data().hoverZoomSrc = slides[idx];
+                            node.data().hoverZoomCaption = captions[idx] || '';
+                        }
+
+                        if (slides.length > 1) {
+                            setElementSlides(target);
+                            setElementSlides(img);
+                        } else {
+                            var bestUrl = getBestFromSrcset(img.attr('srcset')) || img.attr('src');
+                            if (bestUrl) {
+                                var cap = img.attr('alt') || '';
+                                target.data().hoverZoomSrc = [bestUrl + '#hz'];
+                                target.data().hoverZoomCaption = cap;
+                                img.data().hoverZoomSrc = [bestUrl + '#hz'];
+                                img.data().hoverZoomCaption = cap;
+                            }
+                        }
+                    }
+
+                    res.push(target[0]);
+                    res.push(img[0]);
+                });
+            }
         });
 
         // 2. Post links (profile grid, explore, individual post pages)
-        $('a[href*="/p/"], a[href*="/reel/"]').each(function () {
+        $('a[href*="/p/"], a[href*="/reel/"], a[href*="/reels/"]').each(function () {
             var link = $(this);
-            var m = link.prop('href').match(/\/(p|reel)\/([^/?#]+)/);
+            var m = (link.prop('href') || '').match(/\/(p|reel|reels)\/([^/?#]+)/);
             if (!m) return;
             var shortcode = m[2];
 
-            bindHover(link, shortcode);
+            var video = link.find('video').first();
+            var vEl = video.length ? video[0] : null;
+            bindHover(link, shortcode, vEl);
 
             var postData = getPostFromMap(mediaMap, shortcode);
             if (postData) {
@@ -641,7 +730,6 @@ hoverZoomPlugins.push({
             } else {
                 var img = link.find('img[src*="cdninstagram"], img[src*="fbcdn"], img[srcset], img[src]').first();
                 if (!img.length) img = link.find('img').first();
-                var video = link.find('video').first();
                 if (img.length) {
                     var bestUrl = getBestFromSrcset(img.attr('srcset')) || img.attr('src');
                     if (bestUrl) {
@@ -650,7 +738,7 @@ hoverZoomPlugins.push({
                     }
                 } else if (video.length) {
                     var vUrl = video.prop('currentSrc') || video.prop('src') || video.attr('src');
-                    if (vUrl) {
+                    if (vUrl && !/^blob:/.test(vUrl)) {
                         link.data().hoverZoomSrc = [vUrl + '.video'];
                     }
                 }
