@@ -728,10 +728,6 @@
             ]
         },
         {
-            "js": ["plugins/twitpic.js"],
-            "matches": ["*://*.twitter.com/*"]
-        },
-        {
             "js": ["plugins/gifbin.js"],
             "matches": ["*://gifbin.com/*"]
         },
@@ -930,14 +926,6 @@
         {
             "js": ["plugins/digart.js"],
             "matches": ["*://*.digart.pl/*"]
-        },
-        {
-            "js": ["plugins/twimg.js"],
-            "matches": [
-                "*://*.favstar.fm/*",
-                "*://*.tweetmeme.com/*",
-                "*://*.twitter.com/*"
-            ]
         },
         {
             "js": ["plugins/cyworld.js"],
@@ -1188,10 +1176,6 @@
         {
             "js": ["plugins/8tracks.js"],
             "matches": ["*://*.8tracks.com/*"]
-        },
-        {
-            "js": ["plugins/yfrog.js"],
-            "matches": ["*://*.twitter.com/*"]
         },
         {
             "js": ["plugins/gameblog.js"],
