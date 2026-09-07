@@ -976,7 +976,7 @@ var hoverZoom = {
         function closeHoverZoomViewer(now) {
             cLog('closeHoverZoomImg(' + now + ')');
             if (hz.hzLoader) { hz.hzLoader.remove(); hz.hzLoader = null; }
-            if ((!now && !imgFullSize) || !hz.hzViewer || fullZoomKeyDown || viewerLocked) {
+            if ((!now && !imgFullSize) || !hz.hzViewer || fullZoomKeyDown || (!now && viewerLocked)) {
                 return;
             }
 
@@ -989,7 +989,7 @@ var hoverZoom = {
             if (loading) {
                 now = true;
             }
-            hz.hzViewer.stop(true, true).fadeOut(now ? 0 : options.fadeDuration, function () {
+            function cleanupViewerState() {
                 stopMedias();
                 hzCaptionMiscellaneous = null;
                 hzDetails = null;
@@ -1004,7 +1004,15 @@ var hoverZoom = {
                     audioControls = null;
                     viewerLocked = false;
                 }
-            });
+                srcDetails.url = null;
+            }
+
+            if (now) {
+                hz.hzViewer.stop(true, true).hide();
+                cleanupViewerState();
+                return;
+            }
+            hz.hzViewer.stop(true, true).fadeOut(options.fadeDuration, cleanupViewerState);
         }
 
         function normalizeSrc(hoverZoomSrcIndex, links, dataKey) {
@@ -1093,9 +1101,9 @@ var hoverZoom = {
 
                     const src = hoverZoom.getFullUrl(links.data().hoverZoomSrc[hoverZoomSrcIndex]);
                     // Happens when the mouse goes from an image to another without hovering the page background
-                    if (srcDetails.url && src !== srcDetails.url) {
+                    if (hz.currentLink && !links.is(hz.currentLink) && !hz.currentLink.has(links[0]).length && !links.has(hz.currentLink[0]).length && srcDetails.url && src !== srcDetails.url) {
                         cLog(`hiding because ${src} !== ${srcDetails.url}`);
-                        closeHoverZoomViewer();
+                        closeHoverZoomViewer(true);
                     }
 
                     removeTitles(target);
@@ -4174,8 +4182,8 @@ var hoverZoom = {
                 loading = false;
                 posViewer();
 
-                data = hz.currentLink.data();
-                if (data.hoverZoomGallerySrc.length > 0) {
+                var data = hz.currentLink ? hz.currentLink.data() : null;
+                if (data && data.hoverZoomGallerySrc && data.hoverZoomGallerySrc.length > 0) {
                     hzGallery.text((data.hoverZoomGalleryIndex + 1) + '/' + data.hoverZoomGallerySrc.length);
                 }
 
