@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'Instagram',
-    version: '0.9',
+    version: '0.10',
     favicon: 'instagram.svg',
     prepareImgLinks: function (callback) {
         const pluginName = this.name;
@@ -42,6 +42,456 @@ hoverZoomPlugins.push({
             if (!url || typeof url !== 'string') return url;
             if (url.endsWith('#hz') || url.endsWith('.video')) return url;
             return url + '#hz';
+        }
+
+        const reservedUsernames = ['p', 'reel', 'reels', 'tv', 'stories', 'explore', 'direct', 'accounts',
+                                   'about', 'legal', 'api', 'oauth', 'graphql', 'web', 'challenge',
+                                   'emojis', 'locations', 'nametag', 'topics', 'your_activity'];
+
+        function usernameFromHref(href) {
+            if (!href) return null;
+            var m = String(href).match(/^https?:\/\/(?:www\.)?instagram\.com\/([^/?#]+)/i);
+            if (!m) return null;
+            var username = decodeURIComponent(m[1]);
+            if (!/^[a-zA-Z0-9._]{1,30}$/.test(username)) return null;
+            if (reservedUsernames.indexOf(username.toLowerCase()) !== -1) return null;
+            return username;
+        }
+
+        // Avatars, posts and stories are queried through the extension background page: those
+        // requests carry the X-IG-App-ID header, use the browser session and are not restricted
+        // by the page's CSP/CORS rules (the approach the 0.7 plugin used for profile pages).
+        function igRequestHeaders() {
+            var headers = [{header: 'X-IG-App-ID', value: '936619743392459'}];
+            // Instagram's web API requires the CSRF token that its own scripts send
+            var csrf = typeof hoverZoom.getCookie === 'function' ? hoverZoom.getCookie('csrftoken') : null;
+            if (csrf) {
+                headers.push({header: 'X-CSRFToken', value: csrf});
+            }
+            return headers;
+        }
+
+        var usersCache = {};
+        try {
+            var storedUsers = sessionStorage.getItem('hzInstagramUsers');
+            if (storedUsers) usersCache = JSON.parse(storedUsers);
+        } catch (e) {}
+
+        var userRequests = {};
+        var userFailures = {};
+        var postRequests = {};
+        var storyRequests = {};
+
+        function saveUsersCache() {
+            try {
+                sessionStorage.setItem('hzInstagramUsers', JSON.stringify(usersCache));
+            } catch (e) {
+                // sessionStorage is full: keep only the most recently requested users
+                var keys = Object.keys(usersCache);
+                var keep = {};
+                for (var i = Math.max(0, keys.length - 50); i < keys.length; i++) {
+                    keep[keys[i]] = usersCache[keys[i]];
+                }
+                usersCache = keep;
+                try { sessionStorage.setItem('hzInstagramUsers', JSON.stringify(usersCache)); } catch (e2) {}
+            }
+        }
+
+        var igRequestTimeout = 3000;
+
+        // a request that never answers (asleep service worker, blocked request) must not stop the
+        // caller from trying the next route
+        function igSendMessage(url, onResponse) {
+            var done = false;
+            var timer = setTimeout(function () {
+                if (done) return;
+                done = true;
+                igLog('instagram: no answer for ' + url);
+                onResponse(null);
+            }, igRequestTimeout);
+
+            var finish = function (response) {
+                if (done) return;
+                done = true;
+                clearTimeout(timer);
+                onResponse(typeof response === 'string' ? response : null);
+            };
+
+            try {
+                // credentials: the instagram API answers with the user's session only
+                chrome.runtime.sendMessage({action: 'ajaxGet', url: url, headers: igRequestHeaders(), credentials: 'include'}, finish);
+            } catch (e) {
+                igLog('instagram: request failed for ' + url + ' (' + e + ')');
+                finish(null);
+            }
+        }
+
+        function igGet(url, onData) {
+            igSendMessage(url, function (text) {
+                var data = null;
+                if (text) {
+                    try {
+                        data = JSON.parse(text);
+                    } catch (e) {}
+                }
+                if (!data) igLog('instagram: no JSON from ' + url);
+                onData(data);
+            });
+        }
+
+        function igGetText(url, onText) {
+            igSendMessage(url, onText);
+        }
+
+        function requestUserProfile(username, onProfile) {
+            if (!username) return;
+            if (usersCache[username]) {
+                if (onProfile) onProfile(usersCache[username]);
+                return;
+            }
+            if (userRequests[username]) {
+                if (onProfile) userRequests[username].push(onProfile);
+                return;
+            }
+            // the page bridge fetches with the page's own session: a fresh chance even while the extension
+            // request is rate limited (instagram answers 429 to the extension origin)
+            document.dispatchEvent(new CustomEvent('hzInstagramProfileRequest', {
+                detail: JSON.stringify({username: username})
+            }));
+            if (userFailures[username] && Date.now() - userFailures[username] < 60000) return;
+
+            userRequests[username] = onProfile ? [onProfile] : [];
+            igGet('https://www.instagram.com/api/v1/users/web_profile_info/?username=' + encodeURIComponent(username), function (data) {
+                var callbacks = userRequests[username] || [];
+                delete userRequests[username];
+                var apiUser = data && data.data && data.data.user;
+                if (apiUser) {
+                    usersCache[username] = {
+                        id: apiUser.id || apiUser.pk,
+                        full_name: apiUser.full_name || '',
+                        profile_pic_url: apiUser.profile_pic_url_hd || apiUser.profile_pic_url || ''
+                    };
+                    saveUsersCache();
+                } else {
+                    userFailures[username] = Date.now();
+                }
+                for (var i = 0; i < callbacks.length; i++) {
+                    callbacks[i](usersCache[username] || null);
+                }
+            });
+        }
+
+        function requestPostData(shortcode) {
+            if (!shortcode) return;
+            var state = postRequests[shortcode];
+            if (state === true || (typeof state === 'number' && Date.now() - state < 60000)) return;
+            var mediaId = mediaIdfromShortcode(shortcode);
+            if (!mediaId) return;
+            postRequests[shortcode] = true;
+
+            // the page bridge fetches with the page's own session, the extension request runs in parallel
+            document.dispatchEvent(new CustomEvent('hzInstagramFetchRequest', {
+                detail: JSON.stringify({shortcode: shortcode, mediaId: mediaId})
+            }));
+            igGet('https://www.instagram.com/api/v1/media/' + mediaId + '/info/', function (data) {
+                var fetched = {};
+                if (data) processMediaObject(data, fetched);
+                if (fetched[shortcode] || fetched[mediaId]) {
+                    delete postRequests[shortcode];
+                    mergeMediaData(fetched);
+                } else {
+                    postRequests[shortcode] = Date.now();
+                }
+            });
+        }
+
+        // debug output, only shown when the extension's debug option is enabled
+        function igLog(message) {
+            if (typeof hoverZoom.cLog === 'function') {
+                hoverZoom.cLog(message);
+            }
+        }
+
+        // numeric user id known from the page payloads / the profile API
+        function storyUserId(username) {
+            if (!username) return null;
+            if (usersCache[username] && usersCache[username].id) return usersCache[username].id;
+            return mediaMap['uid_' + String(username).toLowerCase()] || null;
+        }
+
+        function applyStoryMap(fetched) {
+            if (!fetched || Object.keys(fetched).length === 0) return false;
+            mergeMediaData(fetched);
+            return true;
+        }
+
+        // reels_media responses key user stories by user name and highlights by 'highlight:<id>'
+        function applyStoryResponse(data, wantedKey) {
+            if (!data || !Array.isArray(data.reels_media) || data.reels_media.length === 0) return false;
+            var fetched = {};
+            processStoriesTray(data, fetched);
+            if (wantedKey && !fetched[wantedKey]) {
+                for (var k in fetched) {
+                    if (/^(story_|highlight:)/.test(k)) {
+                        fetched[wantedKey] = fetched[k];
+                        break;
+                    }
+                }
+            }
+            return applyStoryMap(fetched);
+        }
+
+        // Instagram embeds the payload of every page it serves as JSON script blocks; a page fetched
+        // by the extension is mined the same way (last resort when the API does not answer)
+        function applyStoryFromHtml(html, wantedKey) {
+            if (!html || typeof html !== 'string') return false;
+            var fetched = {};
+            var re = /<script[^>]*type="application\/json"[^>]*>([\s\S]*?)<\/script>/gi;
+            var m;
+            while ((m = re.exec(html))) {
+                try {
+                    var j = JSON.parse(m[1]);
+                    processStoriesTray(j, fetched);
+                    processMediaObject(j, fetched);
+                    processHighlightsTray(j, fetched);
+                } catch (e) {}
+            }
+            if (wantedKey && !fetched[wantedKey]) {
+                for (var k in fetched) {
+                    if (/^(story_|highlight:)/.test(k)) {
+                        fetched[wantedKey] = fetched[k];
+                        break;
+                    }
+                }
+            }
+            return applyStoryMap(fetched);
+        }
+
+        function requestStoryData(username, userId, onUnavailable) {
+            if (!username) return;
+            var key = 'user:' + String(username).toLowerCase();
+            if (storyRequests[key]) {
+                // several elements can share the same story: every one of them has to learn about it
+                if (typeof onUnavailable === 'function') storyRequests[key].push(onUnavailable);
+                return;
+            }
+            storyRequests[key] = typeof onUnavailable === 'function' ? [onUnavailable] : [];
+
+            var finish = function (ok) {
+                var waiters = storyRequests[key] || [];
+                delete storyRequests[key];
+                if (!ok) {
+                    for (var i = 0; i < waiters.length; i++) {
+                        waiters[i]();
+                    }
+                }
+            };
+
+            // the page world fetches with the page's own session as first party; its results arrive
+            // with hzInstagramPayload
+            var askPage = function (id) {
+                igLog('instagram: asking the page for the story of ' + username + (id ? ' (id ' + id + ')' : ''));
+                document.dispatchEvent(new CustomEvent('hzInstagramStoryRequest', {
+                    detail: JSON.stringify({username: username, userId: id || userId})
+                }));
+            };
+
+            var tryPage = function (id) {
+                askPage(id);
+                igGetText('https://www.instagram.com/stories/' + encodeURIComponent(username) + '/', function (html) {
+                    finish(applyStoryFromHtml(html, 'story_' + String(username).toLowerCase()));
+                });
+            };
+
+            var tryApi = function (id) {
+                igLog('instagram: story of ' + username + ' via reels_media (id ' + id + ')');
+                // both routes are started at once: whichever answers first wins
+                askPage(id);
+                igGet('https://www.instagram.com/api/v1/feed/reels_media/?reel_ids=' + encodeURIComponent(id), function (data) {
+                    if (applyStoryResponse(data)) {
+                        finish(true);
+                        return;
+                    }
+                    igLog('instagram: story of ' + username + ' via reels_media failed, trying the story page');
+                    tryPage(id);
+                });
+            };
+
+            var id = userId || storyUserId(username);
+            if (id) {
+                tryApi(id);
+                return;
+            }
+            requestUserProfile(username, function (user) {
+                if (user && user.id) {
+                    tryApi(user.id);
+                } else {
+                    tryPage(null);
+                }
+            });
+        }
+
+        var highlightsTrayRequests = {};
+
+        // the highlights of a profile are listed by the tray endpoint; covers found there are
+        // matched to the images of the page
+        function requestHighlightsTray(username, onDone) {
+            if (!username) return;
+            var key = String(username).toLowerCase();
+            if (highlightsTrayRequests[key]) return;
+            highlightsTrayRequests[key] = true;
+
+            var fetchTray = function (uid) {
+                igLog('instagram: highlights tray of ' + username + ' (' + uid + ')');
+                // the page world fetches with the page's own session as first party
+                document.dispatchEvent(new CustomEvent('hzInstagramHighlightRequest', {
+                    detail: JSON.stringify({userId: uid})
+                }));
+                igGet('https://www.instagram.com/api/v1/highlights/' + encodeURIComponent(uid) + '/highlights_tray/', function (data) {
+                    var fetched = {};
+                    if (data) processHighlightsTray(data, fetched);
+                    var found = Object.keys(fetched).length > 0;
+                    igLog('instagram: highlights tray of ' + username + (found ? ' resolved' : ' empty'));
+                    if (found) {
+                        mergeMediaData(fetched);
+                        if (typeof onDone === 'function') onDone();
+                    }
+                });
+            };
+
+            var id = storyUserId(username);
+            if (id) {
+                fetchTray(id);
+                return;
+            }
+            requestUserProfile(username, function (user) {
+                if (user && user.id) fetchTray(user.id);
+            });
+        }
+
+        function requestHighlightData(highlightId, onUnavailable) {
+            if (!highlightId) return;
+            var key = 'highlight:' + highlightId;
+            if (storyRequests[key]) {
+                if (typeof onUnavailable === 'function') storyRequests[key].push(onUnavailable);
+                return;
+            }
+            storyRequests[key] = typeof onUnavailable === 'function' ? [onUnavailable] : [];
+
+            var finish = function (ok) {
+                var waiters = storyRequests[key] || [];
+                delete storyRequests[key];
+                if (!ok) {
+                    for (var i = 0; i < waiters.length; i++) {
+                        waiters[i]();
+                    }
+                }
+            };
+
+            document.dispatchEvent(new CustomEvent('hzInstagramHighlightRequest', {
+                detail: JSON.stringify({highlightId: highlightId})
+            }));
+            igGet('https://www.instagram.com/api/v1/feed/reels_media/?reel_ids=highlight:' + encodeURIComponent(highlightId), function (data) {
+                if (applyStoryResponse(data, key)) {
+                    finish(true);
+                    return;
+                }
+                igGetText('https://www.instagram.com/stories/highlights/' + encodeURIComponent(highlightId) + '/', function (html) {
+                    finish(applyStoryFromHtml(html, key));
+                });
+            });
+        }
+
+        // applies freshly fetched media to the elements it was requested for
+        // (displayPicFromElement only displays it if the cursor is still over the element)
+        function refreshMediaElements() {
+            $('.hoverZoomLink').each(function () {
+                var el = $(this);
+                var sc = el.data().hoverZoomShortcode;
+                var storyKey = el.data().hoverZoomStoryKey;
+                var postData = getPostFromMap(mediaMap, sc) || (storyKey ? getStoryFromMap(mediaMap, storyKey) : null);
+                if (!postData) return;
+
+                var applied = false;
+                if (sc) {
+                    applied = applyPostMediaIfNew(el, sc, postData);
+                } else if (storyKey) {
+                    var currUrl = el.data().hoverZoomSrc && el.data().hoverZoomSrc[0];
+                    var newUrl = postData.url ? ensureHzUrl(postData.url) : (postData.gallery && postData.gallery[0] && ensureHzUrl(postData.gallery[0][0]));
+                    if (el.data().hoverZoomAppliedStoryKey !== storyKey || currUrl !== newUrl) {
+                        el.data().hoverZoomAppliedStoryKey = storyKey;
+                        applyMediaToElement(el, postData);
+                        applied = true;
+                    }
+                }
+
+                if (applied) {
+                    hoverZoom.displayPicFromElement(el);
+                }
+            });
+        }
+
+        // payloads captured or fetched by the page bridge
+        function processPayload(payload) {
+            if (!payload || !payload.data) return;
+            processUserPayload(payload.data);
+            var fetched = {};
+            processStoriesTray(payload.data, fetched);
+            processMediaObject(payload.data, fetched);
+            processHighlightsTray(payload.data, fetched);
+            var keys = Object.keys(fetched);
+            if (keys.length === 0) return;
+            igLog('instagram: page bridge delivered ' + keys.length + ' entries (' + String(payload.url).slice(0, 90) + ')');
+            mergeMediaData(fetched);
+        }
+
+        function mergeMediaData(incoming) {
+            if (!incoming) return;
+            Object.assign(mediaMap, incoming);
+            // highlight covers can only be told apart once their reel ids are known
+            var incomingKeys = Object.keys(incoming);
+            for (var k = 0; k < incomingKeys.length; k++) {
+                if (/^(hlid_|story_|uid_)/.test(incomingKeys[k])) {
+                    prepareStoryTargets();
+                    break;
+                }
+            }
+            try {
+                var storedKeys = Object.keys(mediaMap);
+                if (storedKeys.length > 300) {
+                    for (var i = 0; i < storedKeys.length - 300; i++) {
+                        delete mediaMap[storedKeys[i]];
+                    }
+                }
+                sessionStorage.setItem('hzInstagramMedia', JSON.stringify(mediaMap));
+            } catch (e) {}
+            refreshMediaElements();
+        }
+
+        // a profile API payload delivered by the page bridge
+        function processUserPayload(data) {
+            var apiUser = data && data.data && data.data.user;
+            if (!apiUser || !apiUser.username) return;
+            igLog('instagram: profile of ' + apiUser.username + ' via the page bridge');
+            usersCache[apiUser.username] = {
+                id: apiUser.id || apiUser.pk,
+                full_name: apiUser.full_name || '',
+                profile_pic_url: apiUser.profile_pic_url_hd || apiUser.profile_pic_url || ''
+            };
+            saveUsersCache();
+            var callbacks = userRequests[apiUser.username];
+            if (callbacks) {
+                delete userRequests[apiUser.username];
+                for (var i = 0; i < callbacks.length; i++) {
+                    callbacks[i](usersCache[apiUser.username]);
+                }
+            }
+            $('.hoverZoomLink').each(function () {
+                var el = $(this);
+                if (el.data().hoverZoomProfileUser === apiUser.username) {
+                    applyProfilePicture(el, usersCache[apiUser.username]);
+                }
+            });
         }
 
         function getBestFromSrcset(srcset) {
@@ -102,6 +552,8 @@ hoverZoomPlugins.push({
                 caption = node.edge_media_to_caption.edges[0].node.text || '';
             } else if (node.accessibility_caption) {
                 caption = node.accessibility_caption;
+            } else if (node.user && node.user.full_name) {
+                caption = node.user.full_name;
             }
 
             var carouselItems = node.carousel_media;
@@ -179,6 +631,10 @@ hoverZoomPlugins.push({
                 var username = user && (user.username || user.pk);
                 var userId = user && (user.pk || user.id);
                 var profilePic = user && (user.profile_pic_url || user.profile_picture);
+                // highlights (reel_ids=highlight:<id>) are keyed by their own id so that several
+                // highlight reels of the same user do not overwrite each other
+                var reelId = reel.id ? String(reel.id) : '';
+                var isHighlight = /^highlight:/.test(reelId) || reel.reel_type === 'highlight';
 
                 var storyData = null;
                 if (items.length > 1) {
@@ -227,16 +683,20 @@ hoverZoomPlugins.push({
                 }
 
                 if (storyData) {
-                    if (username) {
-                        var uLow = String(username).toLowerCase();
-                        map['story_' + uLow] = storyData;
-                        map[uLow] = storyData;
-                        map['story_' + username] = storyData;
-                        map[username] = storyData;
-                    }
-                    if (userId) {
-                        map['story_' + userId] = storyData;
-                        map[String(userId)] = storyData;
+                    if (isHighlight && reelId) {
+                        map[reelId] = storyData;
+                    } else if (username || userId) {
+                        if (username) {
+                            var uLow = String(username).toLowerCase();
+                            map['story_' + uLow] = storyData;
+                            map[uLow] = storyData;
+                            map['story_' + username] = storyData;
+                            map[username] = storyData;
+                        }
+                        if (userId) {
+                            map['story_' + userId] = storyData;
+                            map[String(userId)] = storyData;
+                        }
                     }
                     if (profilePic && typeof profilePic === 'string') {
                         var mPic = profilePic.replace(/.*?([^\/?#]+\.jpg).*/, '$1');
@@ -244,6 +704,45 @@ hoverZoomPlugins.push({
                     }
                 }
             }
+        }
+
+        // the file name identifies a media across the different size variants of its CDN url
+        function coverFileKey(url) {
+            if (!url || typeof url !== 'string') return null;
+            var m = url.match(/([^\/?#]+\.jpg)/);
+            return m ? m[1] : null;
+        }
+
+        // A highlight tray lists every highlight group with its cover: map the cover file names to
+        // the highlight ids. That is what allows a highlight cover to be zoomed no matter how the
+        // profile page links (or does not link) it.
+        function processHighlightsTray(data, map) {
+            if (!data || typeof data !== 'object') return;
+            var tray = data.tray || (data.data && data.data.tray);
+            if (!Array.isArray(tray)) return;
+            for (var i = 0; i < tray.length; i++) {
+                var item = tray[i];
+                if (!item || typeof item !== 'object' || !item.id) continue;
+                var cover = item.cover_media || item.cover || {};
+                var versions = cover.image_versions2 || item.image_versions2;
+                var coverUrl = (versions && versions.candidates && versions.candidates.length && versions.candidates[0].url) ||
+                               cover.thumbnail_src || item.thumbnail_src || '';
+                var fileKey = coverFileKey(coverUrl);
+                if (fileKey) map['hlid_' + fileKey] = String(item.id);
+            }
+        }
+
+        // keeps the most complete variant of a post: album > video > image
+        function storePost(map, key, postData) {
+            if (!key || !postData) return;
+            var existing = map[key];
+            if (existing &&
+                !(postData.type === 'carousel' && existing.type !== 'carousel') &&
+                !(postData.type === 'video' && existing.type === 'image') &&
+                !(postData.type === 'image' && existing.type === 'image')) {
+                return;
+            }
+            map[key] = postData;
         }
 
         function processMediaObject(node, map) {
@@ -264,6 +763,15 @@ hoverZoomPlugins.push({
                 shortcode = shortcodeFromMediaId(cleanId);
             }
 
+            // remember user name -> numeric id pairs so that stories can be queried without
+            // asking the profile API for the id first
+            if (typeof node.username === 'string' && /^[a-zA-Z0-9._]{1,30}$/.test(node.username)) {
+                var rawUserId = node.pk || node.id || node.user_id || node.owner_id;
+                if (rawUserId !== undefined && rawUserId !== null && /^\d+$/.test(String(rawUserId))) {
+                    map['uid_' + node.username.toLowerCase()] = String(rawUserId);
+                }
+            }
+
             var hasMedia = node.carousel_media || node.edge_sidecar_to_children ||
                            node.image_versions2 || node.display_url || node.display_resources ||
                            node.video_versions || node.video_url;
@@ -271,19 +779,8 @@ hoverZoomPlugins.push({
             if (hasMedia && (shortcode || cleanId)) {
                 var postData = parseMediaNode(node);
                 if (postData) {
-                    var isKnownVideo = node.is_video || node.media_type === 2;
-                    if (!isKnownVideo || postData.type === 'video') {
-                        if (shortcode) {
-                            if (!map[shortcode] || postData.type === 'video' || postData.type === 'carousel' || map[shortcode].type === 'image') {
-                                map[shortcode] = postData;
-                            }
-                        }
-                        if (cleanId) {
-                            if (!map[cleanId] || postData.type === 'video' || postData.type === 'carousel' || map[cleanId].type === 'image') {
-                                map[cleanId] = postData;
-                            }
-                        }
-                    }
+                    storePost(map, shortcode, postData);
+                    storePost(map, cleanId, postData);
                 }
             }
 
@@ -311,8 +808,78 @@ hoverZoomPlugins.push({
             return map['story_' + uLow] || map[uLow] || map['story_' + username] || map[username] || null;
         }
 
+        // Media is fetched asynchronously. hoverZoom loads a source only once, so a placeholder
+        // (thumbnail or video poster) displayed before the request resolves would never be replaced
+        // by the fetched media. Therefore the placeholder is hidden while a request is in flight
+        // (the 0.7 plugin cleared the source for the same reason) and is restored if nothing is
+        // fetched. displayPicFromElement() only opens the viewer if the cursor is still over the link.
+        var placeholderRestoreDelay = 2000;
+
+        // hides the media hoverZoom is currently showing; it swallows mouse moves as long as it has
+        // a source, so it would neither drop the source hiding behind this link nor display the
+        // fetched media afterwards
+        function closeDisplayedMedia() {
+            if (!hoverZoom.currentLink) return;
+            hoverZoom.currentLink = $();
+            $(document).mousemove();
+        }
+
+        function awaitFetchedMedia(el) {
+            if (el.data().hoverZoomFetchPending) return;
+            el.data().hoverZoomFetchPending = true;
+            el.data().hoverZoomPlaceholderSrc = el.data().hoverZoomSrc;
+            el.data().hoverZoomPlaceholderCaption = el.data().hoverZoomCaption;
+            el.data().hoverZoomSrc = undefined;
+            el.data().hoverZoomGallerySrc = undefined;
+            closeDisplayedMedia();
+
+            clearTimeout(el.data().hoverZoomPlaceholderTimer);
+            el.data().hoverZoomPlaceholderTimer = setTimeout(function () {
+                restorePlaceholder(el);
+            }, placeholderRestoreDelay);
+        }
+
+        // shows the placeholder again when the fetched media did not materialize
+        function restorePlaceholder(el) {
+            if (!el.data().hoverZoomFetchPending) return;
+            var src = el.data().hoverZoomPlaceholderSrc;
+            var caption = el.data().hoverZoomPlaceholderCaption;
+            clearFetchedMedia(el);
+            if (!src || !src.length) return;
+            el.data().hoverZoomSrc = src;
+            if (caption) el.data().hoverZoomCaption = caption;
+            hoverZoom.displayPicFromElement(el);
+        }
+
+        function clearFetchedMedia(el) {
+            clearTimeout(el.data().hoverZoomPlaceholderTimer);
+            el.data().hoverZoomFetchPending = false;
+        }
+
+        // places the placeholder media (thumbnail / poster) unless fetched media is on its way
+        function setPlaceholderMedia(el, src, caption) {
+            if (el.data().hoverZoomFetchPending) return;
+            el.data().hoverZoomSrc = src;
+            if (caption !== undefined) el.data().hoverZoomCaption = caption;
+            el.data().hoverZoomGallerySrc = undefined;
+            el.data().hoverZoomGalleryIndex = undefined;
+            el.data().hoverZoomGalleryCaption = undefined;
+        }
+
+        function setPlaceholderGallery(el, gallery, captions) {
+            if (el.data().hoverZoomFetchPending) return;
+            el.data().hoverZoomGallerySrc = gallery;
+            el.data().hoverZoomGalleryCaption = captions;
+            var idx = el.data().hoverZoomGalleryIndex;
+            if (typeof idx !== 'number' || idx < 0 || idx >= gallery.length) idx = 0;
+            el.data().hoverZoomGalleryIndex = idx;
+            el.data().hoverZoomSrc = gallery[idx];
+            el.data().hoverZoomCaption = captions[idx] || '';
+        }
+
         function applyMediaToElement(el, postData) {
             if (!postData) return;
+            clearFetchedMedia(el);
             if (postData.type === 'carousel' && postData.gallery && postData.gallery.length > 0) {
                 var ensuredGallery = postData.gallery.map(function (slide) {
                     return slide.map(ensureHzUrl);
@@ -371,189 +938,41 @@ hoverZoomPlugins.push({
             if (stored) mediaMap = JSON.parse(stored);
         } catch (e) {}
 
+        // user owning the current profile page (if any)
+        var pageUsername = usernameFromHref(document.location.href);
+
         // Scan any SSR JSON scripts already present in the document
         $('script[type="application/json"]').each(function () {
             try {
                 var j = JSON.parse(this.textContent);
                 processStoriesTray(j, mediaMap);
                 processMediaObject(j, mediaMap);
+                processHighlightsTray(j, mediaMap);
             } catch (e) {}
         });
 
-        // Inject page-world hook for fetch and XMLHttpRequest to capture API responses
-        if ($('script.hoverZoomHookIG').length === 0) {
+        // Inject the page-world bridge (a web accessible resource: inline scripts are blocked by
+        // the instagram.com CSP). It captures the API payloads of the page and replays the
+        // requests dispatched by this plugin, both with the page's own session.
+        if (!window.__hzInstagramBridgeInjected && typeof chrome.runtime.getURL === 'function') {
+            window.__hzInstagramBridgeInjected = true;
             var hookScript = document.createElement('script');
-            hookScript.type = 'text/javascript';
             hookScript.className = 'hoverZoomHookIG';
-
-            var nonceEl = document.querySelector('script[nonce]');
-            var nonce = nonceEl ? (nonceEl.nonce || nonceEl.getAttribute('nonce')) : '';
-            if (nonce) {
-                hookScript.setAttribute('nonce', nonce);
-                hookScript.nonce = nonce;
-            }
-
-            hookScript.text = `(function () {
-                if (window.__hzInstagramHooked) return;
-                window.__hzInstagramHooked = true;
-
-                var hookMediaMap = {};
-                try {
-                    var st = sessionStorage.getItem('hzInstagramMedia');
-                    if (st) hookMediaMap = JSON.parse(st);
-                } catch (e) {}
-
-                const ig_alphabet = '${ig_alphabet}';
-
-                ${ensureHzUrl}
-                ${shortcodeFromMediaId}
-                ${getBestImageUrl}
-                ${getBestVideoUrl}
-                ${parseMediaNode}
-                ${processStoriesTray}
-                ${processMediaObject}
-
-                function notifyMedia() {
-                    try {
-                        var keys = Object.keys(hookMediaMap);
-                        if (keys.length > 300) {
-                            for (var i = 0; i < keys.length - 300; i++) {
-                                delete hookMediaMap[keys[i]];
-                            }
-                        }
-                        document.dispatchEvent(new CustomEvent('hzInstagramMediaData', {
-                            detail: JSON.stringify(hookMediaMap)
-                        }));
-                        sessionStorage.setItem('hzInstagramMedia', JSON.stringify(hookMediaMap));
-                    } catch (e) {}
-                }
-
-                function processIncoming(data) {
-                    if (!data || typeof data !== 'object') return;
-                    var beforeCount = Object.keys(hookMediaMap).length;
-                    processStoriesTray(data, hookMediaMap);
-                    processMediaObject(data, hookMediaMap);
-                    if (Object.keys(hookMediaMap).length > beforeCount) {
-                        notifyMedia();
-                    }
-                }
-
-                if (typeof window.fetch === 'function') {
-                    var origFetch = window.fetch;
-                    window.fetch = function () {
-                        var promise = origFetch.apply(this, arguments);
-                        promise.then(function (response) {
-                            try {
-                                var clone = response.clone();
-                                clone.json().then(function (data) {
-                                    processIncoming(data);
-                                }).catch(function () {});
-                            } catch (e) {}
-                        }).catch(function () {});
-                        return promise;
-                    };
-                }
-
-                if (window.XMLHttpRequest && window.XMLHttpRequest.prototype) {
-                    var origOpen = window.XMLHttpRequest.prototype.open;
-                    window.XMLHttpRequest.prototype.open = function () {
-                        this.addEventListener('load', function () {
-                            try {
-                                var text = this.responseText;
-                                if (text && (text.indexOf('image_versions2') !== -1 || text.indexOf('display_url') !== -1 || text.indexOf('carousel_media') !== -1 || text.indexOf('video_versions') !== -1 || text.indexOf('tray') !== -1 || text.indexOf('reels') !== -1)) {
-                                    processIncoming(JSON.parse(text));
-                                }
-                            } catch (e) {}
-                        });
-                        return origOpen.apply(this, arguments);
-                    };
-                }
-
-                function fetchIG(url, onFail) {
-                    window.fetch(url, {
-                        headers: {
-                            'X-IG-App-ID': '936619743392459',
-                            'X-Requested-With': 'XMLHttpRequest'
-                        }
-                    }).then(function (r) { return r.json(); }).then(function (data) {
-                        processIncoming(data);
-                    }).catch(function (err) {
-                        if (typeof onFail === 'function') onFail(err);
-                    });
-                }
-
-                document.addEventListener('hzInstagramFetchRequest', function (e) {
-                    try {
-                        var req = JSON.parse(e.detail);
-                        if (!req || (!req.shortcode && !req.mediaId)) return;
-                        if (req.shortcode && hookMediaMap[req.shortcode] && hookMediaMap[req.shortcode].type === 'video') {
-                            notifyMedia();
-                            return;
-                        }
-                        if (req.mediaId) {
-                            fetchIG('/api/v1/media/' + req.mediaId + '/info/', function () {
-                                if (req.shortcode) {
-                                    fetchIG('/p/' + req.shortcode + '/?__a=1&__d=dis', function () {
-                                        fetchIG('/reel/' + req.shortcode + '/?__a=1&__d=dis');
-                                    });
-                                }
-                            });
-                        } else if (req.shortcode) {
-                            fetchIG('/p/' + req.shortcode + '/?__a=1&__d=dis', function () {
-                                fetchIG('/reel/' + req.shortcode + '/?__a=1&__d=dis');
-                            });
-                        }
-                    } catch (err) {}
-                });
-
-                document.addEventListener('hzInstagramStoryRequest', function (e) {
-                    try {
-                        var req = e.detail ? JSON.parse(e.detail) : {};
-                        var url = req.userId ? ('/api/v1/feed/reels_media/?reel_ids=' + encodeURIComponent(req.userId)) : '/api/v1/feed/reels_tray/';
-                        fetchIG(url);
-                    } catch (err) {}
-                });
-
-                if (Object.keys(hookMediaMap).length > 0) {
-                    notifyMedia();
-                }
-            })();`;
-
+            hookScript.src = chrome.runtime.getURL('js/hoverZoomInstagramHook.js');
+            hookScript.onerror = function () {
+                igLog('instagram: page bridge could not be loaded');
+            };
             (document.head || document.documentElement).appendChild(hookScript);
         }
 
-        // Listen for media extracted by page hook and scroll (bind only once)
+
+        // Listen for payloads delivered by the page bridge and scroll (bind only once)
         if (!window.__hzInstagramEventsBound) {
             window.__hzInstagramEventsBound = true;
 
-            document.addEventListener('hzInstagramMediaData', function (e) {
+            document.addEventListener('hzInstagramPayload', function (e) {
                 try {
-                    var incoming = JSON.parse(e.detail);
-                    Object.assign(mediaMap, incoming);
-
-                    // Update active hovered element if currently hovering
-                    $('.hoverZoomLink').filter(':hover').each(function () {
-                        var el = $(this);
-                        if (!el.data().hoverZoomMouseOver) return;
-                        var sc = el.data().hoverZoomShortcode;
-                        var user = el.data().hoverZoomStoryUser;
-                        var postData = getPostFromMap(mediaMap, sc) || getStoryFromMap(mediaMap, user);
-                        if (postData) {
-                            if (sc) {
-                                if (applyPostMediaIfNew(el, sc, postData)) {
-                                    hoverZoom.displayPicFromElement(el);
-                                }
-                            } else if (user) {
-                                var currUrl = el.data().hoverZoomSrc && el.data().hoverZoomSrc[0];
-                                var newUrl = postData.url ? ensureHzUrl(postData.url) : (postData.gallery && postData.gallery[0] && ensureHzUrl(postData.gallery[0][0]));
-                                if (el.data().hoverZoomAppliedStoryUser !== user || currUrl !== newUrl) {
-                                    el.data().hoverZoomAppliedStoryUser = user;
-                                    applyMediaToElement(el, postData);
-                                    hoverZoom.displayPicFromElement(el);
-                                }
-                            }
-                        }
-                    });
+                    processPayload(JSON.parse(e.detail));
                 } catch (err) {}
             });
 
@@ -564,14 +983,6 @@ hoverZoomPlugins.push({
                     }
                 });
             });
-        }
-
-        function requestPostData(shortcode) {
-            if (!shortcode) return;
-            var mediaId = mediaIdfromShortcode(shortcode);
-            document.dispatchEvent(new CustomEvent('hzInstagramFetchRequest', {
-                detail: JSON.stringify({ shortcode: shortcode, mediaId: mediaId })
-            }));
         }
 
         // Helper to bind mouseover / mouseleave on target
@@ -592,8 +1003,16 @@ hoverZoomPlugins.push({
                     }
                     if (!nativeVideo.paused) {
                         nativeVideo._hzWasPlaying = true;
-                        nativeVideo.pause();
                     }
+                    nativeVideo.pause();
+                    // the site's player resumes the video on its own (e.g. through its own mouse
+                    // handling), so the pause is enforced while the zoomed media is displayed
+                    clearInterval(nativeVideo._hzPauseInterval);
+                    nativeVideo._hzPauseInterval = setInterval(function () {
+                        if (nativeVideo._hzHoverCount > 0 && !nativeVideo.paused) {
+                            nativeVideo.pause();
+                        }
+                    }, 250);
                 }
 
                 var sc = link.data().hoverZoomShortcode;
@@ -602,6 +1021,8 @@ hoverZoomPlugins.push({
                     if (postData && (postData.type === 'video' || (!nativeVideo && (postData.url || postData.gallery)))) {
                         applyPostMediaIfNew(link, sc, postData);
                     } else {
+                        // hide the thumbnail / poster: the fetched media has to replace it
+                        awaitFetchedMedia(link);
                         requestPostData(sc);
                     }
                 }
@@ -612,6 +1033,9 @@ hoverZoomPlugins.push({
 
                 if (nativeVideo && typeof nativeVideo.play === 'function') {
                     nativeVideo._hzHoverCount = Math.max(0, (nativeVideo._hzHoverCount || 1) - 1);
+                    if (nativeVideo._hzHoverCount === 0) {
+                        clearInterval(nativeVideo._hzPauseInterval);
+                    }
                     if (nativeVideo._hzHoverCount === 0 && nativeVideo._hzWasPlaying) {
                         clearTimeout(nativeVideo._hzResumeTimeout);
                         nativeVideo._hzResumeTimeout = setTimeout(function () {
@@ -653,12 +1077,11 @@ hoverZoomPlugins.push({
                 if (!avTarget.length) avTarget = avatarImg;
                 var avBest = getBestFromSrcset(avatarImg.attr('srcset')) || avatarImg.attr('src');
                 if (avBest) {
-                    avTarget.data().hoverZoomSrc = [avBest + '#hz'];
-                    avTarget.data().hoverZoomCaption = avatarImg.attr('alt') || '';
-                    avatarImg.data().hoverZoomSrc = [avBest + '#hz'];
-                    avatarImg.data().hoverZoomCaption = avatarImg.attr('alt') || '';
-                    if (res.indexOf(avTarget[0]) === -1) res.push(avTarget[0]);
-                    if (res.indexOf(avatarImg[0]) === -1) res.push(avatarImg[0]);
+                    var avCaption = avatarImg.attr('alt') || '';
+                    setPlaceholderMedia(avTarget, [ensureHzUrl(avBest)], avCaption);
+                    setPlaceholderMedia(avatarImg, [ensureHzUrl(avBest)], avCaption);
+                    if (avTarget.data().hoverZoomSrc && res.indexOf(avTarget[0]) === -1) res.push(avTarget[0]);
+                    if (avatarImg.data().hoverZoomSrc && res.indexOf(avatarImg[0]) === -1) res.push(avatarImg[0]);
                 }
             }
 
@@ -693,12 +1116,9 @@ hoverZoomPlugins.push({
                         var bestUrl = getBestFromSrcset(posterImg.attr('srcset')) || posterImg.attr('src');
                         if (bestUrl) {
                             var cap = posterImg.attr('alt') || '';
-                            vTarget.data().hoverZoomSrc = [ensureHzUrl(bestUrl)];
-                            vTarget.data().hoverZoomCaption = cap;
-                            video.data().hoverZoomSrc = [ensureHzUrl(bestUrl)];
-                            video.data().hoverZoomCaption = cap;
-                            posterImg.data().hoverZoomSrc = [ensureHzUrl(bestUrl)];
-                            posterImg.data().hoverZoomCaption = cap;
+                            setPlaceholderMedia(vTarget, [ensureHzUrl(bestUrl)], cap);
+                            setPlaceholderMedia(video, [ensureHzUrl(bestUrl)], cap);
+                            setPlaceholderMedia(posterImg, [ensureHzUrl(bestUrl)], cap);
                         }
                     }
                 }
@@ -737,27 +1157,15 @@ hoverZoomPlugins.push({
                             }
                         });
 
-                        function setElementSlides(node) {
-                            node.data().hoverZoomGallerySrc = slides;
-                            node.data().hoverZoomGalleryCaption = captions;
-                            var idx = node.data().hoverZoomGalleryIndex;
-                            if (typeof idx !== 'number' || idx < 0 || idx >= slides.length) idx = 0;
-                            node.data().hoverZoomGalleryIndex = idx;
-                            node.data().hoverZoomSrc = slides[idx];
-                            node.data().hoverZoomCaption = captions[idx] || '';
-                        }
-
                         if (slides.length > 1) {
-                            setElementSlides(target);
-                            setElementSlides(img);
+                            setPlaceholderGallery(target, slides, captions);
+                            setPlaceholderGallery(img, slides, captions);
                         } else {
                             var bestUrl = getBestFromSrcset(img.attr('srcset')) || img.attr('src');
                             if (bestUrl) {
                                 var cap = img.attr('alt') || '';
-                                target.data().hoverZoomSrc = [ensureHzUrl(bestUrl)];
-                                target.data().hoverZoomCaption = cap;
-                                img.data().hoverZoomSrc = [ensureHzUrl(bestUrl)];
-                                img.data().hoverZoomCaption = cap;
+                                setPlaceholderMedia(target, [ensureHzUrl(bestUrl)], cap);
+                                setPlaceholderMedia(img, [ensureHzUrl(bestUrl)], cap);
                             }
                         }
                     }
@@ -783,18 +1191,22 @@ hoverZoomPlugins.push({
             if (postData) {
                 applyPostMediaIfNew(link, shortcode, postData);
             } else {
-                var img = link.find('img[src*="cdninstagram"], img[src*="fbcdn"], img[srcset], img[src]').first();
-                if (!img.length) img = link.find('img').first();
-                if (img.length) {
-                    var bestUrl = getBestFromSrcset(img.attr('srcset')) || img.attr('src');
-                    if (bestUrl) {
-                        link.data().hoverZoomSrc = [ensureHzUrl(bestUrl)];
-                        link.data().hoverZoomCaption = img.attr('alt') || link.attr('aria-label') || '';
-                    }
-                } else if (video.length) {
-                    var vUrl = video.prop('currentSrc') || video.prop('src') || video.attr('src');
-                    if (vUrl && !/^blob:/.test(vUrl)) {
-                        link.data().hoverZoomSrc = [vUrl + '.video'];
+                // a playable video takes precedence over its thumbnail (reels & video posts)
+                var vUrl = null;
+                if (video.length) {
+                    var vSrc = video.prop('currentSrc') || video.prop('src') || video.attr('src');
+                    if (vSrc && /^https?:/i.test(vSrc)) vUrl = vSrc + '.video';
+                }
+                if (vUrl) {
+                    setPlaceholderMedia(link, [vUrl]);
+                } else {
+                    var img = link.find('img[src*="cdninstagram"], img[src*="fbcdn"], img[srcset], img[src]').first();
+                    if (!img.length) img = link.find('img').first();
+                    if (img.length) {
+                        var bestUrl = getBestFromSrcset(img.attr('srcset')) || img.attr('src');
+                        if (bestUrl) {
+                            setPlaceholderMedia(link, [ensureHzUrl(bestUrl)], img.attr('alt') || link.attr('aria-label') || '');
+                        }
                     }
                 }
             }
@@ -804,23 +1216,58 @@ hoverZoomPlugins.push({
             }
         });
 
-        // 3. User profile avatars
-        $('a[href]').filter(function () {
-            return (!/(\/reel\/|\/p\/|\/explore\/|\/stories\/)/.test($(this).prop('href')));
-        }).each(function () {
-            var link = $(this);
-            var img = link.find('img').first();
-            if (!img.length) return;
+        // 4. User profile avatars (prepared after the stories below: a story ring must not be
+        // handled as a plain profile link)
+        function applyProfilePicture(link, user) {
+            if (!user || !user.profile_pic_url) return;
+            clearFetchedMedia(link);
+            link.data().hoverZoomSrc = [ensureHzUrl(user.profile_pic_url)];
+            if (user.full_name) link.data().hoverZoomCaption = user.full_name;
+            hoverZoom.displayPicFromElement(link);
+        }
 
-            var bestUrl = getBestFromSrcset(img.attr('srcset')) || img.attr('src');
-            if (bestUrl) {
-                link.data().hoverZoomSrc = [ensureHzUrl(bestUrl)];
-                link.data().hoverZoomCaption = img.attr('alt') || '';
-                res.push(link[0]);
-            }
-        });
+        // story rings are handled by the stories code below, they must not be replaced by the profile picture
+        function isStoryRing(el) {
+            if (el.data().hoverZoomStoryBound) return true;
+            var storyBound = false;
+            el.parents().each(function () {
+                if ($(this).data().hoverZoomStoryBound) {
+                    storyBound = true;
+                    return false;
+                }
+            });
+            if (storyBound) return true;
+            if (el.find('canvas').length > 0) return true;
+            return el.closest('a[href*="/stories/"], [role="button"]:has(canvas), [role="link"]:has(canvas)').length > 0;
+        }
 
-        // 4. Header reels & highlights (stories)
+        function bindProfileHover(link, username) {
+            if (link.data().hoverZoomProfileBound) return;
+            link.data().hoverZoomProfileBound = true;
+            link.data().hoverZoomProfileUser = username;
+
+            link.on('mouseenter mouseover', function () {
+                var el = $(this);
+                el.data().hoverZoomMouseOver = true;
+                if (isStoryRing(el)) return;
+
+                var user = usersCache[username];
+                if (user) {
+                    applyProfilePicture(el, user);
+                } else {
+                    // hide the display-size avatar: the full-size picture has to replace it
+                    awaitFetchedMedia(el);
+                    requestUserProfile(username, function (profile) {
+                        // story rings are handled by the stories code
+                        if (profile && !isStoryRing(el)) applyProfilePicture(el, profile);
+                    });
+                }
+            }).on('mouseleave', function () {
+                $(this).data().hoverZoomMouseOver = false;
+            });
+        }
+
+        // 3. Header reels & highlights (stories)
         function extractStoryUsername(target) {
             if (!target || !target.length) return null;
 
@@ -866,94 +1313,216 @@ hoverZoomPlugins.push({
             return null;
         }
 
+        function extractHighlightId(target) {
+            if (!target || !target.length) return null;
+            var link = target.is('a[href*="/stories/highlights/"]') ? target : target.closest('a[href*="/stories/highlights/"]');
+            if (!link.length) link = target.find('a[href*="/stories/highlights/"]').first();
+            if (!link.length) return null;
+            var m = (link.attr('href') || '').match(/\/stories\/highlights\/(\d+)/);
+            return m ? m[1] : null;
+        }
+
+        // the cover image of a highlight group was matched against the highlights tray
+        function highlightIdFromCover(target) {
+            var img = target.is('img') ? target : target.find('img').first();
+            var src = img.length ? (img.attr('src') || img.attr('data-src')) : null;
+            if (!src && target.attr('style')) {
+                var m = target.attr('style').match(/url\(["']?([^"')]+)/);
+                if (m) src = m[1];
+            }
+            var fileKey = coverFileKey(src);
+            if (!fileKey) return null;
+            var id = mediaMap['hlid_' + fileKey];
+            return id ? String(id).replace(/^highlight:/, '') : null;
+        }
+
+        // an element is a story entry point when it contains a story ring (canvas), when it shows
+        // an avatar or when it links to a story
+        function looksLikeOwnerStory(target) {
+            if (target.closest('header').length > 0) return true;
+            if (target.find('canvas').length > 0) return true;
+            var img = target.is('img') ? target : target.find('img').first();
+            if (img.length && /profile picture|profile photo|story/i.test(img.attr('alt') || '')) return true;
+            return false;
+        }
+
         function getStoryData(target) {
-            var username = extractStoryUsername(target);
-            var postData = getStoryFromMap(mediaMap, username);
+            var highlightId = extractHighlightId(target) || highlightIdFromCover(target);
+            var username = highlightId ? null : extractStoryUsername(target);
+            // a story ring or an avatar on a profile page belongs to the profile owner
+            if (!username && !highlightId && pageUsername && looksLikeOwnerStory(target)) {
+                username = pageUsername;
+            }
+            var storyKey = highlightId ? 'highlight:' + highlightId : username;
+            var postData = getStoryFromMap(mediaMap, storyKey);
             if (!postData) {
                 var img = target.is('img') ? target : target.find('img').first();
                 if (img.length && img.attr('src')) {
-                    var fileKey = img.attr('src').replace(/.*?([^\/?#]+\.jpg).*/, '$1');
+                    var fileKey = coverFileKey(img.attr('src'));
                     if (fileKey && mediaMap[fileKey]) {
                         postData = mediaMap[fileKey];
                     }
                 }
             }
-            return { postData: postData, username: username };
+            return { postData: postData, username: username, highlightId: highlightId, storyKey: storyKey };
         }
 
-        var storyImgs = $('a[href*="/stories/"], header [role="button"] img, ul div[role="button"] img, [aria-label*="stor" i] img, div[role="menuitem"] img, li[role="menuitem"] img');
-        storyImgs.each(function () {
-            var el = $(this);
-            if (el.closest('article, a[href*="/p/"], a[href*="/reel/"], a[href*="/reels/"]').length) return;
-            var target = el.closest('a[href*="/stories/"], div[role="button"], button');
-            if (!target.length) target = el;
-            if (target.closest('article, a[href*="/p/"], a[href*="/reel/"], a[href*="/reels/"]').length) return;
+        // small icons (menu entries, navigation, footers) are not story or highlight covers
+        function isLikelyCover(target) {
+            if (target.closest('[role="menu"], [role="menuitem"], nav, footer').length) return false;
+            var img = target.is('img') ? target : target.find('img').first();
+            if (!img.length) return false;
+            var width = parseInt(img.attr('width') || 0, 10);
+            var height = parseInt(img.attr('height') || 0, 10);
+            if (width && height) return width >= 48 && height >= 48;
+            return img.width() >= 48 && img.height() >= 48;
+        }
 
-            var story = getStoryData(target);
-            var isExplicitStory = target.is('a[href*="/stories/"]') || target.closest('a[href*="/stories/"]').length > 0;
-            if (!story.username && !story.postData && !isExplicitStory) return;
+        var storySelector = [
+            'a[href*="/stories/"]',
+            'img[alt*="profile picture" i]',
+            'img[alt*="story" i]',
+            '[aria-label*="stor" i] img',
+            'header [role="button"] img',
+            'ul div[role="button"] img',
+            'div[role="menuitem"] img',
+            'li[role="menuitem"] img',
+            'canvas',
+            '[role="button"][style*="background-image"]',
+            '[role="link"][style*="background-image"]'
+        ].join(', ');
 
-            function bindStoryTarget(node) {
-                if (node.data().hoverZoomStoryBound) return;
-                node.data().hoverZoomStoryBound = true;
+        function prepareStoryTargets() {
+            $(storySelector).each(function () {
+                var el = $(this);
+                if (el.closest('article, a[href*="/p/"], a[href*="/reel/"], a[href*="/reels/"]').length) return;
+                var target = el.closest('a[href*="/stories/"], div[role="button"], button');
+                if (!target.length) target = el;
+                if (target.closest('article, a[href*="/p/"], a[href*="/reel/"], a[href*="/reels/"]').length) return;
 
-                node.on('mouseenter mouseover', function () {
-                    if (document.location.href.match('(following|followers)')) return;
-                    var link = $(this);
-                    link.data().hoverZoomMouseOver = true;
+                var story = getStoryData(target);
+                var isExplicitStory = target.is('a[href*="/stories/"]') || target.closest('a[href*="/stories/"]').length > 0;
+                if (!story.storyKey && !story.postData && !isExplicitStory) {
+                    // nothing identifies this element as a story (yet): at least let its cover zoom
+                    if (isLikelyCover(target)) {
+                        var coverImg = target.is('img') ? target : target.find('img').first();
+                        var coverUrl = getBestFromSrcset(coverImg.attr('srcset')) || coverImg.attr('src');
+                        if (coverUrl) {
+                            setPlaceholderMedia(target, [ensureHzUrl(coverUrl)]);
+                            if (target.data().hoverZoomSrc) res.push(target[0]);
+                        }
+                    }
+                    return;
+                }
 
-                    var s = getStoryData(link);
-                    if (s.username) {
-                        if (link.data().hoverZoomStoryUser !== s.username) {
+                function bindStoryTarget(node) {
+                    if (node.data().hoverZoomStoryBound) return;
+                    node.data().hoverZoomStoryBound = true;
+
+                    node.on('mouseenter mouseover', function () {
+                        if (document.location.href.match('(following|followers)')) return;
+                        var link = $(this);
+                        link.data().hoverZoomMouseOver = true;
+
+                        var s = getStoryData(link);
+                        igLog('instagram: story hover ' + (s.highlightId ? 'highlight:' + s.highlightId : s.username || '(unresolved)') +
+                              (s.postData ? ' (cached)' : ''));
+                        if (s.storyKey && link.data().hoverZoomStoryKey !== s.storyKey) {
+                            link.data().hoverZoomStoryKey = s.storyKey;
                             link.data().hoverZoomStoryUser = s.username;
                             link.data().hoverZoomSrc = undefined;
                             link.data().hoverZoomGallerySrc = undefined;
                             link.data().hoverZoomCaption = undefined;
                         }
-                    }
 
-                    if (s.postData) {
-                        applyMediaToElement(link, s.postData);
-                    } else {
-                        var img = link.is('img') ? link : link.find('img').first();
-                        var bestUrl = img.length ? (getBestFromSrcset(img.attr('srcset')) || img.attr('src')) : null;
-                        if (bestUrl) {
-                            link.data().hoverZoomSrc = [ensureHzUrl(bestUrl)];
-                            link.data().hoverZoomGallerySrc = undefined;
-                        }
-                        if (s.username) {
-                            document.dispatchEvent(new CustomEvent('hzInstagramStoryRequest', {
-                                detail: JSON.stringify({ username: s.username })
-                            }));
+                        if (s.postData) {
+                            applyMediaToElement(link, s.postData);
+                        } else if (s.highlightId || s.username) {
+                            // the avatar of a story ring is not the story: hide it while the story is fetched
+                            awaitFetchedMedia(link);
+                            var showPlaceholder = function () {
+                                restorePlaceholder(link);
+                            };
+                            if (s.highlightId) {
+                                requestHighlightData(s.highlightId, showPlaceholder);
+                            } else {
+                                var user = usersCache[s.username];
+                                requestStoryData(s.username, user && user.id, showPlaceholder);
+                            }
                         } else {
+                            var img = link.is('img') ? link : link.find('img').first();
+                            var bestUrl = img.length ? (getBestFromSrcset(img.attr('srcset')) || img.attr('src')) : null;
+                            if (bestUrl) {
+                                setPlaceholderMedia(link, [ensureHzUrl(bestUrl)]);
+                            }
                             document.dispatchEvent(new CustomEvent('hzInstagramStoryRequest', {
                                 detail: JSON.stringify({})
                             }));
                         }
-                    }
-                }).on('mouseleave', function () {
-                    $(this).data().hoverZoomMouseOver = false;
-                });
-            }
-
-            bindStoryTarget(target);
-
-            if (story.username) {
-                target.data().hoverZoomStoryUser = story.username;
-            }
-            if (story.postData) {
-                applyMediaToElement(target, story.postData);
-            } else {
-                var img = target.is('img') ? target : target.find('img').first();
-                var bestUrl = img.length ? (getBestFromSrcset(img.attr('srcset')) || img.attr('src')) : null;
-                if (bestUrl) {
-                    target.data().hoverZoomSrc = [ensureHzUrl(bestUrl)];
+                    }).on('mouseleave', function () {
+                        $(this).data().hoverZoomMouseOver = false;
+                    });
                 }
+
+                bindStoryTarget(target);
+                if (story.storyKey) {
+                    target.data().hoverZoomStoryKey = story.storyKey;
+                    // a story link must stay zoomable even when no cover image could be found
+                    target.addClass('hoverZoomLink');
+                    // the cursor usually rests on the image inside the link: it has to carry the story
+                    // too, otherwise hoverZoom would prefer the media stored on it
+                    target.find('img').each(function () {
+                        bindStoryTarget($(this));
+                        $(this).data().hoverZoomStoryKey = story.storyKey;
+                    });
+                }
+                if (story.username) {
+                    target.data().hoverZoomStoryUser = story.username;
+                }
+                if (story.postData) {
+                    applyMediaToElement(target, story.postData);
+                } else {
+                    var img = target.is('img') ? target : target.find('img').first();
+                    var bestUrl = img.length ? (getBestFromSrcset(img.attr('srcset')) || img.attr('src')) : null;
+                    if (bestUrl) {
+                        setPlaceholderMedia(target, [ensureHzUrl(bestUrl)]);
+                    }
+                }
+
+                if (target.data().hoverZoomSrc || target.data().hoverZoomGallerySrc) {
+                    res.push(target[0]);
+                }
+            });
+        }
+
+        prepareStoryTargets();
+        // the covers of the highlights of this profile can only be matched once its tray is known
+        if (pageUsername) {
+            requestHighlightsTray(pageUsername, function () {
+                prepareStoryTargets();
+            });
+        }
+
+        // 4. User profile avatars (see the helpers above)
+        $('a[href]').filter(function () {
+            return (!/(\/reel\/|\/p\/|\/explore\/|\/stories\/)/.test($(this).prop('href')));
+        }).each(function () {
+            var link = $(this);
+            // stories were bound above and must not be handled as plain profile links
+            if (link.data().hoverZoomStoryBound || link.data().hoverZoomStoryKey) return;
+
+            var img = link.find('img').first();
+            if (!img.length) return;
+
+            var bestUrl = getBestFromSrcset(img.attr('srcset')) || img.attr('src');
+            if (bestUrl) {
+                setPlaceholderMedia(link, [ensureHzUrl(bestUrl)], img.attr('alt') || '');
+                if (link.data().hoverZoomSrc) res.push(link[0]);
             }
 
-            if (target.data().hoverZoomSrc || target.data().hoverZoomGallerySrc) {
-                res.push(target[0]);
-            }
+            // upgrade the display-size avatar to the full-size profile picture (as in 0.7)
+            var username = usernameFromHref(link.prop('href'));
+            if (username) bindProfileHover(link, username);
         });
 
         var validRes = res.filter(function (el) {
