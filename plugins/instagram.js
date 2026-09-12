@@ -40,7 +40,7 @@ hoverZoomPlugins.push({
                 self.api.set(url, fetch(url, {
                         headers: { 'x-ig-app-id': webAppId }, credentials: 'include'
                     })
-                    .then(response => response.json())
+                    .then(response => response.text())
                     .then(pick)
                     .catch(() => null)
                     .then(value => {
@@ -51,14 +51,29 @@ hoverZoomPlugins.push({
             return self.api.get(url);
         }
 
+        function apiJson(url, pick) {
+            return apiMedia(url, text => {
+                let data;
+                try { data = JSON.parse(text); } catch { return null; }
+                return pick(data);
+            });
+        }
+
         function postMedia(shortcode) {
-            return apiMedia(`/api/v1/media/${mediaId(shortcode)}/info/`,
-                data => data.items ? data.items[0] : null);
+            const id = mediaId(shortcode);
+            // a real shortcode is 11 characters, so its media id stays under 20 digits. Posts
+            // of private accounts are linked with long obfuscated codes instead, whose id the
+            // api rejects — the post page's og:url carries the real shortcode.
+            if (String(id).length <= 20) return apiJson(`/api/v1/media/${id}/info/`, data => data.items ? data.items[0] : null);
+            return apiMedia(`/p/${shortcode}/`, html => {
+                const code = (html.match(/<meta property="og:url" content="[^"]*\/p\/([^\/"]+)/) || [])[1];
+                return code && code !== shortcode && postMedia(code);
+            });
         }
 
         // the stories of a reel: a highlight, or a user the tray/one of their posts names
         function reelMedia(id) {
-            return apiMedia(`/api/v1/feed/reels_media/?reel_ids=${id}`,
+            return apiJson(`/api/v1/feed/reels_media/?reel_ids=${id}`,
                 data => data.reels_media[0].items || null);
         }
 
@@ -71,7 +86,7 @@ hoverZoomPlugins.push({
 
         // the stories of a name: the tray carries the user ids of the names it shows
         function trayStories(names) {
-            return apiMedia('/api/v1/feed/reels_tray/', data => data.tray || []).then(tray => {
+            return apiJson('/api/v1/feed/reels_tray/', data => data.tray || []).then(tray => {
                 const reel = (tray || []).find(reel => reel.user && names.includes(reel.user.username));
                 return reel && reelMedia(reel.user.pk);
             });
