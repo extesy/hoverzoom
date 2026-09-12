@@ -4931,17 +4931,6 @@ var hoverZoom = {
         });
     },
 
-    // In JavaScript, keys can be strings, numbers, or identifier names WITHOUT single or double quotes
-    // e.g: person = {name:"John", age:31, city:"New York"};
-    strToJavascriptObj:function(e) {
-        if (typeof e == "string") {
-            let obj = new Function("return" + e);
-            try {
-                return obj();
-            } catch {}
-        }
-    },
-
     // Parse cookie and return value associated to cname: cname=value
     // Return "" if not found
     getCookie:function(cname) {
