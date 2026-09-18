@@ -41,8 +41,10 @@ if (typeof window.__hzVintedHooked === 'undefined') {
     }
 
     function __hzVintedShouldIntercept(url) {
+        // Match both legacy API and current gateway paths.
         return typeof url === 'string' && (
-            url.indexOf('/api/v2/catalog/items') !== -1 ||
+            url.indexOf('/catalog/items') !== -1 ||
+            url.indexOf('/homepage/homepage') !== -1 ||
             url.indexOf('/api/v2/homepage/') !== -1
         );
     }

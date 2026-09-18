@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'vinted',
-    version:'0.8',
+    version:'0.9',
     prepareImgLinks:function (callback) {
 
         var name = this.name;
@@ -9,7 +9,15 @@ hoverZoomPlugins.push({
         var res = [];
         var itemFetchDelay = 150;
         var wardrobePageSize = 20;
-        var catalogSelector = 'a.new-item-box__overlay, div.new-item-box__container, img[src*="vinted.net"][class*="Image__content"]';
+        var itemContainerSelector = '[data-testid="feed-item"], ' +
+            '[data-testid^="product-item-id-"]:not([data-testid*="--"]), ' +
+            '[class*="__new-item-box__container"], .new-item-box__container';
+        var catalogSelector = 'a[href*="/items/"], ' + itemContainerSelector +
+            ', img[src*="vinted.net"][class*="Image__content"]';
+        var detailImageSelector =
+            'img[data-testid^="item-photo-"][data-testid$="--img"][src*="vinted.net"], ' +
+            'figure.item-photo img[src*="vinted.net"], ' +
+            'button.item-thumbnail img[src*="vinted.net"]';
 
         // Inject the page-world fetch/XHR hook once so we can read Vinted's
         // listing responses and replay wardrobe requests with first-party cookies.
@@ -52,7 +60,7 @@ hoverZoomPlugins.push({
                     if (context.target.data().hoverZoomSrc || context.target.data().hoverZoomGallerySrc) return;
 
                     var gallery = plug._hashToGallery[context.hash];
-                    if (gallery && gallery.length > 0) {
+                    if (isCompleteGallery(context.hash, gallery)) {
                         cLog('[vinted] Applying gallery (' + gallery.length + ' photos) for hash ' + context.hash);
                         applyResolvedGallery(context.target, gallery, true);
                         return;
@@ -77,7 +85,7 @@ hoverZoomPlugins.push({
         }
 
         // Detail pages already expose the full image set, so process them eagerly.
-        var detailPhotos = $('figure.item-photo img[src*="vinted.net"], button.item-thumbnail img[src*="vinted.net"]');
+        var detailPhotos = $(detailImageSelector);
         var detailGallery = extractVisibleGallery(detailPhotos);
         if (detailPhotos.length > 0) {
             var detailHash = extractHash(detailPhotos[0].src);
@@ -87,11 +95,18 @@ hoverZoomPlugins.push({
             }
         }
 
-        $('figure.item-photo:not(.hoverZoomMouseover), button.item-thumbnail:not(.hoverZoomMouseover)')
+        var detailTargets = $('figure.item-photo, button.item-thumbnail').add(
+            detailPhotos.map(function () {
+                var target = $(this).closest('figure, button');
+                return target.length ? target[0] : this;
+            })
+        );
+
+        detailTargets.filter(':not(.hoverZoomMouseover)')
             .addClass('hoverZoomMouseover')
             .each(function () {
                 var el = $(this),
-                    img = el.find('img[src*="vinted.net"]');
+                    img = el.is('img') ? el : el.find('img[src*="vinted.net"]');
                 if (!img.length || detailGallery.length === 0) return;
 
                 applyGallery(el, detailGallery);
@@ -119,9 +134,16 @@ hoverZoomPlugins.push({
         }
 
         function findItemLink(el) {
-            var link = el.closest('.new-item-box__container').find('a[href*="/items/"]');
-            if (!link.length) link = el.closest('.new-item-box__image-container').find('a[href*="/items/"]');
-            if (!link.length && el.is('a') && el.attr('href') && el.attr('href').indexOf('/items/') !== -1) link = el;
+            if (el.is('a[href*="/items/"]')) return el;
+
+            var container = el.closest(itemContainerSelector + ', [data-testid="grid-item"]');
+            var link = container.find('a[href*="/items/"]').first();
+            if (!link.length) {
+                var imageContainer = el.closest(
+                    '[class*="__new-item-box__image-container"], .new-item-box__image-container'
+                );
+                link = imageContainer.find('a[href*="/items/"]').first();
+            }
             return link.length ? link : null;
         }
 
@@ -130,12 +152,11 @@ hoverZoomPlugins.push({
 
             if (el[0].tagName === 'IMG') {
                 hash = extractHash(el[0].src);
-                var container = el.closest('.new-item-box__container, figure.item-photo, button.item-thumbnail');
+                var container = el.closest(itemContainerSelector + ', figure, button');
                 target = container.length ? container : el;
-            } else if (el.hasClass('new-item-box__overlay')) {
-                var parent = el.closest('.new-item-box__image-container');
-                if (!parent.length) return null;
-                img = parent.find('img[src*="vinted.net"]');
+            } else if (el.is('a[href*="/items/"]')) {
+                var card = el.closest(itemContainerSelector + ', [data-testid="grid-item"]');
+                img = card.find('img[src*="vinted.net"]').first();
                 if (!img.length) return null;
                 hash = extractHash(img.attr('src'));
                 target = el;
@@ -158,8 +179,9 @@ hoverZoomPlugins.push({
             var itemId = extractItemId(itemUrl);
             if (!itemId) return null;
 
-            var useWardrobeApi = href.indexOf('homepage_session_id=') !== -1 ||
-                (location.pathname === '/' && el.closest('.homepage-blocks__item, [data-testid="feed-item"]').length > 0);
+            var isHomepageItem = location.pathname === '/' &&
+                el.closest('[data-testid="grid-item"], [data-testid="feed-item"]').length > 0;
+            var useWardrobeApi = href.indexOf('homepage_session_id=') !== -1 || isHomepageItem;
 
             return {
                 hash:hash,
@@ -331,15 +353,22 @@ hoverZoomPlugins.push({
                 '&order=newest_first';
         }
 
-        function registerGalleryUrls(urls, gallery) {
+        function registerGalleryUrls(urls, gallery, isComplete) {
             var map = plug._hashToGallery;
 
             for (var i = 0; i < urls.length; i++) {
                 var hash = extractHash(urls[i]);
-                if (hash) {
-                    map[hash] = gallery;
-                }
+                if (!hash) continue;
+
+                map[hash] = gallery;
+                if (isComplete) plug._completeGalleryHashes[hash] = true;
             }
+        }
+
+        function isCompleteGallery(hash, gallery) {
+            // A listing's single cover image is not necessarily the full gallery.
+            return gallery && gallery.length > 0 &&
+                (gallery.length > 1 || plug._completeGalleryHashes[hash]);
         }
 
         function buildGalleryFromPhotos(photos) {
@@ -366,7 +395,7 @@ hoverZoomPlugins.push({
             }
 
             if (gallery.length > 0) {
-                registerGalleryUrls(urls, gallery);
+                registerGalleryUrls(urls, gallery, true);
             }
 
             return gallery;
@@ -545,7 +574,7 @@ hoverZoomPlugins.push({
                 context.userId = context.userId || plug._itemIdToUserId[context.itemId];
 
                 var gallery = plug._hashToGallery[context.hash];
-                if (gallery && gallery.length > 0) {
+                if (isCompleteGallery(context.hash, gallery)) {
                     applyResolvedGallery(plug._activeTargets[context.itemUrl] || context.target, gallery, true);
                     cleanupItemState(context.itemUrl);
                     return;
@@ -555,8 +584,9 @@ hoverZoomPlugins.push({
                     if (context.userId) {
                         queueWardrobeLookup(context);
                     } else {
-                        cLog('[vinted] Missing user id for homepage item ' + context.itemId);
-                        cleanupItemState(context.itemUrl);
+                        cLog('[vinted] Missing user id for homepage item ' + context.itemId +
+                            '; using item page fallback');
+                        fetchItemPage(context.itemUrl, context.hash);
                     }
                     return;
                 }
@@ -632,6 +662,26 @@ hoverZoomPlugins.push({
 
             while ((match = re.exec(text)) !== null) {
                 pushUnique(gallery, match[1]);
+            }
+
+            return gallery;
+        }
+
+        // Prefer stable test IDs because Vinted's item-photo classes are generated.
+        function extractItemPhotoGallery(text) {
+            var src = normalizeText(text);
+            var gallery = [];
+            var imageTagRe = /<img\b[^>]*>/gi;
+            var tagMatch;
+
+            while ((tagMatch = imageTagRe.exec(src)) !== null) {
+                var tag = tagMatch[0];
+                if (!/data-testid\s*=\s*["']item-photo-\d+--img["']/i.test(tag)) continue;
+
+                var urlMatch = tag.match(/\bsrc\s*=\s*["']([^"']+)["']/i);
+                if (urlMatch) {
+                    pushUnique(gallery, urlMatch[1].replace(/&amp;/g, '&'));
+                }
             }
 
             return gallery;
@@ -751,7 +801,12 @@ hoverZoomPlugins.push({
 
                 ingestData(response);
 
-                var gallery = plug._hashToGallery[hash];
+                var gallery = extractItemPhotoGallery(response);
+                if (gallery.length > 0) {
+                    registerGalleryUrls(gallery, gallery, true);
+                } else {
+                    gallery = plug._hashToGallery[hash];
+                }
                 if (gallery && gallery.length > 0) {
                     cLog('[vinted] Got gallery (' + gallery.length + ' photos) from item page');
                     applyResolvedGallery(plug._activeTargets[itemUrl], gallery, !!plug._hoveredItems[itemUrl]);
@@ -764,6 +819,7 @@ hoverZoomPlugins.push({
 
     // Persistent state reused across prepareImgLinks calls.
     _hashToGallery: {},
+    _completeGalleryHashes: {},
     _pendingItems: {},
     _fetchTimers: {},
     _hoveredItems: {},
