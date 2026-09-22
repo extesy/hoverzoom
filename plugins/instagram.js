@@ -98,6 +98,11 @@ hoverZoomPlugins.push({
             return alt.split(/[^A-Za-z0-9._]+/);
         }
 
+        // a post's own photo: Instagram serves it from scontent-*.cdninstagram.com or, in
+        // some regions, from instagram.*.fna.fbcdn.net. Profile pictures (the -19 CDN
+        // variant) are not post media.
+        const photoSelector = 'img[src*="cdninstagram"]:not([src*="-19/"]), img[src*="fbcdn.net"]:not([src*="-19/"])';
+
         // candidates of one media item: its video stream, or its full resolution photo
         function mediaSrc(media) {
             return media.video_versions ? [media.video_versions[0].url + '.video']
@@ -140,7 +145,7 @@ hoverZoomPlugins.push({
             const highlight = hit.closest('a[href*="/stories/highlights/"]');
             const post = highlight || hit.closest('article') || hit.closest('a[href*="/p/"], a[href*="/reel/"]');
             if (!post || self.resolved.has(post)) return;
-            const media = post.querySelector('img[src*="cdninstagram"]:not([src*="-19/"]), video');
+            const media = post.querySelector(photoSelector + ', video');
 
             // the zoom hangs on the post link, or — where the media sits in a plain
             // wrapper, as in the feed — on the element holding both the pointer and the media
@@ -157,7 +162,7 @@ hoverZoomPlugins.push({
                 if (frame.matches(':hover')) pauseBehindPreview(post.querySelector('video'), post);
             };
             const fallback = () => {                      // the page's own full size photo
-                const cover = post.querySelector('img[src*="cdninstagram"]:not([src*="-19/"])');
+                const cover = post.querySelector(photoSelector);
                 zoom(cover ? cover.src : media.src);
             };
             const show = srcs => srcs ? zoom(srcs) : fallback();
