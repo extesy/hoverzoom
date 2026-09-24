@@ -143,7 +143,10 @@ hoverZoomPlugins.push({
         // not post media.
         function showPostMedia(hit) {
             const highlight = hit.closest('a[href*="/stories/highlights/"]');
-            const post = highlight || hit.closest('article') || hit.closest('a[href*="/p/"], a[href*="/reel/"]');
+            // a post is the feed's <article>, or a grid tile's link. The nearest one wins:
+            // the saved collection grid wraps all of its tiles in a single <article>, and
+            // taking that would resolve every tile to the first post of the grid.
+            const post = highlight || hit.closest('a[href*="/p/"], a[href*="/reel/"], article');
             if (!post || self.resolved.has(post)) return;
             const media = post.querySelector(photoSelector + ', video');
 
