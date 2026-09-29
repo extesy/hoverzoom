@@ -2293,6 +2293,15 @@
             ]
         },
         {
+            "js": ["plugins/threads_main.js"],
+            "matches": [
+                "*://*.threads.com/*",
+                "*://*.threads.net/*"
+            ],
+            "run_at": "document_start",
+            "world": "MAIN"
+        },
+        {
             "js": ["plugins/onzemondial.js"],
             "matches": ["*://*.onzemondial.com/*"]
         },
