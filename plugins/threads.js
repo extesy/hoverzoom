@@ -44,10 +44,10 @@ hoverZoomPlugins.push({
         // Video posts autoplay an inline <video>; we zoom to its stream. A progressive
         // currentSrc is used as is. Threads mostly plays through MSE though, which
         // leaves a blob: url that can't be reused: then plugins/threads_main.js, running
-        // in the page's world, reads the player's DASH manifest and stamps the streams
-        // on the <video> (data-hz-threads-src, already in the core's
-        // videourl.video_audiourl.audio format, empty when there is nothing to zoom). A
-        // video not stamped yet is asked for, and prepared as soon as the answer comes.
+        // in the page's world, reads the player's streams from its React props and
+        // stamps them on the <video> (data-hz-threads-src, already in the core's url
+        // format, empty when there is nothing to zoom). A video not stamped yet is asked
+        // for, and prepared as soon as the answer comes.
         //
         // Threads lays a click/gesture overlay (div[role="presentation"]) over the
         // video as a *sibling*, so the overlay — not the <video> — receives the hover
