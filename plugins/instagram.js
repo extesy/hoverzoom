@@ -175,13 +175,8 @@ hoverZoomPlugins.push({
             const isProfileOwner = viewed && !/^(p|reel|reels|tv|stories|explore|direct|accounts|about|legal|api|oauth|graphql|web|challenge|locations|nametag|topics)$/i.test(viewed) &&
                 (names.includes(viewed.toLowerCase()) || circle.closest('header'));
             const stories = (isProfileOwner && profileStories()) || trayStories(names);
-            const retry = () => self.resolved.delete(circle);   // no avatar to show: allow another hover
-            const showAvatar = () => {
-                const src = face && (face.currentSrc || face.src);
-                if (src) hoverZoom.prepareLink($(circle), src);
-                else retry();
-            };
-            stories.then(items => items ? hoverZoom.prepareLink($(circle), items.map(mediaSrc)) : showAvatar()).catch(showAvatar);
+            const retry = () => self.resolved.delete(circle);   // nothing to show: allow another hover
+            stories.then(items => items ? hoverZoom.prepareLink($(circle), items.map(mediaSrc)) : retry()).catch(retry);
         }
 
         // Instagram re-renders a feed post's media while scrolling and lays the hover
