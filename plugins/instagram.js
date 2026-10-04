@@ -81,13 +81,14 @@ hoverZoomPlugins.push({
         function profileStories() {
             const link = document.querySelector('main a[href*="/p/"], main a[href*="/reel/"]');
             const shortcode = link && (link.getAttribute('href').match(shortcodeRe) || [])[1];
-            return shortcode ? postMedia(shortcode).then(post => post && post.user ? reelMedia(post.user.pk) : null) : null;
+            return shortcode ? postMedia(shortcode).then(post => post && post.user ? reelMedia(post.user.pk) : null) : Promise.resolve(null);
         }
 
         // the stories of a name: the tray carries the user ids of the names it shows
         function trayStories(names) {
             return apiJson('/api/v1/feed/reels_tray/', data => data.tray || []).then(tray => {
-                const reel = (tray || []).find(reel => reel.user && names.includes(reel.user.username));
+                const reel = (tray || []).find(reel => reel.user &&
+                    names.includes(String(reel.user.username).toLowerCase()));
                 return reel && reelMedia(reel.user.pk);
             });
         }
@@ -95,7 +96,48 @@ hoverZoomPlugins.push({
         // the words of a picture's description: a user name is one of them, whatever the
         // page language says around it
         function namesIn(alt) {
-            return alt.split(/[^A-Za-z0-9._]+/);
+            return alt.split(/[^A-Za-z0-9._]+/).map(name => name.toLowerCase());
+        }
+
+        const avatarSelector = 'img[src*="-19/"], img[src*="profile_pic"], img[alt*="profile picture" i], img[alt*="profile photo" i], img[alt*="story" i]';
+
+        function storyTarget(hit) {
+            const storyLink = hit.closest('a[href*="/stories/"]');
+            if (storyLink) {
+                return storyLink.matches('a[href*="/stories/highlights/"]')
+                    ? null
+                    : { circle: storyLink, face: storyLink.querySelector('img') };
+            }
+
+            const control = hit.closest('[role="button"], [role="link"], button');
+            const face = (hit.matches('img') && hit) || hit.closest('img') ||
+                (control && control.querySelector(avatarSelector));
+            const ring = hit.matches('canvas') || hit.closest('canvas') ||
+                (control && control.querySelector('canvas'));
+            const profilePage = /^\/[^/?#]+\/?$/.test(location.pathname);
+            const isAvatar = face && face.matches(avatarSelector);
+            const isProfileHeaderAvatar = profilePage && face && face.closest('header');
+
+            if (!isAvatar && !ring && !isProfileHeaderAvatar) return null;
+
+            const circle = control || face && face.closest('a') || ring && ring.parentElement ||
+                face && face.parentElement || hit;
+            return { circle, face: face || circle.querySelector('img') };
+        }
+
+        function storyNames(circle, face) {
+            const labels = [
+                face && face.alt,
+                circle.getAttribute('aria-label'),
+                circle.getAttribute('title'),
+                circle.getAttribute('href')
+            ].filter(Boolean);
+            const names = labels.flatMap(namesIn);
+            const label = labels.join(' ');
+            const describedName = label.match(/^([^'’\n]+)['’]s\s+(?:story|stories|profile picture|profile photo)/i) ||
+                label.match(/(?:story|stories)\s+(?:by|of)\s+([A-Za-z0-9._]+)/i);
+            if (describedName) names.push(...namesIn(describedName[1]));
+            return names;
         }
 
         // a post's own photo: Instagram serves it from scontent-*.cdninstagram.com or, in
@@ -118,9 +160,8 @@ hoverZoomPlugins.push({
             const hit = event.target;
             if (!hit.closest || hit.closest('#hzViewer') || hit.closest('.hoverZoomLink')) return;   // our viewer, or already zoomable
 
-            const circle = hit.closest('[role="button"], [role="link"]');
-            const face = circle && circle.querySelector('img[src*="-19/"]');
-            if (face) showStories(circle, face);
+            const story = storyTarget(hit);
+            if (story) showStories(story.circle, story.face);
             else showPostMedia(hit);
         }
 
@@ -129,9 +170,11 @@ hoverZoomPlugins.push({
         function showStories(circle, face) {
             if (self.resolved.has(circle)) return;
             self.resolved.add(circle);
-            const names = namesIn(face.alt);
+            const names = storyNames(circle, face);
             const viewed = location.pathname.match(/^\/([^/?#]+)\/$/)?.[1];
-            const stories = (names.includes(viewed) && profileStories()) || trayStories(names);
+            const isProfileOwner = viewed && !/^(p|reel|reels|tv|stories|explore|direct|accounts|about|legal|api|oauth|graphql|web|challenge|locations|nametag|topics)$/i.test(viewed) &&
+                (names.includes(viewed.toLowerCase()) || circle.closest('header'));
+            const stories = (isProfileOwner && profileStories()) || trayStories(names);
             const retry = () => self.resolved.delete(circle);   // nothing to show: allow another hover
             stories.then(items => items ? hoverZoom.prepareLink($(circle), items.map(mediaSrc)) : retry()).catch(retry);
         }
