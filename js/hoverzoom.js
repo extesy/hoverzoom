@@ -2980,7 +2980,9 @@ var hoverZoom = {
             $(document).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
             window.addEventListener('wheel', documentOnMouseWheel, {passive: false, capture: true});
             if (options.zoomVideos) {
-                $(document).on('visibilitychange', closeHoverZoomViewer);
+                $(document).on('visibilitychange', function () {
+                    closeHoverZoomViewer();
+                });
             }
 
             bindJsaction();
