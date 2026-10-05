@@ -2,9 +2,8 @@ var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'Threads',
     version: '0.7',
-    listening: false,
-    playerReady: false,
-    resolving: false,
+    api: new Map(),     // shortcode -> promise of the post's media item (bounded, failures dropped)
+    hoverBound: false,
     prepareImgLinks: function (callback) {
         const name = this.name;
         const self = this;
@@ -38,17 +37,20 @@ hoverZoomPlugins.push({
             if (!link.length) {
                 link = img;
             }
+            if (link.find('video').length) {
+                return;   // a video's poster: the video pass below zooms that wrapper
+            }
             link.data().hoverZoomSrc = [this.src + '#hz'];
             res.push(link[0]);
         });
 
         // Video posts autoplay an inline <video>; we zoom to its stream. A progressive
-        // currentSrc is used as is. Threads mostly plays through MSE though, which
-        // leaves a blob: url that can't be reused: then js/hoverZoomThreadsPlayer.js, injected
-        // in the page's world, reads the player's streams from its React props and
-        // stamps them on the <video> (data-hz-threads-src, already in the core's url
-        // format, empty when there is nothing to zoom). A video not stamped yet is asked
-        // for, and prepared as soon as the answer comes.
+        // currentSrc is used as is. Threads mostly plays through MSE though, which leaves
+        // a blob: url that can't be reused. The stream is then resolved on hover through
+        // the media api, as in the Instagram plugin (Threads runs on the same backend):
+        // the api takes the media id, which is the shortcode of the post url in base64,
+        // and answers with the video_versions of the post. The calls are plain
+        // same-origin fetches from the page, so the session cookies are sent.
         //
         // Threads lays a click/gesture overlay (div[role="presentation"]) over the
         // video as a *sibling*, so the overlay — not the <video> — receives the hover
@@ -59,17 +61,33 @@ hoverZoomPlugins.push({
         // bare common-ancestor climb is unreliable, it can land on a wrapper larger
         // than the video (which then zooms on blank space) or on an unrelated overlay.
         // Falls back to the <video> itself.
-        function videoLinks(video) {
-            var src = video.currentSrc || video.src;
-            if (src && /^https?:/.test(src)) {
-                src += '.video';
-            } else {
-                src = video.getAttribute('data-hz-threads-src');
-                if (!src || !/^https:/.test(src)) {
-                    return [];
-                }
+        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+        const webAppId = '238260118697367';   // identifies Threads' web client to its api
+        const cacheLimit = 200;               // entries kept, the oldest are dropped first
+
+        function postMedia(shortcode) {
+            if (!self.api.has(shortcode)) {
+                if (self.api.size >= cacheLimit) self.api.delete(self.api.keys().next().value);
+                let id = 0n;
+                for (const char of shortcode) id = id * 64n + BigInt(alphabet.indexOf(char));
+                self.api.set(shortcode, fetch(`/api/v1/media/${id}/info/`, {
+                        headers: { 'x-ig-app-id': webAppId }, credentials: 'include'
+                    })
+                    .then(response => response.json())
+                    .then(data => data.items ? data.items[0] : null)
+                    .catch(() => null)
+                    .then(item => {
+                        if (!item) self.api.delete(shortcode);   // a failed call is not worth keeping
+                        return item;
+                    }));
             }
-            var link = $(video);
+            return self.api.get(shortcode);
+        }
+
+        // the elements that zoom a video: its overlay (or the video itself) and, in a
+        // carousel, the slide wrapper around it
+        function videoLinks(video) {
+            var link = video;
             var vb = video.getBoundingClientRect();
             if (vb.width && vb.height) {
                 var coincides = function (b) {
@@ -103,65 +121,97 @@ hoverZoomPlugins.push({
                     }
                 }
                 if (overlay) {
-                    link = $(overlay);
+                    link = overlay;
                 }
             }
-            var links = [link[0]];
-            // The photo pass above hangs the poster image on the carousel slide wrapper
-            // around the video. The core collects the target's .hoverZoomLink ancestors
-            // in document order and reads the data of the first one, i.e. the outermost
-            // link wins, so the wrapper must zoom to the video as well.
-            var slide = $(video).closest('a[href*="/media"], div[role="button"]');
-            if (slide.length && slide[0] !== link[0]) {
-                links.push(slide[0]);
+            var links = [link];
+            // The core collects the target's .hoverZoomLink ancestors in document order
+            // and reads the data of the first one, i.e. the outermost link wins, so the
+            // carousel slide wrapper around the video must zoom to the video as well.
+            var slide = $(video).closest('a[href*="/media"], div[role="button"]')[0];
+            if (slide && slide !== link) {
+                links.push(slide);
             }
-            links.forEach(function (el) {
-                $(el).data().hoverZoomSrc = [src];
-            });
             return links;
         }
-        self.videoLinks = videoLinks;
 
-        if (!self.listening) {
-            self.listening = true;
-            // the page-world reader; a request made before it has loaded is sent on load
-            var script = document.createElement('script');
-            script.src = chrome.runtime.getURL('js/hoverZoomThreadsPlayer.js');
-            script.onload = function () {
-                self.playerReady = true;
-                if (self.resolving) {
-                    window.postMessage({ hoverZoomThreadsResolve: true }, location.origin);
-                }
-            };
-            (document.head || document.documentElement).appendChild(script);
+        // the stream of a video from its post's media item: the item itself, or in a
+        // carousel the item at the video's rank among the post's videos
+        function streamOf(video, item) {
+            var media = item;
+            if (item.carousel_media) {
+                var post = postOf(video);
+                var rank = post ? $(post.container).find('video').index(video) : -1;
+                media = item.carousel_media.filter(m => m.video_versions)[rank];
+            }
+            return media && media.video_versions ? media.video_versions[0].url + '.video' : null;
+        }
 
-            window.addEventListener('message', function (event) {
-                if (event.source !== window || !event.data || !event.data.hoverZoomThreadsResolved) return;
-                self.resolving = false;
-                // the core's next pass only comes with node insertions or long scrolls
-                $('video').each(function () {
-                    self.videoLinks(this).forEach(function (el) {
-                        $(el).data().hoverZoomSrcIndex = 0;
-                        $(el).addClass('hoverZoomLink');
-                    });
+        // the post holding a video: the nearest ancestor with the post's permalink
+        // (carousel slides link to ".../post/<code>/media", so they don't count: their
+        // ancestor holding a single slide would rank every video first)
+        function postOf(video) {
+            for (var el = video.parentElement; el; el = el.parentElement) {
+                var a = el.querySelector('a[href*="/post/"]:not([href*="/media"])');
+                var code = a && (a.getAttribute('href').match(/\/post\/([A-Za-z0-9_-]+)/) || [])[1];
+                if (code) return { container: el, shortcode: code };
+            }
+            return null;
+        }
+
+        function onHover(event) {
+            var hit = event.target;
+            var link = hit.closest && hit.closest('.hzThreadsVideo');
+            if (!link) return;
+            var video = $(link).data('hzThreadsVideo');
+            var post = video && postOf(video);
+            var links = video ? videoLinks(video) : [link];
+            var zoom = function (src) {
+                links.forEach(function (el) {
+                    hoverZoom.prepareLink($(el), src);
                 });
+            };
+            // the page's own poster, when the stream can't be resolved
+            var fallback = function () {
+                var cover = $(links[links.length - 1]).find('img[src*=".cdninstagram.com/"], img[src*=".fbcdn.net/"]')[0];
+                var poster = cover ? cover.src : video && video.poster;
+                if (poster) zoom(poster + '#hz');
+            };
+            // resolved once: later passes and hovers leave these links alone
+            links.forEach(function (el) {
+                el.classList.remove('hzThreadsVideo');
+                $(el).data('hzThreadsResolved', true);
+            });
+            if (!post) return fallback();
+            postMedia(post.shortcode).then(function (item) {
+                var src = item && streamOf(video, item);
+                if (src) zoom(src);
+                else fallback();
             });
         }
 
-        var waiting = false;
-        $('video').each(function () {
-            var links = videoLinks(this);
-            if (!links.length && !this.hasAttribute('data-hz-threads-src')) {
-                waiting = true;
-            }
-            res.push.apply(res, links);
-        });
-        if (waiting && !self.resolving) {
-            self.resolving = true;
-            if (self.playerReady) {
-                window.postMessage({ hoverZoomThreadsResolve: true }, location.origin);
-            }
+        if (!self.hoverBound) {
+            self.hoverBound = true;
+            $(document).on('mouseover', onHover);
         }
+
+        $('video').each(function () {
+            var video = this;
+            var src = video.currentSrc || video.src;
+            var links = videoLinks(video);
+            if (src && /^https?:/.test(src)) {
+                links.forEach(function (el) {
+                    $(el).data().hoverZoomSrc = [src + '.video'];
+                    res.push(el);
+                });
+            } else {
+                links.forEach(function (el) {
+                    if ($(el).data('hzThreadsResolved')) return;
+                    $(el).data('hzThreadsVideo', video);
+                    el.classList.add('hzThreadsVideo');
+                });
+            }
+        });
 
         callback($(res), name);
     }

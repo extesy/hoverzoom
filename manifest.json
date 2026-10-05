@@ -264,15 +264,6 @@
         },
         {
             "resources": [
-                "js/hoverZoomThreadsPlayer.js"
-            ],
-            "matches": [
-                "*://*.threads.com/*",
-                "*://*.threads.net/*"
-            ]
-        },
-        {
-            "resources": [
                 "js/hoverZoomVintedFetch.js"
             ],
             "matches": [
