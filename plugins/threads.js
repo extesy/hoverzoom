@@ -3,6 +3,7 @@ hoverZoomPlugins.push({
     name: 'Threads',
     version: '0.7',
     listening: false,
+    playerReady: false,
     resolving: false,
     prepareImgLinks: function (callback) {
         const name = this.name;
@@ -43,7 +44,7 @@ hoverZoomPlugins.push({
 
         // Video posts autoplay an inline <video>; we zoom to its stream. A progressive
         // currentSrc is used as is. Threads mostly plays through MSE though, which
-        // leaves a blob: url that can't be reused: then plugins/threads_main.js, running
+        // leaves a blob: url that can't be reused: then js/hoverZoomThreadsPlayer.js, injected
         // in the page's world, reads the player's streams from its React props and
         // stamps them on the <video> (data-hz-threads-src, already in the core's url
         // format, empty when there is nothing to zoom). A video not stamped yet is asked
@@ -123,6 +124,17 @@ hoverZoomPlugins.push({
 
         if (!self.listening) {
             self.listening = true;
+            // the page-world reader; a request made before it has loaded is sent on load
+            var script = document.createElement('script');
+            script.src = chrome.runtime.getURL('js/hoverZoomThreadsPlayer.js');
+            script.onload = function () {
+                self.playerReady = true;
+                if (self.resolving) {
+                    window.postMessage({ hoverZoomThreadsResolve: true }, location.origin);
+                }
+            };
+            (document.head || document.documentElement).appendChild(script);
+
             window.addEventListener('message', function (event) {
                 if (event.source !== window || !event.data || !event.data.hoverZoomThreadsResolved) return;
                 self.resolving = false;
@@ -146,7 +158,9 @@ hoverZoomPlugins.push({
         });
         if (waiting && !self.resolving) {
             self.resolving = true;
-            window.postMessage({ hoverZoomThreadsResolve: true }, location.origin);
+            if (self.playerReady) {
+                window.postMessage({ hoverZoomThreadsResolve: true }, location.origin);
+            }
         }
 
         callback($(res), name);

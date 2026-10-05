@@ -2,8 +2,8 @@
 // The streams are in its player's React props (the post data itself is masked by
 // Relay, so video_versions is not reachable from the element). Those props live on
 // the DOM node as a React fiber expando, which only the page's own world can read, so
-// this script runs there (manifest "world": "MAIN"). The player lists several
-// implementations; we take, in order:
+// plugins/threads.js injects this script there, as a web-accessible resource. The
+// player lists several implementations; we take, in order:
 //  1. the progressive one (hdSrc / sdSrc): a single H.264 + AAC mp4, which also makes
 //     a download that plays anywhere;
 //  2. else the inline DASH manifest: the largest video rendition plus the best audio
