@@ -218,9 +218,17 @@ hoverZoomPlugins.push({
         // Exclude profile pictures from post media.
         const photoSelector = 'img[src*="cdninstagram"]:not([src*="-19/"]), img[src*="fbcdn.net"]:not([src*="-19/"])';
 
+        function isVideoMedia(media) {
+            return !!media && (media.media_type === 2 || media.media_type === '2' || media.is_video === true);
+        }
+
         // Return preview URLs for a media item.
         function mediaSrc(media) {
             if (!media) return null;
+            if (isVideoMedia(media)) {
+                const video = mediaVideoSrc(media);
+                return video ? [video] : null;
+            }
             if (media.video_versions && media.video_versions.length > 0 && media.video_versions[0].url)
                 return [media.video_versions[0].url + '.video'];
             if (media.video_url) return [media.video_url + '.video'];
@@ -236,7 +244,8 @@ hoverZoomPlugins.push({
 
         function mediaVideoSrc(media) {
             if (!media) return null;
-            if (media.video_versions && media.video_versions.length > 0) return media.video_versions[0].url + '.video';
+            if (media.video_versions && media.video_versions.length > 0 && media.video_versions[0].url)
+                return media.video_versions[0].url + '.video';
             return media.video_url ? media.video_url + '.video' : null;
         }
 
@@ -435,9 +444,10 @@ hoverZoomPlugins.push({
         // Resolve the post under the pointer.
         function showPostMedia(hit, forcedPostLink) {
             const highlight = hit.closest('a[href*="/stories/highlights/"]');
-            // Prefer the nearest post link; saved grids can wrap several links in one article.
+            const pagePost = location.pathname.match(/^\/(?:p|reel)\/([A-Za-z0-9_-]+)\/?$/);
             const postLink = forcedPostLink || hit.closest(postLinkSelector);
-            const post = highlight || postLink || hit.closest('article');
+            const post = highlight || postLink || hit.closest('article') ||
+                (pagePost && hit.closest('main'));
             if (!post || self.resolved.has(post)) return;
 
             const media = post.querySelector(photoSelector + ', video') ||
@@ -473,10 +483,14 @@ hoverZoomPlugins.push({
                     return;
                 }
                 if (directVideoUrl) { zoom(directVideoUrl); return; }
+                if (videoEl) {
+                    self.resolved.delete(post);
+                    return;
+                }
                 const cover = post.querySelector(photoSelector) || media;
                 zoom(cover ? (cover.currentSrc || cover.src || backgroundImageUrl(cover)) : media.src);
             };
-            const show = srcs => srcs ? zoom(srcs) : fallback();
+            const show = srcs => srcs && (!Array.isArray(srcs) || srcs.length) ? zoom(srcs) : fallback();
 
             if (highlight) {
                 const id = (highlight.getAttribute('href').match(/highlights\/(\d+)/) || [])[1];
@@ -484,7 +498,8 @@ hoverZoomPlugins.push({
                 else fallback();
             } else {
                 const link = post.matches('a[href]') ? post : post.querySelector(postLinkSelector);
-                const shortcode = link && (link.getAttribute('href').match(shortcodeRe) || [])[1];
+                const shortcode = (link && (link.getAttribute('href').match(shortcodeRe) || [])[1]) ||
+                    (pagePost && pagePost[1]);
                 if (shortcode) {
                     postMedia(shortcode).then(item => {
                         if (reelsTab) {
@@ -494,6 +509,12 @@ hoverZoomPlugins.push({
                             return;
                         }
                         if (!item) return fallback();
+                        if (isVideoMedia(item)) {
+                            const videoUrl = mediaVideoSrc(item);
+                            if (videoUrl) zoom(videoUrl);
+                            else self.resolved.delete(post);
+                            return;
+                        }
                         if (item.media_type === 8 && Array.isArray(item.carousel_media)) {
                             show(item.carousel_media.map(mediaSrc).filter(Boolean));
                         } else {
