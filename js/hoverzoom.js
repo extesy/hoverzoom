@@ -128,6 +128,7 @@ var hoverZoom = {
             arrowDownKeyDown = false,
             viewerLocked = false,
             zoomFactor = 1,
+            zoomFactorSrc = null, // source whose natural size zoomFactor was set for
             zoomSpeedFactor = 1,
             pageActionShown = false,
             skipFadeIn = false,
@@ -551,6 +552,14 @@ var hoverZoom = {
 
                 if (!srcDetails.naturalWidth || !srcDetails.naturalHeight) {
                     return;
+                }
+
+                // a new item displayed in a locked viewer starts fitted on screen
+                if (viewerLocked && zoomFactorSrc !== srcDetails.naturalSrc) {
+                    zoomFactorSrc = srcDetails.naturalSrc;
+                    zoomFactor = Math.min(1,
+                        (wndWidth - offset - padding - 2 * scrollBarWidth) / srcDetails.naturalWidth,
+                        (wndHeight - padding - statusBarHeight - scrollBarHeight) / srcDetails.naturalHeight);
                 }
 
                 // width adjustment
@@ -2319,6 +2328,7 @@ var hoverZoom = {
                     } else {
                         zoomFactor = zoomFactorFit;
                     }
+                    zoomFactorSrc = srcDetails.naturalSrc;
                     viewerLocked = true;
                     // Allow clicking on locked image.
                     hz.hzViewer.css('pointer-events', 'auto');
@@ -2990,7 +3000,7 @@ var hoverZoom = {
             var now = Date.now();
             var link = hz.currentLink, data = link ? link.data() : null;
 
-            if (options.galleriesMouseWheel && data && data.hoverZoomGallerySrc && data.hoverZoomGallerySrc.length > 1) {
+            if (options.galleriesMouseWheel && !viewerLocked && data && data.hoverZoomGallerySrc && data.hoverZoomGallerySrc.length > 1) {
                 event.preventDefault();
                 if (now - lastScrollTime < options.scrollWheelCooldown) {
                     return;
@@ -3046,6 +3056,7 @@ var hoverZoom = {
                 } else {
                     zoomFactor = zoomFactorFit;
                 }
+                zoomFactorSrc = srcDetails.naturalSrc;
                 lockViewer();
             } else {
                 if (zoomFactor !== zoomFactorFit) {
@@ -4442,6 +4453,8 @@ var hoverZoom = {
 
             // If the user clicks the image, this simulates a click underneath
             hoverZoom.hzViewer.click(function (event) {
+                // Locked video clicks control playback, don't forward them to the page.
+                if (event.target.tagName === 'VIDEO') { return; }
                 if (hoverZoom.currentLink && hoverZoom.currentLink.length) {
                     var simEvent = document.createEvent('MouseEvents');
                     simEvent.initMouseEvent('click', event.bubbles, event.cancelable, event.view, event.detail,
