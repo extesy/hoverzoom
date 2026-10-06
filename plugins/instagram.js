@@ -11,8 +11,14 @@ hoverZoomPlugins.push({
     prepareImgLinks: function () {
         const self = this;
 
-        // Resolve albums, videos, and stories through Instagram's API; rendered photos
-        // already use their full-resolution signed CDN URLs.
+        // Instagram serves media through signed CDN urls (the stp/oh/oe parameters are
+        // part of the signature), so they can't be rewritten to another size. Photos
+        // don't need that anyway: the <img> the page renders already points at the full
+        // resolution file — it is only scaled down with CSS — in the feed as well as in
+        // profile, reel, hovercard and collection grids. The rest of a post, i.e. the other album
+        // items, the video stream and the stories, is delivered to Instagram's own player
+        // alone, so it is resolved on hover through its media api. That api takes the
+        // media id, which is the shortcode in the post url in base64.
         const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
         const webAppId = '936619743392459';   // identifies Instagram's web client to its api
         const shortcodeRe = /\/(?:p|reel|reels)\/([A-Za-z0-9_-]+)\/?(?:[?#]|$)/;
@@ -26,7 +32,10 @@ hoverZoomPlugins.push({
             return id;
         }
 
-        // Same-origin requests preserve Instagram's session cookies.
+        // Instagram's media apis, memoized per url. The calls are plain same-origin
+        // fetches from the page: requests relayed through the extension background come
+        // from a foreign origin, and Instagram's session cookies ("Lax") aren't sent to
+        // those, so the api answers with the login page instead of the media.
         function apiMedia(url, pick) {
             if (!self.api.has(url)) {
                 if (self.api.size >= cacheLimit) self.api.delete(self.api.keys().next().value);
@@ -387,7 +396,8 @@ hoverZoomPlugins.push({
             }).catch(retry);
         }
 
-        // Resolve stories for profile, tray, and comment avatars.
+        // A story circle — the tray at the top of the feed, or the profile picture of the
+        // profile being viewed — opens the stories of the user it belongs to.
         function showStories(circle, face, usernameHint) {
             if (self.resolved.has(circle)) return;
             self.resolved.add(circle);
@@ -425,7 +435,7 @@ hoverZoomPlugins.push({
             }).catch(retry);
         }
 
-        // Resolve a story link that exposes the username in its URL.
+        // Shows stories for an explicit /stories/<username>/ link.
         function showStoriesByUsername(link, username) {
             if (self.resolved.has(link)) return;
             self.resolved.add(link);
@@ -441,7 +451,11 @@ hoverZoomPlugins.push({
             }).catch(retry);
         }
 
-        // Resolve the post under the pointer.
+        // Instagram re-renders a feed post's media while scrolling and lays the hover
+        // overlay over it in a parallel branch of the tree, so nothing can be prepared in
+        // advance — the post under the pointer is resolved on hover instead. Its media is
+        // the photo or video it holds; profile pictures (Instagram's -19 CDN variant) are
+        // not post media.
         function showPostMedia(hit, forcedPostLink) {
             const highlight = hit.closest('a[href*="/stories/highlights/"]');
             const pagePost = location.pathname.match(/^\/(?:p|reel)\/([A-Za-z0-9_-]+)\/?$/);
@@ -453,7 +467,8 @@ hoverZoomPlugins.push({
             const media = post.querySelector(photoSelector + ', video') ||
                 post.querySelector('video, img, [style*="background-image"]');
 
-            // In the feed, attach to the smallest element containing both the pointer and media.
+            // The zoom hangs on the post link, or — where the media sits in a plain
+            // wrapper, as in the feed — on the element holding both the pointer and the media.
             let frame = post.matches('a[href]') ? post : null;
             for (let el = hit; !frame && el && el !== post; el = el.parentElement) {
                 if (media && el.contains(media)) frame = el;
@@ -474,6 +489,7 @@ hoverZoomPlugins.push({
             const zoom = srcs => {
                 hoverZoom.prepareLink($(frame), srcs);
                 if (reelsTab) hoverZoom.displayPicFromElement($(frame), true);
+                // The feed's own video keeps playing behind the preview: pause it.
                 if (videoEl && frame.matches && frame.matches(':hover')) pauseBehindPreview(videoEl, post);
             };
             const fallback = () => {
@@ -531,11 +547,16 @@ hoverZoomPlugins.push({
             document.addEventListener('mouseover', onHover, true);
         }
 
-        // Pause autoplay video behind the preview and resume it when the viewer closes.
+        // Videos in the main feed autoplay, so pause one behind its previewed viewer and
+        // resume it when the viewer closes. The core fires no viewer events, but it
+        // creates #hzViewer on the first zoom and empties it when the preview closes, so
+        // watching that node tells us when to resume.
         function pauseBehindPreview(video, container) {
             if (!video || video.paused || self.pausedVideos.some(entry => entry[0] === video)) return;
             self.pausedVideos.push([video, container]);
             video.pause();
+            // The viewer can also close while the pointer stays put (close key, an error):
+            // leaving the post then resumes the video.
             $(container).one('mouseleave', resumePausedVideos);
             watchViewerClose();
         }
@@ -558,6 +579,7 @@ hoverZoomPlugins.push({
                 });
                 self.viewerObserver.observe(viewer, { childList: true });
             } else {
+                // #hzViewer is created by the core on the first zoom.
                 self.viewerObserver = new MutationObserver(function () {
                     if (!document.getElementById('hzViewer')) return;
                     self.viewerObserver.disconnect();
