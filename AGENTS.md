@@ -4,7 +4,7 @@ Project map for agents. Goal: skip the exploration phase and go straight to fixi
 
 This file is a **living document**: keep it always correct and make it more useful with every session.
 
-- After each session, fold back what you learned into the matching section, in the same change as the code that taught it: non-obvious root-cause mechanics, surprising behavior, new gotchas/invariants, better reproduction or debugging recipes.
+- After each session, fold back what you learned into the matching section, in the same change as the code that taught it. Not every change warrants a new rule: only capture insights that are generic enough to stay useful outside the immediate context of the last conversation — non-obvious root-cause mechanics, surprising behavior, new gotchas/invariants, better reproduction or debugging recipes. Skip task-specific details, one-off debugging narratives, and anything that is obvious from reading the code.
 - When code or architecture changes (moved/renamed files, functions, DOM ids, options, flows, tooling), update the affected sections immediately — a stale document is worse than none.
 - Keep it terse and durable: stable names instead of line numbers, facts/invariants/recipes instead of narration. Correct or delete what is no longer true instead of appending contradictions; resist letting it grow into a changelog.
 
