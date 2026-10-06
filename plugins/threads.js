@@ -137,13 +137,19 @@ hoverZoomPlugins.push({
         }
 
         // the stream of a video from its post's media item: the item itself, or in a
-        // carousel the item at the video's rank among the post's videos
+        // carousel the item at the video's rank among the post's videos. A text post
+        // (media_type 19) with an attached video carries no media of its own: the
+        // video is under text_post_app_info.linked_inline_media.
         function streamOf(video, item) {
             var media = item;
-            if (item.carousel_media) {
+            var inline = item.text_post_app_info && item.text_post_app_info.linked_inline_media;
+            if (!item.video_versions && !item.carousel_media && inline) {
+                media = inline;
+            }
+            if (media.carousel_media) {
                 var post = postOf(video);
                 var rank = post ? $(post.container).find('video').index(video) : -1;
-                media = item.carousel_media.filter(m => m.video_versions)[rank];
+                media = media.carousel_media.filter(m => m.video_versions)[rank];
             }
             return media && media.video_versions ? media.video_versions[0].url + '.video' : null;
         }
