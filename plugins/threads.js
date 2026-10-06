@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'Threads',
-    version: '0.7',
+    version: '0.8',
     api: new Map(),     // shortcode -> promise of the post's media item (bounded, failures dropped)
     hoverBound: false,
     prepareImgLinks: function (callback) {
@@ -10,7 +10,8 @@ hoverZoomPlugins.push({
         var res = [];
 
         // Threads (threads.com / threads.net) serves post images from Instagram's
-        // CDN (cdninstagram.com / fbcdn.net, path /v/t51.*-15/<id>_n.jpg). The "stp"
+        // CDN (cdninstagram.com / fbcdn.net, path /v/t51.*-15/<id>_n.jpg, or
+        // /v/t39.30808-6/<id>_n.jpg on some posts). The "stp"
         // transform parameter is cryptographically signed, so the url can't be
         // rewritten to a larger size the way most plugins do (any change to stp
         // returns HTTP 403). The displayed <img> already carries the full-resolution
@@ -30,7 +31,7 @@ hoverZoomPlugins.push({
         //     <div role="button"> carousel slide wrapper inline. Falls back to the
         //     <img> itself.
         $('img[src*=".cdninstagram.com/"], img[src*=".fbcdn.net/"]').filter(function () {
-            return /\/t51\.[\d.]+-15\//.test(this.src);
+            return /\/(t51\.[\d.]+-15|t39\.30808-6)\//.test(this.src);
         }).each(function () {
             var img = $(this);
             var link = img.closest('a[href*="/media"], div[role="button"]');
