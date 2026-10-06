@@ -264,14 +264,6 @@
         },
         {
             "resources": [
-                "js/hoverZoomInstagramHook.js"
-            ],
-            "matches": [
-                "*://*.instagram.com/*"
-            ]
-        },
-        {
-            "resources": [
                 "js/hoverZoomVintedFetch.js"
             ],
             "matches": [
