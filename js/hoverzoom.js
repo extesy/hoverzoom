@@ -557,9 +557,12 @@ var hoverZoom = {
                 // a new item displayed in a locked viewer starts fitted on screen
                 if (viewerLocked && zoomFactorSrc !== srcDetails.naturalSrc) {
                     zoomFactorSrc = srcDetails.naturalSrc;
-                    zoomFactor = Math.min(1,
-                        (wndWidth - offset - padding - 2 * scrollBarWidth) / srcDetails.naturalWidth,
-                        (wndHeight - padding - statusBarHeight - scrollBarHeight) / srcDetails.naturalHeight);
+                    const isGallery = hz.currentLink && hz.currentLink.data() && hz.currentLink.data().hoverZoomGallerySrc && hz.currentLink.data().hoverZoomGallerySrc.length > 1;
+                    if (!isGallery) {
+                        zoomFactor = Math.min(1,
+                            (wndWidth - offset - padding - 2 * scrollBarWidth) / srcDetails.naturalWidth,
+                            (wndHeight - padding - statusBarHeight - scrollBarHeight) / srcDetails.naturalHeight);
+                    }
                 }
 
                 // width adjustment
@@ -1571,7 +1574,9 @@ var hoverZoom = {
                 currentSrcToken++;
                 hz.displayImgLoader('loading');
                 hz.createHzViewer(!hideKeyDown);
-                zoomFactor = parseInt(options.zoomFactor);
+                if (!viewerLocked) {
+                    zoomFactor = parseInt(options.zoomFactor);
+                }
 
                 getVideoAudioSubtitlesFromUrl();
 
@@ -2973,7 +2978,9 @@ var hoverZoom = {
             $(document).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
             window.addEventListener('wheel', documentOnMouseWheel, {passive: false});
             if (options.zoomVideos) {
-                $(document).on('visibilitychange', closeHoverZoomViewer);
+                $(document).on('visibilitychange', function() {
+                    if (!viewerLocked) closeHoverZoomViewer();
+                });
             }
 
             bindJsaction();
