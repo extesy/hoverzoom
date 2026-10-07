@@ -554,7 +554,9 @@ var hoverZoom = {
                     return;
                 }
 
-                // a new item displayed in a locked viewer starts fitted on screen
+                // When the viewer is locked and the user switches to another image in a gallery
+                // (carousel), keep the current zoom level instead of forcing the image to fit
+                // the screen again. Only reset zoom when it's a brand-new locked item.
                 if (viewerLocked && zoomFactorSrc !== srcDetails.naturalSrc) {
                     zoomFactorSrc = srcDetails.naturalSrc;
                     const isGallery = hz.currentLink && hz.currentLink.data() && hz.currentLink.data().hoverZoomGallerySrc && hz.currentLink.data().hoverZoomGallerySrc.length > 1;
@@ -1574,6 +1576,9 @@ var hoverZoom = {
                 currentSrcToken++;
                 hz.displayImgLoader('loading');
                 hz.createHzViewer(!hideKeyDown);
+
+                // Only reset zoom when the viewer is not locked.
+                // This keeps the user's scroll-zoom level when switching gallery images.
                 if (!viewerLocked) {
                     zoomFactor = parseInt(options.zoomFactor);
                 }
@@ -2977,6 +2982,8 @@ var hoverZoom = {
             $(document).on('mouseup', function(event) { documentMouseUp(event); })
             $(document).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
             window.addEventListener('wheel', documentOnMouseWheel, {passive: false});
+            // Keep the locked viewer open when the user switches browser tabs.
+            // Without this, a playing reel/video preview would close for no reason.
             if (options.zoomVideos) {
                 $(document).on('visibilitychange', function() {
                     if (!viewerLocked) closeHoverZoomViewer();
