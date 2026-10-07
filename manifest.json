@@ -1510,6 +1510,10 @@
             "matches": ["*://*.artstation.com/*"]
         },
         {
+            "js": ["plugins/fab.js"],
+            "matches": ["*://*.fab.com/*"]
+        },
+        {
             "js": ["plugins/artfol.js"],
             "matches": ["*://*.artfol.co/*"]
         },
