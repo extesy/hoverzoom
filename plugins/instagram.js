@@ -295,14 +295,20 @@ hoverZoomPlugins.push({
             const show = srcs => srcs ? zoom(srcs) : fallback();
 
             const link = forcedPostLink || (post.matches('a[href]') ? post : post.querySelector('a[href*="/p/"], a[href*="/reel"]'));
-            const shortcode = link && (link.getAttribute('href').match(shortcodeRe) || [])[1];
+            let shortcode = link && (link.getAttribute('href').match(shortcodeRe) || [])[1];
+
+            // when viewing a post/reel page itself there is often no link — take shortcode from the URL
+            if (!shortcode) {
+                shortcode = (location.pathname.match(shortcodeRe) || [])[1];
+            }
+
             // media_type: 1 = photo, 2 = video, 8 = album
             if (shortcode) postMedia(shortcode).then(item => {
                 if (item && item.media_type === 8) {
                     show(item.carousel_media.map(child => mediaSrc(child, item.taken_at)));
                 } else if (item) {
                     const source = mediaSrc(item);
-                    if (source) zoom(source[0]);
+                    if (source && source.length) zoom(source[0]);   // keep string, same as before
                     else fallback();
                 } else {
                     fallback();
