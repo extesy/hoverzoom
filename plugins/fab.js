@@ -1,7 +1,9 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name:'Fab',
-    version:'0.2',
+    version:'0.3',
+    // listing uid -> promise of the listing API response; kept across prepareImgLinks calls
+    listings:{},
     prepareImgLinks:function (callback) {
         const name = this.name;
 
@@ -14,13 +16,10 @@ hoverZoomPlugins.push({
         //   -> thumbnails[] / medias[] : { images: [{ url, width, height }, ...], mediaUrl }
         const reListing = /\/listings\/([0-9a-f-]{36})/i;
 
-        if (!window.hoverZoomFabListings) {
-            window.hoverZoomFabListings = {};
-        }
-        const listings = window.hoverZoomFabListings;
+        const listings = this.listings;
 
         // same-origin API call: cookies are sent, no background page needed
-        function getListing(id) {
+        async function getListing(id) {
             if (!listings[id]) {
                 listings[id] = fetch('/i/listings/' + id, { credentials: 'include' })
                     .then(response => response.ok ? response.json() : null)
@@ -78,8 +77,9 @@ hoverZoomPlugins.push({
         const selector = 'img[src*="media.fab.com/image_previews/"]';
         $(selector).each(function () {
             const box = this.closest('.fabkit-Thumbnail-root') || this;
-            if (box.classList.contains('hoverZoomFab')) return;
-            box.classList.add('hoverZoomFab');
+            // the core skips a .hoverZoomLink without hoverZoomSrc, so the class can be set before the lookup
+            if (box.classList.contains('hoverZoomLink')) return;
+            box.classList.add('hoverZoomLink');
             const link = $(box);
             link.on('mouseover', function () {
                 const img = box.matches(selector) ? box : box.querySelector(selector);
@@ -88,7 +88,6 @@ hoverZoomPlugins.push({
                 const src = img.src;
                 data.hoverZoomFabSrc = src;
                 delete data.hoverZoomSrc;
-                link.removeClass('hoverZoomLink');
                 resolve(img).then(fullsizeUrl => {
                     if (!fullsizeUrl || fullsizeUrl === src || data.hoverZoomFabSrc !== src) return;
                     data.hoverZoomSrc = [fullsizeUrl];
