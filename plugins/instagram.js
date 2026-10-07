@@ -3,6 +3,8 @@ hoverZoomPlugins.push({
     name: 'Instagram',
     version: '1.0',
     favicon: 'instagram.svg',
+    times: new Map(),        // media url (no query) -> upload time in seconds, for the age badge
+    badgeBound: false,
     api: new Map(),          // url -> promise of the picked api payload (bounded, failures dropped)
     pausedVideos: [],        // [video, container] pairs paused behind a preview
     viewerObserver: null,
@@ -24,6 +26,7 @@ hoverZoomPlugins.push({
         const shortcodeRe = /\/(?:p|reel|reels)\/([A-Za-z0-9_-]+)\/?(?:[?#]|$)/;
         const cacheLimit = 200;               // entries kept, the oldest are dropped first
         let observedHref = location.href;
+        const exploreTimeRequests = new WeakSet();
 
         function mediaId(shortcode) {
             let id = 0n;
@@ -134,9 +137,20 @@ hoverZoomPlugins.push({
         const photoSelector = 'img[src*="cdninstagram"]:not([src*="-19/"]), img[src*="fbcdn.net"]:not([src*="-19/"])';
 
         // candidates of one media item: its video stream, or its full resolution photo
-        function mediaSrc(media) {
-            return media.video_versions ? [media.video_versions[0].url + '.video']
-                                        : [media.image_versions2.candidates[0].url];
+        // media url without its query or the .video marker: the key the age badge looks up
+        function urlKey(url) {
+            return String(url).replace(/\.video$/, '').split('?')[0];
+        }
+
+        // album items carry no time of their own, so they get the post's (takenAt)
+        function mediaSrc(media, takenAt) {
+            const url = media.video_versions ? media.video_versions[0].url : media.image_versions2.candidates[0].url;
+            const time = media.taken_at || takenAt;
+            if (time) {
+                if (self.times.size >= cacheLimit * 5) self.times.delete(self.times.keys().next().value);
+                self.times.set(urlKey(url), time);
+            }
+            return [media.video_versions ? url + '.video' : url];
         }
 
         // Instagram re-renders a feed post's media while scrolling and lays the hover
@@ -146,7 +160,14 @@ hoverZoomPlugins.push({
         // not post media.
         function onHover(event) {
             const hit = event.target;
-            if (!hit.closest || hit.closest('#hzViewer') || hit.closest('.hoverZoomLink')) return;   // our viewer, or already zoomable
+            if (!hit.closest || hit.closest('#hzViewer')) return;
+            const existingLink = hit.closest('.hoverZoomLink');
+            if (existingLink) {
+                if (/^\/explore(?:\/|$)/.test(location.pathname) && existingLink.matches('video')) {
+                    fetchExploreReelTime(existingLink);
+                }
+                return;
+            }
             if (observedHref !== location.href) {
                 observedHref = location.href;
                 self.resolved = new WeakSet();
@@ -184,6 +205,20 @@ hoverZoomPlugins.push({
             else showPostMedia(hit);
         }
 
+        function fetchExploreReelTime(video) {
+            if (video.dataset.instagramTakenAt || exploreTimeRequests.has(video)) return;
+            const link = video.closest('a[href*="/p/"], a[href*="/reel/"]');
+            const shortcode = link && (link.getAttribute('href').match(shortcodeRe) || [])[1];
+            if (!shortcode) return;
+            exploreTimeRequests.add(video);
+            postMedia(shortcode).then(item => {
+                if (item && item.taken_at) video.dataset.instagramTakenAt = item.taken_at;
+            }).catch(() => {
+                exploreTimeRequests.delete(video);
+                console.warn('[Hover Zoom] Could not fetch the upload time for an Explore Reel.');
+            });
+        }
+
         function profileReelLink(hit, event) {
             if (!/^\/[^/?#]+\/reels\/?$/.test(location.pathname)) return null;
             const selector = 'a[href*="/reel/"], a[href*="/reels/"]';
@@ -203,7 +238,7 @@ hoverZoomPlugins.push({
             if (!id) return;
             self.resolved.add(link);
             reelMedia(`highlight:${id}`).then(items => {
-                const sources = items && items.map(mediaSrc).filter(Boolean);
+                const sources = items && items.map(item => mediaSrc(item)).filter(Boolean);
                 if (sources && sources.length) hoverZoom.prepareLink($(link), sources);
                 else self.resolved.delete(link);
             }).catch(() => self.resolved.delete(link));
@@ -221,7 +256,7 @@ hoverZoomPlugins.push({
                 ? profileStories(viewed).then(items => items && items.length ? items : trayStories([viewed]))
                 : trayStories(names);
             const retry = () => self.resolved.delete(circle);   // nothing to show: allow another hover
-            stories.then(items => items && items.length ? hoverZoom.prepareLink($(circle), items.map(mediaSrc)) : retry()).catch(retry);
+            stories.then(items => items && items.length ? hoverZoom.prepareLink($(circle), items.map(item => mediaSrc(item))) : retry()).catch(retry);
         }
 
         // Instagram re-renders a feed post's media while scrolling and lays the hover
@@ -233,7 +268,7 @@ hoverZoomPlugins.push({
             // a post is the feed's <article>, or a grid tile's link. The nearest one wins:
             // the saved collection grid wraps all of its tiles in a single <article>, and
             // taking that would resolve every tile to the first post of the grid.
-            const post = forcedPostLink || hit.closest('a[href*="/p/"], a[href*="/reel/"], article');
+            const post = forcedPostLink || hit.closest('a[href*="/p/"], a[href*="/reel"], article');
             if (!post || self.resolved.has(post)) return;
             const media = post.querySelector(photoSelector + ', video') ||
                 (forcedPostLink && post.querySelector('img, [style*="background-image"]'));
@@ -259,12 +294,76 @@ hoverZoomPlugins.push({
             };
             const show = srcs => srcs ? zoom(srcs) : fallback();
 
-            const link = forcedPostLink || (post.matches('a[href]') ? post : post.querySelector('a[href*="/p/"], a[href*="/reel/"]'));
+            const link = forcedPostLink || (post.matches('a[href]') ? post : post.querySelector('a[href*="/p/"], a[href*="/reel"]'));
             const shortcode = link && (link.getAttribute('href').match(shortcodeRe) || [])[1];
             // media_type: 1 = photo, 2 = video, 8 = album
-            if (shortcode) postMedia(shortcode).then(item => show(item &&
-                (item.media_type === 8 ? item.carousel_media.map(mediaSrc) : mediaSrc(item)[0]))).catch(fallback);
+            if (shortcode) postMedia(shortcode).then(item => {
+                if (item && item.media_type === 8) {
+                    show(item.carousel_media.map(child => mediaSrc(child, item.taken_at)));
+                } else if (item) {
+                    const source = mediaSrc(item);
+                    if (source) zoom(source[0]);
+                    else fallback();
+                } else {
+                    fallback();
+                }
+            }).catch(fallback);
             else fallback();                          // no post to resolve (e.g. an ad creative)
+        }
+
+        // "3h ago" badge on top of the preview. The viewer is the core's, so instead of
+        // hooking into it we poll it: the badge shows while #hzViewer holds a visible
+        // media whose url we resolved, and follows it when an album or the stories move
+        // on to the next item.
+        function timeAgo(seconds) {
+            const diff = Math.max(0, Date.now() / 1000 - seconds);
+            const m = Math.floor(diff / 60), h = Math.floor(diff / 3600), d = Math.floor(diff / 86400);
+            if (m < 1) return 'just now';
+            if (h < 1) return m + 'm ago';
+            if (d < 1) return h + 'h ago';
+            if (d < 30) return d + 'd ago';
+            if (d < 365) return Math.floor(d / 30) + 'mo ago';
+            return Math.floor(d / 365) + 'y ago';
+        }
+
+        function startAgeBadge() {
+            const badge = document.createElement('div');
+            badge.style.cssText = 'position:fixed;z-index:2147483647;pointer-events:none;display:none;' +
+                'padding:3px 10px;border-radius:12px;background:rgba(0,0,0,.75);color:#fff;' +
+                'font:600 12px/1.4 -apple-system,Segoe UI,Roboto,sans-serif;transform:translateX(-50%);white-space:nowrap';
+            document.documentElement.appendChild(badge);
+            const timeForUrls = urls => urls.reduce((found, src) => found || (src && self.times.get(urlKey(src))), null);
+            setInterval(function () {
+                let shown = false;
+                const viewer = document.getElementById('hzViewer');
+                if (viewer) {
+                    const link = hoverZoom.currentLink;
+                    const data = link && link.length ? link.data() : null;
+                    const linkedTime = link && link.toArray().reduce((time, element) =>
+                        time || Number(element.dataset.instagramTakenAt) || null, null);
+                    const activeSrc = data && (data.hoverZoomGallerySrc
+                        ? data.hoverZoomGallerySrc[data.hoverZoomGalleryIndex || 0]
+                        : data.hoverZoomSrc);
+                    const activeTime = timeForUrls([].concat(activeSrc || []).flat(Infinity));
+                    for (const el of viewer.querySelectorAll('img, video')) {
+                        const sources = [el.currentSrc, el.src, ...Array.from(el.querySelectorAll('source'), source => source.src)];
+                        const time = timeForUrls(sources) || (el.tagName === 'VIDEO' ? linkedTime || activeTime : null);
+                        const rect = el.getBoundingClientRect();
+                        if (!time || rect.width < 10 || rect.height < 10) continue;
+                        badge.textContent = timeAgo(time);
+                        badge.style.left = (rect.left + rect.width / 2) + 'px';
+                        badge.style.top = Math.max(4, rect.top + 8) + 'px';
+                        shown = true;
+                        break;
+                    }
+                }
+                badge.style.display = shown ? 'block' : 'none';
+            }, 150);
+        }
+
+        if (!self.badgeBound) {
+            self.badgeBound = true;
+            startAgeBadge();
         }
 
         if (!self.hoverBound) {
