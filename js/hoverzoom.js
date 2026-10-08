@@ -554,17 +554,12 @@ var hoverZoom = {
                     return;
                 }
 
-                // When the viewer is locked and the user switches to another image in a gallery
-                // (carousel), keep the current zoom level instead of forcing the image to fit
-                // the screen again. Only reset zoom when it's a brand-new locked item.
+                // a new item displayed in a locked viewer starts fitted on screen
                 if (viewerLocked && zoomFactorSrc !== srcDetails.naturalSrc) {
                     zoomFactorSrc = srcDetails.naturalSrc;
-                    const isGallery = hz.currentLink && hz.currentLink.data() && hz.currentLink.data().hoverZoomGallerySrc && hz.currentLink.data().hoverZoomGallerySrc.length > 1;
-                    if (!isGallery) {
-                        zoomFactor = Math.min(1,
-                            (wndWidth - offset - padding - 2 * scrollBarWidth) / srcDetails.naturalWidth,
-                            (wndHeight - padding - statusBarHeight - scrollBarHeight) / srcDetails.naturalHeight);
-                    }
+                    zoomFactor = Math.min(1,
+                        (wndWidth - offset - padding - 2 * scrollBarWidth) / srcDetails.naturalWidth,
+                        (wndHeight - padding - statusBarHeight - scrollBarHeight) / srcDetails.naturalHeight);
                 }
 
                 // width adjustment
@@ -1576,12 +1571,7 @@ var hoverZoom = {
                 currentSrcToken++;
                 hz.displayImgLoader('loading');
                 hz.createHzViewer(!hideKeyDown);
-
-                // Only reset zoom when the viewer is not locked.
-                // This keeps the user's scroll-zoom level when switching gallery images.
-                if (!viewerLocked) {
-                    zoomFactor = parseInt(options.zoomFactor);
-                }
+                zoomFactor = parseInt(options.zoomFactor);
 
                 getVideoAudioSubtitlesFromUrl();
 
