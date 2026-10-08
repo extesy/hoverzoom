@@ -2972,8 +2972,12 @@ var hoverZoom = {
             $(document).on('mouseup', function(event) { documentMouseUp(event); })
             $(document).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
             window.addEventListener('wheel', documentOnMouseWheel, {passive: false});
+            // Keep the locked viewer open when the user switches browser tabs.
+            // Without this, a playing reel/video preview would close for no reason.
             if (options.zoomVideos) {
-                $(document).on('visibilitychange', closeHoverZoomViewer);
+                $(document).on('visibilitychange', function() {
+                    if (!viewerLocked) closeHoverZoomViewer();
+                });
             }
 
             bindJsaction();
