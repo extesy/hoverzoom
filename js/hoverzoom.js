@@ -2973,7 +2973,8 @@ var hoverZoom = {
             $(document).keydown(documentOnKeyDown).keyup(documentOnKeyUp);
             window.addEventListener('wheel', documentOnMouseWheel, {passive: false});
             if (options.zoomVideos) {
-                $(document).on('visibilitychange', closeHoverZoomViewer);
+                // don't pass the event as 'now': a tab switch must not force-close a locked viewer
+                $(document).on('visibilitychange', () => closeHoverZoomViewer());
             }
 
             bindJsaction();

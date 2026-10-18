@@ -23,6 +23,7 @@ hoverZoomPlugins.push({
         const webAppId = '936619743392459';   // identifies Instagram's web client to its api
         const shortcodeRe = /\/(?:p|reel|reels)\/([A-Za-z0-9_-]+)\/?(?:[?#]|$)/;
         const cacheLimit = 200;               // entries kept, the oldest are dropped first
+        let observedHref = location.href;     // the page the resolved cache belongs to
 
         function mediaId(shortcode) {
             let id = 0n;
@@ -71,25 +72,46 @@ hoverZoomPlugins.push({
             });
         }
 
-        // the stories of a reel: a highlight, or a user the tray/one of their posts names
+        // the stories of a reel: a highlight, or a user the tray/one of their posts names.
+        // reels_media comes back as an array, or keyed by reel id
         function reelMedia(id) {
-            return apiJson(`/api/v1/feed/reels_media/?reel_ids=${id}`,
-                data => data.reels_media[0].items || null);
+            return apiJson(`/api/v1/feed/reels_media/?reel_ids=${encodeURIComponent(id)}`, data => {
+                const reels = Array.isArray(data && data.reels_media) ? data.reels_media
+                    : Object.values((data && (data.reels_media || data.reels)) || {});
+                const reel = reels.find(entry => entry && entry.items && entry.items.length &&
+                    (String(id).startsWith('highlight:') ? entry.id === id
+                        : !entry.user || String(entry.user.pk || entry.user.id) === String(id)));
+                return reel && reel.items;
+            });
         }
 
-        // the stories of the profile being viewed: any of its posts carries the user id
-        function profileStories() {
-            const link = document.querySelector('main a[href*="/p/"], main a[href*="/reel/"]');
-            const shortcode = link && (link.getAttribute('href').match(shortcodeRe) || [])[1];
-            return shortcode ? postMedia(shortcode).then(post => post && post.user ? reelMedia(post.user.pk) : null) : null;
+        // the stories of the profile being viewed: one of its posts carries the user id.
+        // The first posts of a profile can be other users' suggestions, so check a few
+        const profileScanLimit = 3;
+        async function profileStories(username) {
+            const links = Array.from(document.querySelectorAll('main a[href*="/p/"], main a[href*="/reel/"]'));
+            for (const link of links.slice(0, profileScanLimit)) {
+                const shortcode = (link.getAttribute('href').match(shortcodeRe) || [])[1];
+                const post = shortcode && await postMedia(shortcode);
+                if (post && post.user && String(post.user.username).toLowerCase() === username.toLowerCase())
+                    return reelMedia(post.user.pk || post.user.id);
+            }
+            return null;
         }
 
         // the stories of a name: the tray carries the user ids of the names it shows
         function trayStories(names) {
             return apiJson('/api/v1/feed/reels_tray/', data => data.tray || []).then(tray => {
-                const reel = (tray || []).find(reel => reel.user && names.includes(reel.user.username));
-                return reel && reelMedia(reel.user.pk);
+                const reel = (tray || []).find(entry => entry.user && names.some(name =>
+                    name && name.toLowerCase() === String(entry.user.username).toLowerCase()));
+                return reel && (reel.items && reel.items.length ? reel.items : reelMedia(reel.user.pk || reel.user.id));
             });
+        }
+
+        // the user name of the profile being viewed, if any
+        function profileUsername() {
+            const match = location.pathname.match(/^\/([^/?#]+)(?:\/(?:reels|tagged|saved))?\/?$/);
+            return match && !/^(p|reel|reels|stories|explore|direct|accounts)$/i.test(match[1]) ? match[1] : null;
         }
 
         // the words of a picture's description: a user name is one of them, whatever the
@@ -109,31 +131,88 @@ hoverZoomPlugins.push({
                                         : [media.image_versions2.candidates[0].url];
         }
 
-        // Instagram re-renders a feed post's media while scrolling and lays the hover
-        // overlay over it in a parallel branch of the tree, so nothing can be prepared in
-        // advance — the post under the pointer is resolved on hover instead. Its media is
-        // the photo or video it holds; profile pictures (Instagram's -19 CDN variant) are
-        // not post media.
+        // the hover target is resolved on demand: feeds re-render their media while
+        // scrolling, and overlays cover the tiles' links, so nothing is tagged up front
         function onHover(event) {
             const hit = event.target;
-            if (!hit.closest || hit.closest('#hzViewer') || hit.closest('.hoverZoomLink')) return;   // our viewer, or already zoomable
+            if (!hit.closest || hit.closest('#hzViewer')) return;   // our viewer
+            if (observedHref !== location.href) {    // client-side navigation: the cache belongs to the old page
+                observedHref = location.href;
+                self.resolved = new WeakSet();
+            }
 
+            // the feed's own video would keep playing behind the preview. The hover event
+            // itself proves the pointer sits on this post, so pause right away: waiting for
+            // the async resolution was too late and never ran again for a tagged post.
+            const post = hit.closest('a[href*="/p/"], a[href*="/reel/"], article');
+            if (post) pauseBehindPreview(post.querySelector('video'), post);
+
+            if (hit.closest('.hoverZoomLink')) return;   // already zoomable
+
+            const highlight = hit.closest('a[href*="/stories/highlights/"]');
+            if (highlight) return showHighlight(highlight);
+            const reel = profileReelLink(hit, event);
+            if (reel) return showPostMedia(hit, reel);
+            const avatar = profileAvatar(event);
+            if (avatar) return showStories(avatar.closest('[role="button"]') || avatar.closest('[role="link"]') || avatar, avatar, profileUsername());
             const circle = hit.closest('[role="button"], [role="link"]');
-            const face = circle && circle.querySelector('img[src*="-19/"]');
+            const face = circle && circle.querySelector('img[src*="-19/"], img[src*="profile_pic"]');
             if (face) showStories(circle, face);
             else showPostMedia(hit);
         }
 
+        // whether the pointer sits inside an element's box
+        function pointerIn(rect, event) {
+            return event.clientX >= rect.left && event.clientX <= rect.right &&
+                event.clientY >= rect.top && event.clientY <= rect.bottom;
+        }
+
+        // the profile picture of the profile being viewed: other pictures can name the
+        // same user (sidebars, tagged posts), so the one under the pointer wins
+        function profileAvatar(event) {
+            const username = profileUsername();
+            return username && Array.from(document.querySelectorAll('main img[alt]')).find(image =>
+                image.alt.toLowerCase().includes(username.toLowerCase()) &&
+                /-19\/|profile_pic/i.test(`${image.alt} ${image.currentSrc || image.src}`) &&
+                pointerIn(image.getBoundingClientRect(), event));
+        }
+
+        // a tile of a profile's reels tab: the hover overlay sits over the link, so the
+        // pointer is often not inside it — take the tile whose box holds the pointer
+        function profileReelLink(hit, event) {
+            if (!/^\/[^/?#]+\/reels\/?$/.test(location.pathname)) return null;
+            const selector = 'a[href*="/reel/"], a[href*="/reels/"]';
+            const direct = hit.closest(selector);
+            if (direct && shortcodeRe.test(direct.getAttribute('href') || '')) return direct;
+            return Array.from(document.querySelectorAll(`main ${selector}`)).find(link =>
+                shortcodeRe.test(link.getAttribute('href') || '') &&
+                pointerIn(link.getBoundingClientRect(), event)) || null;
+        }
+
+        // a highlight link opens the stories it holds
+        function showHighlight(link) {
+            if (self.resolved.has(link)) return;
+            const id = (link.getAttribute('href').match(/highlights\/(\d+)/) || [])[1];
+            if (!id) return;
+            self.resolved.add(link);
+            const retry = () => self.resolved.delete(link);   // nothing to show: allow another hover
+            reelMedia(`highlight:${id}`).then(items =>
+                items && items.length ? hoverZoom.prepareLink($(link), items.map(mediaSrc)) : retry()).catch(retry);
+        }
+
         // a story circle — the tray at the top of the feed, or the profile picture of the
         // profile being viewed — opens the stories of the user it belongs to
-        function showStories(circle, face) {
+        function showStories(circle, face, usernameHint) {
             if (self.resolved.has(circle)) return;
             self.resolved.add(circle);
             const names = namesIn(face.alt);
-            const viewed = location.pathname.match(/^\/([^/?#]+)\/$/)?.[1];
-            const stories = (names.includes(viewed) && profileStories()) || trayStories(names);
+            const viewed = usernameHint || profileUsername();
+            const own = viewed && (usernameHint || names.some(name => name.toLowerCase() === viewed.toLowerCase()));
+            const stories = own
+                ? profileStories(viewed).then(items => items && items.length ? items : trayStories([viewed]))
+                : trayStories(names);
             const retry = () => self.resolved.delete(circle);   // nothing to show: allow another hover
-            stories.then(items => items ? hoverZoom.prepareLink($(circle), items.map(mediaSrc)) : retry()).catch(retry);
+            stories.then(items => items && items.length ? hoverZoom.prepareLink($(circle), items.map(mediaSrc)) : retry()).catch(retry);
         }
 
         // Instagram re-renders a feed post's media while scrolling and lays the hover
@@ -141,14 +220,15 @@ hoverZoomPlugins.push({
         // advance — the post under the pointer is resolved on hover instead. Its media is
         // the photo or video it holds; profile pictures (Instagram's -19 CDN variant) are
         // not post media.
-        function showPostMedia(hit) {
-            const highlight = hit.closest('a[href*="/stories/highlights/"]');
+        function showPostMedia(hit, forcedPostLink) {
             // a post is the feed's <article>, or a grid tile's link. The nearest one wins:
             // the saved collection grid wraps all of its tiles in a single <article>, and
             // taking that would resolve every tile to the first post of the grid.
-            const post = highlight || hit.closest('a[href*="/p/"], a[href*="/reel/"], article');
+            const post = forcedPostLink || hit.closest('a[href*="/p/"], a[href*="/reel/"], article');
             if (!post || self.resolved.has(post)) return;
-            const media = post.querySelector(photoSelector + ', video');
+            // a grid tile can hold its media as a plain image or as a background
+            const media = post.querySelector(photoSelector + ', video') ||
+                (forcedPostLink && post.querySelector('img, [style*="background-image"]'));
 
             // the zoom hangs on the post link, or — where the media sits in a plain
             // wrapper, as in the feed — on the element holding both the pointer and the media
@@ -160,28 +240,28 @@ hoverZoomPlugins.push({
 
             self.resolved.add(post);
             const zoom = srcs => {
+                // nothing usable on the page: leave the post unresolved so a later hover retries
+                if (Array.isArray(srcs) ? !srcs.length : !srcs) {
+                    self.resolved.delete(post);
+                    return;
+                }
                 hoverZoom.prepareLink($(frame), srcs);
-                // the feed's own video keeps playing behind the preview: pause it
-                if (frame.matches(':hover')) pauseBehindPreview(post.querySelector('video'), post);
             };
             const fallback = () => {                      // the page's own full size photo
                 const cover = post.querySelector(photoSelector);
-                zoom(cover ? cover.src : media.src);
+                const background = getComputedStyle(media).backgroundImage.match(/^url\(["']?(.*?)["']?\)$/);
+                zoom(cover ? cover.src : media.currentSrc || media.src || (background && background[1]));
             };
             const show = srcs => srcs ? zoom(srcs) : fallback();
 
-            if (highlight) {
-                const id = (highlight.getAttribute('href').match(/highlights\/(\d+)/) || [])[1];
-                if (id) reelMedia(`highlight:${id}`).then(items => show(items && items.map(mediaSrc))).catch(fallback);
-                else fallback();
-            } else {
-                const link = post.matches('a[href]') ? post : post.querySelector('a[href*="/p/"], a[href*="/reel/"]');
-                const shortcode = link && (link.getAttribute('href').match(shortcodeRe) || [])[1];
-                // media_type: 1 = photo, 2 = video, 8 = album
-                if (shortcode) postMedia(shortcode).then(item => show(item &&
-                    (item.media_type === 8 ? item.carousel_media.map(mediaSrc) : mediaSrc(item)[0]))).catch(fallback);
-                else fallback();                          // no post to resolve (e.g. an ad creative)
-            }
+            const link = forcedPostLink || (post.matches('a[href]') ? post : post.querySelector('a[href*="/p/"], a[href*="/reel/"]'));
+            // on a post's own page there is often no link: the url carries the shortcode
+            const shortcode = (link && (link.getAttribute('href').match(shortcodeRe) || [])[1]) ||
+                (location.pathname.match(shortcodeRe) || [])[1];
+            // media_type: 1 = photo, 2 = video, 8 = album
+            if (shortcode) postMedia(shortcode).then(item => show(item &&
+                (item.media_type === 8 ? item.carousel_media.map(mediaSrc) : mediaSrc(item)[0]))).catch(fallback);
+            else fallback();                          // no post to resolve (e.g. an ad creative)
         }
 
         if (!self.hoverBound) {
