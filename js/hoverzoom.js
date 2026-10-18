@@ -3987,13 +3987,13 @@ var hoverZoom = {
                 let caption = getCaption();
                 if (caption) {
                     caption = '[' + caption + ']';
-                    filename = caption + filename;
+                    filename = `${caption} ${filename}`;
                 }
             }
             if (options.addDownloadSize) {
                 // prefix with size [WxH]
                 let size = '[' + getSizeImage(img) + ']';
-                filename = size + filename;
+                filename = `${size} ${filename}`;
             }
             if (options.addDownloadIndex) {
                 let gallery = hz.currentLink.data().hoverZoomGallerySrc;
@@ -4003,13 +4003,13 @@ var hoverZoom = {
                     let indexLen = index.toString().length;
                     let galleryLen = gallery.length.toString().length
                     let galleryIndex = `[${index.toString().padStart(galleryLen,'0')}-${gallery.length}]`;
-                    filename = galleryIndex + filename;
+                    filename = `${galleryIndex} ${filename}`;
                 }
             }
             if (options.addDownloadOrigin) {
                 // prefix with origin
                 let origin = '[' + getOrigin() + ']';
-                filename = origin + filename;
+                filename = `${origin} ${filename}`;
             }
             downloadResource(src, filename);
         }
@@ -4028,23 +4028,23 @@ var hoverZoom = {
                 let caption = getCaption();
                 if (caption) {
                     caption = '[' + caption + ']';
-                    filename = caption + filename;
+                    filename = `${caption} ${filename}`;
                 }
             }
             if (options.addDownloadSize) {
                 // prefix with size [WxH]
                 let size = '[' + getSizeVideo(video) + ']';
-                filename = size + filename;
+                filename = `${size} ${filename}`;
             }
             if (options.addDownloadDuration) {
                 // prefix with duration [hh mm ss]
                 let duration = hz.secondsToHms(video.duration);
-                filename = (duration != '' ? '[' + duration + ']' : '') + filename;
+                filename = (duration != '' ? '[' + duration + '] ' : '') + filename;
             }
             if (options.addDownloadOrigin) {
                 // prefix with origin
                 let origin = '[' + getOrigin() + ']';
-                filename = origin + filename;
+                filename = `${origin} ${filename}`;
             }
             downloadResource(src, filename);
         }
@@ -4062,18 +4062,18 @@ var hoverZoom = {
                 let caption = getCaption();
                 if (caption) {
                     caption = '[' + caption + ']';
-                    filename = caption + filename;
+                    filename = `${caption} ${filename}`;
                 }
             }
             if (options.addDownloadDuration) {
                 // prefix with duration [hh mm ss]
                 let duration = hz.secondsToHms(audio.duration);
-                filename = (duration != '' ? '[' + duration + ']' : '') + filename;
+                filename = (duration != '' ? '[' + duration + '] ' : '') + filename;
             }
             if (options.addDownloadOrigin) {
                 // prefix with origin
                 let origin = '[' + getOrigin() + ']';
-                filename = origin + filename;
+                filename = `${origin} ${filename}`;
             }
             downloadResource(src, filename);
         }
@@ -4221,7 +4221,7 @@ var hoverZoom = {
         // return caption with forbidden characters replaced by '_'
         function getCaption() {
             let caption = hz.currentLink.data().hoverZoomCaption || hz.currentLink.data().hoverZoomGalleryCaption || '';
-            return caption.replace(regexForbiddenChars, '_');
+            return ('' + caption).replace(regexForbiddenChars, '_');
         }
 
         function rotateGalleryImg(rot) {
