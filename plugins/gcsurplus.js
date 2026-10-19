@@ -7,7 +7,7 @@ hoverZoomPlugins.push( {
         const pluginName = this.name;
         var res = [];
 
-        $('a[href*="mn-eng"]:not(.hoverZoomMouseover), a[href*="mn-fra"]:not(.hoverZoomMouseover)').addClass('hoverZoomMouseover').one('mouseover', function() {
+        $('a[href*="mn-eng"]:not(.hoverZoomMouseOver), a[href*="mn-fra"]:not(.hoverZoomMouseOver)').addClass('hoverZoomMouseOver').one('mouseover', function() {
             var link = this;
             link = $(link);
             link.data().hoverZoomSrc = undefined;
