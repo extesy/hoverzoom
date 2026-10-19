@@ -32,7 +32,8 @@ hoverZoomPlugins.push({
 
             if (src.indexOf(ext + '/') === -1) return;
 
-            srcs.push(src.substring(0, src.indexOf(ext) + ext.length).replace('thumb/', ''));
+            // thumbnails are served by thumb.wikimedia.org, originals by upload.wikimedia.org
+            srcs.push(src.substring(0, src.indexOf(ext) + ext.length).replace('thumb/', '').replace('//thumb.wikimedia.org/', '//upload.wikimedia.org/'));
             _this.data().hoverZoomSrc = srcs;
             res.push(_this);
         });
