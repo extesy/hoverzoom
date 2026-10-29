@@ -18,7 +18,7 @@ hoverZoomPlugins.push({
         // profile, reel and collection grids. The rest of a post, i.e. the other album
         // items, the video stream and the stories, is delivered to Instagram's own player
         // alone, so it is resolved on hover through its media api. That api takes the
-        // media id, which is the shortcode in the post url in base64.
+        // media id, which is the first 11 characters of the post code in base64.
         const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
         const webAppId = '936619743392459';   // identifies Instagram's web client to its api
         const apiQuery = '__a=1&__d=dis';     // client display params: the api now answers bare /api/v1 urls with 500
@@ -61,16 +61,11 @@ hoverZoomPlugins.push({
             });
         }
 
+        // The media code is the first 11 characters of a post code whatever its length:
+        // posts of private accounts are linked with long signed codes whose tail is only the
+        // signature (and the post page's meta no longer names the post at all).
         function postMedia(shortcode) {
-            const id = mediaId(shortcode);
-            // a real shortcode is 11 characters, so its media id stays under 20 digits. Posts
-            // of private accounts are linked with long obfuscated codes instead, whose id the
-            // api rejects — the post page's og:url carries the real shortcode.
-            if (String(id).length <= 20) return apiJson(`/api/v1/media/${id}/info/?${apiQuery}`, data => data.items ? data.items[0] : null);
-            return apiMedia(`/p/${shortcode}/`, html => {
-                const code = (html.match(/<meta property="og:url" content="[^"]*\/p\/([^\/"]+)/) || [])[1];
-                return code && code !== shortcode && postMedia(code);
-            });
+            return apiJson(`/api/v1/media/${mediaId(shortcode.slice(0, 11))}/info/?${apiQuery}`, data => data.items ? data.items[0] : null);
         }
 
         // the stories of a reel: a highlight, or a user the tray/one of their posts names.
@@ -221,10 +216,12 @@ hoverZoomPlugins.push({
             const stories = own
                 ? profileStories(viewed).then(items => items && items.length ? items : trayStories([viewed]))
                 : trayStories(names);
-            const retry = () => self.resolved.delete(circle);   // nothing to show: allow another hover
+            const retry = () => self.resolved.delete(circle);   // a failed call: allow another hover
             stories.then(items => {
                 const srcs = items && mediaSrcs(items);
-                return srcs && srcs.length ? hoverZoom.prepareLink($(circle), srcs) : retry();
+                // without stories there is still the picture itself to zoom (a single
+                // source is passed bare: an array would mean a gallery of candidate-arrays)
+                return hoverZoom.prepareLink($(circle), srcs && srcs.length ? srcs : face.currentSrc || face.src);
             }).catch(retry);
         }
 
