@@ -24,10 +24,10 @@ hoverZoomPlugins.push({
 
             src = src.replace(/([^?]+).*/, '$1');
 
-            if (src.substr(src.length - 8) === '.svg.png') {
+            if (src.substring(src.length - 8) === '.svg.png') {
                 ext = '.svg';
             } else {
-                ext = src.substr(src.lastIndexOf('.'));
+                ext = src.substring(src.lastIndexOf('.'));
             }
 
             if (src.indexOf(ext + '/') === -1) return;

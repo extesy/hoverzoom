@@ -21,6 +21,7 @@ hoverZoomPlugins.push({
         // media id, which is the shortcode in the post url in base64.
         const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
         const webAppId = '936619743392459';   // identifies Instagram's web client to its api
+        const apiQuery = '__a=1&__d=dis';     // client display params: the api now answers bare /api/v1 urls with 500
         const shortcodeRe = /\/(?:p|reel|reels)\/([A-Za-z0-9_-]+)\/?(?:[?#]|$)/;
         const cacheLimit = 200;               // entries kept, the oldest are dropped first
         let observedHref = location.href;     // the page the resolved cache belongs to
@@ -65,7 +66,7 @@ hoverZoomPlugins.push({
             // a real shortcode is 11 characters, so its media id stays under 20 digits. Posts
             // of private accounts are linked with long obfuscated codes instead, whose id the
             // api rejects — the post page's og:url carries the real shortcode.
-            if (String(id).length <= 20) return apiJson(`/api/v1/media/${id}/info/`, data => data.items ? data.items[0] : null);
+            if (String(id).length <= 20) return apiJson(`/api/v1/media/${id}/info/?${apiQuery}`, data => data.items ? data.items[0] : null);
             return apiMedia(`/p/${shortcode}/`, html => {
                 const code = (html.match(/<meta property="og:url" content="[^"]*\/p\/([^\/"]+)/) || [])[1];
                 return code && code !== shortcode && postMedia(code);
@@ -75,7 +76,7 @@ hoverZoomPlugins.push({
         // the stories of a reel: a highlight, or a user the tray/one of their posts names.
         // reels_media comes back as an array, or keyed by reel id
         function reelMedia(id) {
-            return apiJson(`/api/v1/feed/reels_media/?reel_ids=${encodeURIComponent(id)}`, data => {
+            return apiJson(`/api/v1/feed/reels_media/?reel_ids=${encodeURIComponent(id)}&${apiQuery}`, data => {
                 const reels = Array.isArray(data && data.reels_media) ? data.reels_media
                     : Object.values((data && (data.reels_media || data.reels)) || {});
                 const reel = reels.find(entry => entry && entry.items && entry.items.length &&
@@ -101,7 +102,7 @@ hoverZoomPlugins.push({
 
         // the stories of a name: the tray carries the user ids of the names it shows
         function trayStories(names) {
-            return apiJson('/api/v1/feed/reels_tray/', data => data.tray || []).then(tray => {
+            return apiJson(`/api/v1/feed/reels_tray/?${apiQuery}`, data => data.tray || []).then(tray => {
                 const reel = (tray || []).find(entry => entry.user && names.some(name =>
                     name && name.toLowerCase() === String(entry.user.username).toLowerCase()));
                 return reel && (reel.items && reel.items.length ? reel.items : reelMedia(reel.user.pk || reel.user.id));
@@ -125,10 +126,17 @@ hoverZoomPlugins.push({
         // variant) are not post media.
         const photoSelector = 'img[src*="cdninstagram"]:not([src*="-19/"]), img[src*="fbcdn.net"]:not([src*="-19/"])';
 
-        // candidates of one media item: its video stream, or its full resolution photo
+        // candidates of one media item: its video stream, or its full resolution photo.
+        // Items with neither (empty or pending carousel slots) yield nothing
         function mediaSrc(media) {
-            return media.video_versions ? [media.video_versions[0].url + '.video']
-                                        : [media.image_versions2.candidates[0].url];
+            const video = media.video_versions && media.video_versions[0];
+            const photo = media.image_versions2 && media.image_versions2.candidates && media.image_versions2.candidates[0];
+            return video ? [video.url + '.video'] : photo ? [photo.url] : [];
+        }
+
+        // an album's or story's items that carry media: one empty slot must not take down the gallery
+        function mediaSrcs(items) {
+            return items.map(mediaSrc).filter(srcs => srcs.length);
         }
 
         // the hover target is resolved on demand: feeds re-render their media while
@@ -196,8 +204,10 @@ hoverZoomPlugins.push({
             if (!id) return;
             self.resolved.add(link);
             const retry = () => self.resolved.delete(link);   // nothing to show: allow another hover
-            reelMedia(`highlight:${id}`).then(items =>
-                items && items.length ? hoverZoom.prepareLink($(link), items.map(mediaSrc)) : retry()).catch(retry);
+            reelMedia(`highlight:${id}`).then(items => {
+                const srcs = items && mediaSrcs(items);
+                return srcs && srcs.length ? hoverZoom.prepareLink($(link), srcs) : retry();
+            }).catch(retry);
         }
 
         // a story circle — the tray at the top of the feed, or the profile picture of the
@@ -212,7 +222,10 @@ hoverZoomPlugins.push({
                 ? profileStories(viewed).then(items => items && items.length ? items : trayStories([viewed]))
                 : trayStories(names);
             const retry = () => self.resolved.delete(circle);   // nothing to show: allow another hover
-            stories.then(items => items && items.length ? hoverZoom.prepareLink($(circle), items.map(mediaSrc)) : retry()).catch(retry);
+            stories.then(items => {
+                const srcs = items && mediaSrcs(items);
+                return srcs && srcs.length ? hoverZoom.prepareLink($(circle), srcs) : retry();
+            }).catch(retry);
         }
 
         // Instagram re-renders a feed post's media while scrolling and lays the hover
@@ -259,8 +272,10 @@ hoverZoomPlugins.push({
             const shortcode = (link && (link.getAttribute('href').match(shortcodeRe) || [])[1]) ||
                 (location.pathname.match(shortcodeRe) || [])[1];
             // media_type: 1 = photo, 2 = video, 8 = album
-            if (shortcode) postMedia(shortcode).then(item => show(item &&
-                (item.media_type === 8 ? item.carousel_media.map(mediaSrc) : mediaSrc(item)[0]))).catch(fallback);
+            if (shortcode) postMedia(shortcode).then(item => {
+                const srcs = item && (item.media_type === 8 ? mediaSrcs(item.carousel_media) : mediaSrc(item)[0]);
+                show(srcs && srcs.length ? srcs : null);
+            }).catch(fallback);
             else fallback();                          // no post to resolve (e.g. an ad creative)
         }
 
