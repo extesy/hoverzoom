@@ -16,7 +16,8 @@ Chrome MV3 extension ("Hover Zoom+") that shows a floating, zoomed preview (imag
 
 - `js/hoverzoom.js` — all core behavior (~5k lines, single closure). Hover detection, viewer creation/positioning, media loading, key/mouse/wheel handling, galleries, video/audio/HLS playback. Most bugs are fixed here.
 - `js/common.js` — default `options` object (single source of truth for option names/defaults), key-binding defaults, shared helpers used by content script, background, options and popup pages.
-- `js/background.js` — MV3 service worker (permissions, history, downloads, messaging).
+- `js/background.js` — MV3 service worker (permissions, history, downloads, messaging, previewed-links store `hzVisitedLinks` in storage.local).
+- `js/visitedLinks.js` — `hzVisitedLinks`: marks previewed links as visited (see Gotchas). Loaded right before `hoverzoom.js`; fed by `markCurrentLinkVisited()`.
 - `js/tools.js`, `js/plugins.js`, `js/findMatchingBracket.js` — small shared helpers loaded before `hoverzoom.js`.
 - `plugins/*.js` — one small script per supported site; each registers into the global `hoverZoomPlugins` list and resolves full-size media URLs for its site. `plugins/default.js` is always loaded (generic fallback). Per-site plugins are injected via their own `content_scripts` entries in `manifest.json` (matched by domain; several plugins can share a domain, e.g. reddit).
 - `html/options.html` + `js/options.js`, `html/popup.html` + `js/popup.js` — options UI and toolbar popup. Control ids mirror option names (`chk*`, `txt*`, `sel*`, `rng*`).
@@ -62,6 +63,9 @@ videourl.video[_audiourl(.audio|.audiomuted)][_subtitlesurl.subtitles]
 Special case: `v.redd.it/<id>` URLs are rewritten to `HLSPlaylist.m3u8` and played through hls.js (video+audio muxed, so native controls work).
 
 ## Gotchas and invariants
+
+- **`chrome.history.addUrl` cannot turn links purple** (Chrome 136+ partitions `:visited` by link URL + top-level site + frame origin; extension visits are unpartitioned, so only same-origin self-links light up). Hidden iframes/fetches don't help either. `js/visitedLinks.js` therefore tags matching anchors with `data-hz-visited` and clones the page's `:visited` rules onto that attribute (same specificity; only color-type props, like the browser). Cross-origin sheets are fetched by the background (`visitedLinksFetchCss`) and parsed with a constructed `CSSStyleSheet`. Fallback is `:where(a[data-hz-visited]){color:VisitedText}`.
+- Reddit answers `/by_id/<fullname>.json` with a "blocked by network security" page; use `/comments/<id>/.json` (returns `[post, comments]`).
 
 - **`<video>` has no `naturalWidth/Height`.** Its decoded size (`videoWidth/videoHeight`) changes when an adaptive stream switches rendition (ABR, seek rebuffer). Viewer geometry must come from `srcDetails.naturalWidth/Height` (sampled once per source, keyed by `srcDetails.naturalSrc`, via `getVideoNaturalSize()` / `getBestHlsLevel()` = best rendition) — never from the live decode size, or the viewer will resize mid-hover.
 - hls.js level control: `hls.loadLevel = i` sets `manualLevel` — a persistent pin for all subsequent loads that also seeds the start level. `hls.currentLevel = i` additionally flushes the buffer (`immediateLevelSwitch`). With `autoStartLoad: false` you can pick the level on `MANIFEST_PARSED` and then call `hls.startLoad()`. `hls.levels[i].width/height/bitrate` = rendition metadata from the manifest.

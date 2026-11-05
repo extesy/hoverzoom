@@ -177,6 +177,20 @@ async function onMessage(message, sender, sendResponse) {
                 }
             });
             break;
+        case 'visitedLinksAdd':
+            await visitedLinksAdd(message.urls);
+            sendResponse();
+            break;
+        case 'visitedLinksQuery':
+            sendResponse(await visitedLinksQuery(message.urls));
+            break;
+        case 'visitedLinksFetchCss':
+            sendResponse(await visitedLinksFetchCss(message.url));
+            break;
+        case 'visitedLinksClear':
+            await visitedLinksClear();
+            sendResponse();
+            break;
         case 'getOptions':
             sendResponse(options);
             break;
@@ -289,6 +303,70 @@ async function isImageBanned(message) {
 }
 
 // Bind events, has to be a top-level command in service worker
+// Urls whose media was previewed, used to mark links as visited (see js/visitedLinks.js).
+// Stored as {url: lastSeenEpochSeconds} in storage.local, capped to the most recent VISITED_LINKS_MAX entries.
+const VISITED_LINKS_KEY = 'hzVisitedLinks';
+const VISITED_LINKS_MAX = 50000;
+let visitedLinks = null;
+let visitedLinksSaveTimer = null;
+
+async function visitedLinksLoad() {
+    if (!visitedLinks) {
+        const result = await chrome.storage.local.get(VISITED_LINKS_KEY);
+        visitedLinks = visitedLinks || new Map(Object.entries(result[VISITED_LINKS_KEY] || {}));
+    }
+    return visitedLinks;
+}
+
+function visitedLinksSave() {
+    if (visitedLinksSaveTimer) return;
+    visitedLinksSaveTimer = setTimeout(async () => {
+        visitedLinksSaveTimer = null;
+        if (visitedLinks.size > VISITED_LINKS_MAX) {
+            const sorted = Array.from(visitedLinks.entries()).sort((a, b) => b[1] - a[1]).slice(0, VISITED_LINKS_MAX);
+            visitedLinks = new Map(sorted);
+        }
+        await chrome.storage.local.set({[VISITED_LINKS_KEY]: Object.fromEntries(visitedLinks)});
+    }, 1000);
+}
+
+async function visitedLinksAdd(urls) {
+    if (!Array.isArray(urls) || !urls.length) return;
+    const map = await visitedLinksLoad();
+    const now = Math.floor(Date.now() / 1000);
+    for (const url of urls) if (typeof url === 'string' && url.length < 2048) map.set(url, now);
+    visitedLinksSave();
+}
+
+async function visitedLinksQuery(urls) {
+    if (!Array.isArray(urls)) return [];
+    const map = await visitedLinksLoad();
+    return urls.filter(url => map.has(url));
+}
+
+async function visitedLinksClear() {
+    visitedLinks = new Map();
+    await chrome.storage.local.remove(VISITED_LINKS_KEY);
+}
+
+// Cross-origin stylesheets can't be read by content scripts, so their :visited rules are fetched here.
+const visitedLinksCssCache = new Map();
+async function visitedLinksFetchCss(url) {
+    if (typeof url !== 'string' || !/^https?:\/\//.test(url)) return '';
+    if (visitedLinksCssCache.has(url)) return visitedLinksCssCache.get(url);
+    let text = '';
+    try {
+        const response = await fetch(url, {credentials: 'omit'});
+        const type = response.headers.get('content-type') || '';
+        if (response.ok && (type === '' || type.includes('css') || type.includes('text/plain'))) text = await response.text();
+    } catch (e) {
+        cLog('visitedLinksFetchCss failed: ' + url);
+    }
+    if (visitedLinksCssCache.size > 10) visitedLinksCssCache.delete(visitedLinksCssCache.keys().next().value);
+    visitedLinksCssCache.set(url, text);
+    return text;
+}
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     onMessage(request, sender, sendResponse);
     return true;

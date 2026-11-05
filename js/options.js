@@ -124,6 +124,8 @@ async function saveOptions(exportSettings = false) {
     options.showDetailDimensions = $('#chkShowDetailDimensions')[0].checked;
     
     options.filterNSFW = $('#chkFilterNSFW')[0].checked;
+    options.markVisitedLinks = $('#chkMarkVisitedLinks')[0].checked;
+    options.visitedLinksColor = $('#txtVisitedLinksColor')[0].value.trim();
     options.alwaysPreload = $('#chkAlwaysPreload')[0].checked;
     options.enableGalleries = $('#chkEnableGalleries')[0].checked;
     options.enableNoFocusMsg = $('#chkEnableNoFocusMsg')[0].checked;
@@ -308,6 +310,8 @@ async function restoreOptions(optionsFromFactorySettings) {
     $('#chkShowDetailDimensions').trigger(options.showDetailDimensions ? 'gumby.check' : 'gumby.uncheck');
 
     $('#chkFilterNSFW').trigger(options.filterNSFW ? 'gumby.check' : 'gumby.uncheck');
+    $('#chkMarkVisitedLinks').trigger(options.markVisitedLinks ? 'gumby.check' : 'gumby.uncheck');
+    $('#txtVisitedLinksColor').val(options.visitedLinksColor || '');
     $('#chkAlwaysPreload').trigger(options.alwaysPreload ? 'gumby.check' : 'gumby.uncheck');
     $('#chkEnableGalleries').trigger(options.enableGalleries ? 'gumby.check' : 'gumby.uncheck');
     $('#chkEnableNoFocusMsg').trigger(options.enableNoFocusMsg ? 'gumby.check' : 'gumby.uncheck');
@@ -762,6 +766,12 @@ $(async function () {
     $('#btnSave').click(function() { removeModifications(); saveOptions().then(() => displayMsg(Saved)); return false; }); // "return false" needed to prevent page scroll
     $('#btnCancel').click(function() { removeModifications(); restoreOptions().then(() => displayMsg(Cancel)); return false; });
     $('#btnReset').click(function() { restoreOptionsFromFactorySettings().then(() => displayMsg(Reset)); return false; });
+    $('#btnClearVisitedLinks').click(function() {
+        chrome.runtime.sendMessage({action: 'visitedLinksClear'}, () => {
+            $('#msgtxt').removeClass().addClass('centered text-center alert success').text(chrome.i18n.getMessage('optVisitedLinksCleared')).clearQueue().animate({opacity:1}, 500).delay(3000).animate({opacity:0}, 500);
+        });
+        return false;
+    });
     $('#btnDisableAllPlugins').click(function() { disableAllPlugins(); return false; });
     $('#btnEnableAllPlugins').click(function() { enableAllPlugins(); return false; });
     $('#btnImportSettings').click(function() { importSettings(); return false; });

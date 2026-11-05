@@ -33,6 +33,8 @@ const factorySettings = {
     hideMouseCursor: false,
     hideMouseCursorDelay: 500,
     filterNSFW: false,
+    markVisitedLinks: true,
+    visitedLinksColor: '',
     enableGalleries: true,
     enableNoFocusMsg: false,
     viewerShadowEnabled: true,
