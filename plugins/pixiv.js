@@ -102,11 +102,14 @@ hoverZoomPlugins.push({
          * get the date and id from url of thumbnail
          * it will search from html string
          *
-         * Example Urls : https://i.pximg.net/c/150x150/img-master/img/2019/09/19/11/04/57/76858051_p0_master1200.jpg
-         * Group 1      : (the date) 2019/09/19/11/04/57
-         * Group 3      : (the id) 76858051
+         * Example URL 1 : https://i.pximg.net/c/150x150/img-master/img/2019/09/19/11/04/57/76858051_p0_master1200.jpg
+         * Group 1       : (the date) 2019/09/19/11/04/57
+         * Group 3       : (the id) 76858051
+         * Example URL 2 : https://i.pximg.net/c/250x250_80_a2/img-master/img/2026/02/18/23/31/29/141347140-c8d6f2d88f578eff37749890dc62ea27_p0_square1200.jpg
+         * Group 1       : (the date) 2026/02/18/23/31/29
+         * Group 3       : (the id) 141347140-c8d6f2d88f578eff37749890dc62ea27
          */
-        const urlregex = /\/img\/(\d+\/(\d\d\/?(?!\d{3})){5})\/(\d+)_/
+        const urlregex = /\/img\/(\d+\/(\d\d\/?(?!\d{3})){5})\/(\d+-?[a-f0-9]+)_/
         function getData(containerStr) {
             const match = containerStr.match(urlregex)
             if (match != null)
