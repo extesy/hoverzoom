@@ -304,6 +304,7 @@
                 "js/common.js",
                 "js/plugins.js",
                 "plugins/default.js",
+                "js/visitedLinks.js",
                 "js/hoverzoom.js",
                 "js/hls.js",
                 "js/findMatchingBracket.js"

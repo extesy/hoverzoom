@@ -2339,6 +2339,8 @@ var hoverZoom = {
                 }
             }, options.showWhileLoading ? 0 : 10)
 
+            markCurrentLinkVisited();
+
             cLog('checking for history permission');
             chrome.runtime.sendMessage({action:'getPermissionsContains', permissions: ['history']},
                 function(hasPermission) {
@@ -2351,6 +2353,28 @@ var hoverZoom = {
                     }
                 }
             );
+        }
+
+        // Collects the urls that identify what is being previewed so that every link pointing to them
+        // (thumbnail, title, comments link...) gets marked as visited.
+        function markCurrentLinkVisited() {
+            if (!hz.currentLink || !srcDetails) return;
+            const urls = [srcDetails.url];
+            const el = hz.currentLink[0];
+            if (el) {
+                if (el.href) urls.push(el.href);
+                const a = el.closest && el.closest('a[href]');
+                if (a) urls.push(a.href);
+                // post containers (reddit & co) expose their permalink / content url as attributes
+                const post = el.closest && el.closest('[permalink], [data-permalink], [content-href], [data-url]');
+                if (post) {
+                    for (const attr of ['permalink', 'data-permalink', 'content-href', 'data-url']) {
+                        const v = post.getAttribute(attr);
+                        if (v) urls.push(v);
+                    }
+                }
+            }
+            hzVisitedLinks.add(urls.filter(Boolean));
         }
 
         function displayCaptionMiscellaneousDetails() {
@@ -2838,6 +2862,7 @@ var hoverZoom = {
 
         function applyOptions() {
             init();
+            hzVisitedLinks.init(options);
             if (!options.extensionEnabled || isExcludedSite()) {
                 closeHoverZoomViewer();
                 $(document).unbind('mousemove', documentMouseMove);

@@ -603,6 +603,30 @@
         "message": "Add viewed pictures to the browser's history",
         "description": "[options] Add viewed pictures to the browser's history option"
     },
+    "optMarkVisitedLinks": {
+        "message": "Mark previewed links as visited",
+        "description": "[options] Mark previewed links as visited option"
+    },
+    "optMarkVisitedLinksTooltip": {
+        "message": "Links whose media you previewed are styled like visited links, using the site's own visited style. Works for links to other sites too (e.g. i.redd.it images on Reddit), which the browser history no longer covers.",
+        "description": "[options] Mark previewed links as visited option tooltip"
+    },
+    "optVisitedLinksColor": {
+        "message": "Visited link color (empty = site's style)",
+        "description": "[options] Color used for links marked as visited"
+    },
+    "optVisitedLinksColorTooltip": {
+        "message": "Optional CSS color forced on previewed links, e.g. #9b59b6 or purple. Leave empty to use the site's own visited link style.",
+        "description": "[options] Visited link color option tooltip"
+    },
+    "optButtonClearVisitedLinks": {
+        "message": "Forget previewed links",
+        "description": "[options] Button that clears the list of links marked as visited"
+    },
+    "optVisitedLinksCleared": {
+        "message": "Previewed links forgotten",
+        "description": "[options] Message shown after clearing the list of links marked as visited"
+    },
     "optAllowMediaSaving": {
         "message": "Enable saving media with action key",
         "description": "[options] Enable saving media with action key option"
