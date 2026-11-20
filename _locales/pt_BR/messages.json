@@ -200,7 +200,7 @@
         "description": "[options] Use zoom factor for lock image option"
     },
     "optLockImageZoomFactorEnabledTooltip": {
-        "message": "Pressing the 'Lock Image' action key twice will make the image zoom to 100% by default. Enabling this instead will make it zoom by the image factor amount",
+        "message": "Por padrão, pressionar duas vezes a tecla 'Fixar imagem na tela' mostra a imagem em 100% de seu tamanho. Ao ativar esta opção, a ampliação da imagem será determinada pelo fator definido",
         "description": "[options] Tooltip for use zoom factor for lock image option"
     },
     "optLockImageZoomDefaultEnabled": {
