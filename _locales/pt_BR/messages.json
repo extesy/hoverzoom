@@ -204,11 +204,11 @@
         "description": "[options] Tooltip for use zoom factor for lock image option"
     },
     "optLockImageZoomDefaultEnabled": {
-        "message": "Locked images start zoomed in",
+        "message": "Imagens fixadas abrem ampliadas",
         "description": "[options] Locked images start zoomed in option"
     },
     "optLockImageZoomDefaultEnabledTooltip": {
-        "message": "Pressing the 'Lock Image' action key twice will make the image zoom by default. Enabling this instead will make it zoom by on first press",
+        "message": "Por padrão, pressionar duas vezes a tecla 'Fixar imagem na tela' amplia a imagem. Ao ativar esta opção, a ampliação ocorre no primeiro toque",
         "description": "[options] Tooltip for locked images start zoomed in option"
     },
     "optPageActionEnabled": {
@@ -244,11 +244,11 @@
         "description": "[options] Tooltip for use mousewheel to navigate albums option"
     },
     "optGalleriesLoopEnabled": {
-        "message": "Loop albums",
+        "message": "Repetir álbuns",
         "description": "[options] Loop albums option"
     },
     "optGalleriesLoopEnabledTooltip": {
-        "message": "When navigating past the end of an album, loop back to the start",
+        "message": "Ao terminar um álbum, voltar ao início",
         "description": "[options] Tooltip for loop albums option"
     },
     "optDisableMouseWheelForVideo": {
@@ -296,11 +296,11 @@
         "description": "[options] Tooltip for video length countdown on videos"
     },
     "optVideoPlaybackProgress": {
-        "message": "Show playback progress on videos",
+        "message": "Mostrar progresso de reprodução nos vídeos",
         "description": "[options] Enable playback progress overlay on videos"
     },
     "optVideoPlaybackProgressTooltip": {
-        "message": "Show elapsed time, total duration, and a progress bar on videos",
+        "message": "Mostrar tempo decorrido, duração e barra de progresso nos vídeos",
         "description": "[options] Tooltip for video playback progress overlay"
     },
     "optVideoVolume": {
@@ -340,11 +340,11 @@
         "description": "[options] Enable shadow behind image viewer option"
     },
     "optEnableViewerShadowTooltip": {
-        "message": "Adds a small shadow behind the zoomed image viewer, making it more visible from the background",
+        "message": "Adiciona uma leve sombra atrás do visualizador ampliado para destacá-lo do fundo",
         "description": "[options] Tooltip for enable shadow behind caption and details option"
     },
     "optEnableCaptionDetailShadow": {
-        "message": "Enable shadow behind caption and details",
+        "message": "Ativar sombra atrás de legenda e detalhes",
         "description": "[options] Enable shadow behind caption and details option"
     },
     "optEnableCaptionDetailShadowTooltip": {
