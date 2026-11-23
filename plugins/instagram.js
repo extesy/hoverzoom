@@ -1,7 +1,7 @@
 var hoverZoomPlugins = hoverZoomPlugins || [];
 hoverZoomPlugins.push({
     name: 'Instagram',
-    version: '1.0',
+    version: '1.1',
     favicon: 'instagram.svg',
     api: new Map(),          // url -> promise of the picked api payload (bounded, failures dropped)
     pausedVideos: [],        // [video, container] pairs paused behind a preview
@@ -17,11 +17,13 @@ hoverZoomPlugins.push({
         // resolution file — it is only scaled down with CSS — in the feed as well as in
         // profile, reel and collection grids. The rest of a post, i.e. the other album
         // items, the video stream and the stories, is delivered to Instagram's own player
-        // alone, so it is resolved on hover through its media api. That api takes the
-        // media id, which is the first 11 characters of the post code in base64.
+        // alone, so it is resolved on hover: stories from the items the stories viewer page
+        // embeds in its html, posts from the media api (retired: /api/v1 answers 404 and
+        // posts fall back to the page's own photo). The media api takes the media id, which
+        // is the first 11 characters of the post code in base64.
         const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
         const webAppId = '936619743392459';   // identifies Instagram's web client to its api
-        const apiQuery = '__a=1&__d=dis';     // client display params: the api now answers bare /api/v1 urls with 500
+        const apiQuery = '__a=1&__d=dis';     // client display params of the remaining /api/v1 calls
         const shortcodeRe = /\/(?:p|reel|reels)\/([A-Za-z0-9_-]+)\/?(?:[?#]|$)/;
         const cacheLimit = 200;               // entries kept, the oldest are dropped first
         let observedHref = location.href;     // the page the resolved cache belongs to
@@ -36,14 +38,13 @@ hoverZoomPlugins.push({
         // fetches from the page: requests relayed through the extension background come
         // from a foreign origin, and Instagram's session cookies ("Lax") aren't sent to
         // those, so the api answers with the login page instead of the media.
-        function apiMedia(url, pick) {
+        function apiMedia(url, pick, headers) {
             if (!self.api.has(url)) {
                 if (self.api.size >= cacheLimit) self.api.delete(self.api.keys().next().value);
                 self.api.set(url, fetch(url, {
-                        headers: { 'x-ig-app-id': webAppId }, credentials: 'include'
+                        headers: headers || { 'x-ig-app-id': webAppId }, credentials: 'include'
                     })
-                    .then(response => response.text())
-                    .then(pick)
+                    .then(response => response.ok ? response.text().then(pick) : null)
                     .catch(() => null)
                     .then(value => {
                         if (!value) self.api.delete(url);   // a failed call is not worth keeping
@@ -68,31 +69,66 @@ hoverZoomPlugins.push({
             return apiJson(`/api/v1/media/${mediaId(shortcode.slice(0, 11))}/info/?${apiQuery}`, data => data.items ? data.items[0] : null);
         }
 
-        // the stories of a reel: a highlight, or a user the tray/one of their posts names.
-        // reels_media comes back as an array, or keyed by reel id
+        const reelsKey = 'xdt_api__v1__feed__reels_media';
+
+        // The stories of a reel: a highlight, or a user's active stories.
+        // Instagram retired the /api/v1/feed/reels_media/ REST endpoint — it answers 404
+        // even for the web client's own calls — but the stories viewer document embeds
+        // the same items in its JSON script blocks. The document must be fetched with an
+        // HTML Accept header: Instagram serves a lighter shell without media otherwise.
         function reelMedia(id) {
-            return apiJson(`/api/v1/feed/reels_media/?reel_ids=${encodeURIComponent(id)}&${apiQuery}`, data => {
-                const reels = Array.isArray(data && data.reels_media) ? data.reels_media
-                    : Object.values((data && (data.reels_media || data.reels)) || {});
-                const reel = reels.find(entry => entry && entry.items && entry.items.length &&
-                    (String(id).startsWith('highlight:') ? entry.id === id
-                        : !entry.user || String(entry.user.pk || entry.user.id) === String(id)));
-                return reel && reel.items;
-            });
+            const target = String(id);
+            const path = target.startsWith('highlight:')
+                ? `/stories/highlights/${encodeURIComponent(target.slice('highlight:'.length))}/`
+                : `/stories/${encodeURIComponent(target)}/`;
+            return apiMedia(path, text => {
+                if (!text.includes(reelsKey)) return null;
+                let fallback = null;
+                for (const block of text.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)) {
+                    if (!block[1].includes(reelsKey)) continue;
+                    let payload;
+                    try { payload = JSON.parse(block[1]); } catch { continue; }
+                    const found = reelItems(payload, target);
+                    if (found.exact) return found.exact;
+                    fallback = fallback || found.fallback;
+                }
+                return fallback;
+            }, { accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' });
         }
 
-        // the stories of the profile being viewed: one of its posts carries the user id.
-        // The first posts of a profile can be other users' suggestions, so check a few
-        const profileScanLimit = 3;
-        async function profileStories(username) {
-            const links = Array.from(document.querySelectorAll('main a[href*="/p/"], main a[href*="/reel/"]'));
-            for (const link of links.slice(0, profileScanLimit)) {
-                const shortcode = (link.getAttribute('href').match(shortcodeRe) || [])[1];
-                const post = shortcode && await postMedia(shortcode);
-                if (post && post.user && String(post.user.username).toLowerCase() === username.toLowerCase())
-                    return reelMedia(post.user.pk || post.user.id);
+        // Extract one reel's items from embedded xdt_api__v1__feed__reels_media[__connection]
+        // payloads, matching `target` (highlight:<id>, username, or user pk) so preloaded
+        // adjacent reels aren't merged into the hovered highlight or story.
+        function reelItems(node, target) {
+            const want = target.toLowerCase();
+            const bareId = want.startsWith('highlight:') ? want.slice('highlight:'.length) : want;
+            const matches = reel => {
+                const reelId = reel.id != null ? String(reel.id).toLowerCase() : '';
+                if (reelId === want || reelId === bareId) return true;
+                const user = reel.user;
+                return Boolean(user && [user.username, user.pk, user.id]
+                    .some(v => v != null && String(v).toLowerCase() === want));
+            };
+            let fallback = null;
+            const stack = [node];
+            while (stack.length) {
+                const current = stack.pop();
+                if (!current || typeof current !== 'object') continue;
+                const connection = current['xdt_api__v1__feed__reels_media__connection'];
+                const direct = current['xdt_api__v1__feed__reels_media'];
+                const reels = connection && Array.isArray(connection.edges)
+                    ? connection.edges.map(edge => edge && edge.node)
+                    : direct && Array.isArray(direct.reels_media) ? direct.reels_media : null;
+                if (reels) {
+                    const nonEmpty = reels.filter(reel => reel && Array.isArray(reel.items) && reel.items.length);
+                    const exact = nonEmpty.find(matches);
+                    if (exact) return { exact: exact.items, fallback };
+                    if (nonEmpty.length && !fallback) fallback = nonEmpty[0].items;
+                }
+                for (const value of Object.values(current))
+                    if (value && typeof value === 'object' && value !== connection && value !== direct) stack.push(value);
             }
-            return null;
+            return { exact: null, fallback };
         }
 
         // the stories of a name: the tray carries the user ids of the names it shows
@@ -100,7 +136,7 @@ hoverZoomPlugins.push({
             return apiJson(`/api/v1/feed/reels_tray/?${apiQuery}`, data => data.tray || []).then(tray => {
                 const reel = (tray || []).find(entry => entry.user && names.some(name =>
                     name && name.toLowerCase() === String(entry.user.username).toLowerCase()));
-                return reel && (reel.items && reel.items.length ? reel.items : reelMedia(reel.user.pk || reel.user.id));
+                return reel && (reel.items && reel.items.length ? reel.items : reelMedia(reel.user.username || reel.user.pk || reel.user.id));
             });
         }
 
@@ -213,9 +249,7 @@ hoverZoomPlugins.push({
             const names = namesIn(face.alt);
             const viewed = usernameHint || profileUsername();
             const own = viewed && (usernameHint || names.some(name => name.toLowerCase() === viewed.toLowerCase()));
-            const stories = own
-                ? profileStories(viewed).then(items => items && items.length ? items : trayStories([viewed]))
-                : trayStories(names);
+            const stories = own ? reelMedia(viewed) : trayStories(names);
             const retry = () => self.resolved.delete(circle);   // a failed call: allow another hover
             stories.then(items => {
                 const srcs = items && mediaSrcs(items);
